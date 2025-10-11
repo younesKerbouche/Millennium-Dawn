@@ -57,10 +57,169 @@ add_namespace = algeria_invest
 add_namespace = algerian
 add_namespace = AlgeriaElections
 add_namespace = ALG_FIS
+add_namesapce = FIS_faction
 
 
+country_event = {
+	id = FIS_faction.1
+	title = FIS_faction.1.t
+	desc = FIS_faction.1.d
+	picture = GFX_retake_quds
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = FIS_faction.1.a
+		log = "[GetDateText]: [This.GetName]: FIS_faction.1.a executed"
+		
+		ai_chance = {
+			factor = 90
+		}
+		every_country = {
+			limit = {is_middle_eastern_nation = yes}
+			ALG = { add_to_faction = PREV }
+		}
+	}
+	option = {
+		name = FIS_faction.1.b
+		log = "[GetDateText]: [This.GetName]: FIS_faction.1.b executed"
+		
+		every_country = {
+			limit = {is_middle_eastern_nation = yes}
+			add_opinion_modifier = {
+				target = PREV
+				modifier = declined_faction_request
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+country_event = {
+	id = FIS_faction.2
+	title = FIS_faction.2.t
+	desc = FIS_faction.2.d
+	picture = GFX_retake_quds
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = FIS_faction.2.a
+		log = "[GetDateText]: [This.GetName]: FIS_faction.2.a executed"
+		
+		ai_chance = {
+			factor = 90
+		}
+		if = {
+			limit = {
+				country_exists = MOR
+				country_exists = TUN
+				country_exists = LBA
+				country_exists = EGY
+				has_idea = sunni
+			}
+		ALG = { add_to_faction = PREV }
+		}
+	}
+	option = {
+		name = FIS_faction.2.b
+		log = "[GetDateText]: [This.GetName]: FIS_faction.2.b executed"
+		
+		if = {
+			limit = {
+				country_exists = MOR
+				country_exists = TUN
+				country_exists = LBA
+				country_exists = EGY
+				has_idea = sunni
+			}
+			add_opinion_modifier = {
+				target = PREV
+				modifier = declined_faction_request
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+country_event = {
+	id = FIS_faction.3
+	title = FIS_faction.3.t
+	desc = FIS_faction.3.d
+	picture = GFX_retake_quds
+	is_triggered_only = yes
+	
+	option = { #Yes
+		name = FIS_faction.3.a
+		log = "[GetDateText]: [This.GetName]: FIS_faction.3.a executed"
+		
+		ai_chance = {
+			factor = 90
+		}
+		every_country = {
+			limit = {is_asian_nation = yes}
+			limit = {has_idea = sunni }
+			ALG = { add_to_faction = PREV }
+		}
+	}
+	option = {
+		name = FIS_faction.3.b
+		log = "[GetDateText]: [This.GetName]: FIS_faction.3.b executed"
+		
+		every_country = {
+			limit = {is_asian_nation = yes}
+			limit = {has_idea = sunni }
+			add_opinion_modifier = {
+				target = PREV
+				modifier = declined_faction_request
+			}
+		}
+		
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+country_event = {
+	id = ALG_FIS.2
+	title = ALG_FIS.2.t
+	desc = ALG_FIS.2.d
+	picture = GFX_alg_fis
+
+	is_triggered_only = yes
 
 
+	option = {
+		name = ALG_FIS.2.a
+		log = "[GetDateText]: [This.GetName]: ALG_FIS.2.a executed"
+		create_country_leader = {
+			name = "Ali Belhadj"
+			picture = "algeria_ali-benhadj.dds"
+			ideology = Kingdom
+			traits = {
+				salafist_Kingdom
+				anti_zionist
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+	option = {
+		name = ALG_FIS.2.b
+		log = "[GetDateText]: [This.GetName]: ALG_FIS.2.b executed"
+		create_country_leader = {
+			name = "Abdelhak Layada"
+			picture = "Abdelhak Layada.dds"
+			ideology = Kingdom
+			traits = {
+				salafist_Kingdom
+				anti_zionist
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
 country_event = {
     id = ALG_FIS.1
     title = ALG_FIS.1.t

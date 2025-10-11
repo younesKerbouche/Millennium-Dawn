@@ -11277,7 +11277,7 @@ focus = {
  focus = {
     id = ALG_bouteflika_health_crisis
     icon = alg_sick
-    x = -21
+    x = -24
     y = 9
     cost = 5
 	allow_branch = {
@@ -14252,7 +14252,7 @@ focus = {
 	}
 	focus = {
 		id = MSP_religious_economic_charity
-		icon = syr_bazaar
+		icon = algeria_culture
 		cost = 5
 		prerequisite = {
 			focus = MSP_moderate_conservatism
@@ -14316,7 +14316,7 @@ focus = {
 	}
 	focus = {
 		id = MSP_flourishment_of_central_economy
-		icon = Generic_Loadsamoney
+		icon = arm_growth_economy
 		cost = 5
 		prerequisite = {
 			focus = MSP_religious_economic_charity
@@ -14367,7 +14367,7 @@ focus = {
 	}
 	focus = {
 		id = MSP_new_era
-		icon = islamist_gov2
+		icon = algeirs1
 		cost = 7.15
 		x = 0
 		y = 2
@@ -20244,6 +20244,8 @@ focus = {
 				ideology = fascism
 				popularity = 0.05
 			}
+			set_temp_variable = { temp_opinion = -10 }
+			change_The_Military_opinion = yes
 			recalculate_party = yes
 			set_temp_variable = { party_index = 12 }
 			unban_party_scripted_call = yes
@@ -20257,9 +20259,12 @@ focus = {
 	focus = {
 		id = ALG_consolidate_power
 		icon = consolidation
-		x = -8
+		x = -6
 		y = 1
 		cost = 10
+		available = {
+			has_stability > 0.50
+		}
 		relative_position_id = ALG_ps_victory
 		prerequisite = { focus = ALG_ps_victory }
 		completion_reward = {
@@ -20286,6 +20291,13 @@ focus = {
 		x = 0
 		y = 1
 		cost = 10
+		available = {
+			num_of_factories > 14
+				custom_trigger_tooltip = {
+				tooltip = 10_per_capita_or_more_tt
+				check_variable = { gdp_per_capita > 9.999 }
+			}
+		}
 		relative_position_id = ALG_ps_victory
 		prerequisite = { focus = ALG_ps_victory }
 		completion_reward = {
@@ -20304,7 +20316,7 @@ focus = {
 	focus = {
 		id = ALG_religious_reconciliation
 		icon = religious_unity
-		x = 8
+		x = 6
 		y = 1
 		cost = 10
 		relative_position_id = ALG_ps_victory
@@ -20414,10 +20426,6 @@ focus = {
 		relative_position_id = ALG_consolidate_power
 		prerequisite = { focus = ALG_consolidate_power }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = the_military
-				add_idea = landowners
-			}
 			if = {
 				limit = {has_idea = the_ulema}
 				set_temp_variable = { temp_opinion = 15 }
@@ -20457,7 +20465,7 @@ focus = {
 		icon = MEX_Industrialize_the_north
 		x = 2
 		y = 1
-		cost = 10
+		cost = 7
 		relative_position_id = ALG_national_reconstruction
 		prerequisite = { focus = ALG_national_reconstruction }
 		completion_reward = {
@@ -20537,7 +20545,7 @@ focus = {
 		icon = public_transportation
 		x = 0
 		y = 1
-		cost = 10
+		cost = 4.5
 		relative_position_id = ALG_infrastructure_crash
 		prerequisite = { focus = ALG_infrastructure_crash }
 		completion_reward = {
@@ -20558,10 +20566,19 @@ focus = {
 		icon = hydroelectric2
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5.5
 		relative_position_id = ALG_industry_investment
 		prerequisite = { focus = ALG_industry_investment }
 		completion_reward = {
+			add_tech_bonus = {
+				name = ALG_the_energy_debate
+				bonus = 0.2
+				uses = 2
+				category = CAT_industry
+				category = CAT_renewable
+				category = CAT_construction_tech
+				category = CAT_excavation_tech
+			}
 			add_ideas = idea_focus_energy_preferred_renewable
 		}
 
@@ -20580,6 +20597,9 @@ focus = {
 		x = 0
 		y = 1
 		cost = 10
+		available = {
+			has_idea = edu_04
+		}
 		relative_position_id = ALG_madrasa_reforms
 		prerequisite = { focus = ALG_madrasa_reforms }
 		completion_reward = {
@@ -20650,11 +20670,21 @@ focus = {
 		icon = generic_factory
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.5
+		available = {
+			num_of_factories > 20
+				custom_trigger_tooltip = {
+				tooltip = 30_per_capita_or_more_tt
+				check_variable = { gdp_per_capita > 29.999 }
+			}
+		}
 		relative_position_id = ALG_transport_upgrade
 		prerequisite = { focus = ALG_transport_upgrade }
 		completion_reward = {
 			add_ideas = economic_autonomy3
+			two_random_industrial_complex = yes
+			two_random_arms_factory = yes
+			one_random_agriculture_district = yes
 		}
 
 		ai_will_do = {
@@ -20671,11 +20701,25 @@ focus = {
 		icon = generic_drill
 		x = 0
 		y = 1
-		cost = 10
+		cost = 6
 		relative_position_id = ALG_energy_program
 		prerequisite = { focus = ALG_energy_program }
 		completion_reward = {
 			add_ideas = idea_focus_energy_preferred_fossil
+			384 = {
+				add_resource = {
+					type = steel
+					amount = 8
+				}
+		    }
+			381 = {
+				add_resource = {
+					type = tungsten
+					amount = 8
+				}
+			}
+			set_temp_variable = { treasury_change = -15 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -20757,7 +20801,7 @@ focus = {
 		icon = modern_refinery_industry
 		x = 0
 		y = 1
-		cost = 10
+		cost = 3.5
 		relative_position_id = ALG_factory_output
 		prerequisite = { focus = ALG_factory_output }
 		completion_reward = {
@@ -20781,7 +20825,7 @@ focus = {
 		icon = morocco_trade_imbalance
 		x = 0
 		y = 1
-		cost = 10
+		cost = 3.5
 		relative_position_id = ALG_oil_and_minerals
 		prerequisite = { focus = ALG_oil_and_minerals }
 		completion_reward = {
@@ -20865,6 +20909,15 @@ focus = {
 		relative_position_id = ALG_national_reconstruction
 		prerequisite = { focus = ALG_heavy_industry focus = ALG_international_trade }
 		completion_reward = {
+			add_tech_bonus = {
+				name = ALG_the_energy_debate
+				bonus = 0.5
+				uses = 2
+				category = CAT_industry
+				category = CAT_renewable
+				category = CAT_construction_tech
+				category = CAT_excavation_tech
+			}
 			add_ideas = idea_focus_environmental_policy
 		}
 
@@ -20895,7 +20948,7 @@ focus = {
 	focus = {
 		id = ALG_regional_leadership
 		icon = KHM_technocrats
-		x = 2
+		x = 3
 		y = 1
 		cost = 10
 		relative_position_id = ALG_army_of_salvation
@@ -20917,6 +20970,17 @@ focus = {
 		relative_position_id = ALG_nation_energy_independence
 		prerequisite = { focus = ALG_nation_energy_independence }
 		completion_reward = {
+			add_tech_bonus = {
+				name = ALG_tech_name
+				bonus = 1
+				uses = 1
+				category = Cat_GENES
+				category = Cat_NFIBERS
+				category = Cat_3d
+				category = Cat_AI
+				category = CAT_internet_tech
+				category = CAT_computing_tech
+			}
 			swap_ideas = {
 				remove_idea = scientific_advances
 				add_idea= scientific_advances2
@@ -20935,7 +20999,7 @@ focus = {
 	focus = {
 		id = ALG_islamic_coalition
 		icon = islamic_organization
-		x = -2
+		x = -3
 		y = 1
 		cost = 10
 		relative_position_id = ALG_international_outreach
@@ -21011,7 +21075,9 @@ focus = {
 		prerequisite = {
 			focus = ALG_final_salvation
 		}
-		completion_reward = { }
+		completion_reward = {
+			country_event = {id = ALG_FIS.2 days = 3}
+		}
 	}
 
 	focus = {
@@ -21024,6 +21090,14 @@ focus = {
 		relative_position_id = FIS_restoration_of_the_ummah
 		completion_reward = {
 			add_ideas = IND_islamic_schools
+			set_temp_variable = { temp_modify_social_con_government = 10 }
+			modify_social_conservatism_government = yes
+			set_temp_variable = { rad_change = 10 }
+			modify_radicalization_effect = yes
+			set_temp_variable = { temp_opinion = 25 }
+			change_the_ulema_opinion = yes
+			set_temp_variable = { temp_opinion = -10 }
+			change_The_Military_opinion = yes
 		}
 	}
 
@@ -21057,7 +21131,7 @@ focus = {
 	focus = {
 		id = FIS_exterminate_corruption
 		icon = blr_anti_corruption_law
-		x = -2
+		x = -1
 		y = 1
 		cost = 8
 		prerequisite = { focus = FIS_guidance_council }
@@ -21070,13 +21144,18 @@ focus = {
 	focus = {
 		id = FIS_followers_of_the_prophet
 		icon = Sunni_Focus
-		x = 2
+		x = 1
 		y = 1
 		cost = 8
 		prerequisite = { focus = FIS_guidance_council }
 		relative_position_id = FIS_guidance_council
 		completion_reward = {
 			add_ideas = TAJ_sharia_in_society
+			add_political_power = 100
+			set_temp_variable = { temp_opinion = -10 }
+			change_The_Military_opinion = yes
+			set_temp_variable = { temp_modify_social_con_government = 10 }
+			modify_social_conservatism_government = yes
 		}
 	}
 
@@ -21117,6 +21196,24 @@ focus = {
 		relative_position_id = FIS_guidance_council
 		completion_reward = {
 			add_ideas = IND_sharia
+			block_bureau_decrease = yes
+			increase_centralization = yes
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.1
+			}
 		}
 	}
 
@@ -21140,13 +21237,15 @@ focus = {
 	focus = {
 		id = FIS_make_our_nation_pure
 		icon = sunni_politics
-		x = -1
+		x = -2
 		y = 1
 		cost = 8
 		prerequisite = { focus = FIS_restore_the_ummah_experiment }
 		relative_position_id = FIS_restore_the_ummah_experiment
 		completion_reward = {
 			add_ideas = LBA_religion_in_schools
+			set_temp_variable = { temp_modify_social_con_government = 2 }
+			modify_social_conservatism_government = yes
 		}
 	}
 
@@ -21158,7 +21257,14 @@ focus = {
 		cost = 8
 		prerequisite = { focus = FIS_restore_the_ummah_experiment }
 		relative_position_id = FIS_restore_the_ummah_experiment
-		completion_reward = { }
+		completion_reward = {
+			add_timed_idea = {
+				idea = generic_salafist_boost_idea2
+				days = 365
+			}
+			increase_policing_budget = yes
+			block_police_decrease = yes
+		}
 	}
 
 	focus = {
@@ -21171,6 +21277,8 @@ focus = {
 		relative_position_id = FIS_make_our_nation_pure
 		completion_reward = {
 			add_ideas = PER_islamic_golden_age
+			set_temp_variable = { temp_modify_social_con_government = 2 }
+			modify_social_conservatism_government = yes
 		}
 	}
 
@@ -21186,6 +21294,62 @@ focus = {
 			add_ideas = ALG_state_islam_idea
 		}
 	}
+	focus = {
+		id = FIS_declare_jihad
+		icon = promote_centralasian_jihad
+
+		x = 0
+		y = 2
+		relative_position_id = FIS_make_our_nation_pure
+
+		cost = 7.5
+
+		prerequisite = { focus = FIS_father_of_the_ummah }
+		prerequisite = {focus = FIS_urban_preachers}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			is_in_array = { ruling_party = 12 }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus TAJ_hoji_halim"
+			army_experience = 25
+			newline = yes
+			every_army_leader = {
+				add_skill_level = 1
+				add_attack = 2
+				add_defense = 2
+				add_logistics = 2
+			}
+			add_ideas = idea_focus_generic_jihad
+			if = {
+				limit = {NOT = {has_idea = army_morale_bonus}}
+				add_timed_idea = {
+					idea = army_morale_bonus
+					days = 220
+				}
+			}
+			if = {
+				limit = {NOT = {has_idea = army_organization_bonus}}
+				add_timed_idea = {
+					idea = army_organization_bonus
+					days = 220
+				}
+			}
+			if = {
+				limit = {NOT = {has_idea = territorial_nationalism_lar}}
+				add_timed_idea = {
+					idea = territorial_nationalism_lar
+					days = 180
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
 
 	focus = {
 		id = FIS_governmental_cleansing
@@ -21195,7 +21359,17 @@ focus = {
 		cost = 8
 		prerequisite = { focus = FIS_strict_authority }
 		relative_position_id = FIS_strict_authority
-		completion_reward = { }
+		completion_reward = {
+			set_temp_variable = { temp_opinion = -10 }
+			change_The_Military_opinion = yes
+			set_temp_variable = { temp_modify_social_con_government = 10 }
+			modify_social_conservatism_government = yes
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
+			block_edu_decrease = yes
+			increase_education_budget = yes
+		}
 	}
 
 	focus = {
@@ -21203,22 +21377,37 @@ focus = {
 		icon = focus_PER_islamic_solidarity
 		x = 0
 		y = 1
-		cost = 8
+		cost = 1.5
 		prerequisite = { focus = FIS_governmental_cleansing }
 		relative_position_id = FIS_governmental_cleansing
-		completion_reward = { }
+		completion_reward = {
+			set_temp_variable = { temp_modify_social_con_government = 2 }
+			modify_social_conservatism_government = yes
+		}
 	}
 
 	# Right branch (under FIS_victory_of_the_faithful)
 	focus = {
-		id = FIS_rehabilitate_abandoned_factories
-		icon = economic_silk_factory
+		id = FIS_islamic_offices
+		icon = generic_office_construct
 		x = -1
 		y = 1
 		cost = 8
 		prerequisite = { focus = FIS_victory_of_the_faithful }
 		relative_position_id = FIS_victory_of_the_faithful
-		completion_reward = { }
+		completion_reward = {
+			add_stability = 0.05
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = offices
+					level = 3
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { treasury_change = -36.00 }
+			modify_treasury_effect = yes
+		}
 	}
 
 	focus = {
@@ -21243,67 +21432,39 @@ focus = {
 		x = 1
 		y = 1
 		cost = 8
-		prerequisite = { focus = FIS_rehabilitate_abandoned_factories }
-		relative_position_id = FIS_rehabilitate_abandoned_factories
+		prerequisite = { focus = FIS_islamic_offices }
+		relative_position_id = FIS_islamic_offices
 		completion_reward = {
+			set_temp_variable = { corp_change = -4 }
+			modify_corporate_tax_rate_effect = yes
+			set_temp_variable = { pop_change = -4 }
+			modify_population_tax_rate_effect = yes
 			add_ideas = TAJ_economic_islamization_idea
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+			set_temp_variable = { temp_opinion = -10 }
+			change_The_Military_opinion = yes
+			set_temp_variable = { debt_change = -50 }
+			modify_debt_effect = yes
 		}
 	}
-
 	focus = {
-		id = FIS_rust_belt_rejuvenation
-		icon = factory_facto
+		id = FIS_el_karaouin_uni
+		icon = islamic_college
+		cost = 5
 		x = -1
 		y = 1
-		cost = 8
-		prerequisite = { focus = FIS_rehabilitate_abandoned_factories }
-		relative_position_id = FIS_rehabilitate_abandoned_factories
-		completion_reward = { }
-	}
-
-	focus = {
-		id = FIS_rule_to_perfection
-		icon = Generic_Command_Power
-		x = 1
-		y = 1
-		cost = 8
-		prerequisite = {focus = FIS_economic_islamization}
-		prerequisite = { focus = FIS_rust_belt_rejuvenation }
-		relative_position_id = FIS_rust_belt_rejuvenation
-		completion_reward = { }
-	}
-
-	focus = {
-		id = FIS_new_islamic_architecture
-		icon = socotra_archipelago
-		x = 0
-		y = 1
-		cost = 8
-		prerequisite = { focus = FIS_rule_to_perfection }
-		relative_position_id = FIS_rule_to_perfection
-		completion_reward = { }
-	}
-
-	focus = {
-		id = FIS_prioritize_military_industries
-		icon = TUR_military_regime
-		x = 0
-		y = 1
-		cost = 8
-		prerequisite = { focus = FIS_new_islamic_architecture }
-		relative_position_id = FIS_new_islamic_architecture
-		completion_reward = { }
-	}
-
-	focus = {
-		id = FIS_industrialize_the_umma
-		icon = Generic_Socialist_Industry
-		x = 0
-		y = 1
-		cost = 8
-		prerequisite = { focus = FIS_prioritize_military_industries }
-		relative_position_id = FIS_prioritize_military_industries
-		completion_reward = { }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_FACTION }
+		prerequisite = { focus = FIS_islamic_offices }
+		relative_position_id = FIS_islamic_offices
+		available = { salafist_kingdom_are_in_power = yes }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIS_el_karaouin_uni"
+			set_temp_variable = { temp_opinion = -5 }
+			change_The_Military_opinion = yes
+			add_ideas = FIS_jamiat_al_karaouin
+		}
+		ai_will_do = { factor = 1 }
 	}
 
 	focus = {
@@ -21316,6 +21477,7 @@ focus = {
 		relative_position_id = FIS_to_serve_allah
 		completion_reward = {
 			increase_military_spending = yes
+			add_manpower = 15000
 		}
 	}
 
@@ -21329,6 +21491,29 @@ focus = {
 		relative_position_id = FIS_militarize_the_nation
 		completion_reward = {
 			add_ideas = EST_defence_league
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			division_template = {
+				name = "Katibat al-Djazair"
+				regiments = {
+					Special_Forces = { x = 0 y = 0 }
+					Special_Forces = { x = 0 y = 1 }
+					Special_Forces = { x = 1 y = 0 }
+					Special_Forces = { x = 1 y = 1 }
+				}
+				priority = 2
+			}
+			random_owned_controlled_state = {
+				limit = { ROOT = { has_full_control_of_state = PREV } }
+				create_unit = {
+					division = "name = \"Katibat al-Djazair\" division_template = \"Katibat al-Djazair\" start_experience_factor = 2.0"
+					owner = ALG
+				}
+			}
+			set_temp_variable = { treasury_change = -4 }
+			modify_treasury_effect = yes
 		}
 	}
 
@@ -21353,7 +21538,12 @@ focus = {
 		cost = 8
 		prerequisite = { focus = FIS_soldiers_of_faith }
 		relative_position_id = FIS_soldiers_of_faith
-		completion_reward = { }
+		completion_reward = {
+			one_random_arms_factory = yes
+			army_experience = 25
+			newline = yes
+			add_command_power = 25
+		}
 	}
 
 	focus = {
@@ -21364,7 +21554,9 @@ focus = {
 		cost = 8
 		prerequisite = { focus = FIS_soldiers_of_faith }
 		relative_position_id = FIS_soldiers_of_faith
-		completion_reward = { }
+		completion_reward = {
+			one_random_arms_factory = yes
+		}
 	}
 
 	focus = {
@@ -21377,6 +21569,9 @@ focus = {
 		relative_position_id = FIS_forged_in_belief
 		completion_reward = {
 			add_ideas = CHE_russian_islamic_university
+			add_research_slot = 2
+			set_temp_variable = {ALG_research_speed_factor_change = 0.40}
+			update_ALG_research_speed_factor = yes
 		}
 	}
 
@@ -21402,7 +21597,15 @@ focus = {
 		prerequisite = {focus = FIS_disciplined_army_of_god}
 		prerequisite = { focus = FIS_made_of_steel_and_faith }
 		relative_position_id = FIS_soldiers_of_faith
-		completion_reward = { }
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			set_partyall_banned = yes
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.05
+			}
+		}
 	}
 
 	focus = {
@@ -21432,7 +21635,222 @@ focus = {
 		prerequisite = { focus = FIS_ai_military_integration }
 		relative_position_id = FIS_ai_military_integration
 		completion_reward = {
-
+			set_temp_variable = {ALG_offices_contruction_speed_change= 0.20}
+			update_ALG_offices_contruction_speed = yes
+			newline = yes
+			set_temp_variable = {ALG_arms_factory_contruction_speed_change = 0.20}
+			update_ALG_arms_factory_contruction_speed = yes
+			newline = yes
+			set_temp_variable = {ALG_civ_construction_speed_change = 0.20}
+			update_ALG_civ_construction_speed = yes
+			newline = yes
+			set_temp_variable = {ALG_planning_speed_change = 0.20}
+			update_ALG_planning_speed = yes
+			newline = yes
+			add_equipment_to_stockpile = {
+				type = infantry_weapons
+				amount = 12500
+				producer = ALG
+			}
+			add_equipment_to_stockpile = {
+				type = util_vehicle_equipment
+				amount = 1000
+				producer = ALG
+			}
+			add_equipment_to_stockpile = {
+				type = cnc_equipment
+				amount = 800
+				producer = ALG
+			}
+			add_equipment_to_stockpile = {
+				type = L_AT_Equipment
+				amount = 800
+				producer = ALG
+			}
 		}
+	}
+	focus = {
+		id = FIS_tharir_al_aqsa
+		icon = LIB_mosque
+
+		x = 0
+		y = 2
+		available = {
+			has_completed_focus = FIS_declare_jihad
+		}
+		prerequisite = {
+			focus = FIS_destroy_their_will
+		}
+		prerequisite = {
+			focus = FIS_the_future_in_the_present
+		}
+
+		cost = 8
+		relative_position_id = FIS_ai_military_integration
+
+		search_filters = { FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE }
+
+		available = {
+			has_opinion = { target = ISR value > -100 }
+			has_opinion = { target = USA value > -80 }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FIS_tharir_al_aqsa"
+			reverse_add_opinion_modifier = { target = ISR modifier = imminent_danger_to_national_security }
+			newline = yes
+			every_country = {
+				limit = { is_arabic_nation = yes }
+				limit = { is_middle_eastern_nation = yes }
+				limit = {
+					OR = {
+						has_idea = sunni
+						has_idea = shia
+						has_idea = sufi_islam
+						has_idea = ibadi
+					}
+				}
+			}
+			set_temp_variable = { percent_change = 3 }
+			set_temp_variable = { tag_index = ROOT }
+			set_temp_variable = { influence_target = PREV }
+			change_influence_percentage = yes
+			set_rule = {
+				can_create_factions = yes
+				can_join_factions = yes
+			}
+			if = {
+				limit = { is_in_faction = no }
+				create_faction = FIS_al_aqsa_faction
+			}
+			if = {
+				limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = FIS_faction_with_middle_east
+		icon = middle_east_rel_icon
+
+		x = -2
+		y = 1
+		available = {
+			every_country = {
+				limit = {is_middle_eastern_nation = yes}
+				limit = {has_idea = sunni}
+				has_opinion = { target = ALG value > 70 }
+				OR = {
+					has_idea = intervention_regional_interventionism
+					has_idea = intervention_global_interventionism
+					has_idea = intervention_neo_imperialism
+				}
+			}
+		}
+
+		relative_position_id = FIS_tharir_al_aqsa
+
+		prerequisite = { focus = FIS_tharir_al_aqsa }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_INFLUENCE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIS_faction_with_middle_east"
+			every_country = {
+				limit = {is_middle_eastern_nation = yes}
+				limit ={has_idea = sunni}
+				country_event = {id = FIS_faction.1 days = 2}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+	focus = {
+		id = FIS_faction_with_north_africa
+		icon = Influence_North_Africa
+
+		x = 0
+		y = 1
+		available = {
+			if = {
+				limit = {
+					country_exists = MOR
+					country_exists = TUN
+					country_exists = LBA
+					country_exists = EGY
+					has_opinion = { target = ALG value > 70 }
+					OR = {
+						has_idea = intervention_regional_interventionism
+						has_idea = intervention_global_interventionism
+						has_idea = intervention_neo_imperialism
+					}
+				}
+			}
+		}
+
+		relative_position_id = FIS_tharir_al_aqsa
+
+		prerequisite = { focus = FIS_tharir_al_aqsa }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_INFLUENCE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIS_faction_with_north_africa"
+			if = {
+				limit = {
+					country_exists = MOR
+					country_exists = TUN
+					country_exists = LBA
+					country_exists = EGY
+					limit ={ has_idea = sunni }
+					country_event = {id = FIS_faction.2 days = 2}
+				}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
+	}
+	focus = {
+		id = FIS_faction_with_asia
+		icon = asia
+
+		x = 2
+		y = 1
+		available = {
+			every_country = {
+				limit = {is_asian_nation = yes}
+				limit = {has_idea = sunni }
+				has_opinion = { target = ALG value > 70 }
+				OR = {
+					has_idea = intervention_regional_interventionism
+					has_idea = intervention_global_interventionism
+					has_idea = intervention_neo_imperialism
+				}
+			}
+		}
+
+		relative_position_id = FIS_tharir_al_aqsa
+
+		prerequisite = { focus = FIS_tharir_al_aqsa }
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_INFLUENCE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus FIS_faction_with_asia"
+			every_country = {
+				limit = {is_asian_nation = yes}
+				limit = {has_idea = sunni }
+				country_event = {id = FIS_faction.3 days = 2}
+			}
+		}
+
+		ai_will_do = { factor = 1 }
 	}
 }
