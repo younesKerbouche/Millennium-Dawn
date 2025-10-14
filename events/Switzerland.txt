@@ -214,3 +214,291 @@ country_event = {
 #		}
 #	}
 #}
+
+
+#New Events
+#French Gets Alpine Inquiry Event
+country_event = {
+    id = switzerland.8
+    title = switzerland.8.t
+    desc = switzerland.8.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.8.a
+        ai_chance = {
+            base = 25
+
+            modifier = {
+                add = 30
+                opinion = { target = FROM value = 50 }
+            }
+            modifier = {
+                add = 20
+                opinion = { target = FROM value = 75 }
+            }
+            modifier = {
+                add = -15
+                is_major = yes
+            }
+            modifier = {
+                add = 10
+                OR = {
+                    is_at_war = yes
+                    military_strength < 0.75
+                }
+            }
+        }
+
+        FROM = {
+
+            transfer_state = 857 # Savoy
+            transfer_state = 63  # Provence
+            transfer_state = 1000 # Nice
+
+            country_event = { id = switzerland.9 days = 1 }
+        }
+
+        add_opinion = {
+            target = FROM
+            modifier = opinion_neutrality_offer_accepted
+        }
+    }
+
+    option = {
+        name = switzerland.8.b
+        ai_chance = {
+            base = 75
+        }
+
+        FROM = {
+
+            country_event = { id = switzerland.10 days = 1 }
+        }
+
+        add_opinion = {
+            target = FROM
+            modifier = opinion_neutrality_offer_rejected
+        }
+        add_tension = 0.05
+    }
+}
+
+
+country_event = {
+    id = switzerland.9
+    title = switzerland.9.t
+    desc = switzerland.9.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.9.a
+        add_manpower = 25000
+        add_political_power = 50
+    }
+}
+
+country_event = {
+    id = switzerland.10
+    title = switzerland.10.t
+    desc = switzerland.10.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.10.a
+        add_political_power = 25
+        add_war_support = 0.03
+    }
+}
+#Italian Alps Inquiry
+country_event = {
+    id = switzerland.11
+    title = switzerland.11.t
+    desc = switzerland.11.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.11.a
+        ai_chance = {
+            base = 25
+
+            modifier = {
+                add = 30
+                opinion = { target = FROM value = 50 }
+            }
+            modifier = {
+                add = 20
+                opinion = { target = FROM value = 75 }
+            }
+            modifier = {
+                add = -15
+                is_major = yes
+            }
+            modifier = {
+                add = 10
+                OR = {
+                    is_at_war = yes
+                    military_strength < 0.75
+                }
+            }
+        }
+
+        FROM = {
+
+            transfer_state = 1059 # Aosta
+            transfer_state = 77  # Piemonte
+            transfer_state = 80 # Lombardia
+			transfer_state = 285 # South Tyrol
+
+            country_event = { id = switzerland.12 days = 1 }
+        }
+
+        add_opinion = {
+            target = FROM
+            modifier = opinion_neutrality_offer_accepted
+        }
+    }
+
+    option = {
+        name = switzerland.11.b
+        ai_chance = {
+            base = 75
+        }
+
+        FROM = {
+
+            country_event = { id = switzerland.13 days = 1 }
+        }
+
+        add_opinion = {
+            target = FROM
+            modifier = opinion_neutrality_offer_rejected
+        }
+        add_tension = 0.05
+    }
+}
+
+
+country_event = {
+    id = switzerland.12
+    title = switzerland.12.t
+    desc = switzerland.12.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.12.a
+        add_manpower = 25000
+        add_political_power = 50
+    }
+}
+
+country_event = {
+    id = switzerland.13
+    title = switzerland.13.t
+    desc = switzerland.13.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.13.a
+        add_political_power = 25
+        add_war_support = 0.03
+    }
+}
+#Austrian Alps Inquiry & Lichtenstein Annexation
+country_event = {
+    id = switzerland.14
+    title = switzerland.14.t
+    desc = switzerland.14.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.14.a
+        ai_chance = {
+            base = 25
+
+            modifier = {
+                add = 30
+                opinion = { target = FROM value = 50 }
+            }
+            modifier = {
+                add = 20
+                opinion = { target = FROM value = 75 }
+            }
+            modifier = {
+                add = -15
+                is_major = yes
+            }
+            modifier = {
+                add = 10
+                OR = {
+                    is_at_war = yes
+                    military_strength < 0.75
+                }
+            }
+        }
+
+        FROM = {
+			transfer_state = 286 # Tyrol
+            country_event = { id = switzerland.15 days = 1 }
+        }
+
+        add_opinion = {
+            target = FROM
+            modifier = opinion_neutrality_offer_accepted`
+        }
+    }
+
+    option = {
+        name = switzerland.14.b
+        ai_chance = {
+            base = 75
+        }
+
+        FROM = {
+
+            country_event = { id = switzerland.16 days = 1 }
+        }
+
+        add_opinion = {
+            target = FROM
+            modifier = opinion_neutrality_offer_rejected
+        }
+        add_tension = 0.05
+    }
+}
+
+
+country_event = {
+    id = switzerland.15
+    title = switzerland.15.t
+    desc = switzerland.15.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.15.a
+        add_manpower = 25000
+        add_political_power = 50
+    }
+}
+
+country_event = {
+    id = switzerland.16
+    title = switzerland.16.t
+    desc = switzerland.16.desc
+
+    is_triggered_only = yes
+
+    option = {
+        name = switzerland.16.a
+        add_political_power = 25
+        add_war_support = 0.03
+    }
+}
