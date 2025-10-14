@@ -498,10 +498,10 @@ country_event = {
 	option = {
 		name = singapore.107.a
 		log = "[GetDateText]: [THIS.GetName]: event singapore.107.a"
-		add_timed_idea = {
 		set_temp_variable = { treasury_change = gdp_total }
 		multiply_temp_variable = { treasury_change = -0.03 }
 		modify_treasury_effect = yes
+		add_timed_idea = {
 			idea = scientific_advances3
 			days = 90
 		}
@@ -643,6 +643,10 @@ country_event = {
 				modifier = SIN_provided_clemency_to_african_men
 			}
 		}
+
+		ai_chance = {
+			base = 1
+		}
 	}
 
 	option = {
@@ -655,6 +659,14 @@ country_event = {
 			}
 		}
 		add_stability = 0.01
+
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 1.5
+				has_stability < 0.5
+			}
+		}
 	}
 }
 

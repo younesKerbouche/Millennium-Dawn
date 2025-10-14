@@ -910,15 +910,9 @@ focus_tree = {
 				target = CHI
 				modifier = diplomatic_support
 			}
-			set_temp_variable = {
-				percent_change = 3
-			}
-			set_temp_variable = {
-				tag_index = CHI
-			}
-			set_temp_variable = {
-				influence_target = CHI
-			}
+			set_temp_variable = { percent_change = 3 }
+			set_temp_variable = { tag_index = CHI.id }
+			set_temp_variable = { influence_target = THIS.id }
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
@@ -6004,7 +5998,7 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus ISR_get_five executed"
 			add_ideas = ISR_learn_maths
 			add_tech_bonus = {
-				name = computing_tech_research
+				name = ISR_get_five
 				bonus = 0.4
 				uses = 2
 				category = CAT_computing_tech
@@ -6268,8 +6262,6 @@ focus_tree = {
 				name = "Naftali Bennett"
 				ruling_only = yes
 			}
-		}
-		bypass = {
 			OR = {
 				has_idea = ISR_very_frequent_incidents
 				has_idea = ISR_intifada
@@ -17065,8 +17057,8 @@ focus_tree = {
 					}
 				}
 				set_temp_variable = { percent_change = 5.00 }
-				set_temp_variable = { tag_index = ISR }
-				set_temp_variable = { influence_target = THIS }
+				set_temp_variable = { tag_index = ISR.id }
+				set_temp_variable = { influence_target = SUD.id }
 				change_influence_percentage = yes
 				custom_effect_tooltip = decreses_boyc_tt
 			}
@@ -18267,21 +18259,22 @@ focus_tree = {
 	focus = {
 		id = ISR_new_middle_east
 		icon = ISR_middle_east
+
 		x = 0
 		y = 2
 		relative_position_id = ISR_abraham_accords_focus
+
 		cost = 2
+
 		prerequisite = {
 			focus = ISR_negev_forum_focus
 			focus = ISR_visit_saudi
 		}
-		mutually_exclusive = {
-			focus = ISR_position_of_strength
-		}
-		search_filters = {
-			FOCUS_FILTER_ISRFOREIGNPOL
-		}
+		mutually_exclusive = { focus = ISR_position_of_strength }
+		search_filters = { FOCUS_FILTER_ISRFOREIGNPOL }
+
 		available = {
+			is_subject = no
 			has_completed_focus = ISR_taba_conference
 			OR = {
 				AND = {
@@ -18343,6 +18336,12 @@ focus_tree = {
 					NOT = {
 						has_idea = faction_periphery_alliance
 					}
+				}
+				if = { limit = { is_faction_leader = yes }
+					dismantle_faction = yes
+				}
+				else_if = { limit = { is_in_faction = yes }
+					leave_faction = yes
 				}
 				create_faction = periphery_pactt
 				add_ideas = faction_periphery_alliance
@@ -21010,13 +21009,13 @@ focus_tree = {
 				}
 				modify_treasury_effect = yes
 				add_tech_bonus = {
-					name = Cat_missile
+					name = ISR_cyrus_accords_sign
 					bonus = 1.5
 					uses = 1
 					category = Cat_missile
 				}
 				add_tech_bonus = {
-					name = ICBM_research_TT
+					name = ISR_cyrus_accords_sign
 					bonus = 1
 					uses = 1
 					category = Cat_ICBM
@@ -21732,6 +21731,7 @@ focus_tree = {
 			FOCUS_FILTER_ISRFOREIGNPOL
 		}
 		available = {
+			is_subject = no
 			country_exists = PER
 			NOT = {
 				has_war_with = PER
@@ -21751,6 +21751,12 @@ focus_tree = {
 					NOT = {
 						has_idea = faction_periphery_alliance
 					}
+				}
+				if = { limit = { is_faction_leader = yes }
+					dismantle_faction = yes
+				}
+				else_if = { limit = { is_in_faction = yes }
+					leave_faction = yes
 				}
 				create_faction = periphery_pactt
 				add_ideas = faction_periphery_alliance
@@ -27309,7 +27315,7 @@ focus_tree = {
 				has_idea = intervention_global_interventionism
 				western_socialism_are_not_in_power_or_coalition = yes
 			}
-			has_completed_focus = ISR_focus_on_the_clusters
+			has_completed_focus = ISR_the_enclave_settlements
 		}
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus ISR_tear_down_oslo executed"
@@ -27364,7 +27370,7 @@ focus_tree = {
 				has_idea = intervention_global_interventionism
 				western_socialism_are_not_in_power_or_coalition = yes
 			}
-			has_completed_focus = ISR_focus_on_the_clusters
+			has_completed_focus = ISR_the_enclave_settlements
 		}
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus ISR_disarm_the_palestinian_forces executed"
@@ -27587,6 +27593,7 @@ focus_tree = {
 				}
 				has_country_flag = pal_rejected_conter
 			}
+			has_completed_focus = ISR_focus_on_the_clusters
 		}
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus ISR_restore_palestinian_authority executed"
@@ -27617,6 +27624,7 @@ focus_tree = {
 			NOT = {
 				has_war_with = PAL
 			}
+			has_completed_focus = ISR_focus_on_the_clusters
 		}
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus ISR_arm_their_security_services executed"
@@ -27662,6 +27670,7 @@ focus_tree = {
 			NOT = {
 				has_war_with = PAL
 			}
+			has_completed_focus = ISR_focus_on_the_clusters
 		}
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus ISR_restart_negotiations executed"

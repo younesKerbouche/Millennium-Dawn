@@ -1069,8 +1069,8 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: italy_md.9.o1 executed"
 		add_resource = { #Egyptian Coast on the Red Sea
 			type = oil
-			amount = 4
-			state = 208
+			amount = 16
+			state = 219
 		}
 		add_opinion_modifier = {
 			target = ITA
@@ -1080,6 +1080,9 @@ country_event = {
 		set_temp_variable = { party_popularity_increase = 0.025 }
 		set_temp_variable = { temp_outlook_increase = 0.025 }
 		add_relative_party_popularity = yes
+		set_temp_variable = { tag_index = ITA.id }
+		set_temp_variable = { influence_target = THIS.id }
+		change_influence_percentage = yes
 		ITA = { country_event = italy_md.8 }
 	}
 	option = {
@@ -1088,8 +1091,10 @@ country_event = {
 		add_resource = { #Egyptian Coast on the Red Sea
 			type = oil
 			amount = 8
-			state = 208
+			state = 219
 		}
+		set_temp_variable = { percent_change = 4 }
+		change_domestic_influence_percentage = yes
 		ITA = { country_event = italy_md.10 }
 	}
 }
@@ -2147,10 +2152,10 @@ country_event = {
 		clear_variable = mafia_strength_pp_var
 		clear_variable = mafia_strength_lega_drift_var
 		clear_variable = police_effectivness
-		clear_variable = police_effectivness_sicily
-		clear_variable = police_effectivness_campania
-		clear_variable = police_effectivness_calabria
-		clear_variable = police_effectivness_puglia
+		clear_variable = police_effectiveness_sicily
+		clear_variable = police_effectiveness_campania
+		clear_variable = police_effectiveness_calabria
+		clear_variable = police_effectiveness_puglia
 		clear_variable = event_counter_1_sicily
 		clear_variable = event_counter_2_sicily
 		clear_variable = event_counter_3_sicily
@@ -4119,7 +4124,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_cosa_nostra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_sicily
+					factor = police_effectiveness_sicily
 				}
 			}
 			50 = {
@@ -4181,7 +4186,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_camorra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_campania
+					factor = police_effectiveness_campania
 				}
 			}
 			50 = {
@@ -4243,7 +4248,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_ndrangheta = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_calabria
+					factor = police_effectiveness_calabria
 				}
 			}
 			50 = {
@@ -4308,7 +4313,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_sacra_corona_unita = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_puglia
+					factor = police_effectiveness_puglia
 				}
 			}
 			50 = {
@@ -4373,7 +4378,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_cosa_nostra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_sicily
+					factor = police_effectiveness_sicily
 				}
 			}
 			50 = {
@@ -4434,7 +4439,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_camorra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_campania
+					factor = police_effectiveness_campania
 				}
 			}
 			50 = {
@@ -4494,7 +4499,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_ndrangheta = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_calabria
+					factor = police_effectiveness_calabria
 				}
 			}
 			50 = {
@@ -4554,7 +4559,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_sacra_corona_unita = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_puglia
+					factor = police_effectiveness_puglia
 				}
 			}
 			50 = {
@@ -4615,7 +4620,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_sacra_corona_unita = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_puglia
+					factor = police_effectiveness_puglia
 				}
 			}
 			50 = {
@@ -4677,7 +4682,7 @@ country_event = {
 				10 = {
 					country_event = { id = mafia.15 days = 7 }
 					modifier = {
-						factor = police_effectivness_puglia
+						factor = police_effectiveness_puglia
 					}
 				}
 				90 = {
@@ -4697,7 +4702,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_sacra_corona_unita = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_puglia
+					factor = police_effectiveness_puglia
 				}
 			}
 			50 = {
@@ -4794,7 +4799,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_ndrangheta = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_calabria
+					factor = police_effectiveness_calabria
 				}
 			}
 			50 = {
@@ -4856,7 +4861,7 @@ country_event = {
 				10 = {
 					country_event = { id = mafia.19 days = 7 }
 					modifier = {
-						factor = police_effectivness_calabria
+						factor = police_effectiveness_calabria
 					}
 				}
 				90 = {
@@ -4876,7 +4881,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_ndrangheta = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_calabria
+					factor = police_effectiveness_calabria
 				}
 			}
 			50 = {
@@ -4974,7 +4979,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_camorra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_campania
+					factor = police_effectiveness_campania
 				}
 			}
 			50 = {
@@ -5036,7 +5041,7 @@ country_event = {
 				10 = {
 					country_event = { id = mafia.23 days = 7 }
 					modifier = {
-						factor = police_effectivness_campania
+						factor = police_effectiveness_campania
 					}
 				}
 				90 = {
@@ -5056,7 +5061,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_camorra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_campania
+					factor = police_effectiveness_campania
 				}
 			}
 			50 = {
@@ -5154,7 +5159,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_cosa_nostra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_sicily
+					factor = police_effectiveness_sicily
 				}
 			}
 			50 = {
@@ -5217,7 +5222,7 @@ country_event = {
 				10 = {
 					country_event = { id = mafia.27 days = 7 }
 					modifier = {
-						factor = police_effectivness_sicily
+						factor = police_effectiveness_sicily
 					}
 				}
 				90 = {
@@ -5237,7 +5242,7 @@ country_event = {
 				add_to_variable = { monthly_drift_events_cosa_nostra = 0.001 }
 				custom_effect_tooltip = permanent_increase_in_mafia_drift_TT
 				modifier = {
-					factor = police_effectivness_sicily
+					factor = police_effectiveness_sicily
 				}
 			}
 			50 = {
