@@ -2676,6 +2676,9 @@
 			base = 1
 		}
 		prerequisite = { focus = SWI_suisse_politique  }
+		mutually_exclusive = {
+			focus = SWI_dissolving_the_federation
+		}
 	}
 
 	#Dissolving the Federation
@@ -2691,8 +2694,24 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_dissolving_the_federation"
+			hidden_effect = {
+				news_event = {
+					id = switzerland_news.8
+					hours = 6
+				}
+			}
+			set_cosmetic_tag = SWI_swiss_republic
+			clr_country_flag = dynamic_flag
+			newline = yes
+			add_stability = -0.15
+			remove_ideas = swiss_political_system
+			add_ideas = SWI_new_age
+		}
 		prerequisite = { focus = SWI_suisse_politique  }
 		mutually_exclusive = { focus = SWI_strengthening_the_federation  }
+
 	}
 
 	#Deepening Swiss Democracy
@@ -5316,9 +5335,21 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_radical_changes"
+			remove_ideas = SWI_swiss_neutrality
+			increase_intervention_law_effect = yes
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = -0.1 }
+			newline = yes
+			add_relative_party_popularity = yes
+		}
 		prerequisite = {
 			focus = SWI_dissolving_the_federation
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Promote Left Wing Politics
@@ -5332,9 +5363,23 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_promote_left"
+			set_temp_variable = { party_index = 4 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
+			add_timed_idea = {
+				idea = SWI_communism_idea
+				days = 365
+			}
+		}
 		prerequisite = {
 			focus = SWI_radical_changes
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Workers’ Councils Take Power
@@ -5348,9 +5393,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_workers_council"
+			add_timed_idea = {
+				idea = SWI_workers
+				days = 365
+			}
+			set_temp_variable = { temp_opinion = 20 }
+			change_labour_unions_opinion = yes
+			add_stability = 0.05
+		}
 		prerequisite = {
 			focus = SWI_promote_left
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Nationalize the Banks
@@ -5364,9 +5422,24 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_nationalize_banks"
+			if = {
+				limit = {
+					has_idea = international_bankers
+				}
+				swap_ideas = {
+					remove_idea = international_bankers
+					add_idea = the_military
+				}
+			}
+		}
 		prerequisite = {
 			focus = SWI_workers_council
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Agricultural Collectivization
@@ -5380,9 +5453,30 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_agricultural_collectivization"
+			if = {
+				limit = {
+					has_idea = small_medium_business_owners
+				}
+				swap_ideas = {
+					remove_idea = small_medium_business_owners
+					add_idea = farmers
+				}
+			}
+			add_ideas = {
+				SWI_agricultural_collectivization_idea
+			}
+		}
 		prerequisite = {
 			focus = SWI_nationalize_banks
 		}
+		mutually_exclusive = {
+			focus = SWI_workers_cooperatives
+		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Workers’ Cooperatives
@@ -5396,12 +5490,23 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_workers_cooperatives"
+			set_temp_variable = { temp_opinion = 20 }
+			change_labour_unions_opinion = yes
+			add_ideas = {
+				SWI_workers
+			}
+		}
 		prerequisite = {
 			focus = SWI_nationalize_banks
 		}
 		mutually_exclusive = {
 			focus = SWI_agricultural_collectivization
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Militias of the People
@@ -5415,10 +5520,30 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_militias_of_the_people"
+			if = {
+				limit = {
+					has_idea = the_military
+				}
+				set_temp_variable = { temp_opinion = 20 }
+				change_the_military_opinion = yes
+			}
+			add_ideas = {
+				SWI_milita
+			}
+			increase_military_spending = yes
+		}
 		prerequisite = {
 			focus = SWI_agricultural_collectivization
 			focus = SWI_workers_cooperatives
 		}
+		mutually_exclusive = {
+			focus = SWI_secret_police
+		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Secret Police
@@ -5432,6 +5557,14 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_secret_police"
+			add_ideas = {
+				SWI_secret_agency
+			}
+			increase_officer_training_level = yes
+			increase_policing_budget = yes
+		}
 		prerequisite = {
 			focus = SWI_agricultural_collectivization
 			focus = SWI_workers_cooperatives
@@ -5439,6 +5572,9 @@
 		mutually_exclusive = {
 			focus = SWI_militias_of_the_people
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Denounce The EU
@@ -5452,10 +5588,29 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_denounce_eu"
+			set_temp_variable = { modify_eurosceptic = 0.05 }
+			EU_eurosceptic_change = yes
+			every_country = {
+				limit = {
+					has_idea = EU_member
+					NOT = { original_tag = SWI }
+					NOT = { has_war_with = SWI }
+				}
+				add_opinion_modifier = {
+					target = SWI
+					modifier = major_breach_of_trust
+				}
+			}
+		}
 		prerequisite = {
 			focus = SWI_militias_of_the_people
 			focus = SWI_secret_police
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Suppress Party Enemies
@@ -5469,9 +5624,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_suppress_party_enemies"
+			increase_corruption = yes
+			increase_policing_budget = yes
+			add_stability = -0.05
+			set_temp_variable = { party_index = 4 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
+		}
 		prerequisite = {
 			focus = SWI_denounce_eu
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Multilingual Worker Solidarity
@@ -5485,12 +5653,25 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_multilingual_worker_solidarity"
+			add_stability = 0.1
+			set_temp_variable = { party_index = 4 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_ideas = {
+				SWI_multilingual_workers
+			}
+		}
 		prerequisite = {
 			focus = SWI_suppress_party_enemies
 		}
 		mutually_exclusive = {
 			focus = SWI_german_superiority
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#People's Tribune
@@ -5504,9 +5685,18 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_peoples_tribune"
+			decrease_corruption = yes
+			add_stability = 0.05
+			add_war_support = 0.1
+		}
 		prerequisite = {
 			focus = SWI_multilingual_worker_solidarity
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Central Committee Rule
@@ -5520,12 +5710,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_central_committee"
+			increase_corruption = yes
+			add_ideas = {
+				SWI_central_committee_idea
+			}
+		}
 		prerequisite = {
 			focus = SWI_multilingual_worker_solidarity
 		}
 		mutually_exclusive = {
 			focus = SWI_peoples_tribune
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#The People's Constitution
@@ -5539,9 +5739,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_peoples_constitution"
+			set_temp_variable = { party_index = 4 }
+			set_temp_variable = { party_popularity_increase = 0.1 }
+			set_temp_variable = { temp_outlook_increase = 0.1 }
+			add_relative_party_popularity = yes
+		}
 		prerequisite = {
 			focus = SWI_promote_left
 		}
+		mutually_exclusive = {
+			focus = SWI_national_charter
+		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#The National Charter
@@ -5555,12 +5768,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_national_charter"
+			set_temp_variable = { party_index = 21 }
+			set_temp_variable = { party_popularity_increase = 0.1 }
+			set_temp_variable = { temp_outlook_increase = 0.1 }
+			add_relative_party_popularity = yes
+		}
 		prerequisite {
 			focus = SWI_revive_the_nf
 		}
 		mutually_exclusive = {
 			focus = SWI_peoples_constitution
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Propaganda Machine
@@ -5574,10 +5797,19 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_propaganda_machine"
+			add_ideas = {
+				SWI_propaganda_idea
+			}
+		}
 		prerequisite = {
 			focus = SWI_peoples_constitution
 			focus = SWI_national_charter
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Economic Self-Sufficiency
@@ -5591,9 +5823,33 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_economic_self_sufficiency"
+			if = {
+				limit = {
+					NOT = {
+						has_idea = md_closed_economy
+					}
+				}
+				swap_ideas = {
+					remove_idea = consumption_economy
+					remove_idea = semi_consumption_economy
+					remove_idea = mixed_economy
+					remove_idea = export_economy
+					remove_idea = globalized_trade_economy
+					add_idea = md_closed_economy
+				}
+			}
+			add_ideas = {
+				SWI_self_sufficiency
+			}
+		}
 		prerequisite = {
 			focus = SWI_propaganda_machine
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Expel Foreign Companies
@@ -5607,9 +5863,21 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_expel_foreign_companies"
+			add_ideas = {
+				SWI_swiss_companies_only
+			}
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+			add_stability = 0.06
+		}
 		prerequisite = {
 			focus = SWI_economic_self_sufficiency
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Revive The National Front
@@ -5623,9 +5891,23 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_revive_the_nf"
+			set_temp_variable = { party_index = 21 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
+			add_timed_idea = {
+				idea = SWI_fascism_idea
+				days = 365
+			}
+		}
 		prerequisite = {
 			focus = SWI_radical_changes
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#National Unity
@@ -5639,9 +5921,25 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_national_unity"
+			if = {
+				limit = {
+					NOT = {has_idea = the_military}
+				}
+				swap_ideas = {
+					remove_idea = international_bankers
+					add_idea = the_military
+				}
+			}
+			add_stability = 0.05
+		}
 		prerequisite = {
 			focus = SWI_revive_the_nf
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#A Leader of a Nation
@@ -5655,9 +5953,16 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_leader_of_a_nation"
+			add_country_leader_trait = staunch_personalist
+		}
 		prerequisite = {
 			focus = SWI_national_unity
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Militarize Society
@@ -5671,9 +5976,19 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_militarize_society"
+			increase_migration_law = yes
+			add_idea = {
+				SWI_militarized_society
+			}
+		}
 		prerequisite = {
 			focus = SWI_leader_of_a_nation
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Fascist Propaganda
@@ -5687,9 +6002,23 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_fascist_propaganda"
+			set_temp_variable = { party_index = 21 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
+			add_timed_idea = {
+				idea = SWI_fascism_idea
+				days = 365
+			}
+		}
 		prerequisite = {
 			focus = SWI_militarize_society
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Censorship
@@ -5703,12 +6032,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_censorship"
+			add_ideas = {
+				SWI_censor
+			}
+			add_stability = -0.05
+		}
 		prerequisite = {
 			focus = SWI_militarize_society
 		}
 		mutually_exclusive = {
 			focus = SWI_fascist_propaganda
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Pan-Alpine Identity
@@ -5722,10 +6061,40 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_pan_alpine_identity"
+			AUS = {
+				add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+			}
+			ITA = {
+				add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+			}
+			FRA = {
+				add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+			}
+
+			LIC = {
+				add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+			}
+			add_state_core = 286
+			add_state_core = 947
+			add_state_core = 1059
+			add_state_core = 77
+			add_state_core = 80
+			add_state_core = 285
+			add_state_core = 857
+			add_state_core = 1000
+			add_state_core = 63
+			increase_intervention_law_effect = yes
+			add_war_support = 0.1
+		}
 		prerequisite = {
 			focus = SWI_fascist_propaganda
 			focus = SWI_censorship
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Ban Radical Neutrals
@@ -5739,9 +6108,24 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_ban_radical_neutrals"
+			add_stability = -0.05
+			set_temp_variable = { party_index = 21 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
+			add_timed_idea = {
+				idea = SWI_ban_neutrals
+				days = 365
+			}
+		}
 		prerequisite = {
 			focus = SWI_pan_alpine_identity
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#German Superiority
@@ -5755,9 +6139,26 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_german_superiority"
+			add_stability = -0.1
+			add_war_support = 0.2
+			set_cosmetic_tag = SWI_schweiz
+			clr_country_flag = dynamic_flag
+			newline = yes
+			increase_policing_budget = yes
+			increase_military_spending = yes
+			increase_intervention_law_effect = yes
+		}
 		prerequisite = {
 			focus = SWI_ban_radical_neutrals
 		}
+		mutually_exclusive = {
+			focus = SWI_swiss_identity
+		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Swiss Identity
@@ -5771,12 +6172,25 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_swiss_identity"
+			increase_military_spending = yes
+			increase_intervention_law_effect = yes
+			add_stability = 0.05
+			add_timed_idea = {
+				idea = SWI_fascism_idea
+				days = 365
+			}
+		}
 		prerequisite = {
 			focus = SWI_ban_radical_neutrals
 		}
 		mutually_exclusive = {
 			focus = SWI_german_superiority
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 
 	#Alpine Destiny
@@ -5790,10 +6204,33 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_alpine_destiny"
+			SWI = {
+            	create_wargoal= {
+                	target = FRA
+                	type = take_claimed_state
+            	}
+				create_wargoal= {
+                	target = AUS
+                	type = take_claimed_state
+            	}
+				create_wargoal= {
+                	target = ITA
+                	type = take_claimed_state
+            	}
+       	 	}
+			annex_country = { target = LIC transfer_troops = yes }
+			increase_intervention_law_effect = yes
+			increase_military_spending = yes
+		}
 		prerequisite = {
 			focus = SWI_german_superiority
 			focus = SWI_swiss_identity
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 	#One Party State
 	focus = {
@@ -5806,11 +6243,22 @@
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_one_party_state"
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = 1 }
+			set_temp_variable = { temp_outlook_increase = 1 }
+			add_relative_party_popularity = yes
+			add_stability = -0.2
+		}
 		prerequisite = {
 			focus = SWI_alpine_destiny
 			focus = SWI_central_committee
 			focus = SWI_peoples_tribune
 		}
+		ai_will_do = {
+            base = 1
+        }
 	}
 ##############################
 ###	Start of EU Focus Tree ###	x = 15 y = 12
