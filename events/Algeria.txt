@@ -57,9 +57,26 @@ add_namespace = algeria_invest
 add_namespace = algerian
 add_namespace = AlgeriaElections
 add_namespace = ALG_FIS
-add_namesapce = FIS_faction
+add_namespace = FIS_faction
+add_namespace = alg_politics_news
 
 
+news_event = {
+    id = alg_politics_news.1
+    title = alg_politics_news.1.t
+    desc = alg_politics_news.1.d
+    picture = GFX_algerian_protests
+	fire_only_once = yes
+
+    trigger = { date > 2011.07.30 }
+
+    mean_time_to_happen = { days = 1 }
+
+    option = {
+        name = alg_politics_news.1.a
+		log = "[GetDateText]: [This.GetName]: alg_politics_news.1.a executed"
+    }
+}
 country_event = {
 	id = FIS_faction.1
 	title = FIS_faction.1.t
