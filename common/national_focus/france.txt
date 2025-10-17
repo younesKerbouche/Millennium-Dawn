@@ -5317,11 +5317,11 @@ focus_tree = {
 			FRA_unstab = yes
 			if = {
 				limit = { has_idea = police_05 }
-				swap_ideas = { remove_idea = police_01 add_idea = police_04 }
+				swap_ideas = { remove_idea = police_05 add_idea = police_04 }
 			}
 			else_if = {
 				limit = { has_idea = police_04 }
-				swap_ideas = { remove_idea = police_02 add_idea = police_04 }
+				swap_ideas = { remove_idea = police_04 add_idea = police_03 }
 			}
 			else_if = {
 				limit = { has_idea = police_03 }
@@ -5329,7 +5329,7 @@ focus_tree = {
 			}
 			else_if = {
 				limit = { has_idea = police_02 }
-				swap_ideas = { remove_idea = police_04 add_idea = police_01 }
+				swap_ideas = { remove_idea = police_02 add_idea = police_01 }
 			}
 			else_if = {#you already have min level of police so its even more controlled
 				limit = { has_idea = police_01 }
@@ -7037,6 +7037,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_new_18th_brumaire"
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_bon_warsup=yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_bon_drift =yes
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_bon_stab=yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_bon_relation =yes
 		}
 
 		ai_will_do = {
@@ -7549,6 +7557,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_revolution_bonapart"
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_bon_stab=yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_bon_warsup=yes
+			set_temp_variable = { temp_change = 0.02 }
+			FRA_bon_drift =yes
+			add_timed_idea = {
+				idea = FRA_monarchist_anger
+				days = 365
+			}
 		}
 
 		ai_will_do = {
@@ -7570,6 +7588,30 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_despotism"
+			if = {
+				limit = { has_idea = police_05 }
+				add_political_power = 200
+			}
+			else_if = {
+				limit = { has_idea = police_04 }
+				swap_ideas = { remove_idea = police_04 add_idea = police_05 }
+			}
+			else_if = {
+				limit = { has_idea = police_03 }
+				swap_ideas = { remove_idea = police_03 add_idea = police_04 }
+			}
+			else_if = {
+				limit = { has_idea = police_02 }
+				swap_ideas = { remove_idea = police_02 add_idea = police_03 }
+			}
+			else_if = {#you already have min level of police so its even more controlled
+				limit = { has_idea = police_01 }
+				swap_ideas = { remove_idea = police_01 add_idea = police_02 }
+			}
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_bon_resitance_damage =yes
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_bon_compliance_our_state_growth =yes
 		}
 
 		ai_will_do = {
@@ -7591,6 +7633,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_napoleon_constitution"
+			add_timed_idea = {
+				idea = FRA_bonapart_constitution
+				days = 100
+			}
 		}
 
 		ai_will_do = {
@@ -7612,6 +7658,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_reform_military_napoleon"
+			country_event = france_md.281
 		}
 
 		ai_will_do = {
@@ -7654,6 +7701,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_centralised_admin"
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_bon_construction=yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_bon_bp =yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_bon_bureaucracy_cost =yes
 		}
 
 		ai_will_do = {
@@ -7675,6 +7728,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_blame_ennemy"
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_bon_warsup=yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_bon_warstab =yes
+			set_temp_variable = { temp_change = -0.075 }
+			FRA_bon_stab=yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_bon_resistance growth_cost =yes
 		}
 
 		ai_will_do = {
@@ -7703,7 +7764,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_queen_battlefield
+		id = FRA_la_grande_armee
 		icon = infantry_allies
 
 		x = -19
@@ -7714,9 +7775,15 @@ focus_tree = {
 
 		prerequisite = { focus = FRA_reform_military_napoleon }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		available = {
+			NOT = {
+				FRA_bonapart_military_reform
+			}
+		}
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_queen_battlefield"
+			country_event = france_md.283
 		}
 
 		ai_will_do = {
@@ -7759,6 +7826,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_plebiscites"
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_bon_stab =yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_bon_infdef= yes
+			set_temp_variable = { temp_change = -0.075 }
+			FRA_bon_driftdef = yes
+			set_temp_variable = { temp_change = 0.25 }
+			FRA_bon_party_stab =yes
 		}
 
 		ai_will_do = {
@@ -7775,11 +7850,12 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_queen_battlefield }
+		prerequisite = { focus = FRA_la_grande_armee }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_firepower"
+			country_event = france_md.284
 		}
 
 		ai_will_do = {
@@ -7808,7 +7884,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_abolish_priviledge
+		id = FRA_renew_meritocracy
 		icon = equality
 
 		x = -25
@@ -7822,6 +7898,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_abolish_priviledge"
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_bon_efficap =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_bon_research = yes
+			
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_bon_consgood = yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_bon_factmoney =yes
 		}
 
 		ai_will_do = {
@@ -7902,12 +7987,18 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_abolish_priviledge }
+		prerequisite = { focus = FRA_renew_meritocracy }
 		prerequisite = { focus = FRA_blame_ennemy }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_imperial_pride"
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_bon_surender = yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_bon_coredef =yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_bon_coreatt =yes
 		}
 
 		ai_will_do = {
