@@ -3044,6 +3044,9 @@
 			}
 		}
 		prerequisite = { focus = SWI_true_neutrality  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Improve Relations With Our Neighbours
@@ -3080,7 +3083,11 @@
 				add_opinion_modifier = { target = ROOT modifier = SWI_alps_treaty_trade }
 			}
 		}
-		prerequisite = { focus = SWI_further_strengthen_the_federation  } prerequisite = { focus = SWI_the_mind_of_the_federation  }
+		prerequisite = { focus = SWI_further_strengthen_the_federation  }
+		prerequisite = { focus = SWI_the_mind_of_the_federation  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Inquire About the French Alps
@@ -3098,7 +3105,11 @@
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_inquire_about_the_french_alps"
 			FRA = { country_event = { id = switzerland.8 days = 1 } }
 		}
-		prerequisite = { focus = SWI_further_strengthen_the_federation  } prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		prerequisite = { focus = SWI_further_strengthen_the_federation  }
+		prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Inquire About the Italian Alps
@@ -3116,7 +3127,11 @@
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_inquire_about_the_italian_alps"
 			ITA = { country_event = { id = switzerland.11 days = 1 } }
 		}
-		prerequisite = { focus = SWI_further_strengthen_the_federation  } prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		prerequisite = { focus = SWI_further_strengthen_the_federation  }
+		prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Inquire About the Austrian Alps
@@ -3138,7 +3153,11 @@
 				transfer_troops = no
 			}
 		}
-		prerequisite = { focus = SWI_further_strengthen_the_federation  } prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		prerequisite = { focus = SWI_further_strengthen_the_federation  }
+		prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Proclaim the Alp Federation
@@ -3173,7 +3192,12 @@
 			add_state_core = 1000
 			add_state_core = 63
 		}
-		prerequisite = { focus = SWI_inquire_about_the_french_alps  } prerequisite = { focus = SWI_inquire_about_the_italian_alps  } prerequisite = { focus = SWI_inquire_about_the_austrian_alps  }
+		prerequisite = { focus = SWI_inquire_about_the_french_alps  }
+		prerequisite = { focus = SWI_inquire_about_the_italian_alps  }
+		prerequisite = { focus = SWI_inquire_about_the_austrian_alps  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Expel Foreign Influence
@@ -3192,7 +3216,11 @@
 			set_temp_variable = { percent_change = 100 }
 			change_domestic_influence_percentage = yes
 		}
-		prerequisite = { focus = SWI_improve_relations_with_our_neighbours  } prerequisite = { focus = SWI_the_mind_of_the_federation  }
+		prerequisite = { focus = SWI_improve_relations_with_our_neighbours  }
+		prerequisite = { focus = SWI_the_mind_of_the_federation  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Strengthen The Federation
@@ -3213,6 +3241,9 @@
 			}
 		}
 		prerequisite = { focus = SWI_expel_foreign_influence }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Modernize Direct Democracy
@@ -3233,7 +3264,11 @@
 				SWI_modernize_direct
 			}
 		}
+		mutually_exclusive = { focus = SWI_empower_the_council_of_states  }
 		prerequisite = { focus = SWI_strengthen_the_federation  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Empower the Council of States
@@ -3256,6 +3291,9 @@
 		}
 		prerequisite = { focus = SWI_strengthen_the_federation  }
 		mutually_exclusive = { focus = SWI_modernize_direct_democracy  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Fiscal Equalization Fund
@@ -3277,6 +3315,9 @@
 			add_stability = 0.1
 		}
 		prerequisite = { focus = SWI_proclaim_the_alp_federation  } prerequisite = { focus = SWI_modernize_direct_democracy  } prerequisite = { focus = SWI_empower_the_council_of_states  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Social Equality
@@ -3303,6 +3344,9 @@
 			focus = SWI_partei_der_arbeit
 			focus = SWI_sp
 		 }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Worker's Rights
@@ -3325,6 +3369,9 @@
 			add_stability = 0.1
 		}
 		prerequisite = { focus = SWI_social_equality }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Cheaper Housing
@@ -3348,7 +3395,11 @@
 				add_extra_state_shared_building_slots = 2
 			}
 		}
+		mutually_exclusive = { focus = SWI_higher_wages }
 		prerequisite = { focus = SWI_workers_rights }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Higher Wages
@@ -3372,6 +3423,9 @@
 		}
 		prerequisite = { focus = SWI_workers_rights }
 		mutually_exclusive = { focus = SWI_cheaper_housing  }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Expand Public Housing
@@ -3397,6 +3451,9 @@
 			focus = SWI_higher_wages
 			focus = SWI_cheaper_housing
 		}
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Challenge the Banking Elite
@@ -3419,6 +3476,9 @@
 			}
 		}
 		prerequisite = { focus = SWI_expand_public_housing }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Nationalize Key Industries
@@ -3440,6 +3500,9 @@
 			}
 		}
 		prerequisite = { focus = SWI_partei_der_arbeit }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#End Banking Secrecy
@@ -3463,8 +3526,14 @@
 			set_temp_variable = { temp_outlook_increase = 0.1 }
 			add_relative_party_popularity = yes
 		}
+		mutually_exclusive = {
+			focus = SWI_defend_secrecy
+		}
 		prerequisite = { focus = SWI_nationalize_key_industries }
 		bypass_if_unavailable = yes
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Neutrality
@@ -3496,6 +3565,9 @@
 		mutually_exclusive = {
 			focus = SWI_strenghten_ties_with_socialist_countries
 		}
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Strengthen Ties With Socialist Countries
@@ -3520,6 +3592,9 @@
 			focus = SWI_end_banking_secrecy
 		}
 		mutually_exclusive = { focus = SWI_neutrality_pda }
+		ai_will_do = {
+			base = 1
+		}
 	}
 
 	#Strengthen Domestic Independence
@@ -3543,6 +3618,9 @@
 		}
 		mutually_exclusive = {
 			focus = SWI_trade_agreements_with_socialist_states
+		}
+		ai_will_do = {
+			base = 1
 		}
 	}
 
@@ -3620,6 +3698,9 @@
 		}
 		prerequisite = {
 			focus = SWI_direct_democracy_reforms
+		}
+		mutually_exclusive = {
+			focus = SWI_move_closer_to_the_eu
 		}
 		ai_will_do = {
             base = 1
@@ -4202,7 +4283,7 @@
 			}
 			if = {
 				limit = {
-					has_idea = labor_unions
+					has_idea = labour_unions
 				}
 				swap_ideas = {
 					remove_idea = oligarchs
@@ -5174,7 +5255,7 @@
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_industrial_development"
-			add_extra_state_shared_building_slots = 2
+			capital_scope = { add_extra_state_shared_building_slots = 2 }
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
@@ -5694,6 +5775,9 @@
 		prerequisite = {
 			focus = SWI_multilingual_worker_solidarity
 		}
+		mutually_exclusive = {
+			focus = SWI_central_committee
+		}
 		ai_will_do = {
             base = 1
         }
@@ -5979,7 +6063,7 @@
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_militarize_society"
 			increase_migration_law = yes
-			add_idea = {
+			add_ideas = {
 				SWI_militarized_society
 			}
 		}
@@ -6019,6 +6103,9 @@
 		ai_will_do = {
             base = 1
         }
+		mutually_exclusive = {
+			focus = SWI_censorship
+		}
 	}
 
 	#Censorship
@@ -6156,6 +6243,9 @@
 		mutually_exclusive = {
 			focus = SWI_swiss_identity
 		}
+		mutually_exclusive = {
+			focus = SWI_multilingual_worker_solidarity
+		}
 		ai_will_do = {
             base = 1
         }
@@ -6260,7 +6350,7 @@
             base = 1
         }
 	}
-	
+
 	#Swiss foreign policy tree
 	focus = {
 		id = SWI_politica_estera_svizzera
