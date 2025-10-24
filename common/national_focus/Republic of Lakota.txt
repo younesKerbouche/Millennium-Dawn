@@ -1180,178 +1180,76 @@ focus_tree = {
 		ai_will_do = { base = 100 }
 	}
 
-
-	#############
-	#### GLP Tree
-
 	focus = {
-		id = LKT_focus_GLP_political_plan
-		icon = social_liberalism
-		x = 3
+		id = LKT_focus_metalic_bloodlines_act
+		icon = steel_production
+		x = 1
 		y = 1
 		cost = 8.6
-		relative_position_id = LKT_focus_the_councils_of_authority
-		prerequisite = { focus = LKT_focus_the_councils_of_authority }
-		available = { western_liberals_are_in_power = yes }
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		relative_position_id = LKT_focus_zoning_reforms
+		prerequisite = { focus = LKT_focus_zoning_reforms }
+		prerequisite = { focus = LKT_focus_integrated_health_plans }
+		available = { emerging_autocracy_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_RESOURCE }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_GLP_political_plan"
-			add_political_power = 50
-			add_stability = 0.03
-			add_war_support = 0.03
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_metalic_bloodlines_act"
+			set_temp_variable = { treasury_change = -12.00 }
+			modify_treasury_effect = yes
 
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = 0.03 }
-			LKT_change_domestic_political_power_change = yes
-			set_temp_variable = { temp_change = 0.08 }
-			LKT_change_domestic_monthly_pop_change = yes
-			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_domestic_unemployment_tolerance_change = yes
-			set_temp_variable = { temp_change = -0.01 }
-			LKT_change_domestic_nationalist_drift_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_industrial_policies_tooltip
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_industrial_consumer_goods_change = yes
-
-		}
-
-		ai_will_do = { base = 100 }
-	}
-
-	focus = {
-		id = LKT_focus_food_bank_securities_act
-		icon = bread_and_peace
-		x = -2
-		y = 1
-		cost = 8.6
-		relative_position_id = LKT_focus_GLP_political_plan
-		prerequisite = { focus = LKT_focus_GLP_political_plan }
-		available = { western_liberals_are_in_power = yes }
-		search_filters = { FOCUS_FILTER_EXPENDITURE }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_food_bank_securities_act"
-
+			784 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = steel
+					amount = 3
+				}
+			}
+			786 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = steel
+					amount = 3
+				}
+			}
+			788 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = steel
+					amount = 3
+				}
+			}
+			789 = {
+				add_extra_state_shared_building_slots = 1
+				add_resource = {
+					type = steel
+					amount = 3
+				}
+			}
+			
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_federal_budgets_tooltip
-			set_temp_variable = { temp_change = 0.03 }
-			LKT_change_budget_welfare_cost_change = yes
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_budget_bureaucracy_cost_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_tax_policies_tooltip
-			set_temp_variable = { temp_change = -0.01 }
-			LKT_change_tax_office_park_tax_collection_efficiency_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_tax_corporate_tax_collection_efficiency_change = yes
+			set_temp_variable = { temp_change = 0.03 }
 			LKT_change_tax_civilian_tax_collection_efficiency_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = 0.03 }
-			LKT_change_domestic_political_power_change = yes
-			set_temp_variable = { temp_change = 0.10 }
-			LKT_change_domestic_monthly_pop_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_industrial_policies_tooltip
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_industrial_consumer_goods_change = yes
-
-		}
-
-		ai_will_do = { base = 100 }
-	}
-
-	focus = {
-		id = LKT_focus_audit_commissions_act
-		icon = concessions2
-		x = 0
-		y = 1
-		cost = 8.6
-		relative_position_id = LKT_focus_GLP_political_plan
-		prerequisite = { focus = LKT_focus_GLP_political_plan }
-		available = { western_liberals_are_in_power = yes }
-		search_filters = { FOCUS_FILTER_EXPENDITURE }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_audit_commissions_act"
-			decrease_corruption2 = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_federal_budgets_tooltip
-			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_budget_bureaucracy_cost_change = yes
-			LKT_change_budget_police_cost_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_tax_policies_tooltip
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_tax_corporate_tax_collection_efficiency_change = yes
-			set_temp_variable = { temp_change = -0.012 }
-			LKT_change_tax_interest_rate_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = 0.05 }
-			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = -0.05 }
 			LKT_change_domestic_drift_defense_change = yes
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_domestic_foreign_influence_defense_change = yes
-			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_domestic_monthly_pop_change = yes
-
-		}
-
-		ai_will_do = { base = 100 }
-	}
-
-	focus = {
-		id = LKT_focus_raw_value_act
-		icon = chromium_production
-		x = 2
-		y = 1
-		cost = 8.6
-		relative_position_id = LKT_focus_GLP_political_plan
-		prerequisite = { focus = LKT_focus_GLP_political_plan }
-		available = { western_liberals_are_in_power = yes }
-		search_filters = { FOCUS_FILTER_RESOURCE }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_raw_value_act"
-			set_temp_variable = { treasury_change = -12.00 }
-			modify_treasury_effect = yes
-
-			785 = {
-				add_resource = {
-					type = chromium
-					amount = 3
-				}
-			}
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_federal_budgets_tooltip
-			set_temp_variable = { temp_change = 0.05 }
-			LKT_change_budget_bureaucracy_cost_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_tax_policies_tooltip
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_tax_corporate_tax_collection_efficiency_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_domestic_political_power_change = yes
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_domestic_foreign_influence_defense_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_industrial_policies_tooltip
-			set_temp_variable = { temp_change = 0.03 }
+			set_temp_variable = { temp_change = 0.07 }
 			LKT_change_industrial_construction_speed_change = yes
 			LKT_change_industrial_factory_output_change = yes
-			LKT_change_industrial_dockyard_output_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
 			set_temp_variable = { temp_change = 0.07 }
 			LKT_change_resource_management_resource_extraction_change = yes
 
@@ -1361,51 +1259,51 @@ focus_tree = {
 	}
 
 	focus = {
-		id = LKT_focus_improving_immigration_processes
-		icon = civil_service
+		id = LKT_focus_national_employment_commission
+		icon = family
 		x = 1
 		y = 1
 		cost = 8.6
-		relative_position_id = LKT_focus_food_bank_securities_act
-		prerequisite = { focus = LKT_focus_food_bank_securities_act }
-		prerequisite = { focus = LKT_focus_audit_commissions_act }
-		prerequisite = { focus = LKT_focus_raw_value_act }
-		available = { western_liberals_are_in_power = yes }
+		relative_position_id = LKT_focus_integrated_health_plans
+		prerequisite = { focus = LKT_focus_zoning_reforms }
+		prerequisite = { focus = LKT_focus_integrated_health_plans }
+		available = { emerging_autocracy_are_in_power = yes }
 		search_filters = { FOCUS_FILTER_EXPENDITURE }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_improving_immigration_processes"
-			
-			784 = { add_manpower = 5000 }
-			785 = { add_manpower = 5000 }
-			786 = { add_manpower = 5000 }
-			787 = { add_manpower = 5000 }
-			788 = { add_manpower = 5000 }
-			789 = { add_manpower = 5000 }
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_national_employment_commission"
 
+			784 = { add_manpower = 10000 }
+			785 = { add_manpower = 10000 }
+			786 = { add_manpower = 10000 }
+			787 = { add_manpower = 10000 }
+			788 = { add_manpower = 10000 }
+			789 = { add_manpower = 10000 }
+			
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_federal_budgets_tooltip
-			set_temp_variable = { temp_change = 0.03 }
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			set_temp_variable = { temp_change = 0.02 }
 			LKT_change_budget_police_cost_change = yes
+			LKT_change_budget_education_cost_change = yes
+			LKT_change_budget_healthcare_cost_change = yes
+			LKT_change_budget_welfare_cost_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_tax_policies_tooltip
-			set_temp_variable = { temp_change = 0.01 }
+			set_temp_variable = { temp_change = 0.02 }
 			LKT_change_tax_population_tax_collection_efficiency_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = -0.05 }
+			set_temp_variable = { temp_change = -0.08 }
 			LKT_change_domestic_drift_defense_change = yes
-			set_temp_variable = { temp_change = 0.07 }
-			LKT_change_domestic_monthly_pop_change = yes
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_domestic_offensive_foreign_influence_change = yes
-			set_temp_variable = { temp_change = -0.01 }
-			LKT_change_domestic_democratic_drift_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_industrial_policies_tooltip
-			set_temp_variable = { temp_change = 0.03 }
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_industrial_consumer_goods_change = yes
+			set_temp_variable = { temp_change = 0.04 }
 			LKT_change_industrial_construction_speed_change = yes
 			LKT_change_industrial_factory_output_change = yes
 			LKT_change_industrial_dockyard_output_change = yes
@@ -1416,37 +1314,53 @@ focus_tree = {
 	}
 
 	focus = {
-		id = LKT_focus_invest_care_act
-		icon = generic_hospital
-		x = 1
+		id = LKT_focus_ensuring_military_stockpiles
+		icon = production2
+		x = 0
 		y = 1
 		cost = 8.6
-		relative_position_id = LKT_focus_audit_commissions_act
-		prerequisite = { focus = LKT_focus_food_bank_securities_act }
-		prerequisite = { focus = LKT_focus_audit_commissions_act }
-		prerequisite = { focus = LKT_focus_raw_value_act }
-		available = { western_liberals_are_in_power = yes }
+		relative_position_id = LKT_focus_metalic_bloodlines_act
+		prerequisite = { focus = LKT_focus_regulatory_cutbacks }
+		prerequisite = { focus = LKT_focus_metalic_bloodlines_act }
+		prerequisite = { focus = LKT_focus_national_employment_commission }
+		available = { emerging_autocracy_are_in_power = yes }
 		search_filters = { FOCUS_FILTER_EXPENDITURE }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_invest_care_act"
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_ensuring_military_stockpiles"
 
+			784 = { add_manpower = 10000 }
+			785 = { add_manpower = 10000 }
+			786 = { add_manpower = 10000 }
+			787 = { add_manpower = 10000 }
+			788 = { add_manpower = 10000 }
+			789 = { add_manpower = 10000 }
+			
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_federal_budgets_tooltip
-			set_temp_variable = { temp_change = 0.03 }
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_budget_police_cost_change = yes
+			LKT_change_budget_education_cost_change = yes
 			LKT_change_budget_healthcare_cost_change = yes
+			LKT_change_budget_welfare_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_tax_population_tax_collection_efficiency_change = yes
+			LKT_change_tax_military_tax_collection_efficiency_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = 0.09 }
-			LKT_change_domestic_monthly_pop_change = yes
-			set_temp_variable = { temp_change = 0.01 }
-			LKT_change_domestic_neutrality_drift_change = yes
+			set_temp_variable = { temp_change = -0.08 }
+			LKT_change_domestic_drift_defense_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_industrial_policies_tooltip
 			set_temp_variable = { temp_change = 0.01 }
 			LKT_change_industrial_consumer_goods_change = yes
-			set_temp_variable = { temp_change = 0.02 }
+			set_temp_variable = { temp_change = 0.07 }
 			LKT_change_industrial_factory_output_change = yes
 			LKT_change_industrial_dockyard_output_change = yes
 
@@ -1455,54 +1369,52 @@ focus_tree = {
 		ai_will_do = { base = 100 }
 	}
 
+
+	#############
+	#### LTP Tree
+
 	focus = {
-		id = LKT_focus_national_defense_upgrades
-		icon = small_arms4
-		x = 1
+		id = LKT_focus_LTP_political_plan
+		icon = circular_electron_positron_collider
+		x = 3
 		y = 1
 		cost = 8.6
-		relative_position_id = LKT_focus_improving_immigration_processes
-		prerequisite = { focus = LKT_focus_improving_immigration_processes }
-		prerequisite = { focus = LKT_focus_invest_care_act }
-		available = { western_liberals_are_in_power = yes }
-		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		relative_position_id = LKT_focus_the_councils_of_authority
+		prerequisite = { focus = LKT_focus_the_councils_of_authority }
+		available = { western_social_democrats_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_national_defense_upgrades"
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_federal_budgets_tooltip
-			set_temp_variable = { temp_change = 0.04 }
-			LKT_change_budget_personnel_cost_change = yes
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_LTP_political_plan"
+			add_political_power = 75
+			add_stability = 0.06
+			add_war_support = 0.02
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_domestic_policies_tooltip
-			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_domestic_foreign_influence_defense_change = yes
-			set_temp_variable = { temp_change = 0.01 }
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.25 }
+			LKT_change_domestic_monthly_pop_change = yes
+			set_temp_variable = { temp_change = -0.02 }
 			LKT_change_domestic_nationalist_drift_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_army_service_branch_tooltip
-			set_temp_variable = { temp_change = 0.04 }
-			LKT_change_army_army_org_change = yes
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
 			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_army_army_defence_change = yes
+			LKT_change_industrial_consumer_goods_change = yes
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_industrial_energy_production_change = yes
+			LKT_change_industrial_factory_output_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_air_force_service_branch_tooltip
-			set_temp_variable = { temp_change = 0.03 }
-			LKT_change_airforce_air_attack_change = yes
-
-			custom_effect_tooltip = LKT_blank_space_tooltip
-			custom_effect_tooltip = LKT_navy_service_branch_tooltip
-			set_temp_variable = { temp_change = 0.02 }
-			LKT_change_navy_anti_air_attack_factor_change = yes
-			LKT_change_navy_naval_defense_change = yes
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			LKT_change_resource_management_resource_extraction_change = yes
 
 		}
 
 		ai_will_do = { base = 100 }
 	}
+
 
 
 	#############
@@ -1884,7 +1796,12 @@ focus_tree = {
 		prerequisite = { focus = LKT_focus_new_elections_begin }
 		available = { 
 			has_country_flag = LKT_country_flag_elections 
-			has_neutral_government = yes
+			OR = { 
+				western_conservatism_are_in_power = yes
+				western_liberals_are_in_power = yes
+				emerging_reactionaries_are_in_power = yes
+				neutrality_neutral_conservatism_are_in_power = yes
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -2212,6 +2129,330 @@ focus_tree = {
 			LKT_change_industrial_construction_speed_change = yes
 			LKT_change_industrial_factory_output_change = yes
 			LKT_change_industrial_dockyard_output_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+
+	#############
+	#### GLP Tree
+
+	focus = {
+		id = LKT_focus_GLP_political_plan
+		icon = social_liberalism
+		x = -3
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_the_parties_for_tradition
+		prerequisite = { focus = LKT_focus_the_parties_for_tradition }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_GLP_political_plan"
+			add_political_power = 50
+			add_stability = 0.03
+			add_war_support = 0.03
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.08 }
+			LKT_change_domestic_monthly_pop_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_domestic_unemployment_tolerance_change = yes
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_domestic_nationalist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_industrial_consumer_goods_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_food_bank_securities_act
+		icon = bread_and_peace
+		x = -2
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_GLP_political_plan
+		prerequisite = { focus = LKT_focus_GLP_political_plan }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_food_bank_securities_act"
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_welfare_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_tax_office_park_tax_collection_efficiency_change = yes
+			LKT_change_tax_civilian_tax_collection_efficiency_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.10 }
+			LKT_change_domestic_monthly_pop_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_industrial_consumer_goods_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_audit_commissions_act
+		icon = concessions2
+		x = 0
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_GLP_political_plan
+		prerequisite = { focus = LKT_focus_GLP_political_plan }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_audit_commissions_act"
+			decrease_corruption2 = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			LKT_change_budget_police_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_tax_corporate_tax_collection_efficiency_change = yes
+			set_temp_variable = { temp_change = -0.012 }
+			LKT_change_tax_interest_rate_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_domestic_political_power_change = yes
+			LKT_change_domestic_drift_defense_change = yes
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_domestic_foreign_influence_defense_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_domestic_monthly_pop_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_raw_value_act
+		icon = chromium_production
+		x = 2
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_GLP_political_plan
+		prerequisite = { focus = LKT_focus_GLP_political_plan }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_RESOURCE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_raw_value_act"
+			set_temp_variable = { treasury_change = -12.00 }
+			modify_treasury_effect = yes
+
+			785 = {
+				add_resource = {
+					type = chromium
+					amount = 3
+				}
+			}
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_tax_corporate_tax_collection_efficiency_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_domestic_foreign_influence_defense_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_factory_output_change = yes
+			LKT_change_industrial_dockyard_output_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_resource_management_resource_extraction_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_improving_immigration_processes
+		icon = civil_service
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_food_bank_securities_act
+		prerequisite = { focus = LKT_focus_food_bank_securities_act }
+		prerequisite = { focus = LKT_focus_audit_commissions_act }
+		prerequisite = { focus = LKT_focus_raw_value_act }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_improving_immigration_processes"
+			
+			784 = { add_manpower = 5000 }
+			785 = { add_manpower = 5000 }
+			786 = { add_manpower = 5000 }
+			787 = { add_manpower = 5000 }
+			788 = { add_manpower = 5000 }
+			789 = { add_manpower = 5000 }
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_police_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_tax_population_tax_collection_efficiency_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = -0.05 }
+			LKT_change_domestic_drift_defense_change = yes
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_domestic_monthly_pop_change = yes
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_domestic_offensive_foreign_influence_change = yes
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_domestic_democratic_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_factory_output_change = yes
+			LKT_change_industrial_dockyard_output_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_invest_care_act
+		icon = generic_hospital
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_audit_commissions_act
+		prerequisite = { focus = LKT_focus_food_bank_securities_act }
+		prerequisite = { focus = LKT_focus_audit_commissions_act }
+		prerequisite = { focus = LKT_focus_raw_value_act }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_invest_care_act"
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_healthcare_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.09 }
+			LKT_change_domestic_monthly_pop_change = yes
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_domestic_neutrality_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_industrial_consumer_goods_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_industrial_factory_output_change = yes
+			LKT_change_industrial_dockyard_output_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_national_defense_upgrades
+		icon = small_arms4
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_improving_immigration_processes
+		prerequisite = { focus = LKT_focus_improving_immigration_processes }
+		prerequisite = { focus = LKT_focus_invest_care_act }
+		available = { western_liberals_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_national_defense_upgrades"
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_budget_personnel_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_domestic_foreign_influence_defense_change = yes
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_domestic_nationalist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_army_service_branch_tooltip
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_army_army_org_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_army_army_defence_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_air_force_service_branch_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_airforce_air_attack_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_navy_service_branch_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_navy_anti_air_attack_factor_change = yes
+			LKT_change_navy_naval_defense_change = yes
 
 		}
 
