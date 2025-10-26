@@ -6671,7 +6671,7 @@ country_event = {#infantry or cavalry
 	title = france_md.284.t
 	desc = france_md.284.d
 	is_triggered_only = yes
-	#infantry
+	#artillery
 	option = {
 		name = france_md.284.a
 		log = "[GetDateText]: [This.GetName]: france_md.284.a executed"
@@ -6680,7 +6680,7 @@ country_event = {#infantry or cavalry
 			base = 1
 		}
 	}
-	#cavalry
+	#air
 	option = {
 		name = france_md.284.b
 		log = "[GetDateText]: [This.GetName]: france_md.284.b executed"
@@ -6690,4 +6690,172 @@ country_event = {#infantry or cavalry
 		}
 	}
 }
+country_event = {#frexit or scam
+	id = france_md.285
+	title = france_md.285.t
+	desc = france_md.285.d
+	is_triggered_only = yes
+	#scam the BCE  TODO renegociat the budget share
+	option = {
+		name = france_md.285.a
+		log = "[GetDateText]: [This.GetName]: france_md.285.a executed"
+		random_list = {
+				70 = {#bce agree
+					country_event = { id = france_md.287 = 5 }
+
+				}
+				30 = {#bce refuse
+					country_event = { id = france_md.288 days = 5 }
+				}
+			}
+		ai_chance = {
+			base = 1
+		}
+	}
+	#exit
+	option = {
+		name = france_md.285.b
+		log = "[GetDateText]: [This.GetName]: france_md.285.b executed"
+		add_ideas = withdrawal_treaty
+			leaving_EU = yes
+			every_other_country = {
+				limit = { has_idea = EU_member }
+				country_event = france_md.286
+			}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#same frexit but napoleon
+	id = france_md.286
+	title = france_md.286.t
+	desc = france_md.286.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.286.a
+		log = "[GetDateText]: [This.GetName]: france_md.286.a executed"
+		set_temp_variable = { modify_eurosceptic = 0.15 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#BCE scam give money
+	id = france_md.287
+	title = france_md.287.t
+	desc = france_md.287.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.287.a
+		log = "[GetDateText]: [This.GetName]: france_md.287.a executed"
+		add_timed_idea = { idea = FRA_BCE_money days = 730 }
+		every_other_country = {
+						limit = { has_idea = EU_member }
+						country_event = france_md.289
+		}
+		set_temp_variable = { treasury_change = 100 }
+		modify_treasury_effect = yes
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		set_temp_variable = { temp_outlook_increase = 0.1 }
+		add_relative_party_popularity = yes
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#BCE refuse
+	id = france_md.288
+	title = france_md.288.t
+	desc = france_md.288.d
+	is_triggered_only = yes
+	option = {#so we stay
+		name = france_md.288.a
+		log = "[GetDateText]: [This.GetName]: france_md.288.a executed"
+		set_temp_variable = { modify_eurosceptic = 0.2 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.025 }
+		set_temp_variable = { temp_outlook_increase = -0.025 }
+		add_relative_party_popularity = yes
+		add_political_power = -50
+
+		ai_chance = {
+			base = 1
+		}
+	}
+		#exit
+	option = {#so we leave
+		name = france_md.288.b
+		log = "[GetDateText]: [This.GetName]: france_md.288.b executed"
+		add_ideas = withdrawal_treaty
+		leaving_EU = yes
+		every_other_country = {
+			limit = { has_idea = EU_member }
+			country_event = france_md.286
+		}
+		set_temp_variable = { modify_eurosceptic = -0.05 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.025 }
+		set_temp_variable = { temp_outlook_increase = -0.025 }
+		add_relative_party_popularity = yes
+		add_political_power = -50
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#EU member scam
+	id = france_md.289
+	title = france_md.289.t
+	desc = france_md.289.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.289.a
+		log = "[GetDateText]: [This.GetName]: france_md.289.a executed"
+		set_temp_variable = { modify_eurosceptic = 0.1 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.025 }
+		set_temp_variable = { temp_outlook_increase = 0.025 }
+		add_relative_party_popularity = yes
+		add_political_power = -50
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#proclamation empire
+	id = france_md.290
+	title = france_md.290.t
+	desc = france_md.290.d
+	is_triggered_only = yes
+	option = {#TODO change flag
+		name = france_md.290.a
+		log = "[GetDateText]: [This.GetName]: france_md.290.a executed"
+		add_named_threat = { threat = 5 name = threat_FRA_napo_empire }
+		add_ideas = FRA_4th_empire
+		set_cosmetic_tag = FRA_4th_empire
+		clr_country_flag = dynamic_flag
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 

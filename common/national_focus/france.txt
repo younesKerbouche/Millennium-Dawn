@@ -7680,6 +7680,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_question_eu"
+			country_event = france_md.278
 		}
 
 		ai_will_do = {
@@ -7757,6 +7758,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_proclaim_empire"
+			country_event = france_md.290
 		}
 
 		ai_will_do = {
@@ -7902,7 +7904,6 @@ focus_tree = {
 			FRA_bon_efficap =yes
 			set_temp_variable = { temp_change = 0.1 }
 			FRA_bon_research = yes
-			
 			set_temp_variable = { temp_change = 0.075 }
 			FRA_bon_consgood = yes
 			set_temp_variable = { temp_change = -0.1 }
@@ -7929,6 +7930,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_last_deluge"
+			if = {
+				limit = { has_idea = FRA_army_reformed_1 }
+				swap_ideas = {
+					remove_idea = FRA_army_reformed_1
+					add_idea = FRA_grande_arme
+				}
+			}
 		}
 
 		ai_will_do = {
