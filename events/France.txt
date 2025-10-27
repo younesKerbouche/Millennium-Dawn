@@ -2427,6 +2427,12 @@ country_event = {
 		set_temp_variable = { party_popularity_increase = 0.1 }
 		set_temp_variable = { temp_outlook_increase = 0.1 }
 		add_relative_party_popularity = yes
+		FRA = {
+			add_opinion_modifier = {
+				modifier = recent_actions_positive
+				target = THIS.id
+			}
+		}
 		ai_chance = {
 			factor = 200
 		}
@@ -2435,6 +2441,12 @@ country_event = {
 	option = {
 		name = france_md.151.b
 		log = "[GetDateText]: [This.GetName]: france_md.150.b executed"
+		FRA = {
+			add_opinion_modifier = {
+				modifier = recent_actions_negative
+				target = THIS.id
+			}
+		}
 		ai_chance = {
 			factor = 15
 		}
@@ -6851,6 +6863,87 @@ country_event = {#proclamation empire
 		add_ideas = FRA_4th_empire
 		set_cosmetic_tag = FRA_4th_empire
 		clr_country_flag = dynamic_flag
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#boost nationalism
+	id = france_md.291
+	title = france_md.291.t
+	desc = france_md.291.d
+	is_triggered_only = yes
+	option = {#thanks
+		name = france_md.291.a
+		log = "[GetDateText]: [This.GetName]: france_md.291.a executed"
+		set_temp_variable = { modify_eurosceptic = 0.15 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		add_timed_idea = { idea = FRA_nationalism_in_europe days = 365 }
+		add_war_support = 0.15
+		add_stability = -0.05
+		add_political_power = 150
+		FRA = {
+			add_opinion_modifier = { target = THIS.id modifier = has_expressed_loyalty }
+		}
+		THIS.id{
+			add_opinion_modifier = { target = FRA modifier = has_expressed_loyalty }
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#still fck you
+		name = france_md.291.b
+		log = "[GetDateText]: [This.GetName]: france_md.291.b executed"
+		set_temp_variable = { modify_eurosceptic = 0.15 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		add_timed_idea = { idea = FRA_nationalism_in_europe days = 365 }
+		add_war_support = 0.05
+		add_stability = 0.05
+		add_political_power = 150
+		FRA = {
+			add_opinion_modifier = { target = THIS.id modifier = major_breach_of_trust }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#debuff non nationalism
+	id = france_md.292
+	title = france_md.292.t
+	desc = france_md.292.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.292.a
+		log = "[GetDateText]: [This.GetName]: france_md.292.a executed"
+		set_temp_variable = { modify_eurosceptic = -0.1 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		add_timed_idea = { idea = FRA_nationalism_in_europe days = 365 }
+		add_war_support = -0.1
+		add_stability = -0.15
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#surrounded by ennemy find a way to close border
+	id = france_md.293
+	title = france_md.293.t
+	desc = france_md.293.d
+	is_triggered_only = yes
+	option = {#thanks
+		name = france_md.293.a
+		log = "[GetDateText]: [This.GetName]: france_md.293.a executed"
+		add_war_support = 0.2
+		add_stability = -0.1
+		add_ideas = FRA_surrounded
 
 		ai_chance = {
 			base = 1

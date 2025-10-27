@@ -7792,8 +7792,8 @@ focus_tree = {
 			factor = 1
 		}
 	}
-	focus = {
-		id = FRA_europe_empire
+	focus = {#befriend nationalist
+		id = FRA_europe_nationalism
 		icon = state_of_french_politics
 
 		x = -17
@@ -7806,7 +7806,21 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_europe_empire"
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_europe_nationalism"
+			every_other_country = {
+				limit = {
+					is_in_europe = yes
+				}
+				if = {
+					limit = {
+						has_government = nationalist
+					}
+					country_event = france_md.291
+				}
+				else = {
+					country_event = france_md.292
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7864,7 +7878,7 @@ focus_tree = {
 			factor = 1
 		}
 	}
-	focus = {
+	focus = {#require having form the empire, make uk propose coalition
 		id = FRA_8th_coalition
 		icon = peaceduuude
 
@@ -7874,11 +7888,12 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_europe_empire }
+		prerequisite = { focus = FRA_europe_nationalism }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#an idea that goes once UK doesnt exist or ally
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_8th_coalition"
+			country_event = france_md.293
 		}
 
 		ai_will_do = {
