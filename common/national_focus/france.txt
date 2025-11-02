@@ -7971,8 +7971,9 @@ focus_tree = {
 		prerequisite = { focus = FRA_8th_coalition }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#threatened uk make them create faction
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_declare_hostile"
+			add_war_support = 0.2
 		}
 
 		ai_will_do = {
@@ -7992,8 +7993,30 @@ focus_tree = {
 		prerequisite = { focus = FRA_8th_coalition }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#TODO add idea to faction
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_our_own_system"
+			#add_ideas = faction_continental_system
+			if = { limit = { is_faction_leader = yes }
+				dismantle_faction = yes
+			}
+			else_if = { limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+			create_faction = Continental_system
+			every_other_country = {
+				limit = {
+					AND = {
+						is_in_europe = yes
+						has_government = nationalist
+					}
+					NOT = {
+						is_in_faction_with = ENG
+						original_tag = ENG
+					}
+				}
+				country_event = france_md.294
+			}
+			add_political_power = -200
 		}
 
 		ai_will_do = {
@@ -8028,8 +8051,8 @@ focus_tree = {
 			factor = 1
 		}
 	}
-	focus = {
-		id = FRA_ennemy_weak
+	focus = {#unlock decision to coup non major european country
+		id = FRA_ennemy_isolate
 		icon = secret_police
 
 		x = -18
@@ -8049,7 +8072,7 @@ focus_tree = {
 			factor = 1
 		}
 	}
-	focus = {
+	focus = {#invite poland USA and napoleon ally if they are not democratic
 		id = FRA_history_allies
 		icon = dangerous_deal2
 
@@ -8082,7 +8105,7 @@ focus_tree = {
 
 		prerequisite = { focus = FRA_imperial_pride }
 		prerequisite = { focus = FRA_last_deluge }
-		prerequisite = { focus = FRA_ennemy_weak }
+		prerequisite = { focus = FRA_ennemy_isolate }
 		prerequisite = { focus = FRA_history_allies }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
@@ -8684,17 +8707,21 @@ focus_tree = {
 		prerequisite = { focus = FRA_befriend_comm }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#TODO add idea to faction
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_new_kommintern"
-			#if = { limit = { is_faction_leader = yes }
+			if = { limit = { is_faction_leader = yes }
 				#dismantle_faction = yes
-			#}
-			#else_if = { limit = { is_in_faction = yes }
+			}
+			else_if = { limit = { is_in_faction = yes }
 				#leave_faction = yes
-			#}
+			}
 
-			#create_faction = french_international
-			#add_ideas = faction_imperial_bloc_alliance
+			create_faction = world_revolution_commune
+			every_other_country = {
+				limit = {emerging_communist_state_are_in_power = yes}
+				country_event = france_md.295
+			}
+			add_political_power = -200
 		}
 
 		ai_will_do = {
