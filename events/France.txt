@@ -7194,7 +7194,7 @@ country_event = {#UK react to french attack make a faction rule
 		add_war_support = 0.1
 		add_stability = -0.15
 		add_political_power = -250
-		add_manpower = -300
+		add_manpower = -25
 		if = { limit = { is_faction_leader = yes }
 				add_political_power = 100
 				add_stability = 0.5
@@ -7234,7 +7234,7 @@ country_event = {#UK react to french attack make a faction rule
 		add_war_support = 0.1
 		add_stability = -0.15
 		add_political_power = -150
-		add_manpower = -150
+		add_manpower = -25
 		every_other_country = {
 			limit = {
 				AND = {
@@ -7264,7 +7264,7 @@ country_event = {#UK react to french attack make a faction rule
 		add_war_support = 0.1
 		add_stability = -0.15
 		add_political_power = -150
-		add_manpower = -150
+		add_manpower = -25
 		add_timed_idea = {#defensive preparedness
 				idea = FRA_defense_napoleon
 				days = 730
@@ -7285,7 +7285,7 @@ country_event = {#other react to french attack
 		add_war_support = 0.1
 		add_stability = -0.15
 		add_political_power = -150
-		add_manpower = -150
+		add_manpower = -10
 		diplomatic_relation = {
 			country = FRA
 			relation = military_access
@@ -7319,7 +7319,7 @@ country_event = {#other react to french attack
 		add_war_support = 0.1
 		add_stability = -0.15
 		add_political_power = -150
-		add_manpower = -150
+		add_manpower = -10
 		diplomatic_relation = {
 			country = FRA
 			relation = military_access
@@ -7349,7 +7349,7 @@ country_event = {#other react to french attack
 		add_war_support = 0.1
 		add_stability = 0.15
 		add_political_power = -150
-		add_manpower = -150
+		add_manpower = -10
 		ai_chance = {
 			base = 1
 		}
@@ -7396,6 +7396,302 @@ country_event = {#uk respond to help
 			add_opinion_modifier = { target = ENG modifier = major_breach_of_trust }
 		}
 		add_political_power = 50
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#propose to poland to take revenge of germany promise to protect them like napoleon
+	id = france_md.300
+	title = france_md.300.t
+	desc = france_md.300.d
+	is_triggered_only = yes
+	option = {#we join
+		name = france_md.300.a
+		log = "[GetDateText]: [This.GetName]: france_md.300.a executed"
+		add_war_support = 0.1
+		add_stability = -0.025
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.025 }
+		set_temp_variable = { temp_outlook_increase = 0.025 }
+		add_relative_party_popularity = yes
+		FRA= {
+			if = {
+					limit = { is_faction_leader = yes }
+					FRA = { add_to_faction = ROOT }
+			}
+			else={
+				diplomatic_relation = {
+					country = ROOT
+					relation = guarantee
+				}
+				ROOT = {
+					diplomatic_relation = {
+						country = FRA
+						relation = guarantee
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.300.b
+		log = "[GetDateText]: [This.GetName]: france_md.300.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.025 }
+		set_temp_variable = { temp_outlook_increase = -0.025 }
+		add_relative_party_popularity = yes
+		add_stability = 0.05
+		ENG = {
+			add_opinion_modifier = {
+				modifier = recent_actions_positive
+				target = ROOT
+			}
+		}
+		FRA = {
+			add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#propose to sweden alliance in the memory of their former king
+	id = france_md.301
+	title = france_md.301.t
+	desc = france_md.301.d
+	is_triggered_only = yes
+	option = {#we join
+		name = france_md.301.a
+		log = "[GetDateText]: [This.GetName]: france_md.301.a executed"
+		add_war_support = 0.1
+		add_stability = -0.025
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.025 }
+		set_temp_variable = { temp_outlook_increase = 0.025 }
+		add_relative_party_popularity = yes
+		FRA= {
+			if = {
+					limit = { is_faction_leader = yes }
+					FRA = { add_to_faction = ROOT }
+			}
+			else={
+				diplomatic_relation = {
+					country = ROOT
+					relation = guarantee
+				}
+				ROOT = {
+					diplomatic_relation = {
+						country = FRA
+						relation = guarantee
+					}
+				}
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.301.b
+		log = "[GetDateText]: [This.GetName]: france_md.301.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.025 }
+		set_temp_variable = { temp_outlook_increase = -0.025 }
+		add_relative_party_popularity = yes
+		add_stability = 0.05
+		ENG = {
+			add_opinion_modifier = {
+				modifier = recent_actions_positive
+				target = ROOT
+			}
+		}
+		FRA = {
+			add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#USA friend or foe
+	id = france_md.302
+	title = france_md.302.t
+	desc = france_md.302.d
+	is_triggered_only = yes
+	option = {#invite to alliance
+		name = france_md.302.a
+		log = "[GetDateText]: [This.GetName]: france_md.302.a executed"
+		add_stability = 0.075
+		add_war_support = -0.05
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.025 }
+		set_temp_variable = { temp_outlook_increase = -0.025 }
+		add_relative_party_popularity = yes
+		USA = {
+			country_event = france_md.303
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#trade deal in the good old days
+		name = france_md.302.b
+		log = "[GetDateText]: [This.GetName]: france_md.302.b executed"
+		add_stability = 0.05
+		USA = {
+			country_event = france_md.304
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#they will also perish
+		name = france_md.302.c
+		log = "[GetDateText]: [This.GetName]: france_md.302.c executed"
+		add_stability = -0.05
+		add_war_support = 0.15
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+		set_temp_variable = { treasury_change = -50 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_thousands_planes
+		USA = {
+			add_opinion_modifier = { target = FRA modifier = major_breach_of_trust }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#we dont have time to befriend them
+		name = france_md.302.d
+		log = "[GetDateText]: [This.GetName]: france_md.302.d executed"
+		add_political_power = 100
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#propose to USA alliance to beat brits
+	id = france_md.303
+	title = france_md.303.t
+	desc = france_md.303.d
+	is_triggered_only = yes
+	option = {#we join
+		name = france_md.303.a
+		log = "[GetDateText]: [This.GetName]: france_md.303.a executed"
+		add_war_support = 0.15
+		add_stability = -0.1
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+		FRA= {
+			if = {
+					limit = { is_faction_leader = yes }
+					FRA = { add_to_faction = ROOT }
+			}
+			else={
+				diplomatic_relation = {
+					country = ROOT
+					relation = guarantee
+				}
+				ROOT = {
+					diplomatic_relation = {
+						country = FRA
+						relation = guarantee
+					}
+				}
+			}
+		}
+		ENG = {
+			add_opinion_modifier = {
+				add_opinion_modifier = { target = USA modifier = major_breach_of_trust }
+				target = ROOT
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.303.b
+		log = "[GetDateText]: [This.GetName]: france_md.303.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.05 }
+		set_temp_variable = { temp_outlook_increase = -0.05 }
+		add_relative_party_popularity = yes
+		add_stability = 0.15
+		ENG = {
+			add_opinion_modifier = {
+				modifier = recent_actions_positive
+				target = ROOT
+			}
+		}
+		FRA = {
+			add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#agree trade deal
+	id = france_md.304
+	title = france_md.304.t
+	desc = france_md.304.d
+	is_triggered_only = yes
+	option = {#we join
+		name = france_md.304.a
+		log = "[GetDateText]: [This.GetName]: france_md.304.a executed"
+		add_war_support = 0.05
+		add_stability = 0.05
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.025 }
+		set_temp_variable = { temp_outlook_increase = 0.025 }
+		add_relative_party_popularity = yes
+		FRA= {
+			add_ideas = FRA_trade_USA
+		}
+		add_ideas = FRA_trade_USA
+		ENG = {
+			add_opinion_modifier = {
+				add_opinion_modifier = { target = USA modifier = major_breach_of_trust }
+				target = ROOT
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.304.b
+		log = "[GetDateText]: [This.GetName]: france_md.304.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.025 }
+		set_temp_variable = { temp_outlook_increase = -0.025 }
+		add_relative_party_popularity = yes
+		add_stability = 0.1
+		ENG = {
+			add_opinion_modifier = {
+				modifier = recent_actions_positive
+				target = ROOT
+			}
+		}
+		FRA = {
+			add_opinion_modifier = { target = ROOT modifier = major_breach_of_trust }
+		}
 		ai_chance = {
 			base = 1
 		}
