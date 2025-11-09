@@ -6663,7 +6663,13 @@ country_event = {#infantry or cavalry
 	option = {
 		name = france_md.283.a
 		log = "[GetDateText]: [This.GetName]: france_md.283.a executed"
-		add_ideas = FRA_army_reformed_infantry
+		if = {
+			limit = { has_idea = FRA_army_reformed_1 }
+			swap_ideas = {
+				remove_idea = FRA_army_reformed_1
+				add_idea = FRA_army_reformed_infantry
+			}
+		}
 		ai_chance = {
 			base = 1
 		}
@@ -6672,13 +6678,19 @@ country_event = {#infantry or cavalry
 	option = {
 		name = france_md.283.b
 		log = "[GetDateText]: [This.GetName]: france_md.283.b executed"
-		add_ideas = FRA_army_reformed_cavalry
+		if = {
+			limit = { has_idea = FRA_army_reformed_1 }
+			swap_ideas = {
+				remove_idea = FRA_army_reformed_1
+				add_idea = FRA_army_reformed_cavalry
+			}
+		}
 		ai_chance = {
 			base = 1
 		}
 	}
 }
-country_event = {#infantry or cavalry
+country_event = {#artillery or aircraft
 	id = france_md.284
 	title = france_md.284.t
 	desc = france_md.284.d
@@ -6687,7 +6699,20 @@ country_event = {#infantry or cavalry
 	option = {
 		name = france_md.284.a
 		log = "[GetDateText]: [This.GetName]: france_md.284.a executed"
-		add_ideas = FRA_army_reformed_artillery
+		if = {
+			limit = { has_idea = FRA_army_reformed_infantry }
+			swap_ideas = {
+				remove_idea = FRA_army_reformed_infantry
+				add_idea = add_ideas = FRA_army_reformed_artillery_infantry
+			}
+		}
+		if = {
+			limit = { has_idea = FRA_army_reformed_cavalry }
+			swap_ideas = {
+				remove_idea = FRA_army_reformed_cavalry
+				add_idea = add_ideas = FRA_army_reformed_artillery_cavalry
+			}
+		}
 		ai_chance = {
 			base = 1
 		}
@@ -6696,7 +6721,20 @@ country_event = {#infantry or cavalry
 	option = {
 		name = france_md.284.b
 		log = "[GetDateText]: [This.GetName]: france_md.284.b executed"
-		add_ideas = FRA_army_reformed_air
+		if = {
+			limit = { has_idea = FRA_army_reformed_infantry }
+			swap_ideas = {
+				remove_idea = FRA_army_reformed_infantry
+				add_idea = add_ideas = FRA_army_reformed_air_infantry
+			}
+		}
+		if = {
+			limit = { has_idea = FRA_army_reformed_cavalry }
+			swap_ideas = {
+				remove_idea = FRA_army_reformed_cavalry
+				add_idea = add_ideas = FRA_army_reformed_air_cavalry
+			}
+		}
 		ai_chance = {
 			base = 1
 		}

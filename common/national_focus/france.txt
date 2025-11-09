@@ -7043,7 +7043,7 @@ focus_tree = {
 			FRA_bon_drift =yes
 			set_temp_variable = { temp_change = -0.05 }
 			FRA_bon_stab=yes
-			set_temp_variable = { temp_change = 0.15 }
+			set_temp_variable = { temp_change = -0.15 }
 			FRA_bon_relation =yes
 		}
 
@@ -7056,7 +7056,7 @@ focus_tree = {
 		icon = french_monarchy3
 
 		x = 0
-		y = 18
+		y = 19
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
@@ -7066,6 +7066,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_new_18th_brumaire"
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_roy_warsup=yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_roy_drift =yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_roy_stab=yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_roy_party_stab =yes
 		}
 
 		ai_will_do = {
@@ -7108,6 +7116,31 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_camelot"
+			if = { limit = { has_dlc = "La Resistance" }
+				add_ideas = FRA_king_camelot
+				if = {
+					limit = {
+						has_intelligence_agency = yes
+					}
+					upgrade_intelligence_agency = upgrade_anti_partisan
+					newline = yes
+					upgrade_intelligence_agency = upgrade_economy_civilian
+					newline = yes
+					upgrade_intelligence_agency = upgrade_passive_defense
+				}
+				else = {
+					create_intelligence_agency = yes
+					newline = yes
+					upgrade_intelligence_agency = upgrade_anti_partisan
+					newline = yes
+					upgrade_intelligence_agency = upgrade_economy_civilian
+					newline = yes
+					upgrade_intelligence_agency = upgrade_passive_defense
+				}
+			}
+			else = {
+				add_ideas = FRA_king_camelot_non_lar
+			}
 		}
 
 		ai_will_do = {
@@ -7129,6 +7162,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_decentralisation_king"
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_roy_stab=yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_roy_bp =yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_roy_bureaucracy_cost =yes
 		}
 
 		ai_will_do = {
@@ -7222,7 +7261,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_king_reinforce_military
+		id = FRA_king_modern_chivalry
 		icon = french_army_terra
 
 		x = -5
@@ -7264,7 +7303,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_destroy_revolution
+		id = FRA_destroy_republicanism
 		icon = state_of_french_politics
 
 		x = -1
@@ -7348,7 +7387,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_levy
+		id = FRA_army_of_elites
 		icon = recruitment
 
 		x = -5
@@ -7357,7 +7396,7 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_king_reinforce_military }
+		prerequisite = { focus = FRA_king_modern_chivalry }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
@@ -7390,16 +7429,17 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_crackdown_antifra
+		id = FRA_frankish_ancestor
 		icon = state_of_french_politics
 
-		x = 1
+		x = 0
 		y = 22
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
 		prerequisite = { focus = FRA_against_liberalism }
+		prerequisite = { focus = FRA_destroy_republicanism }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
@@ -7462,7 +7502,7 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_levy }
+		prerequisite = { focus = FRA_army_of_elites }
 		prerequisite = { focus = FRA_positive_inequality }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
@@ -7484,8 +7524,7 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_destroy_revolution }
-		prerequisite = { focus = FRA_crackdown_antifra }
+		prerequisite = { focus = FRA_frankish_ancestor }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
@@ -7946,11 +7985,35 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_last_deluge"
 			if = {
-				limit = { has_idea = FRA_army_reformed_1 }
+				limit = { has_idea = FRA_army_reformed_artillery_infantry }
 				swap_ideas = {
-					remove_idea = FRA_army_reformed_1
-					add_idea = FRA_grande_arme
+					remove_idea = FRA_army_reformed_artillery_infantry
+					add_idea =FRA_grande_arme_art_inf
 				}
+			}
+			else_if = {
+				limit = { has_idea = FRA_army_reformed_artillery_cavalry }
+				swap_ideas = {
+					remove_idea = FRA_army_reformed_artillery_cavalry
+					add_idea = FRA_grande_arme_art_cav
+				}
+			}
+			else_if = {
+				limit = { has_idea = FRA_army_reformed_air_infantry }
+				swap_ideas = {
+					remove_idea = FRA_army_reformed_air_infantry
+					add_idea = FRA_grande_arme_air_inf
+				}
+			}
+			else_if = {
+				limit = { has_idea = FRA_army_reformed_air_cavalry }
+				swap_ideas = {
+					remove_idea = FRA_army_reformed_air_cavalry
+					add_idea = FRA_grande_arme_air_cav
+				}
+			}
+			else = {#this focus will have effect overtime
+
 			}
 		}
 
@@ -8461,10 +8524,19 @@ focus_tree = {
 						has_intelligence_agency = yes
 					}
 					upgrade_intelligence_agency = upgrade_passive_defense
+					newline = yes
+					upgrade_intelligence_agency = upgrade_army_department
+					newline = yes
+					upgrade_intelligence_agency = upgrade_commando_training
 				}
 				else = {
 					create_intelligence_agency = yes
+					newline = yes
 					upgrade_intelligence_agency = upgrade_passive_defense
+					newline = yes
+					upgrade_intelligence_agency = upgrade_army_department
+					newline = yes
+					upgrade_intelligence_agency = upgrade_commando_training
 				}
 			}
 			else = {
