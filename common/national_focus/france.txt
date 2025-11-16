@@ -7189,6 +7189,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_king_rule"
+			add_timed_idea = {
+				idea = FRA_king_constitution
+				days = 300
+			}
 		}
 
 		ai_will_do = {
@@ -7211,6 +7215,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_national_integralism"
+			set_temp_variable = { temp_opinion = -10 }
+			change_labour_unions_opinion = yes
+			set_temp_variable = { temp_change = 0.3 }
+			FRA_roy_drift =yes
+			set_temp_variable = { temp_change = -0.2 }
+			FRA_roy_social_cost =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_roy_driftdef = yes
+			set_temp_variable = { temp_change = 0.5 }
+			FRA_roy_infdef =yes
+			set_temp_variable = { temp_change = -0.15 }
+			FRA_roy_stab =yes
+			set_temp_variable = { temp_change = 0.3 }
+			FRA_roy_relation =yes
+
 		}
 
 		ai_will_do = {
@@ -7232,6 +7251,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_no_more_eu"
+			add_ideas = withdrawal_treaty
+			leaving_EU = yes
+			every_other_country = {
+				limit = { has_idea = EU_member }
+				country_event = france_md.305
+			}
 		}
 
 		ai_will_do = {
@@ -7252,8 +7277,36 @@ focus_tree = {
 		prerequisite = { focus = FRA_kingdom_history }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#all notable monarchy in EU get natio boost
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_eu_kingdom"
+			every_other_country = {
+				limit = {
+					OR ={
+						original_tag = BEL
+						original_tag = ENG
+						original_tag = DEN
+						original_tag = GER
+						original_tag = HOL
+						original_tag = ITA
+						original_tag = LUX
+						original_tag = MNC
+						original_tag = NOR
+						original_tag = LIC
+						original_tag = SWE
+						original_tag = SWE
+						original_tag = SPR
+					}
+				}
+				if ={
+					limit={
+						nationalist_monarchists_are_in_power = yes
+					}
+					country_event = france_md.306
+				}
+				else={
+					country_event = france_md.307
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7275,6 +7328,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_king_reinforce_military"
+			add_ideas = FRA_chivalry
 		}
 
 		ai_will_do = {
@@ -7296,13 +7350,23 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_no_deceit"
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_roy_health_cut =yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_roy_stab =yes
+			decrease_healthcare_budget = yes
+			decrease_social_spending = yes
+			set_temp_variable = { temp_change = -2 }
+			FRA_roy_social_ned =yes
+			set_temp_variable = { temp_change = -3 }
+			FRA_roy_health_ned =yes
 		}
 
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	focus = {
+	focus = {#ban all parties
 		id = FRA_destroy_republicanism
 		icon = state_of_french_politics
 
@@ -7401,6 +7465,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_levy"
+			FRA_elite_army
 		}
 
 		ai_will_do = {
@@ -7422,6 +7487,18 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_positive_inequality"
+			set_temp_variable = { temp_opinion = -5 }
+			change_labour_unions_opinion = yes
+			set_temp_variable = { temp_opinion = 10 }
+			change_industrial_conglomerates_opinion = yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_roy_factout =yes
+			set_temp_variable = { temp_change = -0.075 }
+			FRA_roy_research =yes
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_roy_efficap =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_roy_factmoney =yes
 		}
 
 		ai_will_do = {
@@ -7529,6 +7606,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_elder_daughter"
+			swap_ideas = {
+				remove_idea = pluralist
+				add_idea = christian
+			}
 		}
 
 		ai_will_do = {
@@ -7719,7 +7800,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_question_eu"
-			country_event = france_md.278
+			country_event = france_md.285
 		}
 
 		ai_will_do = {

@@ -7735,5 +7735,66 @@ country_event = {#agree trade deal
 		}
 	}
 }
+country_event = {#react frexit royalist
+	id = france_md.305
+	title = france_md.305.t
+	desc = france_md.305.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.305.a
+		log = "[GetDateText]: [This.GetName]: france_md.305.a executed"
+		set_temp_variable = { modify_eurosceptic = 0.15 }
+		set_temp_variable = { modify_eurosceptic_target = THIS.id }
+		eurosceptic_change = yes
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#boost monarch families nice
+	id = france_md.306
+	title = france_md.306.t
+	desc = france_md.306.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.306.a
+		log = "[GetDateText]: [This.GetName]: france_md.306.a executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		set_temp_variable = { temp_outlook_increase = 0.1 }
+		add_relative_party_popularity = yes
+		add_stability = 0.1
+		add_political_power = 150
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#boost monarch families uncool
+	id = france_md.307
+	title = france_md.307.t
+	desc = france_md.307.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.307.a
+		log = "[GetDateText]: [This.GetName]: france_md.307.a executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		set_temp_variable = { temp_outlook_increase = 0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.075
+		add_political_power = -50
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
 
 
