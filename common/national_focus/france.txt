@@ -7327,7 +7327,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_king_reinforce_military"
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_king_modern_chivalry"
 			add_ideas = FRA_chivalry
 		}
 
@@ -7370,17 +7370,18 @@ focus_tree = {
 		id = FRA_destroy_republicanism
 		icon = state_of_french_politics
 
-		x = -1
-		y = 21
+		x = 0
+		y = 22
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_king_rule }
+		prerequisite = { focus = FRA_frankish_ancestor }
+		prerequisite = { focus = FRA_against_liberalism }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_destroy_revolution"
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_destroy_republicanism"
 		}
 
 		ai_will_do = {
@@ -7402,6 +7403,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_against_liberalism"
+			increase_policing_budget = yes
+			set_temp_variable = { temp_change = 2 }
+			FRA_roy_police_ned =yes
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_roy_factmoney =yes
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_roy_invest_return =yes
+			set_temp_variable = { temp_change = 1 }
+			FRA_roy_interest =yes
 		}
 
 		ai_will_do = {
@@ -7409,20 +7419,24 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_germanophobia
-		icon = attack_germany
+		id = FRA_prepare_crusade
+		icon = attack_syria
 
 		x = 3
-		y = 21
+		y = 22
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_no_more_eu }
+		prerequisite = { focus = FRA_historical_ennemy }
+		availble = {
+			has_completed_focus = FRA_friend_pope
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_germanophobia"
+		completion_reward = {#threatened middle east
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_prepare_crusade"
+			add_ideas = FRA_prepare_crusade
 		}
 
 		ai_will_do = {
@@ -7440,9 +7454,12 @@ focus_tree = {
 		cost = 10
 
 		prerequisite = { focus = FRA_eu_kingdom }
+		availble = {
+			has_completed_focus = FRA_elder_daughter
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#propose to vatican or italy to take back the pope/claim his realms or claim them
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_friend_pope"
 		}
 
@@ -7464,8 +7481,8 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_levy"
-			FRA_elite_army
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_army_of_elites"
+			add_ideas = FRA_elite_army
 		}
 
 		ai_will_do = {
@@ -7509,35 +7526,40 @@ focus_tree = {
 		id = FRA_frankish_ancestor
 		icon = state_of_french_politics
 
-		x = 0
-		y = 22
+		x = -1
+		y = 21
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_against_liberalism }
-		prerequisite = { focus = FRA_destroy_republicanism }
+		prerequisite = { focus = FRA_king_rule }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_crackdown_antifra"
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_frankish_ancestor"
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_roy_warsup =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_roy_coredef =yes
+			set_temp_variable = { temp_change = -0.5 }
+			FRA_roy_research =yes
 		}
 
 		ai_will_do = {
 			factor = 1
 		}
 	}
-	focus = {
+	focus = {#threathen uk and germany
 		id = FRA_historical_ennemy
 		icon = attack_britain
 
 		x = 3
-		y = 22
+		y = 21
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_germanophobia }
+		prerequisite = { focus = FRA_no_more_eu }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
@@ -7561,8 +7583,31 @@ focus_tree = {
 		prerequisite = { focus = FRA_friend_pope }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#holy league against ottoman
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_catholic_league"
+			if = { limit = { is_faction_leader = yes }
+				dismantle_faction = yes
+			}
+			else_if = { limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+
+			create_faction = Holy_league
+			every_other_country = {
+				limit = {
+					AND = {
+						is_in_europe = yes
+						has_idea = christian
+						NOT = {
+							original_tag = ENG
+							original_tag = GER
+						}
+
+					}
+				}
+				country_event = france_md.308
+			}
+			add_political_power = -200
 		}
 
 		ai_will_do = {
@@ -7570,8 +7615,8 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_national_solidarity
-		icon = national_unity
+		id = FRA_burry_revolution
+		icon = social_democracy_purge
 
 		x = -4
 		y = 23
@@ -7584,7 +7629,16 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_national_solidarity"
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_burry_revolution"
+			increase_policing_budget = yes
+			set_temp_variable = { temp_change = -0.15 }
+			FRA_roy_policecost =yes
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_roy_driftdef = yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_roy_party_stab =yes
+			set_temp_variable = { temp_change = 0.02 }
+			FRA_roy_drift =yes
 		}
 
 		ai_will_do = {
@@ -7601,7 +7655,7 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_frankish_ancestor }
+		prerequisite = { focus = FRA_destroy_republicanism }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
@@ -7610,6 +7664,12 @@ focus_tree = {
 				remove_idea = pluralist
 				add_idea = christian
 			}
+			swap_ideas = {
+					remove_idea = labour_unions
+					add_idea = the_clergy
+			}
+			set_temp_variable = { temp_opinion = 15 }
+			change_the_clergy_opinion = yes
 		}
 
 		ai_will_do = {
@@ -7626,11 +7686,11 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_historical_ennemy }
+		prerequisite = { focus = FRA_prepare_crusade }
 		prerequisite = { focus = FRA_catholic_league }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#decision to coup former monarchy
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_republican_cancer"
 		}
 
@@ -7648,7 +7708,7 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_national_solidarity }
+		prerequisite = { focus = FRA_burry_revolution }
 		prerequisite = { focus = FRA_elder_daughter }
 		prerequisite = { focus = FRA_republican_cancer }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
@@ -8884,10 +8944,10 @@ focus_tree = {
 		completion_reward = {#TODO add idea to faction
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_new_kommintern"
 			if = { limit = { is_faction_leader = yes }
-				#dismantle_faction = yes
+				dismantle_faction = yes
 			}
 			else_if = { limit = { is_in_faction = yes }
-				#leave_faction = yes
+				leave_faction = yes
 			}
 
 			create_faction = world_revolution_commune

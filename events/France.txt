@@ -7796,5 +7796,61 @@ country_event = {#boost monarch families uncool
 		}
 	}
 }
+country_event = {#propose alliance to all eu christian
+	id = france_md.308
+	title = france_md.308.t
+	desc = france_md.308.d
+	is_triggered_only = yes
+	option = {#we join
+		name = france_md.308.a
+		log = "[GetDateText]: [This.GetName]: france_md.308.a executed"
+		add_stability = 0.1
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		set_temp_variable = { temp_outlook_increase = 0.1 }
+		add_relative_party_popularity = yes
+		FRA= {
+			if = {
+					limit = { is_faction_leader = yes }
+					FRA = { add_to_faction = ROOT }
+			}
+			else={
+				diplomatic_relation = {
+					country = ROOT
+					relation = guarantee
+				}
+				ROOT = {
+					diplomatic_relation = {
+						country = FRA
+						relation = guarantee
+					}
+				}
+			}
+		}
+		set_temp_variable = { temp_opinion = 5 }
+		change_the_clergy_opinion = yes
+
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.308.b
+		log = "[GetDateText]: [This.GetName]: france_md.308.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.05 }
+		set_temp_variable = { temp_outlook_increase = -0.05 }
+		add_relative_party_popularity = yes
+		add_stability = -0.05
+		FRA = {
+			add_opinion_modifier = { target = ROOT modifier = betrayed_our_cause }
+		}
+		set_temp_variable = { temp_opinion = -5 }
+		change_the_clergy_opinion = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+}
 
 
