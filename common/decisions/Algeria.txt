@@ -56,8 +56,6 @@ ALG_crackdown_category = {
             factor = 1
         }
     }
-
-    # ───────────────────────────────────────
     ALG_ban_opposition_parties = {
         cost = 100
 
@@ -897,7 +895,6 @@ ALG_UN_security_council_seat = {
 			}
 		}
 	}
-
 }
 ALG_reconciliation_path_category = {
     ALG_pardon_moderate_islamist = {
@@ -925,29 +922,28 @@ ALG_reconciliation_path_category = {
             factor = 10
         }
     }
-ALG_initiate_national_dialogues = {
-	allowed = {
-            original_tag = ALG
-        }
+	ALG_initiate_national_dialogues = {
+		allowed = {
+			original_tag = ALG
+		}
+		available = {
+			has_country_flag = ALG_reconciliation_path
+		}
+		icon = spending_lower_button
+		cost = 100
+		days_remove = 30
+		fire_only_once = yes
 
-        available = {
-            has_country_flag = ALG_reconciliation_path
-        }
-        icon = spending_lower_button
-        cost = 100
-        days_remove = 30
-        fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.05
+			add_political_power = -50
+			add_war_support = -0.03
+			add_ideas = ALG_national_dialogue_modifier
+		}
 
-        complete_effect = {
-            add_stability = 0.05
-            add_political_power = -50
-            add_war_support = -0.03
-            add_ideas = ALG_national_dialogue_modifier
-        }
-
-        ai_will_do = {
-            factor = 0.9
-        }
+		ai_will_do = {
+			factor = 0.9
+		}
     }
     ALG_reintegrate_former_fighter = {
 	allowed = {
@@ -962,8 +958,6 @@ ALG_initiate_national_dialogues = {
         fire_only_once = yes
         icon = GFX_decision_generic_army_support
         cost = 125
-
-        
 
         complete_effect = {
             add_stability = 0.03
@@ -1033,7 +1027,7 @@ ALG_ethnic_data_category = {
 }
 ALG_political_struggle = {
     ALG_boost_reformists = {
-    icon = GFX_decision_poland_revoult
+		icon = GFX_decision_poland_revoult
 		available = {
 			has_country_flag = has_power_balance_algeria
 			has_power_balance = {
@@ -1054,22 +1048,22 @@ ALG_political_struggle = {
         }
     }
 	ALG_boost_old_guard = {
-    icon = GFX_decision_ISR_military_button
-    available = {
-        has_country_flag = has_power_balance_algeria
-        has_power_balance = {
-            id = algeria_power_balance
-        }
-        has_political_power > 100
-    }
-    cost = 100
-    complete_effect = {
-        add_power_balance_value = {
-            id = algeria_power_balance
-            value = -0.20
-        }
-            add_stability = -0.02
-        }
+		icon = GFX_decision_ISR_military_button
+		available = {
+			has_country_flag = has_power_balance_algeria
+			has_power_balance = {
+				id = algeria_power_balance
+			}
+			has_political_power > 100
+		}
+		cost = 100
+		complete_effect = {
+			add_power_balance_value = {
+				id = algeria_power_balance
+				value = -0.20
+			}
+				add_stability = -0.02
+			}
         ai_will_do = {
             factor = 0
         }
@@ -1133,13 +1127,12 @@ ALG_political_struggle = {
 	}
 	ALG_seek_compromise = {
 		icon = GFX_decision_gulf_agree_button
-	available = {
-	has_country_flag = has_power_balance_algeria
-	has_political_power > 100
+		available = {
+			has_country_flag = has_power_balance_algeria
+			has_political_power > 100
 			has_power_balance = {
 				id = algeria_power_balance
 			}
-
 		}
 		cost = 75
 		complete_effect = {
@@ -1293,7 +1286,6 @@ alg_ethnic_policy = {
 		}
 		days_remove = 0
 	}
-
 }
 ALG_resistance_movement = {
     # National Measures
@@ -1920,27 +1912,9 @@ ALG_algeria_support_category = {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 parliament_gui_decision_category = {
 	lobbylibs = {
 		icon = eng_trade_unions_support
-
 
 		available = {
 		}
@@ -1950,8 +1924,6 @@ parliament_gui_decision_category = {
 		cost = 100
 
 		fire_only_once = no
-
-		
 
 		complete_effect = {
 		set_temp_variable = { party_index = 12 }
@@ -1980,8 +1952,6 @@ parliament_gui_decision_category = {
 		cost = 100
 
 		fire_only_once = no
-		
-		
 
 		complete_effect = {
 		set_temp_variable = { party_index = 2 }
@@ -2010,8 +1980,6 @@ parliament_gui_decision_category = {
 		cost = 100
 
 		fire_only_once = no
-		
-		
 
 		complete_effect = {
 		set_temp_variable = { party_index = 14 }
@@ -2040,8 +2008,6 @@ parliament_gui_decision_category = {
 		cost = 100
 
 		fire_only_once = no
-		
-		
 
 		complete_effect = {
 		set_temp_variable = { party_index = 7 }
