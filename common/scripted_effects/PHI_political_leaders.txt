@@ -1,184 +1,503 @@
 set_leader_PHI = {
-	if = { limit = { has_country_flag = set_conservatism }
-		if = { limit = { check_variable = { conservatism_leader = 0 } }
-			add_to_variable = { conservatism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
 
-			create_country_leader = {
-				name = "Ferdinand Marcos Jr."
-				picture = "ferdinand_marcos.dds"
-				ideology = conservatism
-				traits = {
-					western_conservatism
-				}
-			}
+    # Lakas-CMD
+    if = { limit = { has_country_flag = set_conservatism }
+        if = { limit = { check_variable = { conservatism_leader = 0 } }
+            add_to_variable = { conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Gloria Macapagal Arroyo"
+                picture = "gfx/leaders/PHI/gloria_arroyo.dds"
+                ideology = conservatism
+                traits = { western_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { conservatism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Gilbert Teodoro"
+                picture = "gfx/leaders/PHI/gilbert_teodoro.dds" 
+                ideology = conservatism
+                traits = { western_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { conservatism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Bong Revilla"
+                picture = "gfx/leaders/PHI/bong_revilla.dds" 
+                ideology = conservatism
+                traits = { western_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-		if = { limit = { check_variable = { conservatism_leader = 3 } NOT = { check_variable = { b = 1 } } }
-			add_to_variable = { conservatism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
+    # Liberal Party
+    else_if = { limit = { has_country_flag = set_liberalism }
+        if = { limit = { check_variable = { liberalism_leader = 0 } }
+            add_to_variable = { liberalism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Benigno Aquino III"
+                picture = "gfx/leaders/PHI/benigno_aquino_III.dds"
+                ideology = liberalism
+                traits = { western_liberalism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { liberalism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { liberalism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Mar Roxas"
+                picture = "gfx/leaders/PHI/mar_roxas.dds" 
+                ideology = liberalism
+                traits = { western_liberalism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { liberalism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { liberalism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Leni Robredo"
+                picture = "gfx/leaders/PHI/leni_robredo.dds" 
+                ideology = liberalism
+                traits = { western_liberalism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { liberalism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { liberalism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Franklin Drilon"
+                picture = "gfx/leaders/PHI/franklin_drilon.dds" 
+                ideology = liberalism
+                traits = { western_liberalism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			create_country_leader = {
-				name = "Benigno Aquino III"
-				picture = "Benigno_Aquino_III.dds"
-				ideology = conservatism
-				traits = {
-					western_conservatism
-				}
-			}
+    # Communist People
+    else_if = { limit = { has_country_flag = set_Communist-State }
+        if = { limit = { check_variable = { Communist-State_leader = 0 } }
+            add_to_variable = { Communist-State_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Jose Maria Sison"
+                picture = "gfx/leaders/PHI/jose_maria_sison.dds" 
+                ideology = Communist-State
+                traits = { communist_revolutionary }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Communist-State_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Communist-State_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Communist-State_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Wilma Tiamzon"
+                picture = "gfx/leaders/PHI/wilma_tiamzon.dds" 
+                ideology = Communist-State
+                traits = { communist_revolutionary }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Communist-State_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Communist-State_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Communist-State_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Benito Tiamzon"
+                picture = "gfx/leaders/PHI/benito_tiamzon.dds" 
+                ideology = Communist-State
+                traits = { communist_revolutionary }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Communist-State_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Communist-State_leader = 3 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Communist-State_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Gregorio Rosal"
+                picture = "gfx/leaders/PHI/gregorio_rosal.dds" 
+                ideology = Communist-State
+                traits = { communist_revolutionary }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Communist-State_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-	}
-	else_if = { limit = { has_country_flag = set_liberalism }
-		if = { limit = { check_variable = { liberalism_leader = 0 } }
-			add_to_variable = { liberalism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
+    # Akbayan
+    else_if = { limit = { has_country_flag = set_socialism }
+        if = { limit = { check_variable = { socialism_leader = 0 } }
+            add_to_variable = { socialism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Loretta Rosales"
+                picture = "gfx/leaders/PHI/loretta_rosales.dds" 
+                ideology = socialism
+                traits = { western_socialism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { socialism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { socialism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Risa Hontiveros"
+                picture = "gfx/leaders/PHI/risa_hontiveros.dds" 
+                ideology = socialism
+                traits = { western_socialism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			create_country_leader = {
-				name = "Alfredo Lim"
-				picture = "alfredo_lim.dds"
-				ideology = liberalism
-				traits = {
-					western_liberalism
-				}
-			}
+    # NPC
+    else_if = { limit = { has_country_flag = set_Neutral_conservatism }
+        if = { limit = { check_variable = { Neutral_conservatism_leader = 0 } }
+            add_to_variable = { Neutral_conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Eduardo Cojuangco Jr."
+                picture = "gfx/leaders/PHI/eduardo_cojuangco.dds" 
+                ideology = Neutral_conservatism
+                traits = { neutrality_Neutral_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_conservatism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Mark Cojuangco"
+                picture = "gfx/leaders/PHI/mark_cojuangco.dds"
+                ideology = Neutral_conservatism
+                traits = { neutrality_Neutral_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_conservatism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Tito Sotto"
+                picture = "gfx/leaders/PHI/tito_sotto.dds" 
+                ideology = Neutral_conservatism
+                traits = { neutrality_Neutral_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_conservatism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_conservatism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Ping Lacson"
+                picture = "gfx/leaders/PHI/ping_lacson.dds" 
+                ideology = Neutral_conservatism
+                traits = { neutrality_Neutral_conservatism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
-		}
-		if = { limit = { check_variable = { liberalism_leader = 1 } NOT = { check_variable = { b = 1 } } }
-			add_to_variable = { liberalism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
+    # Pwersa ng Masang Pilipino
+    else_if = { limit = { has_country_flag = set_Neutral_Autocracy }
+        if = { limit = { check_variable = { Neutral_Autocracy_leader = 0 } }
+            add_to_variable = { Neutral_Autocracy_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Joseph Estrada"
+                picture = "gfx/leaders/PHI/joseph_estrada.dds"
+                ideology = Neutral_Autocracy
+                traits = { neutrality_Neutral_Autocracy }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Autocracy_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_Autocracy_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_Autocracy_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Jinggoy Estrada"
+                picture = "gfx/leaders/PHI/jinggoy_estrada.dds" # TODO: add portrait
+                ideology = Neutral_Autocracy
+                traits = { neutrality_Neutral_Autocracy }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Autocracy_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_Autocracy_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_Autocracy_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "JV Ejercito"
+                picture = "gfx/leaders/PHI/jv_ejercito.dds" # TODO: add portrait
+                ideology = Neutral_Autocracy
+                traits = { neutrality_Neutral_Autocracy }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Autocracy_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			create_country_leader = {
-				name = "Mar Roxas"
-				picture = "mar_roxas.dds"
-				ideology = liberalism
-				traits = {
-					western_liberalism
-				}
-			}
+    # Nacionalista Party
+    else_if = { limit = { has_country_flag = set_Nat_Populism }
+        if = { limit = { check_variable = { Nat_Populism_leader = 0 } }
+            add_to_variable = { Nat_Populism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Manny Villar"
+                picture = "gfx/leaders/PHI/manny_villar.dds"
+                ideology = Nat_Populism
+                traits = { nationalist_Nat_Populism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Populism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Nat_Populism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Nat_Populism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Ferdinand Marcos Jr."
+                picture = "gfx/leaders/PHI/ferdinand_marcos.dds"
+                ideology = Nat_Populism
+                traits = { nationalist_Nat_Populism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Populism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Nat_Populism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Nat_Populism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Alan Peter Cayetano"
+                picture = "gfx/leaders/PHI/alan_cayetano.dds"
+                ideology = Nat_Populism
+                traits = { nationalist_Nat_Populism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Populism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-	}
-	else_if = { limit = { has_country_flag = set_Communist-State }
-		if = { limit = { check_variable = { Communist-State_leader = 0 } }
-			add_to_variable = { Communist-State_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
+    #  PDP–LABAN
+    else_if = { limit = { has_country_flag = set_Anarchist_Communism }
+        if = { limit = { check_variable = { Anarchist_Communism_leader = 0 } }
+            add_to_variable = { Anarchist_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Aquilino Pimentel Jr."
+                picture = "gfx/leaders/PHI/nene_pimentel.dds" # TODO: add portrait
+                ideology = Anarchist_Communism
+                traits = { emerging_anarchist_communism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Anarchist_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Anarchist_Communism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Anarchist_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Rodrigo Duterte"
+                picture = "gfx/leaders/PHI/rodrigo_duterte.dds"
+                ideology = Anarchist_Communism
+                traits = { strongman }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Anarchist_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Anarchist_Communism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Anarchist_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Aquilino Pimentel III"
+                picture = "gfx/leaders/PHI/koko_pimentel.dds" # TODO: add portrait
+                ideology = Anarchist_Communism
+                traits = { emerging_anarchist_communism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Anarchist_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Anarchist_Communism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Anarchist_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Manny Pacquiao"
+                picture = "gfx/leaders/PHI/manny_pacquiao.dds" # TODO: add portrait
+                ideology = Anarchist_Communism
+                traits = { emerging_anarchist_communism }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Anarchist_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
+	    #  People's Reform Party
+    else_if = { limit = { has_country_flag = set_Neutral_Communism }
+        if = { limit = { check_variable = { Neutral_Communism_leader = 0 } }
+            add_to_variable = { Neutral_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Miriam Defensor Santiago"
+                picture = "gfx/leaders/PHI/miriam_defensor.dds" 
+                ideology = Neutral_Communism
+                traits = { neutrality_Neutral_Communism  }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_Communism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Francisco Tatad"
+                picture = "gfx/leaders/PHI/francisco_tatad.dds" 
+                ideology = Neutral_Communism
+                traits = { neutrality_Neutral_Communism career_politician }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_Communism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Esperanza Cabral"
+                picture = "gfx/leaders/PHI/esperanza_cabral.dds" 
+                ideology = Neutral_Communism
+                traits = { neutrality_Neutral_Communism technocrat reformist }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_Communism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_Communism_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Mike Defensor"
+                picture = "gfx/leaders/PHI/mike_defensor.dds" 
+                ideology = Neutral_Communism
+                traits = { neutrality_Neutral_Communism young_politician }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Communism_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
+	   #  Aksyon Demokratiko
+    else_if = { limit = { has_country_flag = set_neutral_Social }
+        if = { limit = { check_variable = { neutral_Social_leader = 0 } }
+            add_to_variable = { neutral_Social_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Raul Roco"
+                picture = "gfx/leaders/PHI/raul_roco.dds" 
+                ideology = neutral_Social
+                traits = {  } #tf do i put here
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { neutral_Social_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { neutral_Social_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { neutral_Social_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Mark Lapid"
+                picture = "gfx/leaders/PHI/mark_lapid.dds" 
+                ideology = neutral_Social
+                traits = {  }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { neutral_Social_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { neutral_Social_leader = 2 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { neutral_Social_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Isko Moreno"
+                picture = "gfx/leaders/PHI/isko_moreno.dds" 
+                ideology = neutral_Social
+                traits = { l }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { neutral_Social_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
+	#  Progressive Movement for Devolution of Initiatives 
+    else_if = { limit = { has_country_flag = set_Neutral_Green }
+        if = { limit = { check_variable = { Neutral_Green_leader = 0 } }
+            add_to_variable = { Neutral_Green_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Lito Osmeña"
+                picture = "gfx/leaders/PHI/lito_osmena.dds" 
+                ideology = Neutral_Green
+                traits = {  }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Green_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Neutral_Green_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Neutral_Green_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Mimo Osmeña"
+                picture = "gfx/leaders/PHI/mimo_osmena.dds" 
+                ideology = Neutral_Green
+                traits = {  }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Green_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 
-			create_country_leader = {
-				name = "Jose Maria Sison"
-				picture = "jose_maria_sison.dds"
-				ideology = Communist-State
-				traits = {
-					emerging_Communist-State
-					communist_revolutionary
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Communist-State_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
-		}
-	}
-	else_if = { limit = { has_country_flag = set_Neutral_Communism }
-		if = { limit = { check_variable = { Neutral_Communism_leader = 0 } }
-			add_to_variable = { Neutral_Communism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
-
-			create_country_leader = {
-				name = "Miriam Defensor Santiago"
-				picture = "miriam_defensor.dds"
-				ideology = Neutral_Communism
-				traits = {
-					neutrality_Neutral_Communism
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Communism_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
-		}
-	}
-	else_if = { limit = { has_country_flag = set_Neutral_conservatism }
-		if = { limit = { check_variable = { Neutral_conservatism_leader = 0 } }
-			add_to_variable = { Neutral_conservatism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
-
-			create_country_leader = {
-				name = "Grace Poe"
-				picture = "grace_poe.dds"
-				ideology = Neutral_conservatism
-				traits = {
-					neutrality_Neutral_conservatism
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-	}
-	else_if = { limit = { has_country_flag = set_Neutral_Autocracy }
-		if = { limit = { check_variable = { Neutral_Autocracy_leader = 0 } }
-			add_to_variable = { Neutral_Autocracy_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
-
-			create_country_leader = {
-				name = "Joseph Estrada"
-				picture = "joseph_estrada.dds"
-				ideology = Neutral_Autocracy
-				traits = {
-					neutrality_Neutral_Autocracy
-					greedy
-					deceitful
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_Autocracy_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-	}
-	else_if = { limit = { has_country_flag = set_anarchist_communism }
-		if = { limit = { check_variable = { anarchist_communism_leader = 0 } }
-			add_to_variable = { anarchist_communism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
-
-			create_country_leader = {
-				name = "Jejomar Binay"
-				picture = "jejomar_binay.dds"
-				ideology = anarchist_communism
-				traits = {
-					emerging_anarchist_communism
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { anarchist_communism_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
-		}
-		if = { limit = { check_variable = { anarchist_communism_leader = 1 } NOT = { check_variable = { b = 1 } } }
-			add_to_variable = { anarchist_communism_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
-
-			create_country_leader = {
-				name = "Rodrigo Duterte"
-				picture = "rodrigo_duterte.dds"
-				ideology = anarchist_communism
-				traits = {
-					emerging_anarchist_communism
-					narcissist
-					inexperienced
-					honest
-					emotional
-					rash
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { anarchist_communism_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-	}
+	# Abu Sayyaf
+    else_if = { limit = { has_country_flag = set_Caliphate }
+        if = { limit = { check_variable = { Caliphate_leader = 0 } }
+            add_to_variable = { Caliphate_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Khadaffy Janjalani"
+                picture = "gfx/leaders/PHI/khadaffy_janjalani.dds" 
+                ideology = Caliphate
+                traits = { salafist_Caliphate }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Caliphate_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+        if = { limit = { check_variable = { Caliphate_leader = 1 } NOT = { check_variable = { b = 1 } } }
+            add_to_variable = { Caliphate_leader = 1 }
+            hidden_effect = { kill_country_leader = yes }
+            create_country_leader = {
+                name = "Isnilon Totoni Hapilon"
+                picture = "gfx/leaders/PHI/isnilon_hapilon.dds"
+                ideology = Caliphate
+                traits = { salafist_Caliphate }
+            }
+            if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Caliphate_leader = 1 } }
+            set_temp_variable = { b = 1 }
+        }
+    }
 }
