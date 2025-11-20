@@ -50,6 +50,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_at_a_crossroads"
             add_political_power = 100
             add_stability = -0.05
             add_war_support = -0.05
@@ -111,6 +112,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		relative_position_id = ALG_restore_hope
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_charter_for_peace"
             add_ideas = ALG_peace_charter
 			country_event = {id = algeria_news.4}
         }
@@ -132,6 +134,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		relative_position_id = ALG_restore_hope
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_moderate_islamist_talks"
             add_political_power = 30
             add_stability = 0.01
             set_temp_variable = { party_index = 7 }
@@ -167,6 +170,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_election_day"
 			add_political_power = 150
 			set_country_flag = ALG_election_pending
 			add_stability = 0.05
@@ -191,6 +195,7 @@ focus_tree = {
 		mutually_exclusive = { focus = ALG_opposition_path }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_path"
 			set_country_flag = ALG_fln_opp_path
 			mark_focus_tree_layout_dirty = yes
 			add_political_power = 100
@@ -215,6 +220,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_path }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_preserve_system"
 			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = 0.10 }
 			set_temp_variable = { temp_outlook_increase = 0.10 }
@@ -235,6 +241,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_preserve_system }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_control_media"
 			set_temp_variable = { percent_change = 2 }
 			change_domestic_influence_percentage = yes
 			add_ideas = ALG_FLN_media_control_idea
@@ -252,6 +259,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_preserve_system }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_military_loyalty"
 			if = {
 				limit = { has_idea = ALG_loyal_military_idea}
 				swap_ideas = {
@@ -281,6 +289,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_control_media }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_state_led_development"
 			add_ideas = ALG_FLN_state_led_development_idea
 			increase_economic_growth = yes
 		}
@@ -297,6 +306,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_military_loyalty }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_oil_for_people"
 			add_ideas = ALG_FLN_oil_for_people_idea
 			add_resource = {
 				type = oil
@@ -318,6 +328,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_state_led_development focus = ALG_FLN_oil_for_people }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_public_works"
 			two_random_industrial_complex = yes
 			one_random_infrastructure = yes
 		}
@@ -335,6 +346,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_control_media }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_national_security_council"
 			add_ideas = ALG_FLN_national_security_council_idea
 			if = {
 				limit = { has_idea = ALG_loyal_military_idea}
@@ -361,6 +373,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_public_works }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_industrial_nationalization"
 			add_ideas = ALG_FLN_industrial_nationalization_idea
 		}
 	}
@@ -376,6 +389,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_FLN_industrial_nationalization }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_FLN_legacy_of_stability"
 			add_political_power = 100
 			add_ideas = ALG_FLN_legacy_of_stability_idea
 		}
@@ -459,6 +473,7 @@ focus_tree = {
         cost = 7
 		relative_position_id = FLN_legacy_revolution
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FLN_balance_islamists_and_secularists"
             add_political_power = 30
             add_stability = -0.01
 			set_temp_variable = { ALG_constitution_1996_productivity_temp = 0.05 }
@@ -585,8 +600,6 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus FLN_denounce_previous_colonialist_regimes"
 			set_temp_variable = { percent_change = -10 }
@@ -615,6 +628,7 @@ focus_tree = {
 		}
 		relative_position_id = FLN_legacy_revolution
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_sonatrach_scandal"
             add_stability = -0.1
             add_political_power = -50
 			add_timed_idea = { idea = ALG_sonatrach_corruption days = 1460 }
@@ -705,6 +719,7 @@ focus_tree = {
         cost = 7
 		relative_position_id = ALG_no_pres_alliance
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_strengthen_le_pouvoir"
 			remove_ideas = ALG_recovering_from_the_civil_war
 			remove_ideas = ALG_black_decade
 			if = {
@@ -745,6 +760,7 @@ focus_tree = {
         cost = 6
 		relative_position_id = ALG_no_pres_alliance
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_le_pouvoir_in_the_shadows"
             add_stability = -0.05
             increase_corruption = yes
 			swap_ideas = {
@@ -869,7 +885,6 @@ focus_tree = {
 		cost = 7
 		relative_position_id = ALG_no_pres_alliance
 
-
 		prerequisite = { focus = ALG_the_cult_of_bouteflika }
 
 		available = {
@@ -902,6 +917,7 @@ focus_tree = {
 		mutually_exclusive = { focus = ALG_FLN_path }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_opposition_path"
 			add_political_power = 100
 			set_country_flag = ALG_opposition_chosen
 			clr_country_flag = ALG_election_pending
@@ -930,6 +946,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_opposition_path }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_free_elections"
 			country_event = { id = AlgeriaElections.1 }
 			hidden_effect = {
 				set_country_flag = no_leader_change
@@ -963,6 +980,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_free_elections }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_new_constitution"
 			country_event = { id = alg_constitution.1 days = 1 }
 		}
 	}
@@ -978,6 +996,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_free_elections }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_media_freedom"
 			add_ideas = ALG_free_media_idea
 		}
 	}
@@ -993,6 +1012,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_media_freedom focus = ALG_OPP_new_constitution }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_judiciary_reform"
 			add_ideas = ALG_reform_the_judicial_system_idea
 		}
 	}
@@ -1008,6 +1028,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_judiciary_reform }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_open_market"
 			increase_exports = yes
 			add_ideas = ALG_open_market_idea
 		}
@@ -1024,6 +1045,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_judiciary_reform }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_education_first"
 			add_research_slot = 1
 			add_ideas = ALG_reform_education_system_idea
 		}
@@ -1040,6 +1062,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_media_freedom }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_anti_corruption"
 			decrease_corruption = yes
 			add_ideas = ALG_anti_corruption_campaign_idea
 		}
@@ -1056,6 +1079,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_anti_corruption }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_invest_in_youth"
 			increase_education_budget = yes
 			increase_centralization = yes
 			add_ideas = ALG_invest_in_youth_idea
@@ -1114,6 +1138,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_OPP_open_market focus = ALG_OPP_education_first }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_new_era"
 			add_ideas = ALG_new_era_for_algeria_idea
 			increase_economic_growth = yes
 		}
@@ -1235,6 +1260,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_reform_armed_forces }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_counter_extremism"
 			swap_ideas = {
 				remove_idea = ALG_black_decade_lesson2_idea
 				add_idea = ALG_black_decade_lesson3_idea
@@ -1260,6 +1286,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_reform_armed_forces }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_grand_mosque"
 			set_temp_variable = { treasury_change = -5.5 }
         	modify_treasury_effect = yes
 			set_temp_variable = { ALG_civ_construction_speed_change = 0.10 }
@@ -1463,6 +1490,7 @@ focus_tree = {
 		cost = 7
 		relative_position_id = FLN_expand_hydro
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FLN_optimize_water_management"
 			add_stability = 0.02
 			random_owned_controlled_state = {
 				add_building_construction = {
@@ -1489,6 +1517,7 @@ focus_tree = {
 		cost = 7
 		relative_position_id = FLN_expand_hydro
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FLN_hydroelectric_authority"
 			add_stability = 0.05
 			add_ideas = ALG_hydroelectric_power_plants_upgraded_idea
 			set_temp_variable = { temp_change = 2 }
@@ -1656,6 +1685,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		relative_position_id = FLN_devlop_industry
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FLN_foreign_investment"
 			random_owned_state = { add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
 			add_political_power = 50
 			set_temp_variable = { treasury_change = -7.5 }
@@ -1689,6 +1719,7 @@ focus_tree = {
 		}
 		relative_position_id = ALG_at_a_crossroads
     	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_resist_le_pouvoir"
         	set_variable = {
 				var = ALG_people_grievance
 				value = 1
@@ -1754,6 +1785,7 @@ focus = {
 	}
 	relative_position_id = ALG_at_a_crossroads
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_military_coup"
         add_stability = -0.15
         add_political_power = -50
         add_ideas = ALG_military_junta
@@ -1783,6 +1815,7 @@ focus = {
         cost = 4
 		relative_position_id = ALG_military_coup
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_clamp_down_on_extremism"
             add_stability = -0.05
             add_political_power = 50
 			set_temp_variable = { temp_opinion = 3 }
@@ -1805,6 +1838,7 @@ focus = {
         cost = 3
 		relative_position_id = ALG_military_coup
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_counterterrorism_program"
             add_political_power = 25
             add_stability = 0.02
 			set_temp_variable = { temp_opinion = 4 }
@@ -1840,6 +1874,7 @@ focus = {
 		cost = 7
 		relative_position_id = ALG_military_coup
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_repression_campaign"
 			add_stability = -0.05
 			add_war_support = 0.05
 			set_country_flag = ALG_black_decade_methods
@@ -1860,6 +1895,7 @@ focus = {
 		cost = 7
 		relative_position_id = ALG_military_coup
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_black_market_rises"
 			add_stability = -0.05
 			add_political_power = -50
 			decrease_exports = yes
@@ -1879,6 +1915,7 @@ focus = {
 		relative_position_id = ALG_military_coup
 		cost = 10
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_the_pna"
 			set_country_flag = promoted_admiral
 			country_event = { id = alg_general.4 }
 			add_ideas = ALG_pna_expansion
@@ -1902,6 +1939,7 @@ focus = {
 		cost = 12
 		relative_position_id = ALG_military_coup
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_africas_strongest_army"
 			add_ideas = ALG_africas_strongest_army
 			increase_economic_growth = yes
 			set_temp_variable = { corp_change = 5 }
@@ -1927,6 +1965,7 @@ focus = {
 		cost = 12
 		relative_position_id = ALG_military_coup
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_global_power_projection"
 			add_ideas = ALG_global_power
 			add_stability = 0.05
 			two_random_arms_factory = yes
@@ -1944,6 +1983,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_big_cities_or_rising_states"
 				add_political_power = 25
 				random_owned_state = {
 						add_extra_state_shared_building_slots = 1
@@ -1981,6 +2021,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_focus_on_big_cities"
 			set_temp_variable = {ALG_offices_contruction_speed_change = 0.10}
 			update_ALG_offices_contruction_speed = yes
 			newline = yes
@@ -2000,6 +2041,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_algiers"
 			386 = {
 				one_state_office_construction = yes
 				one_state_dockyard = yes
@@ -2018,6 +2060,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_oran"
 			387 = {
 				one_state_industrial_complex = yes
 				one_state_infrastructure = yes
@@ -2036,6 +2079,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_constantine"
 			384 = {
 				one_state_arms_factory = yes
 				one_state_network_infrastructure = yes
@@ -2054,6 +2098,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rising_states_program"
 			set_temp_variable = {ALG_civ_construction_speed_change = 0.10}
 			update_ALG_civ_construction_speed = yes
 			newline = yes
@@ -2073,6 +2118,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_kabylia"
 			385 = {
 				one_state_agriculture_district = yes
 				one_state_office_construction = yes
@@ -2091,6 +2137,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_aures"
 			380 = {
 				one_state_agriculture_district = yes
 				one_state_network_infrastructure = yes
@@ -2109,6 +2156,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_mzab"
 			set_temp_variable = {ALG_population_energy_consumption_change = 0.20}
 			update_ALG_population_energy_consumption = yes
 			newline = yes
@@ -2129,6 +2177,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_tamanrasset"
 			set_temp_variable = {ALG_research_speed_factor_change = 0.20}
 			update_ALG_research_speed_factor = yes
 			newline = yes
@@ -2150,6 +2199,7 @@ focus = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_atlas"
 			383 = {
 				one_state_synthetic_refinery = yes
 				one_state_arms_factory = yes
@@ -2169,6 +2219,7 @@ focus = {
 	search_filters = { FOCUS_FILTER_INDUSTRY }
 
 	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_granderg"
 		set_temp_Variable = {ALG_planning_speed_change = 0.20}
 		update_ALG_planning_speed = yes
 		newline = yes
@@ -2265,13 +2316,13 @@ focus = {
 			focus = ALG_optimize_pastoral_practices
 		}
 
+		x = -2
+		y = 1
 		relative_position_id = ALG_strengthen_ENTV_environmental_campaigns
 		prerequisite = {
 			focus = ALG_strengthen_ENTV_environmental_campaigns
 		}
 
-		x = -2
-		y = 1
 		available = {
 			has_completed_focus = ALG_grid_expansion
 		}
@@ -2315,10 +2366,10 @@ focus = {
 			focus = ALG_strengthen_ENTV_environmental_campaigns
 		}
 
-		relative_position_id = ALG_strengthen_ENTV_environmental_campaigns
-
 		x = 2
 		y = 1
+		relative_position_id = ALG_strengthen_ENTV_environmental_campaigns
+
 
 		cost = 7
 		available = {
@@ -2342,10 +2393,10 @@ focus = {
 			focus = ALG_increase_cattle_grazing
 		}
 
-		relative_position_id = ALG_increase_cattle_grazing
-
 		x = 1
 		y = 1
+		relative_position_id = ALG_increase_cattle_grazing
+
 
 		cost = 7
 		search_filters = { FOCUS_FILTER_ENVIRONMENT FOCUS_FILTER_INDUSTRY }
@@ -2374,10 +2425,10 @@ focus = {
 			focus = ALG_optimize_pastoral_practices
 		}
 
-		relative_position_id = ALG_optimize_pastoral_practices
-
 		x = -1
 		y = 1
+		relative_position_id = ALG_optimize_pastoral_practices
+
 
 		cost = 7
 
@@ -2407,10 +2458,10 @@ focus = {
 		prerequisite = {
 			focus = ALG_research_drought_resistant_crops
 		}
-		relative_position_id = ALG_optimize_pastoral_practices
-
 		x = -1
 		y = 2
+		relative_position_id = ALG_optimize_pastoral_practices
+
 
 		cost = 7
 		search_filters = { FOCUS_FILTER_ENVIRONMENT }
@@ -2431,10 +2482,10 @@ focus = {
 		prerequisite = {
 			focus = ALG_expand_steppe_farming
 		}
-		relative_position_id = ALG_increase_cattle_grazing
-
 		x = 1
 		y = 2
+		relative_position_id = ALG_increase_cattle_grazing
+
 
 		cost = 7
 		search_filters = { FOCUS_FILTER_ENVIRONMENT }
@@ -2458,9 +2509,9 @@ focus = {
 			focus = ALG_expand_nature_reserves_sahara
 		}
 
-		relative_position_id = ALG_strengthen_ENTV_environmental_campaigns
 		x = 0
 		y = 4
+		relative_position_id = ALG_strengthen_ENTV_environmental_campaigns
 
 		cost = 7
 		search_filters = { FOCUS_FILTER_ENVIRONMENT }
@@ -2488,6 +2539,7 @@ focus = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_postwar_recovery_program"
 			add_stability = 0.2
 			increase_economic_growth = yes
 			country_event = {id = algeria_news.10}
@@ -2513,6 +2565,7 @@ focus = {
 			FOCUS_FILTER_INTERNAL_AFFAIRS
 		}
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_un_aid_mission"
         add_political_power = 50
         country_event = {id = algeria_news.11}
 
@@ -2537,6 +2590,7 @@ focus = {
 			FOCUS_FILTER_INTERNAL_AFFAIRS
 	}
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_social_healing_programs"
         increase_social_spending = yes
         add_stability = 0.02
 		set_temp_variable = { temp_productivity_change = 0.025 }
@@ -3008,6 +3062,7 @@ focus = {
 
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_finalize_recovery_phase"
 			add_stability = 0.02
 			add_ideas = ALG_civil_war_recovered
 			if = {
@@ -3027,6 +3082,7 @@ focus = {
 		has_completed_focus = ALG_at_a_crossroads
 	  }
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_recover_from_the_war"
 		add_ideas = ALG_post_war_recovery
 		set_temp_variable = { debt_change = -0.3 }
 		modify_debt_effect = yes
@@ -3046,6 +3102,7 @@ focus = {
 	  prerequisite = { focus = ALG_recover_from_the_war }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_restoring_the_broken_economy"
 		add_timed_idea = {
 			idea = ALG_emergency_budget
 			days = 180
@@ -3064,6 +3121,7 @@ focus = {
 	  prerequisite = { focus = ALG_recover_from_the_war }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_arresting_extremists"
 		add_stability = 0.05
 		set_temp_variable = { rad_change = -5 }
 		modify_radicalization_effect = yes
@@ -3082,6 +3140,7 @@ focus = {
 	  prerequisite = {focus = ALG_arresting_extremists }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_economic_recovery"
 		add_political_power = 50
 		add_stability = 0.05
 		set_temp_variable = { treasury_change = 30 }
@@ -3096,6 +3155,7 @@ focus = {
 	  prerequisite = { focus = ALG_economic_recovery }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_regain_banks"
 		add_timed_idea = {
 			idea = ALG_banking_confidence_restored
 			days = 180
@@ -3114,6 +3174,7 @@ focus = {
 	  prerequisite = { focus = ALG_economic_recovery }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_financial_reform"
 		add_timed_idea = {
 			idea = ALG_structural_reform
 			days = 180
@@ -3131,6 +3192,7 @@ focus = {
 		prerequisite = {focus = ALG_regain_banks }
 		cost = 10
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_begin_full_recovery"
 			add_timed_idea = {
 				idea = ALG_national_recovery_completed
 				days = 180
@@ -3147,6 +3209,7 @@ focus = {
 		prerequisite = {focus = ALG_export_controls}
 		cost = 12
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_order_restored_in_algeria"
 			set_temp_variable = { treasury_change = -7.5 }
 			modify_treasury_effect = yes
 			increase_economic_growth = yes
@@ -3168,6 +3231,7 @@ focus = {
 		prerequisite = { focus = ALG_recover_from_the_war }
 		cost = 10
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_repairing_the_roads"
 		random_owned_controlled_state = {
 		add_extra_state_shared_building_slots = 5
 			add_building_construction = {
@@ -3189,6 +3253,7 @@ focus = {
 		prerequisite = { focus = ALG_repairing_the_roads }
 		cost = 10
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rebuild_north"
 			add_stability = 0.02
 			set_temp_variable = { treasury_change = -24 }
 			modify_treasury_effect = yes
@@ -3216,6 +3281,7 @@ focus = {
 		prerequisite = { focus = ALG_rebuild_north }
 		cost = 10
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rebuild_south"
 			379 = {
 			add_building_construction = {
 			  type = synthetic_refinery
@@ -3250,6 +3316,7 @@ focus = {
 	  prerequisite = { focus = ALG_repairing_the_roads }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rebuild_centre"
 		383 = {
 		add_building_construction = {
 		  type = infrastructure
@@ -3283,6 +3350,7 @@ focus = {
 	  prerequisite = { focus = ALG_rebuild_centre }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rebuild_west"
 		387 = {
 		add_building_construction = {
 		  type = industrial_complex
@@ -3303,6 +3371,7 @@ focus = {
 	  prerequisite = {focus = ALG_rebuild_west }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rebuild_algeria"
 		decrease_corruption = yes
 		set_temp_variable = {temp_opinion = 5 }
 		change_fossil_fuel_industry_opinion = yes
@@ -3330,6 +3399,7 @@ focus = {
 		focus = ALG_recover_from_the_war
 	  }
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_restoring_order"
 		increase_policing_budget = yes
 		set_temp_variable = { percent_change = 5 }
 		change_domestic_influence_percentage = yes
@@ -3348,6 +3418,7 @@ focus = {
 	  prerequisite = { focus = ALG_recover_from_the_war }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_secure_weapons_shipments"
 		add_equipment_to_stockpile = {
 		  type = infantry_weapons1
 		  amount = 2000
@@ -3370,6 +3441,7 @@ focus = {
 	  prerequisite = {focus = ALG_secure_weapons_shipments}
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_state_and_imf_funding"
 		add_timed_idea = {
 			idea = ALG_imf_funding_idea
 			days = 60
@@ -3386,6 +3458,7 @@ focus = {
 	  prerequisite = { focus = ALG_state_and_imf_funding }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_restocking_factories"
 		random_owned_controlled_state = {
 		add_extra_state_shared_building_slots = 2
 		add_building_construction = {
@@ -3406,6 +3479,7 @@ focus = {
 	  prerequisite = { focus = ALG_state_and_imf_funding }
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_rebuilding_factories"
 		random_owned_controlled_state = {
 		add_building_construction = {
 		  type = arms_factory
@@ -3426,6 +3500,7 @@ focus = {
 	  prerequisite = {focus = ALG_rebuilding_factories}
 	  cost = 10
 	  completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_export_controls"
 		add_ideas = ALG_export_controls_idea
 		increase_exports = yes
 	  }
@@ -3442,6 +3517,7 @@ focus = {
 			FOCUS_FILTER_FOREIGN_INVESTMENTS
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_change_the_economy"
 			set_temp_variable = {ALG_civ_construction_speed_change = 0.02}
 			update_ALG_civ_construction_speed = yes
 			newline = yes
@@ -3470,6 +3546,7 @@ focus = {
 			focus = ALG_open_market_reforms
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_preserve_state_controlled_oil"
 			add_stability = 0.02
 			add_ideas = ALG_sonatrach_restructure
 		}
@@ -3486,6 +3563,7 @@ focus = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_industrial_expansion_plan"
 			random_owned_controlled_state = {
 			add_extra_state_shared_building_slots = 2
 				add_building_construction = {
@@ -3516,6 +3594,7 @@ focus = {
 		}
 		mutually_exclusive = { focus = ALG_preserve_state_controlled_oil }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_open_market_reforms"
 				add_ideas = ALG_investment_boom_modifier
 				set_temp_variable = { treasury_change = 15 }
 				modify_treasury_effect = yes
@@ -3533,6 +3612,7 @@ focus = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_oil_licensing_program"
 			add_ideas = ALG_foreign_oil_licensing_bonus
 			add_political_power = 50
 		}
@@ -3556,8 +3636,6 @@ focus = {
 		}
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_al_quwwat_al_musallaha_al_jazaeriya"
@@ -3584,8 +3662,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_al_jaysh_al_watani_al_shaabi"
 			add_ideas = ALG_army_reform
@@ -3609,8 +3685,6 @@ focus = {
 		mutually_exclusive = { focus = ALG_focus_on_mass_assault_tactics }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_the_EFCIP"
@@ -3637,8 +3711,6 @@ focus = {
 		prerequisite = { focus = ALG_expand_the_EFCIP }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_form_specops_brigades"
@@ -3676,8 +3748,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_military_mechanization"
 			swap_ideas = {
@@ -3703,8 +3773,6 @@ focus = {
 		prerequisite = { focus = ALG_expand_the_EFCIP }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_abolish_conscription"
@@ -3747,8 +3815,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_abolish_conscription"
 			swap_ideas = {
@@ -3775,8 +3841,6 @@ focus = {
 		prerequisite = { focus = ALG_quality_over_quantity }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_abolish_conscription"
@@ -3805,8 +3869,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_focus_on_mass_assault_tactics"
 			swap_ideas = {
@@ -3833,8 +3895,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_conscription"
 			increase_conscription_effect = yes
@@ -3858,8 +3918,6 @@ focus = {
 		prerequisite = { focus = ALG_focus_on_mass_assault_tactics }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_focus_on_military_morale"
@@ -3887,8 +3945,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_military_infrastructure"
 			swap_ideas = {
@@ -3914,8 +3970,6 @@ focus = {
 		prerequisite = { focus = ALG_focus_on_military_morale }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_artillery_units"
@@ -3954,8 +4008,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_an_army_of_the_masses"
 			swap_ideas = {
@@ -3981,8 +4033,6 @@ focus = {
 		prerequisite = { focus = ALG_focus_on_mass_assault_tactics focus = ALG_expand_the_EFCIP }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_modernizing_our_equipment"
@@ -4075,8 +4125,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_cooperate_with_foreign_arms_companies"
 			add_ideas = ALG_foreign_arms_companies
@@ -4101,8 +4149,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_algerian_military_industry"
 			two_random_arms_factory = yes
@@ -4125,8 +4171,6 @@ focus = {
 		prerequisite = { focus = ALG_develop_algerian_military_industry focus = ALG_cooperate_with_foreign_arms_companies }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_tackle_military_corruption"
@@ -4152,8 +4196,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_elite_officer_training"
 			increase_officer_training_level = yes
@@ -4177,8 +4219,6 @@ focus = {
 		prerequisite = { focus = ALG_elite_officer_training }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_an_army_for_the_future"
@@ -4309,8 +4349,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_al_quwwat_al_jawwiya_al_jazaeriya"
 			add_ideas = ALG_air_reform
@@ -4388,8 +4426,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_purchase_russian_aircraft"
 			if = {
@@ -4435,8 +4471,6 @@ focus = {
 		prerequisite = { focus = ALG_purchase_russian_aircraft }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_purchase_russian_aircraft"
@@ -4485,8 +4519,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_purchase_american_aircraft"
 			if = {
@@ -4532,8 +4564,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_purchase_chinese_aircraft"
 			if = {
@@ -4578,8 +4608,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_a_new_world_class_academy"
 			swap_ideas = {
@@ -4611,8 +4639,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_improve_air_defense_infrastructure"
 			two_radar_station = yes
@@ -4636,8 +4662,6 @@ focus = {
 		prerequisite = { focus = ALG_a_new_world_class_academy }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_dominate_the_skies"
@@ -4664,8 +4688,6 @@ focus = {
 		prerequisite = { focus = ALG_improve_air_defense_infrastructure }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_close_air_support"
@@ -4695,8 +4717,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_might_of_the_sky"
 			swap_ideas = {
@@ -4723,8 +4743,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_al_quwwat_al_bahriya_al_jazaeriya"
 			add_ideas = ALG_naval_reform
@@ -4747,8 +4765,6 @@ focus = {
 		prerequisite = { focus = ALG_al_quwwat_al_bahriya_al_jazaeriya }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_naval_military_police"
@@ -4775,8 +4791,6 @@ focus = {
 		prerequisite = { focus = ALG_al_quwwat_al_bahriya_al_jazaeriya }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_the_naval_academy"
@@ -4811,8 +4825,6 @@ focus = {
 		}
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_return_to_the_sea"
@@ -4872,8 +4884,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_invest_into_shipbuilding"
 			386 = {
@@ -4906,8 +4916,6 @@ focus = {
 		prerequisite = { focus = ALG_invest_into_shipbuilding }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_djebel_chenoua"
@@ -5009,8 +5017,6 @@ focus = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_algerian_marine_forces"
 			386 = {
@@ -5042,8 +5048,6 @@ focus = {
 		prerequisite = { focus = ALG_algerian_marine_forces }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_quick_strikes"
@@ -5111,8 +5115,6 @@ focus = {
 		prerequisite = { focus = ALG_djebel_chenoua }
 
 		search_filters = { FOCUS_FILTER_MILITARY }
-
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_masters_of_the_mediterranean"
@@ -5368,8 +5370,6 @@ focus = {
 			}
 		}
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_1983_deal"
 			add_ideas = ALG_technological_ties
@@ -5523,8 +5523,6 @@ focus = {
 		382 = { is_owned_and_controlled_by = ALG }
 		}
 
-
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_hoggar_nuclear_facility"
 			set_country_flag = ALG_hoggar_nuclear_facility
@@ -5570,8 +5568,6 @@ focus = {
 		cost = 5.72
 
 		prerequisite = { focus = ALG_hoggar_nuclear_facility }
-
-
 
 		available = {
 			NOT = {
@@ -5630,8 +5626,6 @@ focus = {
 
 		prerequisite = { focus = ALG_hoggar_nuclear_facility }
 
-
-
 		available = {
 			NOT = {
 				has_country_flag = ALG_sanctioned
@@ -5685,13 +5679,6 @@ focus = {
 			NOT = { has_completed_focus = ALG_IAEA_safeguards_leave }
 		}
 
-		ai_will_do = {
-			factor = 12
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_wmds"
@@ -5718,7 +5705,17 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 12
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+
+}
 	focus = {
 		id = ALG_build_nuclear_reactor
 		icon = army_nuclear_boom
@@ -5734,13 +5731,6 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_RESEARCH
 		}
 
-		ai_will_do = {
-			factor = 12
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_build_nuclear_reactor"
@@ -5790,7 +5780,17 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 12
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+
+}
 	focus = {
 		id = ALG_sign_BWC
 		icon = nuclear_banned_1
@@ -5810,16 +5810,19 @@ focus = {
 			NOT = { has_completed_focus = ALG_build_nuclear_reactor }
 		}
 
-		ai_will_do = {
-			factor = 12
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_sign_BWC"
 			increase_economic_growth = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 12
+		}
+
+}
 	focus = {
 		id = ALG_IAEA_safeguards_leave
 		icon = PER_IAEA
@@ -5835,9 +5838,6 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY
 		}
 
-		ai_will_do = {
-			factor = 12
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_IAEA_safeguards_leave"
@@ -5882,7 +5882,13 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 12
+		}
+
+}
 ##new military tree ( only ideas )
 focus = {
 		id = ALG_algerian_special_forces
@@ -6133,9 +6139,7 @@ focus = {
 			}
 		}
 		relative_position_id = ALG_algerian_special_forces
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
 		completion_reward = {
@@ -6164,16 +6168,19 @@ focus = {
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	#DRS
 	focus = {
 		id = ALG_drs_expand
 		icon = arm_police_bureau
 		x = 2
 		y = 1
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 4
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6185,16 +6192,19 @@ focus = {
 			add_to_variable = { ALG_algeria_police_enemy_operative_capture_chance_factor = 0.15 }
 			custom_effect_tooltip = ALG_algeria_police10_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	#New equipment for gendarmerie
 	focus = {
 		id = ALG_new_gendarmerie_equipment
 		icon = ser_police
 		x = 2
 		y = 2
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6206,16 +6216,19 @@ focus = {
 			add_to_variable = { ALG_algeria_police_resistance_damage_to_garrison = -0.15 }
 			custom_effect_tooltip = ALG_algeria_police9_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	#Ministry of Interior (MIA centralization)
 	focus = {
 		id = ALG_mia_reform
 		icon = Generic_Policeman
 		x = -3
 		y = 1
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6226,16 +6239,19 @@ focus = {
 			add_to_variable = { ALG_algeria_police_police_cost_multiplier_modifier = 0.05 }
 			custom_effect_tooltip = ALG_algeria_police1_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	#Internal Troops (GN + paramilitaries)
 	focus = {
 		id = ALG_internal_troops
 		icon = policereformscuba
 		x = -4
 		y = 2
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6258,21 +6274,19 @@ focus = {
 			}
 			unlock_decision_category_tooltip = ALG_algeria_support_category
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	#Special Forces (GIS / Al-Mawqaf)
 	focus = {
 		id = ALG_increase_special_forces
 		icon = Goal_Turkmen_police_map
 		x = -2
 		y = 2
-		ai_will_do = {
-			factor = 155
-			modifier = {
-				factor = 355
-				has_global_flag = BLR_POST_LUKA_DEFAULT_PATH
-				date < 2005.3.3
-			}
-		}
+
 		cost = 5
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6284,16 +6298,24 @@ focus = {
 			add_to_variable = { ALG_algeria_police_special_forces_training_time_factor = -0.05 }
 			custom_effect_tooltip = ALG_algeria_police3_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+			modifier = {
+				factor = 355
+				has_global_flag = BLR_POST_LUKA_DEFAULT_PATH
+				date < 2005.3.3
+			}
+		}
+}
 	#Cybercrime Directorate
 	focus = {
 		id = ALG_cybercrime_directorate
 		icon = cyberwarfare
 		x = -2
 		y = 3
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6306,16 +6328,19 @@ focus = {
 			add_to_variable = { ALG_algeria_police_police_cost_multiplier_modifier = 0.01 }
 			custom_effect_tooltip = ALG_algeria_police4_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	#Riot Police Units (SMB/CSR)
 	focus = {
 		id = ALG_riot_police
 		icon = bul_special_forces_police
 		x = 0
 		y = 2
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		relative_position_id = ALG_increase_police_funding
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6328,15 +6353,18 @@ focus = {
 			custom_effect_tooltip = ALG_algeria_police2_tt
 
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_military_police_training
 		icon = secret_police
 		x = 0
 		y = 3
-		ai_will_do = {
-			factor = 155
-		}
+
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
 		cost = 3
 		relative_position_id = ALG_increase_police_funding
@@ -6348,16 +6376,19 @@ focus = {
 			add_to_variable = { ALG_algeria_police_resistance_growth = -0.03 }
 			custom_effect_tooltip = ALG_algeria_police5_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_peoples_security
 		icon = cctv
 		x = -1
 		y = 4
 		relative_position_id = ALG_increase_police_funding
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
 		prerequisite = { focus = ALG_military_police_training }
@@ -6367,16 +6398,19 @@ focus = {
 			add_to_variable = { ALG_algeria_police_police_cost_multiplier_modifier = 0.02 }
 			custom_effect_tooltip = ALG_algeria_police6_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_procurement_of_espionage_equipment
 		icon = BRA_funds_to_rj_police
 		x = 1
 		y = 4
 		relative_position_id = ALG_increase_police_funding
-		ai_will_do = {
-			factor = 155
-		}
+
 		cost = 5
 		prerequisite = { focus = ALG_military_police_training }
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6389,15 +6423,18 @@ focus = {
 			add_to_variable = { ALG_algeria_police_police_cost_multiplier_modifier = 0.01 }
 			custom_effect_tooltip = ALG_algeria_police7_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_occupation_management_strategies
 		icon = political_arrests2
 		x = 0
 		y = 5
-		ai_will_do = {
-			factor = 155
-		}
+
 		relative_position_id = ALG_increase_police_funding
 		cost = 5
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6410,15 +6447,18 @@ focus = {
 			add_to_variable = { ALG_algeria_police_resistance_growth = -0.10 }
 			custom_effect_tooltip = ALG_algeria_police8_tt
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_french_weapons
 		icon = french_policeman
 		x = -1
 		y = 6
-		ai_will_do = {
-			factor = 155
-		}
+
 		relative_position_id = ALG_increase_police_funding
 		cost = 4
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6435,15 +6475,18 @@ focus = {
 			}
 			modify_treasury_effect = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_russian_guns
 		icon = BLR_pro_russian_army_experince
 		x = 1
 		y = 6
-		ai_will_do = {
-			factor = 155
-		}
+
 		relative_position_id = ALG_increase_police_funding
 		cost = 4
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
@@ -6460,7 +6503,12 @@ focus = {
 			}
 			modify_treasury_effect = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 155
+		}
+}
 	focus = {
 		id = ALG_algerian_space_programme
 		icon = space_force
@@ -6695,6 +6743,7 @@ focus = {
     }
     search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_morocco_question"
         add_political_power = 50
         news_event = algeria_morocco.1
 		custom_effect_tooltip = ALG_morocco_question_tt
@@ -6718,9 +6767,9 @@ focus = {
     mutually_exclusive = {
         focus = ALG_seek_dialogue_morocco
     }
-    relative_position_id = ALG_morocco_question
     x = -2
     y = 1
+    relative_position_id = ALG_morocco_question
     cost = 6
     available = {
         OR = {
@@ -6734,6 +6783,7 @@ focus = {
     }
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_sand_war_legacy"
         add_ideas = ALG_sand_war_memory_idea
 		MOR = {
 			add_opinion_modifier = {
@@ -6755,11 +6805,12 @@ focus = {
     id = ALG_close_the_border
     icon = alg_morocco1
     prerequisite = { focus = ALG_sand_war_legacy }
-    relative_position_id = ALG_sand_war_legacy
     x = -1
     y = 1
+    relative_position_id = ALG_sand_war_legacy
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_close_the_border"
 		add_war_support = 0.05
 		387 = {
 			if = {
@@ -6801,11 +6852,12 @@ focus = {
     id = ALG_border_security_investments
     icon = border_patrol_increase
     prerequisite = { focus = ALG_close_the_border }
-    relative_position_id = ALG_close_the_border
     x = 0
     y = 1
+    relative_position_id = ALG_close_the_border
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_border_security_investments"
 		add_ideas = ALG_border_security_idea
 		set_temp_variable = { treasury_change = -8.00 }
 		modify_treasury_effect = yes
@@ -6821,11 +6873,12 @@ focus = {
     id = ALG_counter_moroccan_influence
     icon = attack_morocco
     prerequisite = { focus = ALG_sand_war_legacy }
-    relative_position_id = ALG_sand_war_legacy
     x = 1
     y = 1
+    relative_position_id = ALG_sand_war_legacy
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_counter_moroccan_influence"
         add_ideas = ALG_counter_morocco_idea
         set_temp_variable = { percent_change = -10 }
 		set_temp_variable = { tag_index = MOR }
@@ -6838,11 +6891,12 @@ focus = {
     id = ALG_support_polisario_struggle
     icon = align_to_sahrawi
     prerequisite = { focus = ALG_counter_moroccan_influence }
-    relative_position_id = ALG_counter_moroccan_influence
     x = 0
     y = 1
+    relative_position_id = ALG_counter_moroccan_influence
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_support_polisario_struggle"
 		add_ideas = ALG_polisario_support_idea
 		set_temp_variable = { tag_index = ROOT }
 		set_temp_variable = { influence_target = SHA }
@@ -6856,11 +6910,12 @@ focus = {
     icon = unn_support
     prerequisite = { focus = ALG_support_polisario_struggle }
     prerequisite = { focus = ALG_border_security_investments }
-    relative_position_id = ALG_support_polisario_struggle
     x = -1
     y = 1
+    relative_position_id = ALG_support_polisario_struggle
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_internationalize_conflict"
 		country_event = { id = ALG_morocco.1 days = 1 }
 	}
 }
@@ -6869,11 +6924,12 @@ focus = {
     id = ALG_african_union_pressure
     icon = African_union_focus
     prerequisite = { focus = ALG_internationalize_conflict }
-    relative_position_id = ALG_internationalize_conflict
     x = 0
     y = 1
+    relative_position_id = ALG_internationalize_conflict
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_african_union_pressure"
 		add_ideas = ALG_AU_pressure_idea
 		swap_ideas = {
             remove_idea = ALG_moroccan_rivalry_A2
@@ -6897,12 +6953,12 @@ focus = {
     prerequisite = {
         focus = ALG_morocco_question
     }
+    x = 2
+    y = 1
     relative_position_id = ALG_morocco_question
     mutually_exclusive = {
         focus = ALG_sand_war_legacy
     }
-    x = 2
-    y = 1
     cost = 6
     available = {
         NOT = {
@@ -6934,11 +6990,12 @@ focus = {
     id = ALG_confidence_building
     icon = align_to_morocco
     prerequisite = { focus = ALG_seek_dialogue_morocco }
-    relative_position_id = ALG_seek_dialogue_morocco
     x = 0
     y = 1
+    relative_position_id = ALG_seek_dialogue_morocco
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_confidence_building"
 		swap_ideas = {
             remove_idea = ALG_moroccan_rivalry_start
             add_idea = ALG_moroccan_reconciliation_B1
@@ -6952,11 +7009,12 @@ focus = {
     id = ALG_reopen_borders
     icon = NKO_border_iniatives
     prerequisite = { focus = ALG_confidence_building }
-    relative_position_id = ALG_confidence_building
     x = 0
     y = 1
+    relative_position_id = ALG_confidence_building
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_reopen_borders"
         swap_ideas = {
             remove_idea = ALG_moroccan_reconciliation_B1
             add_idea = ALG_moroccan_reconciliation_B2
@@ -6970,11 +7028,12 @@ focus = {
     id = ALG_economic_cooperation
     icon = morocco_offshore
     prerequisite = { focus = ALG_reopen_borders }
-    relative_position_id = ALG_reopen_borders
     x = -1
     y = 1
+    relative_position_id = ALG_reopen_borders
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_economic_cooperation"
 		add_ideas = ALG_maghreb_trade_idea
 		set_temp_variable = { receiver_nation = ALG.id }
 		set_temp_variable = { sender_nation = MOR.id }
@@ -7006,11 +7065,12 @@ focus = {
     id = ALG_security_cooperation
     icon = Morocco_coa
     prerequisite = { focus = ALG_reopen_borders }
-    relative_position_id = ALG_reopen_borders
     x = 1
     y = 1
+    relative_position_id = ALG_reopen_borders
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_security_cooperation"
 		set_temp_variable = { percent_change = 7 }
 		set_temp_variable = { tag_index = MOR }
 		set_temp_variable = { influence_target = ALG }
@@ -7029,11 +7089,12 @@ focus = {
     icon = align_to_maghreb
     prerequisite = { focus = ALG_economic_cooperation }
 	prerequisite = {focus = ALG_security_cooperation}
-    relative_position_id = ALG_reopen_borders
     x = 0
     y = 2
+    relative_position_id = ALG_reopen_borders
     cost = 6
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_towards_maghreb_union"
 		swap_ideas = {
             remove_idea = ALG_moroccan_reconciliation_B2
             add_idea = ALG_moroccan_reconciliation_B_final
@@ -7087,6 +7148,7 @@ focus = {
 		}
         search_filters = { FOCUS_FILTER_INTERNAL_POLITICS }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_edu_and_social_policy"
             set_temp_variable = { percent_change = 5 }
 			change_domestic_influence_percentage = yes
             add_political_power = 50
@@ -7123,6 +7185,7 @@ focus = {
         prerequisite = { focus = ALG_edu_and_social_policy }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_primary_education"
             add_ideas = ALG_idea_refoming_education
             set_temp_variable = { desire_change = 0.50 }
             change_expected_education_spending = yes
@@ -7139,6 +7202,7 @@ focus = {
         prerequisite = { focus = ALG_expand_primary_education }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_reform_secondary_curriculum"
             swap_ideas = {
                 remove_idea = ALG_idea_refoming_education
                 add_idea = ALG_idea_refoming_education1
@@ -7159,6 +7223,7 @@ focus = {
         cost = 4
         mutually_exclusive = { focus = ALG_national_curriculum }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_western_curriculum"
             add_tech_bonus = { category = CAT_computing_tech uses = 2 bonus = 0.25 }
             subtract_from_variable = { var = ALG_people_grievance value = 2 }
             set_temp_variable = { treasury_change = -2.50 }
@@ -7176,6 +7241,7 @@ focus = {
         cost = 4
         mutually_exclusive = { focus = ALG_western_curriculum }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_national_curriculum"
             add_ideas = ALG_education_arabization
             set_temp_variable = { treasury_change = -1.50 }
             modify_treasury_effect = yes
@@ -7203,6 +7269,7 @@ focus = {
         prerequisite = { focus = ALG_national_curriculum}
         cost = 5
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_university_reform"
             add_research_slot = 1
             add_ideas = ALG_university_expansion
             subtract_from_variable = { var = ALG_people_grievance value = 3 }
@@ -7223,6 +7290,7 @@ focus = {
 		prerequisite = { focus = ALG_edu_and_social_policy }
 		cost = 3
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_basic_healthcare_access"
 			add_ideas = ALG_basic_healthcare_access
 			subtract_from_variable = { var = ALG_people_grievance value = 1 }
 			set_temp_variable = { desire_change = 0.30 }
@@ -7239,6 +7307,7 @@ focus = {
 		cost = 4
 		mutually_exclusive = { focus = ALG_private_healthcare }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_state_hospitals"
 			swap_ideas = {
 				remove_idea = ALG_basic_healthcare_access
 				add_idea = ALG_state_hospitals_idea
@@ -7263,6 +7332,7 @@ focus = {
 		prerequisite = { focus = ALG_state_hospitals }
 		cost = 4
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_modernize_state_hospitals"
 			add_ideas = ALG_modern_hospitals
 			block_health_decrease = yes
 			increase_healthcare_budget = yes
@@ -7279,6 +7349,7 @@ focus = {
 		prerequisite = { focus = ALG_modernize_state_hospitals }
 		cost = 5
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_universal_healthcare"
 			add_ideas = ALG_universal_healthcare_idea
 			increase_healthcare_budget = yes
 		}
@@ -7293,6 +7364,7 @@ focus = {
 		cost = 4
 		mutually_exclusive = { focus = ALG_state_hospitals }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_private_healthcare"
 			swap_ideas = {
 				remove_idea = ALG_basic_healthcare_access
 				add_idea = ALG_private_healthcare_idea
@@ -7317,6 +7389,7 @@ focus = {
 		prerequisite = { focus = ALG_private_healthcare }
 		cost = 4
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_private_clinics"
 			add_ideas = ALG_private_clinics_expansion
 			decrease_healthcare_budget = yes
 			block_social_increase = yes
@@ -7381,6 +7454,7 @@ focus = {
 		prerequisite = { focus = ALG_expand_private_clinics }
 		cost = 5
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_national_insurance"
 			add_ideas = ALG_health_insurance_system
 			decrease_healthcare_budget = yes
 		}
@@ -7399,6 +7473,7 @@ focus = {
         prerequisite = { focus = ALG_edu_and_social_policy }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_minimum_income_guarantee"
             add_ideas = ALG_basic_income_support
             set_temp_variable = { desire_change = 0.20 }
             increase_social_spending = yes
@@ -7415,6 +7490,7 @@ focus = {
         prerequisite = { focus = ALG_minimum_income_guarantee }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_housing_support"
             add_ideas = ALG_housing_support_idea
 			add_tech_bonus = {
 				name = CAT_3d
@@ -7443,6 +7519,7 @@ focus = {
         prerequisite = { focus = ALG_housing_support }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_childcare_support"
             add_ideas = ALG_childcare_reform
 			set_temp_variable = {
 				ALG_productivity_growth_modifier_pvda_change = 0.05
@@ -7475,6 +7552,7 @@ focus = {
         cost = 3
         mutually_exclusive = { focus = ALG_food_subsidies }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_fuel_subsidies"
             add_ideas = ALG_fuel_subsidy_idea
 			if = {
 				limit = { has_idea = fossil_fuel_industry }
@@ -7504,6 +7582,7 @@ focus = {
         cost = 3
         mutually_exclusive = { focus = ALG_fuel_subsidies }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_food_subsidies"
             add_ideas = ALG_food_subsidy_idea
 			#if = {
 			#	limit = { has_idea = fossil_fuel_industry }
@@ -7537,6 +7616,7 @@ focus = {
         prerequisite = { focus = ALG_food_subsidies }
         cost = 4
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_welfare_consolidation"
             add_ideas = ALG_welfare_state_idea
 			increase_social_spending = yes
 			set_temp_variable = { pop_change = 4 }
@@ -7560,6 +7640,7 @@ focus = {
         prerequisite = { focus = ALG_edu_and_social_policy }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_civil_rights_protections"
             add_ideas = ALG_civil_rights
 			if = {
 				limit = { has_idea = small_medium_business_owners }
@@ -7588,6 +7669,7 @@ focus = {
         prerequisite = { focus = ALG_civil_rights_protections }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_gender_equality"
             add_ideas = ALG_gender_equality
 			set_temp_variable = { temp_productivity_change = 0.025 }
 			flat_productivity_change_effect = yes
@@ -7613,6 +7695,7 @@ focus = {
         prerequisite = { focus = ALG_gender_equality }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_freedom_of_press"
             add_ideas = ALG_free_press_idea
             set_temp_variable = { treasury_change = -2.00 }
             modify_treasury_effect = yes
@@ -7691,6 +7774,7 @@ focus = {
         prerequisite = { focus = ALG_gender_equality }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_judicial_reform"
             add_ideas = ALG_judiciary_reform
 			if = {
 				limit = { has_idea = open_nation_01 }
@@ -7719,6 +7803,7 @@ focus = {
         prerequisite = { focus = ALG_judicial_reform }
         cost = 4
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_civil_society_empowerment"
             add_ideas = ALG_civil_society_growth
 			if = {
 				limit = { has_country_flag = ALG_pres_coa  }
@@ -7764,6 +7849,7 @@ focus = {
         prerequisite = { focus = ALG_edu_and_social_policy }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_digital_government"
             add_ideas = ALG_digital_government
             add_political_power = 25
 			set_temp_variable = { treasury_change = gdp_total }
@@ -7792,6 +7878,7 @@ focus = {
         prerequisite = { focus = ALG_digital_government }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_public_service_efficiency"
             add_ideas = ALG_public_admin_reform
             set_temp_variable = { treasury_change = gdp_total }
 			multiply_temp_variable = { treasury_change = -0.0025 }
@@ -7812,6 +7899,7 @@ focus = {
         prerequisite = { focus = ALG_public_service_efficiency }
         cost = 3
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_anti_corruption_campaign"
             add_ideas = ALG_anti_corruption_idea
 			decrease_corruption = yes
         }
@@ -7941,6 +8029,7 @@ focus = {
         prerequisite = {focus = ALG_e_governance_portal }
         cost = 4
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_streamlined_bureaucracy"
             add_ideas = ALG_modern_admin_state
 			increase_centralization = yes
 
@@ -7974,6 +8063,7 @@ focus = {
         cost = 10
         search_filters = { FOCUS_FILTER_INTERNAL_POLITICS }
         completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_social_contract_21st_century"
             add_ideas = ALG_social_contract_idea
             add_research_slot = 1
             set_temp_variable = { treasury_change = gdp_total }
@@ -7997,6 +8087,7 @@ focus = {
 			has_completed_focus = ALG_at_a_crossroads
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_economy_digital_initiative"
 			add_political_power = 50
 			country_event = {id = ALG.100}
 		}
@@ -8016,6 +8107,7 @@ focus = {
 		cost = 6
 		relative_position_id = ALG_economy_digital_initiative
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_arpt_regulatory_framework"
 			add_ideas = ALG_arpt_regulation
 			add_stability = 0.02
 		}
@@ -8030,6 +8122,7 @@ focus = {
 		cost = 6
 		relative_position_id = ALG_economy_digital_initiative
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_algerie_telecom_expansion"
 			386 = {
 			add_building_construction = {
 				type = internet_station
@@ -8053,6 +8146,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_nedjma_and_mobilis"
         add_timed_idea = {
             idea = ALG_mobile_operator_competition
             days = 720
@@ -8127,6 +8221,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_4g_rollout"
         add_ideas = ALG_4g_coverage
         add_political_power = 50
         add_timed_idea = {
@@ -8147,6 +8242,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_east_west_highway"
         add_political_power = 20
 		country_event = {id = algeria_proj.1}
     }
@@ -8160,6 +8256,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_north_south_highway"
 		country_event = {id = algeria_proj.2}
     }
 }
@@ -8173,6 +8270,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_air_algerie_modernization"
         add_ideas = ALG_air_algerie_investment
         air_experience = 25
         add_stability = 0.01
@@ -8188,6 +8286,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_international_airports_upgrade"
 	random_owned_controlled_state = {
         add_building_construction = {
             type = air_base
@@ -8639,6 +8738,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_aadl_housing_projects"
 		country_event = {id = algeria_proj.3}
     }
 }
@@ -8652,6 +8752,7 @@ focus = {
     cost = 6
 	relative_position_id = ALG_economy_digital_initiative
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_urbanization_initiatives"
 		random_owned_controlled_state = {
 		add_extra_state_shared_building_slots = 2
         add_building_construction = {
@@ -8696,6 +8797,8 @@ focus = {
 		id = ALG_berber_autonomy
 		icon = focus_RAJ_provincial_autonomy
 		prerequisite = { focus = ALG_black_spring }
+		x = 0
+		y = 1
 		relative_position_id = ALG_black_spring
 		available = {
 			has_country_flag = ALG_kabyle_autonomy
@@ -8709,10 +8812,9 @@ focus = {
 		focus = ALG_suppress_kabyle
 		focus = ALG_recognize_kabyle
 		}
-		x = 0
-		y = 1
 		cost = 2
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_berber_autonomy"
 			add_stability = 0.05
 			add_political_power = 25
 			add_ideas = ALG_berber_autonomy_idea
@@ -8761,6 +8863,8 @@ focus = {
     id = ALG_suppress_kabyle
     icon = arm_ban_iran_product
     prerequisite = { focus = ALG_black_spring }
+    x = 3
+    y = 1
 	relative_position_id = ALG_black_spring
 	available = {
 		has_country_flag = ALG_kabyle_suppressed
@@ -8769,10 +8873,9 @@ focus = {
 	focus = ALG_berber_autonomy
 	focus = ALG_recognize_kabyle
 	}
-    x = 3
-    y = 1
     cost = 3
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_suppress_kabyle"
         add_political_power = 20
         add_stability = -0.10
         remove_ideas = ALG_kabylia_unrest
@@ -8791,11 +8894,12 @@ focus = {
     id = ALG_internal_troops_kabyle
     icon = ARM_inner_troops
     prerequisite = { focus = ALG_suppress_kabyle }
-	relative_position_id = ALG_suppress_kabyle
     x = 0
     y = 1
+	relative_position_id = ALG_suppress_kabyle
     cost = 2
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_internal_troops_kabyle"
         add_political_power = 20
         add_stability = -0.02
         add_ideas = ALG_internal_troops_deployed
@@ -8814,6 +8918,7 @@ focus = {
 	relative_position_id = ALG_suppress_kabyle
     cost = 3
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_disrupt_kabyle_networks"
         add_political_power = 25
         add_ideas = ALG_disrupting_kabyle_networks
         KBY = {
@@ -8827,13 +8932,13 @@ focus = {
     id = ALG_recognize_kabyle
     icon = break_free2
     prerequisite = { focus = ALG_black_spring }
+    x = -3
+    y = 1
 	relative_position_id = ALG_black_spring
 	mutually_exclusive = {
 	focus = ALG_suppress_kabyle
 	focus = ALG_berber_autonomy
 	}
-    x = -3
-    y = 1
     cost = 3
 	available = {
 		has_country_flag = ALG_black_spring_triggered   # must have experienced the 2001 Black Spring
@@ -8848,6 +8953,7 @@ focus = {
 	}
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_recognize_kabyle"
         add_political_power = -25
         add_stability = 0.05
         remove_ideas = ALG_kabylia_unrest
@@ -8888,12 +8994,13 @@ focus = {
     id = ALG_federal_charter
     icon = focus_SWI_dissolve_the_federal_council
     prerequisite = { focus = ALG_berber_autonomy }
-	relative_position_id = ALG_berber_autonomy
     x = -1
     y = 1
+	relative_position_id = ALG_berber_autonomy
     cost = 5
     mutually_exclusive = { focus = ALG_restrict_federalism }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_federal_charter"
         add_stability = 0.05
         add_ideas = ALG_federal_charter_idea
 		set_temp_variable = {
@@ -8911,12 +9018,13 @@ focus = {
     id = ALG_restrict_federalism
     icon = ban_visa
     prerequisite = { focus = ALG_berber_autonomy }
-	relative_position_id = ALG_berber_autonomy
     x = 1
     y = 1
+	relative_position_id = ALG_berber_autonomy
     cost = 5
     mutually_exclusive = { focus = ALG_federal_charter }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_restrict_federalism"
         add_stability = -0.05
         add_political_power = 100
         add_ideas = ALG_strict_centralization_idea
@@ -8937,11 +9045,12 @@ focus = {
 		focus = ALG_federal_charter
 		focus = ALG_restrict_federalism
 	}
-	relative_position_id = ALG_berber_autonomy
     x = 0
     y = 2
+	relative_position_id = ALG_berber_autonomy
     cost = 2
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_recognize_tamazight"
         add_political_power = 25
         add_stability = 0.03
         KBY = {
@@ -8954,11 +9063,12 @@ focus = {
     id = ALG_kabyle_cultural_reforms
     icon = GEO_Promoting_Georgian_Culture
     prerequisite = { focus = ALG_recognize_tamazight }
-	relative_position_id = ALG_berber_autonomy
     x = 0
     y = 3
+	relative_position_id = ALG_berber_autonomy
     cost = 3
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_kabyle_cultural_reforms"
         add_political_power = 200
         KBY = {
             add_ideas = KBY_cultural_reforms
@@ -8983,16 +9093,19 @@ focus = {
 				has_idea = intervention_neo_imperialism
 			}
 		}
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_algerian_intervention"
 			add_war_support = 0.05
 			add_political_power = 100
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	focus = {
 		id = ALG_intervene_in_sahrawi
 		icon = align_to_sahrawi
@@ -9026,9 +9139,7 @@ focus = {
 			focus = ALG_algerian_intervention
 		}
 		relative_position_id = ALG_algerian_intervention
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_intervene_in_sahrawi"
@@ -9041,7 +9152,12 @@ focus = {
 			set_temp_variable = { influence_target = SHA }
 			change_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	focus = {
 		id = ALG_supp_polisario
 		icon = attack_morocco
@@ -9080,9 +9196,7 @@ focus = {
 			focus = ALG_intervene_in_sahrawi
 		}
 		relative_position_id = ALG_algerian_intervention
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_supp_polisario"
@@ -9106,7 +9220,12 @@ focus = {
 				one_random_arms_factory = yes
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	focus = {
 		id = ALG_a_new_stance
 		icon = align_to_morocco
@@ -9141,9 +9260,7 @@ focus = {
 			focus = ALG_intervene_in_sahrawi
 		}
 		relative_position_id = ALG_algerian_intervention
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_a_new_stance"
@@ -9167,7 +9284,12 @@ focus = {
 				one_random_arms_factory = yes
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	focus = {
 		id = ALG_intervene_in_libya
 		icon = Fatherly_leader
@@ -9204,9 +9326,7 @@ focus = {
 			focus = ALG_algerian_intervention
 		}
 		relative_position_id = ALG_algerian_intervention
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_intervene_in_libya"
@@ -9219,7 +9339,12 @@ focus = {
 			set_temp_variable = { influence_target = TUA }
 			change_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	focus = {
 		id = ALG_assassinate_gaddafi
 		icon = assassinate_gaddafi
@@ -9254,9 +9379,7 @@ focus = {
 			focus = ALG_intervene_in_libya
 		}
 		relative_position_id = ALG_algerian_intervention
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_assassinate_gaddafi"
@@ -9286,7 +9409,12 @@ focus = {
 				hidden_effect = { news_event = { id = LibyaFocusNews.1 hours = 6 } }
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	focus = {
 		id = ALG_peacekeepers
 		icon = LIB_UAR
@@ -9321,9 +9449,7 @@ focus = {
 			focus = ALG_intervene_in_libya
 		}
 		relative_position_id = ALG_algerian_intervention
-		ai_will_do = {
-			factor = 10
-		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_peacekeepers"
@@ -9333,7 +9459,12 @@ focus = {
 			set_temp_variable = { influence_target = LBA }
 			change_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+}
 	##new iso stuff##
 	focus = {
 		id = ALG_stabilize_mali
@@ -9808,15 +9939,18 @@ focus = {
 			has_country_flag = ALG_migration_flood
 		}
 		relative_position_id = ALG_dziri
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_MIGRANT_CRISIS }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_migration_problems"
 			custom_effect_tooltip = ALG_activate_from_event
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_open_door_policy
 		icon = focus_SWE_refuge_from_war
@@ -9829,9 +9963,7 @@ focus = {
 		}
 
 		relative_position_id = ALG_dziri
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_MIGRANT_CRISIS }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_open_door_policy"
@@ -9847,7 +9979,12 @@ focus = {
 			}
 			add_ideas = ALG_welcome_migrants
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_closed_borders
 		icon = ger_npd_turks
@@ -9860,9 +9997,7 @@ focus = {
 		}
 
 		relative_position_id = ALG_dziri
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_MIGRANT_CRISIS }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_closed_borders"
@@ -9875,7 +10010,12 @@ focus = {
 			}
 			add_ideas = ALG_closed_borders
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_drug_problem
 		icon = economic_drugs
@@ -9889,15 +10029,18 @@ focus = {
 			has_country_flag = ALG_drugs
 		}
 		relative_position_id = ALG_dziri
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_drug_problem"
 			custom_effect_tooltip = ALG_activate_from_event
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_relax_restrictions
 		icon = Drug_Fueled
@@ -9910,9 +10053,7 @@ focus = {
 		}
 
 		relative_position_id = ALG_dziri
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_relax_restrictions"
@@ -9923,7 +10064,12 @@ focus = {
 				add_idea = ALG_drugs_legalized
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_tighten_punishments
 		icon = ITA_Focus_Cocaine
@@ -9936,9 +10082,7 @@ focus = {
 		}
 
 		relative_position_id = ALG_dziri
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_tighten_punishments"
@@ -9947,13 +10091,18 @@ focus = {
 				add_idea = ALG_drugs_illegalized
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_traditions_matter
 		icon = algeria_culture
-		relative_position_id = ALG_dziri
 		x = 4
 		y = 1
+		relative_position_id = ALG_dziri
 		cost = 4
 
 		search_filters = { FOCUS_FILTER_STABILITY }
@@ -9964,7 +10113,6 @@ focus = {
 			has_government = communism
 			has_government = neutrality
 		}
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_traditions_matter"
@@ -9981,9 +10129,9 @@ focus = {
 	focus = {
 		id = ALG_restrict_women_roles
 		icon = alg_hayek
-		relative_position_id = ALG_dziri
 		x = 3
 		y = 2
+		relative_position_id = ALG_dziri
 		cost = 4
 
 		search_filters = { FOCUS_FILTER_STABILITY }
@@ -10001,7 +10149,6 @@ focus = {
 			NOT = { has_completed_focus = ALG_gender_equality }
 		}
 
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_restrict_women_roles"
 			add_ideas = ALG_women_role_idea
@@ -10015,9 +10162,9 @@ focus = {
 	focus = {
 		id = ALG_expand_berber_rights
 		icon = politics_human_rights
-		relative_position_id = ALG_dziri
 		x = -2
 		y = 1
+		relative_position_id = ALG_dziri
 		cost = 4
 
 		search_filters = { FOCUS_FILTER_STABILITY }
@@ -10043,9 +10190,9 @@ focus = {
 	focus = {
 		id = ALG_censor_internet
 		icon = economoic_internet_ban
-		relative_position_id = ALG_dziri
 		x = 2
 		y = 1
+		relative_position_id = ALG_dziri
 		cost = 4
 
 		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_ITA_MAFIA FOCUS_FILTER_EXPENDITURE }
@@ -10059,7 +10206,6 @@ focus = {
 			}
 		}
 
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_censor_internet"
 			add_ideas = ALG_censored_internet_idea
@@ -10072,9 +10218,9 @@ focus = {
 	focus = {
 		id = ALG_open_civil_society
 		icon = Focus_AUS_lawmaking_leniency
-		relative_position_id = ALG_dziri
 		x = 0
 		y = 1
+		relative_position_id = ALG_dziri
 		cost = 4
 
 		search_filters = { FOCUS_FILTER_MIGRANT_CRISIS FOCUS_FILTER_STABILITY }
@@ -10088,7 +10234,6 @@ focus = {
 				has_government = neutrality
 			}
 		}
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_open_civil_society"
@@ -10106,9 +10251,9 @@ focus = {
 	focus = {
 		id = ALG_integration_policy
 		icon = tripartite_pact
-		relative_position_id = ALG_open_civil_society
 		x = 1
 		y = 1
+		relative_position_id = ALG_open_civil_society
 		cost = 4
 
 		available = {
@@ -10118,7 +10263,6 @@ focus = {
 				has_government = neutrality
 			}
 		}
-
 
 		prerequisite = {
 			focus = ALG_open_civil_society
@@ -10142,9 +10286,9 @@ focus = {
 	focus = {
 		id = ALG_marriage_subsidies
 		icon = Generic_Working_Class_Family
-		relative_position_id = ALG_traditions_matter
 		x = -1
 		y = 2
+		relative_position_id = ALG_traditions_matter
 		cost = 4
 
 		available = {
@@ -10174,9 +10318,9 @@ focus = {
 	focus = {
 		id = ALG_constitutionalize_rights
 		icon = alg_dostor
-		relative_position_id = ALG_open_civil_society
 		x = -1
 		y = 1
+		relative_position_id = ALG_open_civil_society
 		cost = 4
 
 		prerequisite = {
@@ -11626,9 +11770,7 @@ focus = {
 		x = 2
 		y = 1
 		relative_position_id = ALG_global_companies
-		ai_will_do = {
-			factor = 1
-		}
+
 		prerequisite = { focus = ALG_global_companies }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_toyota"
@@ -11638,7 +11780,12 @@ focus = {
 			set_temp_variable = { influence_target = ALG }
 			change_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = ALG_microsoft
 		icon = microsoft
@@ -11716,9 +11863,7 @@ focus = {
 		icon = blr_danone
 		x = 0
 		y = 3
-		ai_will_do = {
-			factor = 5
-		}
+
 		relative_position_id = ALG_global_companies
 		cost = 7
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -11732,7 +11877,12 @@ focus = {
 			set_temp_variable = { influence_target = ALG }
 			change_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 5
+		}
+}
 
 	focus = {
 		id = ALG_vehicle_industry
@@ -11857,6 +12007,7 @@ focus = {
         date > 2013.1.10
     }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_bouteflika_health_crisis"
         country_event = { id = ALG_bouteflika.1 } # Power struggle
         add_political_power = -20
 		custom_effect_tooltip = ALG_activate_from_event
@@ -11885,6 +12036,7 @@ focus = {
         check_variable = { algeria_power_balance < 0.3 } # Hirak not dominant
     }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_2014_elections"
         country_event = { id = ALG_bouteflika.2 }
 		custom_effect_tooltip = ALG_activate_from_event
     }
@@ -11900,6 +12052,7 @@ focus = {
     prerequisite = { focus = ALG_2014_elections }
     cost = 5
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_2014_oil_crash"
         country_event = { id = ALG_2014_oil_crash.1 }
         add_to_variable = { algeria_power_balance = 0.4 } # Hirak gains
     }
@@ -11916,6 +12069,7 @@ focus = {
     mutually_exclusive = { focus = ALG_listen_to_hirak }
     cost = 5
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_silence_hirak"
         add_to_variable = { algeria_power_balance = -0.5 }
         country_event = { id = ALG_hirak_crackdown.1 }
 		custom_effect_tooltip = ALG_activate_from_event
@@ -11935,6 +12089,7 @@ focus = {
     mutually_exclusive = { focus = ALG_silence_hirak }
     cost = 5
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_listen_to_hirak"
         add_to_variable = { algeria_power_balance = 0.5 }
         country_event = { id = ALG_hirak_reforms.1 }
 		custom_effect_tooltip = ALG_activate_from_event
@@ -11966,6 +12121,7 @@ focus = {
         }
     }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_2019_elections"
         if = {
             limit = { check_variable = { algeria_power_balance > 0.6 } }
             country_event = { id = ALG_2019_hirak_victory.1 }
@@ -11989,6 +12145,7 @@ focus = {
     cost = 5
     available = { check_variable = { algeria_power_balance > 0.6 } }
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_new_president"
         country_event = { id = algeria_tebboune.1 }
         add_ideas = ALG_cleaning_the_state
         remove_ideas = ALG_corruption_network
@@ -12076,6 +12233,7 @@ focus = {
     prerequisite = { focus = ALG_new_president }
     cost = 5
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_arrest_the_gang"
         add_stability = 0.05
         add_political_power = 50
         add_timed_idea = { idea = ALG_clean_government days = 720 }
@@ -12130,7 +12288,6 @@ focus = {
 		available = {
 			has_country_flag = ALG_algeria_djadida
 		}
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_release_political_pirsoners"
@@ -12344,6 +12501,7 @@ focus = {
     available_if_capitulated = yes
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_citizens_constitution"
         add_stability = 0.05
         add_political_power = 75
         add_timed_idea = { idea = ALG_new_constitution days = 3650 }
@@ -12362,6 +12520,7 @@ focus = {
     available_if_capitulated = yes
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_justice_for_the_people"
         add_stability = 0.1
         add_war_support = -0.05
         add_timed_idea = { idea = ALG_independent_judiciary days = 3650 }
@@ -12379,6 +12538,7 @@ focus = {
     available_if_capitulated = yes
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_free_press_free_people"
         add_stability = 0.05
         add_political_power = 50
         add_ideas = ALG_free_press
@@ -12397,6 +12557,7 @@ focus = {
     available_if_capitulated = yes
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_economic_transparency"
         add_political_power = 100
         add_timed_idea = { idea = ALG_transparent_budget days = 3650 }
     }
@@ -12414,6 +12575,7 @@ focus = {
     available_if_capitulated = yes
 
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_a_new_algeria"
         add_stability = 0.15
         add_political_power = 150
         remove_ideas = ALG_corruption_network
@@ -12446,21 +12608,6 @@ focus = {
 			FOCUS_FILTER_INFLUENCE FOCUS_FILTER_SOCIAL_CONSERVATISM
 		}
 
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				OR = {
-					is_in_array = { ruling_party = 4 }
-					is_in_array = { ruling_party = 5 }
-					is_in_array = { ruling_party = 16 }
-					is_in_array = { ruling_party = 18 }
-					is_in_array = { ruling_party = 19 }
-					is_in_array = { ruling_party = 21 }
-					is_in_array = { ruling_party = 23 }
-				}
-			}
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_islam_above_the_nation"
@@ -12497,7 +12644,25 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				OR = {
+					is_in_array = { ruling_party = 4 }
+					is_in_array = { ruling_party = 5 }
+					is_in_array = { ruling_party = 16 }
+					is_in_array = { ruling_party = 18 }
+					is_in_array = { ruling_party = 19 }
+					is_in_array = { ruling_party = 21 }
+					is_in_array = { ruling_party = 23 }
+				}
+			}
+		}
+
+}
 	focus = {
 		id = ALG_ennahda
 		icon = muslim_reg
@@ -12505,6 +12670,8 @@ focus = {
 		mutually_exclusive = {
 			focus = ALG_independent
 		}
+		x = 1
+		y = 1
 		relative_position_id = ALG_islam_above_the_nation
 		prerequisite = {
 			focus = ALG_islam_above_the_nation
@@ -12512,12 +12679,27 @@ focus = {
 		available = {
 			has_country_flag = ALG_nahda_path
 		}
-		x = 1
-		y = 1
 
 		search_filters = {
 			FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY FOCUS_FILTER_RADICALIZATION
 		}
+
+
+		bypass = {
+			salafist_caliphate_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_ennahda"
+			add_manpower = 1000
+			add_stability = 0.05
+			set_temp_variable = { rad_change = -15 }
+			modify_radicalization_effect = yes
+			set_temp_variable = { threat_change = 10 }
+			modify_terror_threat_effect = yes
+		}
+
+	
 
 		ai_will_do = {
 			factor = 6
@@ -12536,21 +12718,7 @@ focus = {
 			}
 		}
 
-		bypass = {
-			salafist_caliphate_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ALG_ennahda"
-			add_manpower = 1000
-			add_stability = 0.05
-			set_temp_variable = { rad_change = -15 }
-			modify_radicalization_effect = yes
-			set_temp_variable = { threat_change = 10 }
-			modify_terror_threat_effect = yes
-		}
-
-	}
+}
 	focus = {
 		id = ALG_independent
 		icon = muslim_expansionism
@@ -12572,14 +12740,6 @@ focus = {
 			FOCUS_FILTER_MANPOWER FOCUS_FILTER_POLITICAL FOCUS_FILTER_RADICALIZATION
 		}
 
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 1.5
-				has_government = fascism
-				has_government = neutrality
-			}
-		}
 
 		available = {
 			salafist_caliphate_are_not_in_power = yes
@@ -12598,7 +12758,18 @@ focus = {
 			modify_terror_threat_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				has_government = fascism
+				has_government = neutrality
+			}
+		}
+
+}
 	focus = {
 		id = ALG_follow_religious_law
 		icon = islam_laws
@@ -12614,6 +12785,15 @@ focus = {
 		search_filters = {
 			FOCUS_FILTER_SOCIAL_CONSERVATISM
 		}
+
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_follow_religious_law"
+			set_temp_variable = { temp_modify_social_con_government = 10 }
+			modify_social_conservatism_government = yes
+		}
+
+	
 
 		ai_will_do = {
 			factor = 10
@@ -12631,13 +12811,7 @@ focus = {
 			}
 		}
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ALG_follow_religious_law"
-			set_temp_variable = { temp_modify_social_con_government = 10 }
-			modify_social_conservatism_government = yes
-		}
-
-	}
+}
 	focus = {
 		id = ALG_religious_education
 		icon = quaran_book
@@ -12656,6 +12830,14 @@ focus = {
 			FOCUS_FILTER_SOCIAL_CONSERVATISM
 		}
 
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_religious_education"
+			add_ideas = ALG_religion_in_schools
+		}
+
+	
+
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -12672,12 +12854,7 @@ focus = {
 			}
 		}
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ALG_religious_education"
-			add_ideas = ALG_religion_in_schools
-		}
-
-	}
+}
 	focus = {
 		id = ALG_family_is_a_central_unit
 		icon = Generic_Working_Class_Family
@@ -12694,6 +12871,14 @@ focus = {
 			FOCUS_FILTER_SOCIAL_CONSERVATISM
 		}
 
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_family_is_a_central_unit"
+			add_ideas = ALG_family_centric
+		}
+
+	
+
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -12710,12 +12895,7 @@ focus = {
 			}
 		}
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ALG_family_is_a_central_unit"
-			add_ideas = ALG_family_centric
-		}
-
-	}
+}
 	focus = {
 		id = ALG_traditional_role_for_women
 		icon = muslim_women
@@ -12734,6 +12914,17 @@ focus = {
 			FOCUS_FILTER_SOCIAL_CONSERVATISM
 		}
 
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_traditional_role_for_women"
+			swap_ideas = {
+				add_idea = ALG_family_centric_2
+				remove_idea = ALG_family_centric
+			}
+		}
+
+	
+
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -12750,15 +12941,7 @@ focus = {
 			}
 		}
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ALG_traditional_role_for_women"
-			swap_ideas = {
-				add_idea = ALG_family_centric_2
-				remove_idea = ALG_family_centric
-			}
-		}
-
-	}
+}
 	focus = {
 		id = ALG_appoint_grand_mufti
 		icon = Generic_Piety
@@ -12776,6 +12959,26 @@ focus = {
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
 		}
+
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_appoint_grand_mufti"
+			add_ideas = ALG_grand_mufti_appointed
+			set_temp_variable = { party_index = 14 }
+			set_temp_variable = { party_popularity_increase = 0.10 }
+			set_temp_variable = { temp_outlook_increase = 0.10 }
+			add_relative_party_popularity = yes
+			if = {
+				limit = {
+					NOT = { is_in_array = { ruling_party = 13 } }
+					NOT = { is_in_array = { gov_coalition_array = 10 } }
+				}
+				set_temp_variable = { add_col_one = 13 }
+				add_coalition_members_effect = yes
+			}
+		}
+
+	
 
 		ai_will_do = {
 			factor = 10
@@ -12803,24 +13006,7 @@ focus = {
 			}
 		}
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ALG_appoint_grand_mufti"
-			add_ideas = ALG_grand_mufti_appointed
-			set_temp_variable = { party_index = 14 }
-			set_temp_variable = { party_popularity_increase = 0.10 }
-			set_temp_variable = { temp_outlook_increase = 0.10 }
-			add_relative_party_popularity = yes
-			if = {
-				limit = {
-					NOT = { is_in_array = { ruling_party = 13 } }
-					NOT = { is_in_array = { gov_coalition_array = 10 } }
-				}
-				set_temp_variable = { add_col_one = 13 }
-				add_coalition_members_effect = yes
-			}
-		}
-
-	}
+}
 	focus = {
 		id = ALG_grand_mufti_rule
 		icon = revolutionize_ulema
@@ -12836,13 +13022,6 @@ focus = {
 			FOCUS_FILTER_POLITICAL
 		}
 
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				NOT = { has_country_flag = ALG_AI_go_salafist_kingdom }
-			}
-		}
 
 		available = {
 			neutrality > 0.30
@@ -12856,7 +13035,6 @@ focus = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_grand_mufti_rule"
 
 			# Common effects for all paths
-
 
 			### Nahda / Djaballah Path
 			if = {
@@ -12888,7 +13066,17 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				NOT = { has_country_flag = ALG_AI_go_salafist_kingdom }
+			}
+		}
+
+}
 	focus = {
 		id = ALG_abrogate_secular_constitution
 		icon = Generic_Ripping_Papers
@@ -12903,9 +13091,6 @@ focus = {
 			FOCUS_FILTER_POLITICAL
 		}
 
-		ai_will_do = {
-			factor = 10
-		}
 
 		available = {
 			has_government = neutrality
@@ -12924,7 +13109,13 @@ focus = {
 			add_research_slot = 1
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+
+}
 	focus = {
 		id = ALG_enahda_media_network
 		icon = generic_controlled_press
@@ -12945,9 +13136,6 @@ focus = {
 			FOCUS_FILTER_INTERNAL_AFFAIRS
 		}
 
-		ai_will_do = {
-			factor = 10
-		}
 
 		available = {
 			has_government = neutrality
@@ -12958,7 +13146,13 @@ focus = {
 			add_ideas = ALG_enahda_media_network_idea
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+
+}
 	focus = {
 		id = ALG_supreme_islamic_council
 		icon = qadire_khom
@@ -12979,9 +13173,6 @@ focus = {
 			FOCUS_FILTER_INTERNAL_AFFAIRS
 		}
 
-		ai_will_do = {
-			factor = 10
-		}
 
 		available = {
 			has_government = neutrality
@@ -12992,7 +13183,13 @@ focus = {
 			add_ideas = ALG_supreme_islamic_council_idea
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+
+}
 
 	focus = {
 	id = ALG_reclaim_the_crown
@@ -13298,6 +13495,7 @@ focus = {
 		prerequisite = { focus = ALG_andalus_legacy }
 
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_reclaim_al_andalus"
 			add_war_support = 0.10
 			add_political_power = 150
 			set_temp_variable = { treasury_change = 8.00 }
@@ -13435,6 +13633,7 @@ focus = {
 	prerequisite = { focus = ALG_crown_the_caliph }
 
 	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_amir_al_muminin"
 		add_stability = 0.05
 		add_ideas = ALG_amir_al_muminin_idea
 		add_political_power = 100
@@ -13455,6 +13654,7 @@ focus = {
 	prerequisite = { focus = ALG_amir_al_muminin }
 
 	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_pillars_of_the_maghreb"
 		add_opinion_modifier = {
 			target = MOR
 			modifier = declaration_of_friendship
@@ -13854,9 +14054,7 @@ focus = {
 			western_conservatism_are_in_power = yes
 			western_social_democrats_are_in_power = yes
         }
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_democratic_vicotry"
@@ -13866,7 +14064,12 @@ focus = {
         }
 
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
     focus = {
 		id = ALG_the_coalition
 		icon = KHM_democratic_coalition
@@ -13878,9 +14081,7 @@ focus = {
 		y = 1
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_the_coalition"
@@ -13888,7 +14089,12 @@ focus = {
 			custom_effect_tooltip = ALG_GOVERNMENT_EXPANSION_FOCUS_EFFECT
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_dismantle_the_military
 		icon = corruption_in_egy_military
@@ -13900,9 +14106,7 @@ focus = {
 		y = 2
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -13916,7 +14120,12 @@ focus = {
 			modify_treasury_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_empower_institutions
 		icon = liberty_statue
@@ -13928,9 +14137,7 @@ focus = {
 		y = 1
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_empower_institutions"
@@ -13941,7 +14148,12 @@ focus = {
 			}
 			decrease_corruption2 = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
     focus = {
 		id = ALG_Get_rid_of_military_corrupt
 		icon = NKO_anti_corruption
@@ -13953,9 +14165,7 @@ focus = {
 		y = 1
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		#available = {}
@@ -13972,7 +14182,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
     focus = {
 		id = ALG_deregulate_economy
 		icon = goal_JAP_valueup
@@ -13985,9 +14200,7 @@ focus = {
 		y = 2
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_deregulate_economy"
@@ -13996,7 +14209,12 @@ focus = {
 			modify_corporate_tax_rate_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_western_supported_economic_relief
 		icon = western_alignment
@@ -14011,9 +14229,7 @@ focus = {
 		y = 2
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -14073,7 +14289,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_liberalize_society
 		icon = freepcandforeignukr
@@ -14085,9 +14306,7 @@ focus = {
 		y = 3
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_liberalize_society"
@@ -14098,7 +14317,12 @@ focus = {
 			add_popularity = { ideology = democratic popularity = 0.10 }
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_scientific_ventures
 		icon = fusion_science
@@ -14110,9 +14334,7 @@ focus = {
 		y = 3
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_scientific_ventures"
@@ -14123,7 +14345,12 @@ focus = {
 			increase_education_budget = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_banish_authoritarian_influence
 		icon = authoritarian_democracy2
@@ -14136,9 +14363,7 @@ focus = {
 		y = 3
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		#available = {}
@@ -14170,7 +14395,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_democratic_socialism
 		icon = CZE_social_democracy_cooperation
@@ -14186,9 +14416,7 @@ focus = {
 		y = 4
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_democratic_socialism"
@@ -14202,7 +14430,12 @@ focus = {
 			change_international_bankers_opinion = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_unleash_economic_potential
 		icon = money_monks1
@@ -14218,9 +14451,7 @@ focus = {
 		y = 4
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -14236,7 +14467,12 @@ focus = {
 			change_labour_unions_opinion = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_domestic_investments
 		icon = align_to_algeria
@@ -14248,9 +14484,7 @@ focus = {
 		y = 5
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_domestic_investments"
@@ -14309,7 +14543,12 @@ focus = {
 			modify_treasury_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_subsidize_local_firms
 		icon = money
@@ -14322,9 +14561,7 @@ focus = {
 		y = 5
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_subsidize_local_firms"
@@ -14343,7 +14580,12 @@ focus = {
 			custom_effect_tooltip = TT_ALG_CORRUPTION_COSTS
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_economic_democracy
 		icon = algeria_capital
@@ -14358,9 +14600,7 @@ focus = {
 		y = 6
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_economic_democracy"
@@ -14371,7 +14611,12 @@ focus = {
 			change_labour_unions_opinion = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 
 	focus = {
 		id = ALG_algerian_investments
@@ -14384,9 +14629,7 @@ focus = {
 		y = 5
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		#available = {}
@@ -14422,7 +14665,12 @@ focus = {
 			change_influence_percentage = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_invite_US_business_giants
 		icon = politcal_unrest_usa
@@ -14437,9 +14685,7 @@ focus = {
 		y = 6
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -14474,7 +14720,12 @@ focus = {
 			custom_effect_tooltip = TT_ALG_CORRUPTION_COSTS
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_EU_investments
 		icon = euro
@@ -14487,9 +14738,7 @@ focus = {
 		y = 7
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_EU_investments"
@@ -14515,7 +14764,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_student_exchanges
 		icon = generic_university
@@ -14528,9 +14782,7 @@ focus = {
 		y = 7
 		relative_position_id = ALG_democratic_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		#available = {}
@@ -14547,7 +14799,12 @@ focus = {
 			else = { add_popularity = { ideology = democratic popularity = 0.10 } }
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	# MSP Branch
         focus = {
             id = MSP_algeria_islamic
@@ -14610,9 +14867,7 @@ focus = {
             focus = MSP_algeria_islamic
         }
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -14627,7 +14882,12 @@ focus = {
 			add_relative_party_popularity = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_islamist_renaissance
 		icon = islamic_focus_01
@@ -14639,9 +14899,7 @@ focus = {
 		y = 1
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_islamist_renaissance"
@@ -14651,7 +14909,12 @@ focus = {
 			set_temp_variable = { temp_opinion = 10 }
 			change_the_ulema_opinion = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_empower_sharia_courts
 		icon = quaran_book
@@ -14663,9 +14926,7 @@ focus = {
 		y = 5
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -14677,7 +14938,12 @@ focus = {
 			decrease_corruption = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_turkish_inspired_islamism
 		icon = islam
@@ -14689,9 +14955,7 @@ focus = {
 		y = 2
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_turkish_inspired_islamism"
@@ -14703,7 +14967,12 @@ focus = {
 			change_small_medium_business_owners_opinion = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_deregulate_economy
 		icon = BRA_simplify_the_tax_system
@@ -14715,9 +14984,7 @@ focus = {
 		y = 2
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_deregulate_economy"
@@ -14726,7 +14993,12 @@ focus = {
 			modify_corporate_tax_rate_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_algerian_islamic_movement
 		icon = islamic_college
@@ -14738,9 +15010,7 @@ focus = {
 		y = 3
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_syrian_gulen_movement"
@@ -14751,7 +15021,12 @@ focus = {
 			increase_education_budget = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_moderate_conservatism
 		icon = religious_unity
@@ -14766,9 +15041,7 @@ focus = {
 		y = 4
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -14782,7 +15055,12 @@ focus = {
 			clamp_radicalization = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_religious_values
 		icon = Sunni_Focus
@@ -14797,9 +15075,7 @@ focus = {
 		y = 4
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_religious_values"
@@ -14814,7 +15090,12 @@ focus = {
 			change_the_ulema_opinion = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_religious_economic_charity
 		icon = algeria_culture
@@ -14827,9 +15108,7 @@ focus = {
 		y = 5
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_religious_economic_charity"
@@ -14837,7 +15116,12 @@ focus = {
 			modify_treasury_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_qatari_support
 		icon = quatar_allied
@@ -14849,9 +15133,7 @@ focus = {
 		y = 6
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -14878,7 +15160,12 @@ focus = {
 			change_influence_percentage = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_flourishment_of_central_economy
 		icon = arm_growth_economy
@@ -14890,9 +15177,7 @@ focus = {
 		y = 6
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_flourishment_of_central_economy"
@@ -14929,7 +15214,12 @@ focus = {
 			increase_economic_growth = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = MSP_new_era
 		icon = algeirs1
@@ -14948,9 +15238,7 @@ focus = {
 			neutrality_neutral_muslim_brotherhood_are_in_power = yes
 		}
 
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -14962,7 +15250,12 @@ focus = {
 				category = CAT_unconventional
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 focus = {
 		id = MSP_islamic_nato
 		icon = muslim_expansionism
@@ -14973,9 +15266,9 @@ focus = {
 		mutually_exclusive = {
 			focus = MSP_islamic_economic_cooperation
 		}
-		relative_position_id = MSP_new_era
 		x = -2
 		y = 1
+		relative_position_id = MSP_new_era
 		available = {
 			neutrality_neutral_muslim_brotherhood_are_in_power = yes
 			NOT = {
@@ -14983,9 +15276,7 @@ focus = {
 			}
 		}
 
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -15009,7 +15300,12 @@ focus = {
 				}
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
     focus = {
 		id = MSP_islamic_economic_cooperation
 		icon = islamic_organization
@@ -15029,9 +15325,7 @@ focus = {
 			NOT = { has_idea = EU_member }
 		}
 
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -15055,7 +15349,12 @@ focus = {
 				}
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 
 	focus = {
 		id = MSP_improve_relations_with_egypt
@@ -15080,9 +15379,6 @@ focus = {
 				country_exists = EGY
 			}
 		}
-		ai_will_do = {
-			factor = 1
-		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -15098,7 +15394,13 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+
+}
 	focus = {
 		id = MSP_investments_in_iraq
 		icon = iraq_states_hand
@@ -15122,9 +15424,6 @@ focus = {
 			neutrality_neutral_muslim_brotherhood_are_in_power = yes
 		}
 
-		ai_will_do = {
-			factor = 1
-		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -15139,7 +15438,13 @@ focus = {
 				target = IRQ
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+
+}
 
 	focus = {
 		id = MSP_strengthen_maghreb_union
@@ -15156,9 +15461,7 @@ focus = {
 			neutrality_neutral_muslim_brotherhood_are_in_power = yes
 		}
 
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -15169,7 +15472,12 @@ focus = {
 			add_opinion_modifier = { target = LBA modifier = trade_mission }
 			add_opinion_modifier = { target = MAU modifier = trade_mission }
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = MSP_deepen_african_union
 		icon = AFR_unite_africa
@@ -15189,9 +15497,7 @@ focus = {
 				has_idea = OAU_member
 			}
 		}
-		ai_will_do = {
-			factor = 1
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -15213,7 +15519,12 @@ focus = {
 				}
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 1
+		}
+}
 	focus = {
 		id = MSP_turkish_investments
 		icon = turkish_republic
@@ -15225,9 +15536,7 @@ focus = {
 		y = 3
 		relative_position_id = MSP_islamist_opposition_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -15254,7 +15563,12 @@ focus = {
 			change_influence_percentage = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
     focus = {
         id = MSP_diplo
         icon = egypt_diplo
@@ -15578,16 +15892,13 @@ focus = {
 	id = MSP_arm_palestinians_to_fight
 	icon = al_qassam_brigade
 	cost = 10
+	x = 0
+	y = 1
 	relative_position_id = MSP_supp_plo
 	prerequisite = {
 		focus = MSP_supp_plo
 	}
-	x = 0
-	y = 1
 
-	ai_will_do = {
-		factor = 1
-	}
 
 	available = {
 		has_government = neutrality
@@ -15605,7 +15916,6 @@ focus = {
 	}
 
 	cancel_if_invalid = yes
-
 
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_arm_palestinians_to_fight"
@@ -15648,6 +15958,12 @@ focus = {
 		}
 	}
 
+
+
+	ai_will_do = {
+		factor = 1
+	}
+
 }
 
 focus = {
@@ -15661,15 +15977,6 @@ focus = {
 	y = 2
 	relative_position_id = MSP_supp_plo
 
-	ai_will_do = {
-		factor = 1
-		modifier = {
-			factor = 0
-			any_neighbor_country = {
-				has_war_with = ROOT
-			}
-		}
-	}
 
 	available = {
 		has_government = neutrality
@@ -15689,7 +15996,6 @@ focus = {
 	will_lead_to_war_with = ISR
 
 	cancel_if_invalid = yes
-
 
 	search_filters = { FOCUS_FILTER_ANNEXATION }
 	completion_reward = {
@@ -15718,6 +16024,18 @@ focus = {
 				has_completed_focus = MSP_arm_palestinians_to_fight
 			}
 			ISR = { country_event = { id = algeria.60 hours = 6 } }
+		}
+	}
+
+
+
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			any_neighbor_country = {
+				has_war_with = ROOT
+			}
 		}
 	}
 
@@ -15865,9 +16183,7 @@ focus = {
 		y = 1
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -15885,7 +16201,12 @@ focus = {
 			decrease_corruption2 = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_maintain_military_role
 		icon = military_mission2
@@ -15897,9 +16218,7 @@ focus = {
 		y = 1
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -15923,7 +16242,12 @@ focus = {
         	modify_treasury_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_kick_out_morocco
 		icon = "attack_morocco"
@@ -15935,9 +16259,7 @@ focus = {
 		y = 3
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -15963,7 +16285,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_nationalize_oligarchic_holdings
 		icon = economic_nationalisation
@@ -15975,9 +16302,7 @@ focus = {
 		y = 1
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16006,7 +16331,12 @@ focus = {
         	modify_treasury_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_subsidise_police
 		icon = bul_special_forces_police
@@ -16021,9 +16351,7 @@ focus = {
 		y = 2
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16038,7 +16366,12 @@ focus = {
 			increase_policing_budget = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_maintain_socialistic_policies
 		icon = left_socialism
@@ -16053,9 +16386,7 @@ focus = {
 		y = 2
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16072,7 +16403,12 @@ focus = {
             modify_corporate_tax_rate_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_government_planned_economic_projects
 		icon = dollars_money
@@ -16084,9 +16420,7 @@ focus = {
 		y = 3
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16112,7 +16446,12 @@ focus = {
 			custom_effect_tooltip = TT_ALG_CORRUPTION_COSTS
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_patriotic_propaganda
 		icon = focus_generic_fascist_propaganda
@@ -16124,9 +16463,7 @@ focus = {
 		y = 4
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16144,7 +16481,12 @@ focus = {
 			modify_treasury_effect = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_gather_support_from_peasantry
 		icon = focus_ITA_peasants_rise
@@ -16159,9 +16501,7 @@ focus = {
 		y = 3
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16184,7 +16524,12 @@ focus = {
 			add_popularity = { ideology = nationalist popularity = 0.10 }
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_strong_government
 		icon = generic_nationalism
@@ -16196,9 +16541,7 @@ focus = {
 		y = 6
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16212,7 +16555,12 @@ focus = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_strong_government"
 			add_political_power = 200
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_expand_youth_organizations
 		icon = focus_BRA_anaue
@@ -16224,9 +16572,7 @@ focus = {
 		y = 4
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16247,7 +16593,12 @@ focus = {
 				add_ideas = algeria_nationalist_youth
 			}
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_illiberal_democracy
 		icon = blue_democracy
@@ -16259,9 +16610,7 @@ focus = {
 		y = 5
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16279,7 +16628,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_reestablish_intelligence_committee
 		icon = alg_drs
@@ -16297,9 +16651,7 @@ focus = {
 		y = 4
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16313,7 +16665,12 @@ focus = {
 			set_temp_variable = { temp_opinion = 20 }
 			change_intelligence_community_opinion = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_national_security_act
 		icon = "islamophobia2"
@@ -16325,9 +16682,7 @@ focus = {
 		y = 6
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16343,7 +16698,12 @@ focus = {
 			custom_effect_tooltip = terror_threat_decrease_medium_tt
 		    subtract_from_variable = { threat_level = 5 }
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_pan_algerian_nationalism
 		icon = nationalist_education
@@ -16355,9 +16715,7 @@ focus = {
 		y = 8
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16369,7 +16727,12 @@ focus = {
 			set_temp_variable = { temp_modify_social_con_government = -10 }
 			modify_social_conservatism_government = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_cultural_rebirth
 		icon = "african_hezbollah"
@@ -16388,9 +16751,7 @@ focus = {
 		y = 7
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16403,7 +16764,12 @@ focus = {
 			set_temp_variable = { percent_change = 15 }
 			change_domestic_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 
 	focus = {
 		id = ALG_deal_with_the_trade_unions
@@ -16422,9 +16788,7 @@ focus = {
 		y = 4
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16438,7 +16802,12 @@ focus = {
 			custom_effect_tooltip = TT_ALG_DEAL_WITH_TRADE_UNIONS
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_reassert_russian_ties
 		icon = rapprochement_with_russia
@@ -16450,9 +16819,7 @@ focus = {
 		y = 5
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16481,7 +16848,12 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_russian_oil_excavation
 		icon = Rosneft
@@ -16493,9 +16865,7 @@ focus = {
 		y = 6
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16554,7 +16924,12 @@ focus = {
 			change_influence_percentage = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_russian_algeirs_base_expansion
 		icon = Generic_Russian_Partisan
@@ -16566,9 +16941,7 @@ focus = {
 		y = 6
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16605,7 +16978,12 @@ focus = {
 			change_influence_percentage = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	focus = {
 		id = ALG_houarist_rise
 		icon = boumediene_rise
@@ -16623,9 +17001,7 @@ focus = {
 		y = 7
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16639,7 +17015,12 @@ focus = {
 			add_popularity = { ideology = communism popularity = 0.20 }
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 focus = {
 		id = ALG_islamic_socialism
 		icon = social_democracy_2
@@ -16651,9 +17032,7 @@ focus = {
 		y = 8
 		relative_position_id = ALG_PNA_victory
 
-		ai_will_do = {
-			factor = 50
-		}
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -16669,7 +17048,12 @@ focus = {
 			set_temp_variable = { rad_change = -10 }
 			modify_radicalization_effect = yes
 		}
-    }
+    
+
+		ai_will_do = {
+			factor = 50
+		}
+}
 	 focus = {
 		id = ALG_future_national_policy1
 		icon = algeria_indp
@@ -16684,6 +17068,7 @@ focus = {
 		}
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_future_national_policy1"
 			add_stability = -0.02
 			add_political_power = 50
 			hidden_effect = {
@@ -17702,6 +18087,7 @@ focus = {
 			}
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_foreign_policy_review"
 			add_political_power = 50
 			set_temp_variable = { percent_change = 2 }
 			change_domestic_influence_percentage = yes
@@ -17887,7 +18273,6 @@ focus = {
 		prerequisite = { focus = ALG_energy_partnership_eu }
 		prerequisite = { focus = ALG_expand_us_partnership }
 		search_filters = { FOCUS_FILTER_NATO FOCUS_FILTER_INFLUENCE FOCUS_FILTER_WAR_SUPPORT }
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_become_nato_ally"
@@ -18199,6 +18584,7 @@ focus = {
 		}
 		prerequisite = {focus = ALG_open_to_west focus = ALG_open_to_east}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_non_aligned_revival"
 			set_country_flag = ALG_non_aligned_path
 			add_stability = 0.01
 			add_ideas = ALG_idea_non_aligned_policy
@@ -18209,15 +18595,16 @@ focus = {
 	focus = {
 		id = ALG_align_with_south_africa
 		icon = align_to_south_africa
-		relative_position_id = ALG_non_aligned_revival
 		x = 0
 		y = 5
+		relative_position_id = ALG_non_aligned_revival
 		cost = 6
 		prerequisite = {
 			focus = ALG_secure_balance
 			focus = ALG_support_developing_world
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_align_with_south_africa"
 			set_temp_variable = { percent_change = 3 }
 				set_temp_variable = { tag_index = ALG }
 				set_temp_variable = { influence_target = SAF }
@@ -18237,11 +18624,12 @@ focus = {
 		id = ALG_align_with_brazil
 		icon = align_to_brazil
 		prerequisite = { focus = ALG_align_with_south_africa }
-		relative_position_id = ALG_align_with_south_africa
 		x = -1
 		y = 1
+		relative_position_id = ALG_align_with_south_africa
 		cost = 6
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_align_with_brazil"
 			set_temp_variable = { percent_change = 3 }
 				set_temp_variable = { tag_index = ALG }
 				set_temp_variable = { influence_target = BRA }
@@ -18266,6 +18654,7 @@ focus = {
 		cost = 6
 		relative_position_id = ALG_align_with_south_africa
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_align_with_india"
 			set_temp_variable = { percent_change = 3 }
 				set_temp_variable = { tag_index = ALG }
 				set_temp_variable = { influence_target = RAJ }
@@ -18410,7 +18799,6 @@ focus = {
 			}
 		}
 
-
 		ai_will_do = {
 			factor = 1
 		}
@@ -18489,7 +18877,6 @@ focus = {
 		}
 		search_filters = { FOCUS_FILTER_INTERNAL_FACTION FOCUS_FILTER_RESEARCH }
 
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_trade_with_china"
 			add_opinion_modifier = {
@@ -18526,7 +18913,6 @@ focus = {
 		prerequisite = { focus = ALG_Investments_From_East }
 		prerequisite = { focus = ALG_mediterranean_corridor_initiative }
 		search_filters = { FOCUS_FILTER_INFLUENCE }
-
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_eastern_alignment"
@@ -18727,7 +19113,6 @@ focus = {
 		}
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_russia_experience "
 			set_temp_variable = { temp_opinion = 2 }
@@ -18782,6 +19167,7 @@ focus = {
 			country_exists = SOV
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_russian_gas_investments"
 			add_political_power = 40
 			add_tech_bonus = {
 					name = CAT_fuel_oil
@@ -18815,6 +19201,7 @@ focus = {
 			}
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_join_belt_and_road"
 			random_owned_controlled_state = {
 			add_extra_state_shared_building_slots = 1
 				add_building_construction = {
@@ -18853,6 +19240,7 @@ focus = {
 			}
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_tech_exchange_with_china"
 			add_tech_bonus = {
 				bonus = 0.10
 				uses = 1
@@ -19008,7 +19396,6 @@ focus = {
 			log = "[GetDateText]: [This.GetName]: focus ALG_secure_balance executed"
 		}
 
-
 		ai_will_do = {
 			base = 1
 		}
@@ -19036,7 +19423,6 @@ focus = {
 			country_event = { id = alg_news_non_aligned_5 }
 			log = "[GetDateText]: [This.GetName]: focus ALG_revivify_non_aligned_movement executed"
 		}
-
 
 		ai_will_do = {
 			base = 1
@@ -19131,6 +19517,7 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_africa_and_arab_nations"
 			add_political_power = 100
 		}
 		ai_will_do = {
@@ -19161,6 +19548,7 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_propose_maghreb_union"
 			custom_effect_tooltip = ALG_maghreb_union_tt
 			add_ideas = ALG_maghreb_diplomacy
 			TUN = { country_event = ALG_maghreb_invite.1 } # Tunisia gets event to join
@@ -19173,10 +19561,10 @@ focus = {
 	focus = {
 		id = ALG_economic_integration_initiative
 		icon = maghreb_oil
-		relative_position_id = ALG_propose_maghreb_union
-		prerequisite = { focus = ALG_propose_maghreb_union }
 		x = 0
 		y = 1
+		relative_position_id = ALG_propose_maghreb_union
+		prerequisite = { focus = ALG_propose_maghreb_union }
 		cost = 8
 
 		available = {
@@ -19189,6 +19577,7 @@ focus = {
 			FOCUS_FILTER_TRADE FOCUS_FILTER_INFLUENCE
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_economic_integration_initiative"
 		    #	Morocco
 			if = {
 				limit = { MOR = { has_country_flag = maghreb_union_member } }
@@ -19259,6 +19648,7 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INTERNAL_FACTION
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_maghreb_joint_defense_pact"
 			create_faction = The_Maghreb_Joint_Defense
 				custom_effect_tooltip = {
 					localization_key = UNLOCK_DECISION_IN_CATEGORY
@@ -19303,13 +19693,7 @@ focus = {
 				country_exists = SHA
 				NOT = { has_war_with = SHA }
 			}
-			ai_will_do = {
-				factor = 20
-				modifier = {
-					factor = 0
-					is_historical_focus_on = yes
-				}
-			}
+
 			completion_reward = {
 				custom_effect_tooltip = ALG_maghreb_union_sah_tt
 				log = "[GetDateText]: [Root.GetName]: Focus LBA_close_ties_sahrawi"
@@ -19349,11 +19733,22 @@ focus = {
 					target = MOR
 				}
 			}
-	}
+	
+
+			ai_will_do = {
+				factor = 20
+				modifier = {
+					factor = 0
+					is_historical_focus_on = yes
+				}
+			}
+}
 	focus = {
 		id = ALG_switch_to_morocco
 		icon = align_to_morocco
 		cost = 10
+		x = 0
+		y = 1
 		relative_position_id = ALG_africa_and_arab_nations
 		prerequisite = {
 			focus = ALG_africa_and_arab_nations
@@ -19361,8 +19756,6 @@ focus = {
 		mutually_exclusive = {
 			focus = ALG_western_sahara_position
 		}
-		x = 0
-		y = 1
 
 		search_filters = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
@@ -19373,9 +19766,6 @@ focus = {
 			NOT = { has_war_with = MOR }
 		}
 
-		ai_will_do = {
-			factor = 10
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_switch_to_morocco"
@@ -19410,18 +19800,24 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+
+}
     focus = {
 		id = ALG_influence_mauritania
 		icon = improve_relations
 		cost = 7
+		x = 1
+		y = 2
 		relative_position_id = ALG_africa_and_arab_nations
 		prerequisite = {
 			focus = ALG_western_sahara_position
 			focus = ALG_switch_to_morocco
 		}
-		x = 1
-		y = 2
 
 		search_filters = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
@@ -19432,9 +19828,6 @@ focus = {
 			NOT = { has_war_with = MAU }
 		}
 
-		ai_will_do = {
-			factor = 10
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_influence_mauritania"
@@ -19444,17 +19837,23 @@ focus = {
 			change_influence_percentage = yes
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+
+}
 	focus = {
 		id = ALG_casablanca_accords
 		icon = territor_disputes_neg
 		cost = 5
+		x = 1
+		y = 3
 		relative_position_id = ALG_africa_and_arab_nations
 		prerequisite = {
 			focus = ALG_influence_mauritania
 		}
-		x = 1
-		y = 3
 
 		search_filters = {
 			FOCUS_FILTER_FOREIGN_POLICY
@@ -19470,13 +19869,6 @@ focus = {
 			}
 		}
 
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_casablanca_accords"
@@ -19500,7 +19892,17 @@ focus = {
 			hidden_effect = { news_event = { id = AlgeriaFocusNews.8 hours = 6 } }
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+
+}
 	focus = {
 		id = ALG_african_union_engagement
 		icon = align_to_africa
@@ -19539,11 +19941,12 @@ focus = {
 		id = ALG_sahel_initiatives
 		icon = sahel_icon
 		prerequisite = { focus = ALG_african_union_engagement }
-		relative_position_id = ALG_african_union_engagement
 		x = 0
 		y = 1
+		relative_position_id = ALG_african_union_engagement
 		cost = 6
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_sahel_initiatives"
 			add_manpower = 1500
 			increase_intervention_law_effect = yes
 			add_trait = {
@@ -19563,11 +19966,12 @@ focus = {
 		id = ALG_pan_african_defense_initiative
 		icon = african_expedition
 		prerequisite = { focus = ALG_sahel_initiatives }
-		relative_position_id = ALG_sahel_initiatives
 		x = 0
 		y = 1
+		relative_position_id = ALG_sahel_initiatives
 		cost = 6
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_pan_african_defense_initiative"
 			add_timed_idea = {
 				idea = ALG_mutual_defense_idea
 				days = 720
@@ -19595,9 +19999,9 @@ focus = {
 		id = ALG_african_mediation_role
 		icon = goal_JAP_diplomacy_africa
 		prerequisite = { focus = ALG_african_union_engagement }
-		relative_position_id = ALG_african_union_engagement
 		x = -2
 		y = 1
+		relative_position_id = ALG_african_union_engagement
 		cost = 6
 		completion_reward = {
 			add_stability = 0.03
@@ -19624,11 +20028,12 @@ focus = {
 		id = ALG_african_union_reforms
 		icon = align_to_african_union
 		prerequisite = { focus = ALG_african_mediation_role }
-		relative_position_id = ALG_african_mediation_role
 		x = 0
 		y = 1
+		relative_position_id = ALG_african_mediation_role
 		cost = 8
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_african_union_reforms"
 			add_political_power = 50
 			add_stability = 0.02
 			set_temp_variable = { percent_change = 4 }
@@ -19650,11 +20055,12 @@ focus = {
 		id = ALG_african_economic_integration
 		icon = integration_of_puppet_economies
 		prerequisite = { focus = ALG_african_union_engagement }
-		relative_position_id = ALG_african_union_engagement
 		x = 2
 		y = 1
+		relative_position_id = ALG_african_union_engagement
 		cost = 6
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_african_economic_integration"
 			every_country = {
 				limit = { has_idea = OAU_member }
 				set_temp_variable = { target_nation = ROOT.id }
@@ -19679,11 +20085,12 @@ focus = {
 		id = ALG_expand_african_investments
 		icon = money
 		prerequisite = { focus = ALG_african_economic_integration }
-		relative_position_id = ALG_african_economic_integration
 		x = 0
 		y = 1
+		relative_position_id = ALG_african_economic_integration
 		cost = 8
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_expand_african_investments"
 			every_country = {
 				limit = { has_idea = OAU_member }
 				set_temp_variable = { debt_change = -13 }
@@ -19724,6 +20131,7 @@ focus = {
 				FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 			}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_arab_world_outreach"
 			hidden_effect = {
 				every_country = {
 					limit = { is_arabic_nation = yes } # Only Arabic countries
@@ -19800,6 +20208,7 @@ focus = {
 				FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 			}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_egypt_algiers_axis"
 			add_opinion_modifier = { target = EGY modifier = supports_us_2 }
 			set_temp_variable = { target_nation = EGY.id }
 			set_temp_variable = { adding_nation = ALG.id }
@@ -19831,6 +20240,7 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_support_palestine"
 			add_opinion_modifier = {
 				modifier = palestine_issue_very_positive
 				target = PAL
@@ -19876,6 +20286,7 @@ focus = {
 		FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 	}
     completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_condemn_israel"
 		if = {
 			limit = { has_opinion = { target = ISR value < -25 } }
 			add_opinion_modifier = {
@@ -19926,6 +20337,7 @@ focus = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_palestinian_aid_package"
 			if = {
 				limit = { country_exists = PAL }
 				set_temp_variable = { tag_index = ROOT }
@@ -19956,6 +20368,8 @@ focus = {
 		id = ALG_approach_hamas
 		icon = Hamas_1
 		cost = 7
+		x = -1
+		y = 1
 		relative_position_id = ALG_condemn_israel
 		prerequisite = {
 			focus = ALG_condemn_israel
@@ -19963,8 +20377,6 @@ focus = {
 		mutually_exclusive = {
 			focus = ALG_palestinian_aid_package
 		}
-		x = -1
-		y = 1
 		search_filters = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
 		}
@@ -19976,17 +20388,7 @@ focus = {
 			NOT = { has_war_with = HAM }
 			NOT = { has_war_with = PAL }
 		}
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}
-			modifier = {
-				factor = 0
-				is_in_array = { ruling_party = 16 }
-			}
-		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_approach_hamas"
 			set_temp_variable = { tag_index = ROOT }
@@ -20000,17 +20402,30 @@ focus = {
 			set_temp_variable = { percent_change = 5 }
 			change_influence_percentage = yes
 		}
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 0
+				is_in_array = { ruling_party = 16 }
+			}
+		}
+}
     focus = {
 		id = ALG_send_fighters_to_hamas
 		icon = hamas_ismail
 		cost = 7
+		x = 0
+		y = 1
 		relative_position_id = ALG_approach_hamas
 		prerequisite = {
 			focus = ALG_approach_hamas
 		}
-		x = 0
-		y = 1
 
 		search_filters = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_INFLUENCE
@@ -20026,9 +20441,6 @@ focus = {
 			NOT = { has_war_with = PAL }
 		}
 
-		ai_will_do = {
-			factor = 10
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_approach_hamas"
@@ -20062,29 +20474,28 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+		}
+
+}
     focus = {
 		id = ALG_claim_jerusalem_for_arabs
 		icon = one_state_isr_pal
 		cost = 5
+		x = 0
+		y = 1
 		relative_position_id = ALG_palestinian_aid_package
 		prerequisite = {
 			focus = ALG_palestinian_aid_package
 		}
-		x = 0
-		y = 1
 
 		search_filters = {
 			FOCUS_FILTER_FOREIGN_POLICY FOCUS_FILTER_ANNEXATION
 		}
 
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				factor = 0
-				is_historical_focus_on = yes
-			}
-		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_claim_jerusalem_for_arabs"
@@ -20096,7 +20507,17 @@ focus = {
 			}
 		}
 
-	}
+	
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+
+}
 	focus = {
 		id = ALG_tamazgha
 		icon = alg_tamazgha
@@ -20837,6 +21258,7 @@ focus = {
 		relative_position_id = ALG_ps_victory
 		prerequisite = { focus = ALG_ps_victory }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_consolidate_power"
 			set_temp_variable = { party_index = 12 }
 			set_temp_variable = { party_popularity_increase = 0.10 }
 			set_temp_variable = { temp_outlook_increase = 0.05 }
@@ -20870,6 +21292,7 @@ focus = {
 		relative_position_id = ALG_ps_victory
 		prerequisite = { focus = ALG_ps_victory }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_national_reconstruction"
 			one_random_industrial_complex = yes
 		}
 
@@ -20891,6 +21314,7 @@ focus = {
 		relative_position_id = ALG_ps_victory
 		prerequisite = { focus = ALG_ps_victory }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_religious_reconciliation"
 			add_ideas = islamic_sectarian_conflicts
 		}
 	}
@@ -20905,6 +21329,7 @@ focus = {
 		relative_position_id = ALG_consolidate_power
 		prerequisite = { focus = ALG_consolidate_power }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_crackdown_purges"
 			set_temp_variable = { party_index = 7 }
 			set_temp_variable = { party_popularity_increase = -0.05 }
 			set_temp_variable = { temp_outlook_increase = -0.04 }
@@ -20995,6 +21420,7 @@ focus = {
 		relative_position_id = ALG_consolidate_power
 		prerequisite = { focus = ALG_consolidate_power }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_unify_parties"
 			if = {
 				limit = {has_idea = the_ulema}
 				set_temp_variable = { temp_opinion = 15 }
@@ -21017,6 +21443,7 @@ focus = {
 		relative_position_id = ALG_national_reconstruction
 		prerequisite = { focus = ALG_national_reconstruction }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_infrastructure_crash"
 			one_random_infrastructure = yes
 		}
 
@@ -21038,6 +21465,7 @@ focus = {
 		relative_position_id = ALG_national_reconstruction
 		prerequisite = { focus = ALG_national_reconstruction }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_industry_investment"
 			add_ideas = idea_focus_industrial_development_program
 		}
 
@@ -21059,6 +21487,7 @@ focus = {
 		relative_position_id = ALG_religious_reconciliation
 		prerequisite = { focus = ALG_religious_reconciliation }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_madrasa_reforms"
 			add_ideas = idea_focus_generic_education_reform
 		}
 	}
@@ -21072,6 +21501,7 @@ focus = {
 		relative_position_id = ALG_religious_reconciliation
 		prerequisite = { focus = ALG_religious_reconciliation }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_community_outreach"
 			add_ideas = idea_generic_reaching_to_the_global_market
 		}
 	}
@@ -21086,6 +21516,7 @@ focus = {
 		relative_position_id = ALG_crackdown_purges
 		prerequisite = { focus = ALG_crackdown_purges }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_internal_security"
 			increase_policing_budget = yes
 			newline = yes
 			set_temp_variable = {ALG_planning_speed_change = 0.20}
@@ -21102,6 +21533,7 @@ focus = {
 		relative_position_id = ALG_unify_parties
 		prerequisite = { focus = ALG_unify_parties }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_intelligence_network"
 			add_ideas = idea_focus_expanded_secret_services
 			add_timed_idea = {
 				idea = assertive_emergence
@@ -21119,6 +21551,7 @@ focus = {
 		relative_position_id = ALG_infrastructure_crash
 		prerequisite = { focus = ALG_infrastructure_crash }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_transport_upgrade"
 			add_ideas = railway_construction_effort
 		}
 
@@ -21140,6 +21573,7 @@ focus = {
 		relative_position_id = ALG_industry_investment
 		prerequisite = { focus = ALG_industry_investment }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_energy_program"
 			add_tech_bonus = {
 				name = ALG_the_energy_debate
 				bonus = 0.2
@@ -21173,6 +21607,7 @@ focus = {
 		relative_position_id = ALG_madrasa_reforms
 		prerequisite = { focus = ALG_madrasa_reforms }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_scholastic_centers"
 			add_idaes = scientific_advances
 		}
 	}
@@ -21186,6 +21621,7 @@ focus = {
 		relative_position_id = ALG_community_outreach
 		prerequisite = { focus = ALG_community_outreach }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_social_welfare"
 			add_ideas = ALG_welfare_state_idea
 		}
 	}
@@ -21200,6 +21636,7 @@ focus = {
 		relative_position_id = ALG_crackdown_purges
 		prerequisite = { focus = ALG_internal_security }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_military_rebuild"
 			increase_military_spending = yes
 			add_timed_idea = {
 				idea = idea_focus_import_additional_military_equipment
@@ -21228,6 +21665,7 @@ focus = {
 		relative_position_id = ALG_unify_parties
 		prerequisite = { focus = ALG_intelligence_network }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_garrison_restructure"
 			swap_ideas = {
 				remove_idea = idea_focus_expanded_secret_services
 				add_idea = idea_focus_expanded_secret_services_lar
@@ -21251,6 +21689,7 @@ focus = {
 		relative_position_id = ALG_transport_upgrade
 		prerequisite = { focus = ALG_transport_upgrade }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_factory_output"
 			add_ideas = economic_autonomy3
 			two_random_industrial_complex = yes
 			two_random_arms_factory = yes
@@ -21275,6 +21714,7 @@ focus = {
 		relative_position_id = ALG_energy_program
 		prerequisite = { focus = ALG_energy_program }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_oil_and_minerals"
 			add_ideas = idea_focus_energy_preferred_fossil
 			384 = {
 				add_resource = {
@@ -21310,6 +21750,7 @@ focus = {
 		relative_position_id = ALG_scholastic_centers
 		prerequisite = { focus = ALG_scholastic_centers }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_religious_council"
 			set_temp_variable = { temp_modify_social_con_government = 10 }
 			modify_social_conservatism_government = yes
 		}
@@ -21324,6 +21765,7 @@ focus = {
 		relative_position_id = ALG_social_welfare
 		prerequisite = { focus = ALG_social_welfare }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_national_cohesion"
 			add_ideas = civic_nationalism
 		}
 	}
@@ -21338,6 +21780,7 @@ focus = {
 		relative_position_id = ALG_crackdown_purges
 		prerequisite = { focus = ALG_military_rebuild }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_border_defences"
 			add_timed_idea = {
 				idea = army_morale_bonus
 				days = 220
@@ -21362,6 +21805,7 @@ focus = {
 		cost = 10
 		prerequisite = { focus = ALG_garrison_restructure }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_strategic_reserves"
 			add_ideas = additional_recruits
 		}
 	}
@@ -21375,6 +21819,7 @@ focus = {
 		relative_position_id = ALG_factory_output
 		prerequisite = { focus = ALG_factory_output }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_heavy_industry"
 			swap_ideas = {
 				remove_idea = economic_autonomy3
 				add_idea = economic_autonomy4
@@ -21399,6 +21844,7 @@ focus = {
 		relative_position_id = ALG_oil_and_minerals
 		prerequisite = { focus = ALG_oil_and_minerals }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_international_trade"
 			increase_exports = yes
 		}
 
@@ -21425,6 +21871,7 @@ focus = {
 		relative_position_id = ALG_religious_council
 		prerequisite = { focus = ALG_religious_council }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_cultural_influence"
 			set_temp_variable = { drift_switch_change = 0.01 }
 			modify_reform_expectance_effect = yes
 			add_ideas = ALG_traditions_matter_idea
@@ -21440,6 +21887,7 @@ focus = {
 		relative_position_id = ALG_national_cohesion
 		prerequisite = { focus = ALG_national_cohesion }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_welfare_programs"
 			add_ideas = idea_focus_unemployment_program
 		}
 	}
@@ -21455,6 +21903,7 @@ focus = {
 		prerequisite = { focus = ALG_border_defences }
 		prerequisite = { focus = ALG_strategic_reserves }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_army_of_salvation"
 			swap_ideas = {
 				remove_idea = additional_recruits
 				add_idea = additional_recruits2
@@ -21479,6 +21928,7 @@ focus = {
 		relative_position_id = ALG_national_reconstruction
 		prerequisite = { focus = ALG_heavy_industry focus = ALG_international_trade }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_nation_energy_independence"
 			add_tech_bonus = {
 				name = ALG_the_energy_debate
 				bonus = 0.5
@@ -21510,6 +21960,7 @@ focus = {
 		prerequisite = { focus = ALG_cultural_influence }
 		prerequisite = { focus = ALG_welfare_programs }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_international_outreach"
 			add_ideas = ummah_focus
 		}
 	}
@@ -21524,6 +21975,7 @@ focus = {
 		relative_position_id = ALG_army_of_salvation
 		prerequisite = { focus = ALG_army_of_salvation }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_regional_leadership"
 			add_ideas = idea_focus_national_security
 		}
 	}
@@ -21540,6 +21992,7 @@ focus = {
 		relative_position_id = ALG_nation_energy_independence
 		prerequisite = { focus = ALG_nation_energy_independence }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_technological_renaissance"
 			add_tech_bonus = {
 				name = ALG_tech_name
 				bonus = 1
@@ -21575,6 +22028,7 @@ focus = {
 		relative_position_id = ALG_international_outreach
 		prerequisite = { focus = ALG_international_outreach }
 		completion_reward  = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_islamic_coalition"
 		add_ideas = CIW_member
 			set_country_flag = CIW_leader
 			custom_effect_tooltip = ALG_algeria_invite_ciw
@@ -21606,6 +22060,7 @@ focus = {
 		relative_position_id = ALG_technological_renaissance
 		prerequisite = { focus = ALG_regional_leadership focus = ALG_technological_renaissance focus = ALG_islamic_coalition }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_grand_strategy"
 			increase_economic_growth = yes
 			set_temp_variable = { corp_change = 2 }
 			modify_corporate_tax_rate_effect = yes
@@ -21632,6 +22087,7 @@ focus = {
 		relative_position_id = ALG_grand_strategy
 		prerequisite = { focus = ALG_grand_strategy }
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus ALG_final_salvation"
 			add_ideas = shariah_world
 		}
 	}
@@ -21646,6 +22102,7 @@ focus = {
 			focus = ALG_final_salvation
 		}
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_restoration_of_the_ummah"
 			country_event = {id = ALG_FIS.2 days = 3}
 		}
 	}
@@ -21659,6 +22116,7 @@ focus = {
 		prerequisite = { focus = FIS_restoration_of_the_ummah }
 		relative_position_id = FIS_restoration_of_the_ummah
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_guidance_council"
 			add_ideas = IND_islamic_schools
 			set_temp_variable = { temp_modify_social_con_government = 10 }
 			modify_social_conservatism_government = yes
@@ -21680,6 +22138,7 @@ focus = {
 		prerequisite = { focus = FIS_restoration_of_the_ummah }
 		relative_position_id = FIS_restoration_of_the_ummah
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_restore_the_ummah_experiment"
 			add_ideas = salafist_outlook
 		}
 	}
@@ -21693,6 +22152,7 @@ focus = {
 		prerequisite = { focus = FIS_restoration_of_the_ummah }
 		relative_position_id = FIS_restoration_of_the_ummah
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_victory_of_the_faithful"
 			add_ideas = IRQ_islam_over_state
 		}
 	}
@@ -21707,6 +22167,7 @@ focus = {
 		prerequisite = { focus = FIS_guidance_council }
 		relative_position_id = FIS_guidance_council
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_exterminate_corruption"
 			decrease_corruption = yes
 		}
 	}
@@ -21720,6 +22181,7 @@ focus = {
 		prerequisite = { focus = FIS_guidance_council }
 		relative_position_id = FIS_guidance_council
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_followers_of_the_prophet"
 			add_ideas = TAJ_sharia_in_society
 			add_political_power = 100
 			set_temp_variable = { temp_opinion = -10 }
@@ -21738,6 +22200,7 @@ focus = {
 		prerequisite = { focus = FIS_exterminate_corruption }
 		relative_position_id = FIS_exterminate_corruption
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_new_patriotism"
 			add_ideas = patriotism_focus
 		}
 	}
@@ -21751,6 +22214,7 @@ focus = {
 		prerequisite = { focus = FIS_followers_of_the_prophet }
 		relative_position_id = FIS_followers_of_the_prophet
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_restore_the_soul_of_the_ummah"
 			add_ideas = IRQ_sharia_society
 		}
 	}
@@ -21796,6 +22260,7 @@ focus = {
 		prerequisite = { focus = FIS_the_people_are_not_to_be_trusted }
 		relative_position_id = FIS_the_people_are_not_to_be_trusted
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_sharia_through_discipline"
 			swap_ideas = {
 				remove_idea = IND_sharia
 				add_idea = IND_sharia_2
@@ -21813,6 +22278,7 @@ focus = {
 		prerequisite = { focus = FIS_restore_the_ummah_experiment }
 		relative_position_id = FIS_restore_the_ummah_experiment
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_make_our_nation_pure"
 			add_ideas = LBA_religion_in_schools
 			set_temp_variable = { temp_modify_social_con_government = 2 }
 			modify_social_conservatism_government = yes
@@ -21828,6 +22294,7 @@ focus = {
 		prerequisite = { focus = FIS_restore_the_ummah_experiment }
 		relative_position_id = FIS_restore_the_ummah_experiment
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_strict_authority"
 			add_timed_idea = {
 				idea = generic_salafist_boost_idea2
 				days = 365
@@ -21846,6 +22313,7 @@ focus = {
 		prerequisite = { focus = FIS_make_our_nation_pure }
 		relative_position_id = FIS_make_our_nation_pure
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_father_of_the_ummah"
 			add_ideas = PER_islamic_golden_age
 			set_temp_variable = { temp_modify_social_con_government = 2 }
 			modify_social_conservatism_government = yes
@@ -21861,6 +22329,7 @@ focus = {
 		prerequisite = { focus = FIS_make_our_nation_pure }
 		relative_position_id = FIS_make_our_nation_pure
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_urban_preachers"
 			add_ideas = ALG_state_islam_idea
 		}
 	}
@@ -21930,6 +22399,7 @@ focus = {
 		prerequisite = { focus = FIS_strict_authority }
 		relative_position_id = FIS_strict_authority
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_governmental_cleansing"
 			set_temp_variable = { temp_opinion = -10 }
 			change_The_Military_opinion = yes
 			set_temp_variable = { temp_modify_social_con_government = 10 }
@@ -21951,6 +22421,7 @@ focus = {
 		prerequisite = { focus = FIS_governmental_cleansing }
 		relative_position_id = FIS_governmental_cleansing
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_strength_and_virtue"
 			set_temp_variable = { temp_modify_social_con_government = 2 }
 			modify_social_conservatism_government = yes
 		}
@@ -21966,6 +22437,7 @@ focus = {
 		prerequisite = { focus = FIS_victory_of_the_faithful }
 		relative_position_id = FIS_victory_of_the_faithful
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_islamic_offices"
 			add_stability = 0.05
 			capital_scope = {
 				add_extra_state_shared_building_slots = 3
@@ -21989,6 +22461,7 @@ focus = {
 		prerequisite = { focus = FIS_victory_of_the_faithful }
 		relative_position_id = FIS_victory_of_the_faithful
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_to_serve_allah"
 			swap_ideas = {
 				remove_idea = IRQ_islam_over_state
 				add_idea = IRQ_islam_over_state2
@@ -22005,6 +22478,7 @@ focus = {
 		prerequisite = { focus = FIS_islamic_offices }
 		relative_position_id = FIS_islamic_offices
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_economic_islamization"
 			set_temp_variable = { corp_change = -4 }
 			modify_corporate_tax_rate_effect = yes
 			set_temp_variable = { pop_change = -4 }
@@ -22046,6 +22520,7 @@ focus = {
 		prerequisite = { focus = FIS_to_serve_allah }
 		relative_position_id = FIS_to_serve_allah
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_militarize_the_nation"
 			increase_military_spending = yes
 			add_manpower = 15000
 		}
@@ -22096,6 +22571,7 @@ focus = {
 		prerequisite = { focus = FIS_militarize_the_nation }
 		relative_position_id = FIS_militarize_the_nation
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_forged_in_belief"
 			add_ideas = AFG_Law_of_Faith
 		}
 	}
@@ -22109,6 +22585,7 @@ focus = {
 		prerequisite = { focus = FIS_soldiers_of_faith }
 		relative_position_id = FIS_soldiers_of_faith
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_disciplined_army_of_god"
 			one_random_arms_factory = yes
 			army_experience = 25
 			newline = yes
@@ -22125,6 +22602,7 @@ focus = {
 		prerequisite = { focus = FIS_soldiers_of_faith }
 		relative_position_id = FIS_soldiers_of_faith
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_made_of_steel_and_faith"
 			one_random_arms_factory = yes
 		}
 	}
@@ -22138,6 +22616,7 @@ focus = {
 		prerequisite = { focus = FIS_forged_in_belief }
 		relative_position_id = FIS_forged_in_belief
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_unrestricted_research"
 			add_ideas = CHE_russian_islamic_university
 			add_research_slot = 2
 			newline = yes
@@ -22155,6 +22634,7 @@ focus = {
 		prerequisite = { focus = FIS_unrestricted_research }
 		relative_position_id = FIS_unrestricted_research
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_ai_military_integration"
 			add_idea = SOV_army_of_the_future_idea
 		}
 	}
@@ -22193,6 +22673,7 @@ focus = {
 		prerequisite = { focus = FIS_ai_military_integration }
 		relative_position_id = FIS_ai_military_integration
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_the_future_in_the_present"
 			add_ideas = ALG_future_army
 		}
 	}
@@ -22206,6 +22687,7 @@ focus = {
 		prerequisite = { focus = FIS_ai_military_integration }
 		relative_position_id = FIS_ai_military_integration
 		completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus FIS_destroy_their_will"
 			set_temp_variable = {ALG_offices_contruction_speed_change= 0.20}
 			update_ALG_offices_contruction_speed = yes
 			newline = yes
