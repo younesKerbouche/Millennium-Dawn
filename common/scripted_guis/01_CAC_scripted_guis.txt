@@ -1015,7 +1015,7 @@ scripted_gui = {
 
 		dynamic_lists = {
 			select_ceo_list_grid = {
-				array = CAC_available_ceo_list
+				array = global.CAC_available_ceo_list
 				entry_container = "select_ceo_list_item"
 			}
 		}
@@ -1036,12 +1036,13 @@ scripted_gui = {
 
 		triggers = {
 			foreign_available_companies_select_click_enabled = {
-				#set_variable = { selected_foreign_company = PREV.CAC_companies^0 }
-
-				check_variable = {
-					var = v
-					value = selected_foreign_company
-					compare = not_equals
+				AND = {
+					check_variable = { CAC_foreign_companies_limit > CAC_foreign_companies^num }
+					check_variable = {
+						var = v
+						value = selected_foreign_company
+						compare = not_equals
+					}
 				}
 			}
 			companies_dismiss_button_click_enabled = {
