@@ -7852,5 +7852,127 @@ country_event = {#propose alliance to all eu christian
 		}
 	}
 }
+country_event = {#plan to reach jerusalem
+	id = france_md.309
+	title = france_md.309.t
+	desc = france_md.309.d
+	is_triggered_only = yes
+	option = {#diplomacy_first and ground invasion
+		name = france_md.309.a
+		log = "[GetDateText]: [This.GetName]: france_md.309.a executed"
+		LEB = {
+			country_event = france_md.310
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#buildup navy
+		name = france_md.309.b
+		log = "[GetDateText]: [This.GetName]: france_md.309.b executed"
+		add_war_support = 0.05
+		set_temp_variable = { treasury_change = -25 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_navy_crusade
+		set_temp_variable = { temp_opinion = 10 }
+		change_maritime_industry_opinion = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#france ask us to be puppet
+	id = france_md.310
+	title = france_md.310.t
+	desc = france_md.310.d
+	is_triggered_only = yes
+	option = {#yes
+		name = france_md.310.a
+		log = "[GetDateText]: [This.GetName]: france_md.310.a executed"
+		FRA= {
+			country_event = france_md.311
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.310.b
+		log = "[GetDateText]: [This.GetName]: france_md.310.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
+		set_temp_variable = { temp_outlook_increase = -0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.15
+		add_war_support = 0.1
+		FRA= {
+			country_event = france_md.312
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#leb accept
+	id = france_md.311
+	title = france_md.311.t
+	desc = france_md.311.d
+	is_triggered_only = yes
+	option = {#cool
+		name = france_md.311.a
+		log = "[GetDateText]: [This.GetName]: france_md.311.a executed"
+			if = {
+				limit = { NOT = { LEB = { is_subject_of = FRA } } }
+				puppet = LEB
+			}
+			set_temp_variable = { treasury_change = -25 }
+			modify_treasury_effect = yes
+			add_ideas = FRA_prepare_crusade
+			set_temp_variable = { temp_opinion = 5 }
+			change_defense_industry_opinion = yes
+			LEB= {
+				add_ideas = FRA_prepare_crusade
+			}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#leb said no
+	id = france_md.312
+	title = france_md.312.t
+	desc = france_md.312.d
+	is_triggered_only = yes
+	option = {#navy buildup goes once you have Jerusalem
+		name = france_md.312.a
+		log = "[GetDateText]: [This.GetName]: france_md.312.a executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.05 }
+		set_temp_variable = { temp_outlook_increase = -0.05 }
+		add_relative_party_popularity = yes
+		add_war_support = 0.05
+		set_temp_variable = { treasury_change = -25 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_navy_crusade
+		set_temp_variable = { temp_opinion = 10 }
+		change_maritime_industry_opinion = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#political preassure goes if syria and leb dont exist or puppet
+		name = france_md.312.b
+		log = "[GetDateText]: [This.GetName]: france_md.312.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.05}
+		set_temp_variable = { temp_outlook_increase = -0.05}
+		add_relative_party_popularity = yes
+		add_stability = 0.1
+		add_ideas = FRA_political_preassure
+		ai_chance = {
+			base = 1
+		}
+	}
+}
 
 

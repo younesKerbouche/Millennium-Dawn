@@ -7382,6 +7382,34 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_destroy_republicanism"
+			custom_effect_tooltip = FRA_truly_absolutism_TT
+			set_country_flag = party0_banned
+			set_country_flag = party1_banned
+			set_country_flag = party2_banned
+			set_country_flag = party3_banned
+			set_country_flag = party4_banned
+			set_country_flag = party5_banned
+			set_country_flag = party6_banned
+			set_country_flag = party7_banned
+			set_country_flag = party8_banned
+			set_country_flag = party9_banned
+			set_country_flag = party10_banned
+			set_country_flag = party11_banned
+			set_country_flag = party12_banned
+			set_country_flag = party13_banned
+			set_country_flag = party14_banned
+			set_country_flag = party14_banned
+			set_country_flag = party15_banned
+			set_country_flag = party16_banned
+			set_country_flag = party17_banned
+			set_country_flag = party16_banned
+			set_country_flag = party17_banned
+			set_country_flag = party18_banned
+			set_country_flag = party19_banned
+			set_country_flag = party20_banned
+			set_country_flag = party21_banned
+			set_country_flag = party22_banned
+			set_country_flag = party24_banned
 		}
 
 		ai_will_do = {
@@ -7436,7 +7464,7 @@ focus_tree = {
 
 		completion_reward = {#threatened middle east
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_prepare_crusade"
-			add_ideas = FRA_prepare_crusade
+			country_event = france_md.309
 		}
 
 		ai_will_do = {
@@ -7507,7 +7535,7 @@ focus_tree = {
 			set_temp_variable = { temp_opinion = -5 }
 			change_labour_unions_opinion = yes
 			set_temp_variable = { temp_opinion = 10 }
-			change_industrial_conglomerates_opinion = yes
+			change_defense_industry_opinion = yes
 			set_temp_variable = { temp_change = 0.05 }
 			FRA_roy_factout =yes
 			set_temp_variable = { temp_change = -0.075 }
@@ -7541,7 +7569,7 @@ focus_tree = {
 			FRA_roy_warsup =yes
 			set_temp_variable = { temp_change = 0.1 }
 			FRA_roy_coredef =yes
-			set_temp_variable = { temp_change = -0.5 }
+			set_temp_variable = { temp_change = -0.05 }
 			FRA_roy_research =yes
 		}
 
@@ -7668,8 +7696,14 @@ focus_tree = {
 					remove_idea = labour_unions
 					add_idea = the_clergy
 			}
-			set_temp_variable = { temp_opinion = 15 }
+			set_temp_variable = { temp_opinion = 50 }
 			change_the_clergy_opinion = yes
+			HLS = {
+				add_opinion_modifier = {
+					modifier = supports_us
+					target = FRA
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7792,6 +7826,12 @@ focus_tree = {
 			FRA_bon_resitance_damage =yes
 			set_temp_variable = { temp_change = 0.075 }
 			FRA_bon_compliance_our_state_growth =yes
+			swap_ideas = {
+					remove_idea = labour_unions
+					add_idea = the_military
+			}
+			set_temp_variable = { temp_opinion = 50 }
+			change_the_military_opinion = yes
 		}
 
 		ai_will_do = {
@@ -8610,6 +8650,12 @@ focus_tree = {
 			FRA_comie_infdef=yes
 			set_temp_variable = { temp_change = 0.05 }
 			FRA_comie_warsup=yes
+			swap_ideas = {
+					remove_idea = maritime_industry
+					add_idea = communist_cadres
+			}
+			set_temp_variable = { temp_opinion = 50 }
+			change_communist_cadres_opinion = yes
 		}
 
 		ai_will_do = {
