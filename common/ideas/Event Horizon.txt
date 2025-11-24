@@ -51,6 +51,40 @@ ideas = {
 				intel_from_combat_factor = 0.1
 			}
 		}
+
+		EH_combined_weapons_idea = {
+			allowed_civil_war = { always = yes }
+			picture = generic_idea_smallarms
+
+			targeted_modifier = {
+				tag = ALN
+				attack_bonus_against = 0.08
+				breakthrough_bonus_against = 0.08
+			}
+		}
+
+		EH_disrupted_satellite_network_idea = { # IMPORTANT, should be added when scenario starts
+			allowed_civil_war = { always = yes }
+			picture = frozen_conflict_dangerous
+
+			cancel = {
+				NOT = {
+					has_war_with = ALN
+				}
+			}
+
+			modifier = {
+				decryption_factor = -0.5
+				decryption_power_factor = -0.5
+				intel_network_gain_factor = -0.5
+				navy_intel_factor = -0.2
+				airforce_intel_factor = -0.2
+				army_intel_factor = -0.2
+				intel_from_combat_factor = -0.2
+				coordination_bonus = -0.15
+				naval_coordination = -0.15
+			}
+		}
 	}
 
 	hidden_ideas = {
