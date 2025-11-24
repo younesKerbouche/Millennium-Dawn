@@ -614,6 +614,13 @@ scripted_gui = {
 
 			company_action_4_click = {
                 set_temp_variable = { cac_money_change = -10 }
+
+				if = {
+					limit = { check_variable = { CAC_companies_selected_ceo^opened_company_details = 2 } }
+					
+					multiply_temp_variable = { cac_money_change = CAC_companies_selected_ceo_level_modifier^cac_slot }
+				}
+
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_money_effect = yes
 

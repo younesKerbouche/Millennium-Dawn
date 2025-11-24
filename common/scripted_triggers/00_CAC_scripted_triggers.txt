@@ -1,0 +1,23 @@
+cac_needed_money_for_upgrade = {
+	set_temp_variable = { cac_needed_money_modifier = 1 }
+    add_to_temp_variable = { cac_needed_money_modifier = CAC_companies_modifier_from_size^cac_slot }
+
+    if = {
+        limit = {
+            check_variable = { CAC_companies_selected_ceo^cac_slot = 0 }
+        }
+
+        add_to_temp_variable = { cac_needed_money_modifier = CAC_companies_selected_ceo_level_modifier^cac_slot }
+    }
+
+    multiply_temp_variable = { cac_needed_money_base = cac_needed_money_modifier }
+
+	custom_override_tooltip = {
+		tooltip = CAC_needed_money_for_upgrade_tooltip
+		check_variable = {
+			var = CAC_companies_money^cac_slot
+			value = cac_needed_money_base
+			compare = greater_than_or_equals
+		}
+	}
+}
