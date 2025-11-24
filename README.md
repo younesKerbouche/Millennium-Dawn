@@ -53,9 +53,6 @@ pip install pre-commit
 # Navigate to repository and install hooks
 cd millennium-dawn
 pre-commit install
-
-# Test installation
-pre-commit run --all-files
 ```
 
 ## Development Standards
@@ -133,7 +130,7 @@ Contact council members via Discord for merge request reviews and approval workf
 
 ### For All Contributors
 
-1. **Add Yourself**: Include your information in [`AUTHORS.txt`](./AUTHORS.txt)
+1. **Add Yourself**: Include your information in [`AUTHORS.md`](./docs/misc/authors.md)
 2. **Document Changes**: Update [`Changelog.txt`](./Changelog.txt) with your modifications
 3. **Follow Conventions**: Adhere to established coding and documentation standards
 4. **Stay Engaged**: Participate in community discussions and development planning

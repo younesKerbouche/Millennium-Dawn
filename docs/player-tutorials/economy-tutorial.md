@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Economy Tutorial"
+description: "Tutorial explaining the economic elements of Millennium Dawn"
+---
+
 Millennium Dawn includes unique economic features that reflect the modern economy.
 This tutorial will explain the economic elements of MD.
 
@@ -77,8 +83,8 @@ It requires spending treasury funds and takes time, but by making International 
 You can initiate International Investments by clicking on a foreign state, then clicking the arrow button to open the interface, from which you can proceed with the investment.
 
 <div align="center">
-![image](../uploads/c6d1c5e12bc5e66c80f34afa7662259b/image.png){width=906 height=567}
-![image](../uploads/52224f79d5f3055c6a69c2fa3fd563cc/image.png){width=313 height=453}
+![image](../uploads/image.png){width=906 height=567}
+![image](../uploads/image.png){width=313 height=453}
 </div>
 
 ## Internal Investment

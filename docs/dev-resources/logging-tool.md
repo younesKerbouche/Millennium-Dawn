@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Logging Tool"
+description: "Tool to help process/filter/search logs for Millennium Dawn"
+---
+
 This is a tool to help process/filter/search logs
 
 Somewhat specific to MD, but should work with other mods
@@ -11,4 +17,4 @@ How to use:
 * Check readme file
 * Use exe file
 
-[CrocsLoggerTool.zip](../uploads/391402056655b7a54d7d95776434cc8b/CrocsLoggerTool.zip)
+[CrocsLoggerTool.zip](/Millennium-Dawn/uploads/CrocsLoggerTool.zip)
