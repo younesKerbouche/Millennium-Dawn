@@ -143,9 +143,9 @@ EH_research_sites_effects_idea = {
 	remove_trigger = {
 		OR = {
 			check_variable = { EH_research_sites_constructed_var < 1 }
-			# NOT = {
-			# 	has_war_with = ALN
-			# }
+			NOT = {
+				has_war_with = ALN
+			}
 		}
 	}
 
@@ -153,4 +153,16 @@ EH_research_sites_effects_idea = {
 	scientist_breakthrough_bonus_factor = var:EH_research_sites_scientist_breakthrough_bonus_factor_var
 	scientist_research_bonus_factor = var:EH_research_sites_scientist_research_bonus_factor_var
 	scientist_xp_gain_factor = var:EH_research_sites_scientist_xp_gain_factor_var
+}
+
+EH_chimera_forces_weakened_modifier = {
+	icon = GFX_idea_army_of_aggression
+
+	remove_trigger = {
+		NOT = {
+			has_war = yes
+		}
+	}
+
+	army_attack_factor = var:EH_chimera_forces_weakened_army_attack_factor_var
 }
