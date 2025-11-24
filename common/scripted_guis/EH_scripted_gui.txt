@@ -163,6 +163,18 @@ scripted_gui = {
 			EH_hire_Jennifer_Doudna_button_click = {
 				add_ideas = EH_scientist_jennifer_doudna_idea
 				set_country_flag = EH_hired_jennifer_doudna_flag
+				if = {
+					limit = {
+						has_active_mission = EH_doudna_or_charpentier_project_mission
+					}
+					add_days_mission_timeout = {
+						mission = EH_doudna_or_charpentier_project_mission
+						days = -50
+					}
+				}
+				else = {
+					activate_mission = EH_doudna_or_charpentier_project_mission
+				}
 			}
 			EH_hire_Fabiola_Gianotti_button_click = {
 				add_ideas = EH_scientist_fabiola_gianotti_idea
@@ -175,6 +187,18 @@ scripted_gui = {
 			EH_hire_Emmanuelle_Charpentier_button_click = {
 				add_ideas = EH_scientist_emmanuelle_charpentier_idea
 				set_country_flag = EH_hired_emmanuelle_charpentier_flag
+				if = {
+					limit = {
+						has_active_mission = EH_doudna_or_charpentier_project_mission
+					}
+					add_days_mission_timeout = {
+						mission = EH_doudna_or_charpentier_project_mission
+						days = -50
+					}
+				}
+				else = {
+					activate_mission = EH_doudna_or_charpentier_project_mission
+				}
 			}
 			EH_hire_Andrzej_Trautman_button_click = {
 				add_ideas = EH_scientist_andrzej_trautman_idea
@@ -191,6 +215,12 @@ scripted_gui = {
 				hidden_trigger = {
 					has_country_flag = EH_hired_jennifer_doudna_flag
 				}
+				ALN = {
+					casualties_inflicted_by = {
+						opponent = ROOT
+						thousands > 10
+					}
+				}
 			}
 			EH_hire_Jennifer_Doudna_button_click_enabled = {
 				custom_trigger_tooltip = {
@@ -199,6 +229,12 @@ scripted_gui = {
 				}
 				NOT = {
 					has_country_flag = EH_hired_jennifer_doudna_flag
+				}
+				ALN = {
+					casualties_inflicted_by = {
+						opponent = ROOT
+						thousands > 10
+					}
 				}
 			}
 
@@ -248,6 +284,12 @@ scripted_gui = {
 				hidden_trigger = {
 					has_country_flag = EH_hired_emmanuelle_charpentier_flag
 				}
+				ALN = {
+					casualties_inflicted_by = {
+						opponent = ROOT
+						thousands > 10
+					}
+				}
 			}
 			EH_hire_Emmanuelle_Charpentier_button_click_enabled = {
 				custom_trigger_tooltip = {
@@ -256,6 +298,12 @@ scripted_gui = {
 				}
 				NOT = {
 					has_country_flag = EH_hired_emmanuelle_charpentier_flag
+				}
+				ALN = {
+					casualties_inflicted_by = {
+						opponent = ROOT
+						thousands > 10
+					}
 				}
 			}
 
@@ -267,6 +315,7 @@ scripted_gui = {
 				hidden_trigger = {
 					has_country_flag = EH_hired_andrzej_trautman_flag
 				}
+				has_country_flag = EH_country_succeeded_in_drone_mission_flag
 			}
 			EH_hire_Andrzej_Trautman_button_click_enabled = {
 				custom_trigger_tooltip = {
@@ -276,6 +325,7 @@ scripted_gui = {
 				NOT = {
 					has_country_flag = EH_hired_andrzej_trautman_flag
 				}
+				has_country_flag = EH_country_succeeded_in_drone_mission_flag
 			}
 		}
 	}

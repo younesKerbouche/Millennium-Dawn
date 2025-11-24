@@ -320,4 +320,37 @@ EH_research_sites_category = {
             custom_effect_tooltip = EH_research_sites_enable_notifications_TT
         }
     }
+
+    EH_doudna_or_charpentier_project_mission = {
+        activation = {
+            OR = {
+                has_country_flag = EH_hired_jennifer_doudna_flag
+                has_country_flag = EH_hired_emmanuelle_charpentier_flag
+            }
+        }
+
+        available = {
+            has_war_with = ALN
+            has_country_flag = EH_research_sites_enabled
+            NOT = {
+                has_country_flag = EH_doudna_or_charpentier_finished_project_flag
+            }
+        }
+
+        cancel_trigger = {
+            NOT = {
+                has_country_flag = EH_hired_jennifer_doudna_flag
+                has_country_flag = EH_hired_emmanuelle_charpentier_flag
+            }
+        }
+
+        icon = GFX_decision_message_accept_button
+        is_good = yes
+        days_mission_timeout = 280
+
+        timeout_effect = {
+            set_country_flag = EH_doudna_or_charpentier_finished_project_flag
+            custom_effect_tooltip = EH_doudna_or_charpentier_finished_project_TT
+        }
+    }
 }
