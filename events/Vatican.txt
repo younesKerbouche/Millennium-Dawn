@@ -1,4 +1,5 @@
 add_namespace = vatican_events
+add_namespace = vatican_conclaves
 add_namespace = vatican_news_events
 
 # Annexation of Italy
@@ -71,7 +72,8 @@ country_event = {
 
 }
 
-country_event = {	##### Recipient of the Crusade national focus
+# Recipient of the Crusade National Focus
+country_event = {
 	id = vatican_events.4
 	title = vatican_events.4.t
 	desc = vatican_events.4.d
@@ -89,7 +91,8 @@ country_event = {	##### Recipient of the Crusade national focus
 	}
 }
 
-country_event = {	##### Call a crusade or just leave it as our war? (Got through the focus tree)
+# Call a Crusade or just leave it as our war?
+country_event = {
 	id = vatican_events.5
 	title = vatican_events.5.t
 	desc = vatican_events.5.d
@@ -298,7 +301,7 @@ country_event = {   ##### When a war is recognised as a Crusade this event is gi
 			type = crusade_wargoal
 			target = FROM
 		}
-		send_equipment = { target = HLS type = infantry_equipment amount = 300 }
+		send_equipment = { target = HLS type = Inf_equipment amount = 300 }
 		add_political_power = 50
 	}
 
@@ -308,7 +311,7 @@ country_event = {   ##### When a war is recognised as a Crusade this event is gi
 		ai_chance = {
 			base =  45
 		}
-		send_equipment = { target = HLS type = infantry_equipment amount = 300 }
+		send_equipment = { target = HLS type = Inf_equipment amount = 300 }
 		add_manpower = -750
 		HLS = { add_manpower = 750 }
 		add_political_power = 25
@@ -426,6 +429,7 @@ country_event = { ##### refusing the request for more swiss guard
 	}
 }
 
+# TODO: Convert this to a regular weekly income
 country_event = {
 	id = vatican_events.16
 	title = vatican_events.16.t
@@ -500,9 +504,114 @@ country_event = {
 	}
 }
 
-####### News events below
+# Vatican Conclaves
+# Death of Pope John Paul II
+country_event = {
+	id = vatican_conclaves.1
+	title = vatican_conclaves.1.t
+	desc = vatican_conclaves.1.d
+	picture = GFX_politics_speak
+	is_triggered_only = yes
+	trigger = {
+		original_tag = HLS
+	}
 
-news_event = { ##### Calling a crusade
+	# Jorge Bergoglio
+	option = {
+		name = vatican_conclaves.1.a
+		log = "[GetDateText]: [This.GetName]: vatican_events.1.a executed"
+
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	# Angelo Scola
+	option = {
+		name = vatican_events.1.b
+		log = "[GetDateText]: [This.GetName]: vatican_events.1.b executed"
+
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Resignation of Pope Benedict XVI
+country_event = {
+	id = vatican_conclaves.2
+	title = vatican_conclaves.2.t
+	desc = vatican_conclaves.2.d
+	picture = GFX_politics_speak
+	is_triggered_only = yes
+	trigger = {
+		original_tag = HLS
+	}
+
+	# Jorge Bergoglio
+	option = {
+		name = vatican_conclaves.2.a
+		log = "[GetDateText]: [This.GetName]: vatican_events.2.a executed"
+
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	# Angelo Scola
+	option = {
+		name = vatican_events.2.b
+		log = "[GetDateText]: [This.GetName]: vatican_events.2.b executed"
+
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# Death of Pope John Paul II
+country_event = {
+	id = vatican_conclaves.3
+	title = vatican_conclaves.3.t
+	desc = vatican_conclaves.3.d
+	picture = GFX_politics_speak
+	is_triggered_only = yes
+	trigger = {
+		original_tag = HLS
+	}
+
+	# Jorge Bergoglio
+	option = {
+		name = vatican_conclaves.3.a
+		log = "[GetDateText]: [This.GetName]: vatican_events.3.a executed"
+
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	# Angelo Scola
+	option = {
+		name = vatican_events.3.b
+		log = "[GetDateText]: [This.GetName]: vatican_events.3.b executed"
+
+		ai_chance = {
+			base =  0
+		}
+	}
+}
+
+# News Events
+# Calling a Crusade
+news_event = {
 	id = vatican_news_events.1
 	title = vatican_news_events.1.t
 	picture = GFX_news_election_rally

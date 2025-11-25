@@ -185,13 +185,13 @@ country_event = {
 - Structure modifiers clearly
 - Implement balanced effects
 - **Performance**: Remove unnecessary `allowed = { always = no }` statements as they add drag to performance - since `always = no` is the default behavior, these lines provide no functional benefit while consuming processing resources
+- **Performance**: `removal_cost = -1` is not needed so do not add this parameter unless you are adding it to a law
 
 ### Example Idea Structure
 ```python
 BRA_idea_higher_minimun_wage_1 = {
     name = BRA_idea_higher_minimun_wage
     allowed_civil_war = { always = yes }
-    on_add = { log = "[GetDateText]: [THIS.GetName]: add idea BRA_idea_higher_minimun_wage_1" }
 
     picture = gold
 

@@ -2,50 +2,26 @@
 HLS_italian_relations = {
 	allowed = { original_tag = ITA }
 	enable = {
+		country_exists = HLS
 		has_idea = christian
+		HLS = { NOT = { has_government = fascism } }
 	}
+	abort_when_not_enabled = yes
 
-	abort = {
-		HLS = {
-			exists = yes
-			OR = {
-				has_government = fascism
-				has_completed_focus = HLS_a_dark_path
-			}
-		}
-	}
-
-	ai_strategy = {
-		type = befriend
-		id = "HLS"
-		value = 200
-	}
-	ai_strategy = {
-		type = alliance
-		id = "HLS"
-		value = 200
-	}
+	ai_strategy = { type = befriend id = "HLS" value = 100 }
+	ai_strategy = { type = alliance id = "HLS" value = 100 }
+	ai_strategy = { type = support id = "HLS" value = 100 }
 }
 
 HLS_crusader_relations = {
-
 	enable = {
 		has_country_flag = crusader_country
 	}
-	abort = {
-		NOT = { has_country_flag = crusader_country }
-	}
+	abort_when_not_enabled = yes
 
-	ai_strategy = {
-		type = befriend
-		id = "HLS"
-		value = 100
-	}
-	ai_strategy = {
-		type = alliance
-		id = "HLS"
-		value = 100
-	}
+	ai_strategy = { type = befriend id = "HLS" value = 100 }
+	ai_strategy = { type = alliance id = "HLS" value = 100 }
+	ai_strategy = { type = support id = "HLS" value = 100 }
 }
 
 HLS_jihadist_relations = {
@@ -56,25 +32,8 @@ HLS_jihadist_relations = {
 			has_idea = foreign_jihadis
 		}
 	}
-	abort = {
-		NOT = {
-			has_government = fascism
-			has_idea = foreign_jihadis
-			AND = {
-				tag = HLS
-				has_completed_focus = HLS_jihad
-			}
-		}
-	}
+	abort_when_not_enabled = yes
 
-	ai_strategy = {
-		type = befriend
-		id = "HLS"
-		value = 100
-	}
-	ai_strategy = {
-		type = alliance
-		id = "HLS"
-		value = 100
-	}
+	ai_strategy = { type = befriend id = "HLS" value = 100 }
+	ai_strategy = { type = alliance id = "HLS" value = 100 }
 }

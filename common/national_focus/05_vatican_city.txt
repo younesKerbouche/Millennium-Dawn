@@ -13,1312 +13,12 @@ focus_tree = {
 
 	# Industrial Section
 	focus = {
-		id = HLS_industrial_focus
-		icon = production
-
-		x = 3
-		y = 0
-
-		cost = 10
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: focus HLS_industrial_focus"
-			add_tech_bonus = {
-				name = HLS_industrial_focus
-				bonus = 0.30
-				uses = 2
-				category = CAT_industry
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_military_industry_1
-		icon = industry_military
-
-		x = -3
-		y = 1
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_industrial_focus }
-
-		available = {
-			custom_trigger_tooltip = {
-				all_owned_state = {
-					free_building_slots = {
-						building = arms_factory
-						size < 1
-						include_locked = yes
-					}
-				}
-				tooltip = enough_slots_in_state_tt
-			}
-		}
-
-		bypass = {
-			# TODO: Replace with a scripted trigger for ease of use
-			custom_trigger_tooltip = {
-				all_owned_state = {
-					free_building_slots = {
-						building = arms_factory
-						size < 1
-						include_locked = yes
-					}
-				}
-				tooltip = enough_slots_in_state_tt
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: focus HLS_military_industry_1"
-			random_owned_controlled_state = {
-				add_extra_state_shared_building_slots = 1
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base  = 0
-			modifier = {
-				threat > 0.0
-				add = 0.25
-			}
-			modifier = {
-				has_completed_focus = HLS_road_to_greatness
-				add = 1.0
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				factor = 0
-			}
-			modifier = {
-				is_historical_focus_on = no
-				add = 0.50
-			}
-		}
-	}
-
-	focus = {
-		id = HLS_civilian_industry_1
-		icon = industry_civilian
-
-		x = -1
-		y = 1
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_industrial_focus
-		}
-
-		available = {
-			custom_trigger_tooltip = {
-				all_owned_state = {
-					free_building_slots = {
-						building = industrial_complex
-						size < 1
-						include_locked = yes
-					}
-				}
-				tooltip = enough_slots_in_state_tt
-			}
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				all_owned_state = {
-					free_building_slots = {
-						building = industrial_complex
-						size < 1
-						include_locked = yes
-					}
-				}
-				tooltip = enough_slots_in_state_tt
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: focus HLS_civilian_industry_1"
-			random_owned_controlled_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			factor = 5
-			modifier = {
-				threat > 0.0
-				add = 0.25
-			}
-			modifier = {
-				has_completed_focus = HLS_road_to_greatness
-				add = 1.0
-			}
-			modifier = {
-				num_of_civilian_factories < 10
-				add = 5
-			}
-			modifier = {
-				is_historical_focus_on = yes
-				add = 0.50
-			}
-			modifier = {
-				is_historical_focus_on = no
-				add = 0.50
-			}
-		}
-	}
-
-	focus = {
-		id = HLS_infrastructure_1
-		icon = infrastructure
-
-		x = 1
-		y = 1
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_industrial_focus }
-
-		available = {
-			any_owned_state = {
-				free_building_slots = {
-					building = infrastructure
-					size < 5
-					include_locked = yes
-				}
-			}
-		}
-
-		bypass = {
-			NOT = {
-				any_owned_state = {
-					free_building_slots = {
-						building = infrastructure
-						size < 5
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: focus HLS_infrastructure_1"
-			random_owned_controlled_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			factor = 5
-		}
-	}
-
-	focus = {
-		id = HLS_resource_focus
-		icon = construction2
-
-		x = 3
-		y = 1
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_industrial_focus }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: focus HLS_resource_focus"
-			add_timed_idea = {
-				idea = resource_production_bonus
-				days = 1000
-			}
-		}
-
-		ai_will_do = {
-			factor = 5
-		}
-	}
-
-	focus = {
-		id = HLS_industrial_development
-		icon = construction
-
-		x = 0
-		y = 2
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_infrastructure_1
-			focus = HLS_civilian_industry_1
-			focus = HLS_military_industry_1
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_industrial_development"
-			add_ideas = idea_focus_industrial_development_program
-		}
-
-		ai_will_do = {
-			factor = 30
-		}
-	}
-
-	focus = {
-		id = HLS_military_industry_2
-		icon = industry_military
-
-		x = -3
-		y = 3
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_industrial_development
-		}
-
-		bypass = {
-			all_owned_state = {
-				free_building_slots = {
-					building = arms_factory
-					size < 1
-					include_locked = yes
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_military_industry_2"
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_civilian_industry_2
-		icon = industry_civilian
-
-		x = -1
-		y = 3
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_industrial_development }
-
-		bypass = {
-			all_owned_state = {
-				free_building_slots = {
-					building = industrial_complex
-					size < 1
-					include_locked = yes
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_civilian_industry_2"
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_infrastructure_2
-		icon = infrastructure
-
-		x = 1
-		y = 3
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_industrial_development }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_infrastructure_2"
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_military_industry_3
-		icon = industry_military
-
-		x = -3
-		y = 4
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_military_industry_2
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				tooltip = production_effort_tt
-				all_owned_state = {
-					free_building_slots = {
-						building = arms_factory
-						size < 1
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_military_industry_3"
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_civilian_industry_3
-		icon = industry_civilian
-
-		x = -1
-		y = 4
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_civilian_industry_2
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				tooltip = construction_effort_tt
-				all_owned_state = {
-					free_building_slots = {
-						building = industrial_complex
-						size < 1
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_civilian_industry_3"
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_infrastructure_3
-		icon = infrastructure
-
-		x = 1
-		y = 4
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_infrastructure_2
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_infrastructure_3"
-			random_owned_state = {
-				add_building_construction = {
-					type = infrastructure
-					level = 2
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_steel_factories
-		icon = production2
-
-		x = 3
-		y = 4
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_resource_focus }
-
-		available = {
-			num_of_civilian_factories > 9
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_steel_factories"
-			if = {
-				limit = {
-					num_of_civilian_factories < 20
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 2 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 19
-					num_of_civilian_factories < 30
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 3 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 3 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 29
-					num_of_civilian_factories < 40
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 4 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 39
-					num_of_civilian_factories < 50
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 5 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 49
-					num_of_civilian_factories < 60
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 6 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 59
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = steel amount = 7 }
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_military_industry_4
-		icon = industry_military
-
-		x = -3
-		y = 5
-		relative_position_id = HLS_industrial_focus
-
-		cost = 15
-
-		prerequisite = {
-			focus = HLS_military_industry_3
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				tooltip = production_effort_tt
-				all_owned_state = {
-					free_building_slots = {
-						building = arms_factory
-						size < 1
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_military_industry_4"
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_civilian_industry_4
-		icon = industry_civilian
-
-		x = -1
-		y = 5
-		relative_position_id = HLS_industrial_focus
-
-		cost = 15
-
-		prerequisite = {
-			focus = HLS_civilian_industry_3
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				tooltip = construction_effort_tt
-				all_owned_state = {
-					free_building_slots = {
-						building = industrial_complex
-						size < 1
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_civilian_industry_4"
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_synthetic_oil
-		icon = oil_production
-
-		x = 1
-		y = 5
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_steel_factories
-		}
-
-		available = {
-			num_of_civilian_factories > 9
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_synthetic_oil"
-			if = {
-				limit = {
-					num_of_civilian_factories < 20
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 2 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 19
-					num_of_civilian_factories < 30
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 3 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 3 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 29
-					num_of_civilian_factories < 40
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 4 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 39
-					num_of_civilian_factories < 50
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 5 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 49
-					num_of_civilian_factories < 60
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 6 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 59
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = oil amount = 7 }
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_aluminium_factories
-		icon = production
-
-		x = 3
-		y = 5
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_steel_factories
-		}
-
-		available = {
-			num_of_civilian_factories > 9
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_aluminium_factories"
-			if = {
-				limit = {
-					num_of_civilian_factories < 20
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 2 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 19
-					num_of_civilian_factories < 30
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 3 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 3 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 29
-					num_of_civilian_factories < 40
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 4 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 39
-					num_of_civilian_factories < 50
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 5 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 5 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 49
-					num_of_civilian_factories < 60
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 6 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 6 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 59
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 7 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium amount = 7 }
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_military_industry_5
-		icon = industry_military
-
-		x = -3
-		y = 6
-		relative_position_id = HLS_industrial_focus
-
-		cost = 20
-
-		prerequisite = {
-			focus = HLS_military_industry_4
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				tooltip = production_effort_tt
-				all_owned_state = {
-					free_building_slots = {
-						building = arms_factory
-						size < 1
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_military_industry_5"
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_civilian_industry_5
-		icon = industry_civilian
-
-		x = -1
-		y = 6
-		relative_position_id = HLS_industrial_focus
-
-		cost = 15
-
-		prerequisite = {
-			focus = HLS_civilian_industry_4
-		}
-
-		bypass = {
-			custom_trigger_tooltip = {
-				tooltip = construction_effort_tt
-				all_owned_state = {
-					free_building_slots = {
-						building = industrial_complex
-						size < 1
-						include_locked = yes
-					}
-				}
-			}
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_civilian_industry_5"
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_state = {
-				limit = {
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_synthetic_rubber
-		icon = oil_production
-
-		x = 1
-		y = 6
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_synthetic_oil
-		}
-
-		available = {
-			num_of_civilian_factories > 14
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_synthetic_rubber"
-			#####Needs an Effect
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_rare_metals
-		icon = production2
-
-		x = 3
-		y = 6
-		relative_position_id = HLS_industrial_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_aluminium_factories
-		}
-
-		available = {
-			num_of_civilian_factories > 14
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_rare_metals"
-			if = {
-				limit = {
-					num_of_civilian_factories < 20
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium  amount = 2 }
-					add_resource = { type = tungsten amount = 2 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 19
-					num_of_civilian_factories < 30
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium  amount = 3 }
-					add_resource = { type = tungsten amount = 3 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium  amount = 3 }
-					add_resource = { type = tungsten amount = 3 }
-				}
-			}
-			else_if = {
-				limit = {
-					num_of_civilian_factories > 29
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium  amount = 4 }
-					add_resource = { type = tungsten amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium  amount = 4 }
-					add_resource = { type = tungsten amount = 4 }
-				}
-				random_owned_state = {
-					add_resource = { type = aluminium  amount = 4 }
-					add_resource = { type = tungsten amount = 4 }
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
 		id = HLS_political_focus
 		icon = demand_territory
 
-		x = 17
+		x = -4
 		y = 1
+		relative_position_id = HLS_status_quo
 
 		cost = 5
 
@@ -1342,7 +42,7 @@ focus_tree = {
 		id = HLS_internal_politics
 		icon = improve_relations
 
-		x = -3
+		x = 0
 		y = 1
 		relative_position_id = HLS_political_focus
 
@@ -1384,55 +84,10 @@ focus_tree = {
 	}
 
 	focus = {
-		id = HLS_foreign_politics
-		icon = major_alliance
-
-		x = 5
-		y = 1
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_political_focus }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_foreign_politics"
-			if = {
-				limit = {
-					has_idea = political_power_bonus
-				}
-				swap_ideas = {
-					remove_idea = political_power_bonus
-					add_idea = political_power_bonus2
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = political_power_bonus2
-				}
-				swap_ideas = {
-					remove_idea = political_power_bonus2
-					add_idea = political_power_bonus3
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = political_power_bonus3
-				}
-				add_political_power = 100
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
 		id = HLS_demographic_studies
 		icon = consumer_goods
 
-		x = -6
+		x = -4
 		y = 2
 		relative_position_id = HLS_political_focus
 
@@ -1456,7 +111,7 @@ focus_tree = {
 		id = HLS_secure_national_unity
 		icon = national_unity
 
-		x = -4
+		x = -2
 		y = 2
 		relative_position_id = HLS_political_focus
 
@@ -1480,7 +135,7 @@ focus_tree = {
 		id = HLS_recruit_more_administrators
 		icon = intelligence_exchange
 
-		x = -2
+		x = 2
 		y = 2
 		relative_position_id = HLS_political_focus
 
@@ -1522,220 +177,10 @@ focus_tree = {
 	}
 
 	focus = {
-		id = HLS_recruit_more_diplomats
-		icon = intelligence_exchange
-
-		x = 3
-		y = 2
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_foreign_politics
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_recruit_more_diplomats"
-			add_political_power = 50
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_international_alliances
-		icon = alliance
-
-		x = 7
-		y = 2
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_foreign_politics
-		}
-
-		available = {
-			threat > 0.10
-			NOT = { has_completed_focus = HLS_road_to_greatness }
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_international_alliances"
-			add_political_power = 100
-			add_war_support = 0.05
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	#Align with BRICS
-	focus = {
-		id = HLS_brics
-		icon = alliance
-
-		x = 6
-		y = 3
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_international_alliances
-		}
-		mutually_exclusive = {
-			focus = HLS_the_west
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_brics"
-			add_popularity = { ideology = communism popularity = 0.05 }
-			recalculate_party = yes
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_the_west
-		icon = alliance
-
-		x = 8
-		y = 3
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_international_alliances
-		}
-		mutually_exclusive = {
-			focus = HLS_brics
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_the_west"
-			add_popularity = { ideology = democratic popularity = 0.05 }
-			recalculate_party = yes
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_deepen_ties_with_the_east
-		icon = alliance
-
-		x = 6
-		y = 4
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_brics
-		}
-
-		available = {
-			communism > 0.05
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_deepen_ties_with_the_east"
-			every_country = {
-				limit = {
-					OR = {
-						is_in_faction_with = SOV
-						is_in_faction_with = CHI
-						original_tag = SOV
-						original_tag = CHI
-					}
-				}
-				add_opinion_modifier = {
-					target = HLS
-					modifier = has_expressed_loyalty
-				}
-				reverse_add_opinion_modifier = {
-					target = HLS
-					modifier = has_expressed_loyalty
-				}
-			}
-			add_popularity = {
-				ideology = communism
-				popularity = 0.05
-			}
-			recalculate_party = yes
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_deepen_ties_with_the_west
-		icon = alliance
-
-		x = 8
-		y = 4
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_the_west
-		}
-
-		available = {
-			democratic > 0.05
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_deepen_ties_with_the_west"
-			every_country = {
-				limit = {
-					OR = {
-						is_in_faction_with = USA
-						has_idea = NATO_member
-						original_tag = USA
-					}
-				}
-				add_opinion_modifier = {
-					target = HLS
-					modifier = has_expressed_loyalty
-				}
-				reverse_add_opinion_modifier = {
-					target = HLS
-					modifier = has_expressed_loyalty
-				}
-			}
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.05
-			}
-			recalculate_party = yes
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
 		id = HLS_traditional_values
 		icon = demand_territory2
 
-		x = -7
+		x = -4
 		y = 3
 		relative_position_id = HLS_political_focus
 
@@ -1799,7 +244,7 @@ focus_tree = {
 		id = HLS_female_workforce
 		icon = national_unity
 
-		x = -5
+		x = -2
 		y = 3
 		relative_position_id = HLS_political_focus
 
@@ -1873,7 +318,7 @@ focus_tree = {
 		id = HLS_invest_in_public_service
 		icon = construction3
 
-		x = -3
+		x = 1
 		y = 3
 		relative_position_id = HLS_political_focus
 
@@ -1898,7 +343,7 @@ focus_tree = {
 		id = HLS_education_reform
 		icon = construction2
 
-		x = -1
+		x = 3
 		y = 3
 		relative_position_id = HLS_political_focus
 
@@ -1919,82 +364,10 @@ focus_tree = {
 	}
 
 	focus = {
-		id = HLS_isolation
-		icon = neutrality
-
-		x = 2
-		y = 3
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_recruit_more_diplomats }
-		mutually_exclusive = {
-			focus = HLS_intervention
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_isolation"
-			if = {
-				limit = {
-					has_idea = neutrality_idea
-				}
-				add_political_power = 100
-				add_stability = 0.05
-			}
-			if = {
-				limit = {
-					NOT = { has_idea = neutrality_idea }
-				}
-				add_ideas = neutrality_idea
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_intervention
-		icon = forceful_treaty
-
-		x = 4
-		y = 3
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_recruit_more_diplomats }
-		mutually_exclusive = { focus = HLS_isolation }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_intervention"
-			if = {
-				limit = {
-					NOT = { has_idea = neutrality_idea }
-				}
-				add_political_power = 25
-				army_experience = 10
-				navy_experience = 10
-				air_experience = 10
-			}
-			if = {
-				limit = { has_idea = neutrality_idea }
-				remove_ideas = neutrality_idea
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
 		id = HLS_crackdown_on_contraceptives
 		icon = propaganda
 
-		x = -7
+		x = -4
 		y = 4
 		relative_position_id = HLS_political_focus
 
@@ -2022,7 +395,7 @@ focus_tree = {
 		id = HLS_birth_control_programs
 		icon = radar
 
-		x = -5
+		x = -2
 		y = 4
 		relative_position_id = HLS_political_focus
 
@@ -2046,7 +419,7 @@ focus_tree = {
 		id = HLS_research_incentives
 		icon = research
 
-		x = -3
+		x = 1
 		y = 4
 		relative_position_id = HLS_political_focus
 
@@ -2067,199 +440,18 @@ focus_tree = {
 		}
 	}
 
-	focus = {
-		id = HLS_expand_the_secret_services
-		icon = intelligence_exchange
-
-		x = -1
-		y = 4
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_education_reform
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_expand_the_secret_services"
-			add_ideas = idea_focus_expanded_secret_services
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_destroy_foreign_influence
-		icon = colonial_crackdown
-
-		x = 2
-		y = 4
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_isolation
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_destroy_foreign_influence"
-			add_ideas = idea_focus_destroyed_foreign_influence
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_volunteer_corps
-		icon = conscription
-
-		x = 4
-		y = 4
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = { focus = HLS_intervention }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_volunteer_corps"
-			add_ideas = idea_focus_volunteer_corps
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_extra_research_slot
-		icon = research
-
-		x = -2
-		y = 5
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_research_incentives
-		}
-		prerequisite = {
-			focus = HLS_expand_the_secret_services
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_extra_research_slot"
-			add_research_slot = 1
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_defensive_constructions
-		icon = generic_entrenchment
-
-		x = 2
-		y = 5
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_volunteer_corps
-			focus = HLS_destroy_foreign_influence
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_defensive_constructions"
-			add_ideas = ENG_defensive_constructions_idea
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
-	focus = {
-		id = HLS_political_influence_abroad
-		icon = global_community
-
-		x = 4
-		y = 5
-		relative_position_id = HLS_political_focus
-
-		cost = 10
-
-		prerequisite = {
-			focus = HLS_volunteer_corps
-			focus = HLS_destroy_foreign_influence
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus HLS_political_influence_abroad"
-			if = {
-				limit = { has_government = fascism }
-				every_neighbor_country = {
-					add_popularity = { ideology = fascism popularity = 0.05 }
-				}
-			}
-			if = {
-				limit = { has_government = democratic }
-				every_neighbor_country = {
-					add_popularity = { ideology = democratic popularity = 0.05 }
-				}
-			}
-			if = {
-				limit = { has_government = communism }
-				every_neighbor_country = {
-					add_popularity = { ideology = communism popularity = 0.05 }
-				}
-			}
-			if = {
-				limit = { has_government = neutrality }
-				every_neighbor_country = {
-					add_popularity = { ideology = neutrality popularity = 0.05 }
-				}
-			}
-			if = {
-				limit = { has_government = nationalist }
-				every_neighbor_country = {
-					add_popularity = { ideology = nationalist popularity = 0.05 }
-				}
-			}
-			add_political_power = 150
-		}
-
-		ai_will_do = {
-			base = 10
-		}
-	}
-
 	# Improve the Holy City
 	focus = {
 		id = HLS_improve_the_city
 		icon = construction
 
-		x = 5
+		x = 2
 		y = 0
-		relative_position_id = HLS_industrial_focus
 
 		cost = 10
 
 		available = {
-			AND = {
-				owns_state = 929
-				controls_state = 929
-			}
+			929 = { is_owned_and_controlled_by = HLS }
 		}
 
 		completion_reward = {
@@ -2277,6 +469,14 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 10
+			modifier = {
+				factor = 2
+				date < 2005.1.1
+			}
+			modifier = {
+				factor = 2
+				date < 2010.1.1
+			}
 		}
 	}
 
@@ -2293,10 +493,40 @@ focus_tree = {
 		prerequisite = { focus = HLS_improve_the_city }
 
 		available = {
-			AND = {
-				owns_state = 929
-				controls_state = 929
+			929 = { is_owned_and_controlled_by = HLS }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HLS_strengthen_the_walls"
+			929 = {
+				add_building_construction = {
+					type = bunker
+					province = 13205
+					level = 3
+					instant_build = yes
+				}
 			}
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+
+	focus = {
+		id = HLS_electrical_deals
+		icon = city_fort
+
+		x = 2
+		y = 1
+		relative_position_id = HLS_improve_the_city
+
+		cost = 10
+
+		prerequisite = { focus = HLS_improve_the_city }
+
+		available = {
+			929 = { is_owned_and_controlled_by = HLS }
 		}
 
 		completion_reward = {
@@ -2329,10 +559,85 @@ focus_tree = {
 		prerequisite = { focus = HLS_strengthen_the_walls }
 
 		available = {
-			AND = {
-				owns_state = 929
-				controls_state = 929
+			929 = { is_owned_and_controlled_by = HLS }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HLS_vatican_factories"
+			add_stability = -0.02
+			929 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
 			}
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+
+	focus = {
+		id = HLS_carbon_neutrality
+		icon = construction3
+
+		x = 2
+		y = 2
+		relative_position_id = HLS_improve_the_city
+
+		cost = 10
+
+		prerequisite = { focus = HLS_electrical_deals }
+
+		available = {
+			929 = { is_owned_and_controlled_by = HLS }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus HLS_vatican_factories"
+			add_stability = -0.02
+			929 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+
+	focus = {
+		id = HLS_solar_panels
+		icon = construction3
+
+		x = 4
+		y = 2
+		relative_position_id = HLS_improve_the_city
+
+		cost = 10
+
+		prerequisite = { focus = HLS_electrical_deals }
+
+		available = {
+			929 = { is_owned_and_controlled_by = HLS }
 		}
 
 		completion_reward = {
@@ -2376,10 +681,7 @@ focus_tree = {
 		available = {
 			has_stability > 0.5
 			has_war = no
-			AND = {
-				owns_state = 929
-				controls_state = 929
-			}
+			929 = { is_owned_and_controlled_by = HLS }
 		}
 
 		completion_reward = {
@@ -2431,10 +733,7 @@ focus_tree = {
 				has_war = yes
 				has_government = fascism
 			}
-			AND = {
-				owns_state = 929
-				controls_state = 929
-			}
+			929 = { is_owned_and_controlled_by = HLS }
 		}
 
 		completion_reward = {
@@ -2480,9 +779,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HLS_refurbish_the_vatican_library"
-			add_political_power = -75
 			add_stability = 0.05
-			add_research_slot = 1
 			swap_ideas = { remove_idea = idea_HLS_vatican_library add_idea = idea_HLS_refurbished_vatican_library }
 		}
 
@@ -2497,7 +794,7 @@ focus_tree = {
 		id = HLS_road_to_greatness
 		icon = demand_territory
 
-		x = 32
+		x = 19
 		y = 0
 
 		cost = 10
@@ -4251,7 +2548,7 @@ focus_tree = {
 		id = HLS_papal_armed_forces
 		icon = army_logistics
 
-		x = 53
+		x = 48
 		y = 0
 
 		cost = 10
