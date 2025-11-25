@@ -1405,3 +1405,65 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+ 	id = EH_focus_event.9
+	title = EH_focus_event.9.t
+	desc = EH_focus_event.9.d
+	picture = GFX_mining
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.9.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.9.a executed"
+		set_temp_variable = { EH_temp_research_sites_prep_time_var = 15 }
+		EH_modify_research_sites_prep_time_effect = yes
+		set_country_flag = EH_event_1_fired_flag
+		set_country_flag = { flag = EH_event_fired_flag days = 45 }
+	}
+}
+
+country_event = {
+ 	id = EH_focus_event.10
+	title = EH_focus_event.10.t
+	desc = EH_focus_event.10.d
+	picture = GFX_event_pmcs
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.10.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.10.a executed"
+		add_command_power = 75
+		set_temp_variable = { EH_temp_protection_increase = 10 }
+        EH_research_sites_protection_increase = yes
+		set_temp_variable = { EH_temp_research_sites_scientist_protection_increase = 10 }
+        EH_research_sites_scientist_protection_increase = yes
+		set_country_flag = EH_event_2_fired_flag
+		set_country_flag = { flag = EH_event_fired_flag days = 45 }
+	}
+}
+
+country_event = {
+ 	id = EH_focus_event.11
+	title = EH_focus_event.11.t
+	desc = EH_focus_event.11.d
+	picture = GFX_euro
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.11.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.11.a executed"
+		set_temp_variable = { treasury_change = 50 }
+		modify_treasury_effect = yes
+		add_tech_bonus = {
+			bonus = 0.25
+			uses = 5
+			category = CAT_Civilian
+		}
+		set_country_flag = EH_event_3_fired_flag
+		set_country_flag = { flag = EH_event_fired_flag days = 45 }
+	}
+}

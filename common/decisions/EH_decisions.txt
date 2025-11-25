@@ -184,10 +184,10 @@ EH_electric_traps_category = {
 EH_research_sites_category = {
     EH_setup_research_site = {
         icon = GFX_decision_generic_research
-        days_remove = 50
+        days_remove = var:EH_research_sites_prep_time_var
 
         available = {
-            EH_any_controlled_state_1500_to_any_portal = yes
+            EH_any_controlled_state_5000_to_any_portal = yes
             custom_trigger_tooltip = {
                 tooltip = EH_research_sites_limit_TT
                 check_variable = { EH_research_sites_constructed_var < 10 }
@@ -243,8 +243,8 @@ EH_research_sites_category = {
         }
 
         remove_effect = {
-            add_to_variable = { EH_research_sites_protection_var = 25 }
-            custom_effect_tooltip = EH_research_sites_protection_upgrade_installed_TT
+            set_temp_variable = { EH_temp_protection_increase = 25 }
+            EH_research_sites_protection_increase = yes
         }
     }
 
@@ -266,9 +266,10 @@ EH_research_sites_category = {
         }
 
         remove_effect = {
-            add_to_variable = { EH_research_sites_protection_var = 15 }
-            add_to_variable = { EH_research_sites_scientist_protection_var = 10 }
-            custom_effect_tooltip = EH_research_sites_scientist_protection_upgrade_installed2_TT
+            set_temp_variable = { EH_temp_protection_increase = 15 }
+            EH_research_sites_protection_increase = yes
+            set_temp_variable = { EH_temp_research_sites_scientist_protection_increase = 10 }
+            EH_research_sites_scientist_protection_increase = yes
         }
     }
 
@@ -290,8 +291,8 @@ EH_research_sites_category = {
         }
 
         remove_effect = {
-            add_to_variable = { EH_research_sites_scientist_protection_var = 25 }
-            custom_effect_tooltip = EH_research_sites_scientist_protection_upgrade_installed_TT
+            set_temp_variable = { EH_temp_research_sites_scientist_protection_increase = 25 }
+            EH_research_sites_scientist_protection_increase = yes
         }
     }
 
