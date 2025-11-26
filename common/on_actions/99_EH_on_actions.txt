@@ -152,13 +152,23 @@ on_actions = {
         effect = {
             if = {
                 limit = {
-                    has_game_rule = {
-                        rule = rule_event_horizon_scenario
-                        option = yes
+                    OR = {
+                        has_game_rule = {
+                            rule = rule_event_horizon_scenario
+                            option = BLITZ
+                        }
+                        has_game_rule = {
+                            rule = rule_event_horizon_scenario
+                            option = CASUAL
+                        }
+                        has_game_rule = {
+                            rule = rule_event_horizon_scenario
+                            option = DELAYED
+                        }
                     }
                 }
                 POL = { # It must be some specific country to trigger the event
-                    news_event = { id = project_threshold.1 days = 1 }
+                    news_event = project_threshold.1
                 }
             }
         }
