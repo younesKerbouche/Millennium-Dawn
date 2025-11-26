@@ -1044,7 +1044,7 @@ scripted_gui = {
 		triggers = {
 			foreign_available_companies_select_click_enabled = {
 				AND = {
-					check_variable = { CAC_foreign_companies_limit > CAC_foreign_companies^num }
+					check_variable = { ROOT.CAC_foreign_companies_limit > ROOT.CAC_foreign_companies^num }
 					check_variable = {
 						var = v
 						value = selected_foreign_company
@@ -1054,13 +1054,13 @@ scripted_gui = {
 			}
 			companies_dismiss_button_click_enabled = {
 				any_of = {
-					array = CAC_foreign_companies
+					array = ROOT.CAC_foreign_companies
 					index = index
 					value = company_id
 					
 					AND = {
 						check_variable = { company_id = v }
-						check_variable = { CAC_foreign_companies_countries^index = PREV }
+						check_variable = { ROOT.CAC_foreign_companies_countries^index = THIS }
 					}
 				}
 			}
@@ -1072,7 +1072,7 @@ scripted_gui = {
 			}
 			companies_dismiss_button_click = {
 				for_each_loop = {
-					array = CAC_foreign_companies
+					array = ROOT.CAC_foreign_companies
 					index = index
 					value = company_id
 					break = break
@@ -1081,20 +1081,23 @@ scripted_gui = {
 						limit = {
 							AND = {
 								check_variable = { company_id = v }
-								check_variable = { CAC_foreign_companies_countries^index = PREV }
+								check_variable = { ROOT.CAC_foreign_companies_countries^index = THIS }
 							}
 						}
 
 						remove_from_array = {
-							array = CAC_foreign_companies
+							array = ROOT.CAC_foreign_companies
 							index = index
 						}
 						remove_from_array = {
-							array = CAC_foreign_companies_countries
+							array = ROOT.CAC_foreign_companies_countries
 							index = index
 						}
 
-						PREV = {
+						set_temp_variable = { cac_type = THIS.CAC_companies_type^i }
+						ROOT = { CAC_remove_bonuses_from_foreign_company_effect = yes }
+
+						THIS = {
 							set_variable = { CAC_companies_income_modifier^i = -0.1 }
 
 							set_temp_variable = { cac_slot = v }
@@ -1119,7 +1122,7 @@ scripted_gui = {
 
 		dynamic_lists = {
 			foreign_available_companies_grid = {
-                array = CAC_companies
+                array = ROOT.CAC_companies
                 entry_container = "foreign_available_companies_grid_list_item"
             }
 		}

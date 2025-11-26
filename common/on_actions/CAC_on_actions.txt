@@ -92,41 +92,8 @@ on_actions = {
 					CAC_add_company = yes
 				}
 
-				# ADD DYNAMIC MODIFIERS #
-				set_variable = { CAC_modifier_political_power = 0 }
-				set_variable = { CAC_modifier_opinion_gain = 0 }
-				set_variable = { CAC_modifier_consumer_goods = 0 }
-				set_variable = { CAC_modifier_total_workforce = 0 }
-				set_variable = { CAC_modifier_office_park_income_tax = 0 }
-				set_variable = { CAC_modifier_interest_rate_multiplier = 0 }
-				set_variable = { CAC_modifier_health_cost = 0 }
-				set_variable = { CAC_modifier_investment_cost = 0 }
-				set_variable = { CAC_modifier_productivity_growth = 0 }
-				set_variable = { CAC_modifier_energy_gain = 0 }
-				set_variable = { CAC_modifier_renewable_energy_gain = 0 }
-				set_variable = { CAC_modifier_fossil_pp_energy_generation = 0 }
-				set_variable = { CAC_modifier_nuclear_energy_generation = 0 }
-				set_variable = { CAC_modifier_energy_use = 0 }
-				set_variable = { CAC_modifier_pop_energy_use = 0 }
-				set_variable = { CAC_modifier_production_factory_efficiency_gain = 0 }
-				set_variable = { CAC_modifier_production_factory_max_efficiency = 0 }
-				set_variable = { CAC_modifier_production_lack_of_resource_penalty = 0 }
-				set_variable = { CAC_modifier_industrial_capacity_factory = 0 }
-				set_variable = { CAC_modifier_industrial_capacity_dockyard = 0 }
-				set_variable = { CAC_modifier_production_speed_buildings = 0 }
-				set_variable = { CAC_modifier_production_speed_industrial_complex = 0 }
-				set_variable = { CAC_modifier_trade_opinion = 0 }
-				set_variable = { CAC_modifier_min_export = 0 }
-				set_variable = { CAC_modifier_country_resource_oil = 0 }
-				set_variable = { CAC_modifier_country_resource_aluminium = 0 }
-				set_variable = { CAC_modifier_country_resource_rubber = 0 }
-				set_variable = { CAC_modifier_country_resource_tungsten = 0 }
-				set_variable = { CAC_modifier_country_resource_steel = 0 }
-				set_variable = { CAC_modifier_country_resource_chromium = 0 }
-				set_variable = { CAC_modifier_fuel_gain = 0 }
-				set_variable = { CAC_modifier_research_speed = 0 }
-
 				add_dynamic_modifier = { modifier = CAC_companies_dynamic_modifiers }
+				add_dynamic_modifier = { modifier = CAC_foreign_companies_dynamic_modifiers }
 
 				CAC_update_variables = yes
 			}
@@ -139,14 +106,7 @@ on_actions = {
 	}
 	on_monthly = {
 		effect = {
-			#clear_array = global.CAC_global_companies
-			#clear_array = global.CAC_global_companies_countries
-			#clear_array = global.CAC_global_companies_value
-			#clear_array = global.CAC_global_companies_revenue
-			#clear_array = global.CAC_global_companies_factories
-			#clear_array = global.CAC_global_companies_size
-
-			#CAC_save_history = yes
+			CAC_change_influence = yes
 		}
 	}
 }

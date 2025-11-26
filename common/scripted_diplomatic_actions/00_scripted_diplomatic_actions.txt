@@ -1576,16 +1576,19 @@ scripted_diplomatic_actions = {
 
 		complete_effect = {
 			add_to_array = {
-				array = CAC_foreign_companies
+				array = ROOT.CAC_foreign_companies
 				value = selected_foreign_company
 			}
 			add_to_array = {
-				array = CAC_foreign_companies_countries
+				array = ROOT.CAC_foreign_companies_countries
 				value = PREV.id
 			}
 
-			PREV = {
-				set_variable = { CAC_companies_income_modifier^ROOT.selected_foreign_company = 0.1 }
+			set_temp_variable = { cac_type = THIS.CAC_companies_type^selected_foreign_company }
+			ROOT = { CAC_add_bonuses_from_foreign_company_effect = yes }
+
+			THIS = {
+				add_to_variable = { CAC_companies_income_modifier^ROOT.selected_foreign_company = 0.1 }
 
 				set_temp_variable = { cac_slot = ROOT.selected_foreign_company }
 				set_temp_variable = { cac_additional_income_change = 0.1 }
