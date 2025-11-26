@@ -26,8 +26,8 @@ scripted_gui = {
 				set_temp_variable = { cac_slot = opened_company_details }
 				
 				AND = {
-					cac_needed_money_for_upgrade = yes
 					check_variable = { CAC_companies_upgrades_2d^index = 2 }
+					cac_needed_money_for_upgrade = yes
 				}
 			}
 			company_type_0_upgrade_1_btn_click_enabled = {
@@ -43,6 +43,8 @@ scripted_gui = {
 				AND = {
 					cac_needed_money_for_upgrade = yes
 					check_variable = { CAC_companies_upgrades_2d^index = 2 }
+					has_tech = computing3
+					has_tech = internet3
 				}
 			}
 			company_type_0_upgrade_2_btn_click_enabled = {
@@ -355,6 +357,11 @@ scripted_gui = {
 				set_temp_variable = { cac_base_money_change = -5 }
 				CAC_complete_upgrade_effect = yes
 
+				
+				set_temp_variable = { cac_slot = CAC_companies^opened_company_details }
+				set_temp_variable = { cac_modifier_political_power_change = 0.05 }
+				CAC_modify_modifier_political_power_effect = yes
+
 				set_temp_variable = { cac_factories_change = 1 }
 				set_temp_variable = { cac_slot = CAC_companies^opened_company_details }
 				CAC_modify_factories_effect = yes
@@ -388,9 +395,12 @@ scripted_gui = {
 					set_temp_variable = { cac_slot = CAC_companies^opened_company_details }
 					set_temp_variable = { cac_base_money_change = -5 }
 					CAC_complete_upgrade_effect = yes
+					
+					set_temp_variable = { cac_modifier_return_on_investment_change = 0.05 }
+					CAC_modify_modifier_return_on_investment_effect = yes
 
-					set_temp_variable = { cac_modifier_interest_rate_multiplier_change = -1 }
-					CAC_modify_modifier_interest_rate_multiplier_effect = yes
+					set_temp_variable = { cac_modifier_investment_cost_change = -0.1 }
+					CAC_modify_modifier_investment_cost_effect = yes
 
 					random_owned_state = {
 						add_building_construction = {
