@@ -147,4 +147,21 @@ on_actions = {
             }
         }
     }
+
+    on_startup = {
+        effect = {
+            if = {
+                limit = {
+                    has_game_rule = {
+                        rule = rule_event_horizon_scenario
+                        option = yes
+                    }
+                }
+                every_country = {
+                    limit = { is_ai = no }
+                    news_event = { id = project_threshold.1 days = 1 }
+                }
+            }
+        }
+    }
 }
