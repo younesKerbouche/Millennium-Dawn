@@ -68,6 +68,25 @@ on_actions = {
                     }
                 }
             }
+
+            if = {
+                limit = {
+                    has_idea = EH_scientist_andrzej_trautman_idea
+                }
+                ROOT = {
+                    random = {
+                        chance = 5
+                        if = {
+                            limit = {
+                                is_special_project_being_researched = sp:sp_monitor_portal_energy_emissions_project
+                            }
+                            sp:sp_monitor_portal_energy_emissions_project = {
+                                add_project_progress_ratio = 0.03
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
