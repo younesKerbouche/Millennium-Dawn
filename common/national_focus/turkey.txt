@@ -27,9 +27,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TUR_through_troubles"
-			country_event = {
-				id = TurkeyFocusEvents.69420
-			}
+			country_event = TurkeyFocusEvents.69420
 			add_political_power = 100
 		}
 	}
@@ -1459,7 +1457,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TUR_electronic_research"
 			add_tech_bonus = {
-				name = PER_women_work
+				name = TUR_electronic_research
 				bonus = 0.5
 				uses = 2
 				category = CAT_computing_tech
@@ -1483,7 +1481,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TUR_energy_research"
 			add_tech_bonus = {
-				name = TUR_nuclear_reactors
+				name = TUR_energy_research
 				bonus = 0.5
 				uses = 2
 				category = CAT_nuclear_reactors
@@ -2146,7 +2144,7 @@ focus_tree = {
 				add_idea = TUR_tubitak_idea3
 			}
 			add_tech_bonus = {
-				name = construction_tech
+				name = TUR_standardize_construction_regulations
 				bonus = 0.25
 				uses = 1
 				category = CAT_construction_tech
@@ -2820,7 +2818,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TUR_mediteranean_fleet"
 			add_doctrine_cost_reduction = {
-				name = naval_doctrine_bonus_TT
+				name = TUR_mediteranean_fleet
 				cost_reduction = 0.5
 				uses = 1
 				category = CAT_naval_doctrine
@@ -2870,10 +2868,10 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus TUR_new_cruisers"
 			navy_experience = 15
 			add_tech_bonus = {
-				name = CAT_m_cruiser
+				name = CAT_cruiser
 				bonus = 0.3
 				uses = 2
-				category = CAT_m_cruiser
+				category = CAT_cruiser
 			}
 			add_tech_bonus = {
 				name = ITA_cruise_missiles
@@ -2927,15 +2925,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -12.00 }
 			modify_treasury_effect = yes
 			custom_effect_tooltip = TUR_purchase_anadolu
-			hidden_effect = {
-				if = {
-					limit = { has_dlc = "Man the Guns" }
-					load_oob = "TUR_purchase_ships_mtg"
-				}
-				else = {
-					load_oob = "TUR_purchase_ships"
-				}
-			}
+			load_oob = "TUR_purchase_ships_mtg"
 		}
 	}
 	focus = {
@@ -3082,7 +3072,7 @@ focus_tree = {
 				name = CHI_Naval_Capability_Enhancements
 				bonus = 0.5
 				uses = 3
-				category = CAT_naval_eqp
+				category = CAT_naval_all
 			}
 		}
 	}
@@ -9962,6 +9952,7 @@ focus_tree = {
 		relative_position_id = TUR_islamist_victory
 
 		available = {
+			is_subject = no
 			emerging_reactionaries_are_in_power = yes
 			NOT = {
 				has_idea = NATO_member
@@ -9977,7 +9968,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus TUR_islamic_nato"
 			custom_effect_tooltip = TUR_more_relation_better
 			add_ideas = faction_mto_alliance
-			create_faction = mto_alliance
+			create_faction_from_template = faction_template_mto_alliance
 			EGY = {
 				country_event = {
 					id = TurkeyFocusEvents.42
@@ -12700,7 +12691,7 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = TUR_fight_army_incompetance
+		id = TUR_fight_army_incompetence
 		icon = give_guns_turk
 		cost = 5.72
 		prerequisite = {
@@ -12722,7 +12713,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_fight_army_incompetance"
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_fight_army_incompetence"
 			add_ideas = TUR_major_military_reform
 		}
 	}

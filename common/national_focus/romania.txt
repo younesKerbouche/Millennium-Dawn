@@ -15,6 +15,27 @@ focus_tree = {
 	shared_focus = USoE001
 	shared_focus = POTEF001
 
+	shortcut = {
+		name = "The Romanian Political Scene"
+		target = ROM_political_scene
+		scroll_wheel_factor = 0.9
+	}
+	shortcut = {
+		name = "The Romanian Economy"
+		target = ROM_economy
+		scroll_wheel_factor = 0.9
+	}
+	shortcut = {
+		name = "The Romanian Armed Forces"
+		target = ROM_armed_forces
+		scroll_wheel_factor = 0.9
+	}
+	shortcut = {
+		name = "The Monarchy Debate"
+		target = ROM_michael_returns
+		scroll_wheel_factor = 0.9
+	}
+
 	focus = {
 		id = ROM_political_scene
 		icon = romania_republic
@@ -4389,6 +4410,10 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 40
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
 		}
 	}
 	focus = {
@@ -5924,7 +5949,11 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			base = 150
+			base = 40
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
 		}
 	}
 	focus = {
@@ -7984,6 +8013,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_deals_with_intel"
 			add_tech_bonus = {
+				name = ROM_deals_with_intel
 				bonus = 0.5
 				uses = 1
 				category = CAT_computing_tech
@@ -8011,6 +8041,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_deals_with_microsoft"
 			add_tech_bonus = {
+				name = ROM_deals_with_microsoft
 				bonus = 0.5
 				uses = 1
 				category = CAT_internet_tech
@@ -9191,6 +9222,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_modernize_bucharest_factories"
 			one_random_industrial_complex = yes
 			add_tech_bonus = {
+				name = ROM_modernize_bucharest_factories
 				bonus = 0.5
 				uses = 2
 				category = CAT_industry
@@ -9373,6 +9405,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_focus_on_technological_improvements"
 			add_tech_bonus = {
+				name = ROM_focus_on_technological_improvements
 				bonus = 0.5
 				uses = 2
 				category = Cat_GENES
@@ -9681,7 +9714,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_army"
 			add_to_variable = { rom_army_exp = 0.10 }
-			add_to_variable = { rom_army_morale_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
 			custom_effect_tooltip = army_xp10_tooltip
 			custom_effect_tooltip = army_org_recovery5_tooltip
 		}
@@ -9706,7 +9739,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_continue_with_the_old"
-			add_to_variable = { rom_army_morale_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
 			add_to_variable = { rom_training_time = -0.10 }
 			add_to_variable = { rom_conscription = 0.05 }
 			custom_effect_tooltip = rom_training_time_minus_10
@@ -9735,7 +9768,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_expand_conscription"
 			increase_conscription_effect = yes
 			add_to_variable = { rom_conscription = 0.10 }
-			add_to_variable = { rom_army_morale_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
 			add_to_variable = { rom_personnel_cost = 0.25 }
 			custom_effect_tooltip = monthly_pop10_tooltip
 			custom_effect_tooltip = army_org_recovery5_tooltip
@@ -9789,7 +9822,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_legacy_of_the_patriotic_guards"
 			add_to_variable = { rom_army_exp = 0.05 }
 			add_to_variable = { rom_breakthrough_base = 0.05 }
-			add_to_variable = { rom_army_org_base = 0.05 }
+			add_to_variable = { rom_army_org_factor = 0.05 }
 			custom_effect_tooltip = army_xp5_tooltip
 			custom_effect_tooltip = rom_breakthrough_factor_5
 			custom_effect_tooltip = rom_army_org_5
@@ -9815,7 +9848,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_unit_autonomy"
 			add_to_variable = { rom_army_exp = 0.10 }
-			add_to_variable = { rom_army_morale_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
 			add_to_variable = { rom_land_reinforce = 0.05 }
 			custom_effect_tooltip = army_xp10_tooltip
 			custom_effect_tooltip = army_org_recovery5_tooltip
@@ -9841,7 +9874,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_military_training_for_the_youth"
-			add_to_variable = { rom_army_org_base = 0.10 }
+			add_to_variable = { rom_army_org_factor = 0.10 }
 			add_to_variable = { rom_training_time = -0.05 }
 			custom_effect_tooltip = rom_training_time_minus_5
 			custom_effect_tooltip = rom_army_org_10
@@ -9866,7 +9899,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_scorched_earth"
-			add_to_variable = { rom_army_morale_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
 			add_to_variable = { rom_core_defence = 0.15 }
 			custom_effect_tooltip = army_org_recovery5_tooltip
 			custom_effect_tooltip = rom_core_defence_15
@@ -9892,7 +9925,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_peoples_war"
-			add_to_variable = { rom_army_morale_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
 			add_to_variable = { rom_breakthrough_base = 0.10 }
 			add_to_variable = { rom_core_defence = 0.10 }
 			custom_effect_tooltip = rom_core_defence_10
@@ -9943,8 +9976,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_western_modernization"
 			add_to_variable = { rom_army_exp = 0.05 }
-			add_to_variable = { rom_army_morale_base = 0.05 }
-			add_to_variable = { rom_army_org_base = 0.05 }
+			add_to_variable = { rom_army_morale_factor = 0.05 }
+			add_to_variable = { rom_army_org_factor = 0.05 }
 			custom_effect_tooltip = army_org_recovery5_tooltip
 			custom_effect_tooltip = rom_army_org_5
 			custom_effect_tooltip = army_xp5_tooltip
@@ -10075,7 +10108,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_unified_command"
 			add_to_variable = { rom_army_exp = 0.10 }
 			add_to_variable = { rom_planning_speed = 0.15 }
-			add_to_variable = { rom_army_org_base = 0.05 }
+			add_to_variable = { rom_army_org_factor = 0.05 }
 			custom_Effect_tooltip = planning_speed_15
 			custom_effect_tooltip = army_xp10_tooltip
 			custom_effect_tooltip = rom_army_org_5
@@ -10101,6 +10134,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_burebista_military_school"
 			add_tech_bonus = {
+				name = ROM_burebista_military_school
 				bonus = 0.5
 				uses = 2
 				category = CAT_land_doctrine
@@ -10129,7 +10163,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_a_new_modern_army"
 			add_to_variable = { rom_army_exp = 0.10 }
 			add_to_variable = { rom_personnel_cost = -0.25 }
-			add_to_variable = { rom_army_org_base = 0.05 }
+			add_to_variable = { rom_army_org_factor = 0.05 }
 			custom_effect_tooltip = army_xp10_tooltip
 			custom_effect_tooltip = army_cost_minus_25
 			custom_effect_tooltip = rom_army_org_5
@@ -10154,9 +10188,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_quality_over_quantity"
-			add_to_variable = { rom_army_morale_base = 0.10 }
+			add_to_variable = { rom_army_morale_factor = 0.10 }
 			add_to_variable = { rom_training_time = 0.15 }
-			add_to_variable = { rom_army_org_base = 0.10 }
+			add_to_variable = { rom_army_org_factor = 0.10 }
 			custom_effect_tooltip = army_org_recovery10_tooltip
 			custom_effect_tooltip = rom_army_org_10
 			custom_effect_tooltip = rom_training_time_15
@@ -10183,7 +10217,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_root_out_military_corruption"
 			decrease_corruption = yes
 			add_to_variable = { rom_personnel_cost = -0.15 }
-			add_to_variable = { rom_army_org_base = 0.05 }
+			add_to_variable = { rom_army_org_factor = 0.05 }
 			custom_effect_tooltip = rom_army_org_5
 			custom_effect_tooltip = army_cost_minus_15
 		}
@@ -10207,7 +10241,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_war_games"
-			add_to_variable = { rom_army_org_base = 0.05 }
+			add_to_variable = { rom_army_org_factor = 0.05 }
 			add_to_variable = { rom_core_defence = 0.05 }
 			custom_effect_tooltip = rom_army_org_5
 			custom_effect_tooltip = rom_core_defence_5
@@ -10436,6 +10470,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_develop_the_doctrine"
 			add_tech_bonus = {
+				name = ROM_develop_the_doctrine
 				bonus = 0.5
 				uses = 2
 				category = CAT_air_doctrine
@@ -10697,6 +10732,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_new_dolphin"
 			add_tech_bonus = {
+				name = ROM_new_dolphin
 				bonus = 0.5
 				uses = 2
 				category = Cat_SUB
@@ -10723,6 +10759,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ROM_invest_in_the_naval_academy"
 			add_tech_bonus = {
+				name = ROM_invest_in_the_naval_academy
 				bonus = 0.5
 				uses = 2
 				category = CAT_naval_doctrine

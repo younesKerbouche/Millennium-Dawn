@@ -7549,7 +7549,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = UKR_polish_liberation_batallions
+		id = UKR_polish_liberation_battalions
 		icon = ukr_separatist_battalion_poland
 		x = 0
 		y = 6
@@ -7573,7 +7573,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus UKR_polish_liberation_batallions"
+			log = "[GetDateText]: [Root.GetName]: Focus UKR_polish_liberation_battalions"
 			custom_effect_tooltip = UKR_polish_army_created_tt
 			set_country_flag = HUR_krakov
 			set_country_flag = HUR_pomerania
@@ -10265,6 +10265,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_STABILITY }
 
 		available = {
+			is_subject = no
 			nationalist_fascist_are_in_power = yes
 		}
 
@@ -10276,8 +10277,11 @@ focus_tree = {
 			}
 			set_temp_variable = { temp_opinion = 3 }
 			change_the_military_opinion = yes
-			add_ideas = faction_baltic_black_sea_union_member
-			create_faction = UKR_baltic_black_sea_union_faction
+			if = {
+				limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+			create_faction_from_template = faction_template_baltic_sea_union
 			for_each_scope_loop = {
 				array = global.baltic_black_sea_union_member
 				if = {
@@ -10288,7 +10292,6 @@ focus_tree = {
 					}
 				}
 			}
-			custom_effect_tooltip = UKR_baltic_black_sea_dialogue_focus_TT
 		}
 
 		ai_will_do = {
@@ -13428,7 +13431,11 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus UKR_opfl_take_republic"
 			if = {
 				limit = {
-					is_subject = no
+					DPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = DPR
 				}
 				create_wargoal = {
@@ -13438,7 +13445,25 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					DPR = {
+						is_subject_of = UKR
+					}
+					country_exists = DPR
+				}
+				annex_country = { target = DPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = DPR.treasury }
+					add_to_variable = { debt = DPR.debt }
+					add_to_variable = { int_investments = DPR.int_investments }
+				}
+			}
+			if = {
+				limit = {
+					LPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = LPR
 				}
 				create_wargoal = {
@@ -13448,7 +13473,25 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					LPR = {
+						is_subject_of = UKR
+					}
+					country_exists = LPR
+				}
+				annex_country = { target = LPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = LPR.treasury }
+					add_to_variable = { debt = LPR.debt }
+					add_to_variable = { int_investments = LPR.int_investments }
+				}
+			}
+			if = {
+				limit = {
+					HPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = HPR
 				}
 				create_wargoal = {
@@ -13458,12 +13501,44 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					HPR = {
+						is_subject_of = UKR
+					}
+					country_exists = HPR
+				}
+				annex_country = { target = HPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = HPR.treasury }
+					add_to_variable = { debt = HPR.debt }
+					add_to_variable = { int_investments = HPR.int_investments }
+				}
+			}
+			if = {
+				limit = {
+					OPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = OPR
 				}
 				create_wargoal = {
 					target = OPR
 					type = puppet_wargoal_focus
+				}
+			}
+			if = {
+				limit = {
+					OPR = {
+						is_subject_of = UKR
+					}
+					country_exists = OPR
+				}
+				annex_country = { target = OPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = OPR.treasury }
+					add_to_variable = { debt = OPR.debt }
+					add_to_variable = { int_investments = OPR.int_investments }
 				}
 			}
 			if = {
@@ -13501,6 +13576,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = UKR_opfl_economic_policy
+
 		cost = 5
 
 		prerequisite = { focus = UKR_opfl_economic_policy }
@@ -20558,9 +20634,8 @@ focus_tree = {
 			is_subject = yes
 			has_autonomy_state = autonomy_union_state
 			country_exists = SOV
-			custom_trigger_tooltip = {
-				tooltip = UKR_SOV_more_than_70_percent_influence_TT
-				SOV = { UKR_targeted_country_has_more_than_70_percent_influence = yes }
+			SOV = {
+				influence_higher_70 = yes
 			}
 		}
 

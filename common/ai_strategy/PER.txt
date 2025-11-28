@@ -294,7 +294,7 @@ PER_do_no_volunteer_in_iraq = {
 				IRQ = { has_war_with = ISI }
 			}
 		}
-		
+
 	}
 	abort_when_not_enabled = yes
 
@@ -511,6 +511,7 @@ PER_support_afghanistan_enduring_freedom = {
 	allowed = { original_tag = PER }
 	enable = {
 		country_exists = AFG
+		AFG = { NOT = { has_country_flag = AFG_new_war } }
 		has_country_flag = Operation_enduring_freedom
 		AFG = { has_war_with = TAL }
 	}
@@ -524,7 +525,6 @@ PER_support_afghanistan_enduring_freedom = {
 PER_stop_supporting_houthis_during_the_yemeni_war = {
 	allowed = { original_tag = PER }
 	enable = {
-		has_start_date > 2016.1.1
 		country_exists = HOU
 		NOT = { HOU = { has_war_with = YEM } }
 	}
@@ -585,4 +585,21 @@ PER_confederate_states_america_help = {
 	abort_when_not_enabled = yes
 	ai_strategy = { type = send_volunteers_desire id = "CSA" value = 1000 }
 	ai_strategy = { type = send_lend_lease_desire id = "CSA" value = 400 }
+}
+
+PER_CENTO_intervention_in_syria = {
+	enable = {
+		has_idea = faction_cento_alliance
+		has_relation_modifier = {
+			target = FSA
+			modifier = generic_increased_military_support
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = FSA
+		value = 200
+	}
 }
