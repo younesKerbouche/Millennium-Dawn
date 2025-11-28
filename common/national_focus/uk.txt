@@ -1,4 +1,4 @@
-﻿# Author(s): Jumaron & Angriest Bird
+# Author(s): Jumaron & Angriest Bird
 # Last Modified: Feb. 03 2022 by Angriest Bird
 focus_tree = {
 	id = united_kingdom_focus
@@ -12,7 +12,7 @@ focus_tree = {
 		}
 	}
 	# Continuous Focus Position
-	continuous_focus_position = { x = 400 y = 900 }
+	continuous_focus_position = { x = 400 y = 1000 }
 
 	focus = {
 		id = ENG_vitalize_westminster
@@ -90,8 +90,9 @@ focus_tree = {
 	focus = {
 		id = ENG_economic_stimulus
 		icon = pound_sterling
-		x = 2
+		x = -4
 		y = 1
+		relative_position_id = ENG_vitalize_westminster
 		cost = 5
 
 		prerequisite = { focus = ENG_vitalize_westminster }
@@ -103,7 +104,7 @@ focus_tree = {
 				name = ENG_economic_stimulus
 				bonus = 0.5
 				uses = 1
-				category = industry
+				category = CAT_industry
 			}
 			set_temp_variable = { arg_popularity = 0.02 }
 			add_ruling_outlook_popularity = yes
@@ -130,13 +131,16 @@ focus_tree = {
 			OR = {
 				has_full_control_of_state = 955
 				has_full_control_of_state = 16
+				has_full_control_of_state = 1192
 				has_full_control_of_state = 973
+				has_full_control_of_state = 1191
 				has_full_control_of_state = 12
 				has_full_control_of_state = 15
 				has_full_control_of_state = 13
 				has_full_control_of_state = 14
 				has_full_control_of_state = 11
 				has_full_control_of_state = 10
+				has_full_control_of_state = 1193
 			}
 		}
 
@@ -144,7 +148,9 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_english_industry"
 			random_owned_state = {
 				limit = {
-					region = 1
+					is_in_home_area = yes
+					NOT = { is_core_of = WAS }
+					NOT = { is_core_of = SCO }
 					free_building_slots = {
 						building = industrial_complex
 						size > 1
@@ -160,7 +166,9 @@ focus_tree = {
 			}
 			random_owned_state = {
 				limit = {
-					region = 1
+					is_in_home_area = yes
+					NOT = { is_core_of = WAS }
+					NOT = { is_core_of = SCO }
 					free_building_slots = {
 						building = industrial_complex
 						size > 1
@@ -195,6 +203,11 @@ focus_tree = {
 		bypass = {
 			NOT = { owns_state = 9 }
 			NOT = { owns_state = 437 }
+			NOT = { owns_state = 1194 }
+			NOT = { owns_state = 1195 }
+			NOT = { owns_state = 1196 }
+			NOT = { owns_state = 1197 }
+			NOT = { owns_state = 8 }
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -202,83 +215,42 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_scottish_industry"
-			if = {
+			random_owned_state = {
 				limit = {
-					9 = {
-						free_building_slots = {
-							building = industrial_complex
-							size > 1
-							include_locked = yes
-						}
+					is_core_of = SCO
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
 					}
 				}
-				9 = {
-					add_building_construction = {
-						type = industrial_complex
-						level = 2
-						instant_build = yes
-					}
-					add_extra_state_shared_building_slots = 2
+				prioritize = { 9 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 2
 			}
-			else = {
-				random_owned_state = {
-					limit = {
-						region = 3
-						free_building_slots = {
-							building = industrial_complex
-							size > 1
-							include_locked = yes
-						}
-					}
-					add_building_construction = {
-						type = industrial_complex
-						level = 2
-						instant_build = yes
-					}
-					add_extra_state_shared_building_slots = 2
-				}
-			}
-			if = {
+			random_owned_state = {
 				limit = {
-					437 = {
-						free_building_slots = {
-							building = industrial_complex
-							size > 1
-							include_locked = yes
-						}
+					is_core_of = SCO
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
 					}
 				}
-				437 = {
-					add_building_construction = {
-						type = industrial_complex
-						level = 1
-						instant_build = yes
-					}
-					add_extra_state_shared_building_slots = 1
+				prioritize = { 1195 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
 				}
-			}
-			else = {
-				random_owned_state = {
-					limit = {
-						region = 3
-						free_building_slots = {
-							building = industrial_complex
-							size > 0
-							include_locked = yes
-						}
-					}
-					add_building_construction = {
-						type = industrial_complex
-						level = 1
-						instant_build = yes
-					}
-					add_extra_state_shared_building_slots = 1
-				}
+				add_extra_state_shared_building_slots = 2
 			}
 			set_temp_variable = { treasury_change = -30.0 }
 			modify_treasury_effect = yes
-
 		}
 	}
 
@@ -298,11 +270,10 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_imperial_industry"
 			random_owned_state = {
 				limit = {
-					NOT = { region = 1 }
-					NOT = { region = 2 }
-					NOT = { region = 3 }
-					NOT = { region = 4 }
-					state_population > 3000
+					NOT = { has_state_category = state_military_base }
+					NOT = { has_state_category = state_inhospitable }
+					NOT = { is_in_home_area = yes }
+					NOT = { state = 17 }
 					free_building_slots = {
 						building = industrial_complex
 						size > 0
@@ -341,11 +312,10 @@ focus_tree = {
 			navy_experience = 15
 			random_owned_state = {
 				limit = {
+					is_coastal = yes
 					OR = {
-						region = 1
-						region = 2
-						region = 3
-						region = 4
+						is_in_home_area = yes
+						state = 17
 					}
 					free_building_slots = {
 						building = dockyard
@@ -362,11 +332,10 @@ focus_tree = {
 			}
 			random_owned_state = {
 				limit = {
+					is_coastal = yes
 					OR = {
-						region = 1
-						region = 2
-						region = 3
-						region = 4
+						is_in_home_area = yes
+						state = 17
 					}
 					free_building_slots = {
 						building = dockyard
@@ -411,49 +380,49 @@ focus_tree = {
 			if = {
 				limit = {
 					OR = {
-						owns_state = 14
+						owns_state = 1195
 						any_of_scopes = {
 							array = subjects
-							owns_state = 14
+							owns_state = 1195
 						}
 					}
 				}
 				add_resource = {	#Aberdeenshire
 					type = oil
 					amount = 5
-					state = 14
+					state = 1195
 				}
 			}
 			if = {
 				limit = {
 					OR = {
-						owns_state = 276
+						owns_state = 1194
 						any_of_scopes = {
 							array = subjects
-							owns_state = 276
+							owns_state = 1194
 						}
 					}
 				}
 				add_resource = { 	#Lothian
 					type = oil
 					amount = 7
-					state = 276
+					state = 1194
 				}
 			}
 			if = {
 				limit = {
 					OR = {
-						owns_state = 8
+						owns_state = 1193
 						any_of_scopes = {
 							array = subjects
-							owns_state = 8
+							owns_state = 1193
 						}
 					}
 				}
 				add_resource = {	#Northern England
 					type = oil
 					amount = 5
-					state = 8
+					state = 1193
 				}
 			}
 
@@ -469,8 +438,9 @@ focus_tree = {
 	focus = {
 		id = ENG_imperial_dockyards
 		icon = naval_dockyard
-		x = 5
-		y = 3
+		x = 1
+		y = 1
+		relative_position_id = ENG_imperial_industry
 		cost = 10
 
 		prerequisite = {
@@ -484,12 +454,10 @@ focus_tree = {
 			navy_experience = 5
 			random_owned_state = {
 				limit = {
-					NOT = {
-						region = 1
-						region = 2
-						region = 3
-						region = 4
-					}
+					NOT = { has_state_category = state_military_base }
+					NOT = { has_state_category = state_inhospitable }
+					NOT = { is_in_home_area = yes }
+					NOT = { state = 17 }
 					free_building_slots = {
 						building = dockyard
 						size > 0
@@ -519,8 +487,9 @@ focus_tree = {
 	focus = {
 		id = ENG_dockyards_2
 		icon = naval_dockyard
-		x = 1
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_dockyards_1
 		cost = 10
 
 		prerequisite = {
@@ -534,11 +503,10 @@ focus_tree = {
 			navy_experience = 10
 			random_owned_state = {
 				limit = {
+					is_coastal = yes
 					OR = {
-						region = 1
-						region = 2
-						region = 3
-						region = 4
+						is_in_home_area = yes
+						state = 17
 					}
 					free_building_slots = {
 						building = dockyard
@@ -555,11 +523,10 @@ focus_tree = {
 			}
 			random_owned_state = {
 				limit = {
+					is_coastal = yes
 					OR = {
-						region = 1
-						region = 2
-						region = 3
-						region = 4
+						is_in_home_area = yes
+						state = 17
 					}
 					free_building_slots = {
 						building = dockyard
@@ -590,8 +557,9 @@ focus_tree = {
 	focus = {
 		id = ENG_fortify_the_empire
 		icon = coastal_fort
-		x = 5
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_imperial_dockyards
 		cost = 10
 
 		prerequisite = { focus = ENG_imperial_dockyards }
@@ -640,6 +608,8 @@ focus_tree = {
 					}
 				}
 			}
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -652,7 +622,8 @@ focus_tree = {
 		id = ENG_english_factories
 		icon = factory_complex
 		x = 0
-		y = 5
+		y = 3
+		relative_position_id = ENG_english_industry
 		cost = 10
 
 		prerequisite = {
@@ -665,7 +636,9 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_english_factories"
 			random_owned_state = {
 				limit = {
-					region = 1
+					is_in_home_area = yes
+					NOT = { is_core_of = WAS }
+					NOT = { is_core_of = SCO }
 					free_building_slots = {
 						building = arms_factory
 						size > 1
@@ -681,7 +654,9 @@ focus_tree = {
 			}
 			random_owned_state = {
 				limit = {
-					region = 1
+					is_in_home_area = yes
+					NOT = { is_core_of = WAS }
+					NOT = { is_core_of = SCO }
 					free_building_slots = {
 						building = arms_factory
 						size > 1
@@ -709,8 +684,9 @@ focus_tree = {
 	focus = {
 		id = ENG_scottish_factories
 		icon = industry_military
-		x = 2
-		y = 5
+		x = 0
+		y = 3
+		relative_position_id = ENG_scottish_industry
 		cost = 10
 
 		prerequisite = {
@@ -726,45 +702,40 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_scottish_factories"
-			if = {
+			random_owned_state = {
 				limit = {
-					9 = {
-						free_building_slots = {
-							building = arms_factory
-							size > 0
-							include_locked = yes
-						}
+					is_core_of = SCO
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
 					}
 				}
-				9 = {
-					add_building_construction = {
-						type = arms_factory
-						level = 2
-						instant_build = yes
-					}
-					add_extra_state_shared_building_slots = 2
+				prioritize = { 9 }
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 2
 			}
-			if = {
+			random_owned_state = {
 				limit = {
-					437 = {
-						free_building_slots = {
-							building = arms_factory
-							size > 0
-							include_locked = yes
-						}
+					is_core_of = SCO
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
 					}
 				}
-				437 = {
-					add_building_construction = {
-						type = arms_factory
-						level = 1
-						instant_build = yes
-					}
-					add_extra_state_shared_building_slots = 1
+				prioritize = { 1195 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 1
 			}
-
 			set_temp_variable = { treasury_change = -22.5 }
 			modify_treasury_effect = yes
 			set_temp_variable = { temp_opinion = 5 }
@@ -801,12 +772,12 @@ focus_tree = {
 		}
 	}
 
-
 	focus = {
 		id = ENG_political_reform
 		icon = big_ben_gay
-		x = 10
+		x = 4
 		y = 1
+		relative_position_id = ENG_vitalize_westminster
 		cost = 10
 
 		prerequisite = {
@@ -828,8 +799,9 @@ focus_tree = {
 	focus = {
 		id = ENG_democratic_tradition
 		icon = Election_graphics
-		x = 22
+		x = -5
 		y = 1
+		relative_position_id = ENG_the_future_of_britain
 		cost = 10
 
 		prerequisite = {
@@ -861,8 +833,9 @@ focus_tree = {
 	focus = {
 		id = ENG_a_new_path
 		icon = anti_democracy
-		x = 32
+		x = 5
 		y = 1
+		relative_position_id = ENG_the_future_of_britain
 		cost = 10
 
 		prerequisite = {
@@ -899,8 +872,9 @@ focus_tree = {
 	focus = {
 		id = ENG_focus_on_the_army
 		icon = infantry_commonwealth
-		x = 44
+		x = -2
 		y = 1
+		relative_position_id = ENG_british_armed_forces
 		cost = 10
 
 		prerequisite = {
@@ -920,8 +894,9 @@ focus_tree = {
 	focus = {
 		id = ENG_focus_on_the_navy
 		icon = ship_bleur_point
-		x = 48
+		x = 2
 		y = 1
+		relative_position_id = ENG_british_armed_forces
 		cost = 10
 
 		prerequisite = {
@@ -930,7 +905,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_focus_on_the_navy"
-			navy_experience = 20
+			navy_experience = 50
 		}
 
 		ai_will_do = {
@@ -941,8 +916,9 @@ focus_tree = {
 	focus = {
 		id = ENG_expand_the_home_ministry
 		icon = housing_secured
-		x = 8
-		y = 2
+		x = -2
+		y = 1
+		relative_position_id = ENG_political_reform
 		cost = 10
 
 		prerequisite = {
@@ -964,8 +940,9 @@ focus_tree = {
 	focus = {
 		id = ENG_expand_the_foreign_ministry
 		icon = Generic_Big_Ben02
-		x = 13
-		y = 2
+		x = 3
+		y = 1
+		relative_position_id = ENG_political_reform
 		cost = 10
 
 		prerequisite = {
@@ -987,8 +964,9 @@ focus_tree = {
 	focus = {
 		id = ENG_the_future_of_the_NHS
 		icon = generic_healthcare
-		x = 15
-		y = 2
+		x = 5
+		y = 1
+		relative_position_id = ENG_political_reform
 		cost = 10
 
 		prerequisite = {
@@ -1009,9 +987,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_europe_is_the_future
-		icon = eu_investments
-		x = 18
-		y = 2
+		icon = EU_constitution
+		x = -4
+		y = 1
+		relative_position_id = ENG_democratic_tradition
 		cost = 10
 
 		prerequisite = {
@@ -1061,9 +1040,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_careful_cooperation
-		icon = calm_down_england
-		x = 22
-		y = 2
+		icon = britain_eu
+		x = 0
+		y = 1
+		relative_position_id = ENG_democratic_tradition
 		cost = 10
 
 		prerequisite = {
@@ -1102,8 +1082,9 @@ focus_tree = {
 	focus = {
 		id = ENG_distance_from_europe
 		icon = PB_ENG_Haig_Initial
-		x = 26
-		y = 2
+		x = 4
+		y = 1
+		relative_position_id = ENG_democratic_tradition
 		cost = 10
 
 		prerequisite = {
@@ -1145,8 +1126,9 @@ focus_tree = {
 	focus = {
 		id = ENG_towards_the_left
 		icon = generic_communism_focus
-		x = 29
-		y = 2
+		x = -3
+		y = 1
+		relative_position_id = ENG_a_new_path
 		cost = 10
 
 		prerequisite = {
@@ -1162,15 +1144,11 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_towards_the_left"
 			news_event = britain_news.59
-			add_popularity = {
-				ideology = democratic
-				popularity = -0.03
-			}
-			add_popularity = {
-				ideology = communism
-				popularity = 0.15
-			}
+			add_popularity = { ideology = democratic popularity = -0.03 }
+			add_popularity = { ideology = communism popularity = 0.15 }
 			recalculate_party = yes
+
+			remove_ideas = western_country
 			if = {
 				limit = { has_idea = NATO_member }
 				NATO_leave = yes
@@ -1185,8 +1163,9 @@ focus_tree = {
 	focus = {
 		id = ENG_towards_the_right
 		icon = fascism
-		x = 35
-		y = 2
+		x = 3
+		y = 1
+		relative_position_id = ENG_a_new_path
 		cost = 10
 
 		prerequisite = {
@@ -1226,8 +1205,9 @@ focus_tree = {
 	focus = {
 		id = ENG_industry_in_manchester
 		icon = industry_military
-		x = 40
-		y = 2
+		x = -4
+		y = 1
+		relative_position_id = ENG_focus_on_the_army
 		cost = 10
 
 		prerequisite = {
@@ -1268,8 +1248,9 @@ focus_tree = {
 	focus = {
 		id = ENG_army_training
 		icon = PB_ENG_Haig_Son
-		x = 42
-		y = 2
+		x = -2
+		y = 1
+		relative_position_id = ENG_focus_on_the_army
 		cost = 10
 
 		prerequisite = {
@@ -1289,8 +1270,9 @@ focus_tree = {
 	focus = {
 		id = ENG_expand_the_air_force
 		icon = air_force
-		x = 46
-		y = 2
+		x = 2
+		y = 1
+		relative_position_id = ENG_focus_on_the_army
 		cost = 10
 
 		prerequisite = {
@@ -1311,8 +1293,9 @@ focus_tree = {
 	focus = {
 		id = ENG_naval_prototypes
 		icon = navy
-		x = 50
-		y = 2
+		x = 2
+		y = 1
+		relative_position_id = ENG_focus_on_the_navy
 		cost = 10
 
 		prerequisite = {
@@ -1321,7 +1304,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_naval_prototypes"
-			navy_experience = 15
+			navy_experience = 20
 		}
 
 		ai_will_do = {
@@ -1332,8 +1315,9 @@ focus_tree = {
 	focus = {
 		id = ENG_industry_in_liverpool
 		icon = naval_dockyard
-		x = 52
-		y = 2
+		x = 4
+		y = 1
+		relative_position_id = ENG_focus_on_the_navy
 		cost = 10
 
 		prerequisite = {
@@ -1374,8 +1358,9 @@ focus_tree = {
 	focus = {
 		id = ENG_freedom_first
 		icon = split_britian_map
-		x = 7
-		y = 3
+		x = -1
+		y = 1
+		relative_position_id = ENG_expand_the_home_ministry
 		cost = 10
 
 		prerequisite = {
@@ -1410,8 +1395,9 @@ focus_tree = {
 	focus = {
 		id = ENG_security_first
 		icon = neutrality
-		x = 9
-		y = 3
+		x = 1
+		y = 1
+		relative_position_id = ENG_expand_the_home_ministry
 		cost = 10
 
 		prerequisite = {
@@ -1442,8 +1428,9 @@ focus_tree = {
 	focus = {
 		id = ENG_go_with_europe
 		icon = align_to_europe
-		x = 11
-		y = 3
+		x = -2
+		y = 1
+		relative_position_id = ENG_expand_the_foreign_ministry
 		cost = 10
 
 		prerequisite = {
@@ -1494,8 +1481,9 @@ focus_tree = {
 	focus = {
 		id = ENG_go_with_the_commonwealth
 		icon = Rule_Britannia
-		x = 13
-		y = 3
+		x = 0
+		y = 1
+		relative_position_id = ENG_expand_the_foreign_ministry
 		cost = 10
 
 		prerequisite = {
@@ -1536,8 +1524,9 @@ focus_tree = {
 	focus = {
 		id = ENG_britain_first
 		icon = align_to_britain
-		x = 15
-		y = 3
+		x = 2
+		y = 1
+		relative_position_id = ENG_expand_the_foreign_ministry
 		cost = 10
 
 		prerequisite = {
@@ -1585,8 +1574,9 @@ focus_tree = {
 	focus = {
 		id = ENG_european_cooperation_1
 		icon = green_england
-		x = 18
-		y = 3
+		x = 0
+		y = 1
+		relative_position_id = ENG_europe_is_the_future
 		cost = 10
 
 		prerequisite = {
@@ -1836,8 +1826,9 @@ focus_tree = {
 	focus = {
 		id = ENG_abolish_the_monarchy
 		icon = anti_monarchism4
-		x = 29
-		y = 3
+		x = 0
+		y = 1
+		relative_position_id = ENG_towards_the_left
 		cost = 10
 
 		prerequisite = {
@@ -1857,8 +1848,9 @@ focus_tree = {
 	focus = {
 		id = ENG_empower_the_throne
 		icon = british_monarchy
-		x = 33
-		y = 3
+		x = -2
+		y = 1
+		relative_position_id = ENG_towards_the_right
 		cost = 10
 
 		prerequisite = {
@@ -1899,8 +1891,9 @@ focus_tree = {
 	focus = {
 		id = ENG_empower_the_government
 		icon = british_cabinet
-		x = 37
-		y = 3
+		x = 2
+		y = 1
+		relative_position_id = ENG_towards_the_right
 		cost = 10
 
 		prerequisite = {
@@ -1936,8 +1929,9 @@ focus_tree = {
 	focus = {
 		id = ENG_artillery_for_britain
 		icon = artillery2
-		x = 41
-		y = 3
+		x = -1
+		y = 1
+		relative_position_id = ENG_army_training
 		cost = 10
 
 		prerequisite = {
@@ -1952,7 +1946,7 @@ focus_tree = {
 				name = artillery_bonus
 				bonus = 0.5
 				uses = 2
-				category = Cat_ARTILLERY
+				category = CAT_artillery
 			}
 		}
 
@@ -1964,8 +1958,9 @@ focus_tree = {
 	focus = {
 		id = ENG_tanks_for_britain
 		icon = tanks4
-		x = 43
-		y = 3
+		x = 1
+		y = 1
+		relative_position_id = ENG_army_training
 		cost = 10
 
 		prerequisite = {
@@ -1980,7 +1975,7 @@ focus_tree = {
 				name = armor_bonus
 				bonus = 0.35
 				uses = 3
-				category = Cat_ARMOR
+				category = CAT_armor
 			}
 		}
 
@@ -1992,8 +1987,9 @@ focus_tree = {
 	focus = {
 		id = ENG_develop_our_fighters
 		icon = modern_fighter
-		x = 45
-		y = 3
+		x = -1
+		y = 1
+		relative_position_id = ENG_expand_the_air_force
 		cost = 10
 
 		prerequisite = {
@@ -2008,7 +2004,7 @@ focus_tree = {
 				name = ENG_develop_our_fighters
 				bonus = 0.4
 				uses = 2
-				category = Cat_FIGHTER
+				category = CAT_fighter
 			}
 		}
 
@@ -2020,8 +2016,9 @@ focus_tree = {
 	focus = {
 		id = ENG_develop_heavy_planes
 		icon = modern_bomber
-		x = 47
-		y = 3
+		x = 1
+		y = 1
+		relative_position_id = ENG_expand_the_air_force
 		cost = 10
 
 		prerequisite = {
@@ -2036,7 +2033,7 @@ focus_tree = {
 				name = ENG_develop_heavy_planes
 				bonus = 0.6
 				uses = 1
-				category = Cat_H_AIR
+				category = CAT_h_air
 			}
 		}
 
@@ -2048,8 +2045,9 @@ focus_tree = {
 	focus = {
 		id = ENG_develop_submarines
 		icon = ENG_Fleet_in_Being2
-		x = 49
-		y = 3
+		x = -1
+		y = 1
+		relative_position_id = ENG_naval_prototypes
 		cost = 10
 
 		prerequisite = {
@@ -2064,7 +2062,7 @@ focus_tree = {
 				name = ENG_develop_submarines
 				bonus = 0.25
 				uses = 2
-				category = Cat_SUB
+				category = CAT_sub
 			}
 		}
 
@@ -2076,8 +2074,9 @@ focus_tree = {
 	focus = {
 		id = ENG_develop_carriers
 		icon = ENG_Embrace_Carriers
-		x = 51
-		y = 3
+		x = 1
+		y = 1
+		relative_position_id = ENG_naval_prototypes
 		cost = 10
 
 		prerequisite = {
@@ -2092,7 +2091,7 @@ focus_tree = {
 				name = ENG_develop_carriers
 				bonus = 0.35
 				uses = 3
-				category = Cat_CARRIER
+				category = CAT_carrier
 			}
 		}
 
@@ -2101,13 +2100,12 @@ focus_tree = {
 		}
 	}
 
-
-
 	focus = {
 		id = ENG_assure_individual_freedoms
 		icon = torchbearers_of_tomorrow
-		x = 7
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_freedom_first
 		cost = 10
 
 		prerequisite = {
@@ -2129,8 +2127,9 @@ focus_tree = {
 	focus = {
 		id = ENG_public_CCTV_systems
 		icon = cctv2
-		x = 9
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_security_first
 		cost = 10
 
 		prerequisite = {
@@ -2154,8 +2153,9 @@ focus_tree = {
 	focus = {
 		id = ENG_european_logistics
 		icon = euro
-		x = 18
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_european_cooperation_1
 		cost = 15
 
 		prerequisite = {
@@ -2181,7 +2181,6 @@ focus_tree = {
 		}
 	}
 
-	### Kill Backstop - Empower Boris
 	focus = {
 		id = ENG_defy_remain ### old name, not changed
 		icon = boris_johnson
@@ -2220,7 +2219,7 @@ focus_tree = {
 				eurosceptic_change = yes
 			}
 			add_ideas = ENG_irish_nationalism_idea
-			add_ideas =	ENG_scottish_nationalism_idea
+			add_ideas = ENG_scottish_nationalism_idea
 			create_country_leader = {
 				name = "Boris Johnson"
 				picture = "Boris_Johnson.dds"
@@ -2551,8 +2550,9 @@ focus_tree = {
 	focus = {
 		id = ENG_fight_capitalism
 		icon = Fabianist
-		x = 29
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_abolish_the_monarchy
 		cost = 10
 
 		available = {
@@ -2612,8 +2612,9 @@ focus_tree = {
 	focus = {
 		id = ENG_benevolent_monarchy
 		icon = god_save_the_king
-		x = 32
-		y = 4
+		x = -1
+		y = 1
+		relative_position_id = ENG_empower_the_throne
 		cost = 10
 
 		prerequisite = {
@@ -2653,8 +2654,9 @@ focus_tree = {
 	focus = {
 		id = ENG_imperialism
 		icon = the_new_commonealth
-		x = 35
-		y = 4
+		x = 2
+		y = 1
+		relative_position_id = ENG_empower_the_throne
 		cost = 10
 
 		prerequisite = {
@@ -2678,8 +2680,9 @@ focus_tree = {
 	focus = {
 		id = ENG_nationalism
 		icon = Focus_ENG_Mosleys_New_Deal
-		x = 38
-		y = 4
+		x = 1
+		y = 1
+		relative_position_id = ENG_empower_the_government
 		cost = 10
 
 		prerequisite = {
@@ -2721,8 +2724,9 @@ focus_tree = {
 	focus = {
 		id = ENG_army_doctrine_1
 		icon = Generic_British_Soldier_Flag
-		x = 42
-		y = 4
+		x = 1
+		y = 1
+		relative_position_id = ENG_artillery_for_britain
 		cost = 10
 
 		prerequisite = {
@@ -2736,7 +2740,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_army_doctrine_1"
 			add_doctrine_cost_reduction = {
 				name = ENG_army_doctrine_1
-				category = land_doctrine
+				category = CAT_land_doctrine
 				uses = 1
 				cost_reduction = 0.4
 			}
@@ -2750,8 +2754,9 @@ focus_tree = {
 	focus = {
 		id = ENG_air_force_doctrine_1
 		icon = air_doctrine
-		x = 46
-		y = 4
+		x = 1
+		y = 1
+		relative_position_id = ENG_develop_our_fighters
 		cost = 10
 
 		prerequisite = {
@@ -2765,7 +2770,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_air_force_doctrine_1"
 			add_doctrine_cost_reduction = {
 				name = ENG_air_force_doctrine_1
-				category = air_doctrine
+				category = CAT_air_doctrine
 				uses = 1
 				cost_reduction = 0.4
 			}
@@ -2779,8 +2784,9 @@ focus_tree = {
 	focus = {
 		id = ENG_naval_doctrine_1
 		icon = navy3
-		x = 50
-		y = 4
+		x = 1
+		y = 1
+		relative_position_id = ENG_develop_submarines
 		cost = 10
 
 		prerequisite = {
@@ -2792,11 +2798,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_naval_doctrine_1"
+			navy_experience = 50
 			add_doctrine_cost_reduction = {
 				name = ENG_naval_doctrine_1
-				category = Cat_naval_doctrine
+				category = CAT_naval_doctrine
 				uses = 1
-				cost_reduction = 0.2
+				cost_reduction = 0.25
 			}
 		}
 
@@ -2808,8 +2815,9 @@ focus_tree = {
 	focus = {
 		id = ENG_liberal_economics
 		icon = consumer_goods
-		x = 7
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = ENG_assure_individual_freedoms
 		cost = 10
 
 		prerequisite = {
@@ -2839,8 +2847,9 @@ focus_tree = {
 	focus = {
 		id = ENG_internet_surveillance
 		icon = internet_censorship
-		x = 9
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = ENG_public_CCTV_systems
 		cost = 10
 
 		prerequisite = {
@@ -2866,8 +2875,9 @@ focus_tree = {
 	focus = {
 		id = ENG_EU_border_compromise
 		icon = generic_euroscepticism
-		x = 11
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_go_with_europe
 		cost = 10
 
 		prerequisite = {
@@ -2894,8 +2904,9 @@ focus_tree = {
 	focus = {
 		id = ENG_propose_the_CANZUK_alliance
 		icon = Focus_ENG_Hoare_at_the_Helm
-		x = 13
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_go_with_the_commonwealth
 		cost = 10
 
 		prerequisite = {
@@ -2914,8 +2925,7 @@ focus_tree = {
 				}
 				NATO_leave = yes
 			}
-			add_ideas = faction_british_commonwealth
-			create_faction = british_commonwealth
+			create_faction_from_template = faction_template_commonwealth
 			CAN = { country_event = britain_md.12 }
 			AST = { country_event = britain_md.12 }
 			NZL = { country_event = britain_md.12 }
@@ -2929,8 +2939,9 @@ focus_tree = {
 	focus = {
 		id = ENG_the_british_alliance
 		icon = focus_generic_league_of_nations
-		x = 15
-		y = 4
+		x = 0
+		y = 1
+		relative_position_id = ENG_britain_first
 		cost = 10
 
 		prerequisite = {
@@ -2950,7 +2961,7 @@ focus_tree = {
 				limit = { has_idea = NATO_member }
 				NATO_leave = yes
 			}
-			create_faction = british_alliance
+			create_faction_from_template = faction_template_british_alliance
 		}
 
 		ai_will_do = {
@@ -2961,8 +2972,9 @@ focus_tree = {
 	focus = {
 		id = ENG_european_cooperation_2
 		icon = EU_policies
-		x = 17
-		y = 5
+		x = -1
+		y = 1
+		relative_position_id = ENG_european_logistics
 		cost = 10
 
 		prerequisite = {
@@ -3057,6 +3069,8 @@ focus_tree = {
 			EU_eurosceptic_change = yes
 			random_owned_state = {
 				limit = {
+					NOT = { has_state_category = state_military_base }
+					NOT = { has_state_category = state_inhospitable }
 					free_building_slots = {
 						building = industrial_complex
 						size > 0
@@ -3072,6 +3086,8 @@ focus_tree = {
 			}
 			random_owned_state = {
 				limit = {
+					NOT = { has_state_category = state_military_base }
+					NOT = { has_state_category = state_inhospitable }
 					free_building_slots = {
 						building = arms_factory
 						size > 0
@@ -3087,6 +3103,9 @@ focus_tree = {
 			}
 			random_owned_state = {
 				limit = {
+					NOT = { has_state_category = state_military_base }
+					NOT = { has_state_category = state_inhospitable }
+					is_coastal = yes
 					free_building_slots = {
 						building = dockyard
 						size > 0
@@ -3182,8 +3201,9 @@ focus_tree = {
 	focus = {
 		id = ENG_break_the_banks
 		icon = communist_slums
-		x = 28
-		y = 5
+		x = -1
+		y = 1
+		relative_position_id = ENG_fight_capitalism
 		cost = 10
 
 		prerequisite = {
@@ -3212,8 +3232,9 @@ focus_tree = {
 	focus = {
 		id = ENG_persecute_lobbyists
 		icon = british_decolonization
-		x = 30
-		y = 5
+		x = 1
+		y = 1
+		relative_position_id = ENG_fight_capitalism
 		cost = 10
 
 		prerequisite = {
@@ -3241,9 +3262,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_royal_office_of_employment
-		icon = Generic_Ultranationalist_Monarchy
-		x = 32
-		y = 5
+		icon = Focus_generic_monarchist_workers
+		x = 0
+		y = 1
+		relative_position_id = ENG_benevolent_monarchy
 		cost = 10
 
 		prerequisite = {
@@ -3268,8 +3290,9 @@ focus_tree = {
 	focus = {
 		id = ENG_restore_the_british_empire
 		icon = united_anglosphere
-		x = 34
-		y = 5
+		x = -1
+		y = 1
+		relative_position_id = ENG_imperialism
 		cost = 10
 
 		prerequisite = {
@@ -3311,9 +3334,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_realm_of_britain
-		icon = enemy_of_britain
-		x = 36
-		y = 5
+		icon = british_global_defense
+		x = 1
+		y = 1
+		relative_position_id = ENG_imperialism
 		cost = 10
 
 		prerequisite = {
@@ -3355,9 +3379,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_national_militarism
-		icon = entente
-		x = 38
-		y = 5
+		icon = focus_generic_fascist_militarism
+		x = 0
+		y = 1
+		relative_position_id = ENG_nationalism
 		cost = 10
 
 		prerequisite = {
@@ -3379,8 +3404,9 @@ focus_tree = {
 	focus = {
 		id = ENG_school_for_strategic_warfare
 		icon = chiefs_of_staff_committee
-		x = 41
-		y = 5
+		x = -1
+		y = 1
+		relative_position_id = ENG_army_doctrine_1
 		cost = 10
 
 		prerequisite = {
@@ -3400,8 +3426,9 @@ focus_tree = {
 	focus = {
 		id = ENG_ground_support_planes
 		icon = bombs
-		x = 44
-		y = 5
+		x = 2
+		y = 1
+		relative_position_id = ENG_army_doctrine_1
 		cost = 10
 
 		prerequisite = {
@@ -3424,8 +3451,9 @@ focus_tree = {
 	focus = {
 		id = ENG_air_force_doctrine_2
 		icon = air_doctrine
-		x = 46
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = ENG_air_force_doctrine_1
 		cost = 10
 
 		prerequisite = {
@@ -3438,7 +3466,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_air_force_doctrine_2"
 			add_doctrine_cost_reduction = {
 				name = ENG_air_force_doctrine_2
-				category = air_doctrine
+				category = CAT_air_doctrine
 				uses = 2
 				cost_reduction = 0.4
 			}
@@ -3452,8 +3480,9 @@ focus_tree = {
 	focus = {
 		id = ENG_naval_support_planes
 		icon = naval_bombers
-		x = 48
-		y = 5
+		x = 2
+		y = 1
+		relative_position_id = ENG_air_force_doctrine_1
 		cost = 10
 
 		prerequisite = {
@@ -3473,12 +3502,12 @@ focus_tree = {
 		}
 	}
 
-
 	focus = {
 		id = ENG_air_travel_agreements_with_europe
 		icon = air_defense
-		x = 11
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = ENG_EU_border_compromise
 		cost = 10
 
 		prerequisite = {
@@ -3505,8 +3534,9 @@ focus_tree = {
 	focus = {
 		id = ENG_invite_the_united_states
 		icon = unite_the_anglosphere
-		x = 13
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = ENG_propose_the_CANZUK_alliance
 		cost = 10
 
 		prerequisite = {
@@ -3526,8 +3556,9 @@ focus_tree = {
 	focus = {
 		id = ENG_diplomatic_sovereignity
 		icon = political_pressure
-		x = 15
-		y = 5
+		x = 0
+		y = 1
+		relative_position_id = ENG_the_british_alliance
 		cost = 10
 
 		prerequisite = {
@@ -3605,7 +3636,7 @@ focus_tree = {
 		cost = 10
 
 		prerequisite = {
-			focus = ENG_national_development_2
+			focus = ENG_national_development_1
 		}
 
 		completion_reward = {
@@ -3621,8 +3652,9 @@ focus_tree = {
 	focus = {
 		id = ENG_industrial_development_program
 		icon = industry_civilian
-		x = 27
-		y = 6
+		x = 0
+		y = 2
+		relative_position_id = ENG_national_development_2
 		cost = 10
 
 		prerequisite = {
@@ -3644,8 +3676,9 @@ focus_tree = {
 	focus = {
 		id = ENG_universal_employment
 		icon = worker_paradise
-		x = 29
-		y = 6
+		x = 1
+		y = 1
+		relative_position_id = ENG_break_the_banks
 		cost = 10
 
 		prerequisite = {
@@ -3670,9 +3703,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_royal_industries
-		icon = chefs_best_cooks
-		x = 32
-		y = 6
+		icon = autarky_ambitions
+		x = 0
+		y = 1
+		relative_position_id = ENG_royal_office_of_employment
 		cost = 10
 
 		prerequisite = {
@@ -3694,8 +3728,9 @@ focus_tree = {
 	focus = {
 		id = ENG_colonial_outposts_in_africa
 		icon = british_africa
-		x = 34
-		y = 6
+		x = 0
+		y = 1
+		relative_position_id = ENG_restore_the_british_empire
 		cost = 10
 
 		prerequisite = {
@@ -3755,8 +3790,9 @@ focus_tree = {
 	focus = {
 		id = ENG_subjugate_ireland
 		icon = attack_ireland
-		x = 36
-		y = 6
+		x = 0
+		y = 1
+		relative_position_id = ENG_realm_of_britain
 		cost = 10
 
 		prerequisite = {
@@ -3786,9 +3822,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_reorganize_the_education_system
-		icon = Focus_ENG_Gallacher_On_Top
-		x = 38
-		y = 6
+		icon = focus_ARG_fascist_researchers
+		x = 0
+		y = 1
+		relative_position_id = ENG_national_militarism
 		cost = 10
 
 		prerequisite = {
@@ -3810,8 +3847,9 @@ focus_tree = {
 	focus = {
 		id = ENG_army_doctrine_2
 		icon = Generic_British_Soldiers03
-		x = 42
-		y = 6
+		x = 0
+		y = 2
+		relative_position_id = ENG_army_doctrine_1
 		cost = 10
 
 		prerequisite = {
@@ -3824,7 +3862,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_army_doctrine_2"
 			add_doctrine_cost_reduction = {
 				name = ENG_army_doctrine_2
-				category = land_doctrine
+				category = CAT_land_doctrine
 				uses = 1
 				cost_reduction = 0.4
 			}
@@ -3838,8 +3876,9 @@ focus_tree = {
 	focus = {
 		id = ENG_ground_crew_training
 		icon = special_air_service
-		x = 46
-		y = 6
+		x = 0
+		y = 1
+		relative_position_id = ENG_air_force_doctrine_2
 		cost = 10
 
 		prerequisite = {
@@ -3853,7 +3892,7 @@ focus_tree = {
 			air_experience = 30
 			add_doctrine_cost_reduction = {
 				name = ENG_ground_crew_training
-				category = air_doctrine
+				category = CAT_air_doctrine
 				uses = 1
 				cost_reduction = 0.2
 			}
@@ -3867,8 +3906,9 @@ focus_tree = {
 	focus = {
 		id = ENG_naval_doctrine_2
 		icon = naval_doctrine
-		x = 50
-		y = 6
+		x = 0
+		y = 2
+		relative_position_id = ENG_naval_doctrine_1
 		cost = 10
 
 		prerequisite = {
@@ -3879,12 +3919,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_naval_doctrine_2"
-			air_experience = 10
+			navy_experience = 50
 			add_doctrine_cost_reduction = {
 				name = ENG_naval_doctrine_2
-				category = Cat_naval_doctrine
+				category = CAT_naval_doctrine
 				uses = 1
-				cost_reduction = 0.2
+				cost_reduction = 0.25
 			}
 		}
 
@@ -3993,7 +4033,6 @@ focus_tree = {
 				free_building_slots = {
 					building = infrastructure
 					size < 1
-					include_locked = yes
 				}
 			}
 		}
@@ -4023,6 +4062,9 @@ focus_tree = {
 		prerequisite = {
 			focus = ENG_defensive_constructions
 		}
+		prerequisite = {
+			focus = ENG_national_development_2
+		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 
@@ -4041,8 +4083,9 @@ focus_tree = {
 	focus = {
 		id = ENG_invest_in_resources
 		icon = PB_ENG_Target_Monopolies
-		x = 28
-		y = 7
+		x = -1
+		y = 1
+		relative_position_id = ENG_universal_employment
 		cost = 10
 
 		prerequisite = {
@@ -4055,26 +4098,37 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_invest_in_resources"
 			if = {
 				limit = {
-					tag = ENG
-					has_full_control_of_state = 9
+					any_owned_state = {
+						is_core_of = SCO	#Scotland
+					}
 				}
-				add_resource = { 	#Scotland
-					type = oil
-					amount = 5
-					state = 9
+				random_owned_state = {
+					limit = { is_core_of = SCO }
+					add_resource = {
+						type = oil
+						amount = 5
+					}
 				}
 			}
 			if = {
 				limit = {
-					tag = ENG
-					has_full_control_of_state = 12
+					OR = {
+						has_full_control_of_state = 12
+						has_full_control_of_state = 1191
+					}
 				}
-				add_resource = { 	#Midlands
-					type = steel
-					amount = 5
-					state = 12
+				random_owned_state = {
+					limit = {
+						OR = {
+							state = 12	#Midlands
+							state = 1191
+						}
+					}
+					add_resource = {
+						type = steel
+						amount = 5
+					}
 				}
-
 			}
 			set_temp_variable = { treasury_change = -7 }
 			modify_treasury_effect = yes
@@ -4088,8 +4142,9 @@ focus_tree = {
 	focus = {
 		id = ENG_establish_a_revolutionary_committee
 		icon = Focus_Socialist_Propaganda
-		x = 30
-		y = 7
+		x = 1
+		y = 1
+		relative_position_id = ENG_universal_employment
 		cost = 10
 
 		prerequisite = {
@@ -4121,9 +4176,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_royal_factories
-		icon = Focus_Let_Them_Eat_Cake
-		x = 32
-		y = 7
+		icon = construction3
+		x = 0
+		y = 1
+		relative_position_id = ENG_royal_industries
 		cost = 10
 
 		prerequisite = {
@@ -4146,9 +4202,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_restore_the_cape_colony
-		icon = british_global_defense
-		x = 35
-		y = 7
+		icon = attack_south_africa
+		x = 1
+		y = 1
+		relative_position_id = ENG_colonial_outposts_in_africa
 		cost = 10
 
 		prerequisite = {
@@ -4190,8 +4247,9 @@ focus_tree = {
 	focus = {
 		id = ENG_maintain_a_multiethnic_army
 		icon = british_imperialism
-		x = 37
-		y = 7
+		x = -1
+		y = 1
+		relative_position_id = ENG_reorganize_the_education_system
 		cost = 10
 
 		prerequisite = {
@@ -4222,8 +4280,9 @@ focus_tree = {
 	focus = {
 		id = ENG_national_office_for_the_colored_workforce
 		icon = colonial_immigration
-		x = 39
-		y = 7
+		x = 1
+		y = 1
+		relative_position_id = ENG_reorganize_the_education_system
 		cost = 10
 
 		prerequisite = {
@@ -4254,8 +4313,9 @@ focus_tree = {
 	focus = {
 		id = ENG_army_of_quality
 		icon = cavalry
-		x = 41
-		y = 7
+		x = -1
+		y = 1
+		relative_position_id = ENG_army_doctrine_2
 		cost = 10
 
 		prerequisite = {
@@ -4281,8 +4341,9 @@ focus_tree = {
 	focus = {
 		id = ENG_army_of_quantity
 		icon = artillery
-		x = 43
-		y = 7
+		x = 1
+		y = 1
+		relative_position_id = ENG_army_doctrine_2
 		cost = 10
 
 		prerequisite = {
@@ -4310,8 +4371,9 @@ focus_tree = {
 	focus = {
 		id = ENG_improve_our_small_ships
 		icon = longboat
-		x = 49
-		y = 7
+		x = -1
+		y = 1
+		relative_position_id = ENG_naval_doctrine_2
 		cost = 20
 
 		prerequisite = {
@@ -4323,6 +4385,7 @@ focus_tree = {
 			add_ideas = ENG_small_ship_project
 			set_temp_variable = { temp_opinion = 5 }
 			change_maritime_industry_opinion = yes
+			change_defense_industry_opinion = yes
 		}
 
 		ai_will_do = {
@@ -4333,8 +4396,9 @@ focus_tree = {
 	focus = {
 		id = ENG_improve_our_large_ships
 		icon = battleships
-		x = 51
-		y = 7
+		x = 1
+		y = 1
+		relative_position_id = ENG_naval_doctrine_2
 		cost = 20
 
 		prerequisite = {
@@ -4399,8 +4463,9 @@ focus_tree = {
 	focus = {
 		id = ENG_socialist_secret_police
 		icon = communist_spies
-		x = 29
-		y = 8
+		x = -1
+		y = 1
+		relative_position_id = ENG_establish_a_revolutionary_committee
 		cost = 10
 
 		prerequisite = {
@@ -4421,9 +4486,10 @@ focus_tree = {
 
 	focus = {
 		id = ENG_the_throne_of_all_britons
-		icon = royal_wedding
-		x = 32
-		y = 8
+		icon = british_nationalism
+		x = 0
+		y = 1
+		relative_position_id = ENG_royal_factories
 		cost = 10
 
 		prerequisite = {
@@ -4454,8 +4520,9 @@ focus_tree = {
 	focus = {
 		id = ENG_restore_the_raj
 		icon = british_investors_in_india
-		x = 34
-		y = 8
+		x = 0
+		y = 2
+		relative_position_id = ENG_colonial_outposts_in_africa
 		cost = 10
 
 		prerequisite = {
@@ -4487,8 +4554,9 @@ focus_tree = {
 	focus = {
 		id = ENG_revolt_in_quebec
 		icon = quebec_conflict
-		x = 36
-		y = 8
+		x = 0
+		y = 2
+		relative_position_id = ENG_subjugate_ireland
 		cost = 10
 
 		prerequisite = {
@@ -4514,8 +4582,9 @@ focus_tree = {
 	focus = {
 		id = ENG_jingoism
 		icon = Ultranationalism_2
-		x = 38
-		y = 8
+		x = 1
+		y = 1
+		relative_position_id = ENG_maintain_a_multiethnic_army
 		cost = 10
 
 		prerequisite = {
@@ -4538,8 +4607,9 @@ focus_tree = {
 	focus = {
 		id = ENG_army_doctrine_3
 		icon = Generic_ENG_SAS
-		x = 42
-		y = 8
+		x = 1
+		y = 1
+		relative_position_id = ENG_army_of_quality
 		cost = 10
 
 		prerequisite = {
@@ -4554,7 +4624,7 @@ focus_tree = {
 			army_experience = 25
 			add_doctrine_cost_reduction = {
 				name = ENG_army_doctrine_3
-				category = land_doctrine
+				category = CAT_land_doctrine
 				uses = 1
 				cost_reduction = 0.4
 			}
@@ -4568,8 +4638,9 @@ focus_tree = {
 	focus = {
 		id = ENG_naval_doctrine_3
 		icon = wolfpacks
-		x = 50
-		y = 8
+		x = -1
+		y = 1
+		relative_position_id = ENG_improve_our_large_ships
 		cost = 10
 
 		prerequisite = {
@@ -4586,7 +4657,7 @@ focus_tree = {
 			navy_experience = 25
 			add_doctrine_cost_reduction = {
 				name = ENG_naval_doctrine_3
-				category = Cat_naval_doctrine
+				category = CAT_naval_doctrine
 				uses = 1
 				cost_reduction = 0.3
 			}
@@ -4645,8 +4716,9 @@ focus_tree = {
 	focus = {
 		id = ENG_royal_army
 		icon = british_nationalism
-		x = 42
-		y = 9
+		x = 0
+		y = 1
+		relative_position_id = ENG_army_doctrine_3
 		cost = 25
 
 		prerequisite = {
@@ -4668,8 +4740,9 @@ focus_tree = {
 	focus = {
 		id = ENG_britannia_rules_the_waves
 		icon = amphibious_assault
-		x = 50
-		y = 9
+		x = 0
+		y = 1
+		relative_position_id = ENG_naval_doctrine_3
 		cost = 25
 
 		prerequisite = {

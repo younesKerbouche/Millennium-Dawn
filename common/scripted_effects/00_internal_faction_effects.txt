@@ -142,13 +142,6 @@ setup_init_factions = {
 	# Nation Specific
 	if = {
 		limit = {
-			has_idea = irgc
-			NOT = { has_variable = irgc_opinion }
-		}
-		set_variable = { irgc_opinion = 50 }
-	}
-	if = {
-		limit = {
 			has_idea = foreign_jihadis
 			NOT = { has_variable = foreign_jihadis_opinion }
 		}
@@ -170,20 +163,6 @@ setup_init_factions = {
 	}
 	if = {
 		limit = {
-			has_idea = vevak
-			NOT = { has_variable = vevak_opinion }
-		}
-		set_variable = { vevak_opinion = 50 }
-	}
-	if = {
-		limit = {
-			has_idea = isi_pakistan
-			NOT = { has_variable = isi_pakistan_opinion }
-		}
-		set_variable = { isi_pakistan_opinion = 50 }
-	}
-	if = {
-		limit = {
 			has_idea = chaebols
 			NOT = { has_variable = chaebols_opinion }
 		}
@@ -202,13 +181,6 @@ setup_init_factions = {
 			NOT = { has_variable = the_donju_opinion }
 		}
 		set_variable = { the_donju_opinion = 50 }
-	}
-	if = {
-		limit = {
-			has_idea = the_bazaar
-			NOT = { has_variable = the_bazaar_opinion }
-		}
-		set_variable = { the_bazaar_opinion = 50 }
 	}
 	initialize_internal_faction_dynamic_modifiers = yes
 }
@@ -287,26 +259,14 @@ display_election_campaign_status = {
 	if = { limit = { has_idea = the_donju }
 		display_election_status_the_donju = yes
 	}
-	if = { limit = { has_idea = the_bazaar }
-		display_election_status_the_bazaar = yes
-	}
 	if = { limit = { has_idea = saudi_royal_family }
 		display_election_status_saudi_royal_family = yes
-	}
-	if = { limit = { has_idea = irgc }
-		display_election_status_IRGC = yes
 	}
 	if = { limit = { has_idea = iranian_quds_force }
 		display_election_status_iranian_quds_force = yes
 	}
 	if = { limit = { has_idea = foreign_jihadis }
 		display_election_status_foreign_jihadis = yes
-	}
-	if = { limit = { has_idea = vevak }
-		display_election_status_VEVAK = yes
-	}
-	if = { limit = { has_idea = isi_pakistan }
-		display_election_status_isi_pakistan = yes
 	}
 	if = { limit = { has_idea = wall_street }
 		display_election_status_wall_street = yes
@@ -745,46 +705,6 @@ display_election_status_the_donju = {
 	add_to_variable = { campaign_funding_count = election_funding }
 	clear_variable = election_funding
 }
-display_election_status_the_bazaar = {
-	set_temp_variable = { election_funding = 0 }
-	if = { limit = { hostile_the_bazaar = yes }
-		add_to_temp_variable = { election_funding = -2 }
-	}
-	else_if = { limit = { negative_the_bazaar = yes }
-		add_to_temp_variable = { election_funding = -1 }
-	}
-	else_if = { limit = { indifferent_the_bazaar = yes }
-		add_to_temp_variable = { election_funding = 0 }
-	}
-	else_if = { limit = { positive_the_bazaar = yes }
-		add_to_temp_variable = { election_funding = 1 }
-	}
-	else_if = { limit = { enthusiastic_the_bazaar = yes }
-		add_to_temp_variable = { election_funding = 2 }
-	}
-	add_to_variable = { campaign_funding_count = election_funding }
-	clear_variable = election_funding
-}
-display_election_status_IRGC = {
-	set_temp_variable = { election_funding = 0 }
-	if = { limit = { hostile_irgc = yes }
-		add_to_temp_variable = { election_funding = -2 }
-	}
-	else_if = { limit = { negative_irgc = yes }
-		add_to_temp_variable = { election_funding = -1 }
-	}
-	else_if = { limit = { indifferent_irgc = yes }
-		add_to_temp_variable = { election_funding = 0 }
-	}
-	else_if = { limit = { positive_irgc = yes }
-		add_to_temp_variable = { election_funding = 1 }
-	}
-	else_if = { limit = { enthusiastic_irgc = yes }
-		add_to_temp_variable = { election_funding = 2 }
-	}
-	add_to_variable = { campaign_funding_count = election_funding }
-	clear_variable = election_funding
-}
 display_election_status_foreign_jihadis = {
 	set_temp_variable = { election_funding = 0 }
 	if = { limit = { hostile_foreign_jihadis = yes }
@@ -824,268 +744,6 @@ display_election_status_iranian_quds_force = {
 	}
 	add_to_variable = { campaign_funding_count = election_funding }
 	clear_variable = election_funding
-}
-display_election_status_isi_pakistan = {
-	set_temp_variable = { election_funding = 0 }
-	if = { limit = { hostile_isi_pakistan = yes }
-		add_to_temp_variable = { election_funding = -2 }
-	}
-	else_if = { limit = { negative_isi_pakistan = yes }
-		add_to_temp_variable = { election_funding = -1 }
-	}
-	else_if = { limit = { indifferent_isi_pakistan = yes }
-		add_to_temp_variable = { election_funding = 0 }
-	}
-	else_if = { limit = { positive_isi_pakistan = yes }
-		add_to_temp_variable = { election_funding = 1 }
-	}
-	else_if = { limit = { enthusiastic_isi_pakistan = yes }
-		add_to_temp_variable = { election_funding = 2 }
-	}
-	add_to_variable = { campaign_funding_count = election_funding }
-	clear_variable = election_funding
-}
-display_election_status_VEVAK = {
-	set_temp_variable = { election_funding = 0 }
-	if = { limit = { hostile_vevak = yes }
-		add_to_temp_variable = { election_funding = -2 }
-	}
-	else_if = { limit = { negative_vevak = yes }
-		add_to_temp_variable = { election_funding = -1 }
-	}
-	else_if = { limit = { indifferent_vevak = yes }
-		add_to_temp_variable = { election_funding = 0 }
-	}
-	else_if = { limit = { positive_vevak = yes }
-		add_to_temp_variable = { election_funding = 1 }
-	}
-	else_if = { limit = { enthusiastic_vevak = yes }
-		add_to_temp_variable = { election_funding = 2 }
-	}
-	add_to_variable = { campaign_funding_count = election_funding }
-	clear_variable = election_funding
-}
-
-# Check for deposed faction
-check_deposed_faction = {
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_small_medium_business_owners
-	# 		NOT = { has_idea = small_medium_business_owners }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.1 } } }
-	# 	clr_country_flag = active_small_medium_business_owners
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_the_bazaar
-	# 		NOT = { has_idea = the_bazaar }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.1 } } }
-	# 	clr_country_flag = active_the_bazaar
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_the_donju
-	# 		NOT = { has_idea = the_donju }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.1 } } }
-	# 	clr_country_flag = active_the_donju
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_international_bankers
-	# 		NOT = { has_idea = international_bankers }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.2 } } }
-	# 	clr_country_flag = active_international_bankers
-	# 	calculate_interest_rate = yes
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_wall_street
-	# 		NOT = { has_idea = wall_street }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.2 } } }
-	# 	clr_country_flag = active_wall_street
-	# 	calculate_interest_rate = yes
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_fossil_fuel_industry
-	# 		NOT = { has_idea = fossil_fuel_industry }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.3 } } }
-	# 	clr_country_flag = active_fossil_fuel_industry
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_industrial_conglomerates
-	# 		NOT = { has_idea = industrial_conglomerates }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.4 } } }
-	# 	clr_country_flag = active_industrial_conglomerates
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_chaebols
-	# 		NOT = { has_idea = chaebols }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.4 } } }
-	# 	clr_country_flag = active_chaebols
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_oligarchs
-	# 		NOT = { has_idea = oligarchs }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.5 } } }
-	# 	clr_country_flag = active_oligarchs
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_maritime_industry
-	# 		NOT = { has_idea = maritime_industry }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.6 } } }
-	# 	clr_country_flag = active_maritime_industry
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_defense_industry
-	# 		NOT = { has_idea = defense_industry }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.7 } } }
-	# 	clr_country_flag = active_defense_industry
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_the_military
-	# 		NOT = { has_idea = the_military }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.8 } } }
-	# 	clr_country_flag = active_the_military
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_intelligence_community
-	# 		NOT = { has_idea = intelligence_community }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.9 } } }
-	# 	clr_country_flag = active_intelligence_community
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_isi_pakistan
-	# 		NOT = { has_idea = isi_pakistan }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.9 } } }
-	# 	clr_country_flag = active_isi_pakistan
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_VEVAK
-	# 		NOT = { has_idea = vevak }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.9 } } }
-	# 	clr_country_flag = active_VEVAK
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_labour_unions
-	# 		NOT = { has_idea = labour_unions }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.10 } } }
-	# 	clr_country_flag = active_labour_unions
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_landowners
-	# 		NOT = { has_idea = landowners }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.11 } } }
-	# 	clr_country_flag = active_landowners
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_farmers
-	# 		NOT = { has_idea = farmers }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.12 } } }
-	# 	clr_country_flag = active_farmers
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_communist_cadres
-	# 		NOT = { has_idea = communist_cadres }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.13 } } }
-	# 	clr_country_flag = active_communist_cadres
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_the_clergy
-	# 		NOT = { has_idea = the_clergy }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.14 } } }
-	# 	clr_country_flag = active_the_clergy
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_the_ulema
-	# 		NOT = { has_idea = the_ulema }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.14 } } }
-	# 	clr_country_flag = active_the_ulema
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_the_priesthood
-	# 		NOT = { has_idea = the_priesthood }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.14 } } }
-	# 	clr_country_flag = active_the_priesthood
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_wahabi_ulema
-	# 		NOT = { has_idea = wahabi_ulema }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.14 } } }
-	# 	clr_country_flag = active_wahabi_ulema
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_saudi_royal_family
-	# 		NOT = { has_idea = saudi_royal_family }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.15 } } }
-	# 	clr_country_flag = active_saudi_royal_family
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_iranian_quds_force
-	# 		NOT = { has_idea = iranian_quds_force }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.16 } } }
-	# 	clr_country_flag = active_iranian_quds_force
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_foreign_jihadis
-	# 		NOT = { has_idea = foreign_jihadis }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.17 } } }
-	# 	clr_country_flag = active_foreign_jihadis
-	# }
-	# if = {
-	# 	limit = {
-	# 		has_country_flag = active_IRGC
-	# 		NOT = { has_idea = irgc }
-	# 	}
-	# 	hidden_effect = { ROOT = { country_event = { days = 1 id = int_fac_deposed.18 } } }
-	# 	clr_country_flag = active_IRGC
-	# }
 }
 
 # Cleanup Function:
@@ -1239,7 +897,7 @@ if_no_longer_has_faction_clear_previous = {
 		clear_variable = FARM_monthly_pop_var
 		clear_variable = FARM_productivity_modifier_var
 		clear_variable = FARM_agriculture_income_modifier_var
-		clear_variable = FARM_production_speed_synthetic_refinery_factor_var
+		clear_variable = FARM_production_speed_agricultural_district_factor_var
 	}
 	if = {
 		limit = {
@@ -1311,16 +969,6 @@ if_no_longer_has_faction_clear_previous = {
 	}
 	if = {
 		limit = {
-			NOT = { has_idea = the_bazaar }
-			has_variable = the_bazaar_opinion
-		}
-		clear_variable = the_bazaar_opinion
-		clear_variable = TBAZ_production_speed_industrial_complex_factor
-		clear_variable = TBAZ_stability_factor
-		clear_variable = TBAZ_consunmer_goods_factor_var
-	}
-	if = {
-		limit = {
 			NOT = { has_idea = saudi_royal_family }
 			has_variable = saudi_royal_family_opinion
 		}
@@ -1328,15 +976,6 @@ if_no_longer_has_faction_clear_previous = {
 		clear_variable = SARF_political_power_factor_var #20% Max
 		clear_variable = SARF_ideology_drift_defense_var #25% Max
 		clear_variable = SARF_stability_factor_var #5% max
-	}
-	if = {
-		limit = {
-			NOT = { has_idea = irgc }
-			has_variable = irgc_opinion
-		}
-		clear_variable = irgc_opinion
-		clear_variable = IRGC_commmunist_drift_var
-		clear_variable = IRGC_offence_influence_var
 	}
 	if = {
 		limit = {
@@ -1355,38 +994,6 @@ if_no_longer_has_faction_clear_previous = {
 		clear_variable = JIHAD_fascism_drift_var
 		clear_variable = JIHAD_non_core_manpower_var
 		clear_variable = JIHAD_special_forces_cap_var
-	}
-	if = {
-		limit = {
-			NOT = { has_idea = vevak }
-			has_variable = vevak_opinion
-		}
-		clear_variable = vevak_opinion
-		clear_variable = VEVAK_decryption_factor_var
-		clear_variable = VEVAK_encryption_factor_var
-		clear_variable = VEVAK_radar_station_factor_var
-		clear_variable = VEVAK_subversive_activies_upkeep_var
-		clear_variable = VEVAK_foreign_subversive_activites_var
-		clear_variable = VEVAK_civilian_intel_factor_var
-		clear_variable = VEVAK_army_intel_factor_var
-		clear_variable = VEVAK_navy_intel_factor_var
-		clear_variable = VEVAK_airforce_intel_factor_var
-	}
-	if = {
-		limit = {
-			NOT = { has_idea = isi_pakistan }
-			has_variable = isi_pakistan_opinion
-		}
-		clear_variable = isi_pakistan_opinion
-		clear_variable = ISI_decryption_factor_var
-		clear_variable = ISI_encryption_factor_var
-		clear_variable = ISI_radar_station_factor_var
-		clear_variable = ISI_subversive_activies_upkeep_var
-		clear_variable = ISI_foreign_subversive_activites_var
-		clear_variable = ISI_civilian_intel_factor_var
-		clear_variable = ISI_army_intel_factor_var
-		clear_variable = ISI_navy_intel_factor_var
-		clear_variable = ISI_airforce_intel_factor_var
 	}
 	if = {
 		limit = {
@@ -1495,17 +1102,9 @@ initialize_internal_faction_dynamic_modifiers = {
 		add_dynamic_modifier = { modifier = the_donju_dynamic_modifier }
 		apply_the_donju_dynamic_effect_DYNMOD = yes
 	}
-	if = { limit = { has_idea = the_bazaar }
-		add_dynamic_modifier = { modifier = the_bazaar_dynamic_modifier }
-		apply_the_bazaar_dynamic_effect_DYNMOD = yes
-	}
 	if = { limit = { has_idea = saudi_royal_family }
 		add_dynamic_modifier = { modifier = saudi_royal_family_dynamic_modifier }
 		apply_saudi_royal_family_dynamic_effect_DYNMOD = yes
-	}
-	if = { limit = { has_idea = irgc }
-		add_dynamic_modifier = { modifier = irgc_dynamic_modifier }
-		apply_irgc_iranian_quds_force_dynamic_effect_DYNMOD = yes
 	}
 	if = { limit = { has_idea = iranian_quds_force }
 		add_dynamic_modifier = { modifier = iranian_quds_force_dynamic_modifier }
@@ -1514,14 +1113,6 @@ initialize_internal_faction_dynamic_modifiers = {
 	if = { limit = { has_idea = foreign_jihadis }
 		add_dynamic_modifier = { modifier = foreign_jihadis_force_dynamic_modifier }
 		apply_foreign_jihadis_effect_DYNMOD = yes
-	}
-	if = { limit = { has_idea = vevak }
-		add_dynamic_modifier = { modifier = vevak_force_dynamic_modifier }
-		apply_vevak_effect_DYNMOD = yes
-	}
-	if = { limit = { has_idea = isi_pakistan }
-		add_dynamic_modifier = { modifier = isi_pakistan_dynamic_modifier }
-		apply_isi_pakistan_effect_DYNMOD = yes
 	}
 	if = { limit = { has_idea = wall_street }
 		add_dynamic_modifier = { modifier = wall_street_force_dynamic_modifier }
@@ -1578,7 +1169,7 @@ apply_international_bankers_dynamic_effect_DYNMOD = {
 	multiply_variable = { INTB_psof_var = 0.003 }
 	multiply_variable = { INTB_local_resources_factor_var = 0.002 }
 	multiply_variable = { INTB_trade_opinion_factor_var = 0.004 }
-	multiply_variable = { INTB_democratic_acceptance_factor_var = 0.5 }
+	multiply_variable = { INTB_democratic_acceptance_factor_var = global.monthly_internal_faction_tick_rate }
 	multiply_variable = { INTB_democratic_drift_var = 0.001 }
 	multiply_variable = { INTB_investment_duration_var = -0.002 }
 	multiply_variable = { INTB_investment_cost_var = -0.002 }
@@ -1622,7 +1213,7 @@ apply_industrial_conglomerates_dynamic_effect_DYNMOD = {
 	# Multiplies by the scaled factor - Max values: 15%, 10%, 25, 0.05
 	multiply_variable = { ICL_psifra_factor_var = 0.003 }
 	multiply_variable = { ICL_local_resources_factor_var = 0.002 }
-	multiply_variable = { ICL_communism_acceptance_factor_var = 0.5 }
+	multiply_variable = { ICL_communism_acceptance_factor_var = global.monthly_internal_faction_tick_rate }
 	multiply_variable = { ICL_communism_drift = 0.001 }
 	multiply_variable = { ICL_civilian_industry_tax_modifier_var = 0.004 }
 
@@ -1642,7 +1233,7 @@ apply_oligarchs_dynamic_effect_DYNMOD = {
 	# Multiplies by the scaled factor - Max values: 15%, 5%, 25, 0.05
 	multiply_variable = { OLI_psic_factor_var = 0.003 }
 	multiply_variable = { OLI_local_resources_factor_var = 0.004 }
-	multiply_variable = { OLI_communism_acceptance_factor_var = 0.5 }
+	multiply_variable = { OLI_communism_acceptance_factor_var = global.monthly_internal_faction_tick_rate }
 	multiply_variable = { OLI_communism_drift_var = 0.001 }
 
 	# Force the Update Dynamic Modifier with new Calculated Effects
@@ -1724,16 +1315,14 @@ apply_farmers_dynamic_effect_DYNMOD = {
 	set_variable = { FARM_consumer_goods_factor_var = base_modifier }
 	set_variable = { FARM_monthly_pop_var = base_modifier }
 	set_variable = { FARM_productivity_modifier_var = base_modifier }
-	set_variable = { FARM_agriculture_income_modifier_var = base_modifier }
-	set_variable = { FARM_production_speed_synthetic_refinery_factor_var = base_modifier }
+	set_variable = { FARM_production_speed_agricultural_district_factor_var = base_modifier }
 
 	# Multiplies by the scaled factor - Max values: 10%, -10%, 20%, 10%, 15%, 20%
 	multiply_variable = { FARM_conscription_factor_var = 0.002 }
 	multiply_variable = { FARM_consumer_goods_factor_var = -0.002 }
 	multiply_variable = { FARM_monthly_pop_var = 0.004 }
 	multiply_variable = { FARM_productivity_modifier_var = 0.003 }
-	multiply_variable = { FARM_agriculture_income_modifier_var = 0.005 }
-	multiply_variable = { FARM_production_speed_synthetic_refinery_factor_var = 0.003 }
+	multiply_variable = { FARM_production_speed_agricultural_district_factor_var = 0.003 }
 
 	# Force the Update Dynamic Modifier with new Calculated Effects
 	force_update_dynamic_modifier = yes
@@ -1939,24 +1528,6 @@ apply_the_donju_dynamic_effect_DYNMOD = {
 	force_update_dynamic_modifier = yes
 }
 
-apply_the_bazaar_dynamic_effect_DYNMOD = {
-	# Sets the base to current opinion then subtracts 50 from it to get the modifier value
-	set_temp_variable = { base_modifier = the_bazaar_opinion }
-	add_to_temp_variable = { base_modifier = -50 }
-
-	set_variable = { TBAZ_production_speed_industrial_complex_factor = base_modifier }
-	set_variable = { TBAZ_stability_factor = base_modifier }
-	set_variable = { TBAZ_consunmer_goods_factor_var = base_modifier }
-
-	# Multiplies by the scaled factor - Max values: 15%, 15%, 15%
-	multiply_variable = { TBAZ_production_speed_industrial_complex_factor = 0.003 }
-	multiply_variable = { TBAZ_stability_factor = 0.003 }
-	multiply_variable = { TBAZ_consunmer_goods_factor_var = -0.001 }
-
-	# Force the Update Dynamic Modifier with new Calculated Effects
-	force_update_dynamic_modifier = yes
-}
-
 apply_saudi_royal_family_dynamic_effect_DYNMOD = {
 	# Sets the base to current opinion then subtracts 50 from it to get the modifier value
 	set_temp_variable = { base_modifier = saudi_royal_family_opinion }
@@ -1976,10 +1547,7 @@ apply_saudi_royal_family_dynamic_effect_DYNMOD = {
 }
 apply_irgc_iranian_quds_force_dynamic_effect_DYNMOD = {
 	# Sets the base to current opinion then subtracts 50 from it to get the modifier value
-	if = { limit = { has_idea = irgc }
-		set_temp_variable = { base_modifier = irgc_opinion }
-	}
-	else_if = { limit = { has_idea = iranian_quds_force }
+	if = { limit = { has_idea = iranian_quds_force }
 		set_temp_variable = { base_modifier = iranian_quds_force_opinion }
 	}
 	add_to_temp_variable = { base_modifier = -50 }
@@ -2008,79 +1576,6 @@ apply_foreign_jihadis_effect_DYNMOD = {
 	multiply_variable = { JIHAD_fascism_drift_var = 0.002 }
 	multiply_variable = { JIHAD_non_core_manpower_var = 0.002 }
 	multiply_variable = { JIHAD_special_forces_cap_var = 0.004 }
-
-	# Force the Update Dynamic Modifier with new Calculated Effects
-	force_update_dynamic_modifier = yes
-}
-apply_vevak_effect_DYNMOD = {
-	# Sets the base to current opinion then subtracts 50 from it to get the modifier value
-	set_temp_variable = { base_modifier = vevak_opinion }
-	add_to_temp_variable = { base_modifier = -50 }
-
-	if = { limit = { NOT = { has_dlc = "La Resistance" } }
-		set_variable = { VEVAK_decryption_factor_var = base_modifier }
-		set_variable = { VEVAK_encryption_factor_var = base_modifier }
-
-		multiply_variable = { VEVAK_decryption_factor_var = 0.004 }
-		multiply_variable = { VEVAK_encryption_factor_var = 0.004 }
-	}
-	else = {
-		set_variable = { VEVAK_civilian_intel_factor_var = base_modifier }
-		set_variable = { VEVAK_army_intel_factor_var = base_modifier }
-		set_variable = { VEVAK_navy_intel_factor_var = base_modifier }
-		set_variable = { VEVAK_airforce_intel_factor_var = base_modifier }
-
-		multiply_variable = { VEVAK_civilian_intel_factor_var = 0.003 }
-		multiply_variable = { VEVAK_army_intel_factor_var = 0.003 }
-		multiply_variable = { VEVAK_navy_intel_factor_var = 0.003 }
-		multiply_variable = { VEVAK_airforce_intel_factor_var = 0.003 }
-	}
-
-	set_variable = { VEVAK_radar_station_factor_var = base_modifier }
-	set_variable = { VEVAK_subversive_activies_upkeep_var = base_modifier }
-	set_variable = { VEVAK_foreign_subversive_activites_var = base_modifier }
-
-	# Multiplies by the scaled factor - Max values: 15%, 15%, 15%
-	multiply_variable = { VEVAK_radar_station_factor_var = -0.005 }
-	multiply_variable = { VEVAK_subversive_activies_upkeep_var = -0.004 }
-	multiply_variable = { VEVAK_foreign_subversive_activites_var = -0.004 }
-
-	# Force the Update Dynamic Modifier with new Calculated Effects
-	force_update_dynamic_modifier = yes
-}
-apply_isi_pakistan_effect_DYNMOD = {
-	# Sets the base to current opinion then subtracts 50 from it to get the modifier value
-	set_temp_variable = { base_modifier = isi_pakistan_opinion }
-	add_to_temp_variable = { base_modifier = -50 }
-
-	if = { limit = { NOT = { has_dlc = "La Resistance" } }
-		set_variable = { ISI_decryption_factor_var = base_modifier }
-		set_variable = { ISI_encryption_factor_var = base_modifier }
-
-		multiply_variable = { ISI_decryption_factor_var = 0.004 }
-		multiply_variable = { ISI_encryption_factor_var = 0.004 }
-	}
-	else = {
-		set_variable = { ISI_civilian_intel_factor_var = base_modifier }
-		set_variable = { ISI_army_intel_factor_var = base_modifier }
-		set_variable = { ISI_navy_intel_factor_var = base_modifier }
-		set_variable = { ISI_airforce_intel_factor_var = base_modifier }
-
-		multiply_variable = { ISI_civilian_intel_factor_var = 0.003 }
-		multiply_variable = { ISI_army_intel_factor_var = 0.003 }
-		multiply_variable = { ISI_navy_intel_factor_var = 0.003 }
-		multiply_variable = { ISI_airforce_intel_factor_var = 0.003 }
-	}
-
-
-	set_variable = { ISI_radar_station_factor_var = base_modifier }
-	set_variable = { ISI_subversive_activies_upkeep_var = base_modifier }
-	set_variable = { ISI_foreign_subversive_activites_var = base_modifier }
-
-	# Multiplies by the scaled factor - Max values: 15%, 15%, 15%
-	multiply_variable = { ISI_radar_station_factor_var = -0.005 }
-	multiply_variable = { ISI_subversive_activies_upkeep_var = -0.004 }
-	multiply_variable = { ISI_foreign_subversive_activites_var = -0.004 }
 
 	# Force the Update Dynamic Modifier with new Calculated Effects
 	force_update_dynamic_modifier = yes
@@ -2254,6 +1749,11 @@ change_fossil_fuel_industry_opinion = {
 		#	limit = { tag = TAG }
 		# 	set_variable = { defense_industry_min = x }
 		# }
+
+		if = {
+			limit = { has_idea = rentier_state }
+			add_to_temp_variable = { fossil_fuel_industry_min = 15 }
+		}
 
 		clamp_variable = {
 			var = fossil_fuel_industry_opinion
@@ -2458,6 +1958,7 @@ change_farmers_opinion = {
 					is_in_array = { ruling_party = 13 }	#Neutral autocrats
 					is_in_array = { ruling_party = 21 }	#fascists
 					is_in_array = { ruling_party = 22 }	#military junta
+					has_idea = syria_increased_agricultural_subsidies #increasing agricultural subsidies gets farmers' effects double
 				}
 				check_variable = { temp_opinion > 0 }
 			}
@@ -2474,6 +1975,15 @@ change_farmers_opinion = {
 		#	limit = { tag = TAG }
 		# 	set_variable = { farmers_min = x }
 		# }
+
+		if = { limit = { tag = BRA }
+			if = { limit = { has_idea = BRA_idea_pro_farmers }
+				add_to_temp_variable = { farmers_min = 5 }
+			}
+			if = { limit = { has_idea = BRA_idea_pro_farmers_2 }
+				add_to_temp_variable = { farmers_min = 10 }
+			}
+		}
 
 		clamp_variable = {
 			var = farmers_opinion
@@ -2519,13 +2029,13 @@ change_landowners_opinion = {
 		# 	set_variable = { farmers_min = x }
 		# }
 		if = { limit = { tag = SPR }
-			if = { limit = { has_idea = SPR_the_hands_of_the_few_idea  }
+			if = { limit = { has_idea = SPR_the_hands_of_the_few_idea }
 				add_to_temp_variable = { landsowners_min = 15 }
 			}
 		}
 		if = {
 			limit = { tag = SIN }
-			if = { limit = { has_idea = SIN_support_for_the_business  }
+			if = { limit = { has_idea = SIN_support_for_the_business }
 				add_to_temp_variable = { landsowners_min = 10 }
 			}
 		}
@@ -2575,23 +2085,30 @@ change_labour_unions_opinion = {
 		# 	set_variable = { farmers_min = x }
 		# }
 		if = { limit = { tag = SPR }
-			if = { limit = { has_idea = SPR_unionization_of_faith_idea  }
+			if = { limit = { has_idea = SPR_unionization_of_faith_idea }
 				add_to_temp_variable = { labour_unions_min = 15 }
 			}
 		}
 		if = {
 			limit = { tag = SIN }
-			if = { limit = { has_idea = SIN_support_for_the_workers  }
+			if = { limit = { has_idea = SIN_support_for_the_workers }
 				add_to_temp_variable = { labour_unions_min = 10 }
 			}
 		}
 		if = {
 			limit = { tag = DEN }
-			if = { limit = { has_idea = DEN_in_need_of_banking_reforms_idea  }
+			if = { limit = { has_idea = DEN_in_need_of_banking_reforms_idea }
 				add_to_temp_variable = { labour_unions_max = -15 }
 			}
-			if = { limit = { has_idea = DEN_intensify_the_flexicurity_idea  }
+			if = { limit = { has_idea = DEN_intensify_the_flexicurity_idea }
 				add_to_temp_variable = { labour_unions_min = 10 }
+			}
+		}
+		if = {
+			limit = { tag = BRA }
+			if = {
+				limit = { has_idea = BRA_idea_pro_unions }
+				add_to_temp_variable = { labour_unions_min = 15 }
 			}
 		}
 
@@ -2858,6 +2375,38 @@ change_the_military_opinion = {
 		#	limit = { tag = TAG }
 		# 	set_variable = { the_military_min = x }
 		# }
+		if = {
+			limit = { has_idea = defence_03 }
+			add_to_temp_variable = { the_military_min = 5 }
+		}
+		else_if = {
+			limit = { has_idea = defence_04 }
+			add_to_temp_variable = { the_military_min = 10 }
+		}
+		else_if = {
+			limit = { has_idea = defence_05 }
+			add_to_temp_variable = { the_military_min = 15 }
+		}
+		else_if = {
+			limit = { has_idea = defence_06 }
+			add_to_temp_variable = { the_military_min = 20 }
+		}
+		else_if = {
+			limit = { has_idea = defence_07 }
+			add_to_temp_variable = { the_military_min = 25 }
+		}
+		else_if = {
+			limit = { has_idea = defence_08 }
+			add_to_temp_variable = { the_military_min = 30 }
+		}
+		else_if = {
+			limit = { has_idea = defence_09 }
+			add_to_temp_variable = { the_military_min = 35 }
+		}
+
+		if = { limit = { has_idea = internal_factions_allowed_foreign_nationals_military }
+			add_to_temp_variable = { the_military_max = -5 }
+		}
 
 		clamp_variable = {
 			var = the_military_opinion
@@ -2865,7 +2414,8 @@ change_the_military_opinion = {
 			max = the_military_max
 		}
 		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
-		custom_effect_tooltip = display_the_military_opinion
+		if = { limit = { original_tag = PER NOT = { has_country_flag = PER_turn_off_IR_stuff } } custom_effect_tooltip = display_the_irgc_opinion }
+		else = { custom_effect_tooltip = display_the_military_opinion }
 		apply_the_military_dynamic_effect_DYNMOD = yes
 		# Reset command in case there is a successive change
 		#set_temp_variable = { temp_opinion = 0 }
@@ -2911,139 +2461,6 @@ change_intelligence_community_opinion = {
 		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
 		custom_effect_tooltip = display_intelligence_community_opinion
 		apply_intelligence_community_dynamic_effect_DYNMOD = yes
-		# Reset command in case there is a successive change
-		#set_temp_variable = { temp_opinion = 0 }
-	}
-}
-
-# ISI Pakistan
-# set_temp_variable = { temp_opinion = -+ # }
-change_isi_pakistan_opinion = {
-	if = { limit = { has_idea = isi_pakistan }
-
-		#Autocrats get faction effects double
-		if = {
-			limit = {
-				OR = {
-					is_in_array = { ruling_party = 0 }	#Western Autocrats
-					is_in_array = { ruling_party = 7 }	#Emerging autocrats
-					is_in_array = { ruling_party = 13 }	#Neutral autocrats
-					is_in_array = { ruling_party = 21 }	#fascists
-					is_in_array = { ruling_party = 22 }	#military junta
-				}
-				check_variable = { temp_opinion > 0 }
-			}
-			multiply_temp_variable = { temp_opinion = 2 }
-		}
-
-		add_to_variable = { isi_pakistan_opinion = temp_opinion }
-
-		set_temp_variable = { isi_pakistan_min = 0 }
-		set_temp_variable = { isi_pakistan_max = 100 }
-
-		# Custom Min/Max Opinion Instructions
-		# if = {
-		#	limit = { tag = TAG }
-		# 	set_variable = { the_military_min = x }
-		# }
-
-		clamp_variable = {
-			var = isi_pakistan_opinion
-			min = isi_pakistan_min
-			max = isi_pakistan_max
-		}
-		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
-		custom_effect_tooltip = display_isi_pakistan_opinion
-		apply_isi_pakistan_effect_DYNMOD = yes
-		# Reset command in case there is a successive change
-		#set_temp_variable = { temp_opinion = 0 }
-	}
-}
-
-# Vevak
-# set_temp_variable = { temp_opinion = -+ # }
-change_vevak_opinion = {
-	if = { limit = { has_idea = vevak }
-
-		#Autocrats get faction effects double
-		if = {
-			limit = {
-				OR = {
-					is_in_array = { ruling_party = 0 }	#Western Autocrats
-					is_in_array = { ruling_party = 7 }	#Emerging autocrats
-					is_in_array = { ruling_party = 13 }	#Neutral autocrats
-					is_in_array = { ruling_party = 21 }	#fascists
-					is_in_array = { ruling_party = 22 }	#military junta
-				}
-				check_variable = { temp_opinion > 0 }
-			}
-			multiply_temp_variable = { temp_opinion = 2 }
-		}
-
-		add_to_variable = { vevak_opinion = temp_opinion }
-
-		set_temp_variable = { vevak_min = 0 }
-		set_temp_variable = { vevak_max = 100 }
-
-		# Custom Min/Max Opinion Instructions
-		# if = {
-		#	limit = { tag = TAG }
-		# 	set_variable = { the_military_min = x }
-		# }
-
-		clamp_variable = {
-			var = vevak_opinion
-			min = vevak_min
-			max = vevak_max
-		}
-		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
-		custom_effect_tooltip = display_vevak_opinion
-		apply_vevak_effect_DYNMOD = yes
-		# Reset command in case there is a successive change
-		#set_temp_variable = { temp_opinion = 0 }
-	}
-}
-
-
-# The Bazaar
-# set_temp_variable = { temp_opinion = -+ # }
-change_the_bazaar_opinion = {
-	if = { limit = { has_idea = the_bazaar }
-
-		#Autocrats get faction effects double
-		if = {
-			limit = {
-				OR = {
-					is_in_array = { ruling_party = 0 }	#Western Autocrats
-					is_in_array = { ruling_party = 7 }	#Emerging autocrats
-					is_in_array = { ruling_party = 13 }	#Neutral autocrats
-					is_in_array = { ruling_party = 21 }	#fascists
-					is_in_array = { ruling_party = 22 }	#military junta
-				}
-				check_variable = { temp_opinion > 0 }
-			}
-			multiply_temp_variable = { temp_opinion = 2 }
-		}
-
-		add_to_variable = { the_bazaar_opinion = temp_opinion }
-
-		set_temp_variable = { the_bazaar_min = 0 }
-		set_temp_variable = { the_bazaar_max = 100 }
-
-		# Custom Min/Max Opinion Instructions
-		# if = {
-		#	limit = { tag = TAG }
-		# 	set_variable = { the_military_min = x }
-		# }
-
-		clamp_variable = {
-			var = the_bazaar_opinion
-			min = the_bazaar_min
-			max = the_bazaar_max
-		}
-		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
-		custom_effect_tooltip = display_the_bazaar_opinion
-		apply_the_bazaar_dynamic_effect_DYNMOD = yes
 		# Reset command in case there is a successive change
 		#set_temp_variable = { temp_opinion = 0 }
 	}
@@ -3177,50 +2594,6 @@ change_foreign_jihadis_opinion = {
 		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
 		custom_effect_tooltip = display_foreign_jihadis_opinion
 		apply_foreign_jihadis_effect_DYNMOD = yes
-		# Reset command in case there is a successive change
-		#set_temp_variable = { temp_opinion = 0 }
-	}
-}
-
-# IRGC
-# set_temp_variable = { temp_opinion = -+ # }
-change_irgc_opinion = {
-	if = { limit = { has_idea = irgc }
-
-		#Autocrats get faction effects double
-		if = {
-			limit = {
-				OR = {
-					is_in_array = { ruling_party = 0 }	#Western Autocrats
-					is_in_array = { ruling_party = 7 }	#Emerging autocrats
-					is_in_array = { ruling_party = 13 }	#Neutral autocrats
-					is_in_array = { ruling_party = 21 }	#fascists
-					is_in_array = { ruling_party = 22 }	#military junta
-				}
-				check_variable = { temp_opinion > 0 }
-			}
-			multiply_temp_variable = { temp_opinion = 2 }
-		}
-
-		add_to_variable = { irgc_opinion = temp_opinion }
-
-		set_temp_variable = { irgc_min = 0 }
-		set_temp_variable = { irgc_max = 100 }
-
-		# Custom Min/Max Opinion Instructions
-		# if = {
-		#	limit = { tag = TAG }
-		# 	set_variable = { the_military_min = x }
-		# }
-
-		clamp_variable = {
-			var = irgc_opinion
-			min = irgc_min
-			max = irgc_max
-		}
-		# THIS MUST STAY BETWEEN 0 - 100 pls. Makes my life easier
-		custom_effect_tooltip = display_irgc_opinion
-		apply_irgc_iranian_quds_force_dynamic_effect_DYNMOD = yes
 		# Reset command in case there is a successive change
 		#set_temp_variable = { temp_opinion = 0 }
 	}
@@ -3384,23 +2757,6 @@ set_to_max_internal_faction_opinions = {
 		set_variable = { small_medium_business_owners_opinion = 100 }
 		apply_small_medium_business_owner_effect_DYNMOD = yes
 	}
-	if = {
-		limit = {
-			OR = {
-				has_idea = irgc
-				has_idea = iranian_quds_force
-			}
-		}
-		if = {
-			limit = { has_idea = irgc }
-			set_variable = { irgc_opinion = 100 }
-		}
-		if = {
-			limit = { has_idea = iranian_quds_force }
-			set_variable = { iranian_quds_force_opinion = 100 }
-		}
-		apply_irgc_iranian_quds_force_dynamic_effect_DYNMOD = yes
-	}
 	if = { limit = { has_idea = foreign_jihadis }
 		set_variable = { foreign_jihadis_opinion = 100 }
 		apply_foreign_jihadis_effect_DYNMOD = yes
@@ -3425,7 +2781,7 @@ set_to_max_internal_faction_opinions = {
 		set_variable = { the_clergy_opinion = 100 }
 		apply_the_clergy_dynamic_effect_DYNMOD = yes
 	}
-	if = { limit = { has_idea = communist_cadres  }
+	if = { limit = { has_idea = communist_cadres }
 		set_variable = { communist_cadres_opinion = 100 }
 		apply_communist_cadres_dynamic_effect_DYNMOD = yes
 	}
@@ -3440,14 +2796,6 @@ set_to_max_internal_faction_opinions = {
 	if = { limit = { has_idea = labour_unions }
 		set_variable = { labour_unions_opinion = 100 }
 		apply_labour_unions_dynamic_effect_DYNMOD = yes
-	}
-	if = { limit = { has_idea = vevak }
-		set_variable = { vevak_opinion = 100 }
-		apply_vevak_effect_DYNMOD = yes
-	}
-	if = { limit = { has_idea = isi_pakistan }
-		set_variable = { isi_pakistan_opinion = 100 }
-		apply_isi_pakistan_effect_DYNMOD = yes
 	}
 	if = { limit = { has_idea = intelligence_community }
 		set_variable = { intelligence_community_opinion = 100 }
@@ -3492,10 +2840,6 @@ set_to_max_internal_faction_opinions = {
 	if = { limit = { has_idea = the_donju }
 		set_variable = { the_donju_opinion = 100 }
 		apply_the_donju_dynamic_effect_DYNMOD = yes
-	}
-	if = { limit = { has_idea = the_bazaar }
-		set_variable = { the_bazaar_opinion = 100 }
-		apply_the_bazaar_dynamic_effect_DYNMOD = yes
 	}
 }
 
@@ -3557,10 +2901,6 @@ reset_all_internal_faction_opinions = {
 	if = { limit = { has_idea = labour_unions }
 		set_variable = { labour_unions_opinion = 50 }
 	}
-	# Nation Specific
-	if = { limit = { has_idea = irgc }
-		set_variable = { irgc_opinion = 50 }
-	}
 	if = { limit = { has_idea = foreign_jihadis }
 		set_variable = { foreign_jihadis_opinion = 50 }
 	}
@@ -3569,9 +2909,6 @@ reset_all_internal_faction_opinions = {
 	}
 	if = { limit = { has_idea = saudi_royal_family }
 		set_variable = { saudi_royal_family_opinion = 50 }
-	}
-	if = { limit = { has_idea = isi_pakistan }
-		set_variable = { isi_pakistan_opinion = 50 }
 	}
 	if = { limit = { has_idea = chaebols }
 		set_variable = { chaebols_opinion = 50 }
@@ -3582,7 +2919,332 @@ reset_all_internal_faction_opinions = {
 	if = { limit = { has_idea = the_donju }
 		set_variable = { the_donju_opinion = 50 }
 	}
-	if = { limit = { has_idea = the_bazaar }
-		set_variable = { the_bazaar_opinion = 50 }
+}
+
+# Effect: monthly_tick_internal_factions_opinion
+# Purpose: Ticks down the monthly internal factions
+monthly_tick_internal_factions_opinion = {
+	# Economic Factions
+	if = {
+		limit = {
+			has_idea = small_medium_business_owners
+			check_variable = { small_medium_business_owners_opinion > 49 }
+		}
+		subtract_from_variable = { small_medium_business_owners_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = small_medium_business_owners_opinion min = 50 }
+		apply_small_medium_business_owner_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = international_bankers
+			check_variable = { international_bankers_opinion > 49 }
+		}
+		subtract_from_variable = { international_bankers_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = international_bankers_opinion min = 50 }
+		apply_international_bankers_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = oligarchs
+			check_variable = { oligarchs_opinion > 49 }
+		}
+		subtract_from_variable = { oligarchs_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = oligarchs_opinion min = 50 }
+		apply_oligarchs_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = industrial_conglomerates
+			check_variable = { industrial_conglomerates_opinion > 49 }
+		}
+		subtract_from_variable = { industrial_conglomerates_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = industrial_conglomerates_opinion min = 50 }
+		apply_industrial_conglomerates_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = fossil_fuel_industry
+			check_variable = { fossil_fuel_industry_opinion > 49 }
+		}
+		subtract_from_variable = { fossil_fuel_industry_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = fossil_fuel_industry_opinion min = 50 }
+		apply_fossil_fuel_industry_dynamic_effect_DYNMOD = yes
+	}
+	# Militaristic Factions
+	if = {
+		limit = {
+			has_idea = intelligence_community
+			check_variable = { intelligence_community_opinion > 49 }
+		}
+		subtract_from_variable = { intelligence_community_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = intelligence_community_opinion min = 50 }
+		apply_intelligence_community_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = the_military
+			check_variable = { the_military_opinion > 49 }
+		}
+		subtract_from_variable = { the_military_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = the_military_opinion min = 50 }
+		apply_the_military_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = defense_industry
+			check_variable = { defense_industry_opinion > 49 }
+		}
+		subtract_from_variable = { defense_industry_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = defense_industry_opinion min = 50 }
+		apply_defense_industry_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = maritime_industry
+			check_variable = { maritime_industry_opinion > 49 }
+		}
+		subtract_from_variable = { maritime_industry_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = maritime_industry_opinion min = 50 }
+		apply_maritime_industry_dynamic_effect_DYNMOD = yes
+	}
+	# Special Interest Groups
+	if = {
+		limit = {
+			has_idea = wahabi_ulema
+			check_variable = { wahabi_ulema_opinion > 49 }
+		}
+		subtract_from_variable = { wahabi_ulema_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = wahabi_ulema_opinion min = 50 }
+		apply_wahabi_ulema_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = the_priesthood
+			check_variable = { the_priesthood_opinion > 49 }
+		}
+		subtract_from_variable = { the_priesthood_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = the_priesthood_opinion min = 50 }
+		apply_the_priesthood_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = the_ulema
+			check_variable = { the_ulema_opinion > 49 }
+		}
+		subtract_from_variable = { the_ulema_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = the_ulema_opinion min = 50 }
+		apply_the_ulema_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = the_clergy
+			check_variable = { the_clergy_opinion > 49 }
+		}
+		subtract_from_variable = { the_clergy_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = the_clergy_opinion min = 50 }
+		apply_the_clergy_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = communist_cadres
+			check_variable = { communist_cadres_opinion > 49 }
+		}
+		subtract_from_variable = { communist_cadres_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = communist_cadres_opinion min = 50 }
+		apply_communist_cadres_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = farmers
+			check_variable = { farmers_opinion > 49 }
+		}
+		subtract_from_variable = { farmers_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = farmers_opinion min = 50 }
+		apply_farmers_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = landowners
+			check_variable = { landowners_opinion > 49 }
+		}
+		subtract_from_variable = { landowners_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = landowners_opinion min = 50 }
+		apply_landowners_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = labour_unions
+			check_variable = { labour_unions_opinion > 49 }
+		}
+		subtract_from_variable = { labour_unions_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = labour_unions_opinion min = 50 }
+		apply_labour_unions_dynamic_effect_DYNMOD = yes
+	}
+	# Nation Specific
+	if = {
+		limit = {
+			has_idea = foreign_jihadis
+			check_variable = { foreign_jihadis_opinion > 49 }
+		}
+		subtract_from_variable = { foreign_jihadis_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = foreign_jihadis_opinion min = 50 }
+		apply_foreign_jihadis_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = iranian_quds_force
+			check_variable = { iranian_quds_force_opinion > 49 }
+		}
+		subtract_from_variable = { iranian_quds_force_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = iranian_quds_force_opinion min = 50 }
+		apply_irgc_iranian_quds_force_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = saudi_royal_family
+			check_variable = { saudi_royal_family_opinion > 49 }
+		}
+		subtract_from_variable = { saudi_royal_family_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = saudi_royal_family_opinion min = 50 }
+		apply_saudi_royal_family_dynamic_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = chaebols
+			check_variable = { chaebols_opinion > 49 }
+		}
+		subtract_from_variable = { chaebols_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = chaebols_opinion min = 50 }
+		apply_chaebols_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = wall_street
+			check_variable = { wall_street_opinion > 49 }
+		}
+		subtract_from_variable = { wall_street_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = wall_street_opinion min = 50 }
+		apply_wall_street_effect_DYNMOD = yes
+	}
+	if = {
+		limit = {
+			has_idea = the_donju
+			check_variable = { the_donju_opinion > 49 }
+		}
+		subtract_from_variable = { the_donju_opinion = global.monthly_internal_faction_tick_rate }
+		clamp_variable = { var = the_donju_opinion min = 50 }
+		apply_the_donju_dynamic_effect_DYNMOD = yes
+	}
+}
+
+# Effect: copy_internal_factions_from
+# Purpose: Copies internal factions from the selected nation
+# Parameter:
+#  - nation_to_copy_from - accepts all tags as a variable
+copy_internal_factions = {
+	var:nation_to_copy_from = {
+		if = { limit = { has_idea = small_medium_business_owners }
+			PREV = { add_ideas = small_medium_business_owners }
+		}
+		if = { limit = { has_idea = international_bankers }
+			PREV = { add_ideas = international_bankers }
+		}
+		if = { limit = { has_idea = fossil_fuel_industry }
+			PREV = { add_ideas = fossil_fuel_industry }
+		}
+		if = { limit = { has_idea = industrial_conglomerates }
+			PREV = { add_ideas = industrial_conglomerates }
+		}
+		if = { limit = { has_idea = oligarchs }
+			PREV = { add_ideas = oligarchs }
+		}
+		if = { limit = { has_idea = maritime_industry }
+			PREV = { add_ideas = maritime_industry }
+		}
+		if = { limit = { has_idea = defense_industry }
+			PREV = { add_ideas = defense_industry }
+		}
+		if = { limit = { has_idea = the_military }
+			PREV = { add_ideas = the_military }
+		}
+		if = { limit = { has_idea = intelligence_community }
+			PREV = { add_ideas = intelligence_community }
+		}
+		if = { limit = { has_idea = labour_unions }
+			PREV = { add_ideas = labour_unions }
+		}
+		if = { limit = { has_idea = landowners }
+			PREV = { add_ideas = landowners }
+		}
+		if = { limit = { has_idea = farmers }
+			PREV = { add_ideas = farmers }
+		}
+		if = {
+			limit = {
+				has_idea = communist_cadres
+				PREV = {
+					OR = {
+						is_in_array = { ruling_party = 4 }
+						is_in_array = { ruling_party = 19 }
+					}
+				}
+			}
+			PREV = { add_ideas = communist_cadres }
+		}
+		if = { limit = { has_idea = the_priesthood }
+			PREV = { add_ideas = the_priesthood }
+		}
+		if = { limit = { has_idea = the_ulema }
+			PREV = { add_ideas = the_ulema }
+		}
+		if = { limit = { has_idea = the_clergy }
+			PREV = { add_ideas = the_clergy }
+		}
+		if = { limit = { has_idea = wahabi_ulema }
+			PREV = { add_ideas = wahabi_ulema }
+		}
+		if = { limit = { has_idea = the_donju }
+			PREV = { add_ideas = the_donju }
+		}
+		if = {
+			limit = {
+				has_idea = saudi_royal_family
+				PREV = {
+					OR = {
+						is_in_array = { ruling_party = 10 }
+						is_in_array = { ruling_party = 23 }
+						is_in_array = { ruling_party = 0 }
+					}
+				}
+			}
+			PREV = { add_ideas = saudi_royal_family }
+		}
+		if = {
+			limit = {
+				has_idea = iranian_quds_force
+				PREV = {
+					NOT = {
+						has_government = democratic
+						has_government = fascism
+					}
+				}
+			}
+			PREV = { add_ideas = iranian_quds_force }
+		}
+		if = {
+			limit = {
+				has_idea = foreign_jihadis
+				PREV = {
+					is_in_array = { ruling_party = 11 }
+				}
+			}
+			PREV = { add_ideas = foreign_jihadis }
+		}
+		if = { limit = { has_idea = wall_street }
+			PREV = { add_ideas = wall_street }
+		}
+		if = { limit = { has_idea = chaebols }
+			PREV = { add_ideas = chaebols }
+		}
 	}
 }

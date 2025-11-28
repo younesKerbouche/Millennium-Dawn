@@ -5,11 +5,21 @@ TUR_domestic_politics_category = {
 	allowed = { original_tag = TUR }
 
 	priority = {
-		base = 100
+		base = 198
 	}
 
 }
-#
+# TUR_misak_mili = {
+
+# 	icon = political_actions
+
+# 	allowed = { original_tag = TUR }
+# 	visible_when_empty = yes
+# 	priority = {
+# 		base = 199
+# 	}
+
+# }
 TUR_hizmet_gulen_struggle = {
 
 	icon = political_actions
@@ -25,7 +35,6 @@ TUR_hizmet_gulen_struggle = {
 		base = 100
 	}
 }
-#
 TUR_pan_turkic_dream = {
 
 	icon = political_actions
@@ -41,7 +50,6 @@ TUR_pan_turkic_dream = {
 		base = 100
 	}
 }
-#
 TUR_ottoman_revival = {
 
 	icon = political_actions
@@ -57,7 +65,6 @@ TUR_ottoman_revival = {
 		base = 100
 	}
 }
-#
 TUR_military_category = {
 
 	icon = military_operation
@@ -70,43 +77,10 @@ TUR_military_category = {
 	}
 
 	priority = {
-		base = 75
+		base = 200
 	}
 
 }
-
-TUR_pkk_insurgency_category = {
-
-	icon = political_actions
-
-	allowed = {
-		OR = {
-			original_tag = TUR
-			original_tag = KUR
-		}
-	}
-
-	visible = {
-		OR = {
-			original_tag = KUR
-			OR = {
-				935 = {
-					is_owned_and_controlled_by = TUR
-				}
-				162 = {
-					is_owned_and_controlled_by = TUR
-				}
-			}
-		}
-	}
-
-	visible_when_empty = yes
-
-	priority = {
-		base = 50
-	}
-}
-
 TUR_mafia_category = {
 
 	icon = political_actions
@@ -123,10 +97,9 @@ TUR_mafia_category = {
 	visible_when_empty = yes
 
 	priority = {
-		base = 45
+		base = 199
 	}
 }
-#
 TUR_mafia_influence_mechanic = {
 
 	icon = political_actions
@@ -146,7 +119,6 @@ TUR_mafia_influence_mechanic = {
 		base = 45
 	}
 }
-#
 TUR_ciw_decisions = {
 
 	icon = political_actions
@@ -159,7 +131,6 @@ TUR_ciw_decisions = {
 		base = 80
 	}
 }
-#
 TUR_disaster_income = {
 
 	icon = political_actions
@@ -175,4 +146,43 @@ TUR_disaster_income = {
 	priority = {
 		base = 100
 	}
+}
+
+TUR_PKK_mechanic = {
+
+	icon = political_actions
+
+	allowed = {
+		original_tag = TUR
+	}
+	visible = {
+		NOT = {
+			has_country_flag = TUR_PKK_gone
+			has_country_flag = TUR_PKK_reconciliation
+		}
+	}
+	scripted_gui = turkey_pkk_gui
+	priority = {
+		base = 300
+	}
+	visible_when_empty = yes
+}
+
+TUR_rebuilding_kurdistan = {
+
+	icon = political_actions
+
+	allowed = {
+		original_tag = TUR
+	}
+
+	visible = {
+		has_country_flag = TUR_PKK_reconciliation
+	}
+
+	priority = {
+		base = 300
+	}
+
+	visible_when_empty = yes
 }

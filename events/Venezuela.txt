@@ -107,7 +107,7 @@ country_event = {
 	}
 }
 
-####
+# Offer to Join the Gran-Colombia Alliance
 country_event = {
 	id = gca.1
 	title = gca.1.t
@@ -121,20 +121,72 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: gca.1.a executed"
 		VEN = {
 			country_event = { id = gca.2 days = 1 }
+			add_to_faction = PREV
 		}
-		ai_chance = { base = 5 }
+		ai_chance = {
+			base = 5
+			modifier = {
+				factor = 3
+				OR = {
+					check_variable = { influence_array^0 = VEN.id }
+					check_variable = { influence_array^1 = VEN.id }
+					check_variable = { influence_array^2 = VEN.id }
+				}
+			}
+			modifier = {
+				add = 5
+				has_opinion = {
+					target = VEN
+					value > 49
+				}
+			}
+		}
 	}
 
 	# No we wont join
 	option = {
 		name = gca.1.b
 		log = "[GetDateText]: [This.GetName]: gca.1.a executed"
-		ai_chance = { base = 0 }
+
+		VEN = {
+			country_event = { id = gca.3 days = 1 }
+		}
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 5
+				has_opinion = {
+					target = VEN
+					value < 0
+				}
+			}
+		}
 	}
 }
-#
+
+# [FROM.GetName] Joins the GCA
 country_event = {
 	id = gca.2
+	title = gca.2.t
+	desc = gca.2.d
+	is_triggered_only = yes
+	picture = GFX_handshake_black
+
+	# Great they joined
+	option = {
+		name = gca.2.a
+		log = "[GetDateText]: [This.GetName]: gca.2.a executed"
+		effect_tooltip = {
+			VEN = {
+				add_to_faction = FROM
+			}
+		}
+	}
+}
+
+# [FROM.GetName] Refuses to Join the GCA
+country_event = {
+	id = gca.3
 	title = gca.2.t
 	desc = gca.2.d
 	is_triggered_only = yes
@@ -237,7 +289,6 @@ country_event = {
 # Peru becoming a puppet
 country_event = {
 	id = venezuela.11
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.11" }
 	title = venezuela.11.t
 	desc = venezuela.11.d
 	picture = GFX_venez_capt
@@ -271,7 +322,6 @@ country_event = {
 	# Good Choice
 	country_event = {
 		id = venezuela.12
-		immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.12" }
 		title = venezuela.12.t
 		desc = venezuela.12.d
 		is_triggered_only = yes
@@ -291,7 +341,6 @@ country_event = {
 # That was a mistake
 country_event = {
 		id = venezuela.13
-		immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.13" }
 		title = venezuela.13.t
 		desc = venezuela.13.d
 		is_triggered_only = yes
@@ -319,7 +368,6 @@ country_event = {
 # Demanding the Canal
 country_event = {
 	id = venezuela.16
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.16" }
 	title = venezuela.16.t
 	desc = venezuela.16.d
 	picture = GFX_venez_canal
@@ -352,7 +400,6 @@ country_event = {
 # Good Choice
 	country_event = {
 		id = venezuela.17
-		immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.17" }
 		title = venezuela.17.t
 		desc = venezuela.17.d
 		is_triggered_only = yes
@@ -374,7 +421,6 @@ country_event = {
 # That was a mistake
 country_event = {
 	id = venezuela.18
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.18" }
 	title = venezuela.18.t
 	desc = venezuela.18.d
 	is_triggered_only = yes
@@ -400,7 +446,6 @@ country_event = {
 #
 country_event = {
 	id = venezuela.19
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.19" }
 	title = venezuela.19.t
 	desc = venezuela.19.d
 	is_triggered_only = yes
@@ -453,7 +498,6 @@ country_event = {
 #
 country_event = {
 	id = venezuela.20
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.20" }
 	title = venezuela.20.t
 	desc = venezuela.20.d
 	is_triggered_only = yes
@@ -476,7 +520,6 @@ country_event = {
 #
 country_event = {
 	id = venezuela.21
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.21" }
 	title = venezuela.21.t
 	desc = venezuela.21.d
 	is_triggered_only = yes
@@ -492,7 +535,6 @@ country_event = {
 # Venezuela asks us to establish military bases
 country_event = {
 	id = venezuela.22
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.22" }
 	title = venezuela.22.t
 	desc = venezuela.22.d
 	is_triggered_only = yes
@@ -532,10 +574,10 @@ country_event = {
 		}
 	}
 }
-#
+
+# United States Refuses Bases
 country_event = {
 	id = venezuela.23
-	immediate = { log = "[GetDateText]: [Root.GetName]: event venezuela.23" }
 	title = venezuela.23.t
 	desc = venezuela.23.d
 	is_triggered_only = yes
@@ -549,6 +591,39 @@ country_event = {
 	}
 }
 
+# Death of Hugo Chávez
+country_event = {
+	id = venezuela.24
+	title = venezuela.24.t
+	desc = venezuela.24.d
+	is_triggered_only = yes
+	trigger = {
+		original_tag = VEN
+		has_country_leader = { name = "Hugo Chávez" ruling_only = yes }
+	}
+
+	# A Hero of the Bolivarian Revolution
+	option = {
+		name = venezuela.24.a
+		log = "[GetDateText]: [This.GetName]: venezuela.24.a executed"
+
+		create_country_leader = {
+			name = "Nicolás Maduro"
+			picture = "Nicolas_Maduro.dds"
+			ideology = anarchist_communism
+			traits = {
+				emerging_anarchist_communism
+				union_man
+				career_politician
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 
 # 2000 Elections
 country_event = {
@@ -556,7 +631,6 @@ country_event = {
 	title = venezuela.100.t
 	desc = venezuela.100.d
 	is_triggered_only = yes
-
 	trigger = {
 		original_tag = VEN
 		emerging_anarchist_communism_in_power_or_coalition = yes
@@ -569,21 +643,7 @@ country_event = {
 
 		country_event = MD4_election_campaign.0
 		hidden_effect = {
-			set_country_flag = no_leader_change
-			meta_effect = {
-				text = {
-					set_politics = {
-						ruling_party = [OUTLOOK]
-						elections_allowed = yes
-						last_election = "[YEAR].[MONTH].1"
-						election_frequency = 72
-					}
-				}
-				OUTLOOK = "[meta_ideology_names]"
-				YEAR = global.year
-				MONTH = global.month
-			}
-			clr_country_flag = no_leader_change
+			set_elections_72_months = yes
 		}
 
 		ai_chance = { base = 50 }

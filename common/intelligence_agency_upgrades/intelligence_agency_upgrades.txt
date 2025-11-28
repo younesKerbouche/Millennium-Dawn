@@ -9,15 +9,20 @@ branch_intelligence = {
 		ai_will_do = {
 			factor = 5
 			modifier = {
-				has_war = no
 				factor = 2
+				has_war = no
 			}
-
-		}
-
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
+			modifier = {
+				factor = 2
+				num_of_available_civilian_factories > 25
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		##Capped to 50% boost
@@ -30,6 +35,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_economy_civilian"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -41,6 +48,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_economy_civilian"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -52,6 +61,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_economy_civilian"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -63,6 +74,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_economy_civilian"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -74,6 +87,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_economy_civilian"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -126,11 +141,19 @@ branch_intelligence = {
 				threat > 0.90
 				add = 1
 			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
+			modifier = {
+				factor = 2
+				num_of_available_civilian_factories > 25
+			}
 		}
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-		}
+
 		level = {
 			modifier = {
 				army_intel_factor = 0.10
@@ -141,30 +164,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				army_intel_factor = 0.10
-				navy_intel_factor = 0.10
-				airforce_intel_factor = 0.10
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				army_intel_factor = 0.10
-				navy_intel_factor = 0.10
-				airforce_intel_factor = 0.10
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -177,6 +178,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -189,6 +192,36 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				army_intel_factor = 0.10
+				navy_intel_factor = 0.10
+				airforce_intel_factor = 0.10
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				army_intel_factor = 0.10
+				navy_intel_factor = 0.10
+				airforce_intel_factor = 0.10
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_army_department"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -198,6 +231,21 @@ branch_intelligence = {
 		sound = Spy_Agency_Intel_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 2
+				num_of_available_civilian_factories > 25
+			}
+			modifier = {
+				factor = 3
+				has_war = yes
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		available = {
@@ -206,8 +254,6 @@ branch_intelligence = {
 				tooltip = upgrade_computer_servers_TT
 				has_done_agency_upgrade = upgrade_form_department
 			}
-			set_temp_variable = { temp_treasury = 30 }
-			has_more_than_temp_treasury = yes
 		}
 		level = {
 			modifier = {
@@ -220,6 +266,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_computer_servers"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -233,6 +281,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_computer_servers"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -246,6 +296,8 @@ branch_intelligence = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_computer_servers"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -258,50 +310,74 @@ branch_defense = {
 		sound = Spy_Agency_Defense_Upgrades_Confirm
 		ai_will_do = {
 			factor = 2
+			modifier = {
+				factor = 5
+				has_country_flag = increased_corruption_recently
+			}
+			modifier = {
+				factor = 2.5
+				any_enemy_country = {
+					OR = {
+						has_idea = superpower
+						has_idea = great_power
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
+		}
 
-		}
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-		}
 		level = {
 			modifier = {
-				intelligence_agency_defense = 1.5
+				intelligence_agency_defense = 0.75
 			}
 			complete_effect = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_passive_defense"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
 			modifier = {
-				intelligence_agency_defense = 1.5
+				intelligence_agency_defense = 0.75
 			}
 			complete_effect = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_passive_defense"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
 			modifier = {
-				intelligence_agency_defense = 1
+				intelligence_agency_defense = 0.5
 			}
 			complete_effect = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_passive_defense"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
 			modifier = {
-				intelligence_agency_defense = 1
+				intelligence_agency_defense = 0.5
 			}
 			complete_effect = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_passive_defense"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -311,11 +387,15 @@ branch_defense = {
 		sound = Spy_Agency_Defense_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-		}
+
 		level = {
 			modifier = {
 				root_out_resistance_effectiveness_factor = 0.10
@@ -324,26 +404,8 @@ branch_defense = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				root_out_resistance_effectiveness_factor = 0.10
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				root_out_resistance_effectiveness_factor = 0.10
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -354,6 +416,8 @@ branch_defense = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -364,6 +428,32 @@ branch_defense = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				root_out_resistance_effectiveness_factor = 0.10
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				root_out_resistance_effectiveness_factor = 0.10
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_anti_partisan"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -375,10 +465,26 @@ branch_operation = {
 		sound = Spy_Agency_Operations_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
+
+		level = {
+			modifier = {
+				operation_steal_tech_outcome = 0.15
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_blueprint_stealing"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
 		}
 		level = {
 			modifier = {
@@ -388,6 +494,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_blueprint_stealing"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -398,16 +506,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_blueprint_stealing"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				operation_steal_tech_outcome = 0.15
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_blueprint_stealing"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -416,10 +516,15 @@ branch_operation = {
 		sound = Spy_Agency_Operations_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 		available = {
-			set_temp_variable = { temp_treasury = 30 }
-			has_more_than_temp_treasury = yes
 			has_tech = internet3
 		}
 		level = {
@@ -430,6 +535,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_portable_radios"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -450,6 +557,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_portable_radios"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -458,10 +567,13 @@ branch_operation = {
 		sound = Spy_Agency_Operations_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
-		}
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		level = {
@@ -472,6 +584,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_invisible_ink"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -482,6 +596,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_invisible_ink"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -492,6 +608,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_invisible_ink"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 
@@ -503,13 +621,15 @@ branch_operation = {
 
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
-		available = {
-			set_temp_variable = { temp_treasury = 25 }
-			has_more_than_temp_treasury = yes
-		}
-
 		level = {
 			modifier = {
 				target_sabotage_factor = 0.25
@@ -519,6 +639,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_plastic_explosives"
 				set_temp_variable = { treasury_change = -25 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -530,6 +652,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_plastic_explosives"
 				set_temp_variable = { treasury_change = -25 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -541,6 +665,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_plastic_explosives"
 				set_temp_variable = { treasury_change = -25 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -552,6 +678,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_plastic_explosives"
 				set_temp_variable = { treasury_change = -25 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -561,11 +689,15 @@ branch_operation = {
 		sound = Spy_Agency_Operations_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-		}
+
 		level = {
 			modifier = {
 				operative_death_on_capture_chance = 0.05
@@ -575,28 +707,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				operative_death_on_capture_chance = 0.05
-				own_operative_detection_chance = -0.05
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				operative_death_on_capture_chance = 0.05
-				own_operative_detection_chance = -0.05
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
-				set_temp_variable = { treasury_change = -10 }
-				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -608,6 +720,8 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -619,6 +733,34 @@ branch_operation = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				operative_death_on_capture_chance = 0.05
+				own_operative_detection_chance = -0.05
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				operative_death_on_capture_chance = 0.05
+				own_operative_detection_chance = -0.05
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_suicide_pills"
+				set_temp_variable = { treasury_change = -10 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -631,12 +773,13 @@ branch_operative = {
 
 		ai_will_do = {
 			factor = 2
-
-		}
-
-		available = {
-			set_temp_variable = { temp_treasury = 30 }
-			has_more_than_temp_treasury = yes
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		level = {
@@ -650,6 +793,8 @@ branch_operative = {
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
 				unlock_decision_category_tooltip = lar_local_recruitment
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -661,29 +806,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_training_centers"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				enemy_operative_recruitment_chance = 0.05
-				occupied_operative_recruitment_chance = 0.05
-				operative_slot = 1
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_training_centers"
-				set_temp_variable = { treasury_change = -30 }
-				modify_treasury_effect = yes
-			}
-		}
-		level = {
-			modifier = {
-				enemy_operative_recruitment_chance = 0.05
-				occupied_operative_recruitment_chance = 0.05
-			}
-			complete_effect = {
-				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_training_centers"
-				set_temp_variable = { treasury_change = -30 }
-				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -696,6 +820,35 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_training_centers"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				enemy_operative_recruitment_chance = 0.05
+				occupied_operative_recruitment_chance = 0.05
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_training_centers"
+				set_temp_variable = { treasury_change = -30 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+			}
+		}
+		level = {
+			modifier = {
+				enemy_operative_recruitment_chance = 0.05
+				occupied_operative_recruitment_chance = 0.05
+				operative_slot = 1
+			}
+			complete_effect = {
+				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_training_centers"
+				set_temp_variable = { treasury_change = -30 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 
@@ -707,11 +860,13 @@ branch_operative = {
 
 		ai_will_do = {
 			factor = 5
-		}
-
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		level = {
@@ -723,6 +878,10 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_commando_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_the_military_opinion = yes
 			}
 		}
 		level = {
@@ -734,6 +893,10 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_commando_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_the_military_opinion = yes
 			}
 		}
 		level = {
@@ -746,6 +909,10 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_commando_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_the_military_opinion = yes
 			}
 		}
 	}
@@ -756,11 +923,13 @@ branch_operative = {
 
 		ai_will_do = {
 			factor = 5
-		}
-
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		level = {
@@ -772,6 +941,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_interrogation_techniques"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -783,6 +954,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_interrogation_techniques"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -794,6 +967,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_interrogation_techniques"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -805,6 +980,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_interrogation_techniques"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -815,6 +992,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_interrogation_techniques"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 
@@ -826,13 +1005,15 @@ branch_operative = {
 
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-		}
-
 		level = {
 			modifier = {
 				control_trade_mission_factor = 0.10
@@ -842,6 +1023,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -853,6 +1036,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -864,6 +1049,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -875,6 +1062,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -886,6 +1075,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -896,13 +1087,15 @@ branch_operative = {
 
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
-		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-		}
-
 		level = {
 			modifier = {
 				propaganda_mission_factor = 0.10
@@ -912,6 +1105,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -923,6 +1118,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -934,6 +1131,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -945,6 +1144,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -956,6 +1157,8 @@ branch_operative = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_diplo_training"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -963,19 +1166,19 @@ branch_operative = {
 
 branch_crypto = {
 	upgrade_form_department = {
-
 		picture = GFX_agency_cyber_security
 		frame = GFX_upgrade_frame_form
 		sound = Spy_Agency_Cryptology_Upgrades_Confirm
 
 		ai_will_do = {
 			factor = 2
-
-		}
-
-		available = {
-			set_temp_variable = { temp_treasury = 25 }
-			has_more_than_temp_treasury = yes
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 
 		level = {
@@ -988,6 +1191,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_form_department"
 				set_temp_variable = { treasury_change = -25 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 
@@ -1003,12 +1208,15 @@ branch_crypto = {
 				num_of_civilian_factories > 40
 				add = 2
 			}
-
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
-
 			has_done_agency_upgrade = upgrade_form_department
 		}
 		level = {
@@ -1019,6 +1227,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_decryption_boost"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1029,6 +1239,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_decryption_boost"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1039,6 +1251,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_decryption_boost"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1049,6 +1263,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_decryption_boost"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -1059,11 +1275,15 @@ branch_crypto = {
 		sound = Spy_Agency_Cryptology_Upgrades_Confirm
 		ai_will_do = {
 			factor = 2
-
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 		available = {
-			set_temp_variable = { temp_treasury = 10 }
-			has_more_than_temp_treasury = yes
 			has_done_agency_upgrade = upgrade_form_department
 		}
 		level = {
@@ -1074,6 +1294,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1084,6 +1306,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1094,6 +1318,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1104,6 +1330,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1114,6 +1342,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength"
 				set_temp_variable = { treasury_change = -10 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}
@@ -1123,10 +1353,15 @@ branch_crypto = {
 		sound = Spy_Agency_Cryptology_Upgrades_Confirm
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 0
+				OR = {
+					has_active_mission = bankruptcy_incoming_collapse
+					check_variable = { interest_rate > 10.00 }
+				}
+			}
 		}
 		available = {
-			set_temp_variable = { temp_treasury = 30 }
-			has_more_than_temp_treasury = yes
 			has_done_agency_upgrade = upgrade_crypto_strength
 			has_tech = sociable_machines
 		}
@@ -1138,6 +1373,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength_2"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1148,6 +1385,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength_2"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 		level = {
@@ -1158,6 +1397,8 @@ branch_crypto = {
 				log = "[GetDateText]: [Root.GetName]: Intelligence Agency Upgrade upgrade_crypto_strength_2"
 				set_temp_variable = { treasury_change = -30 }
 				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 2 }
+				change_intelligence_community_opinion = yes
 			}
 		}
 	}

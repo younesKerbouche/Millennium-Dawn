@@ -451,7 +451,7 @@ military_cooperation = {
 		}
 	}
 
-	license_purchase_cost = 0 #base cost reduction
+	license_purchase_cost = -0.5 #base cost reduction
 	ai_license_acceptance = 60 #more to AI acceptance value.
 	license_production_speed = 0.25 #speed  increase for being a license
 	license_tech_difference_speed = 0.25 #less cost increase for each tech level between the license and own tech level
@@ -464,6 +464,7 @@ stability_good_modifier = {
 	consumer_goods_factor = -0.05
 	political_power_factor = 0.35
 	foreign_subversive_activites = -0.5
+	migration_rate_value_factor = 0.50
 }
 
 # applies when stability < 50%
@@ -472,6 +473,10 @@ stability_bad_modifier = {
 	industrial_capacity_dockyard = -0.50
 	political_power_factor = -0.3
 	foreign_subversive_activites = 0.5
+	migration_rate_value_factor = -0.50
+	country_productivity_growth_modifier = -0.25
+	minimum_radicalization_modifier = 30
+	minimum_terror_threat_modifier = 30
 }
 
 war_support_good_modifier = {
@@ -483,14 +488,14 @@ war_support_good_modifier = {
 
 war_support_bad_modifier = {
 	mobilization_speed = -0.500 # Reduce mobilization speed by half.
-	#army_noncore_attack_factor = -0.50  # Attacking or defending on non-core takes a huge penalty.
-	#army_noncore_defence_factor = -0.50
 	command_power_gain_mult = -0.95
 	surrender_limit = -0.3
+	migration_rate_value_factor = -0.50
 }
 
 war_support_during_war = { #Applied during war, scaled from 0-100% with war support, not split.
 	stability_factor = -0.3
+	migration_rate_value_factor = -0.20
 }
 
 attache_sent = {
@@ -519,6 +524,8 @@ diff_very_easy_player = {
 	education_cost_multiplier_modifier = -0.10
 	health_cost_multiplier_modifier = -0.10
 	social_cost_multiplier_modifier = -0.10
+	migration_rate_value_factor = 0.30
+	custom_modifier_tooltip = recruit_difficulty_tt
 }
 
 diff_easy_player = {
@@ -540,6 +547,7 @@ diff_easy_player = {
 	education_cost_multiplier_modifier = -0.05
 	health_cost_multiplier_modifier = -0.05
 	social_cost_multiplier_modifier = -0.05
+	migration_rate_value_factor = 0.15
 }
 
 diff_normal_player = {
@@ -637,6 +645,8 @@ diff_very_hard_ai = {
 	research_speed_factor = 0.20
 	production_factory_start_efficiency_factor = 0.20
 	production_factory_efficiency_gain_factor = 0.20
+	energy_use_multiplier = -0.05
+	supply_consumption_factor = -0.1
 }
 
 
@@ -813,6 +823,20 @@ country_is_at_peace = {
 	decryption_power_factor = -0.5
 }
 
+# This is scaled based on support ratio
+naval_general_support = {
+	max_organisation = 0.2
+	navy_max_range_factor = 0.05
+	naval_morale_factor = 0.2
+}
+
+# This is scaled based on support ratio
+naval_repair_support = {
+	naval_critical_effect_factor = -0.25
+	naval_ship_recovery_chance = 0.1
+	naval_attrition = -0.075
+}
+
 country_is_at_war = {
 
 }
@@ -875,6 +899,18 @@ operative_nationality_operation = {
 	# NOTE: all modifiers used here need to be pre-defined in modifier_definitions if dynamic
 	operation_outcome = 0.1
 	operation_cost = -0.1
+}
+
+# MD Specific
+generic_increased_military_support = {
+	send_volunteers_tension = -0.25
+	lend_lease_tension = -0.25
+}
+
+HOL_increased_military_support_ethiopia = {
+	send_volunteers_tension = -1
+	lend_lease_tension = -1
+	send_volunteer_divisions_required = -0.50
 }
 
 #LaR Compliance

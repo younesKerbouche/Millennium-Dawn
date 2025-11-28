@@ -1,14 +1,18 @@
-#Written by Londinium, Bluehunter, Bird
-#balanced by Simone-Traiano, dc83
+# Author(s): AngriestBird, Bluehunter, Londinium
+# Balanced by Simone-Traiano, dc83
+#NON MTG Last balanced on 30/5/24 by SwissAdmiral
+#Base idea - heavy attack is ASM, Armor is CWIS, light attack is shore bombardment / light guns in combat
+#balance around the idea that detecting & hitting the ship should be the hard part, but hits should be fatal, or close to fatal
 
-@corvette_armor = 6
-@frigate_armor = 8
-@destroyer_armor = 10
-@cruiser_armor = 12
-@helicopter_operator_armor = 16
-@battlecruiser_armor = 14
-@attack_sub_armor = 4
-@missile_sub_armor = 6
+#Armor is zeroed out; CWIS protects you from missile shots, not the hull
+@corvette_armor = 0
+@frigate_armor = 0
+@destroyer_armor = 0
+@cruiser_armor = 0
+@helicopter_operator_armor = 0
+@battlecruiser_armor = 0
+@attack_sub_armor = 0
+@missile_sub_armor = 0
 
 @corvette_hp = 60
 @frigate_hp = 160
@@ -77,7 +81,6 @@
 @attack_sub_range = 0
 @missile_sub_range = 1500
 
-###MDs Naval Ships
 
 # IC cost of 10 strength = 350 IC
 
@@ -215,6 +218,8 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 10
 	}
 
 	##Is just basically the base concept
@@ -223,6 +228,8 @@ equipments = {
 		archetype = corvette
 		priority = 100
 		module_slots = inherit
+
+		naval_dominance_factor = 10
 	}
 
 	corvette_hull_2 = {
@@ -250,6 +257,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		#Misc Stats
 		armor_value = @corvette_armor
@@ -295,6 +303,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		#Misc Stats
 		armor_value = @corvette_armor
@@ -324,13 +333,13 @@ equipments = {
 
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_light_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-				fixed_ship_radar_slot = module_radar_3
-				fixed_ship_auxillary_slot = module_aa_missiles_3
-				fixed_ship_battery_slot = module_76mm_gun_2
-				front_1_custom_slot = module_ciws_2
-				rear_1_custom_slot = module_light_helipad_1
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power
+			fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+			fixed_ship_radar_slot = module_radar_3
+			fixed_ship_auxillary_slot = module_aa_missiles_3
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_ciws_2
+			rear_1_custom_slot = module_light_helipad_1
 		}
 
 		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
@@ -341,6 +350,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		#Misc Stats
 		armor_value = @corvette_armor
@@ -387,6 +397,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		#Misc stats
 		armor_value = @corvette_armor
@@ -433,6 +444,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		#Misc stats
 		armor_value = @corvette_armor
@@ -454,432 +466,227 @@ equipments = {
 		}
 	}
 
-#NON-MTG CORVETTES
-	#1965
-	corvette_1 = {
-		year = 1965
-		archetype = corvette
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		lg_armor_piercing = 3.27
-		lg_attack = 1.43
-		anti_air_attack = 2.63
-		#ASW
-		sub_attack = 6.32
-		sub_detection = 15.82
-		#countermeasures/ECM
-		armor_value = 1.59
-		#radar
-		surface_detection = 7.71
+	stealth_corvette = {
+		year = 2010
 
-		#stealth/size
-		surface_visibility = 19.37
+		is_archetype = yes
+		is_buildable = no
+		type = screen_ship
+		interface_category = interface_category_screen_ships
+		# (Describes combat behaviour - hidden stat)
+		offensive_weapons = yes
 
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		#port_capacity_usage = 1
-		fuel_consumption = 8.5
-
-		type = {
-			screen_ship
-			anti_air
+		module_slots = {
+			fixed_ship_battery_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_light_guns_category
+					module_point_defense_system_category
+				}
+			}
+			fixed_ship_auxillary_slot = {
+				required = no
+				allowed_module_categories = {
+					module_point_defense_system_category
+					module_turret_missile_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_fuel_tanks_category
+					module_minelaying_category
+					module_mineclearing_category
+					module_anti_submarine_mortar_category
+					module_vls_category
+				}
+			}
+			fixed_ship_radar_slot = {
+				required = yes
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
+			fixed_ship_fire_control_system_slot = {
+				required = no
+				allowed_module_categories = { module_fire_control_system_category }
+			}
+			fixed_ship_engine_slot = {
+				required = yes
+				allowed_module_categories = { module_light_surface_power_source_category }
+			}
+			front_1_custom_slot = {
+				required = no
+				allowed_module_categories = {
+					module_light_guns_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_minelaying_category
+					module_point_defense_system_category
+					module_turret_missile_category
+					module_anti_submarine_mortar_category
+				}
+			}
+			rear_1_custom_slot = {
+				required = no
+				allowed_module_categories = {
+					module_turret_missile_category
+					module_anti_submarine_mortar_category
+					module_point_defense_system_category
+					module_light_helipad_category
+					module_anti_submarine_mortar_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_minelaying_category
+				}
+			}
 		}
 
-		build_cost_ic = 1850.69
-		resources = {
-			steel = 2
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power
+			fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+			fixed_ship_radar_slot = module_radar_3
+			fixed_ship_auxillary_slot = module_aa_missiles_3
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_ciws_2
+			rear_1_custom_slot = module_light_helipad_1
 		}
 
-		manpower = 400
-		max_strength = 100
+		module_count_limit = { category = module_radar_category count < 2 }
+		module_count_limit = { category = module_sonar_category count < 2 }
+		module_count_limit = { category = module_mineclearing_category count < 2 }
+		module_count_limit = { category = module_minelaying_category count < 2 }
+		module_count_limit = { category = module_vls_category count < 2 }
+		module_count_limit = { category = module_point_defense_system_category count < 3 }
+		module_count_limit = { category = module_light_guns_category count < 3 }
 
-	}
-	#1975
-	corvette_2 = {
-		year = 1975
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
 
-		archetype = corvette
-		parent = corvette_1
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 10.38
-		lg_attack = 1.60
-		anti_air_attack = 5.56
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 7.08
-		sub_detection = 17.72
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 13.20
-		armor_value = 1.78
-
-		#radar
-		#fire_range = 4.91
-		surface_detection = 8.64
-
-		#stealth/size
-		surface_visibility = 16.46
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 40
-
-		#port_capacity_usage = 1
-		fuel_consumption = 9.5
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 2020.60
-		resources = {
-			steel = 5
-		}
-
-		manpower = 400
-		max_strength = 100
-
-	}
-	#1985
-	missile_corvette_1 = {
-		year = 1985
-
-		archetype = corvette
-		parent = corvette_2
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 11.63
-		lg_attack = 1.79
-		anti_air_attack = 6.67
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 7.93
-		sub_detection = 19.84
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 14.79
-		armor_value = 1.99
-
-		#radar
-		#fire_range = 5.49
-		surface_detection = 9.67
-
-		#stealth/size
-		surface_visibility = 13.99
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		#port_capacity_usage = 1
-		fuel_consumption = 10.5
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 2420.30
-		resources = {
-			steel = 4
-		}
-
-		manpower = 400
-		max_strength = 100
-	}
-	#1995
-	missile_corvette_2 = {
-		year = 1995
-
-		archetype = corvette
-		parent = missile_corvette_1
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 13.02
-		lg_attack = 2.01
-		anti_air_attack = 8.00
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 8.88
-		sub_detection = 22.23
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 16.56
-		armor_value = 2.23
-
-		#radar
-		#fire_range = 6.15
-		surface_detection = 10.83
-
-		#stealth/size
-		surface_visibility = 11.90
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		#port_capacity_usage = 1
-		fuel_consumption = 11.5
-
-		build_cost_ic = 2860.30
+		#Misc Stats
+		armor_value = @corvette_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 6.23
+		naval_speed = @corvette_speed
+		reliability = 0.8
+		naval_range = @corvette_range
+		max_strength = @corvette_hp
+		max_organisation = @corvette_org
+		fuel_consumption = @corvette_fuel_consumption
+		build_cost_ic = 3360
+		manpower = @corvette_hp
 		resources = {
 			steel = 5
+			aluminium = 2
+			chromium = 1
 		}
 
-		manpower = 500
-		max_strength = 100
+		naval_dominance_factor = 15
 	}
-	#2005
-	missile_corvette_3 = {
-		year = 2005
 
-		archetype = corvette
-		parent = missile_corvette_2
+	stealth_corvette_hull_1 = {
+		year = 2010
+		archetype = stealth_corvette
 		priority = 5
-
 		module_slots = inherit
 
-		#VLS
-		lg_armor_piercing = 14.59
-		lg_attack = 2.25
-		anti_air_attack = 9.60
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 9.94
-		sub_detection = 24.89
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 18.55
-		armor_value = 2.50
-
-		#radar
-		#fire_range = 6.89
-		surface_detection = 12.13
-
-		#stealth/size
-		surface_visibility = 10.11
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		#port_capacity_usage = 1
-		fuel_consumption = 12.5
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 3260.30
-		resources = {
-			steel = 6
-		}
-
-		manpower = 500
-		max_strength = 100
+		naval_dominance_factor = 15
 	}
-	#2015
-	missile_corvette_4 = {
-		year = 2015
 
-		archetype = corvette
-		parent = missile_corvette_3
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 16.34
-		lg_attack = 2.52
-		anti_air_attack = 11.52
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 11.14
-		sub_detection = 27.88
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 20.78
-		armor_value = 2.80
-
-		#radar
-		#fire_range = 7.72
-		surface_detection = 13.59
-
-		#stealth/size
-		surface_visibility = 8.59
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		#port_capacity_usage = 1
-		fuel_consumption = 13.5
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 3660.30
-		resources = {
-			steel = 6
-		}
-
-		manpower = 500
-		max_strength = 100
-	}
-	#2025
-	missile_corvette_5 = {
+	stealth_corvette_hull_2 = {
 		year = 2025
-
-		archetype = corvette
-		parent = missile_corvette_4
-		priority = 5
+		archetype = stealth_corvette
+		parent = stealth_corvette_hull_1
+		priority = 100
 
 		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 18.30
-		lg_attack = 2.82
-		anti_air_attack = 13.83
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 12.47
-		sub_detection = 31.23
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 23.27
-		armor_value = 3.14
-
-		#radar
-		#fire_range = 8.65
-		surface_detection = 15.22
-
-		#stealth/size
-		surface_visibility = 7.31
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		#port_capacity_usage = 1
-		fuel_consumption = 14.5
-
-		type = {
-			screen_ship
-			anti_air
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot = module_asm_3
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_ciws_3
+			rear_1_custom_slot = module_light_helipad_1
 		}
 
-		build_cost_ic = 3860.30
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 15
+
+		#Misc stats
+		armor_value = @corvette_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 5.63
+		naval_speed = @corvette_speed
+		reliability = 0.83
+		naval_range = @corvette_range
+		max_strength = @corvette_hp
+		max_organisation = @corvette_org
+		fuel_consumption = @corvette_fuel_consumption
+		build_cost_ic = 3360
+		manpower = @corvette_hp
 		resources = {
-			steel = 7
+			steel = 5
+			aluminium = 3
 			chromium = 1
 		}
-
-		manpower = 500
-		max_strength = 100
 	}
-	#2035
-	missile_corvette_6 = {
-		year = 2035
 
-		archetype = corvette
-		parent = missile_corvette_5
-		priority = 5
+	stealth_corvette_hull_3 = {
+		year = 2040
+		archetype = stealth_corvette
+		parent = stealth_corvette_hull_2
+		priority = 100
 
 		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 20.49
-		lg_attack = 3.16
-		anti_air_attack = 16.59
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 13.97
-		sub_detection = 34.97
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 26.06
-		armor_value = 3.51
-
-		#radar
-		#fire_range = 9.68
-		surface_detection = 17.04
-
-		#stealth/size
-		surface_visibility = 6.21
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		#port_capacity_usage = 1
-		fuel_consumption = 16
-
-		type = {
-			screen_ship
-			anti_air
+		default_modules = {
+				fixed_ship_engine_slot = module_light_surface_jet_turbine_power3
+				fixed_ship_fire_control_system_slot = module_futuristic_integrated_missile_radar_control
+				fixed_ship_radar_slot = module_radar_5
+				fixed_ship_auxillary_slot = module_asm_4
+				fixed_ship_battery_slot = module_76mm_gun_3
+				front_1_custom_slot = module_ciws_4
+				rear_1_custom_slot = module_light_helipad_1
 		}
 
-		build_cost_ic = 3860.30
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 15
+
+		#Misc stats
+		armor_value = @corvette_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 4.97
+		naval_speed = @corvette_speed
+		reliability = 0.86
+		naval_range = @corvette_range
+		max_strength = @corvette_hp
+		max_organisation = @corvette_org
+		fuel_consumption = @corvette_fuel_consumption
+		build_cost_ic = 3360
+		manpower = @corvette_hp
 		resources = {
-			steel = 8
-			chromium = 1
+			steel = 5
+			aluminium = 3
+			chromium = 2
 		}
-
-		manpower = 500
-		max_strength = 100
 	}
 
 #MTG FRGATES
@@ -937,7 +744,7 @@ equipments = {
 					module_vls_category
 					module_fuel_tanks_category
 					module_point_defense_system_category
- 					module_esm_category
+					module_esm_category
 					module_torpedoes_category
 					module_anti_ship_torpedoes_category
 					module_fuel_tanks_category
@@ -955,7 +762,7 @@ equipments = {
 					module_vls_category
 					module_fuel_tanks_category
 					module_point_defense_system_category
- 					module_esm_category
+					module_esm_category
 					module_torpedoes_category
 					module_anti_ship_torpedoes_category
 					module_fuel_tanks_category
@@ -973,7 +780,7 @@ equipments = {
 					module_vls_category
 					module_fuel_tanks_category
 					module_point_defense_system_category
- 					module_esm_category
+					module_esm_category
 					module_torpedoes_category
 					module_anti_ship_torpedoes_category
 					module_fuel_tanks_category
@@ -1045,6 +852,8 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 20
 	}
 
 	frigate_hull_1 = { #The Archetype can't be buildable. This is just a buildable version
@@ -1052,6 +861,8 @@ equipments = {
 		archetype = frigate
 		priority = 5
 		module_slots = inherit
+
+		naval_dominance_factor = 20
 	}
 
 	frigate_hull_2 = {
@@ -1083,6 +894,7 @@ equipments = {
 		torpedo_attack = 0 #Raz is a bitch
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 20
 
 		##Misc Stats
 		armor_value = @frigate_armor
@@ -1132,6 +944,7 @@ equipments = {
 		torpedo_attack = 0 #Raz is a bitch
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 20
 
 		##Misc Stats
 		armor_value = @frigate_armor
@@ -1162,14 +975,14 @@ equipments = {
 		module_slots = inherit
 		default_modules = {
 			fixed_ship_engine_slot = module_light_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-				fixed_ship_radar_slot = module_radar_3
-				fixed_ship_auxillary_slot_2 = module_vls_sam_1
-				fixed_ship_auxillary_slot_1 = module_vls_asm_1
-				fixed_ship_auxillary_slot = module_aa_missiles_2
-				fixed_ship_battery_slot = module_76mm_gun_2
-				front_1_custom_slot = module_ciws_2
-				rear_1_custom_slot = module_light_helipad_1
+			fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+			fixed_ship_radar_slot = module_radar_3
+			fixed_ship_auxillary_slot_2 = module_vls_sam_1
+			fixed_ship_auxillary_slot_1 = module_vls_asm_1
+			fixed_ship_auxillary_slot = module_aa_missiles_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_ciws_2
+			rear_1_custom_slot = module_light_helipad_1
 		}
 
 		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
@@ -1180,6 +993,7 @@ equipments = {
 		torpedo_attack = 0 #Raz is a bitch
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 20
 
 		##Misc Stats
 		armor_value = @frigate_armor
@@ -1229,6 +1043,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 20
 
 		#Miscellanous Stats
 		armor_value = @frigate_armor
@@ -1278,6 +1093,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 20
 
 		##Misc Stats
 		armor_value = @frigate_armor
@@ -1299,311 +1115,281 @@ equipments = {
 		}
 	}
 
-#NON-MTG FRIGATES
+	stealth_frigate = {
+		year = 2010
+		is_archetype = yes
+		is_buildable = no
+		type = screen_ship
+		interface_category = interface_category_screen_ships
+		offensive_weapons = yes
 
-	#FFG 1965
-	frigate_1 = {
-		year = 1965
-		archetype = frigate
-		priority = 5
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 4.95
-		lg_attack = 4.65
-		anti_air_attack = 9.5
-
-		#ASW
-		sub_attack = 12.60
-		sub_detection = 15.6
-
-		#countermeasures/ECM
-		armor_value = 2.5
-		surface_detection = 22.6
-		#stealth/size
-		surface_visibility = 16.76
-
-		#engine
-		naval_speed = 36.00
-		naval_range = 3000.00
-
-		max_strength = 200
-
-		#port_capacity_usage = 1
-		fuel_consumption = 18
-
-		type = {
-			screen_ship
-			anti_air
+		upgrades = {
+			ship_CM_upgrade
+			frig_destroy_asw_upgrade
+			ship_VLS_upgrade
+			ship_gun_upgrade
+			ship_armor_upgrade
+			ship_engine_upgrade
 		}
-		build_cost_ic = 3758.69
-		resources = {
-			steel = 1
-		}
-		manpower = 400
 
-	}
-	#FFG 1975
-	frigate_2 = {
-		year = 1975
-		archetype = frigate
-		parent = frigate_1
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		lg_armor_piercing = 9.65
-		lg_attack = 8.65
-		anti_air_attack = 13.69
-		#ASW
-		sub_attack = 15.50
-		sub_detection = 26.20
-		#countermeasures/ECM
-		armor_value = 3.10
-		#radar
-		surface_detection = 26.6
-		#stealth/size
-		surface_visibility = 19.45
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 22
-
-		type = {
-			screen_ship
-			anti_air
+		module_slots = {
+			front_1_custom_slot = { #Many choices, much wow! https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg
+				required = no
+				allowed_module_categories = {
+					module_turret_missile_category
+					module_point_defense_system_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_light_guns_category
+				}
+			}
+			rear_1_custom_slot = {
+				required = no
+				allowed_module_categories = {
+					module_turret_missile_category
+					module_anti_submarine_mortar_category
+					module_point_defense_system_category
+					module_fuel_tanks_category
+					module_light_helipad_category
+					module_vls_category
+				}
+			}
+			fixed_ship_battery_slot = {
+				required = no
+				allowed_module_categories = {
+					module_light_guns_category
+					module_gun_battery_category
+				}
+			}
+			fixed_ship_auxillary_slot = {
+				required = no
+				allowed_module_categories = {
+					module_turret_missile_category
+					module_light_guns_category
+					module_vls_category
+					module_fuel_tanks_category
+					module_point_defense_system_category
+					module_esm_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_fuel_tanks_category
+					module_mineclearing_category
+					module_minelaying_category
+					module_anti_submarine_mortar_category
+					module_heavy_frigate_upgrade_category
+				}
+			}
+			fixed_ship_auxillary_slot_1 = {
+				required = no
+				allowed_module_categories = {
+					module_turret_missile_category
+					module_light_guns_category
+					module_vls_category
+					module_fuel_tanks_category
+					module_point_defense_system_category
+					module_esm_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_fuel_tanks_category
+					module_mineclearing_category
+					module_minelaying_category
+					module_anti_submarine_mortar_category
+					module_heavy_frigate_upgrade_category
+				}
+			}
+			fixed_ship_auxillary_slot_2 = {
+				required = no
+				allowed_module_categories = {
+					module_turret_missile_category
+					module_light_guns_category
+					module_vls_category
+					module_fuel_tanks_category
+					module_point_defense_system_category
+					module_esm_category
+					module_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_fuel_tanks_category
+					module_mineclearing_category
+					module_minelaying_category
+					module_anti_submarine_mortar_category
+					module_heavy_frigate_upgrade_category
+				}
+			}
+			fixed_ship_radar_slot = {
+				required = no
+				allowed_module_categories = { module_radar_category module_sonar_category }
+			}
+			fixed_ship_fire_control_system_slot = {
+				required = no
+				allowed_module_categories = { module_fire_control_system_category }
+			}
+			fixed_ship_engine_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_light_surface_power_source_category
+				}
+			}
 		}
-		build_cost_ic = 4580.49
+
+		module_count_limit = { category = module_radar_category count < 2 }
+		module_count_limit = { category = module_esm_category count < 2 }
+		module_count_limit = { category = module_sonar_category count < 2 }
+		module_count_limit = { category = module_mineclearing_category count < 2 }
+		module_count_limit = { category = module_minelaying_category count < 2 }
+		module_count_limit = { category = module_point_defense_system_category count < 3 }
+		module_count_limit = { category = module_light_guns_category count < 4 }
+		module_count_limit = { category = module_heavy_frigate_upgrade_category count < 2 }
+
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power
+			fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+			fixed_ship_radar_slot = module_radar_3
+			fixed_ship_auxillary_slot_2 = module_vls_sam_1
+			fixed_ship_auxillary_slot_1 = module_vls_asm_1
+			fixed_ship_auxillary_slot = module_aa_missiles_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_ciws_2
+			rear_1_custom_slot = module_light_helipad_1
+		}
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0 #Raz is a bitch
+		sub_attack = 0
+		anti_air_attack = 0
+
+		##Misc Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 9.49
+		naval_speed = @frigate_speed
+		reliability = 0.75
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
 		resources = {
 			steel = 5
+			aluminium = 2
+			chromium = 1
 		}
-		manpower = 375 ##Reprsents AI and automation becoming more prevalent
+
+		naval_dominance_factor = 25
 	}
-	#FFG 1985 --Contiunation of Frigates
-	missile_frigate_1 = {
-		year = 1985
-		archetype = frigate
-		parent = frigate_2
+
+	stealth_frigate_hull_1 = {
+		year = 2010
+		archetype = stealth_frigate
 		priority = 5
 		module_slots = inherit
 
-		##Stats
-		#VLS
-		lg_armor_piercing = 11.64
-		lg_attack = 10.68
-		anti_air_attack = 16.56
-		#ASW
-		sub_attack = 17.8
-		sub_detection = 28.9
-		#countermeasures/ECM
-		armor_value = 4.05
-		#radar
-		surface_detection = 28.4
-		#stealth/size
-		surface_visibility = 18.60
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 26
-
-		type = {
-			screen_ship
-			anti_air
-		}
-		build_cost_ic = 4768.49
-		resources = {
-			steel = 4
-		}
-		manpower = 375
+		naval_dominance_factor = 25
 	}
-	#FFG 1995
-	missile_frigate_2 = {
-		year = 1995
-		archetype = frigate
-		parent = missile_frigate_1
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		lg_armor_piercing = 13.27
-		lg_attack = 11.68
-		anti_air_attack = 17.26
-		#ASW
-		sub_attack = 19.3
-		sub_detection = 30.41
-		#countermeasures/ECM
-		armor_value = 4.60
-		#radar
-		surface_detection = 30.04
-		#stealth/size
-		surface_visibility = 14.60
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 30
 
-		type = {
-			screen_ship
-			anti_air
-		}
-		build_cost_ic = 4980.9
-		resources = {
-			steel = 5
-		}
-		manpower = 350
-	}
-	#FFG 2005
-	missile_frigate_3 = {
-		year = 2005
-		archetype = frigate
-		parent = missile_frigate_2
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		lg_armor_piercing = 15.13
-		lg_attack = 13.5
-		anti_air_attack = 20.68
-		#ASW
-		sub_attack = 21.5
-		sub_detection = 33.48
-		#countermeasures/ECM
-		armor_value = 6.26
-		#radar
-		surface_detection = 33.58
-		#stealth/size
-		surface_visibility = 12.62
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 34
-
-		type = {
-			screen_ship
-			anti_air
-		}
-		build_cost_ic = 5260.69
-		resources = {
-			steel = 6
-		}
-		manpower = 350
-	}
-	#FFG 2015
-	missile_frigate_4 = {
-		year = 2015
-		archetype = frigate
-		parent = missile_frigate_3
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		lg_armor_piercing = 17.25
-		lg_attack = 15.54
-		anti_air_attack = 23.64
-		#ASW
-		sub_attack = 24.35
-		sub_detection = 36.88
-		#countermeasures/ECM
-		armor_value = 7.56
-		#radar
-		surface_detection = 35.34
-		#stealth/size
-		surface_visibility = 9.89
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 38
-
-		type = {
-			screen_ship
-			anti_air
-		}
-		build_cost_ic = 5480.49
-		resources = {
-			steel = 7
-		}
-		manpower = 325
-	}
-	#FFG 2025
-	missile_frigate_5 = {
+	stealth_frigate_hull_2 = {
 		year = 2025
-		archetype = frigate
-		parent = missile_frigate_4
-		priority = 5
-		module_slots = inherit
-		#Stats
-		#VLS
-		lg_armor_piercing = 19.66
-		lg_attack = 17.07
-		anti_air_attack = 26.97
-		#ASW
-		sub_attack = 26.52
-		sub_detection = 38.59
-		#countermeasures/ECM
-		armor_value = 8.95
-		#radar
-		surface_detection = 37.48
-		#stealth/size
-		surface_visibility = 11.52
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 42
 
-		type = {
-			screen_ship
-			anti_air
+		archetype = stealth_frigate
+		parent = stealth_frigate_hull_1
+		priority = 9
+
+		module_slots = inherit
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot_2 = module_ram_3
+			fixed_ship_auxillary_slot_1 = module_asm_3
+			fixed_ship_auxillary_slot = module_vls_sam_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_torpedoes_2
+			rear_1_custom_slot = module_light_helipad_2
 		}
-		build_cost_ic = 5630.39
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 25
+
+		#Miscellanous Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 8.57
+		naval_speed = @frigate_speed
+		reliability = 0.90
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
 		resources = {
-			steel = 8
+			steel = 5
+			aluminium = 3
 			chromium = 1
 		}
-		manpower = 325
 	}
-	#FFG 2035
-	missile_frigate_6 = {
-		year = 2035
-		archetype = frigate
-		parent = missile_frigate_5
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		lg_armor_piercing = 22.41
-		lg_attack = 19.78
-		anti_air_attack = 29.96
-		#ASW
-		sub_attack = 29.42
-		sub_detection = 39.99
-		#countermeasures/ECM
-		armor_value = 9.46
-		#radar
-		surface_detection = 38.59
-		#stealth/size
-		surface_visibility = 12.68
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		max_strength = 250
-		fuel_consumption = 45
 
-		type = {
-			screen_ship
-			anti_air
+	stealth_frigate_hull_3 = {
+		year = 2040
+
+		archetype = stealth_frigate
+		parent = stealth_frigate_hull_2
+		priority = 10
+
+		module_slots = inherit
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power3
+				fixed_ship_fire_control_system_slot = module_futuristic_integrated_missile_radar_control
+				fixed_ship_radar_slot = module_radar_5
+				fixed_ship_auxillary_slot_2 = module_ram_4
+				fixed_ship_auxillary_slot_1 = module_asm_4
+				fixed_ship_auxillary_slot = module_vls_sam_3
+				fixed_ship_battery_slot = module_76mm_gun_3
+				front_1_custom_slot = module_torpedoes_4
+				rear_1_custom_slot = module_light_helipad_2
 		}
-		build_cost_ic = 5839.56
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 25
+
+		##Misc Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 7.65
+		naval_speed = @frigate_speed
+		reliability = 0.92
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
 		resources = {
-			steel = 9
-			chromium = 1
+			steel = 5
+			aluminium = 3
+			chromium = 2
 		}
-		manpower = 420
 	}
 
 #MTG DESTROYERS
@@ -1612,7 +1398,7 @@ equipments = {
 		is_archetype = yes
 		is_buildable = no
 		type = capital_ship
-		interface_category = interface_category_screen_ships
+		interface_category = interface_category_capital_ships
 		# (Describes combat behaviour - hidden stat)
 		offensive_weapons = yes
 
@@ -1696,7 +1482,7 @@ equipments = {
 					module_minelaying_category
 					module_anti_submarine_mortar_category
 					module_fuel_tanks_category
- 					module_esm_category
+					module_esm_category
 					module_vls_category
 				}
 			}
@@ -1753,17 +1539,17 @@ equipments = {
 		module_count_limit = { category = module_light_guns_category count < 4 }
 
 		default_modules = {
-				fixed_ship_engine_slot = module_surface_diesel_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
-				fixed_ship_radar_slot = module_radar_1
-				fixed_ship_auxillary_slot_3 = module_chain_gun
-				fixed_ship_auxillary_slot_2 = module_asm_1
-				fixed_ship_auxillary_slot = module_anti_submarine_mortar
-				fixed_ship_battery_slot = module_76mm_gun_1
-				front_1_custom_slot = module_torpedoes_1
-				mid_1_custom_slot = module_chain_gun
-				mid_2_custom_slot = module_fuel_tank
-				rear_1_custom_slot = module_light_helipad_1
+			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_fire_control_system_slot = module_analog_fire_control
+			fixed_ship_radar_slot = module_radar_1
+			fixed_ship_auxillary_slot_3 = module_chain_gun
+			fixed_ship_auxillary_slot_2 = module_asm_1
+			fixed_ship_auxillary_slot = module_anti_submarine_mortar
+			fixed_ship_battery_slot = module_76mm_gun_1
+			front_1_custom_slot = module_torpedoes_1
+			mid_1_custom_slot = module_chain_gun
+			mid_2_custom_slot = module_fuel_tank
+			rear_1_custom_slot = module_light_helipad_1
 		}
 
 		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
@@ -1791,6 +1577,8 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 30
 	}
 
 	destroyer_hull_1 = {
@@ -1798,6 +1586,9 @@ equipments = {
 		archetype = destroyer
 		priority = 5
 		module_slots = inherit
+		visual_level = 1
+
+		naval_dominance_factor = 30
 	}
 
 	destroyer_hull_2 = {
@@ -1805,19 +1596,20 @@ equipments = {
 		archetype = destroyer
 		parent = destroyer_hull_1
 		priority = 6
+		visual_level = 2
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_surface_diesel_power
-				fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-				fixed_ship_radar_slot = module_radar_2
-				fixed_ship_auxillary_slot_3 = module_vls_sam_1
-				fixed_ship_auxillary_slot_2 = module_asm_2
-				fixed_ship_auxillary_slot = module_torpedoes_2
-				fixed_ship_battery_slot = module_76mm_gun_1
-				front_1_custom_slot = module_76mm_gun_1
-				mid_1_custom_slot = module_ciws_2
-				mid_2_custom_slot = module_anti_submarine_missile_2
-				rear_1_custom_slot = module_light_helipad_1
+			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+			fixed_ship_radar_slot = module_radar_2
+			fixed_ship_auxillary_slot_3 = module_vls_sam_1
+			fixed_ship_auxillary_slot_2 = module_asm_2
+			fixed_ship_auxillary_slot = module_torpedoes_2
+			fixed_ship_battery_slot = module_76mm_gun_1
+			front_1_custom_slot = module_76mm_gun_1
+			mid_1_custom_slot = module_ciws_2
+			mid_2_custom_slot = module_anti_submarine_missile_2
+			rear_1_custom_slot = module_light_helipad_1
 		}
 		module_count_limit = { category = module_radar_category count < 2 }
 		module_count_limit = { category = module_sonar_category count < 2 }
@@ -1832,6 +1624,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 30
 
 		##Misc Stats
 		armor_value = @destroyer_armor
@@ -1857,19 +1650,20 @@ equipments = {
 		archetype = destroyer
 		parent = destroyer_hull_2
 		priority = 8
+		visual_level = 3
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-				fixed_ship_radar_slot = module_radar_3
-				fixed_ship_auxillary_slot_3 = module_vls_sam_2
-				fixed_ship_auxillary_slot_2 = module_asm_3
-				fixed_ship_auxillary_slot = module_ciws_3
-				fixed_ship_battery_slot = module_76mm_gun_2
-				front_1_custom_slot = module_torpedoes_2
-				mid_1_custom_slot = module_vls_asm_2
-				mid_2_custom_slot = module_ram_3
-				rear_1_custom_slot = module_light_helipad_1
+			fixed_ship_engine_slot = module_surface_jet_turbine_power
+			fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+			fixed_ship_radar_slot = module_radar_3
+			fixed_ship_auxillary_slot_3 = module_vls_sam_2
+			fixed_ship_auxillary_slot_2 = module_asm_3
+			fixed_ship_auxillary_slot = module_ciws_3
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_torpedoes_2
+			mid_1_custom_slot = module_vls_asm_2
+			mid_2_custom_slot = module_ram_3
+			rear_1_custom_slot = module_light_helipad_1
 		}
 		module_count_limit = { category = module_radar_category count < 2 }
 		module_count_limit = { category = module_sonar_category count < 2 }
@@ -1884,6 +1678,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 30
 
 		##Misc Stats
 		armor_value = @destroyer_armor
@@ -1910,19 +1705,20 @@ equipments = {
 		archetype = destroyer
 		parent = destroyer_hull_3
 		priority = 10
+		visual_level = 4
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_surface_jet_turbine_power2
-				fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
-				fixed_ship_radar_slot = module_radar_4
-				fixed_ship_auxillary_slot_3 = module_vls_sam_3
-				fixed_ship_auxillary_slot_2 = module_vls_asm_3
-				fixed_ship_auxillary_slot = module_asm_3
-				fixed_ship_battery_slot = module_127mm_guns_3
-				front_1_custom_slot = module_torpedoes_3
-				mid_1_custom_slot = module_ciws_3
-				mid_2_custom_slot = module_ram_3
-				rear_1_custom_slot = module_light_helipad_2
+			fixed_ship_engine_slot = module_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot_3 = module_vls_sam_3
+			fixed_ship_auxillary_slot_2 = module_vls_asm_3
+			fixed_ship_auxillary_slot = module_asm_3
+			fixed_ship_battery_slot = module_127mm_guns_3
+			front_1_custom_slot = module_torpedoes_3
+			mid_1_custom_slot = module_ciws_3
+			mid_2_custom_slot = module_ram_3
+			rear_1_custom_slot = module_light_helipad_2
 		}
 		module_count_limit = { category = module_radar_category count < 2 }
 		module_count_limit = { category = module_sonar_category count < 2 }
@@ -1937,6 +1733,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 30
 
 		##Misc Stats
 		armor_value = @destroyer_armor
@@ -1963,19 +1760,21 @@ equipments = {
 		archetype = destroyer
 		parent = destroyer_hull_4
 		priority = 12
+		visual_level = 5
+
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_surface_jet_turbine_power3
-				fixed_ship_fire_control_system_slot = module_futuristic_integrated_missile_radar_control
-				fixed_ship_radar_slot = module_radar_5
-				fixed_ship_auxillary_slot_3 = module_vls_sam_4
-				fixed_ship_auxillary_slot_2 = module_vls_asm_4
-				fixed_ship_auxillary_slot = module_vls_lam_3
-				fixed_ship_battery_slot = module_127mm_guns_4
-				front_1_custom_slot = module_torpedoes_4
-				mid_1_custom_slot = module_ciws_4
-				mid_2_custom_slot = module_ram_4
-				rear_1_custom_slot = module_light_helipad_2
+			fixed_ship_engine_slot = module_surface_jet_turbine_power3
+			fixed_ship_fire_control_system_slot = module_futuristic_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_5
+			fixed_ship_auxillary_slot_3 = module_vls_sam_4
+			fixed_ship_auxillary_slot_2 = module_vls_asm_4
+			fixed_ship_auxillary_slot = module_vls_lam_3
+			fixed_ship_battery_slot = module_127mm_guns_4
+			front_1_custom_slot = module_torpedoes_4
+			mid_1_custom_slot = module_ciws_4
+			mid_2_custom_slot = module_ram_4
+			rear_1_custom_slot = module_light_helipad_2
 		}
 		module_count_limit = { category = module_radar_category count < 2 }
 		module_count_limit = { category = module_sonar_category count < 2 }
@@ -1990,6 +1789,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 30
 
 		#misc stats
 		armor_value = @destroyer_armor
@@ -2017,7 +1817,7 @@ equipments = {
 		is_archetype = yes
 		is_buildable = no
 		type = capital_ship
-		interface_category = interface_category_screen_ships
+		interface_category = interface_category_capital_ships
 		# (Describes combat behaviour - hidden stat)
 		offensive_weapons = yes
 
@@ -2081,7 +1881,7 @@ equipments = {
 					module_minelaying_category
 					module_anti_submarine_mortar_category
 					module_fuel_tanks_category
- 					module_esm_category
+					module_esm_category
 					module_vls_category
 				}
 			}
@@ -2173,6 +1973,8 @@ equipments = {
 			chromium = 2
 			aluminium = 2
 		}
+
+		naval_dominance_factor = 35
 	}
 
 	stealth_destroyer_hull_1 = {
@@ -2180,6 +1982,8 @@ equipments = {
 		archetype = stealth_destroyer
 		priority = 5
 		module_slots = inherit
+
+		naval_dominance_factor = 35
 	}
 
 	stealth_destroyer_hull_2 = {
@@ -2214,6 +2018,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 35
 
 		#Miocs sats
 		armor_value = @destroyer_armor
@@ -2267,6 +2072,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 35
 
 		#Misc stats
 		armor_value = @destroyer_armor
@@ -2286,451 +2092,6 @@ equipments = {
 			chromium = 4
 			aluminium = 4
 		}
-	}
-
-#NON-MTG Destroyers
-
-	destroyer_1 = {
-		year = 1965
-
-		archetype = destroyer
-		priority = 5
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 15.06
-		lg_attack = 3.94
-		anti_air_attack = 9.63
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 6.32
-		sub_detection = 13.56
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 13.15
-		armor_value = 7.97
-
-		#radar
-		#fire_range = 5.73
-		surface_detection = 12.55
-
-		#stealth/size
-		surface_visibility = 29.06
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 30
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			steel = 2
-		}
-
-		manpower = 400
-
-
-	}
-	#1975
-	destroyer_2 = {
-		year = 1975
-
-		archetype = destroyer
-		parent = destroyer_1
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 16.87
-		lg_attack = 4.41
-		anti_air_attack = 11.56
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 7.08
-		sub_detection = 15.19
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 14.73
-		armor_value = 8.93
-
-		#radar
-		#fire_range = 6.42
-		surface_detection = 14.06
-
-		#stealth/size
-		surface_visibility = 24.70
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 35
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			steel = 5
-		}
-
-		manpower = 400
-
-
-	}
-	#1985
-	missile_destroyer_1 = {
-		year = 1985
-
-		archetype = destroyer
-		parent = destroyer_2
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 18.89
-		lg_attack = 4.94
-		anti_air_attack = 13.87
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 7.93
-		sub_detection = 17.01
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 16.50
-		armor_value = 10.00
-
-		#radar
-		#fire_range = 7.19
-		surface_detection = 15.74
-
-		#stealth/size
-		surface_visibility = 21.00
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 40
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			steel = 5
-		}
-
-		manpower = 400
-	}
-	#1995
-	missile_destroyer_2 = {
-		year = 1995
-
-		archetype = destroyer
-		parent = missile_destroyer_1
-		priority = 5
-
-		module_slots = inherit
-
-
-		#VLS
-		lg_armor_piercing = 21.16
-		lg_attack = 5.54
-		anti_air_attack = 16.64
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 8.88
-		sub_detection = 19.05
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 18.47
-		armor_value = 11.20
-
-		#radar
-		#fire_range = 8.05
-		surface_detection = 17.63
-
-		#stealth/size
-		surface_visibility = 17.85
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 45
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			aluminium = 1
-			steel = 5
-		}
-
-		manpower = 420
-
-	}
-	#2005
-	missile_destroyer_3 = {
-		year = 2005
-
-		archetype = destroyer
-		parent = missile_destroyer_2
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 23.70
-		lg_attack = 6.20
-		anti_air_attack = 19.97
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 9.94
-		sub_detection = 21.34
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 20.69
-		armor_value = 12.54
-
-		#radar
-		#fire_range = 9.02
-		surface_detection = 19.75
-
-		#stealth/size
-		surface_visibility = 15.17
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 50
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			aluminium = 1
-			steel = 4
-		}
-
-		manpower = 420
-	}
-	#2015
-	missile_destroyer_4 = {
-		year = 2015
-
-		archetype = destroyer
-		parent = missile_destroyer_3
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 26.54
-		lg_attack = 6.94
-		anti_air_attack = 23.96
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 11.14
-		sub_detection = 23.90
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 23.17
-		armor_value = 14.05
-
-		#radar
-		#fire_range = 10.10
-		surface_detection = 22.12
-
-		#stealth/size
-		surface_visibility = 12.89
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 350
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 55
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			aluminium = 1
-			steel = 5
-		}
-
-		manpower = 420
-	}
-	#2025
-	missile_destroyer_5 = {
-		year = 2025
-
-		archetype = destroyer
-		parent = missile_destroyer_4
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 29.73
-		lg_attack = 7.78
-		anti_air_attack = 28.76
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 12.47
-		sub_detection = 26.77
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 25.96
-		armor_value = 15.73
-
-		#radar
-		#fire_range = 11.31
-		surface_detection = 24.77
-
-		#stealth/size
-		surface_visibility = 10.96
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 60
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			aluminium = 1
-			steel = 6
-			chromium = 1
-		}
-
-		manpower = 420
-	}
-	#2035
-	missile_destroyer_6 = {
-		year = 2035
-
-		archetype = destroyer
-		parent = missile_destroyer_5
-		priority = 5
-
-		module_slots = inherit
-
-		#VLS
-		lg_armor_piercing = 33.29
-		lg_attack = 8.71
-		anti_air_attack = 34.51
-		#torpedo_attack = 0.00
-
-		#ASW
-		sub_attack = 13.97
-		sub_detection = 29.98
-
-		#ground support
-		#shore_bombardment = 0.10
-
-		#countermeasures/ECM
-		#evasion = 29.07
-		armor_value = 17.62
-
-		#radar
-		#fire_range = 12.67
-		surface_detection = 27.74
-
-		#stealth/size
-		surface_visibility = 9.32
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 1.5
-		fuel_consumption = 65
-
-		type = {
-			capital_ship
-		}
-
-		build_cost_ic = 7417.66
-		resources = {
-			aluminium = 1
-			steel = 7
-			chromium = 1
-		}
-
-		manpower = 420
 	}
 
 #MTG CRUISERS
@@ -2949,6 +2310,8 @@ equipments = {
 			steel = 5
 		}
 		manpower = @cruiser_hp
+
+		naval_dominance_factor = 40
 	}
 
 	cruiser_hull_1 = {
@@ -2957,6 +2320,7 @@ equipments = {
 		is_buildable = yes
 		archetype = cruiser
 		priority = 5
+		visual_level = 1
 		module_slots = inherit
 		default_modules = {
 			fixed_ship_engine_slot = module_surface_oil_power
@@ -2977,6 +2341,8 @@ equipments = {
 		module_count_limit = { category = module_sonar_category count < 2 }
 		module_count_limit = { category = module_mineclearing_category count < 2 }
 		module_count_limit = { category = module_minelaying_category count < 2 }
+
+		naval_dominance_factor = 40
 	}
 
 	cruiser_hull_2 = {
@@ -2986,6 +2352,7 @@ equipments = {
 		archetype = cruiser
 		parent = cruiser_hull_1
 		priority = 7
+		visual_level = 2
 		module_slots = inherit
 		default_modules = {
 			fixed_ship_engine_slot = module_surface_jet_turbine_power
@@ -3015,6 +2382,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		#misc stats
 		armor_value = @cruiser_armor
@@ -3042,6 +2410,7 @@ equipments = {
 		archetype = cruiser
 		parent = cruiser_hull_2
 		priority = 8
+		visual_level = 3
 		module_slots = inherit
 		default_modules = {
 			fixed_ship_engine_slot = module_surface_jet_turbine_power
@@ -3067,6 +2436,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		#misc Stats
 		armor_value = @cruiser_armor
@@ -3093,6 +2463,7 @@ equipments = {
 		is_buildable = yes
 		archetype = cruiser
 		parent = cruiser_hull_3
+		visual_level = 4
 		priority = 9
 
 		module_slots = inherit
@@ -3120,6 +2491,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		#Misc Stats
 		armor_value = @cruiser_armor
@@ -3147,6 +2519,7 @@ equipments = {
 		is_buildable = yes
 		archetype = cruiser
 		parent = cruiser_hull_4
+		visual_level = 5
 		priority = 11
 		module_slots = inherit
 		default_modules = {
@@ -3173,6 +2546,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		#Misc Stats
 		armor_value = @cruiser_armor
@@ -3192,274 +2566,6 @@ equipments = {
 			aluminium = 3
 			chromium = 2
 		}
-	}
-
-#NON-MTG CRUISERS
-	#1965
-	cruiser_1 = {
-		year = 1965
-		archetype = cruiser
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		hg_armor_piercing = 5.0
-		hg_attack = 3.0
-		lg_attack = 2.0
-		#ASW
-		sub_attack = 6.32
-		sub_detection = 13.56
-		#countermeasures/ECM
-		armor_value = 10.93
-		anti_air_attack = 5.0
-		#radar
-		surface_detection = 15.50
-		#stealth/size
-		surface_visibility = 41.50
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 470
-
-		fuel_consumption = 60
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 8364.99
-		resources = {
-			aluminium = 1
-			steel = 4
-		}
-		manpower = 960
-	}
-	#1975
-	cruiser_2 = {
-		year = 1975
-
-		archetype = cruiser
-		parent = cruiser_1
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		hg_armor_piercing = 9.3
-		hg_attack = 9.0
-		lg_attack = 4.3
-		#ASW
-		sub_attack = 8.32
-		sub_detection = 16.56
-		#countermeasures/ECM
-		armor_value = 12.93
-		anti_air_attack = 8.90
-		#radar
-		surface_detection = 18.50
-		#stealth/size
-		surface_visibility = 38.50
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 470
-
-		fuel_consumption = 78
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 8860.99
-		resources = {
-			aluminium = 1
-			steel = 5
-		}
-
-		manpower = 960
-
-	}
-	#1985
-	missile_cruiser_1 = {
-		year = 1985
-
-		archetype = cruiser
-		parent = cruiser_2
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		hg_armor_piercing = 13.5
-		hg_attack = 12.0
-		lg_attack = 6.5
-		#ASW
-		sub_attack = 9.32
-		sub_detection = 19.56
-		#countermeasures/ECM
-		armor_value = 14.80
-		anti_air_attack = 11.90
-		#radar
-		surface_detection = 21.50
-		#stealth/size
-		surface_visibility = 34.75
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 470
-
-		fuel_consumption = 83
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 9160.99
-		resources = {
-			aluminium = 1
-			steel = 7
-		}
-
-		manpower = 960
-	}
-	#2015
-	missile_cruiser_4 = {
-		year = 2015
-
-		archetype = cruiser
-		parent = missile_cruiser_1
-		priority = 5
-		module_slots = inherit
-		##Stats
-		#VLS
-		hg_armor_piercing = 17.5
-		hg_attack = 16.0
-		lg_attack = 8.5
-		#ASW
-		sub_attack = 11.30
-		sub_detection = 21.56
-		#countermeasures/ECM
-		armor_value = 16.80
-		anti_air_attack = 15.90
-		#radar
-		surface_detection = 22.50
-		#stealth/size
-		surface_visibility = 30.75
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 470
-
-		fuel_consumption = 88
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 9450.75
-		resources = {
-			aluminium = 2
-			steel = 8
-		}
-
-		manpower = 1140
-	}
-	#2025
-	missile_cruiser_5 = {
-		year = 2025
-
-		archetype = cruiser
-		parent = missile_cruiser_4
-		priority = 5
-
-		module_slots = inherit
-		##Stats
-		#VLS
-		hg_armor_piercing = 21.5
-		hg_attack = 19.0
-		lg_attack = 11.5
-		#ASW
-		sub_attack = 13.30
-		sub_detection = 24.56
-		#countermeasures/ECM
-		armor_value = 19.80
-		anti_air_attack = 18.75
-		#radar
-		surface_detection = 26.50
-		#stealth/size
-		surface_visibility = 26.75
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 470
-
-		fuel_consumption = 93
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 9975.25
-		resources = {
-			aluminium = 2
-			steel = 10
-			chromium = 1
-		}
-
-		manpower = 1140
-	}
-	#2035
-	missile_cruiser_6 = {
-		year = 2035
-
-		archetype = cruiser
-		parent = missile_cruiser_5
-		priority = 5
-
-		module_slots = inherit
-		##Stats
-		#VLS
-		hg_armor_piercing = 24.5
-		hg_attack = 24.0
-		lg_attack = 14.5
-		#ASW
-		sub_attack = 16.30
-		sub_detection = 27.56
-		#countermeasures/ECM
-		armor_value = 23.80
-		anti_air_attack = 24.75
-		#radar
-		surface_detection = 29.50
-		#stealth/size
-		surface_visibility = 20.00
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 470
-
-		fuel_consumption = 98
-
-		type = {
-			screen_ship
-			anti_air
-		}
-
-		build_cost_ic = 10265.45
-		resources = {
-			aluminium = 2
-			steel = 11
-			chromium = 1
-		}
-
-		manpower = 1140
 	}
 
 #MTG BATTLECRUISERS
@@ -3551,6 +2657,8 @@ equipments = {
 				required = no
 				allowed_module_categories = {
 					module_light_guns_category
+					module_heavy_guns_category
+					module_railguns_category
 					module_gun_battery_category
 				}
 			}
@@ -3653,6 +2761,8 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 50
 	}
 
 	battle_cruiser_hull_1 = {
@@ -3662,6 +2772,9 @@ equipments = {
 		archetype = battle_cruiser
 		priority = 100
 		module_slots = inherit
+		visual_level = 1
+
+		naval_dominance_factor = 50
 	}
 
 	battle_cruiser_hull_2 = {
@@ -3672,6 +2785,7 @@ equipments = {
 		parent = battle_cruiser_hull_1
 		priority = 100
 		module_slots = inherit
+		visual_level = 2
 
 		armor_value = @battlecruiser_armor
 		surface_visibility = 46.35
@@ -3685,6 +2799,8 @@ equipments = {
 			steel = 5
 			aluminium = 1
 		}
+
+		naval_dominance_factor = 50
 	}
 
 	battle_cruiser_hull_3 = {
@@ -3695,6 +2811,7 @@ equipments = {
 		parent = battle_cruiser_hull_2
 		priority = 100
 		module_slots = inherit
+		visual_level = 3
 
 		armor_value = @battlecruiser_armor
 		surface_visibility = 38.625
@@ -3709,186 +2826,8 @@ equipments = {
 			aluminium = 2
 			chromium = 1
 		}
-	}
 
-#NON-MTG BATTLECRUISERS
-	#1985
-	N_B_Cruiser_2 = {
-		year = 1985
-
-		archetype = battle_cruiser
-		priority = 5
-
-		##Stat
-		#VLS
-		hg_armor_piercing = 15.75
-		hg_attack = 35.10
-		lg_armor_piercing = 6.85
-		lg_attack = 5.15
-		#ASW
-		sub_attack = 7.75
-		sub_detection = 15.00
-		#countermeasures/ECM
-		anti_air_attack = 40
-		armor_value = 15.77
-		#radar
-		surface_detection = 22.37
-		#stealth/size
-		surface_visibility = 51
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 600
-		fuel_consumption = 17.0
-
-		type = {
-			anti_air
-			capital_ship
-		}
-
-		build_cost_ic = 20981.37
-		resources = {
-			aluminium = 1
-			steel = 6
-			tungsten = 1
-		}
-
-		manpower = 1140
-	}
-	#2015
-	N_B_Cruiser_5 = {
-		year = 2015
-
-		archetype = battle_cruiser
-		parent = N_B_Cruiser_2
-		priority = 5
-
-		##Stat
-		#VLS
-		hg_armor_piercing = 21.35
-		hg_attack = 48.60
-		lg_armor_piercing = 12.85
-		lg_attack = 15.15
-		#ASW
-		sub_attack = 12.75
-		sub_detection = 19.00
-		#countermeasures/ECM
-		anti_air_attack = 80
-		armor_value = 25.0
-		#radar
-		surface_detection = 26.37
-		#stealth/size
-		surface_visibility = 45
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 600
-		fuel_consumption = 30
-
-		type = {
-			anti_air
-			capital_ship
-		}
-
-		build_cost_ic = 22350.37
-		resources = {
-			aluminium = 1
-			steel = 9
-			chromium = 1
-		}
-
-		manpower = 1140
-	}
-	#2025
-	N_B_Cruiser_6 = {
-		year = 2025
-
-		archetype = battle_cruiser
-		parent = N_B_Cruiser_5
-		priority = 5
-
-		##Stat
-		#VLS
-		hg_armor_piercing = 24.0
-		hg_attack = 50.00
-		lg_armor_piercing = 15.00
-		lg_attack = 17.50
-		#ASW
-		sub_attack = 14.00
-		sub_detection = 22.00
-		#countermeasures/ECM
-		anti_air_attack = 90
-		armor_value = 27.50
-		#radar
-		surface_detection = 28.0
-		#stealth/size
-		surface_visibility = 45
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 600
-		fuel_consumption = 60
-
-		type = {
-			anti_air
-			capital_ship
-		}
-
-		build_cost_ic = 25250.00
-		resources = {
-			aluminium = 2
-			steel = 11
-			chromium = 1
-		}
-
-		manpower = 1140
-	}
-	#2035
-	N_B_Cruiser_7 = {
-		year = 2035
-
-		archetype = battle_cruiser
-		parent = N_B_Cruiser_6
-		priority = 5
-
-		##Stat
-		#VLS
-		hg_armor_piercing = 30.0
-		hg_attack = 60.00
-		lg_armor_piercing = 15.00
-		lg_attack = 20.0
-		#ASW
-		sub_attack = 20.00
-		sub_detection = 25.00
-		#countermeasures/ECM
-		anti_air_attack = 100
-		armor_value = 30.0
-		#radar
-		surface_detection = 30.0
-		#stealth/size
-		surface_visibility = 40
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-		reliability = 0.90
-		max_strength = 600
-		fuel_consumption = 60
-
-		type = {
-			anti_air
-			capital_ship
-		}
-
-		build_cost_ic = 27650.00
-		resources = {
-			aluminium = 2
-			steel = 12
-			chromium = 1
-		}
-		manpower = 1140
+		naval_dominance_factor = 50
 	}
 
 #MTG BATTLESHIPS
@@ -3912,7 +2851,6 @@ equipments = {
 					module_gun_battery_category
 					module_vls_category
 					module_torpedoes_category
-					module_anti_ship_torpedoes_category
 					module_point_defense_system_category
 					module_turret_missile_category
 					module_fuel_tanks_category
@@ -3928,7 +2866,6 @@ equipments = {
 					module_gun_battery_category
 					module_vls_category
 					module_torpedoes_category
-					module_anti_ship_torpedoes_category
 					module_point_defense_system_category
 					module_turret_missile_category
 					module_fuel_tanks_category
@@ -3942,7 +2879,6 @@ equipments = {
 					module_gun_battery_category
 					module_vls_category
 					module_torpedoes_category
-					module_anti_ship_torpedoes_category
 					module_point_defense_system_category
 					module_turret_missile_category
 					module_fuel_tanks_category
@@ -3956,7 +2892,6 @@ equipments = {
 					module_gun_battery_category
 					module_vls_category
 					module_torpedoes_category
-					module_anti_ship_torpedoes_category
 					module_point_defense_system_category
 					module_turret_missile_category
 					module_fuel_tanks_category
@@ -3970,7 +2905,6 @@ equipments = {
 					module_gun_battery_category
 					module_vls_category
 					module_torpedoes_category
-					module_anti_ship_torpedoes_category
 					module_point_defense_system_category
 					module_turret_missile_category
 					module_fuel_tanks_category
@@ -4006,6 +2940,8 @@ equipments = {
 				allowed_module_categories = {
 					module_light_guns_category
 					module_gun_battery_category
+					module_heavy_guns_category
+					module_railguns_category
 					module_vls_category
 					module_torpedoes_category
 					module_anti_ship_torpedoes_category
@@ -4120,20 +3056,26 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 60
 	}
 
 	battleship_hull_1 = {
 		year = 1965
 		is_buildable = yes
+		visual_level = 1
 		archetype = battleship_hull_0
 		priority = 100
 		module_slots = inherit
+
+		naval_dominance_factor = 60
 	}
 
 	battleship_hull_2 = {
 		year = 1985
 		is_archetype = no
 		is_buildable = yes
+		visual_level = 2
 		archetype = battleship_hull_0
 		parent = battleship_hull_1
 		priority = 100
@@ -4152,11 +3094,13 @@ equipments = {
 			aluminium = 1
 		}
 
+		naval_dominance_factor = 60
 	}
 	battleship_hull_3 = {
 		year = 2015
 		is_archetype = no
 		is_buildable = yes
+		visual_level = 3
 		archetype = battleship_hull_0
 		parent = battleship_hull_2
 		priority = 100
@@ -4175,7 +3119,7 @@ equipments = {
 			aluminium = 2
 			chromium = 1
 		}
-
+		naval_dominance_factor = 60
 	}
 
 #MTG HELICOPTER OPERATORS
@@ -4336,22 +3280,27 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 40
 	}
 
 	helicopter_operator_hull_1 = {
 		year = 1970
 		archetype = helicopter_operator
+		visual_level = 1
 		priority = 5
 		module_slots = inherit
 		resources = {
 			steel = 5
 		}
+		naval_dominance_factor = 40
 	}
 
 	helicopter_operator_hull_2 = {
 		year = 1995
 		archetype = helicopter_operator
 		parent = helicopter_operator_hull_1
+		visual_level = 2
 		priority = 6
 		module_slots = inherit
 		default_modules = {
@@ -4374,6 +3323,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		armor_value = @helicopter_operator_armor
 		surface_detection = 22.5
@@ -4397,6 +3347,7 @@ equipments = {
 		year = 2020
 		archetype = helicopter_operator
 		parent = helicopter_operator_hull_2
+		visual_level = 3
 		priority = 7
 		module_slots = inherit
 
@@ -4420,6 +3371,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		armor_value = @helicopter_operator_armor
 		surface_detection = 23
@@ -4444,6 +3396,7 @@ equipments = {
 		year = 2045
 		archetype = helicopter_operator
 		parent = helicopter_operator_hull_3
+		visual_level = 4
 		priority = 10
 		module_slots = inherit
 
@@ -4467,6 +3420,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 40
 
 		armor_value = @helicopter_operator_armor
 		surface_detection = 24
@@ -4686,12 +3640,15 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 40
 	}
 
 	carrier_hull_1 = {
 		year = 1965
 		archetype = carrier
 		priority = 5
+		visual_level = 1
 		module_slots = inherit
 		default_modules = {
 			fixed_ship_engine_slot = module_surface_oil_power
@@ -4712,6 +3669,8 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 40
 	}
 
 	carrier_hull_2 = {
@@ -4719,6 +3678,7 @@ equipments = {
 		archetype = carrier
 		parent = carrier_hull_1
 		priority = 6
+		visual_level = 2
 		module_slots = inherit
 
 		default_modules = {
@@ -4762,6 +3722,7 @@ equipments = {
 			steel = 5
 			aluminium = 1
 		}
+		naval_dominance_factor = 40
 	}
 
 	carrier_hull_3 = {
@@ -4769,6 +3730,7 @@ equipments = {
 		archetype = carrier
 		parent = carrier_hull_2
 		priority = 8
+		visual_level = 3
 		module_slots = inherit
 
 		default_modules = {
@@ -4813,6 +3775,7 @@ equipments = {
 			aluminium = 2
 			chromium = 1
 		}
+		naval_dominance_factor = 40
 	}
 
 	carrier_hull_4 = {
@@ -4820,6 +3783,7 @@ equipments = {
 		archetype = carrier
 		parent = carrier_hull_3
 		priority = 10
+		visual_level = 4
 		module_slots = inherit
 
 		default_modules = {
@@ -4864,6 +3828,7 @@ equipments = {
 			aluminium = 2
 			chromium = 2
 		}
+		naval_dominance_factor = 40
 	}
 
 	carrier_hull_5 = {
@@ -4871,6 +3836,7 @@ equipments = {
 		archetype = carrier
 		parent = carrier_hull_4
 		priority = 12
+		visual_level = 5
 		module_slots = inherit
 
 		default_modules = {
@@ -4915,1146 +3881,7 @@ equipments = {
 			aluminium = 3
 			chromium = 2
 		}
-	}
-
-#NON-MTG Carriers
-	#1965
-	Nuclear_carrier_0 = {
-		year = 1965
-		module_slots = inherit
-		archetype = carrier
-		priority = 5
-
-		#Displacement
-		lg_armor_piercing = 20
-		lg_attack = 25
-
-		anti_air_attack = 138
-		carrier_size = 60.00
-
-		#ASW
-		sub_attack = 20
-		sub_detection = 60
-
-		armor_value = 30
-
-		#radar
-		surface_detection = 57
-
-		#stealth/size
-		surface_visibility = 23.9
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 14800
-		max_strength = 2240
-
-		#port_capacity_usage = 2
-		fuel_consumption = 0
-
-		build_cost_ic = 80936
-		resources = {
-			aluminium = 2
-			tungsten = 3
-			steel = 14
-		}
-		manpower = 4120
-	}
-	#1975
-	Nuclear_carrier_1 = {
-		year = 1975
-
-		archetype = carrier
-		parent = Nuclear_carrier_0
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 20
-		lg_attack = 26
-
-		anti_air_attack = 321.3
-		carrier_size = 60
-
-		#ASW
-		sub_attack = 20
-		sub_detection = 63
-
-		armor_value = 40
-
-		surface_detection = 62
-
-		#stealth/size
-		surface_visibility = 23.2
-
-		#engine
-		naval_speed = 31.00
-		naval_range = 14925
-
-		max_strength = 2618
-
-		fuel_consumption = 0
-
-		build_cost_ic = 91777
-		resources = {
-			aluminium = 3
-			tungsten = 4
-			steel = 15
-		}
-
-		manpower = 4320
-	}
-	#1985
-	Nuclear_carrier_2 = {
-		year = 1985
-
-		archetype = carrier
-		parent = Nuclear_carrier_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 22
-		lg_attack = 29.7
-
-		anti_air_attack = 403.2
-		carrier_size = 60
-
-		#ASW
-		sub_attack = 24
-		sub_detection = 75
-
-		armor_value = 50
-
-		surface_detection = 77
-
-		#stealth/size
-		surface_visibility = 22.6
-
-		#engine
-		naval_speed = 32.5
-		naval_range = 15050
-
-		max_strength = 2976
-		fuel_consumption = 0
-
-		build_cost_ic = 101551
-		resources = {
-			aluminium = 3
-			tungsten = 4
-			steel = 16
-		}
-
-		manpower = 4310
-	}
-	#2005
-	Nuclear_carrier_3 = {
-		year = 2005
-
-		archetype = carrier
-		parent = Nuclear_carrier_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 24
-		lg_attack = 37.2
-		anti_air_attack = 557.6
-		carrier_size = 60
-
-		#ASW
-		sub_attack = 32
-		sub_detection = 90
-
-		armor_value = 60
-
-		surface_detection = 97.5
-
-		#stealth/size
-		surface_visibility = 21.9
-
-		#engine
-		naval_speed = 36
-		naval_range = 15150
-
-		max_strength = 3696
-
-		fuel_consumption = 0
-
-		build_cost_ic = 102635
-		resources = {
-			aluminium = 3
-			chromium = 4
-			steel = 18
-		}
-
-		manpower = 3900
-	}
-	#2015
-	Nuclear_carrier_4 = {
-		year = 2015
-
-		archetype = carrier
-		parent = Nuclear_carrier_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 24
-		lg_attack = 40.8
-		anti_air_attack = 682.5
-		carrier_size = 60
-
-		#ASW
-		sub_attack = 32
-		sub_detection = 92
-
-		armor_value = 70
-
-		surface_detection = 102.7
-
-		#stealth/size
-		surface_visibility = 21.2
-
-		#engine
-		naval_speed = 38
-		naval_range = 15300
-
-		max_strength = 4110
-
-		fuel_consumption = 0
-
-		build_cost_ic = 111141
-		resources = {
-			aluminium = 3
-			chromium = 5
-			steel = 18
-		}
-
-		manpower = 3400
-	}
-	#2025
-	Nuclear_carrier_5 = {
-		year = 2025
-
-		archetype = carrier
-		parent = Nuclear_carrier_4
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 24
-		lg_attack = 42
-		anti_air_attack = 792
-		carrier_size = 60
-
-		#ASW
-		sub_attack = 32
-		sub_detection = 95
-
-		armor_value = 80
-
-		surface_detection = 108
-
-		surface_visibility = 20.6
-
-		#engine
-		naval_speed = 39.5
-		naval_range = 15500
-
-		max_strength = 4448
-
-		fuel_consumption = 0
-
-		build_cost_ic = 120320
-		resources = {
-			aluminium = 4
-			chromium = 5
-			steel = 18
-		}
-
-		manpower = 3250
-	}
-	#2035
-	Nuclear_carrier_6 = {
-		year = 2035
-
-		archetype = carrier
-		parent = Nuclear_carrier_5
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 24
-		lg_attack = 42
-		anti_air_attack = 800
-		carrier_size = 60
-
-		#ASW
-		sub_attack = 32
-		sub_detection = 96
-
-		armor_value = 90
-
-		surface_detection = 108.5
-
-		surface_visibility = 19.9
-
-		#engine
-		naval_speed = 41
-		naval_range = 16000
-
-		max_strength = 4828
-
-		fuel_consumption = 0
-
-		build_cost_ic = 128400
-		resources = {
-			aluminium = 4
-			chromium = 6
-			steel = 18
-		}
-
-		manpower = 3100
-	}
-
-	#1965
-	carrier_0 = {
-		year = 1965
-
-		module_slots = inherit
-		archetype = carrier
-		priority = 5
-
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.00
-		anti_air_attack = 9.63
-		carrier_size = 10.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 25.40
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 10.00
-		armor_value = 5.00
-
-		#radar
-		#fire_range = 14.00
-		surface_detection = 15.00
-
-		#stealth/size
-		surface_visibility = 40.00
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-		fuel_consumption = 80.0
-
-		build_cost_ic = 25000.00
-		resources = {
-			aluminium = 1
-			steel = 4
-		}
-
-
-		manpower = 1000
-
-	}
-	#1975
-	carrier_1 = {
-		year = 1975
-
-		archetype = carrier
-		parent = carrier_0
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.12
-		anti_air_attack = 11.56
-		carrier_size = 20.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 28.45
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 11.20
-		armor_value = 5.60
-
-		#radar
-		#fire_range = 15.68
-		surface_detection = 16.80
-
-		#stealth/size
-		surface_visibility = 34.00
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		fuel_consumption = 90.0
-
-		build_cost_ic = 27350.35
-		resources = {
-			aluminium = 1
-			steel = 5
-		}
-
-		manpower = 1000
-	}
-	#1985
-	carrier_2 = {
-		year = 1985
-
-		archetype = carrier
-		parent = carrier_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.25
-		anti_air_attack = 13.87
-		carrier_size = 30.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 31.86
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 12.54
-		armor_value = 6.27
-
-		#radar
-		#fire_range = 17.56
-		surface_detection = 18.82
-
-		#stealth/size
-		surface_visibility = 28.90
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		fuel_consumption = 100.0
-
-		build_cost_ic = 29450.45
-		resources = {
-			aluminium = 1
-			steel = 7
-		}
-
-		manpower = 1400
-	}
-	#2005
-	carrier_3 = {
-		year = 2005
-
-		archetype = carrier
-		parent = carrier_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.40
-		anti_air_attack = 16.64
-		carrier_size = 50.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 35.69
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 14.05
-		armor_value = 7.02
-
-		#radar
-		#fire_range = 19.67
-		surface_detection = 21.07
-
-		#stealth/size
-		surface_visibility = 24.57
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		fuel_consumption = 110.0
-
-		build_cost_ic = 32000.45
-		resources = {
-			aluminium = 1
-			steel = 8
-			chromium = 1
-		}
-
-		manpower = 1600
-	}
-	#2015
-	carrier_4 = {
-		year = 2015
-
-		archetype = carrier
-		parent = carrier_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.57
-		anti_air_attack = 19.97
-		carrier_size = 60.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 39.97
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 15.74
-		armor_value = 7.87
-
-		#radar
-		#fire_range = 22.03
-		surface_detection = 23.60
-
-		#stealth/size
-		surface_visibility = 20.88
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		fuel_consumption = 120.0
-
-		build_cost_ic = 32000.45
-		resources = {
-			aluminium = 1
-			steel = 8
-			chromium = 2
-		}
-
-		manpower = 1800
-	}
-	#2025
-	carrier_5 = {
-		year = 2025
-
-		archetype = carrier
-		parent = carrier_4
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.76
-		anti_air_attack = 23.96
-		carrier_size = 70.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 44.76
-
-		#ground support
-		#shore_bombardment = 0.5
-
-		#countermeasures/ECM
-		#evasion = 17.62
-		armor_value = 8.81
-
-		#radar
-		#fire_range = 24.67
-		surface_detection = 26.44
-
-		#stealth/size
-		surface_visibility = 17.75
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		fuel_consumption = 130.0
-
-		build_cost_ic = 34350.25
-		resources = {
-			aluminium = 2
-			steel = 9
-			chromium = 3
-		}
-		manpower = 2000
-	}
-	#2035
-	carrier_6 = {
-		year = 2035
-
-		archetype = carrier
-		parent = carrier_5
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.97
-		anti_air_attack = 28.76
-		carrier_size = 70.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 50.14
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 9.87
-
-		#radar
-		surface_detection = 29.61
-
-		#stealth/size
-		surface_visibility = 15.09
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		fuel_consumption = 150.0
-
-		build_cost_ic = 36250.25
-		resources = {
-			aluminium = 2
-			steel = 11
-			chromium = 3
-		}
-
-		manpower = 2000
-	}
-
-	##Landing Helicopter Assault Ship
-	#1975
-	LHA_0 = {
-		year = 1975
-		archetype = helicopter_operator
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.12
-		anti_air_attack = 11.56
-		carrier_size = 7.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 28.45
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 5.60
-
-		#radar
-		surface_detection = 16.80
-
-		#stealth/size
-		surface_visibility = 34.00
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		#port_capacity_usage = 2
-		fuel_consumption = 65.0
-
-		build_cost_ic = 12575.65
-		resources = {
-			tungsten = 1
-			steel = 4
-		}
-
-		manpower = 800
-	}
-	#1985
-	LHA_1 = {
-		year = 1985
-
-		archetype = helicopter_operator
-		parent = LHA_0
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.25
-		anti_air_attack = 13.87
-		carrier_size = 10.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 31.86
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 6.27
-
-		#radar
-		surface_detection = 18.82
-
-		#stealth/size
-		surface_visibility = 28.90
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		#port_capacity_usage = 2
-		fuel_consumption = 70.0
-
-		build_cost_ic = 16755.85
-		resources = {
-			tungsten = 1
-			steel = 6
-		}
-
-		manpower = 1000
-	}
-	#2015
-	LHA_2 = {
-		year = 2015
-		archetype = helicopter_operator
-		parent = LHA_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.57
-		anti_air_attack = 19.97
-		carrier_size = 17.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 39.97
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 7.87
-
-		#radar
-		surface_detection = 23.60
-
-		#stealth/size
-		surface_visibility = 20.88
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		#port_capacity_usage = 2
-		fuel_consumption = 75.0
-
-		build_cost_ic = 19586.56
-		resources = {
-			tungsten = 2
-			steel = 8
-			chromium = 2
-		}
-
-		manpower = 1000
-	}
-	#2025
-	LHA_3 = {
-		year = 2025
-
-		archetype = helicopter_operator
-		parent = LHA_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.76
-		anti_air_attack = 23.96
-		carrier_size = 20.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 44.76
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 8.81
-
-		#radar
-		surface_detection = 26.44
-
-		#stealth/size
-		surface_visibility = 17.75
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		#port_capacity_usage = 2
-		fuel_consumption = 80.0
-
-		build_cost_ic = 21245.52
-		resources = {
-			tungsten = 2
-			steel = 10
-			chromium = 2
-		}
-
-		manpower = 1000
-	}
-	#2035
-	LHA_4 = {
-		year = 2035
-
-		archetype = helicopter_operator
-		parent = LHA_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.97
-		anti_air_attack = 28.76
-		carrier_size = 37.00
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 50.14
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 19.74
-
-		#radar
-		surface_detection = 29.61
-
-		#stealth/size
-		surface_visibility = 22.63
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 500
-
-		#port_capacity_usage = 2
-		fuel_consumption = 85.0
-
-		build_cost_ic = 23451.61
-		resources = {
-			tungsten = 2
-			steel = 11
-			chromium = 3
-		}
-		manpower = 1000
-	}
-
-	#1975
-	LPD_0 = {
-		year = 1975
-		archetype = helicopter_operator
-		priority = 5
-		module_slots = inherit
-
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.12
-		anti_air_attack = 11.56
-		carrier_size = 0
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 10.50
-
-		#countermeasures/ECM
-		armor_value = 5.60
-
-		#radar
-		#fire_range = 15.68
-		surface_detection = 16.80
-
-		#stealth/size
-		surface_visibility = 34.00
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 2
-		fuel_consumption = 45.0
-
-		build_cost_ic = 8500.00
-		resources = {
-			steel = 4
-		}
-
-		manpower = 750
-
-	}
-	#1985
-	LPD_1 = {
-		year = 1985
-
-		archetype = helicopter_operator
-		parent = LPD_0
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.25
-		anti_air_attack = 13.87
-		carrier_size = 0
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 11.93
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 6.27
-
-		#radar
-		surface_detection = 18.82
-
-		#stealth/size
-		surface_visibility = 28.90
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 2
-		fuel_consumption = 50.0
-
-		build_cost_ic = 10750.60
-		resources = {
-			steel = 5
-		}
-
-		manpower = 750
-	}
-	#2015
-	LPD_2 = {
-		year = 2015
-		archetype = helicopter_operator
-		parent = LPD_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.57
-		anti_air_attack = 19.97
-		carrier_size = 0
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 20.62
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 7.87
-
-		#radar
-		surface_detection = 23.60
-
-		#stealth/size
-		surface_visibility = 20.88
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 2
-		fuel_consumption = 55.0
-
-		build_cost_ic = 12715.98
-		resources = {
-			tungsten = 1
-			steel = 6
-			chromium = 1
-		}
-
-		manpower = 750
-	}
-	#2025
-	LPD_3 = {
-		year = 2025
-
-		archetype = helicopter_operator
-		parent = LPD_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.76
-		anti_air_attack = 23.96
-		carrier_size = 0
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 24.74
-
-		#ground support
-		#shore_bombardment = 2
-
-		#countermeasures/ECM
-		#evasion = 17.62
-		armor_value = 8.81
-
-		#radar
-		#fire_range = 24.67
-		surface_detection = 26.44
-
-		#stealth/size
-		surface_visibility = 17.75
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 2
-		fuel_consumption = 60.0
-
-		build_cost_ic = 13850.80
-		resources = {
-			tungsten = 1
-			steel = 7
-			chromium = 1
-		}
-
-		manpower = 750
-	}
-	#2035
-	LPD_4 = {
-		year = 2035
-		archetype = helicopter_operator
-		parent = LPD_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 1.97
-		anti_air_attack = 28.76
-		carrier_size = 0
-
-		#ASW
-		sub_attack = 0.00
-		sub_detection = 29.69
-
-		#ground support
-
-		#countermeasures/ECM
-		armor_value = 19.74
-
-		#radar
-		surface_detection = 29.61
-
-		#stealth/size
-		surface_visibility = 22.63
-
-		#engine
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		max_strength = 300
-
-		#port_capacity_usage = 2
-		fuel_consumption = 65.0
-
-		build_cost_ic = 15000.00
-		resources = {
-			tungsten = 1
-			steel = 9
-			chromium = 2
-		}
-
-		manpower = 750
+		naval_dominance_factor = 40
 	}
 
 #MTG Attack Submarines
@@ -6152,10 +3979,13 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 10
 	}
 	attack_submarine_hull_1 = {
 		year = 1965
 		archetype = attack_submarine
+		visual_level = 1
 		priority = 5
 		module_slots = inherit
 
@@ -6171,11 +4001,13 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+		naval_dominance_factor = 10
 	}
 	attack_submarine_hull_2 = {
 		year = 1980
 		archetype = attack_submarine
 		parent = attack_submarine_hull_1
+		visual_level = 2
 		priority = 6
 		module_slots = inherit
 
@@ -6196,6 +4028,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		armor_value = @attack_sub_armor
 		sub_visibility = 7.5
@@ -6219,6 +4052,7 @@ equipments = {
 		year = 1995
 		archetype = attack_submarine
 		parent = attack_submarine_hull_2
+		visual_level = 3
 		priority = 7
 		module_slots = inherit
 
@@ -6239,6 +4073,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		armor_value = @attack_sub_armor
 		sub_visibility = 6.8
@@ -6262,6 +4097,7 @@ equipments = {
 		year = 2010
 		archetype = attack_submarine
 		parent = attack_submarine_hull_3
+		visual_level = 4
 		priority = 8
 		module_slots = inherit
 		default_modules = {
@@ -6281,6 +4117,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		armor_value = @attack_sub_armor
 		sub_visibility = 6.2
@@ -6305,6 +4142,7 @@ equipments = {
 		year = 2025
 		archetype = attack_submarine
 		parent = attack_submarine_hull_4
+		visual_level = 5
 		priority = 10
 		module_slots = inherit
 		default_modules = {
@@ -6324,6 +4162,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		armor_value = @attack_sub_armor
 		sub_visibility = 5.6
@@ -6348,6 +4187,7 @@ equipments = {
 		year = 2040
 		archetype = attack_submarine
 		parent = attack_submarine_hull_5
+		visual_level = 6
 		priority = 12
 		module_slots = inherit
 
@@ -6368,6 +4208,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 10
 
 		armor_value = @attack_sub_armor
 		sub_visibility = 5
@@ -6386,763 +4227,6 @@ equipments = {
 			steel = 5
 			aluminium = 3
 			chromium = 2
-		}
-	}
-
-#NON-MTG ATTACK SUBMARINES
-	#1965 SSN
-	attack_submarine_1 = {
-		year = 1965
-
-		archetype = attack_submarine
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 3.00
-		torpedo_attack = 25.33
-
-		#ASW
-		sub_detection = 7.59
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 11.14
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 5.06
-		surface_detection = 20.26
-
-		#stealth/size
-		surface_visibility = 20.00
-		sub_visibility = 20
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 3.0
-
-		manpower = 200
-
-		build_cost_ic = 10166.58
-		resources = {
-			steel = 2
-			tungsten = 1
-			aluminium = 3
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-	#1975 SSN
-	attack_submarine_2 = {
-		year = 1975
-
-		archetype = attack_submarine
-		parent = attack_submarine_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 3.60
-		torpedo_attack = 28.37
-
-		#ASW
-		sub_detection = 8.50
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 12.48
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 5.67
-		surface_detection = 22.69
-
-		#stealth/size
-		surface_visibility = 12.20
-		sub_visibility = 12.20
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 4.50
-
-		manpower = 200
-
-		build_cost_ic = 13150.58
-		resources = {
-			steel = 2
-			tungsten = 1
-			aluminium = 4
-		}
-
-		type = {
-			submarine
-		}
-	}
-	#1985 SSN
-	attack_submarine_3 = {
-		year = 1985
-
-		archetype = attack_submarine
-		parent = attack_submarine_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 5.90
-		torpedo_attack = 31.77
-
-		#ASW
-		sub_detection = 9.52
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 13.97
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 6.35
-		surface_detection = 25.41
-
-		#stealth/size
-		surface_visibility = 7.44
-		sub_visibility = 7.44
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 6.0
-
-		manpower = 200
-		build_cost_ic = 15780.45
-		resources = {
-			steel = 5
-			tungsten = 1
-			aluminium = 5
-		}
-
-		type = {
-			submarine
-		}
-	}
-	#2005 SSN
-	attack_submarine_4 = {
-		year = 2005
-
-		archetype = attack_submarine
-		parent = attack_submarine_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 7.08
-		torpedo_attack = 35.59
-
-		#ASW
-		sub_detection = 10.66
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 15.65
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 7.11
-		surface_detection = 28.46
-
-		#stealth/size
-		surface_visibility = 4.53
-		sub_visibility = 4.53
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 7.50
-
-		manpower = 200
-
-		build_cost_ic = 17806.45
-		resources = {
-			steel = 4
-			tungsten = 1
-			aluminium = 6
-		}
-
-		type = {
-			submarine
-		}
-	}
-	#2015 SSN
-	attack_submarine_5 = {
-		year = 2015
-
-		archetype = attack_submarine
-		parent = attack_submarine_4
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 8.50
-		torpedo_attack = 39.86
-
-		#ASW
-		sub_detection = 11.94
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 17.53
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 7.96
-		surface_detection = 31.88
-
-		#stealth/size
-		surface_visibility = 2.76
-		sub_visibility = 2.76
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 9.0
-
-		manpower = 200
-
-		build_cost_ic = 19205.45
-		resources = {
-			steel = 5
-			chromium = 2
-			aluminium = 7
-		}
-
-		type = {
-			submarine
-		}
-	}
-	#2025 SSN
-	attack_submarine_6 = {
-		year = 2025
-
-		archetype = attack_submarine
-		parent = attack_submarine_5
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 10.20
-		torpedo_attack = 44.64
-
-		#ASW
-		sub_detection = 13.38
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 19.63
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 8.92
-		surface_detection = 35.71
-
-		#stealth/size
-		surface_visibility = 1.69
-		sub_visibility = 1.69
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 10.50
-
-		manpower = 200
-
-		build_cost_ic = 20105.45
-		resources = {
-			steel = 5
-			chromium = 3
-			aluminium = 7
-		}
-
-		type = {
-			submarine
-		}
-	}
-	#2035 SSN
-	attack_submarine_7 = {
-		year = 2035
-
-		archetype = attack_submarine
-		parent = attack_submarine_6
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 0.00
-		lg_attack = 0.00
-		anti_air_attack = 12.24
-		torpedo_attack = 50.00
-
-		#ASW
-		sub_detection = 14.98
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 21.99
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 9.99
-		surface_detection = 39.99
-
-		#stealth/size
-		surface_visibility = 1.03
-		sub_visibility = 1.03
-
-		naval_speed = 30.00
-		naval_range = 5000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 12.0
-
-		manpower = 200
-
-		build_cost_ic = 22150.45
-		resources = {
-			steel = 6
-			chromium = 3
-			aluminium = 8
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-
-	#1965
-	diesel_attack_submarine_1 = {
-		year = 1965
-
-		archetype = attack_submarine
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 3.00
-		torpedo_attack = 21.00
-
-		#ASW
-		sub_detection = 7.59
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 11.14
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 5.06
-		surface_detection = 16.00
-
-		#stealth/size
-		surface_visibility = 15.00
-		sub_visibility = 15
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 22.5
-
-		manpower = 200
-		build_cost_ic = 3728.96
-		resources = {
-			steel = 2
-			aluminium = 1
-		}
-		type = {
-			submarine
-		}
-
-	}
-	#1975
-	diesel_attack_submarine_2 = {
-		year = 1975
-
-		archetype = attack_submarine
-		parent = diesel_attack_submarine_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 3.60
-		torpedo_attack = 23.52
-
-		#ASW
-		sub_detection = 8.50
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 12.48
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 5.67
-		surface_detection = 17.92
-
-		#stealth/size
-		surface_visibility = 8.52
-		sub_visibility = 8.52
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 25
-
-		manpower = 200
-		build_cost_ic = 4020.60
-		resources = {
-			steel = 4
-			aluminium = 1
-		}
-		type = {
-			submarine
-		}
-	}
-	#1985
-	diesel_attack_submarine_3 = {
-		year = 1985
-
-		archetype = attack_submarine
-		parent = diesel_attack_submarine_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 6.34
-		torpedo_attack = 26.34
-
-		#ASW
-		sub_detection = 9.52
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 13.97
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 6.35
-		surface_detection = 20.07
-
-		#stealth/size
-		surface_visibility = 4.84
-		sub_visibility = 4.84
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 27.5
-
-		manpower = 200
-		build_cost_ic = 4250.40
-		resources = {
-			steel = 5
-			aluminium = 2
-		}
-		type = {
-			submarine
-		}
-	}
-	#2005
-	diesel_attack_submarine_4 = {
-		year = 2005
-
-		archetype = attack_submarine
-		parent = diesel_attack_submarine_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 7.60
-		torpedo_attack = 29.50
-
-		#ASW
-		sub_detection = 10.66
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 15.65
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 7.11
-		surface_detection = 22.48
-
-		#stealth/size
-		surface_visibility = 2.75
-		sub_visibility = 2.75
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 36
-
-		manpower = 200
-		build_cost_ic = 4650.00
-		resources = {
-			steel = 7
-			aluminium = 2
-		}
-		type = {
-			submarine
-		}
-	}
-	#2015
-	diesel_attack_submarine_5 = {
-		year = 2015
-
-		archetype = attack_submarine
-		parent = diesel_attack_submarine_4
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 9.12
-		torpedo_attack = 33.04
-
-		#ASW
-		sub_detection = 11.94
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 17.53
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 7.96
-		surface_detection = 25.18
-
-		#stealth/size
-		surface_visibility = 1.56
-		sub_visibility = 1.56
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 48
-
-		manpower = 200
-		build_cost_ic = 4925.00
-		resources = {
-			steel = 7
-			aluminium = 3
-			tungsten = 1
-		}
-		type = {
-			submarine
-		}
-	}
-	#2025
-	diesel_attack_submarine_6 = {
-		year = 2025
-
-		archetype = attack_submarine
-		parent = diesel_attack_submarine_5
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 10.95
-		torpedo_attack = 37.01
-
-		#ASW
-		sub_detection = 13.38
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 19.63
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 8.92
-		surface_detection = 28.20
-
-		#stealth/size
-		surface_visibility = 0.89
-		sub_visibility = 0.89
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 57.55
-
-		manpower = 200
-		build_cost_ic = 5325.00
-		resources = {
-			steel = 8
-			aluminium = 3
-			chromium = 1
-		}
-		type = {
-			submarine
-		}
-	}
-	#2035
-	diesel_attack_submarine_7 = {
-		year = 2035
-
-		archetype = attack_submarine
-		parent = diesel_attack_submarine_6
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		#ap_attack = 0.00
-		##attack = 0.00
-		anti_air_attack = 13.14
-		torpedo_attack = 41.45
-
-		#ASW
-		sub_detection = 14.98
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 21.99
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 9.99
-		surface_detection = 31.58
-
-		#stealth/size
-		surface_visibility = 0.50
-		sub_visibility = 0.50
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 65.0
-
-		manpower = 200
-
-		build_cost_ic = 6000.00
-		resources = {
-			steel = 8
-			aluminium = 4
-			chromium = 1
-		}
-
-		type = {
-			submarine
 		}
 	}
 
@@ -7260,11 +4344,14 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 5
 	}
 
 	missile_submarine_hull_1 = {
 		year = 1965
 		archetype = missile_submarine
+		visual_level = 1
 		priority = 5
 		module_slots = inherit
 
@@ -7280,6 +4367,7 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+		naval_dominance_factor = 5
 	}
 
 	missile_submarine_hull_2 = {
@@ -7287,6 +4375,7 @@ equipments = {
 
 		archetype = missile_submarine
 		parent = missile_submarine_hull_1
+		visual_level = 2
 		priority = 6
 
 		module_slots = inherit
@@ -7308,6 +4397,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 5
 
 		armor_value = @missile_sub_armor
 		sub_visibility = 10.638
@@ -7332,6 +4422,7 @@ equipments = {
 		year = 1995
 		archetype = missile_submarine
 		parent = missile_submarine_hull_2
+		visual_level = 3
 		priority = 7
 		module_slots = inherit
 
@@ -7352,6 +4443,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 5
 
 		armor_value = @missile_sub_armor
 		sub_visibility = 9.775
@@ -7376,6 +4468,7 @@ equipments = {
 		year = 2010
 		archetype = missile_submarine
 		parent = missile_submarine_hull_3
+		visual_level = 4
 		priority = 8
 		module_slots = inherit
 
@@ -7396,6 +4489,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 5
 
 		armor_value = @missile_sub_armor
 		sub_visibility = 8.913
@@ -7421,6 +4515,7 @@ equipments = {
 		year = 2025
 		archetype = missile_submarine
 		parent = missile_submarine_hull_4
+		visual_level = 5
 		priority = 10
 		module_slots = inherit
 
@@ -7441,6 +4536,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 5
 
 		armor_value = @missile_sub_armor
 		sub_visibility = 8.05
@@ -7466,6 +4562,7 @@ equipments = {
 		year = 2040
 		archetype = missile_submarine
 		parent = missile_submarine_hull_5
+		visual_level = 6
 		priority = 12
 		module_slots = inherit
 		default_modules = {
@@ -7485,6 +4582,7 @@ equipments = {
 		torpedo_attack = 0
 		sub_attack = 0
 		anti_air_attack = 0
+		naval_dominance_factor = 5
 
 		armor_value = @missile_sub_armor
 		sub_visibility = 7.188
@@ -7506,401 +4604,6 @@ equipments = {
 		}
 	}
 
-#NON-MTG MISSILE SUBMARINES
-	#1965 SSGN
-	missile_submarine_1 = {
-		year = 1965
-
-		archetype = missile_submarine
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 22.18
-		lg_attack = 7.59
-		anti_air_attack = 1.50
-		#torpedo_attack = 21.00
-
-		#ASW
-		sub_detection = 7.59
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 11.14
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 8.61
-		surface_detection = 16.00
-
-		#stealth/size
-		surface_visibility = 15.00
-		sub_visibility = 15
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 1.75
-
-		manpower = 250
-
-		build_cost_ic = 15000
-		resources = {
-			steel = 6
-			aluminium = 1
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-
-	#1975 SSGN
-	missile_submarine_2 = {
-		year = 1975
-
-		archetype = missile_submarine
-		parent = missile_submarine_1
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 24.84
-		lg_attack = 8.50
-		anti_air_attack = 1.80
-		#torpedo_attack = 23.52
-
-		#ASW
-		sub_detection = 8.50
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 12.48
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 9.64
-		surface_detection = 17.92
-
-		#stealth/size
-		surface_visibility = 12.50
-		sub_visibility = 12.50
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-
-		manpower = 250
-		fuel_consumption = 2.75
-
-		build_cost_ic = 17850
-		resources = {
-			steel = 6
-			aluminium = 2
-			tungsten = 1
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-
-	#1985 SSGN
-	missile_submarine_3 = {
-		year = 1985
-
-		archetype = missile_submarine
-		parent = missile_submarine_2
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 27.82
-		lg_attack = 9.52
-		anti_air_attack = 2.16
-		#torpedo_attack = 26.34
-
-		#ASW
-		sub_detection = 9.52
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 13.97
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 10.80
-		surface_detection = 20.07
-
-		#stealth/size
-		surface_visibility = 10.42
-		sub_visibility = 10.42
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 3.75
-
-		manpower = 250
-
-		build_cost_ic = 19200.0
-		resources = {
-			steel = 9
-			aluminium = 2
-			tungsten = 1
-		}
-		type = {
-			submarine
-		}
-
-	}
-
-	#2005 SSGN
-	missile_submarine_4 = {
-		year = 2005
-
-		archetype = missile_submarine
-		parent = missile_submarine_3
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 31.16
-		lg_attack = 10.66
-		anti_air_attack = 2.59
-		#torpedo_attack = 29.50
-
-		#ASW
-		sub_detection = 10.66
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 15.65
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 12.10
-		surface_detection = 22.48
-
-		#stealth/size
-		surface_visibility = 8.68
-		sub_visibility = 8.68
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-		fuel_consumption = 4.75
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-
-		manpower = 250
-
-		build_cost_ic = 21000.0
-		resources = {
-			steel = 10
-			aluminium = 3
-			tungsten = 2
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-
-	#2015 SSGN
-	missile_submarine_5 = {
-		year = 2015
-
-		archetype = missile_submarine
-		parent = missile_submarine_4
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 34.90
-		lg_attack = 11.94
-		anti_air_attack = 3.11
-		#torpedo_attack = 33.04
-
-		#ASW
-		sub_detection = 11.94
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 17.53
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 13.55
-		surface_detection = 25.18
-
-		#stealth/size
-		surface_visibility = 7.23
-		sub_visibility = 7.23
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 5.75
-
-		manpower = 250
-
-		build_cost_ic = 22680.0
-		resources = {
-			steel = 12
-			aluminium = 3
-			chromium = 2
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-
-	#2025 SSGN
-	missile_submarine_6 = {
-		year = 2025
-
-		archetype = missile_submarine
-		parent = missile_submarine_5
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 39.09
-		lg_attack = 13.38
-		anti_air_attack = 3.73
-		#torpedo_attack = 37.01
-
-		#ASW
-		sub_detection = 13.38
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 19.63
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 15.17
-		surface_detection = 28.20
-
-		#stealth/size
-		surface_visibility = 6.03
-		sub_visibility = 6.03
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 6.75
-
-		manpower = 250
-
-		build_cost_ic = 24680.0
-		resources = {
-			steel = 11
-			aluminium = 4
-			chromium = 3
-		}
-
-		type = {
-			submarine
-		}
-
-	}
-
-	#2035 SSGN
-	missile_submarine_7 = {
-		year = 2035
-
-		archetype = missile_submarine
-		parent = missile_submarine_6
-		priority = 5
-
-		module_slots = inherit
-
-		#Displacement
-		lg_armor_piercing = 43.78
-		lg_attack = 14.98
-		anti_air_attack = 4.48
-		#torpedo_attack = 41.45
-
-		#ASW
-		sub_detection = 14.98
-
-		#ground support
-		#shore_bombardment = 0.00
-
-		#countermeasures/ECM
-		#evasion = 21.99
-		armor_value = 0.00
-
-		#radar
-		#fire_range = 16.99
-		surface_detection = 31.58
-
-		#stealth/size
-		surface_visibility = 5.02
-		sub_visibility = 5.02
-
-		naval_speed = 20.00
-		naval_range = 3000.00
-
-		reliability = 0.9
-		max_strength = 100
-		#port_capacity_usage = 1
-		fuel_consumption = 8.0
-
-		manpower = 250
-
-		build_cost_ic = 26980.75
-		resources = {
-			steel = 12
-			aluminium = 4
-			chromium = 3
-		}
-
-		type = {
-			submarine
-		}
-	}
 #PATROL BOATS
 	patrol_boat = {
 		year = 1965
@@ -7955,13 +4658,13 @@ equipments = {
 		module_count_limit = { category = module_vls_category count < 2 }
 
 		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
-		lg_armor_piercing = 0
-		lg_attack = 0
+		lg_armor_piercing = 10
+		lg_attack = 7
 		hg_armor_piercing = 0
 		hg_attack = 0
 		torpedo_attack = 0
-		sub_attack = 0
-		anti_air_attack = 0
+		sub_attack = 2
+		anti_air_attack = 3
 
 		##Misc Stats
 		armor_value = 0 ##No armor module so ships have their own
@@ -7979,11 +4682,15 @@ equipments = {
 		resources = {
 			steel = 5
 		}
+
+		naval_dominance_factor = 3
 	}
 	patrol_boat_1 = {
 		year = 1965
 		archetype = patrol_boat
 		priority = 100
 		module_slots = inherit
+
+		naval_dominance_factor = 3
 	}
 }

@@ -1,68 +1,143 @@
 on_actions = {
-	#SUBJECT DELETED AND ADDED FROM SOVFED
-	#SUBJECT ROSGVARIA AND NAT DUH
-	on_daily = {
+	on_weekly_SOV = {
 		effect = {
-			#Zeks Storm Z
 			if = {
 				limit = {
-					original_tag = SOV
-					NOT = { has_idea = SOV_storm_z_central_russia }
-					has_country_flag = Storm_Z_Central
-					has_war = no
+					has_full_control_of_state = 1118
+					NOT = { has_idea = landmark_ICBMsiloyasny_hidden }
 				}
-				add_timed_idea = { idea = SOV_storm_z_central_russia	days = 365	}
-				clr_country_flag = Storm_Z_Central
-				delete_units = {
-					division_template = "Battalion of Prisoners"
-					disband = yes
-				}
+				add_ideas = landmark_ICBMsiloyasny_hidden
 			}
 			if = {
 				limit = {
-					original_tag = SOV
-					NOT = { has_idea = SOV_storm_z_ural }
-					has_country_flag = Storm_Z_Ural
-					has_war = no
+					NOT = { has_full_control_of_state = 1118 }
+					has_idea = landmark_ICBMsiloyasny_hidden
 				}
-				add_timed_idea = { idea = SOV_storm_z_ural	days = 365	}
-				clr_country_flag = Storm_Z_Ural
-				delete_units = {
-					division_template = "Battalion of Prisoners"
-					disband = yes
-				}
+				remove_ideas = landmark_ICBMsiloyasny_hidden
 			}
+		}
+	}
+	on_monthly_SOV = {
+		random_events = {
+			1000 = 0
+
+			100 = sov_economic.28
+			150 = sov_economic.24
+			100 = sov_economic.23
+			100 = sov_economic.22
+			150 = sov_economic.27
+		}
+		effect = {
 			if = {
 				limit = {
-					original_tag = SOV
-					NOT = { has_idea = SOV_storm_z_fareast }
-					has_country_flag = Storm_Z_FarEast
-					has_war = no
+					NOT = { has_country_flag = SOV_loss_dissoultion }
+					has_war = yes
+					surrender_progress > 0.8
 				}
-				add_timed_idea = { idea = SOV_storm_z_fareast	days = 365	}
-				clr_country_flag = Storm_Z_FarEast
-				delete_units = {
-					division_template = "Battalion of Prisoners"
-					disband = yes
-				}
+				set_country_flag = SOV_loss_dissoultion
+				country_event = { id = sov_dissolution.1 days = 1 }
 			}
+			#Capitalisation Companies
 			if = {
 				limit = {
-					original_tag = SOV
-					NOT = { has_idea = SOV_storm_z_siberia }
-					has_country_flag = Storm_Z_Siberia
-					has_war = no
+					OR = {
+						NOT = {
+							OR = {
+								emerging_communist_state_are_in_power = yes
+								neutrality_neutral_communism_are_in_power = yes
+								AND = {
+									nationalist_monarchists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nationalize
+								}
+								AND = {
+									nationalist_right_wing_populists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nationalize
+								}
+								AND = {
+									nationalist_fascist_are_in_power = yes
+									has_completed_focus = SOV_nazbols_natiolalize
+								}
+								AND = {
+									nationalist_monarchists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nazbols_natiolalize
+								}
+								AND = {
+									nationalist_right_wing_populists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nazbols_natiolalize
+								}
+								AND = {
+									nationalist_right_wing_populists_are_in_power = yes
+									has_completed_focus = SOV_nationalize
+								}
+								AND = {
+									nationalist_monarchists_are_in_power = yes
+									has_completed_focus = SOV_nationalize
+								}
+							}
+						}
+						is_subject = no
+						has_country_flag = SOV_stop_moex
+					}
 				}
-				add_timed_idea = { idea = SOV_storm_z_siberia	days = 365	}
-				clr_country_flag = Storm_Z_Siberia
-				delete_units = {
-					division_template = "Battalion of Prisoners"
-					disband = yes
+				#Gazprom Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_reform_gazprom
+					}
+					capitalisation_gazprom_calculate = yes
+					capitalisation_gazprom_change_positive = yes
+					capitalisation_gazprom_change_negative = yes
+				}
+				#Rosneft Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_use_yukos
+					}
+					capitalisation_rosneft_calculate = yes
+					capitalisation_rosneft_change_positive = yes
+					capitalisation_rosneft_change_negative = yes
+				}
+				#Sberbank Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_destiny_sber
+					}
+					capitalisation_sberbank_calculate = yes
+					capitalisation_sberbank_change_positive = yes
+					capitalisation_sberbank_change_negative = yes
+				}
+				#MTS Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_mts
+					}
+					capitalisation_mts_calculate = yes
+					capitalisation_mts_change_positive = yes
+					capitalisation_mts_change_negative = yes
+				}
+				#VTB Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_vtb
+					}
+					capitalisation_vtb_calculate = yes
+					capitalisation_vtb_change_positive = yes
+					capitalisation_vtb_change_negative = yes
+				}
+				#ALROSA Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_alrosa
+					}
+					capitalisation_alrosa_calculate = yes
+					capitalisation_alrosa_change_positive = yes
+					capitalisation_alrosa_change_negative = yes
 				}
 			}
 		}
 	}
 }
-
-
-

@@ -1,19 +1,12 @@
-﻿###########################
-# 	  Hong Kong Events	  #
-###########################
-
-add_namespace = hongkong
+﻿add_namespace = hongkong
 add_namespace = hongkong_news
 
 ##The Chinese have Refused to Reverse the Annexation!
 country_event = {
 	id = hongkong.1
 	title = hongkong.1.t
-
 	desc = hongkong.1.d
-
 	picture = GFX_treaty_rejected
-
 	is_triggered_only = yes
 
 	option = {
@@ -48,7 +41,7 @@ country_event = {
 		}
 		add_political_power = 10
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 100
 				OR = {
@@ -95,10 +88,10 @@ country_event = {
 		}
 		add_political_power = -10
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 100
-					has_government = communism
+				has_government = communism
 			}
 			modifier = {
 				factor = 100
@@ -148,7 +141,7 @@ country_event = {
 	option = {
 		name = hongkong.2.c #This is none of our business.
 		ai_chance = {
-			factor = 10
+			base = 10
 		}
 		log = "[GetDateText]: [This.GetName]: hongkong.2.c executed"
 	}
@@ -181,7 +174,7 @@ country_event = {
 		}
 		add_political_power = 10
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 100
 				OR = {
@@ -228,7 +221,7 @@ country_event = {
 		}
 		add_political_power = -10
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 100
 					has_government = communism
@@ -281,7 +274,7 @@ country_event = {
 	option = {
 		name = hongkong.3.c #This is none of our business.
 		ai_chance = {
-			factor = 10
+			base = 10
 		}
 		log = "[GetDateText]: [This.GetName]: hongkong.3.c executed"
 	}
@@ -314,7 +307,7 @@ country_event = {
 			modifier = HKG_annexation
 		}
 		ai_chance = {
-			factor = 10
+			base = 10
 		}
 		log = "[GetDateText]: [This.GetName]: hongkong.4.a executed"
 	}
@@ -333,7 +326,7 @@ country_event = {
 			modifier = HKG_annexation
 		}
 		ai_chance = {
-			factor = 40
+			base = 40
 		}
 		log = "[GetDateText]: [This.GetName]: hongkong.4.b executed"
 	}
@@ -351,7 +344,7 @@ country_event = {
 			modifier = HKG_annexation
 		}
 		ai_chance = {
-			factor = 10
+			base = 10
 			modifier = {
 				factor = 4
 				CHI = { has_completed_focus = CHI_End_US_Hegemony }
@@ -375,9 +368,24 @@ country_event = {
 
 	option = {
 		name = hongkong.5.a #This is not the hill we want to die on.
-		set_autonomy = {
-			target = HKG
-			autonomy_state = autonomy_autonomous_state
+		if = {
+			limit = {
+				has_global_flag = GAME_RULE_allow_colored_puppets
+			}
+			set_autonomy = {
+				target = HKG
+				autonomy_state = autonomy_autonomous_state_colored
+				end_wars = yes
+				end_civil_wars = yes
+			}
+		}
+		else = {
+			set_autonomy = {
+				target = HKG
+				autonomy_state = autonomy_autonomous_state
+				end_wars = yes
+				end_civil_wars = yes
+			}
 		}
 		hidden_effect = {
 			HKG = {
@@ -441,9 +449,24 @@ country_event = {
 
 	option = {
 		name = hongkong.6.a #We should avoid confrontation.
-		set_autonomy = {
-			target = HKG
-			autonomy_state = autonomy_autonomous_state
+		if = {
+			limit = {
+				has_global_flag = GAME_RULE_allow_colored_puppets
+			}
+			set_autonomy = {
+				target = HKG
+				autonomy_state = autonomy_autonomous_state_colored
+				end_wars = yes
+				end_civil_wars = yes
+			}
+		}
+		else = {
+			set_autonomy = {
+				target = HKG
+				autonomy_state = autonomy_autonomous_state
+				end_wars = yes
+				end_civil_wars = yes
+			}
 		}
 		595 = { remove_core_of = CHI }
 		hidden_effect = {
@@ -529,7 +552,7 @@ news_event = {
 
 	desc = {
 		text = hongkong_news.1.d_reunification
-		trigger = { HKG = { has_country_flag = reunification } }
+		trigger = { HKG = { has_country_flag = CHI_reunification_with_sar } }
 	}
 
 	desc = {
@@ -540,7 +563,7 @@ news_event = {
 	picture = GFX_news_election_rally
 
 	is_triggered_only = yes
-	
+
 	major = yes
 
 	option = {
@@ -575,7 +598,7 @@ news_event = {
 	picture = GFX_news_election_rally
 
 	is_triggered_only = yes
-	
+
 	major = yes
 
 	option = {
@@ -610,7 +633,7 @@ news_event = {
 	picture = GFX_news_election_rally
 
 	is_triggered_only = yes
-	
+
 	major = yes
 
 	option = {

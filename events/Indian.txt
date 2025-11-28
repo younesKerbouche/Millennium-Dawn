@@ -77,34 +77,25 @@ news_event = {
 
 	is_triggered_only = yes
 	major = yes
+	trigger = {
+		NOT = {
+			has_war_with = SOV
+			has_war_with = JAP
+			has_war_with = LAO
+		}
+	}
+
 
 	option = {
 		name = RAJ_eastas.1.o1
 		log = "[GetDateText]: [This.GetName]: RAJ_eastas.1.o1 executed"
-		add_opinion_modifier = {
-			target = SOV
-			modifier = diplomatic_support
-		}
-		reverse_add_opinion_modifier = {
-			target = SOV
-			modifier = diplomatic_support
-		}
-		add_opinion_modifier = {
-			target = JAP
-			modifier = diplomatic_support
-		}
-		reverse_add_opinion_modifier = {
-			target = JAP
-			modifier = diplomatic_support
-		}
-		add_opinion_modifier = {
-			target = LAO
-			modifier = diplomatic_support
-		}
-		reverse_add_opinion_modifier = {
-			target = LAO
-			modifier = diplomatic_support
-		}
+
+		add_opinion_modifier = { target = SOV modifier = east_asia_summit }
+		reverse_add_opinion_modifier = { target = SOV modifier = east_asia_summit }
+		add_opinion_modifier = { target = JAP modifier = east_asia_summit }
+		reverse_add_opinion_modifier = { target = JAP modifier = east_asia_summit }
+		add_opinion_modifier = { target = LAO modifier = east_asia_summit }
+		reverse_add_opinion_modifier = { target = LAO modifier = east_asia_summit }
 	}
 }
 
@@ -197,6 +188,9 @@ country_event = {
 		name = indian_event.6.a
 		log = "[GetDateText]: [This.GetName]: indian_event.6.a executed"
 		ai_chance = { base = 1 }
+		RAJ = {
+			country_event = indian_event.667
+		}
 		PAK = {
 			remove_ideas = Major_Non_NATO_Ally
 		}
@@ -213,6 +207,9 @@ country_event = {
 		name = indian_event.6.b
 		log = "[GetDateText]: [This.GetName]: indian_event.4.b executed"
 		ai_chance = { factor = 0 }
+		RAJ = {
+			country_event = indian_event.668
+		}
 		add_opinion_modifier = {
 			target = RAJ
 			modifier = drama
@@ -226,6 +223,64 @@ country_event = {
 		set_temp_variable = { tag_index = RAJ }
 		set_temp_variable = { influence_target = ROOT }
 		change_influence_percentage = yes
+	}
+}
+country_event = {
+	id = indian_event.667
+	title = indian_event.667.t
+	desc = indian_event.667.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_NATO_picture
+	option = {
+		name = indian_event.667.a
+		log = "[GetDateText]: [This.GetName]: indian_event.667.a executed"
+		ai_chance = { base = 1 }
+		effect_tooltip = {
+			PAK = {
+				remove_ideas = Major_Non_NATO_Ally
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = PAK
+					modifier = drama
+				}
+				reverse_add_opinion_modifier = {
+					target = PAK
+					modifier = drama
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = indian_event.668
+	title = indian_event.668.t
+	desc = indian_event.668.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	picture = GFX_NATO_picture
+	option = {
+		name = indian_event.668.a
+		log = "[GetDateText]: [This.GetName]: indian_event.668.a executed"
+		ai_chance = { base = 1 }
+		effect_tooltip = {
+			USA = {
+				add_opinion_modifier = {
+					target = RAJ
+					modifier = drama
+				}
+				reverse_add_opinion_modifier = {
+					target = RAJ
+					modifier = drama
+				}
+				add_war_support = 0.5
+				set_temp_variable = { percent_change = -3 }
+				set_temp_variable = { tag_index = RAJ }
+				set_temp_variable = { influence_target = ROOT }
+				change_influence_percentage = yes
+			}
+		}
 	}
 }
 
@@ -253,51 +308,35 @@ country_event = {
 	option = {
 		name = indian_event.8.a
 		log = "[GetDateText]: [This.GetName]: indian_event.8.a executed"
-		ai_chance = { base = 1 }
 		remove_ideas = RAJ_gujarat_trouble_idea
-		add_popularity = {
-			ideology = nationalist
-			popularity = 0.05
-		}
-		add_popularity = {
-			ideology = neutrality
-			popularity = 0.05
-		}
-		custom_effect_tooltip = RAJ_muslim_down_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = -2
-		}
-		custom_effect_tooltip = RAJ_hindu_up_3
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = 3
+		add_popularity = { ideology = nationalist popularity = 0.05 }
+		add_popularity = { ideology = neutrality popularity = 0.05 }
+		recalculate_party = yes
+
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_muslim_opinion = yes
+		set_temp_variable = { temp_change = 3 }
+		RAJ_change_hindu_opinion = yes
+
+		ai_chance = {
+			base = 1
 		}
 	}
 	option = {
 		name = indian_event.8.b
 		log = "[GetDateText]: [This.GetName]: indian_event.8.b executed"
-		ai_chance = { base = 1 }
 		remove_ideas = RAJ_gujarat_trouble_idea
-		add_timed_idea = {
-			idea = ARM_rear_front_idea
-			days = 90
-		}
 		add_stability = -0.025
-		custom_effect_tooltip = RAJ_muslim_up_3
-		custom_effect_tooltip = RAJ_hindu_down_2
-		custom_effect_tooltip = RAJ_christians_down_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = -2
-		}
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = -1
-		}
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = 3
+
+		set_temp_variable = { temp_change = 3 }
+		RAJ_change_muslim_opinion = yes
+		set_temp_variable = { temp_change = -2 }
+		RAJ_change_hindu_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_christian_opinion = yes
+
+		ai_chance = {
+			base = 1
 		}
 	}
 }
@@ -386,7 +425,7 @@ country_event = {
 	title = indian_event.11.t
 	desc = indian_event.11.d
 	is_triggered_only = yes
-	picture = GFX_dresdner_bank
+	picture = GFX_euro
 	option = {
 		name = indian_event.11.a
 		log = "[GetDateText]: [This.GetName]: indian_event.11.a executed"
@@ -434,7 +473,7 @@ country_event = {
 	fire_only_once = yes
 	picture = GFX_pol_election_event
 	option = {
-		name = indian_event.11.a
+		name = indian_event.12.a
 		log = "[GetDateText]: [This.GetName]: indian_event.12.a executed"
 		ai_chance = { base = 1 }
 		add_ideas = RAJ_BRICS
@@ -571,6 +610,7 @@ country_event = {
 	}
 }
 
+# India Asks for Investments!
 country_event = {
 	id = indian_event.18
 	title = indian_event.18.t
@@ -580,21 +620,64 @@ country_event = {
 	option = {
 		name = indian_event.18.a
 		log = "[GetDateText]: [This.GetName]: indian_event.18.a executed"
-		ai_chance = { base = 1 }
 		set_temp_variable = { int_investment_change = 7.5 }
 		modify_international_investment_effect = yes
+		set_temp_variable = { treasury_change = -7.5 }
+		modify_treasury_effect = yes
+
+		set_temp_variable = { percent_change = 5 }
+		set_temp_variable = { tag_index = THIS }
+		set_temp_variable = { influence_target = RAJ }
+		change_influence_percentage = yes
+
 		RAJ = {
-			one_random_industrial_complex = yes
-			country_event = {
-				id = indian_event.20
-				days = 1
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+					OR = {
+						is_in_home_area = yes
+						NOT = {
+							owner = {
+								any_owned_state = {
+									free_building_slots = {
+										building = industrial_complex
+										size > 0
+										include_locked = yes
+									}
+									is_in_home_area = yes
+								}
+							}
+						}
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			hidden_effect = {
+				country_event = {
+					id = indian_event.20
+					days = 1
+				}
 			}
 		}
+
+		ai_chance = {
+			base = 1
+		}
 	}
+
 	option = {
 		name = indian_event.18.b
 		log = "[GetDateText]: [This.GetName]: indian_event.18.b executed"
-		ai_chance = { base = 1 }
 		hidden_effect = {
 			RAJ = {
 				country_event = {
@@ -602,6 +685,10 @@ country_event = {
 					days = 1
 				}
 			}
+		}
+
+		ai_chance = {
+			base = 1
 		}
 	}
 }
@@ -723,7 +810,7 @@ country_event = {
 		add_political_power = -100
 	}
 	option = {
-		name = indian_event.25.a
+		name = indian_event.25.b
 		log = "[GetDateText]: [This.GetName]: indian_event.25.b executed"
 		swap_ideas = {
 			remove_idea = RAJ_re_fake_militar3
@@ -749,7 +836,6 @@ country_event = {
 
 country_event = {
 	id = indian_event.27
-	immediate = { log = "[GetDateText]: [Root.GetName]: event indian_event.27" }
 	title = indian_event.27.t
 	desc = indian_event.27.d
 	picture = GFX_generic_factory
@@ -893,7 +979,7 @@ country_event = {
 			RAJ = { add_to_faction = VIE }
 		}
 		else = {
-			create_faction = VIE_RAJPACT
+			create_faction_from_template = faction_template_rajpact
 			VIE = { add_to_faction = RAJ }
 		}
 		ai_chance = {
@@ -996,16 +1082,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.1.a
 		log = "[GetDateText]: [This.GetName]: indian_event.1.a executed"
-		custom_effect_tooltip = RAJ_hindu_up_2
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = 2
-		}
-		custom_effect_tooltip = RAJ_muslim_down_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = -1
-		}
+		set_temp_variable = { temp_change = 2 }
+		RAJ_change_hindu_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_muslim_opinion = yes
+
 		ai_chance = {
 			factor = 20
 		}
@@ -1014,16 +1095,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.1.b
 		log = "[GetDateText]: [This.GetName]: indian_event.1.a executed"
-		custom_effect_tooltip = RAJ_hindu_down_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = -1
-		}
-		custom_effect_tooltip = RAJ_muslim_up_2
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = 2
-		}
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_hindu_opinion = yes
+		set_temp_variable = { temp_change = 2 }
+		RAJ_change_muslim_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
@@ -1035,22 +1111,17 @@ country_event = {
 		set_temp_variable = { treasury_change = -15 }
 		modify_treasury_effect = yes
 		add_political_power = -150
-		custom_effect_tooltip = RAJ_muslim_up_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = 1
-		}
-		custom_effect_tooltip = RAJ_hindu_up_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = 1
-		}
+
+		set_temp_variable = { temp_change = 1 }
+		RAJ_change_muslim_opinion = yes
+		RAJ_change_hindu_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
 	}
 }
-#
+
 country_event = {
 	id = RAJ_religion.2 #Muslims and Christians engage in conflict!
 	title = RAJ_religion.2.t
@@ -1062,16 +1133,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.2.a
 		log = "[GetDateText]: [This.GetName]: indian_event.2.a executed"
-		custom_effect_tooltip = RAJ_christians_up_2
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = 2
-		}
-		custom_effect_tooltip = RAJ_muslim_down_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = -1
-		}
+		set_temp_variable = { temp_change = 2 }
+		RAJ_change_christian_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_muslim_opinion = yes
+
 		ai_chance = {
 			factor = 20
 		}
@@ -1080,16 +1146,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.2.b
 		log = "[GetDateText]: [This.GetName]: indian_event.2.b executed"
-		custom_effect_tooltip = RAJ_christians_down_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = -1
-		}
-		custom_effect_tooltip = RAJ_muslim_up_2
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = 2
-		}
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_christian_opinion = yes
+		set_temp_variable = { temp_change = 2 }
+		RAJ_change_muslim_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
@@ -1101,16 +1162,10 @@ country_event = {
 		set_temp_variable = { treasury_change = -15 }
 		modify_treasury_effect = yes
 		add_political_power = -150
-		custom_effect_tooltip = RAJ_christians_up_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = 1
-		}
-		custom_effect_tooltip = RAJ_muslim_up_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = 1
-		}
+		set_temp_variable = { temp_change = 1 }
+		RAJ_change_christian_opinion = yes
+		RAJ_change_muslim_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
@@ -1128,16 +1183,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.3.a
 		log = "[GetDateText]: [This.GetName]: indian_event.3.a executed"
-		custom_effect_tooltip = RAJ_christians_up_2
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = 2
-		}
-		custom_effect_tooltip = RAJ_hindu_down_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = -1
-		}
+		set_temp_variable = { temp_change = 2 }
+		RAJ_change_christian_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_hindu_opinion = yes
+
 		ai_chance = {
 			factor = 20
 		}
@@ -1146,16 +1196,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.3.b
 		log = "[GetDateText]: [This.GetName]: indian_event.3.b executed"
-		custom_effect_tooltip = RAJ_christians_down_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = -1
-		}
-		custom_effect_tooltip = RAJ_hindu_up_2
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = 2
-		}
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_christian_opinion = yes
+		set_temp_variable = { temp_change = 2 }
+		RAJ_change_hindu_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
@@ -1167,16 +1212,11 @@ country_event = {
 		set_temp_variable = { treasury_change = -15 }
 		modify_treasury_effect = yes
 		add_political_power = -150
-		custom_effect_tooltip = RAJ_christians_up_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = 1
-		}
-		custom_effect_tooltip = RAJ_hindu_up_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = 1
-		}
+
+		set_temp_variable = { temp_change = 1 }
+		RAJ_change_christian_opinion = yes
+		RAJ_change_hindu_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
@@ -1194,21 +1234,12 @@ country_event = {
 	option = {
 		name = RAJ_religion.4.a
 		log = "[GetDateText]: [This.GetName]: indian_event.4.a executed"
-		custom_effect_tooltip = RAJ_christians_up_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = 1
-		}
-		custom_effect_tooltip = RAJ_hindu_down_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = -1
-		}
-		custom_effect_tooltip = RAJ_muslim_down_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = -1
-		}
+		set_temp_variable = { temp_change = 1 }
+		RAJ_change_christian_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_hindu_opinion = yes
+		RAJ_change_muslim_opinion = yes
+
 		ai_chance = {
 			factor = 20
 		}
@@ -1217,21 +1248,11 @@ country_event = {
 	option = {
 		name = RAJ_religion.4.b
 		log = "[GetDateText]: [This.GetName]: indian_event.4.b executed"
-		custom_effect_tooltip = RAJ_hindu_up_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = 1
-		}
-		custom_effect_tooltip = RAJ_christians_down_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = -1
-		}
-		custom_effect_tooltip = RAJ_muslim_down_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = -1
-		}
+		set_temp_variable = { temp_change = 1 }
+		RAJ_change_hindu_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_muslim_opinion = yes
+		RAJ_change_christian_opinion = yes
 		ai_chance = {
 			factor = 10
 		}
@@ -1240,21 +1261,12 @@ country_event = {
 	option = {
 		name = RAJ_religion.4.c
 		log = "[GetDateText]: [This.GetName]: indian_event.4.c executed"
-		custom_effect_tooltip = RAJ_muslim_up_1
-		add_to_variable = {
-			var = RAJ_muslim_opinion
-			value = 1
-		}
-		custom_effect_tooltip = RAJ_christians_down_1
-		add_to_variable = {
-			var = RAJ_christians_opinion
-			value = -1
-		}
-		custom_effect_tooltip = RAJ_hindu_down_1
-		add_to_variable = {
-			var = RAJ_hindus_opinion
-			value = -1
-		}
+		set_temp_variable = { temp_change = 1 }
+		RAJ_change_muslim_opinion = yes
+		set_temp_variable = { temp_change = -1 }
+		RAJ_change_christian_opinion = yes
+		RAJ_change_hindu_opinion = yes
+
 		ai_chance = {
 			factor = 10
 		}
@@ -1469,7 +1481,7 @@ country_event = {
 			days = 10
 		}
 		ai_chance = {
-			factor = 80
+			base = 80
 		}
 	}
 }
@@ -1500,7 +1512,7 @@ country_event = {
 			days = 5
 		}
 		ai_chance = {
-			factor = 80
+			base = 80
 		}
 	}
 }
@@ -1531,7 +1543,7 @@ country_event = {
 			days = -30
 		}
 		ai_chance = {
-			factor = 80
+			base = 80
 		}
 	}
 }
@@ -1638,7 +1650,7 @@ country_event = {
 			days = 5
 		}
 		ai_chance = {
-			factor = 80
+			base = 80
 		}
 	}
 }
@@ -1653,10 +1665,12 @@ country_event = {
 		name = RAJ_mao_reb.5.a
 		log = "[GetDateText]: [This.GetName]: RAJ_mao_reb.5.a executed"
 		hidden_effect = {
+			set_country_flag = mao_civvar_staret
 			start_civil_war = {
 				ideology = neutrality
 				size = 0.3
 				set_cosmetic_tag = RAJ_REB_S_communism
+				set_country_flag = mao_civvar_staret
 				clear_array = ruling_party
 				clear_array = gov_coalition_array
 				add_to_array = { ruling_party = 19 }
@@ -1680,7 +1694,7 @@ country_event = {
 			}
 		}
 		ai_chance = {
-			factor = 80
+			base = 80
 		}
 	}
 }
@@ -2027,7 +2041,7 @@ country_event = {
 			value = 100
 		}
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				factor = 100
 				has_opinion = { target = RAJ value > 50 }
@@ -2039,7 +2053,7 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: indian_event.55.b executed"
 		remove_ideas = RAJ_BRICS
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				factor = 100
 				has_opinion = { target = RAJ value < 50 }
@@ -2058,7 +2072,7 @@ country_event = {
 	option = {
 		name = indian_event.56.a
 		log = "[GetDateText]: [This.GetName]: indian_event.56.a executed"
-		ai_chance = { factor = 2 }
+		ai_chance = { base = 2 }
 		RAJ = {
 			NATO_join_via_event = yes
 		}
@@ -2100,7 +2114,7 @@ country_event = {
 			value = 100
 		}
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				factor = 0
 				has_opinion = { target = RAJ value > 50 }
@@ -2129,7 +2143,7 @@ country_event = {
 		name = indian_event.58.a
 		log = "[GetDateText]: [This.GetName]: indian_event.58.a executed"
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				factor = 0
 				has_opinion = { target = RAJ value > 50 }
@@ -2148,7 +2162,7 @@ country_event = {
 		name = indian_event.59.a
 		log = "[GetDateText]: [This.GetName]: indian_event.59.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -2163,7 +2177,7 @@ country_event = {
 		name = indian_event.60.a
 		log = "[GetDateText]: [This.GetName]: indian_event.60.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }

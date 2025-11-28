@@ -5,12 +5,11 @@
 	x = 32
 	y = 9
 	offset = {
-		x = -25
-		y = -2
+		x = 0
+		y = 5
 		trigger = {
 			OR = {
 				tag = JOR
-				tag = IRQ
 				tag = YEM
 				tag = MOR
 			}
@@ -22,6 +21,16 @@
 		trigger = {
 			OR = {
 				tag = EGY
+			}
+		}
+	}
+
+	offset = {
+		x = -18
+		y = 2
+		trigger = {
+			OR = {
+				tag = IRQ
 			}
 		}
 	}
@@ -698,7 +707,7 @@ shared_focus = {
 
 shared_focus = {
 	id = GCC_joint_defense_agreement
-	icon = Generic_Soldier_Aiming
+	icon = soldier
 
 	x = 0
 	y = 2
@@ -783,10 +792,7 @@ shared_focus = {
 		}
 		set_temp_variable = { temp_modify_gcc_unity = 5 }
 		modify_gcc_unity = yes
-		if = {
-			limit = { has_start_date < 2016.01.01 }
-			every_country = { news_event = { id = gcc.15 } }
-		}
+		news_event = { id = gcc.15 }
 		log = "[GetDateText]: [This.GetName]: focus GCC_joint_defense_agreement executed"
 	}
 
@@ -977,7 +983,7 @@ shared_focus = {
 
 shared_focus = {
 	id = GCC_a_robust_alliance
-	icon = focus_NORDIC_com_form_alliance
+	icon = alliance
 
 	x = 1
 	y = 4
@@ -1014,7 +1020,7 @@ shared_focus = {
 
 	completion_reward = {
 		set_global_flag = GCC_a_robust_alliance_completed
-		create_faction = PENINSULA_SHIELD
+		create_faction_from_template = faction_template_gcc
 		hidden_effect = {
 			every_other_country = {
 				limit = { has_idea = idea_gcc_member_state }

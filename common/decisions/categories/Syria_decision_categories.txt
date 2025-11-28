@@ -49,8 +49,7 @@ Syria_hafez_succession = {
 	}
 
 	visible = {
-		NOT = { has_country_flag = Syria_successor_chosen }
-		NOT = { has_start_date > 2016.1.1 }
+		NOT = { has_country_flag = Syria_Hafez_dead }
 	}
 
 }
@@ -70,6 +69,46 @@ Syria_greater_syria_decisions = {
 	visible = {
 		has_completed_focus = SYR_greater_syria
 		has_government = nationalist
+	}
+}
+
+Syria_damascus_spring_organization = {
+
+	priority = 100
+
+	allowed = {
+		original_tag = SYR
+	}
+
+	visible = {
+		NOT = { has_country_flag = Syria_Hafez_dead }
+	}
+}
+
+Syria_economic_investments = {
+	icon = GFX_generic_construction_decision_category
+
+	priority = 100
+
+	allowed = {
+		original_tag = SYR
+	}
+
+	visible = {
+		has_completed_focus = SYR_economic_revitalization
+	}
+}
+
+Syria_agricultural_subsidies_decisions = {
+
+	priority = 100
+
+	allowed = {
+		original_tag = SYR
+	}
+
+	visible = {
+		always = yes
 	}
 }
 
@@ -108,5 +147,23 @@ Syria_united_arab_republic_decisions = {
 			}
 			is_subject = no
 		}
+	}
+}
+Syria_digital_investments_decisions = {
+
+	priority = 100
+
+
+	visible = {
+		has_completed_focus = SYR_digitalisation_campaign
+	}
+}
+Syria_centralization_balance_of_power_category = {
+
+	priority = 100
+
+
+	visible = {
+		has_completed_focus = SYR_address_ethnic_divides
 	}
 }

@@ -4,7 +4,7 @@
 
 	set_country_flag = is_civil_war_faction
 	set_variable = { civil_war_original_tag = SOM.id }
-	set_variable = { gdp_per_capita = 4.116 }
+	set_variable = { gdp_per_capita = 0.8 }
 
 	add_ideas = {
 		paralyzing_corruption
@@ -17,38 +17,21 @@
 		sunni
 	}
 
-	if = {
-		limit = {
-			has_start_date < 2000.1.2
-		}
-		declare_war_on = {
-			target = SOM
-			type = civil_war
-		}
+	declare_war_on = {
+		target = SOM
+		type = civil_war
 	}
-
-	if = {
-		limit = {
-			has_start_date < 2000.1.2
-		}
-		declare_war_on = {
-			target = SWS
-			type = civil_war
-		}
+	declare_war_on = {
+		target = SWS
+		type = civil_war
 	}
-
-	if = {
-		limit = {
-			has_start_date < 2000.1.2
-		}
-		declare_war_on = {
-			target = JUB
-			type = civil_war
-		}
+	declare_war_on = {
+		target = JUB
+		type = civil_war
 	}
 
 	set_technology = {
-		legacy_doctrines = 1
+
 		infantry_mass_assault = 1
 		basic_computing = 1
 		integrated_circuit = 1
@@ -60,7 +43,7 @@
 	}
 
 	# Economy Variables
-	set_variable = { var = treasury value = 4 }
+	set_variable = { var = treasury value = 10 }
 	set_variable = { var = corporate_tax_rate value = 20 }
 	set_variable = { var = population_tax_rate value = 20 }
 
@@ -145,5 +128,9 @@
 	recruit_character = SNA_air_chief
 
 	set_variable = { literacy_rate = 0.378 }
+	every_controlled_state = {
+		set_variable = { productivity_state_var = 491 }
+	}
+	set_variable = { overall_productivity = 491 }
 
 }

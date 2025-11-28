@@ -143,7 +143,7 @@ focus_tree = {
 	}
 	focus = {
 		id = HPR_harkov_defence
-		icon = military_fort
+		icon = army_defence1
 		x = -3
 		y = 2
 		available = {
@@ -266,17 +266,17 @@ focus_tree = {
 			if = {
 				limit = { has_dlc = "No Step Back" }
 				add_equipment_to_stockpile = {
-					type = mbt_hull_1
+					type = medium_tank_chassis_1
 					amount = 20
 					producer = SOV
 				}
 				add_equipment_to_stockpile = {
-					type = ifv_hull_1
+					type = medium_tank_flame_chassis_1
 					amount = 50
 					producer = SOV
 				}
 				add_equipment_to_stockpile = {
-					type = apc_hull_1
+					type = medium_tank_amphibious_chassis_1
 					amount = 40
 					producer = SOV
 				}
@@ -324,7 +324,7 @@ focus_tree = {
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_government"
-			remove_ideas = HPR_no_goverment_idea
+			remove_ideas = HPR_no_government_idea
 		}
 	}
 	focus = {
@@ -913,6 +913,7 @@ focus_tree = {
 				emerging_autocracy_are_in_power = yes
 				emerging_reactionaries_are_in_power = yes
 			}
+			has_war = no
 		}
 		relative_position_id = HPR_Start_rebellion
 		prerequisite = { focus = HPR_kondicioner }
@@ -923,6 +924,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_referendum"
 			SOV = { country_event = hpr.1 }
+			set_country_flag = SOV_subject_agree
+			set_country_flag = SOV_subject_republic
 		}
 	}
 	focus = {
@@ -966,6 +969,9 @@ focus_tree = {
 		relative_position_id = HPR_economic
 		prerequisite = { focus = HPR_economic }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
+		bypass = {
+			UKR = { has_completed_focus = UKR_bronetank }
+		}
 		cost = 5
 		ai_will_do = { factor = 155 }
 		completion_reward = {
@@ -995,6 +1001,9 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
 		ai_will_do = { factor = 155 }
+		bypass = {
+			UKR = { has_completed_focus = UKR_avia_zavod }
+		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_avia_zavod"
 			add_ideas = HPR_avia_zavod
@@ -1022,6 +1031,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_bronetank }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
+		bypass = {
+			UKR = { has_completed_focus = UKR_priborostroy }
+		}
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_priborostroy"
@@ -1049,6 +1061,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_avia_zavod }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
+		bypass = {
+			UKR = { has_completed_focus = UKR_tractor }
+		}
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_tractor"
@@ -1078,6 +1093,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_agregat }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
+		bypass = {
+			UKR = { has_completed_focus = UKR_morozova }
+		}
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_morozova"
@@ -1105,6 +1123,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_morozova }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
+		bypass = {
+			UKR = { has_completed_focus = UKR_specmachine }
+		}
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_specmachine"
@@ -1132,6 +1153,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_morozova }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
+		bypass = {
+			UKR = { has_completed_focus = UKR_reborn_ser_and_molot }
+		}
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_reborn_ser_and_molot"
@@ -1157,6 +1181,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_avia_zavod }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		cost = 5
+		bypass = {
+			UKR = { has_completed_focus = UKR_agregat }
+		}
 		ai_will_do = { factor = 155 }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HPR_agregat"
@@ -1184,6 +1211,9 @@ focus_tree = {
 		prerequisite = { focus = HPR_specmachine }
 		prerequisite = { focus = HPR_reborn_ser_and_molot }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
+		bypass = {
+			UKR = { has_completed_focus = UKR_malichev }
+		}
 		cost = 5
 		ai_will_do = { factor = 155 }
 		completion_reward = {
@@ -1230,5 +1260,4 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 	}
-	shared_focus = SUB_russia_politic
 }

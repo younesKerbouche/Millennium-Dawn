@@ -1,152 +1,162 @@
 RAJ_religious_groups = {
 	RAJ_appease_hindus = {
-		visible = {
-			original_tag = RAJ
-		}
 		cost = 50
+
 		days_remove = 45
-		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_appease_hindus"
-			custom_effect_tooltip = RAJ_hindu_up_1
-			add_to_variable = {
-				var = RAJ_hindus_opinion
-				value = 1
+			set_temp_variable = { temp_change = 1 }
+			RAJ_change_hindu_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = { RAJ_hindus_opinion < 50 }
 			}
 		}
 	}
-	#
+
 	RAJ_appease_sikhs = {
-		visible = {
-			original_tag = RAJ
-		}
 		cost = 50
+
 		days_remove = 45
-		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_appease_sikhs"
-			custom_effect_tooltip = RAJ_sikh_up_1
-			add_to_variable = {
-				var = RAJ_sikh_opinion
-				value = 1
+			set_temp_variable = { temp_change = 1 }
+			RAJ_change_sikh_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = { RAJ_sikh_opinion < 50 }
 			}
 		}
 	}
-	#
+
 	RAJ_appease_buddhists = {
-		visible = {
-			original_tag = RAJ
-		}
 		cost = 50
 		days_remove = 45
-		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_appease_buddhists"
-			custom_effect_tooltip = RAJ_buddhist_up_1
-			add_to_variable = {
-				var = RAJ_buddhist_opinion
-				value = 1
+			set_temp_variable = { temp_change = 1 }
+			RAJ_change_buddhist_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = { RAJ_buddhist_opinion < 50 }
 			}
 		}
 	}
-	#
+
 	RAJ_appease_christians = {
-		visible = {
-			original_tag = RAJ
-		}
 		cost = 50
+
 		days_remove = 45
-		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_appease_christians"
-			custom_effect_tooltip = RAJ_christians_up_1
-			add_to_variable = {
-				var = RAJ_christians_opinion
-				value = 1
+			set_temp_variable = { temp_change = 1 }
+			RAJ_change_christian_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = { RAJ_christians_opinion < 50 }
 			}
 		}
 	}
+
 	RAJ_appease_muslims = {
-		visible = {
-			original_tag = RAJ
-		}
 		cost = 50
+
 		days_remove = 45
-		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_appease_muslims"
-			custom_effect_tooltip = RAJ_muslim_up_1
-			add_to_variable = {
-				var = RAJ_muslim_opinion
-				value = 1
+			set_temp_variable = { temp_change = 1 }
+			RAJ_change_muslim_opinion = yes
+		}
+
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				check_variable = { RAJ_muslim_opinion < 50 }
 			}
 		}
 	}
 }
+
 RAJ_Export_category = {
 	RAJ_ita_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_italy_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_ita_export"
+			add_political_power = -65
 			ITA = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
 		}
 	}
+
 	RAJ_shri_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_srilanka_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_sri_export"
+			add_political_power = -65
 			SRI = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
 		}
 	}
+
 	RAJ_isr_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_israeli_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_isr_export"
+			add_political_power = -65
 			ISR = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -154,20 +164,19 @@ RAJ_Export_category = {
 	}
 	RAJ_sau_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_saudi_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_sau_export"
+			add_political_power = -65
 			SAU = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -175,20 +184,19 @@ RAJ_Export_category = {
 	}
 	RAJ_arm_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_nardi_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_arm_export"
+			add_political_power = -65
 			ARM = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -196,41 +204,39 @@ RAJ_Export_category = {
 	}
 	RAJ_eth_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_ethiopia_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_eth_export"
+			add_political_power = -65
 			ETH = {
-				country_event = { id = raj_exports.1 days = 1 }
+					country_event = { id = raj_exports.1 days = 1 }
 			}
 		}
 	}
 	RAJ_nep_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_nepal_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_nep_export"
+			add_political_power = -65
 			NEP = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -238,20 +244,19 @@ RAJ_Export_category = {
 	}
 	RAJ_fra_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_baguette_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_fra_export"
+			add_political_power = -65
 			FRA = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -259,20 +264,19 @@ RAJ_Export_category = {
 	}
 	RAJ_sov_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_russia_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_sov_export"
+			add_political_power = -65
 			SOV = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -280,20 +284,19 @@ RAJ_Export_category = {
 	}
 	RAJ_mld_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_mld_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_mld_export"
+			add_political_power = -65
 			MLD = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -301,20 +304,19 @@ RAJ_Export_category = {
 	}
 	RAJ_mrt_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_mrt_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_mrt_export"
+			add_political_power = -65
 			MRT = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -322,20 +324,19 @@ RAJ_Export_category = {
 	}
 	RAJ_egy_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_egy_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_egy_export"
+			add_political_power = -65
 			EGY = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -343,20 +344,19 @@ RAJ_Export_category = {
 	}
 	RAJ_uae_export = {
 		icon = GFX_decision_desicion_cat_weapon
-		allowed = { original_tag = RAJ }
-		cost = 65
+
 		days_remove = 300
 
+		visible = {
+			has_completed_focus = RAJ_indian_arms_exports
+		}
 		available = {
 			has_country_flag = RAJ_uae_export_weapon_flag
 		}
 
-		visible = {
-			tag = RAJ
-			has_completed_focus = RAJ_indian_arms_exports
-		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_uae_export"
+			add_political_power = -65
 			UAE = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
@@ -365,7 +365,6 @@ RAJ_Export_category = {
 	RAJ_bhu_export = {
 		icon = GFX_decision_desicion_cat_weapon
 		allowed = { original_tag = RAJ }
-		cost = 65
 		days_remove = 300
 
 		available = {
@@ -378,13 +377,15 @@ RAJ_Export_category = {
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_bhu_export"
+			add_political_power = -65
 			BHU = {
 				country_event = { id = raj_exports.1 days = 1 }
 			}
 		}
 	}
 }
-#
+
+# TODO: Refactor the BRICS decisions so they're more robust
 RAJ_brics_alliance_decisions = {
 	RAJ_invite_egypt = {
 		visible = {
@@ -393,12 +394,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_egypt"
+			add_political_power = -50
 			EGY = {
 				country_event = {
 					id = indian_event.55
@@ -414,12 +415,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_ethiopia"
+			add_political_power = -50
 			ETH = {
 				country_event = {
 					id = indian_event.55
@@ -435,12 +436,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_saudi"
+			add_political_power = -50
 			SAU = {
 				country_event = {
 					id = indian_event.55
@@ -456,12 +457,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_uae"
+			add_political_power = -50
 			UAE = {
 				country_event = {
 					id = indian_event.55
@@ -477,12 +478,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_argentina"
+			add_political_power = -50
 			ARG = {
 				country_event = {
 					id = indian_event.55
@@ -498,12 +499,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_belarus"
+			add_political_power = -50
 			BLR = {
 				country_event = {
 					id = indian_event.55
@@ -519,12 +520,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_indonesia"
+			add_political_power = -50
 			IND = {
 				country_event = {
 					id = indian_event.55
@@ -540,12 +541,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_australia"
+			add_political_power = -50
 			AST = {
 				country_event = {
 					id = indian_event.55
@@ -561,12 +562,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_kazakhstan"
+			add_political_power = -50
 			KAZ = {
 				country_event = {
 					id = indian_event.55
@@ -582,12 +583,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_uzbekistan"
+			add_political_power = -50
 			UZB = {
 				country_event = {
 					id = indian_event.55
@@ -603,12 +604,12 @@ RAJ_brics_alliance_decisions = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
 		days_remove = 45
 		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_tajikistan"
+			add_political_power = -50
 			TAJ = {
 				country_event = {
 					id = indian_event.55
@@ -618,18 +619,21 @@ RAJ_brics_alliance_decisions = {
 		}
 	}
 	RAJ_invite_turkmenistan = {
+		cost = 50
+
+		days_remove = 45
+
+		fire_only_once = no
+
 		visible = {
-			original_tag = RAJ
 			TRK = {
 				influence_higher_30 = yes
 			}
 		}
-		cost = 50
-		days_remove = 45
-		fire_only_once = no
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_invite_turkmenistan"
+			add_political_power = -50
 			TRK = {
 				country_event = {
 					id = indian_event.55
@@ -651,16 +655,13 @@ maoist_decision_category = {
 		activation = {
 			hidden_trigger = {
 				original_tag = RAJ
-				NOT = { has_country_flag = mao_civvar_staret }
-				RAJ = {
-					any_controlled_state = {
-						OR = {
-							has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel }
-							has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel1 }
-							has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel2 }
-							has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel3 }
-							has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel4 }
-						}
+				any_controlled_state = {
+					OR = {
+						has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel }
+						has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel1 }
+						has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel2 }
+						has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel3 }
+						has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel4 }
 					}
 				}
 			}
@@ -671,18 +672,11 @@ maoist_decision_category = {
 		cancel_trigger = {
 			custom_trigger_tooltip = {
 				tooltip = RAJ_focus_mao_how_to_cancel
-				NOT = {
-					RAJ = {
-						any_controlled_state = {
-							OR = {
-								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel }
-								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel1 }
-								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel2 }
-								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel3 }
-								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel4 }
-							}
-						}
-					}
+				OR = {
+					emerging_communist_state_are_not_in_power = yes
+					neutrality_neutral_communism_are_not_in_power = yes
+					emerging_anarchist_communism_are_not_in_power = yes
+					has_country_flag = mao_civvar_staret
 				}
 			}
 		}
@@ -741,6 +735,33 @@ maoist_decision_category = {
 					RAJ = { set_country_flag = mao_civvar_staret }
 				}
 			}
+			if = {
+				limit = {
+					NOT = {
+						any_controlled_state = {
+							OR = {
+								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel }
+								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel1 }
+								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel2 }
+								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel3 }
+								has_dynamic_modifier = { modifier = RAJ_hoxaists_rebel4 }
+							}
+						}
+					}
+				}
+				RAJ = {
+					remove_mission = RAJ_MAO_rebellion
+					set_country_flag = mao_civvar_staret
+					hidden_effect = {
+						every_controlled_state = {
+							remove_dynamic_modifier = { modifier = RAJ_hoxaists_rebel }
+							remove_dynamic_modifier = { modifier = RAJ_hoxaists_rebel1 }
+							remove_dynamic_modifier = { modifier = RAJ_hoxaists_rebel2 }
+							remove_dynamic_modifier = { modifier = RAJ_hoxaists_rebel3 }
+						}
+					}
+				}
+			}
 		}
 	}
 
@@ -779,7 +800,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -962,7 +983,7 @@ maoist_decision_category = {
 			}
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 15
@@ -1107,7 +1128,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -1271,7 +1292,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -1435,7 +1456,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -1599,7 +1620,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -1763,7 +1784,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -1927,7 +1948,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -2091,7 +2112,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -2255,7 +2276,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -2419,7 +2440,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -2583,7 +2604,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -2747,7 +2768,7 @@ maoist_decision_category = {
 			original_tag = RAJ
 		}
 
-		cost = 75
+		cost = 60
 		fixed_random_seed = no
 		available = {
 			NOT = {
@@ -2932,11 +2953,8 @@ RAJ_central_asian_salaf_revolution = {
 		fire_only_once = yes
 		days_remove = 70
 		visible = {
-				tag = RAJ
+			tag = RAJ
 			KAZ = {
-				NOT = {
-					has_government = fascism
-				}
 				NOT = {
 					has_government = fascism
 				}
@@ -2946,30 +2964,15 @@ RAJ_central_asian_salaf_revolution = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_revol_kaz"
 			KAZ = {
-				hidden_effect = {
-					clear_array = ruling_party
-					clear_array = gov_coalition_array
-					add_to_array = { ruling_party = 19 }
-					update_government_coalition_strength = yes
-					update_party_name = yes
-					set_coalition_drift = yes
-					meta_effect = {
-						text = {
-							set_country_flag = [META_SET_RULING_PARTY]
-						}
-						META_SET_RULING_PARTY = "[meta_set_ruling_leader]"
-					}
-					set_leader = yes
-				}
-				set_politics = {
-					ruling_party = fascism
-				}
-				add_popularity = {
-					ideology = fascism
-					popularity = 0.35
-				}
-				add_to_variable = { party_pop_array^19 = 0.5 }
-				recalculate_party = yes
+				set_temp_variable = { rul_party_temp = 11 }
+				set_temp_variable = { enable_elections = 1 }
+				change_ruling_party_effect = yes
+
+				set_temp_variable = { party_index = 11 }
+				set_temp_variable = { party_popularity_increase = 0.25 }
+				set_temp_variable = { temp_outlook_increase = 0.25 }
+				add_relative_party_popularity = yes
+
 				start_civil_war = {
 					ideology = democratic
 					size = 0.3
@@ -3030,11 +3033,8 @@ RAJ_central_asian_salaf_revolution = {
 		fire_only_once = yes
 		days_remove = 70
 		visible = {
-				tag = RAJ
+			tag = RAJ
 			UZB = {
-				NOT = {
-					has_government = fascism
-				}
 				NOT = {
 					has_government = fascism
 				}
@@ -3048,30 +3048,15 @@ RAJ_central_asian_salaf_revolution = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_revol_uzbekistan"
 			UZB = {
-				hidden_effect = {
-					clear_array = ruling_party
-					clear_array = gov_coalition_array
-					add_to_array = { ruling_party = 19 }
-					update_government_coalition_strength = yes
-					update_party_name = yes
-					set_coalition_drift = yes
-					meta_effect = {
-						text = {
-							set_country_flag = [META_SET_RULING_PARTY]
-						}
-						META_SET_RULING_PARTY = "[meta_set_ruling_leader]"
-					}
-					set_leader = yes
-				}
-				set_politics = {
-					ruling_party = fascism
-				}
-				add_popularity = {
-					ideology = fascism
-					popularity = 0.35
-				}
-				add_to_variable = { party_pop_array^19 = 0.5 }
-				recalculate_party = yes
+				set_temp_variable = { rul_party_temp = 11 }
+				set_temp_variable = { enable_elections = 1 }
+				change_ruling_party_effect = yes
+
+				set_temp_variable = { party_index = 11 }
+				set_temp_variable = { party_popularity_increase = 0.25 }
+				set_temp_variable = { temp_outlook_increase = 0.25 }
+				add_relative_party_popularity = yes
+
 				start_civil_war = {
 					ideology = democratic
 					size = 0.3
@@ -3132,11 +3117,8 @@ RAJ_central_asian_salaf_revolution = {
 		fire_only_once = yes
 		days_remove = 70
 		visible = {
-				tag = RAJ
+			tag = RAJ
 			TAJ = {
-				NOT = {
-					has_government = fascism
-				}
 				NOT = {
 					has_government = fascism
 				}
@@ -3150,30 +3132,15 @@ RAJ_central_asian_salaf_revolution = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_revol_taj"
 			TAJ = {
-				hidden_effect = {
-					clear_array = ruling_party
-					clear_array = gov_coalition_array
-					add_to_array = { ruling_party = 19 }
-					update_government_coalition_strength = yes
-					update_party_name = yes
-					set_coalition_drift = yes
-					meta_effect = {
-						text = {
-							set_country_flag = [META_SET_RULING_PARTY]
-						}
-						META_SET_RULING_PARTY = "[meta_set_ruling_leader]"
-					}
-					set_leader = yes
-				}
-				set_politics = {
-					ruling_party = fascism
-				}
-				add_popularity = {
-					ideology = fascism
-					popularity = 0.35
-				}
-				add_to_variable = { party_pop_array^19 = 0.5 }
-				recalculate_party = yes
+				set_temp_variable = { rul_party_temp = 11 }
+				set_temp_variable = { enable_elections = 1 }
+				change_ruling_party_effect = yes
+
+				set_temp_variable = { party_index = 11 }
+				set_temp_variable = { party_popularity_increase = 0.25 }
+				set_temp_variable = { temp_outlook_increase = 0.25 }
+				add_relative_party_popularity = yes
+
 				start_civil_war = {
 					ideology = democratic
 					size = 0.3
@@ -3234,11 +3201,8 @@ RAJ_central_asian_salaf_revolution = {
 		fire_only_once = yes
 		days_remove = 70
 		visible = {
-				tag = RAJ
+			tag = RAJ
 			KYR = {
-				NOT = {
-					has_government = fascism
-				}
 				NOT = {
 					has_government = fascism
 				}
@@ -3252,30 +3216,15 @@ RAJ_central_asian_salaf_revolution = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_revol_kyr"
 			KYR = {
-				hidden_effect = {
-					clear_array = ruling_party
-					clear_array = gov_coalition_array
-					add_to_array = { ruling_party = 19 }
-					update_government_coalition_strength = yes
-					update_party_name = yes
-					set_coalition_drift = yes
-					meta_effect = {
-						text = {
-							set_country_flag = [META_SET_RULING_PARTY]
-						}
-						META_SET_RULING_PARTY = "[meta_set_ruling_leader]"
-					}
-					set_leader = yes
-				}
-				set_politics = {
-					ruling_party = fascism
-				}
-				add_popularity = {
-					ideology = fascism
-					popularity = 0.35
-				}
-				add_to_variable = { party_pop_array^19 = 0.5 }
-				recalculate_party = yes
+				set_temp_variable = { rul_party_temp = 11 }
+				set_temp_variable = { enable_elections = 1 }
+				change_ruling_party_effect = yes
+
+				set_temp_variable = { party_index = 11 }
+				set_temp_variable = { party_popularity_increase = 0.25 }
+				set_temp_variable = { temp_outlook_increase = 0.25 }
+				add_relative_party_popularity = yes
+
 				start_civil_war = {
 					ideology = democratic
 					size = 0.3
@@ -3297,7 +3246,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			AFG = {
 				country_event = indian_event.33
@@ -3328,7 +3277,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			SRI = {
 				country_event = indian_event.33
@@ -3352,7 +3301,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			BRM = {
 				country_event = indian_event.33
@@ -3376,7 +3325,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			KAC = {
 				country_event = indian_event.33
@@ -3428,7 +3377,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			SIA = {
 				country_event = indian_event.33
@@ -3452,7 +3401,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			LAO = {
 				country_event = indian_event.33
@@ -3476,7 +3425,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			VIE = {
 				country_event = indian_event.33
@@ -3500,7 +3449,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			CBD = {
 				country_event = indian_event.33
@@ -3524,7 +3473,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			MAY = {
 				country_event = indian_event.33
@@ -3548,7 +3497,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			SIN = {
 				country_event = indian_event.33
@@ -3572,7 +3521,7 @@ RAJ_greater_hindustan_decisions_category = {
 		days_remove = 120
 		fire_only_once = yes
 
-		complete_effect = {
+		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision RAJ_expanding_sphere_of_influence"
 			IND = {
 				country_event = indian_event.33

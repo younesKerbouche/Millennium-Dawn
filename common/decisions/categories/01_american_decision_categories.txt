@@ -41,7 +41,16 @@ USA_america_first = {
 	}
 	priority = 140
 }
-
+USA_blockade_america_category = {
+	icon = GFX_decision_usa
+	   priority = 120
+	   allowed = {
+		   original_tag = USA
+	  }
+	   visible = {
+		has_country_flag = blockade_cuba_yes
+  }
+}
 #Asteroid Mining, USA and others can use it, but the USA is the one who actually "sets it off"
 USA_asteroid_mining_decision = {
 	icon = political_actions
@@ -62,18 +71,86 @@ USA_asteroid_mining_decision = {
 	priority = 140
 }
 
+USA_decisions_domestic_policies = {
+	icon = political_actions
+	allowed = { original_tag = USA }
+	priority = 149
+}
+
 USA_political_and_economic_reforms = {
 	icon = usa_congress
 	allowed = { original_tag = USA }
 	priority = 148
 }
 
-USA_gun_regulations_mechanic_category = {
-	icon = political_actions
-	allowed = { original_tag = USA }
-	visible = {
-		always = no
-		# has_country_flag = usa_era_of_gun_violence
+USA_f35_program_decisions = {
+	icon = GFX_decisions_category_nato_f35
+	allowed = {
+		OR = {
+			is_asian_nation = yes
+			is_european_nation = yes
+			is_american_nation = yes
+			is_african_nation = yes
+			is_middle_eastern_nation = yes
+			Is_UN_Member = yes
+		}
 	}
-	priority = 148
+
+	visible = {
+		OR = {
+			original_tag = USA
+			has_idea = NATO_member
+			has_idea = Major_Non_NATO_Ally
+		}
+		has_country_flag = USA_accepted_into_f35_program
+	}
+
+	priority = 1000
+
+	visible_when_empty = yes
+}
+
+USA_iranian_sanctions = {
+	allowed = {
+		original_tag = USA
+	}
+
+	visible = {
+		country_exists = PER
+		PER = {
+			has_dynamic_modifier = {
+				modifier = PER_us_sanctions
+			}
+		}
+	}
+
+	priority = 150
+}
+
+USA_foreign_policy = {
+	allowed = {
+		original_tag = USA
+	}
+
+	visible = {
+		OR = {
+			western_conservatism_are_in_power = yes
+			western_liberals_are_in_power = yes
+		}
+	}
+
+	visible_when_empty = yes
+
+	priority = 900
+}
+
+USA_iraq_most_wanted = {
+	icon = infiltration
+	allowed = { original_tag = USA }
+	scripted_gui = american_playing_cards
+	priority = 550
+	visible = {
+		has_country_flag = IRQ_hunt_baathists
+	}
+	visible_when_empty = yes
 }

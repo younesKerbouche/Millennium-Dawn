@@ -1,8 +1,4 @@
-###########################
-# 	  Canadian Events	  #
-###########################
-#Author(s): Captain Gen, Angriest Bird, Amtoj
-
+# Author(s): Captain Gen, Angriest Bird, Amtoj
 add_namespace = canada
 add_namespace = canada_news
 add_namespace = canada_md_politics
@@ -282,7 +278,6 @@ country_event = {
 #French Canadians Protest
 country_event = {
 	id = canada.6
-	immediate = { log = "[GetDateText]: [Root.GetName]: event canada.6" }
 	title = canada.6.t
 	desc = canada.6.d
 	picture = GFX_Canadian_elections
@@ -342,7 +337,6 @@ country_event = {
 #French Canadians Revolt
 country_event = {
 	id = canada.7
-	immediate = { log = "[GetDateText]: [Root.GetName]: event canada.7" }
 	title = canada.7.t
 	desc = canada.7.d
 	picture = GFX_Canadian_elections
@@ -423,9 +417,24 @@ country_event = {
 		release_puppet = QUE
 		custom_effect_tooltip = CAN_quebec_autonomous_tt
 		hidden_effect = {
-			set_autonomy = {
-				target = QUE
-				autonomy_state = autonomy_autonomous_state
+			if = {
+				limit = {
+					has_global_flag = GAME_RULE_allow_colored_puppets
+				}
+				set_autonomy = {
+					target = QUE
+					autonomy_state = autonomy_autonomous_state_colored
+					end_wars = yes
+					end_civil_wars = yes
+				}
+			}
+			else = {
+				set_autonomy = {
+					target = QUE
+					autonomy_state = autonomy_autonomous_state
+					end_wars = yes
+					end_civil_wars = yes
+				}
 			}
 			set_variable = { french_happiness_var = 90 }
 			CAN_update_french_happiness = yes
@@ -538,7 +547,7 @@ country_event = { #Riots in Quebec
 		}
 
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -675,7 +684,6 @@ country_event = { #Pro-Government Speaker
 
 country_event = { #Quebec Supports the Government
 	id = canada.704
-	immediate = { log = "[GetDateText]: [Root.GetName]: event canada.704" }
 	title = canada.704.t
 	desc = canada.704.d
 	picture = GFX_CAN_generic
@@ -709,7 +717,7 @@ country_event = {
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
 		add_relative_party_popularity = yes
-		ai_chance = { factor = 95 }
+		ai_chance = { base = 95 }
 	}
 
 	#We should probably stop monopolies in their wake.
@@ -727,7 +735,7 @@ country_event = {
 		set_temp_variable = { party_popularity_increase = 0.02 }
 		set_temp_variable = { temp_outlook_increase = 0.02 }
 		add_relative_party_popularity = yes
-		ai_chance = { factor = 5 }
+		ai_chance = { base = 5 }
 	}
 }
 
@@ -751,10 +759,10 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: canada.501.a executed"
 
 		add_stability = 0.05
-		custom_effect_tooltip = "The divide between English and French Culture in Canada"
+		custom_effect_tooltip = CAN_culture_divide_event_tt
 
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -821,7 +829,7 @@ country_event = {
 	option = {
 		name = canada.502.b
 		log = "[GetDateText]: [This.GetName]: canada.502.n executed"
-		custom_effect_tooltip = "Refuse to Subsidize the Oil Companies"
+		custom_effect_tooltip = CAN_refuse_oil_company_event_tt
 		set_temp_variable = { temp_opinion = -10 }
 		change_fossil_fuel_industry_opinion = yes
 	}
@@ -872,7 +880,7 @@ country_event = {
 		CAN_change_stability_factor = yes
 
 		ai_chance = {
-			factor = 100
+			base = 100
 		}
 	}
 
@@ -889,7 +897,7 @@ country_event = {
 		CAN_change_stability_factor = yes
 
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 	}
 
@@ -905,7 +913,7 @@ country_event = {
 		CAN_change_stability_factor = yes
 
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 	}
 }
@@ -955,7 +963,7 @@ country_event = {
 	option = {
 		name = canada.511.a
 		log = "[GetDateText]: [This.GetName]: canada.511.a executed"
-		set_state_owner = 1
+		transfer_state = 1
 	}
 }
 
@@ -1049,7 +1057,7 @@ country_event = { #The American Recession Ripples through Canada
 			country_event = { id = canada.601 days = 500 random_days = 120 }
 		}
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1082,7 +1090,7 @@ country_event = { ###End of the Great Recession in Canada --Needs Finished
 		set_temp_variable = { percent_change = 2 }
 		change_domestic_influence_percentage = yes
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1158,7 +1166,7 @@ country_event = { ###Softwood Lumber Dispute
 		change_influence_percentage = yes
 
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 	}
 	option = {
@@ -1174,7 +1182,7 @@ country_event = { ###Softwood Lumber Dispute
 		change_influence_percentage = yes
 
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1207,7 +1215,7 @@ country_event = { ###Ontario Goes Dark
 		}
 
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -1267,7 +1275,7 @@ country_event = { ###The Sponsorship Scandal
 		add_relative_party_popularity = yes
 
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -1495,8 +1503,17 @@ country_event = { ###Withdrawing the Security Council Bid
 	option = {
 		name = canada_md_politics.15.a
 		log = "[GetDateText]: [This.GetName]: canada_md_politics.15.a executed"
-		add_war_support = 0.025
-		increase_intervention_law_effect = yes
+		add_war_support = 0.04
+		if = {
+			limit = {
+				OR = {
+					NOT = { has_idea = intervention_global_interventionism }
+					NOT = { has_idea = intervention_neo_imperialism }
+				}
+			}
+			increase_intervention_law_effect = yes
+		}
+
 	}
 	option = {
 		name = canada_md_politics.15.b

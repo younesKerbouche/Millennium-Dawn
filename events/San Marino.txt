@@ -4,7 +4,6 @@ add_namespace = SMA_countries
 
 country_event = {
 	id = SMA_countries.1
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA_countries.1" }
 	title = SMA_countries.1.t
 	desc = SMA_countries.1.d
 	is_triggered_only = yes
@@ -37,9 +36,9 @@ country_event = {
 		name = SMA_countries.1.b
 		log = "[GetDateText]: [This.GetName]: SMA_countries.1.b executed"
 		ai_chance = {
-			factor = 50
+			base = 50
 			modifier = {
-				factor = -30 
+				factor = -30
 				is_historical_focus_on = yes
 			}
 		}
@@ -50,7 +49,6 @@ country_event = {
 }
 country_event = {
 	id = SMA_countries.2 # If Italy No
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA_countries.2" }
 	title = SMA_countries.2.t
 	desc = SMA_countries.2.d
 	picture = GFX_declined_offer_no
@@ -59,13 +57,14 @@ country_event = {
 		name = SMA_countries.2.a
 		log = "[GetDateText]: [This.GetName]: SMA_countries.2.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
+
+# If Italy Yes
 country_event = {
-	id = SMA_countries.3 # If Italy Yes
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA_countries.3" }
+	id = SMA_countries.3
 	title = SMA_countries.3.t
 	desc = SMA_countries.3.d
 	picture = GFX_handshake_black
@@ -74,7 +73,7 @@ country_event = {
 		name = SMA_countries.3.a
 		log = "[GetDateText]: [This.GetName]: SMA_countries.3.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 		add_ideas = SMA_rights_of_italian_workers_in_san_marino
 		set_temp_variable = { treasury_change = -2.00 }
@@ -82,9 +81,9 @@ country_event = {
 	}
 }
 
+# Ask to Build Other Countries
 country_event = {
-	id = SMA_countries.4 # Ask To Build other countries
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA_countries.4" }
+	id = SMA_countries.4
 	title = SMA_countries.4.t
 	desc = SMA_countries.4.d
 	is_triggered_only = yes
@@ -92,7 +91,7 @@ country_event = {
 		name = SMA_countries.4.a
 		log = "[GetDateText]: [This.GetName]: SMA_countries.4.a executed"
 		ai_chance = {
-			factor = 50
+			base = 50
 			modifier = {
 				factor = 30
 				is_historical_focus_on = yes
@@ -107,10 +106,36 @@ country_event = {
 				modify_treasury_effect = yes
 			}
 			SMA = {
-				one_random_industrial_complex = yes
-
-				set_temp_variable = { treasury_change = 7.50 }
-				modify_treasury_effect = yes
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+						OR = {
+							is_in_home_area = yes
+							NOT = {
+								owner = {
+									any_owned_state = {
+										free_building_slots = {
+											building = industrial_complex
+											size > 0
+											include_locked = yes
+										}
+										is_in_home_area = yes
+									}
+								}
+							}
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
 				set_temp_variable = { treasury_change = -1.50 }
 				modify_treasury_effect = yes
 
@@ -145,6 +170,13 @@ country_event = {
 			}
 			SMA = {
 				random_owned_state = {
+					limit = {
+						free_building_slots = {
+							building = internet_station
+							size > 0
+							include_locked = no
+						}
+					}
 					add_extra_state_shared_building_slots = 1
 					add_building_construction = {
 						type = internet_station
@@ -152,7 +184,7 @@ country_event = {
 						instant_build = yes
 					}
 				}
-				
+
 				set_temp_variable = { treasury_change = -1.00 }
 				modify_treasury_effect = yes
 
@@ -193,7 +225,13 @@ country_event = {
 				}
 				SMA = {
 					random_owned_state = {
-						add_extra_state_shared_building_slots = 1
+						limit = {
+							free_building_slots = {
+								building = internet_station
+								size > 0
+								include_locked = no
+							}
+						}
 						add_building_construction = {
 							type = internet_station
 							level = 1
@@ -217,9 +255,9 @@ country_event = {
 		name = SMA_countries.4.b
 		log = "[GetDateText]: [This.GetName]: SMA_countries.4.b executed"
 		ai_chance = {
-			factor = 50
+			base = 50
 			modifier = {
-				factor = -30 
+				factor = -30
 				is_historical_focus_on = yes
 			}
 		}
@@ -230,7 +268,6 @@ country_event = {
 }
 country_event = {
 	id = SMA_countries.5 # If countries No
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA_countries.5" }
 	title = SMA_countries.5.t
 	desc = SMA_countries.5.d
 	picture = GFX_declined_offer_no
@@ -239,13 +276,12 @@ country_event = {
 		name = SMA_countries.5.a
 		log = "[GetDateText]: [This.GetName]: SMA_countries.5.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
 country_event = {
 	id = SMA_countries.6 # If countries Yes
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA_countries.6" }
 	title = SMA_countries.6.t
 	desc = SMA_countries.6.d
 	picture = GFX_handshake_black
@@ -254,7 +290,7 @@ country_event = {
 		name = SMA_countries.6.a
 		log = "[GetDateText]: [This.GetName]: SMA_countries.6.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -302,7 +338,6 @@ news_event = {
 
 country_event = {
 	id = SMA.1
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.1" }
 	title = SMA.1.t
 	desc = SMA.1.d
 	is_triggered_only = yes
@@ -310,7 +345,7 @@ country_event = {
 		name = SMA.1.a
 		log = "[GetDateText]: [This.GetName]: SMA.1.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -344,7 +379,7 @@ country_event = {
 		name = SMA.1.b
 		log = "[GetDateText]: [This.GetName]: SMA.1.b executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -355,7 +390,6 @@ country_event = {
 
 country_event = {
 	id = SMA.2
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.2" }
 	title = SMA.2.t
 	desc = SMA.2.d
 	picture = GFX_report_event_Sicily_Farms
@@ -364,7 +398,7 @@ country_event = {
 		name = SMA.2.a
 		log = "[GetDateText]: [This.GetName]: SMA.2.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -380,7 +414,7 @@ country_event = {
 		name = SMA.2.b
 		log = "[GetDateText]: [This.GetName]: SMA.2.b executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -394,7 +428,6 @@ country_event = {
 
 country_event = {
 	id = SMA.3
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.3" }
 	title = SMA.3.t
 	desc = SMA.3.d
 	picture = GFX_united_states_dollar
@@ -403,7 +436,7 @@ country_event = {
 		name = SMA.3.a
 		log = "[GetDateText]: [This.GetName]: SMA.3.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -417,7 +450,7 @@ country_event = {
 		name = SMA.3.b
 		log = "[GetDateText]: [This.GetName]: SMA.3.b executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -430,7 +463,6 @@ country_event = {
 
 country_event = {
 	id = SMA.4
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.4" }
 	title = SMA.4.t
 	desc = SMA.4.d
 	picture = GFX_typhoon
@@ -439,7 +471,7 @@ country_event = {
 		name = SMA.4.a
 		log = "[GetDateText]: [This.GetName]: SMA.4.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -457,7 +489,6 @@ country_event = {
 
 country_event = {
 	id = SMA.5
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.5" }
 	title = SMA.5.t
 	desc = SMA.5.d
 	picture = GFX_internal_faction_religion
@@ -466,7 +497,7 @@ country_event = {
 		name = SMA.5.a
 		log = "[GetDateText]: [This.GetName]: SMA.5.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -481,7 +512,7 @@ country_event = {
 		name = SMA.5.b
 		log = "[GetDateText]: [This.GetName]: SMA.5.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -495,7 +526,6 @@ country_event = {
 
 country_event = {
 	id = SMA.6
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.6" }
 	title = SMA.6.t
 	desc = SMA.6.d
 	picture = GFX_internal_faction_religion
@@ -509,7 +539,7 @@ country_event = {
 		name = SMA.6.a
 		log = "[GetDateText]: [This.GetName]: SMA.6.a executed"
 		ai_chance = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 0
 				is_historical_focus_on = yes
@@ -523,7 +553,6 @@ country_event = {
 
 country_event = {
 	id = SMA.8
-	immediate = { log = "[GetDateText]: [Root.GetName]: event SMA.8" }
 	title = SMA.8.t
 	desc = SMA.8.d
 	picture = GFX_social_democrats
@@ -551,7 +580,7 @@ country_event = {
 		name = SMA.8.b
 		log = "[GetDateText]: [This.GetName]: SMA.8.b executed"
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
 				factor = -4
 				is_historical_focus_on = yes

@@ -11,12 +11,12 @@ country_event = {
 	option = { #accept to sell
 		name = energy.1.a
 		log = "[GetDateText]: [This.GetName]: energy.1.a executed"
-		set_temp_variable = { change_resource = -500 }
+		set_temp_variable = { change_resource = -2500 }
 		change_reactor_grade_material_effect = yes
 		set_temp_variable = { treasury_change = 2 }
 		modify_treasury_effect = yes
 		var:purchaser_tag_reactor = {
-			set_temp_variable = { change_resource = 500 }
+			set_temp_variable = { change_resource = 2500 }
 			change_reactor_grade_material_effect = yes
 			set_temp_variable = { treasury_change = -2 }
 			modify_treasury_effect = yes
@@ -24,14 +24,14 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
-				factor = 2
-				check_variable = { var_nuke_nuclear_reactor_prod > nuclear_fuel_consumption }
+				factor = 2.5
+				check_variable = { nuclear_reactor_fuel_production > nuclear_fuel_consumption }
 			}
 			modifier = {
 				factor = 2
-				var:purchase_tag_reactor = {
+				var:purchaser_tag_reactor = {
 					has_opinion = {
 						target = PREV
 						value > 100
@@ -40,7 +40,7 @@ country_event = {
 			}
 			modifier = {
 				factor = 2
-				var:purchase_tag_reactor = {
+				var:purchaser_tag_reactor = {
 					has_opinion = {
 						target = PREV
 						value > 150
@@ -49,7 +49,7 @@ country_event = {
 			}
 			modifier = {
 				factor = 2
-				var:purchase_tag_reactor = {
+				var:purchaser_tag_reactor = {
 					has_opinion = {
 						target = PREV
 						value > 200
@@ -62,6 +62,10 @@ country_event = {
 					has_war_with = PREV
 				}
 			}
+			modifier = {
+				factor = 0
+				check_variable = { nuclear_fuel_consumption < nuclear_reactor_fuel_production }
+			}
 		}
 	}
 	option = { #refuse to sell
@@ -72,11 +76,43 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 0
+			base = 0
 			modifier = {
 				add = 10
 				var:purchaser_tag_reactor = {
 					has_war_with = PREV
+				}
+			}
+			modifier = {
+				add = 15
+				original_tag = CHI
+				var:purchaser_tag_reactor = {
+					original_tag = TAI
+					NOT = { is_subject_of = CHI }
+				}
+			}
+			modifier = {
+				add = 15
+				original_tag = USA
+				var:purchaser_tag_reactor = {
+					original_tag = CHI
+					NOT = { is_subject_of = USA }
+				}
+			}
+			modifier = {
+				add = 15
+				original_tag = SOV
+				var:purchaser_tag_reactor = {
+					has_idea = NATO_member
+					NOT = { is_subject_of = SOV }
+				}
+			}
+			modifier = {
+				add = 15
+				original_tag = FRA
+				var:purchaser_tag_reactor = {
+					original_tag = SOV
+					NOT = { is_subject_of = FRA }
 				}
 			}
 		}
@@ -143,11 +179,20 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
 				factor = 10
 				original_tag = USA
 				check_variable = { new_enrichment_country = PER.id }
+			}
+			modifier = {
+				factor = 2
+				has_added_tension_amount > 5
+			}
+			# Try to avoid nations at war from building nuclear weapons
+			modifier = {
+				factor = 1.5
+				has_war = yes
 			}
 		}
 	}
@@ -161,10 +206,64 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 10
+			base = 10
 			modifier = {
 				factor = 2
 				is_historical_focus_on = yes
+				FROM = {
+					OR = {
+						original_tag = FRA
+						original_tag = ARG
+						original_tag = BRA
+						original_tag = GER
+						original_tag = RAJ
+						original_tag = JAP
+						original_tag = HOL
+						original_tag = PAK
+						original_tag = ENG
+						original_tag = NKO
+						original_tag = USA
+					}
+				}
+			}
+			modifier = {
+				factor = 1.25
+				OR = {
+					AND = {
+						has_government = democratic
+						FROM = { has_government = democratic }
+					}
+					AND = {
+						has_government = neutrality
+						FROM = { has_government = neutrality }
+					}
+					AND = {
+						has_government = nationalist
+						FROM = { has_government = nationalist }
+					}
+					AND = {
+						has_government = communism
+						FROM = { has_government = communism }
+					}
+					AND = {
+						has_government = fascism
+						FROM = { has_government = fascism }
+					}
+				}
+			}
+			modifier = {
+				factor = 1.25
+				FROM = {
+					OR = {
+						is_in_array = { influence_array^0 = PREV }
+						is_in_array = { influence_array^1 = PREV }
+						is_in_array = { influence_array^2 = PREV }
+						is_in_array = { influence_array^3 = PREV }
+						is_in_array = { influence_array^4 = PREV }
+						is_in_array = { influence_array^5 = PREV }
+						is_in_array = { influence_array^6 = PREV }
+					}
+				}
 			}
 			modifier = {
 				factor = 0
@@ -173,9 +272,19 @@ country_event = {
 			}
 			modifier = {
 				factor = 0
-				has_opinion = {
-					target = FROM
-					value < -40
+				has_opinion = { target = FROM value < -25 }
+			}
+			modifier = {
+				factor = 0
+				var:new_enrichment_country = {
+					OR = {
+						is_justifying_wargoal_against = PREV
+						PREV = {
+							any_allied_country = {
+								FROM = { is_justifying_wargoal_against = PREV }
+							}
+						}
+					}
 				}
 			}
 		}
@@ -200,7 +309,7 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 10
+			base = 10
 		}
 	}
 
@@ -216,7 +325,7 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 	}
 
@@ -240,7 +349,7 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 	}
 }

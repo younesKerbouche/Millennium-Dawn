@@ -3,31 +3,15 @@
 HEZ_support_shias = {
 	allowed = {
 		original_tag = HEZ
-		has_global_flag = GAME_RULE_rule_randomize_religion
 	}
+
 	reversed = yes
+
 	enable = {
-		NOT = {
-			original_tag = HEZ
-		}
 		has_idea = shia
 	}
+
 	abort_when_not_enabled = yes
-	targets = {
-		SYR
-		FSA
-		NUS
-		ROJ
-		IRQ
-		SAU
-		OMA
-		YEM
-		JOR
-		BHR
-		QAT
-		KUW
-		LEB
-	}
 
 	ai_strategy = {
 		type = befriend
@@ -124,17 +108,48 @@ HEZ_befriend_iran = {
 	ai_strategy = { type = support id = "PER" value = 200 }
 	ai_strategy = { type = contain id = "PER" value = -50 }
 }
-#
+
+HEZ_do_no_volunteer_in_yemen_till_done_focus = {
+	allowed = { original_tag = HEZ }
+	enable = {
+		original_tag = HEZ
+		HOU = { has_war_with = YEM }
+		NOT = { has_completed_focus = HEZ_Houthi_brothers }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = send_volunteers_desire id = "HOU" value = -500 }
+}
+
+HEZ_do_no_volunteer_in_iraq_done_focus = {
+	allowed = { original_tag = HEZ }
+	enable = {
+		original_tag = HEZ
+		HOU = { has_war_with = YEM }
+		OR = {
+			IRQ = { has_country_leader = { name = "Hadi al-Amiri" ruling_only = yes } }
+			NOT = {
+				has_completed_focus = HEZ_Badr_in_the_shadows
+				AND = {
+					IRQ = { OR = { owns_state = 1142 owns_state = 14953 owns_state = 1124 } }
+					PER = { has_completed_focus = PER_descend_on_iraq }
+				}
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = send_volunteers_desire id = "HOU" value = -500 }
+}
+
 HEZ_rival_iran = {
 	allowed = { original_tag = HEZ }
 	enable = {
 		NOT = { has_war_with = PER }
 		PER = {
-			NOT = {
-				OR = {
-					emerging_moderate_shiite_are_in_power = yes
-					emerging_hardline_shiite_are_in_power = yes
-				}
+			OR = {
+				emerging_moderate_shiite_are_not_in_power = yes
+				emerging_hardline_shiite_are_not_in_power = yes
 			}
 		}
 	}
@@ -147,4 +162,45 @@ HEZ_rival_iran = {
 	ai_strategy = { type = alliance id = "PER" value = -200 }
 	ai_strategy = { type = support id = "PER" value = -200 }
 	ai_strategy = { type = contain id = "PER" value = 150 }
+	ai_strategy = { type = send_volunteers_desire id = "PER" value = -200 }
+}
+#CIVIL WAR IN AMERICA
+HEZ_california_help = {
+	allowed = { original_tag = HEZ }
+	enable = {
+		original_tag = HEZ
+		country_exists = CAL
+		HEZ = {
+			has_war = no
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = send_volunteers_desire id = "CAL" value = 1000 }
+	ai_strategy = { type = send_lend_lease_desire id = "CAL" value = 400 }
+}
+HEZ_new_york_help = {
+	allowed = { original_tag = HEZ }
+	enable = {
+		original_tag = HEZ
+		country_exists = NYK
+		HEZ = {
+			has_war = no
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = send_volunteers_desire id = "NYK" value = 1000 }
+	ai_strategy = { type = send_lend_lease_desire id = "NYK" value = 400 }
+}
+HEZ_texas_help = {
+	allowed = { original_tag = HEZ }
+	enable = {
+		original_tag = HEZ
+		country_exists = TEX
+		HEZ = {
+			has_war = no
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = send_volunteers_desire id = "TEX" value = 1000 }
+	ai_strategy = { type = send_lend_lease_desire id = "TEX" value = 400 }
 }

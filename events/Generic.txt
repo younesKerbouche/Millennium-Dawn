@@ -7,7 +7,7 @@ country_event = {
 	id = md4.1
 	title = md4.1.t
 	desc = md4.1.d
-	picture = GFX_report_event_generic_read_write
+	picture = GFX_negotiations
 
 	immediate = {
 		hidden_effect = {
@@ -37,10 +37,13 @@ country_event = {
 			target = FROM
 			modifier = free_trade_agreement
 		}
+		set_temp_variable = { receiver_nation = ROOT.id }
+		set_temp_variable = { sender_nation = FROM.id }
+		set_improved_trade_agreement = yes
 		hidden_effect = {
 			set_country_flag = fta_applicant@ROOT
 			FROM = { set_country_flag = fta_inviter@ROOT }
-			news_event = { id = news.1 hours = 12 }
+			#news_event = { id = news.1 hours = 12 }
 		}
 	}
 
@@ -64,7 +67,7 @@ country_event = {
 	title = md4.2.t
 	desc = md4.2.d
 
-	picture = GFX_report_event_generic_sign_treaty2
+	picture = GFX_negotiations
 
 	is_triggered_only = yes
 
@@ -80,7 +83,7 @@ country_event = {
 	title = md4.3.t
 	desc = md4.3.d
 
-	picture = GFX_report_event_generic_read_write
+	picture = GFX_negotiations
 
 	is_triggered_only = yes
 
@@ -95,7 +98,7 @@ country_event = {
 	id = md4.4
 	title = md4.4.t
 	desc = md4.4.d
-	picture = GFX_report_event_generic_read_write
+	picture = GFX_handshake_black
 
 	immediate = {
 		hidden_effect = {
@@ -120,6 +123,21 @@ country_event = {
 				modifier = military_cooperation
 			}
 			country_event = { id = md4.5 hours = 6 }
+		}
+		add_political_power = -100
+		army_experience = 25
+		add_command_power = 15
+		add_tech_bonus = {
+			name = EGY_spec_weap
+			uses = 1
+			bonus = 0.25
+			category = Cat_SPECIAL_FORCES
+		}
+		add_doctrine_cost_reduction = {
+			name = EGY_exer
+			category = Cat_land_doctrine
+			uses = 1
+			cost_reduction = 0.25
 		}
 		hidden_effect = {
 			set_country_flag = mct_applicant@ROOT
@@ -148,13 +166,28 @@ country_event = {
 	title = md4.5.t
 	desc = md4.5.d
 
-	picture = GFX_report_event_generic_sign_treaty2
+	picture = GFX_handshake_black
 
 	is_triggered_only = yes
 
 	option = {
 		name = md4.5.a
 		log = "[GetDateText]: [This.GetName]: md4.5.a executed"
+		add_political_power = -100
+		army_experience = 25
+		add_command_power = 15
+		add_tech_bonus = {
+			name = EGY_spec_weap
+			uses = 1
+			bonus = 0.25
+			category = Cat_SPECIAL_FORCES
+		}
+		add_doctrine_cost_reduction = {
+			name = EGY_exer
+			category = Cat_land_doctrine
+			uses = 1
+			cost_reduction = 0.25
+		}
 	}
 }
 
@@ -164,7 +197,7 @@ country_event = {
 	title = md4.6.t
 	desc = md4.6.d
 
-	picture = GFX_report_event_generic_read_write
+	picture = GFX_handshake_black
 
 	is_triggered_only = yes
 
@@ -1427,7 +1460,7 @@ country_event = {
 						original_tag = NUS
 					}
 				}
-				create_faction = Peninsula_Sword
+				create_faction_from_template = faction_template_peninsula_sword
 			}
 			ROOT = { add_to_faction = FROM }
 		}
@@ -1494,14 +1527,14 @@ country_event = {
 		FROM = {
 			every_state = {
 				limit = { has_state_flag = SET_STATE_FOR_TRANSFER }
-				ROOT = { transfer_state = PREV }
 				if = {
-					limit = { FROM = { has_country_flag = STATE_TRANSFER_ADD_CORES } }
+					limit = { owner = { has_country_flag = STATE_TRANSFER_ADD_CORES } }
 					add_core_of = ROOT
-					FROM = { clr_country_flag = STATE_TRANSFER_ADD_CORES }
 				}
 				clr_state_flag = SET_STATE_FOR_TRANSFER
+				ROOT = { transfer_state = PREV }
 			}
+			FROM = { clr_country_flag = STATE_TRANSFER_ADD_CORES }
 		}
 	}
 }
@@ -1525,16 +1558,110 @@ country_event = {
 				limit = { has_state_flag = SET_STATE_FOR_TRANSFER }
 				add_claim_by = ROOT
 				if = {
-					limit = { FROM = { has_country_flag = STATE_TRANSFER_ADD_CORES } }
+					limit = { owner = { has_country_flag = STATE_TRANSFER_ADD_CORES } }
 					add_core_of = ROOT
-					FROM = { clr_country_flag = STATE_TRANSFER_ADD_CORES }
 				}
 				clr_state_flag = SET_STATE_FOR_TRANSFER
 			}
+			FROM = { clr_country_flag = STATE_TRANSFER_ADD_CORES }
 		}
 		create_wargoal = {
 			target = FROM
 			type = annex_everything
 		}
+	}
+}
+
+# EAEU Integration Proposal
+
+country_event = {
+	id = md4.21
+	title = md4.21.t
+	desc = md4.21.d
+	picture = GFX_eastern_europe
+
+	immediate = {
+		hidden_effect = {
+			save_event_target_as = eaeu_applicant
+			FROM = {
+				save_event_target_as = eaeu_inviter
+			}
+		}
+	}
+
+	is_triggered_only = yes
+
+	option = { #Agree
+		name = md4.21.a
+		log = "[GetDateText]: [This.GetName]: md4.21.a executed"
+		ai_chance = {
+			base = 100
+		}
+		FROM = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = free_trade_agreement
+			}
+			country_event = { id = md4.22 hours = 6 }
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = free_trade_agreement
+		}
+		FROM = {
+			add_ideas = EUR_idea_eacu_cooperation
+		}
+		set_temp_variable = { receiver_nation = ROOT.id }
+		set_temp_variable = { sender_nation = FROM.id }
+		set_improved_trade_agreement = yes
+		hidden_effect = {
+			set_country_flag = eaeu_applicant@ROOT
+			FROM = { set_country_flag = eaeu_inviter@ROOT }
+		}
+	}
+
+	option = { #Refuse
+		name = md4.21.b
+		log = "[GetDateText]: [This.GetName]: md4.21.b executed"
+		ai_chance = { factor = 0 }
+		FROM = {
+			country_event = { id = md4.23 hours = 6 }
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = insult
+			}
+		}
+	}
+}
+
+# ROOT signed EAEU Integration
+country_event = {
+	id = md4.22
+	title = md4.22.t
+	desc = md4.22.d
+
+	picture = GFX_eastern_europe
+
+	is_triggered_only = yes
+
+	option = {
+		name = md4.2.a
+		log = "[GetDateText]: [This.GetName]: md4.22.a executed"
+	}
+}
+
+# ROOT refused to sign EAEU Integration
+country_event = {
+	id = md4.23
+	title = md4.23.t
+	desc = md4.23.d
+
+	picture = GFX_eastern_europe
+
+	is_triggered_only = yes
+
+	option = {
+		name = md4.23.a
+		log = "[GetDateText]: [This.GetName]: md4.23.a executed"
 	}
 }

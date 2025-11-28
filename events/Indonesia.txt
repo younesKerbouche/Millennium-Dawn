@@ -15,29 +15,31 @@ country_event = {
 				id = indonesia.50
 				hours = 6
 			}
-		 }
-		 set_temp_variable = { percent_change = 2 }
-			set_temp_variable = { tag_index = ROOT }
-			set_temp_variable = { influence_target = IND }
-			change_influence_percentage = yes
-				add_opinion_modifier = {
-					target = IND
-					modifier = medium_increase
-				}
-				set_temp_variable = { treasury_change = -26.45 }
-				modify_treasury_effect = yes
+		}
+		set_temp_variable = { percent_change = 2 }
+		set_temp_variable = { tag_index = ROOT }
+		set_temp_variable = { influence_target = IND }
+		change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = IND
+				modifier = medium_increase
 			}
-			option = {
-				name = indonesia.5.b
-				log = "[GetDateText]: [This.GetName]: indonesia.5.b executed"
-				IND = {
-					country_event = {
-						id = indonesia.500
-						hours = 6
-					}
-				}
+			set_temp_variable = { treasury_change = -26.45 }
+			modify_treasury_effect = yes
+	}
+
+	option = {
+		name = indonesia.5.b
+		log = "[GetDateText]: [This.GetName]: indonesia.5.b executed"
+		IND = {
+			country_event = {
+				id = indonesia.500
+				hours = 6
 			}
 		}
+	}
+}
+
 country_event = {
 	id = indonesia.50
 	title = indonesia.50.t
@@ -268,13 +270,9 @@ country_event = {
 	title = indonesia.2.t
 	desc = indonesia.2.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.2"
-		}
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
-		}
+	}
 	##East Timor Gains Independence
 	option = {
 		name = indonesia.2.a
@@ -328,12 +326,9 @@ country_event = {
 	desc = indonesia.9.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.9"
-	}
+
 	trigger = {
 		tag = AST
-		has_start_date < 2005.01.01
 	}
 ##Start Seperatist or do nothing
 option = {
@@ -360,7 +355,7 @@ option = {
 		TIM = {
 			capital_scope = {
 				create_unit = {
-					division = "name =\"Kodam-II\" division_template = \"Kodam-II\" start_experience_factor =  1.0"
+					division = "name = \"Kodam-II\" division_template = \"Kodam-II\" start_experience_factor = 1.0"
 					owner = TIM
 					count = 3
 				}
@@ -397,12 +392,9 @@ country_event = {
 	title = indonesia.3.t
 	desc = indonesia.3.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.3"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##East Timor Gains Independence
 	option = {
@@ -423,13 +415,10 @@ country_event = {
 	desc = indonesia.4.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.4"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
-		}
+	}
 	##East Timor Gains Independence
 	option = {
 		name = indonesia.4.a
@@ -487,23 +476,8 @@ country_event = {
 				set_variable = { party_pop_array^21 = 0 } #Nat_Fascism
 				set_variable = { party_pop_array^22 = 0 } #Nat_Autocracy
 				set_variable = { party_pop_array^23 = 0 } #Monarchist
-				set_country_flag = no_leader_change
-				set_temp_variable = { election_year = global.year }
-				subtract_from_temp_variable = { election_year = 3 }
-				meta_effect = {
-					text = {
-						set_politics = {
-							ruling_party = [OUTLOOK]
-							elections_allowed = yes
-							last_election = "[YEAR].[MONTH].1"
-							election_frequency = 60
-						}
-					}
-					OUTLOOK = "[meta_ideology_names]"
-					YEAR = election_year
-					MONTH = global.month
-				}
-				clr_country_flag = no_leader_change
+				set_temp_variable = { year_change = 3 }
+				set_election_year_60_months = yes
 				create_country_leader = {
 					name = "Mari Alkatiri"
 					picture = "mari_alkatiri.dds"
@@ -526,12 +500,9 @@ country_event = {
 	desc = indonesia.41.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.41"
-	}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -560,7 +531,6 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -589,8 +559,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
-		}
+	}
 
 	##DISASTER
 	option = {
@@ -609,13 +578,10 @@ country_event = {
 	title = indonesia.44.t
 	desc = indonesia.44.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.44"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
-		}
+	}
 	##DISASTER
 	option = {
 		name = indonesia.44.a
@@ -640,12 +606,9 @@ country_event = {
 	title = indonesia.45.t
 	desc = indonesia.45.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.45"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -665,12 +628,9 @@ country_event = {
 	desc = indonesia.46.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.46"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 
 	##DISASTER
@@ -697,13 +657,10 @@ country_event = {
 	desc = indonesia.47.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.47"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
-		}
+	}
 	##DISASTER
 	option = {
 		name = indonesia.47.a
@@ -728,12 +685,9 @@ country_event = {
 	desc = indonesia.48.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.48"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 
 	##DISASTER
@@ -761,12 +715,9 @@ country_event = {
 	desc = indonesia.49.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.49"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 
 	##DISASTER
@@ -787,12 +738,9 @@ country_event = {
 	desc = indonesia.51.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.51"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -818,12 +766,9 @@ country_event = {
 	desc = indonesia.52.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.52"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -850,12 +795,9 @@ country_event = {
 	desc = indonesia.53.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.53"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -880,12 +822,9 @@ country_event = {
 	title = indonesia.54.t
 	desc = indonesia.54.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.54"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -912,12 +851,9 @@ country_event = {
 	desc = indonesia.56.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.56"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 
 	##DISASTER
@@ -945,12 +881,9 @@ country_event = {
 	desc = indonesia.57.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.57"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -977,12 +910,9 @@ country_event = {
 	desc = indonesia.58.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.58"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -1009,12 +939,9 @@ country_event = {
 	desc = indonesia.59.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.59"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -1041,12 +968,9 @@ country_event = {
 	desc = indonesia.61.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.61"
-		}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -1073,12 +997,9 @@ country_event = {
 	desc = indonesia.62.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.62"
-	}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -1105,12 +1026,9 @@ country_event = {
 	desc = indonesia.63.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.63"
-	}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -1129,12 +1047,9 @@ country_event = {
 	desc = indonesia.64.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.64"
-	}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##DISASTER
 	option = {
@@ -1178,12 +1093,9 @@ country_event = {
 	desc = indonesia.420.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.420"
-	}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
 	##East Timor Gains Independence
 	option = {
@@ -1206,12 +1118,9 @@ country_event = {
 		desc = indonesia.55.d
 		#picture =
 		is_triggered_only = yes
-		immediate = {
-			log = "[GetDateText]: [Root.GetName]: event indonesia.55"
-			}
+
 		trigger = {
 			tag = IND
-			has_start_date < 2005.01.01
 		}
 		##Education Question
 		option = {
@@ -1263,25 +1172,23 @@ country_event = {
 	desc = indonesia.69.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.69"
-	}
+
 	trigger = {
 		tag = IND
-		has_start_date < 2005.01.01
 	}
-##What to do
-option = {
-	name = indonesia.69.a
-	log = "[GetDateText]: [Root.GetName]: event indonesia.69.a"
-	ai_chance = {
-		factor = 1
-		}
-		add_timed_idea = {
-			idea = IND_scars_kalimantan
-			days = 400
-		}
+	##What to do
+	option = {
+		name = indonesia.69.a
+		log = "[GetDateText]: [Root.GetName]: event indonesia.69.a"
+		ai_chance = {
+			factor = 1
+			}
+			add_timed_idea = {
+				idea = IND_scars_kalimantan
+				days = 400
+			}
 	}
+
 	option = {
 		name = indonesia.69.b
 		log = "[GetDateText]: [Root.GetName]: event indonesia.69.b"
@@ -1293,16 +1200,14 @@ option = {
 		}
 	}
 }
-#
+
 country_event = {
 	id = indonesia.76854
 	title = indonesia.76854.t
 	desc = indonesia.76854.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.76854"
-	}
+
 	#
 	option = {
 		name = indonesia.76854.a
@@ -1464,9 +1369,7 @@ country_event = {
 	desc = indonesia.988.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.988"
-	}
+
 	#
 	option = {
 		name = indonesia.988.a
@@ -1484,9 +1387,7 @@ country_event = {
 	desc = indonesia.1000.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.1000"
-		}
+
 	#
 	option = {
 		name = indonesia.1000.a
@@ -1505,9 +1406,7 @@ country_event = {
 	desc = indonesia.1001.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.1001"
-		}
+
 	#
 	option = {
 		name = indonesia.1001.a
@@ -1528,9 +1427,7 @@ country_event = {
 	desc = indonesia.1002.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.1002"
-		}
+
 	#
 	option = {
 		name = indonesia.1002.a
@@ -1551,10 +1448,7 @@ country_event = {
 	desc = indonesia.888.d
 	#picture =
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: event indonesia.888"
-		}
-	#
+
 	option = {
 		name = indonesia.988.a
 		log = "[GetDateText]: [Root.GetName]: event indonesia.888.a"
@@ -1571,9 +1465,7 @@ country_event = {
 	title = indonesia.67.t
 	desc = indonesia.67.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: news event indonesia.67"
-		}
+
 	option = {
 		name = indonesia.67.a
 		log = "[GetDateText]: [Root.GetName]: news event indonesia.67.a"
@@ -1600,9 +1492,7 @@ country_event = {
 	title = indonesia.678.t
 	desc = indonesia.678.d
 	is_triggered_only = yes
-	immediate = {
-		log = "[GetDateText]: [Root.GetName]: news event indonesia.678"
-		}
+
 	option = {
 		name = indonesia.678.a
 		log = "[GetDateText]: [Root.GetName]: news event indonesia.678.a"

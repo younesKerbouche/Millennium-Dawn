@@ -1,30 +1,37 @@
-#AUTHORS//:SHEEP//DROID//IRANIAN MAGGOT//HEASTEL//LORD BOGDANOFF//BONDEX
-
+#Author(s):Sheep, Droid, Iranian Maggot, heastel, Lord Bogdanoff, Bondex
 focus_tree = {
 	id = serbian_focus
-
 	country = {
-		factor = 0
+		base = 0
 		modifier = { original_tag = SER add = 20 }
 	}
 
-	default = no
-
+	# European Union Focuses
+	shared_focus = USoE001
+	shared_focus = POTEF001
 	continuous_focus_position = { x = 350 y = 850 }
-	###########################################
+
 	focus = {
 		id = SER_the_high_castle
 		icon = SER_miloshavich
+
 		x = 15
 		y = 0
+
 		cost = 1
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_the_high_castle"
 			add_political_power = 50
 			country_event = ser_reading.1
 			hidden_effect = {
-				IF = {
+				if = {
 					limit = {
 						SER = {
 							OR = {
@@ -41,21 +48,57 @@ focus_tree = {
 						days = 1
 					}
 				}
+				if = {
+					limit = {
+						SER = {
+							NOT = {
+								OR = {
+									has_global_flag = SER_MILOCEVIC_NATI_FOCUS_PATH
+									has_global_flag = SER_MILOCEVIC_COMMI_FOCUS_PATH
+									has_global_flag = SER_MILOCEVIC_FEDERATION_FOCUS_PATH
+								}
+							}
+							is_ai = yes
+							NOT = { has_country_flag = SER_zover }
+						}
+					}
+					random_list = {
+						50 = {
+							country_event = {
+								id = SerbiaFocus.113
+								days = 1
+							}
+						}
+						50 = {
+							add_political_power = 50
+						}
+					}
+				}
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_begin_repairing_works1
 		icon = intervene_cosovo
-		relative_position_id = SER_the_high_castle
-		prerequisite = { focus = SER_the_high_castle }
+
 		x = 0
 		y = 1
-		cost = 7
+		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_the_high_castle }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_begin_repairing_works1"
 			add_political_power = 50
@@ -65,7 +108,7 @@ focus_tree = {
 				remove_idea = SER_nato_bombings_scars_idea
 				add_idea = SER_nato_bombings_scars_idea_1
 			}
-			IF = {
+			if = {
 				limit = {
 					SER = {
 						NOT = { has_country_flag = SER_zover }
@@ -74,66 +117,98 @@ focus_tree = {
 				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_peacefulize_the_plebs
 		icon = SER_help_poor
-		relative_position_id = SER_the_high_castle
-		prerequisite = { focus = SER_begin_repairing_works1 }
+
 		x = 0
 		y = 2
-		cost = 7
+		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_begin_repairing_works1 }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_peacefulize_the_plebs"
-			add_timed_idea = {
-				idea = SER_plebs_idea
-				days = 300
-			}
-			IF = {
+			add_timed_idea = { idea = SER_plebs_idea days = 300 }
+			if = {
 				limit = {
-					SER = {
-						NOT = { has_country_flag = SER_zover }
-					}
+					SER = { NOT = { has_country_flag = SER_zover } }
 				}
 				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_deals_with_criminal_world
 		icon = sniper
-		relative_position_id = SER_the_high_castle
-		prerequisite = { focus = SER_the_high_castle }
+
 		x = -2
 		y = 1
+		relative_position_id = SER_the_high_castle
 		cost = 5
+
+		prerequisite = { focus = SER_the_high_castle }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_deals_with_criminal_world"
 			add_political_power = -50
 			set_temp_variable = { treasury_change = 3 }
 			modify_treasury_effect = yes
+			IF = {
+				limit = {
+					SER = {
+						NOT = { has_country_flag = SER_zover }
+					}
+				}
+				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
+			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_enforcement_of_kleptocracy
 		icon = SER_Goverment_building
-		relative_position_id = SER_the_high_castle
-		prerequisite = { focus = SER_deals_with_criminal_world }
+
 		x = -2
 		y = 2
-		cost = 7
+		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_deals_with_criminal_world }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_enforcement_of_kleptocracy"
 			swap_ideas = {
@@ -150,31 +225,39 @@ focus_tree = {
 				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_anti_opposition_measures
 		icon = SER_power_consolidate
-		relative_position_id = SER_the_high_castle
-		prerequisite = { focus = SER_the_high_castle }
+
 		x = 2
 		y = 1
-		cost = 7
+		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_the_high_castle }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_anti_opposition_measures"
-			add_popularity = {
-				ideology = democratic
-				popularity = -0.10
-			}
+			add_popularity = { ideology = democratic popularity = -0.10 }
+			recalculate_party = yes
 			add_stability = 0.02
 			add_timed_idea = {
 				idea = SER_antiopposition_activity_idea
 				days = 200
 			}
-			IF = {
+			if = {
 				limit = {
 					SER = {
 						NOT = { has_country_flag = SER_zover }
@@ -183,26 +266,33 @@ focus_tree = {
 				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_demonstrative_anti_corruption_actions
 		icon = SER_destroy_corruption
-		relative_position_id = SER_the_high_castle
-		prerequisite = { focus = SER_anti_opposition_measures }
+
 		x = 2
 		y = 2
+		relative_position_id = SER_the_high_castle
+
 		cost = 5
+
+		prerequisite = { focus = SER_anti_opposition_measures }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_demonstrative_anti_corruption_actions"
-			add_timed_idea = {
-				idea = SER_demonstrative_anticorrup_idea
-				days = 300
-			}
-			IF = {
+			add_timed_idea = { idea = SER_demonstrative_anticorrup_idea days = 300 }
+			if = {
 				limit = {
 					SER = {
 						NOT = { has_country_flag = SER_zover }
@@ -211,96 +301,110 @@ focus_tree = {
 				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_debt_reconstructuring
 		icon = SER_nodebts
 
 		x = -2
 		y = 3
-		cost = 7
-		prerequisite = {
-			focus = SER_enforcement_of_kleptocracy
-			focus = SER_peacefulize_the_plebs
-			focus = SER_demonstrative_anti_corruption_actions
-		}
 		relative_position_id = SER_the_high_castle
+
+		cost = 5
+		prerequisite = { focus = SER_enforcement_of_kleptocracy	}
+		prerequisite = { focus = SER_demonstrative_anti_corruption_actions }
+		prerequisite = { focus = SER_peacefulize_the_plebs }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_debt_reconstructuring"
-			add_timed_idea = {
-				idea = SER_debt_reconstructure
-				days = 360
-			}
+			add_timed_idea = { idea = SER_debt_reconstructure days = 360 }
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_stabilization_measures
 		icon = econ_serbia
+
 		x = 2
 		y = 3
-		cost = 7
-		prerequisite = {
-			focus = SER_enforcement_of_kleptocracy
-			focus = SER_peacefulize_the_plebs
-			focus = SER_demonstrative_anti_corruption_actions
-		}
 		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_enforcement_of_kleptocracy	}
+		prerequisite = { focus = SER_demonstrative_anti_corruption_actions }
+		prerequisite = { focus = SER_peacefulize_the_plebs }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_stabilization_measures"
-			add_timed_idea = {
-				idea = SER_stable_measure
-				days = 360
-			}
+			add_timed_idea = { idea = SER_stable_measure days = 360 }
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_castle_holds_strong
 		icon = SER_mil_in_tv
+
 		x = -4
 		y = 4
-		cost = 7
-		prerequisite = {
-			focus = SER_stabilization_measures
-		}
-		prerequisite = {
-			focus = SER_debt_reconstructuring
-		}
+		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_stabilization_measures }
+		prerequisite = { focus = SER_debt_reconstructuring }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			has_country_flag = SER_bulldozer_died
 		}
-		relative_position_id = SER_the_high_castle
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_castle_holds_strong"
 			add_ideas = SER_milocevic_power
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_milosevic_authority
 		icon = dominant_party
 
 		x = -1
 		y = 5
-		cost = 7
-		prerequisite = {
-			focus = SER_castle_holds_strong
-		}
 		relative_position_id = SER_the_high_castle
+
+		cost = 5
+		prerequisite = { focus = SER_castle_holds_strong }
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_milosevic_authority"
 			add_political_power = 100
@@ -309,16 +413,18 @@ focus_tree = {
 			set_temp_variable = { temp_outlook_increase = 0.05 }
 			add_relative_party_popularity = yes
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_purge_kleptocratic
 		icon = SER_destroy_mon
 		x = -8
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -335,14 +441,37 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_purge_kleptocratic"
-			remove_ideas = SER_The_kleptocratic_1
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic
+				}
+				remove_ideas = SER_The_kleptocratic
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_1
+				}
+				remove_ideas = SER_The_kleptocratic_1
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_2
+				}
+				remove_ideas = SER_The_kleptocratic_2
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_3
+				}
+				remove_ideas = SER_The_kleptocratic_3
+			}
 			set_temp_variable = { temp_opinion = 5 }
 			change_landowners_opinion = yes
 			set_temp_variable = { temp_opinion = 5 }
 			change_small_medium_business_owners_opinion = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -350,7 +479,7 @@ focus_tree = {
 		icon = protest_zloi
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -369,23 +498,27 @@ focus_tree = {
 			block_police_decrease = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_anti_corruption_measures
 		icon = upper_class_ban
+
 		x = 0
 		y = 2
-		cost = 7
+		relative_position_id = SER_purge_kleptocratic
+
+		cost = 5
+
+		prerequisite = { focus = SER_crack_down_on_crime }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
-		prerequisite = {
-			focus = SER_crack_down_on_crime
-		}
-		relative_position_id = SER_purge_kleptocratic
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_anti_corruption_measures"
 			add_political_power = -75
@@ -395,61 +528,66 @@ focus_tree = {
 			set_temp_variable = { temp_outlook_increase = 0.07 }
 			add_relative_party_popularity = yes
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_crush_the_opposition
 		icon = SER_purge_opp
+
 		x = 2
 		y = 1
-		cost = 7
-		available = {
-			nationalist_right_wing_populists_are_in_power = yes
-		}
+		relative_position_id = SER_purge_kleptocratic
+
+		cost = 5
+
 		prerequisite = {
 			focus = SER_purge_kleptocratic
 			focus = SER_empower_kleptocratic
 		}
-		relative_position_id = SER_purge_kleptocratic
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_right_wing_populists_are_in_power = yes
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_anti_corruption_measures"
-			add_popularity = {
-				ideology = democratic
-				popularity = -0.10
-			}
+			add_popularity = { ideology = democratic popularity = -0.10 }
+			recalculate_party = yes
 			add_timed_idea = {
 				idea = SER_antiopposition_activity_idea
 				days = 200
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_empower_kleptocratic
 		icon = SER_arise_klept
 
 		x = -4
 		y = 1
-		cost = 7
+		relative_position_id = SER_milosevic_authority
+
+		cost = 5
+
+		prerequisite = { focus = SER_milosevic_authority }
+		prerequisite = { focus = SER_increase_centralization }
+		mutually_exclusive = { focus = SER_purge_kleptocratic }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
-		prerequisite = {
-			focus = SER_milosevic_authority
-		}
-		prerequisite = {
-			focus = SER_increase_centralization
-		}
-		mutually_exclusive = {
-			focus = SER_purge_kleptocratic
-		}
-		relative_position_id = SER_milosevic_authority
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_empower_kleptocratic"
 			set_temp_variable = { temp_opinion = 5 }
@@ -461,25 +599,29 @@ focus_tree = {
 				add_idea = SER_The_kleptocratic
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_criminal_government
 		icon = focus_ITA_banda_carita
 
 		x = -4
 		y = 2
-		cost = 7
+		relative_position_id = SER_milosevic_authority
+
+		cost = 5
+
+		prerequisite = { focus = SER_empower_kleptocratic }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
-		prerequisite = {
-			focus = SER_empower_kleptocratic
-		}
-		relative_position_id = SER_milosevic_authority
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_empower_kleptocratic"
 			add_stability = -0.03
@@ -492,25 +634,29 @@ focus_tree = {
 				add_idea = SER_The_kleptocratic_2
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_criminal_oligarchs
 		icon = focus_SWI_embrace_rote_drei
 
 		x = -4
 		y = 3
-		cost = 7
+		relative_position_id = SER_milosevic_authority
+
+		cost = 5
+
+		prerequisite = { focus = SER_criminal_government }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
-		prerequisite = {
-			focus = SER_criminal_government
-		}
-		relative_position_id = SER_milosevic_authority
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_empower_kleptocratic"
 			set_temp_variable = { temp_opinion = 5 }
@@ -526,10 +672,12 @@ focus_tree = {
 				add_idea = SER_The_kleptocratic_3
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_pro_serbian_referendum
 		icon = focus_invite_yugoslavia
@@ -552,17 +700,20 @@ focus_tree = {
 			add_stability = 0.07
 			add_political_power = -100
 			custom_effect_tooltip = SER_MNT_give_up
+			set_country_flag = SER_montenegro_independence_dead
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_renewed_milosevic_serbia
 		icon = SER_miloshavich
 		x = 5
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -583,20 +734,22 @@ focus_tree = {
 			change_small_medium_business_owners_opinion = yes
 			set_cosmetic_tag = SER_REB_nationalist
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 300
 				has_global_flag = SER_MILOCEVIC_NATI_FOCUS_PATH
 			}
 		}
 	}
+
 	focus = {
 		id = SER_serbian_perestroika
 		icon = rethink_policy
 		x = -15
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -644,20 +797,22 @@ focus_tree = {
 				}
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 300
 				has_global_flag = SER_MILOCEVIC_FEDERATION_FOCUS_PATH
 			}
 		}
 	}
+
 	focus = {
 		id = SER_confederation_project
 		icon = ser_prepare_federation
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -671,7 +826,7 @@ focus_tree = {
 			add_timed_idea = { idea = SER_conf_prepare days = 390 }
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -679,7 +834,7 @@ focus_tree = {
 		icon = focus_SWE_attack_landsorganisationen
 		x = 2
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -695,7 +850,7 @@ focus_tree = {
 			add_political_power = 100
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -703,7 +858,7 @@ focus_tree = {
 		icon = two_language_state
 		x = 4
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -717,7 +872,7 @@ focus_tree = {
 			add_timed_idea = { idea = SER_language days = 340 }
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -725,7 +880,7 @@ focus_tree = {
 		icon = flag_serbia
 		x = -2
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -739,7 +894,7 @@ focus_tree = {
 			add_timed_idea = { idea = SER_renew_serbia days = 740 }
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -747,7 +902,7 @@ focus_tree = {
 		icon = balkans_map_f
 		x = -4
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -796,7 +951,7 @@ focus_tree = {
 			change_permanent_investment_target = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -804,7 +959,7 @@ focus_tree = {
 		icon = ser_federation_create
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -847,7 +1002,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -855,7 +1010,7 @@ focus_tree = {
 		icon = align_to_bosnia
 		x = -2
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -880,12 +1035,12 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
 		id = SER_confederation_bos
-		icon = ser_invite_bosnia
+		icon = flag_wave_bosnia
 		x = -2
 		y = 4
 		cost = 5
@@ -904,9 +1059,12 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_bos"
 			custom_effect_tooltip = SER_federation_bosnia_tt
+			hidden_effect = {
+				BOS = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -914,7 +1072,7 @@ focus_tree = {
 		icon = befriend_croatia
 		x = 0
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -951,15 +1109,15 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
 		id = SER_confederation_slv_cro
-		icon = ser_invite_croatia
+		icon = align_to_croatia
 		x = 0
 		y = 4
-		cost = 7
+		cost = 5
 		available = {
 			country_exists = SLV
 			NOT = {
@@ -980,9 +1138,13 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_slv_cro"
 			custom_effect_tooltip = SER_federation_croatia_tt
 			custom_effect_tooltip = SER_federation_slovenia_tt
+			hidden_effect = {
+				CRO = { set_country_flag = balkan_subject_agree }
+				SLV = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1027,12 +1189,12 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
 		id = SER_confederation_mac_kos
-		icon = ser_invite_macedonai
+		icon = align_to_kosovo
 		x = 2
 		y = 4
 		cost = 5
@@ -1051,9 +1213,13 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_mac_kos"
 			custom_effect_tooltip = SER_federation_macedonia_tt
+			hidden_effect = {
+				FYR = { set_country_flag = balkan_subject_agree }
+				KOS = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1061,7 +1227,7 @@ focus_tree = {
 		icon = ser_federation_create
 		x = 0
 		y = 5
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				BOS = {	has_autonomy_state = autonomy_balkan_federation }
@@ -1085,15 +1251,15 @@ focus_tree = {
 			add_ideas = SER_federation
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_confederation_alb
-		icon = ser_invite_albania
+		icon = align_to_albania
 		x = -1
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			country_exists = ALB
 			NOT = {
@@ -1109,9 +1275,12 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_alb"
 			custom_effect_tooltip = SER_federation_albania_tt
+			hidden_effect = {
+				ALB = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1119,7 +1288,7 @@ focus_tree = {
 		icon = ser_multinational
 		x = -3
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -1133,15 +1302,15 @@ focus_tree = {
 			add_ideas = SER_multicurtural
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_confederation_gre
-		icon = ser_invite_greece
+		icon = align_to_greece
 		x = 1
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			country_exists = GRE
 			NOT = {
@@ -1157,9 +1326,12 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_gre"
 			custom_effect_tooltip = SER_federation_greece_tt
+			hidden_effect = {
+				GRE = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1167,7 +1339,7 @@ focus_tree = {
 		icon = open_balkan
 		x = 3
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -1181,15 +1353,15 @@ focus_tree = {
 			add_ideas = SER_new_identity
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_confederation_bul
-		icon = ser_invite_bulgaria
+		icon = align_to_bulgaria
 		x = -1
 		y = 7
-		cost = 7
+		cost = 5
 		available = {
 			country_exists = BUL
 			NOT = {
@@ -1212,17 +1384,20 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_bul"
 			custom_effect_tooltip = SER_federation_bulgaria_tt
+			hidden_effect = {
+				BUL = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_confederation_romania
-		icon = ser_invite_romania
+		icon = align_to_romania
 		x = 1
 		y = 7
-		cost = 7
+		cost = 5
 		available = {
 			country_exists = ROM
 			NOT = {
@@ -1245,9 +1420,12 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_confederation_bul"
 			custom_effect_tooltip = SER_federation_romania_tt
+			hidden_effect = {
+				ROM = { set_country_flag = balkan_subject_agree }
+			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1255,7 +1433,7 @@ focus_tree = {
 		icon = ser_balkan_federation
 		x = 0
 		y = 8
-		cost = 7
+		cost = 5
 		available = {
 			neutrality_neutral_social_are_in_power = yes
 		}
@@ -1274,7 +1452,7 @@ focus_tree = {
 			remove_ideas = SER_new_identity
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1282,7 +1460,7 @@ focus_tree = {
 		icon = workers_of_iberia
 		x = -5
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -1317,7 +1495,7 @@ focus_tree = {
 				ideology = communism
 				popularity = 0.3
 			}
-			add_to_variable = { party_pop_array^0 = 0.3 }
+			add_to_variable = { party_pop_array^4 = 0.3 }
 			recalculate_party = yes
 			create_country_leader = {
 				name = "Slobodan Miloševic"
@@ -1333,8 +1511,9 @@ focus_tree = {
 			}
 			set_cosmetic_tag = SER_AUTH_S_communism
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 300
 				has_global_flag = SER_MILOCEVIC_COMMI_FOCUS_PATH
@@ -1346,7 +1525,7 @@ focus_tree = {
 		icon = SER_milo_comm
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1366,7 +1545,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -1374,7 +1553,7 @@ focus_tree = {
 		icon = Socialist_Workaholics
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1396,7 +1575,7 @@ focus_tree = {
 			one_random_fossil_fuel_powerplant = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -1404,7 +1583,7 @@ focus_tree = {
 		icon = Focus_Socialist_Worker
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1420,7 +1599,7 @@ focus_tree = {
 			add_ideas = SER_new_workplace
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -1428,7 +1607,7 @@ focus_tree = {
 		icon = generic_one_party
 		x = -1
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1445,7 +1624,7 @@ focus_tree = {
 			add_ideas = SER_control_government_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -1453,7 +1632,7 @@ focus_tree = {
 		icon = focus_invite_yugoslavia
 		x = -4
 		y = 4
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1470,7 +1649,7 @@ focus_tree = {
 			add_timed_idea = { idea = SER_new_constitution_idea days = 140 }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -1478,7 +1657,7 @@ focus_tree = {
 		icon = blr_state_atheism
 		x = -5
 		y = 5
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1500,7 +1679,7 @@ focus_tree = {
 			change_communist_cadres_opinion = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1508,7 +1687,7 @@ focus_tree = {
 		icon = focus_FIN_socialist_wellfare
 		x = -4
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1530,7 +1709,7 @@ focus_tree = {
 			change_communist_cadres_opinion = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1538,7 +1717,7 @@ focus_tree = {
 		icon = Generic_Marxism
 		x = -3
 		y = 5
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1560,7 +1739,7 @@ focus_tree = {
 			change_communist_cadres_opinion = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1568,7 +1747,7 @@ focus_tree = {
 		icon = Labourist
 		x = 4
 		y = 4
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1586,7 +1765,7 @@ focus_tree = {
 			one_random_industrial_complex = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1594,7 +1773,7 @@ focus_tree = {
 		icon = Leftist_Stuff_VII
 		x = 5
 		y = 5
-		cost = 7
+		cost = 5
 		available = {
 			NOT = {
 				has_idea = SER_four_year_plan_preparations_idea
@@ -1615,7 +1794,7 @@ focus_tree = {
 			one_random_fossil_fuel_powerplant = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1623,7 +1802,7 @@ focus_tree = {
 		icon = BRA_labor_laws
 		x = 4
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			NOT = {
 				has_idea = SER_four_year_plan_preparations_idea
@@ -1646,7 +1825,7 @@ focus_tree = {
 			add_ideas = SER_idea_new_economic_policy
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1654,7 +1833,7 @@ focus_tree = {
 		icon = focus_NOR_empower_sivorg
 		x = 3
 		y = 5
-		cost = 7
+		cost = 5
 		available = {
 			NOT = {
 				has_idea = SER_four_year_plan_preparations_idea
@@ -1677,7 +1856,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1685,7 +1864,7 @@ focus_tree = {
 		icon = GEO_Colectivize_the_farms
 		x = 1
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				emerging_anarchist_communism_are_in_power = yes
@@ -1702,7 +1881,7 @@ focus_tree = {
 			add_ideas = SER_control_economic_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -1710,7 +1889,7 @@ focus_tree = {
 		icon = SER_dest_opp
 		x = 2
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -1727,7 +1906,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1736,7 +1915,7 @@ focus_tree = {
 
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -1755,7 +1934,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1763,7 +1942,7 @@ focus_tree = {
 		icon = trade_with_russia
 		x = -2
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -1797,7 +1976,7 @@ focus_tree = {
 			one_random_fossil_fuel_powerplant = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1805,7 +1984,7 @@ focus_tree = {
 		icon = blr_chinese_investments
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -1839,7 +2018,7 @@ focus_tree = {
 			one_random_fossil_fuel_powerplant = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1867,19 +2046,25 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_ratify_greater_serbia
 		icon = SER_great_serbia
+
 		x = 2
 		y = 4
+		relative_position_id = SER_renewed_milosevic_serbia
+
 		cost = 5
+
 		prerequisite = {
 			focus = SER_full_milosevic_dictatorship
 			focus = SER_legacy_of_stefan_dusan
 		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -1887,24 +2072,42 @@ focus_tree = {
 				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
-		relative_position_id = SER_renewed_milosevic_serbia
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_ratify_greater_serbia"
 			136 = { add_claim_by = SER }
 			135 = { add_claim_by = SER }
+			134 = { add_claim_by = SER }
 			153 = { add_claim_by = SER }
+			133 = { add_claim_by = SER }
+			129 = { add_claim_by = SER }
+			128 = { add_claim_by = SER }
+			1052 = { add_claim_by = SER }
+			1054 = { add_claim_by = SER }
+			1053 = { add_claim_by = SER }
+			1051 = { add_claim_by = SER }
+			127 = { add_claim_by = SER }
+			126 = { add_claim_by = SER }
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_nationalise
 		icon = economic_nationalisation
+
 		x = 1
 		y = 1
-		cost = 7
+		relative_position_id = SER_ratify_greater_serbia
+
+		cost = 5
+
+		prerequisite = { focus = SER_ratify_greater_serbia }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -1912,11 +2115,7 @@ focus_tree = {
 				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
-		prerequisite = {
-			focus = SER_ratify_greater_serbia
-		}
-		relative_position_id = SER_ratify_greater_serbia
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_nationalise"
 			set_temp_variable = { temp_opinion = 5 }
@@ -1926,16 +2125,18 @@ focus_tree = {
 			one_random_industrial_complex = yes
 			one_random_fossil_fuel_powerplant = yes
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_infra
 		icon = Provincial_Funding_for_Roads
 		x = 1
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -1953,7 +2154,7 @@ focus_tree = {
 			two_random_infrastructure = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1961,7 +2162,7 @@ focus_tree = {
 		icon = ser_serbians
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -1979,7 +2180,7 @@ focus_tree = {
 			add_ideas = SER_rise_serbian_idea
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -1987,7 +2188,7 @@ focus_tree = {
 		icon = army_tank_industry
 		x = -1
 		y = 5
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2009,7 +2210,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2017,7 +2218,7 @@ focus_tree = {
 		icon = army_military_industryy
 		x = -2
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2041,7 +2242,7 @@ focus_tree = {
 			one_random_arms_factory = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2049,7 +2250,7 @@ focus_tree = {
 		icon = army_marching
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2067,7 +2268,7 @@ focus_tree = {
 			add_ideas = SER_serbian_glory_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2075,7 +2276,7 @@ focus_tree = {
 		icon = ser_gard
 		x = -2
 		y = 4
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2111,13 +2312,13 @@ focus_tree = {
 				limit = { ROOT = { has_full_control_of_state = PREV } }
 				prioritize = { 129 }
 				create_unit = {
-					division = "name = \"Garda Panteri\" division_template = \"Garda Panteri\" start_experience_factor = 0.9"
+					division = "name = \"Garda Panteri\" division_template = \"Garda Panteri\" start_experience_base = 0.9"
 					owner = SER
 				}
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2125,7 +2326,7 @@ focus_tree = {
 		icon = ser_ssd
 		x = 0
 		y = 4
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2143,7 +2344,7 @@ focus_tree = {
 			add_ideas = SER_ssd_command
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2151,7 +2352,7 @@ focus_tree = {
 		icon = GEO_Georgian_Knight
 		x = -1
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2172,7 +2373,7 @@ focus_tree = {
 			add_ideas = SER_border_build_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2180,7 +2381,7 @@ focus_tree = {
 		icon = SER_yugoslavia_a
 		x = 0
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_authoritarian_control_over_economy
 			focus = SER_authoritarian_control_over_government
@@ -2209,7 +2410,7 @@ focus_tree = {
 			1053 = { add_claim_by = SER }
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2217,7 +2418,7 @@ focus_tree = {
 		icon = ser_teroborona
 		x = -2
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_authoritarian_control_over_economy
 			focus = SER_authoritarian_control_over_government
@@ -2246,7 +2447,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2254,7 +2455,7 @@ focus_tree = {
 		icon = ser_kosovo_anti
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_reyugoslavication }
 		available = {
 			OR = {
@@ -2273,7 +2474,7 @@ focus_tree = {
 			KOS = {	country_event = { id = Serbia.18 days = 1 }	}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2281,7 +2482,7 @@ focus_tree = {
 		icon = SER_dest_bosnia
 		x = 2
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_pressure_on_kosovo }
 		available = {
 			OR = {
@@ -2301,7 +2502,7 @@ focus_tree = {
 			BOS = {	country_event = { id = Serbia.18 days = 1 }	}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2309,7 +2510,7 @@ focus_tree = {
 		icon = serbia_attack_croatia
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_pressure_on_kosovo }
 		available = {
 			OR = {
@@ -2329,7 +2530,7 @@ focus_tree = {
 			CRO = {	country_event = { id = Serbia.18 days = 1 }	}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2337,7 +2538,7 @@ focus_tree = {
 		icon = german_troops_in_macedonia
 		x = -2
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_pressure_on_kosovo }
 		available = {
 			OR = {
@@ -2358,7 +2559,7 @@ focus_tree = {
 			FYR = {	country_event = { id = Serbia.18 days = 1 }	}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2366,7 +2567,7 @@ focus_tree = {
 		icon = ser_phoenixnation
 		x = 0
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_ultimatums_for_slovenia_and_macedonia }
 		prerequisite = { focus = SER_crush_croatia }
 		prerequisite = { focus = SER_avenge_bosnia }
@@ -2394,7 +2595,7 @@ focus_tree = {
 			unlock_decision_category_tooltip = SER_integrate_yugoslavia_category
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2402,7 +2603,7 @@ focus_tree = {
 		icon = focus_rsk_preserve_srpska
 		x = -6
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_castle_holds_strong
 		}
@@ -2416,7 +2617,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -2424,7 +2625,7 @@ focus_tree = {
 		icon = ser_autonomy
 		x = 3
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2450,7 +2651,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2458,7 +2659,7 @@ focus_tree = {
 		icon = srpska_improve
 		x = 3
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2488,7 +2689,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2496,7 +2697,7 @@ focus_tree = {
 		icon = ser_attack_fyr
 		x = 5
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2521,7 +2722,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2529,7 +2730,7 @@ focus_tree = {
 		icon = ser_serbska
 		x = 5
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2559,7 +2760,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2567,7 +2768,7 @@ focus_tree = {
 		icon = ser_bosnia_integrate
 		x = 4
 		y = 3
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -2581,6 +2782,7 @@ focus_tree = {
 				SER = { owns_state = 1053 }
 				SER = { owns_state = 1054 }
 				SER = { owns_state = 1051 }
+				RSK = { is_subject_of = SER }
 			}
 		}
 		prerequisite = {
@@ -2599,10 +2801,11 @@ focus_tree = {
 					add_to_variable = { int_investments = RSK.int_investments }
 					}
 				annex_country = { target = RSK transfer_troops = yes }
+				RSK = { every_core_state = { add_core_of = SER } }
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	#### ARMED FORCES BRANCH
@@ -2611,7 +2814,7 @@ focus_tree = {
 		icon = ww1_look_back
 		x = 55
 		y = 13
-		cost = 7
+		cost = 5
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_serbian_armed_forces"
@@ -2620,7 +2823,7 @@ focus_tree = {
 			add_command_power = 20
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2628,7 +2831,7 @@ focus_tree = {
 		icon = Serbian_air_force
 		x = 7
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_serbian_armed_forces
 		}
@@ -2644,7 +2847,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2652,7 +2855,7 @@ focus_tree = {
 		icon = airforce_base_1
 		x = 7
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_avia
 		}
@@ -2668,7 +2871,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2676,7 +2879,7 @@ focus_tree = {
 		icon = blr_mig_25
 		x = 7
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_new_air_lines
 		}
@@ -2689,7 +2892,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2697,7 +2900,7 @@ focus_tree = {
 		icon = army_military_industryy
 		x = 4
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_serbian_armed_forces
 		}
@@ -2708,7 +2911,7 @@ focus_tree = {
 			one_random_arms_factory = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2716,7 +2919,7 @@ focus_tree = {
 		icon = zastava_arms
 		x = 4
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_vpk
 		}
@@ -2727,7 +2930,7 @@ focus_tree = {
 			add_ideas = SER_zastava
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2735,7 +2938,7 @@ focus_tree = {
 		icon = army_equipn
 		x = 3
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_zastava
 		}
@@ -2748,13 +2951,13 @@ focus_tree = {
 				name = GENERIC_infantry_equipment_development
 				bonus = 0.3
 				uses = 2
-				category = Cat_INF
+				category = CAT_inf
 			}
 			set_temp_variable = { treasury_change = -1.45 }
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2762,7 +2965,7 @@ focus_tree = {
 		icon = army_rzso
 		x = 5
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_zastava
 		}
@@ -2775,7 +2978,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2783,7 +2986,7 @@ focus_tree = {
 		icon = drone2
 		x = 6
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_rszo
 		}
@@ -2795,7 +2998,7 @@ focus_tree = {
 			one_random_arms_factory = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2803,7 +3006,7 @@ focus_tree = {
 		icon = army_antiair
 		x = 4
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_rszo
 		}
@@ -2819,7 +3022,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2827,7 +3030,7 @@ focus_tree = {
 		icon = zastava_sa
 		x = 2
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_uniform
 		}
@@ -2842,7 +3045,7 @@ focus_tree = {
 			one_random_arms_factory = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2850,7 +3053,7 @@ focus_tree = {
 		icon = ser_export
 		x = 4
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_pvo
 		}
@@ -2864,10 +3067,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_export"
-			unlock_decision_category_tooltip = SER_Export_category
+			add_ideas = SER_export_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2875,7 +3078,7 @@ focus_tree = {
 		icon = ser_mvd
 		x = -8
 		y = 1
-		cost = 7
+		cost = 3
 		prerequisite = {
 			focus = SER_serbian_armed_forces
 		}
@@ -2884,17 +3087,9 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_mvd"
 			increase_policing_budget = yes
-			IF = {
-				limit = {
-					SER = {
-						NOT = { has_country_flag = SER_zover }
-					}
-				}
-				add_to_variable = { var = SER_milosevic_strength value = 1 tooltip = SER_milosevic_power_1 }
-			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2902,7 +3097,7 @@ focus_tree = {
 		icon = ser_jandarm
 		x = -9
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_mvd
 		}
@@ -2915,7 +3110,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2923,7 +3118,7 @@ focus_tree = {
 		icon = ser_police
 		x = -7
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_mvd
 		}
@@ -2936,7 +3131,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2944,7 +3139,7 @@ focus_tree = {
 		icon = ser_terror
 		x = -8
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_police
 		}
@@ -2962,7 +3157,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -2993,7 +3188,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3001,7 +3196,7 @@ focus_tree = {
 		icon = ser_antiter
 		x = -8
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_kto
 		}
@@ -3017,7 +3212,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3025,7 +3220,7 @@ focus_tree = {
 		icon = SER_army
 		x = -4
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_serbian_armed_forces
 		}
@@ -3037,7 +3232,7 @@ focus_tree = {
 			one_random_arms_factory = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3045,7 +3240,7 @@ focus_tree = {
 		icon = srpska_soldier
 		x = -4
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_army
 		}
@@ -3059,7 +3254,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3067,7 +3262,7 @@ focus_tree = {
 		icon = serbia_map_with_guns
 		x = -5
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_doctrine
 		}
@@ -3079,7 +3274,7 @@ focus_tree = {
 			unlock_decision_category_tooltip = SER_doctrine_category
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3087,7 +3282,7 @@ focus_tree = {
 		icon = army_recruting1
 		x = -3
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_doctrine
 		}
@@ -3101,7 +3296,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3109,7 +3304,7 @@ focus_tree = {
 		icon = army_planning
 		x = -4
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_slujba
 		}
@@ -3126,7 +3321,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3134,7 +3329,7 @@ focus_tree = {
 		icon = ser_univer
 		x = -4
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_goz_granitca
 		}
@@ -3148,7 +3343,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3156,7 +3351,7 @@ focus_tree = {
 		icon = ser_genshtab
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_serbian_armed_forces
 		}
@@ -3167,7 +3362,7 @@ focus_tree = {
 			add_ideas = SER_genshtab
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3175,7 +3370,7 @@ focus_tree = {
 		icon = ser_guard
 		x = -1
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_genshtab
 		}
@@ -3187,29 +3382,29 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -7.45 }
 			modify_treasury_effect = yes
 			hidden_effect = {
-			division_template = {
-				name = "Srpska Guard"
-				regiments = {
-					Special_Forces = { x = 0 y = 0 }
-					Special_Forces = { x = 0 y = 1 }
-					Special_Forces = { x = 0 y = 2 }
-					Special_Forces = { x = 0 y = 3 }
-					Special_Forces = { x = 1 y = 0 }
-					Special_Forces = { x = 1 y = 1 }
+				division_template = {
+					name = "Srpska Guard"
+					regiments = {
+						Special_Forces = { x = 0 y = 0 }
+						Special_Forces = { x = 0 y = 1 }
+						Special_Forces = { x = 0 y = 2 }
+						Special_Forces = { x = 0 y = 3 }
+						Special_Forces = { x = 1 y = 0 }
+						Special_Forces = { x = 1 y = 1 }
+					}
+					priority = 2
 				}
-				priority = 2
-			}
-			capital_scope = {
-				create_unit = {
-					division = "name =\"Srpska Guard\" division_template = \"Srpska Guard\" start_experience_factor =  1.0"
-					owner = ROOT
-					count = 1
+				capital_scope = {
+					create_unit = {
+						division = "name = \"Srpska Guard\" division_template = \"Srpska Guard\" start_experience_base = 1.0"
+						owner = ROOT
+						count = 1
+					}
 				}
-			}
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3217,7 +3412,7 @@ focus_tree = {
 		icon = army_general_stuff1
 		x = 0
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_genshtab
 		}
@@ -3231,7 +3426,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3250,7 +3445,7 @@ focus_tree = {
 			unlock_decision_category_tooltip = SER_exercises_category
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -3258,7 +3453,7 @@ focus_tree = {
 		icon = ser_kobra
 		x = 1
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_genshtab
 		}
@@ -3285,34 +3480,37 @@ focus_tree = {
 			}
 			capital_scope = {
 				create_unit = {
-					division = "name =\"Military Police Battalion Kobra\" division_template = \"Military Police Battalion\" start_experience_factor =  1.0"
+					division = "name = \"Military Police Battalion Kobra\" division_template = \"Military Police Battalion\" start_experience_base = 1.0"
 					owner = ROOT
 					count = 1
 				}
 			}
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_final_chapters_of_milosevic
 		icon = broken_serbia
+
 		x = 4
 		y = 4
-		cost = 7
-		prerequisite = {
-			focus = SER_stabilization_measures
-		}
-		prerequisite = {
-			focus = SER_debt_reconstructuring
-		}
+		relative_position_id = SER_the_high_castle
+
+		cost = 5
+
+		prerequisite = { focus = SER_stabilization_measures }
+		prerequisite = { focus = SER_debt_reconstructuring }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			has_country_flag = SER_bulldozer_revolution
 		}
-		relative_position_id = SER_the_high_castle
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_final_chapters_of_milosevic"
 			add_political_power = 150
@@ -3322,56 +3520,73 @@ focus_tree = {
 				set_country_flag = SER_milosh_gone
 			}
 		}
+
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
+
 	focus = {
 		id = SER_democratic_ascendant
 		icon = Serbia_dem
 
 		x = 18
 		y = 5
-		cost = 2
-		prerequisite = {
-			focus = SER_final_chapters_of_milosevic
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
 		relative_position_id = SER_the_high_castle
+
+		cost = 2
+		prerequisite = { focus = SER_final_chapters_of_milosevic }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+			has_country_flag = SER_bulldozer_revolution
+			OR = {
+				has_government = neutrality
+				has_government = democratic
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_democratic_ascendant"
 			country_event = SerbiaFocus.11
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 300
 				has_global_flag = SER_SERBIAN_LIBERALS_FOCUS_PATH
 			}
 		}
 	}
+
 	focus = {
 		id = SER_Join_the_united_nations
 		icon = align_to_united_nations
+
 		x = -3
 		y = 1
-		cost = 7
+		relative_position_id = SER_democratic_ascendant
+
+		cost = 5
+
 		prerequisite = {
 			focus = SER_democratic_ascendant
 			focus = SER_free_elections_again
 		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
-		relative_position_id = SER_democratic_ascendant
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_Join_the_united_nations"
 			add_political_power = 100
@@ -3407,96 +3622,78 @@ focus_tree = {
 				}
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_punish_war_criminals
 		icon = ratko_mladic_jail
 		x = -4
 		y = 2
-		cost = 7
-		prerequisite = {
-			focus = SER_Join_the_united_nations
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
 		relative_position_id = SER_democratic_ascendant
+
+		cost = 5
+
+		prerequisite = { focus = SER_Join_the_united_nations }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_punish_war_criminals"
 			country_event = SerbiaFocus.13
-			add_opinion_modifier = {
-				modifier = peace_talks
-				target = KOS
-			}
-			reverse_add_opinion_modifier = {
-				modifier = peace_talks
-				target = KOS
-			}
-			add_opinion_modifier = {
-				modifier = peace_talks
-				target = BOS
-			}
-			reverse_add_opinion_modifier = {
-				modifier = peace_talks
-				target = BOS
-			}
-			add_opinion_modifier = {
-				modifier = peace_talks
-				target = ALB
-			}
-			reverse_add_opinion_modifier = {
-				modifier = peace_talks
-				target = ALB
-			}
-			add_opinion_modifier = {
-				modifier = peace_talks
-				target = USA
-			}
-			reverse_add_opinion_modifier = {
-				modifier = peace_talks
-				target = USA
-			}
-			BOS = {
-				country_event = SerbiaFocus.13
-			}
-			KOS = {
-				country_event = SerbiaFocus.13
-			}
-			USA = {
-				country_event = SerbiaFocus.13
-			}
-			ALB = {
-				country_event = SerbiaFocus.13
-			}
+			add_opinion_modifier = { modifier = peace_talks target = KOS }
+			reverse_add_opinion_modifier = { modifier = peace_talks target = KOS }
+			add_opinion_modifier = { modifier = peace_talks target = BOS }
+			reverse_add_opinion_modifier = { modifier = peace_talks target = BOS }
+			add_opinion_modifier = { modifier = peace_talks target = ALB }
+			reverse_add_opinion_modifier = { modifier = peace_talks target = ALB }
+			add_opinion_modifier = { modifier = peace_talks target = USA }
+			reverse_add_opinion_modifier = { modifier = peace_talks target = USA }
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_market_oriented_reforms
 		icon = romanian_economic_development_plan
 
 		x = -1
 		y = 1
-		cost = 7
+		relative_position_id = SER_democratic_ascendant
+
+		cost = 5
+
 		prerequisite = {
 			focus = SER_democratic_ascendant
 			focus = SER_free_elections_again
 		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ECONOMY }
+
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
-		relative_position_id = SER_democratic_ascendant
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_market_oriented_reforms"
 			add_timed_idea = {
@@ -3505,25 +3702,36 @@ focus_tree = {
 			}
 			increase_economic_growth = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_end_isolationism
 		icon = SER_congress_of_belgrade
+
 		x = -2
 		y = 2
+		relative_position_id = SER_democratic_ascendant
+
 		cost = 5
+
 		prerequisite = { focus = SER_Join_the_united_nations }
 		prerequisite = { focus = SER_market_oriented_reforms }
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
-		relative_position_id = SER_democratic_ascendant
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_end_isolationism"
 			GRE = {
@@ -3539,109 +3747,129 @@ focus_tree = {
 				country_event = SerbiaFocus.12
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_novi_sad_railroad
 		icon = warsaw_main_station
+
 		x = -2
 		y = 2
-		cost = 7
-		prerequisite = {
-			focus = SER_punish_war_criminals
-		}
-		prerequisite = {
-			focus = SER_end_isolationism
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-			SER = {
-				owns_state = 130
-			}
-		}
 		relative_position_id = SER_market_oriented_reforms
+
+		cost = 5
+
+		prerequisite = { focus = SER_punish_war_criminals }
+		prerequisite = { focus = SER_end_isolationism }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+			owns_state = 130
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_novi_sad_railroad"
-			130 = {
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-					instant_build = yes
+			if = {
+				limit = { 130 = { infrastructure < 5 } }
+				130 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
 				}
+				set_temp_variable = { treasury_change = -3.50 }
+				modify_treasury_effect = yes
+			}
+			else = {
+				one_random_infrastructure = yes
 			}
 			build_railway = {
 				level = 2
-				path = { 3617 3614 11583 6998 392 11887 }
+				path = { 3617 11580 11586 414 6998 9602 11887 }
 				start_state = 132
 				target_state = 130
 			}
-			set_temp_variable = { treasury_change = -3.50 }
-			modify_treasury_effect = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_bluechip_corporations
 		icon = superconductors
 
 		x = 2
 		y = 0
-		cost = 7
+		relative_position_id = SER_novi_sad_railroad
+
+		cost = 5
+
+		prerequisite = { focus = SER_end_isolationism }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 			SER = {
 				owns_state = 131
 			}
 		}
-		prerequisite = {
-			focus = SER_end_isolationism
-		}
-		relative_position_id = SER_novi_sad_railroad
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_bluechip_corporations"
 			add_ideas = SER_bluechip_corp
-			132 = {
-				add_building_construction = {
-					type = offices
-					level = 1
-					instant_build = yes
-				}
-			}
-			set_temp_variable = { treasury_change = -12.00 }
-			modify_treasury_effect = yes
+			one_office_construction = yes
+			one_random_fossil_fuel_powerplant = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_fiat_chrysier
 		icon = fiat_cars
 
 		x = -1
 		y = 1
+		relative_position_id = SER_bluechip_corporations
+
 		cost = 10
-		prerequisite = {
-			focus = SER_bluechip_corporations
-		}
+
+		prerequisite = { focus = SER_bluechip_corporations }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			ITA = { has_opinion = { target = SER value > 24 } }
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
-		relative_position_id = SER_bluechip_corporations
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_fiat_chrysier"
 			custom_effect_tooltip = cut_cost_tt
@@ -3660,28 +3888,36 @@ focus_tree = {
 			set_temp_variable = { influence_target = SER }
 			change_influence_percentage = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_volkswagen
 		icon = volkswagen
 
 		x = -1
 		y = 2
+		relative_position_id = SER_bluechip_corporations
+
 		cost = 10
-		prerequisite = {
-			focus = SER_fiat_chrysier
-		}
+
+		prerequisite = { focus = SER_fiat_chrysier }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			GER = { has_opinion = { target = SER value > 24 } }
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
-		relative_position_id = SER_bluechip_corporations
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_volkswagen"
 			custom_effect_tooltip = cut_cost_tt
@@ -3700,41 +3936,50 @@ focus_tree = {
 			set_temp_variable = { influence_target = SER }
 			change_influence_percentage = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
+	# Javno preduzeće Elektroprivreda Srbije
 	focus = {
-		id = SER_jp_electric_power_industry_of_serbia  #Javno preduzeće Elektroprivreda Srbije
+		id = SER_jp_electric_power_industry_of_serbia
 		icon = goal_JAP_mid
 
 		x = 1
 		y = 1
-		cost = 7
-		prerequisite = {
-			focus = SER_bluechip_corporations
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
 		relative_position_id = SER_bluechip_corporations
+
+		cost = 5
+
+		prerequisite = { focus = SER_bluechip_corporations }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_jp_electric_power_industry_of_serbia"
 			add_ideas = SER_jp_electric
 			add_tech_bonus = {
-				name = Cat_3D
+				name = SER_jp_electric_power_industry_of_serbia
 				bonus = 0.25
 				uses = 1
-				category = Cat_3D
+				category = CAT_3d
 			}
 			add_tech_bonus = {
-				name = construction_tech
+				name = SER_jp_electric_power_industry_of_serbia
 				bonus = 0.25
 				uses = 1
-				category = construction_tech
+				category = CAT_construction_tech
 			}
 			set_temp_variable = { treasury_change = -1.5 }
 			modify_treasury_effect = yes
@@ -3747,27 +3992,36 @@ focus_tree = {
 				modify_treasury_effect = yes
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_smederevo_steel_mill
 		icon = steel_production2
+
 		x = 1
 		y = 2
-		cost = 7
-		prerequisite = {
-			focus = SER_jp_electric_power_industry_of_serbia
-		}
+		relative_position_id = SER_bluechip_corporations
+
+		cost = 5
+
+		prerequisite = { focus = SER_jp_electric_power_industry_of_serbia }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			CHI = { has_opinion = { target = SER value > 19 } }
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
-		relative_position_id = SER_bluechip_corporations
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_smederevo_steel_mill"
 			set_temp_variable = { percent_change = 2 }
@@ -3782,51 +4036,71 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -4.38 }
 			modify_treasury_effect = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_renewed_serbia
 		icon = serbia_pacifism
+
 		x = 0
 		y = 3
+		relative_position_id = SER_bluechip_corporations
+
 		cost = 5
+
 		prerequisite = { focus = SER_smederevo_steel_mill focus = SER_volkswagen }
 		prerequisite = { focus = SER_active_combatting }
+
+		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_WAR_SUPPORT }
+
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
-		relative_position_id = SER_bluechip_corporations
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_renewed_serbia"
 			add_war_support = -0.1
 			increase_economic_growth = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_further_belt_and_road_cooperation
 		icon = chinese_rmb
+
 		x = -1
 		y = 1
+		relative_position_id = SER_novi_sad_railroad
+
 		cost = 8
-		prerequisite = {
-			focus = SER_novi_sad_railroad
-		}
+
+		prerequisite = { focus = SER_novi_sad_railroad }
 		available = {
 			CHI = { has_opinion = { target = SER value > 19 } }
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
-		relative_position_id = SER_novi_sad_railroad
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_further_belt_and_road_cooperation"
 			three_random_infrastructure = yes
@@ -3841,26 +4115,35 @@ focus_tree = {
 			set_temp_variable = { party_popularity_increase = 0.08 }
 			add_relative_party_popularity = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_Nikola_Tesla_international
 		icon = tesla_uni
+
 		x = -1
 		y = 2
-		cost = 8
-		prerequisite = {
-			focus = SER_further_belt_and_road_cooperation
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
 		relative_position_id = SER_novi_sad_railroad
+
+		cost = 8
+
+		prerequisite = { focus = SER_further_belt_and_road_cooperation }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_Nikola_Tesla_international"
 			131 = {
@@ -3882,29 +4165,38 @@ focus_tree = {
 			set_temp_variable = { influence_target = SER }
 			change_influence_percentage = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
-	#
+
 	focus = {
 		id = SER_national_assembly
 		icon = serbian_parliament
 
 		x = 7
 		y = 1
+		relative_position_id = SER_democratic_ascendant
+
 		cost = 5
+
 		prerequisite = {
 			focus = SER_democratic_ascendant
 			focus = SER_free_elections_again
 		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
-		relative_position_id = SER_democratic_ascendant
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_national_assembly"
 			set_temp_variable = { threshold_change = 0.03 }
@@ -3916,20 +4208,25 @@ focus_tree = {
 				country_event = { id = ser_dem.5 days = 3000 }
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_independent_judiciary
 		icon = goal_JAP_hierarchy
 
 		x = -4
 		y = 1
-		cost = 7
-		prerequisite = {
-			focus = SER_national_assembly
-		}
+		relative_position_id = SER_national_assembly
+
+		cost = 5
+
+		prerequisite = { focus = SER_national_assembly }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			NOT = {
 				OR = {
@@ -3939,8 +4236,7 @@ focus_tree = {
 				}
 			}
 		}
-		relative_position_id = SER_national_assembly
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_independent_judiciary"
 			add_political_power = -100
@@ -3951,20 +4247,25 @@ focus_tree = {
 			set_temp_variable = { percent_change = 10 }
 			change_domestic_influence_percentage = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_war_mafia
 		icon = blr_police_training
 
 		x = -4
 		y = 2
+		relative_position_id = SER_national_assembly
+
 		cost = 4
-		prerequisite = {
-			focus = SER_independent_judiciary
-		}
+
+		prerequisite = { focus = SER_independent_judiciary }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			NOT = {
 				OR = {
@@ -3974,8 +4275,7 @@ focus_tree = {
 				}
 			}
 		}
-		relative_position_id = SER_national_assembly
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_war_mafia"
 			add_war_support = 0.05
@@ -3984,17 +4284,19 @@ focus_tree = {
 			set_temp_variable = { temp_opinion = 10 }
 			change_small_medium_business_owners_opinion = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_legal_framework
 		icon = focus_ETH_re-convene_the_parliament
 
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_war_mafia
 		}
@@ -4017,7 +4319,7 @@ focus_tree = {
 			block_bureau_decrease = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4049,37 +4351,60 @@ focus_tree = {
 			change_small_medium_business_owners_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
 		id = SER_remove_previous_kleptocrats
 		icon = SER_destroy_mon
+
 		x = 0
 		y = 3
-		cost = 10
-		prerequisite = {
-			focus = SER_active_combatting
-		}
+		relative_position_id = SER_war_mafia
+
+		cost = 5
+
 		available = {
-			NOT = {
-				OR = {
-					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-					nationalist_monarchists_are_in_power = yes
-					nationalist_fascist_are_in_power = yes
-				}
+			OR = {
+				NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+				nationalist_monarchists_are_not_in_power = yes
+				nationalist_fascist_are_not_in_power = yes
 			}
 		}
-		relative_position_id = SER_war_mafia
+
+		prerequisite = { focus = SER_active_combatting }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_remove_previous_kleptocrats"
-			remove_ideas = SER_the_kleptocratic
-			remove_ideas = SER_The_kleptocratic_2
-			remove_ideas = SER_The_kleptocratic_3
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic
+				}
+				remove_ideas = SER_The_kleptocratic
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_1
+				}
+				remove_ideas = SER_The_kleptocratic_1
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_2
+				}
+				remove_ideas = SER_The_kleptocratic_2
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_3
+				}
+				remove_ideas = SER_The_kleptocratic_3
+			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4113,7 +4438,7 @@ focus_tree = {
 			change_small_medium_business_owners_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4138,8 +4463,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_eu_integration"
-			FRA = {
-				country_event = SerbiaFocus.14
+			if = {
+				limit = {
+					country_exists = FRA
+					NOT = { has_war_with = FRA }
+				}
+				FRA = {
+					country_event = SerbiaFocus.14
+				}
 			}
 			every_country = {
 				limit = {
@@ -4156,8 +4487,9 @@ focus_tree = {
 			set_temp_variable = { modify_eurosceptic = -0.05 }
 			EU_eurosceptic_change = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4165,7 +4497,7 @@ focus_tree = {
 		icon = SER_cefta_rof
 		x = 0
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_crush_the_old_system
 		}
@@ -4227,7 +4559,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4271,7 +4603,7 @@ focus_tree = {
 			EU_eurosceptic_change = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4279,7 +4611,7 @@ focus_tree = {
 		icon = politics_human_rights
 		x = 0
 		y = 6
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_eu_integration
 		}
@@ -4307,13 +4639,13 @@ focus_tree = {
 				name = SER_democratic_system
 				bonus = 0.5
 				uses = 2
-				category = internet_tech
-				category = computing_tech
+				category = CAT_internet_tech
+				category = CAT_computing_tech
 			}
 			decrease_conscription_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4351,7 +4683,7 @@ focus_tree = {
 			block_police_decrease = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4390,7 +4722,7 @@ focus_tree = {
 			change_the_clergy_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4418,22 +4750,9 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_support_serbian_bosniaks"
 			add_political_power = -100
 			BOS = {
-				custom_effect_tooltip = bos_srpska_attitude_towards_us_will_lower_tt
-				add_to_variable = {
-					var = srpska_attitude
-					value = -1
-				}
-				custom_effect_tooltip = bos_srpska_stability_will_lower_tt
-				add_to_variable = {
-					var = srpska_stability
-					value = -1
-				}
-				clamp_variable = { var = croat_attitude min = 1 max = 4 }
-				clamp_variable = { var = srpska_attitude min = 1 max = 4 }
-				clamp_variable = { var = bosniak_attitude min = 1 max = 4 }
-				clamp_variable = { var = croat_stability min = 1 max = 4 }
-				clamp_variable = { var = srpska_stability min = 1 max = 4 }
-				clamp_variable = { var = bosniak_stability min = 1 max = 4 }
+				BOS_srpska_attitude_decrease_effect = yes
+				BOS_srpska_stability_decrease_effect = yes
+
 			}
 			set_temp_variable = { percent_change = 4 }
 			set_temp_variable = { tag_index = SER }
@@ -4443,7 +4762,7 @@ focus_tree = {
 			change_small_medium_business_owners_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4452,7 +4771,7 @@ focus_tree = {
 
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_support_serbian_bosniaks
 		}
@@ -4487,22 +4806,24 @@ focus_tree = {
 			change_small_medium_business_owners_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_Propose_Open_Balkan_Initiative
 		icon = open_balkan
 
 		x = 1
 		y = 7
-		cost = 7
-		prerequisite = {
-			focus = SER_free_at_last
-		}
-		prerequisite = {
-			focus = SER_crush_the_old_system
-		}
+		relative_position_id = SER_national_assembly
+
+		cost = 5
+
+		prerequisite = { focus = SER_free_at_last }
+		prerequisite = { focus = SER_crush_the_old_system }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			OR = {
 				country_exists = FYR
@@ -4519,12 +4840,10 @@ focus_tree = {
 			}
 			has_government = democratic
 		}
-		relative_position_id = SER_national_assembly
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_Propose_Open_Balkan_Initiative"
 			increase_exports = yes
-			custom_effect_tooltip = SER_higher_relations_needed
 			BOS = {
 				country_event = {
 					id = SerbiaFocus.1
@@ -4544,8 +4863,9 @@ focus_tree = {
 				}
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4554,36 +4874,68 @@ focus_tree = {
 
 		x = 0
 		y = 4
-		cost = 7
-		prerequisite = {
-			focus = SER_renewed_serbia
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
 		relative_position_id = SER_bluechip_corporations
+
+		cost = 5
+
+		available = {
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+
+		prerequisite = { focus = SER_renewed_serbia }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_european_investment"
-			GER = {
-				country_event = SerbiaFocus.14
+			if = {
+				limit = {
+					country_exists = GER
+					NOT = { has_war_with = GER }
+				}
+				GER = {
+					country_event = SerbiaFocus.14
+				}
 			}
-			POL = {
-				country_event = SerbiaFocus.14
+			if = {
+				limit = {
+					country_exists = POL
+					NOT = { has_war_with = POL }
+				}
+				POL = {
+					country_event = SerbiaFocus.14
+				}
 			}
-			ITA = {
-				country_event = SerbiaFocus.14
+			if = {
+				limit = {
+					country_exists = ITA
+					NOT = { has_war_with = ITA }
+				}
+				ITA = {
+					country_event = SerbiaFocus.14
+				}
 			}
-			ROM = {
-				country_event = SerbiaFocus.14
+			if = {
+				limit = {
+					country_exists = ROM
+					NOT = { has_war_with = ROM }
+				}
+				ROM = {
+					country_event = SerbiaFocus.14
+				}
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_free_elections_again
 		icon = Generic_Liberalism
@@ -4592,14 +4944,10 @@ focus_tree = {
 		cost = 1
 		available = {
 			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
-			NOT = {
-				OR = {
-					nationalist_right_wing_populists_are_in_power = yes
-					emerging_anarchist_communism_are_in_power = yes
-					emerging_communist_state_are_in_power = yes
-					neutrality_neutral_social_are_in_power = yes
-				}
-			}
+			nationalist_right_wing_populists_are_not_in_power = yes
+			emerging_anarchist_communism_are_not_in_power = yes
+			emerging_communist_state_are_not_in_power = yes
+			neutrality_neutral_social_are_not_in_power = yes
 			has_completed_focus = SER_castle_holds_strong
 		}
 		relative_position_id = SER_democratic_ascendant
@@ -4608,7 +4956,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_free_elections"
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -4616,37 +4964,28 @@ focus_tree = {
 		icon = focus_NOR_restore_public_trust_in_the_storting
 		x = 22
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_democratic_ascendant
 			focus = SER_free_elections_again
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		relative_position_id = SER_democratic_ascendant
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_free_elections"
-			set_temp_variable = { percent_change = 1 }
-			set_temp_variable = { tag_index = GER }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
-			set_temp_variable = { percent_change = 1 }
-			set_temp_variable = { tag_index = AUS }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
-			set_temp_variable = { treasury_change = gdp_total }
-			multiply_temp_variable = { treasury_change = -0.05 }
-			modify_treasury_effect = yes
-			set_temp_variable = { int_investment_change = treasury_change }
-			multiply_temp_variable = { int_investment_change = -1.25 }
-			modify_international_investment_effect = yes
+			add_political_power = 150
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4655,7 +4994,7 @@ focus_tree = {
 		icon = SER_new_dem_party
 		x = 8
 		y = 1
-		cost = 7
+		cost = 2
 		prerequisite = {
 			focus = SER_free_elections
 		}
@@ -4679,9 +5018,10 @@ focus_tree = {
 			update_government_coalition_strength = yes
 			set_coalition_drift = yes
 		}
+		custom_effect_tooltip = SER_coalition_TT
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4690,7 +5030,7 @@ focus_tree = {
 		icon = communist_repression
 		x = 7
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_nova_democratica_stranka
 		}
@@ -4707,7 +5047,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4716,7 +5056,7 @@ focus_tree = {
 		icon = blr_anti_corruption_law
 		x = 7
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_anti_communist_stance
 		}
@@ -4730,7 +5070,7 @@ focus_tree = {
 			decrease_corruption = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4739,7 +5079,7 @@ focus_tree = {
 		icon = UKR_Limit_Soviets
 		x = 7
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_anticorruption_action
 		}
@@ -4753,7 +5093,7 @@ focus_tree = {
 			decrease_centralization = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4762,7 +5102,7 @@ focus_tree = {
 		icon = SER_national_conservatism
 		x = 9
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_nova_democratica_stranka
 		}
@@ -4776,7 +5116,7 @@ focus_tree = {
 			add_ideas = SER_national_conservatism_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4785,7 +5125,7 @@ focus_tree = {
 		icon = focus_ICE_state_corporatism
 		x = 9
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_diplomatic_pragmatism
 		}
@@ -4799,7 +5139,7 @@ focus_tree = {
 			add_ideas = SER_liberal_corporatism_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4808,7 +5148,7 @@ focus_tree = {
 		icon = alliance_USA_RUS
 		x = 9
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_national_conservatism
 		}
@@ -4823,7 +5163,7 @@ focus_tree = {
 			SOV = { country_event = ser_dem.1 }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4832,7 +5172,7 @@ focus_tree = {
 		icon = SER_spirit_od_degaulle
 		x = 8
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_burrecarcy_destroy
 		}
@@ -4852,7 +5192,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4861,7 +5201,7 @@ focus_tree = {
 		icon = SER_dem_party
 		x = 4
 		y = 1
-		cost = 7
+		cost = 2
 		prerequisite = {
 			focus = SER_free_elections
 		}
@@ -4885,9 +5225,10 @@ focus_tree = {
 			update_government_coalition_strength = yes
 			set_coalition_drift = yes
 		}
+		custom_effect_tooltip = SER_coalition_TT
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4896,7 +5237,7 @@ focus_tree = {
 		icon = SER_radical_liberalism
 		x = 3
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_democratica_stranka
 		}
@@ -4910,7 +5251,7 @@ focus_tree = {
 			add_ideas = SER_radical_liberalism_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4919,7 +5260,7 @@ focus_tree = {
 		icon = open_balkan
 		x = 3
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_radical_liberalism
 		}
@@ -4934,7 +5275,7 @@ focus_tree = {
 			increase_education_budget = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4943,7 +5284,7 @@ focus_tree = {
 		icon = serbia_pacifism
 		x = 3
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_multiculturalism
 		}
@@ -4957,27 +5298,28 @@ focus_tree = {
 			decrease_military_spending = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	focus = {
 		id = SER_miracle_of_european_system
 		icon = SER_european_model
+
 		x = 4
 		y = 5
-		cost = 7
-		prerequisite = {
-			focus = SER_antimilitarism
-		}
-		prerequisite = {
-			focus = SER_eu_investments
-		}
+		relative_position_id = SER_free_elections
+
+		cost = 5
+
+		prerequisite = { focus = SER_antimilitarism }
+		prerequisite = { focus = SER_eu_investments }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			western_liberals_are_in_power = yes
 		}
-		relative_position_id = SER_free_elections
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_balkan_defender"
 			swap_ideas = {
@@ -4985,25 +5327,29 @@ focus_tree = {
 				add_idea = SER_model_democracy_idea
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	focus = {
 		id = SER_western_approach
 		icon = western_alignment
+
 		x = 5
 		y = 2
-		cost = 7
-		prerequisite = {
-			focus = SER_democratica_stranka
-		}
+		relative_position_id = SER_free_elections
+
+		cost = 5
+
+		prerequisite = { focus = SER_democratica_stranka }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			western_liberals_are_in_power = yes
 		}
-		relative_position_id = SER_free_elections
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_western_approach"
 			set_temp_variable = { receiver_nation = FRA.id }
@@ -5016,31 +5362,38 @@ focus_tree = {
 			set_temp_variable = { sender_nation = SER }
 			set_improved_trade_agreement = yes
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	focus = {
 		id = SER_free_market_capitalism
 		icon = blr_market_economy
+
 		x = 5
 		y = 3
-		cost = 7
-		prerequisite = {
-			focus = SER_western_approach
-		}
+		relative_position_id = SER_free_elections
+
+		cost = 5
+
+		prerequisite = { focus = SER_western_approach }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			western_liberals_are_in_power = yes
 		}
-		relative_position_id = SER_free_elections
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		# bypass = { }
+		# cancel = { }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_free_market_capitalism"
 			add_ideas = SER_free_market_idea
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5049,7 +5402,7 @@ focus_tree = {
 		icon = euro
 		x = 5
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_free_market_capitalism
 		}
@@ -5068,7 +5421,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5077,7 +5430,7 @@ focus_tree = {
 		icon = SER_progressive_party
 		x = 0
 		y = 1
-		cost = 7
+		cost = 2
 		prerequisite = {
 			focus = SER_free_elections
 		}
@@ -5109,9 +5462,10 @@ focus_tree = {
 			update_government_coalition_strength = yes
 			set_coalition_drift = yes
 		}
+		custom_effect_tooltip = SER_coalition_TT
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5120,7 +5474,7 @@ focus_tree = {
 		icon = economic_privatisation
 		x = 1
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_progressivna_stranka
 		}
@@ -5134,7 +5488,7 @@ focus_tree = {
 			add_ideas = SER_econom_stim
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5143,7 +5497,7 @@ focus_tree = {
 		icon = Trade_with_the_east
 		x = 1
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_economic_stimulation
 		}
@@ -5158,7 +5512,7 @@ focus_tree = {
 			SOV = { country_event = ser_dem.1 }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5167,7 +5521,7 @@ focus_tree = {
 		icon = focus_SWE_approach_the_allies
 		x = 1
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_eastern_investments
 		}
@@ -5183,7 +5537,7 @@ focus_tree = {
 			FRA = { country_event = ser_dem.1 }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5192,7 +5546,7 @@ focus_tree = {
 		icon = SER_populism
 		x = -1
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_progressivna_stranka
 		}
@@ -5206,7 +5560,7 @@ focus_tree = {
 			add_ideas = SER_populismus_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5215,7 +5569,7 @@ focus_tree = {
 		icon = goal_JAP_budget_check
 		x = -1
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_progressivna_stranka
 		}
@@ -5232,7 +5586,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5241,7 +5595,7 @@ focus_tree = {
 		icon = BRA_funds_to_rj_police
 		x = -1
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_anticor_mesuars
 		}
@@ -5256,7 +5610,7 @@ focus_tree = {
 			increase_policing_budget = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5265,7 +5619,7 @@ focus_tree = {
 		icon = SER_neutral_and_sove
 		x = 0
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_centralisation_police
 		}
@@ -5285,7 +5639,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5294,7 +5648,7 @@ focus_tree = {
 		icon = SER_socialist_union
 		x = -4
 		y = 1
-		cost = 7
+		cost = 2
 		prerequisite = {
 			focus = SER_free_elections
 		}
@@ -5318,9 +5672,10 @@ focus_tree = {
 			update_government_coalition_strength = yes
 			set_coalition_drift = yes
 		}
+		custom_effect_tooltip = SER_coalition_TT
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5329,7 +5684,7 @@ focus_tree = {
 		icon = SER_social_democracy
 		x = -5
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_social_democracy
 		}
@@ -5343,7 +5698,7 @@ focus_tree = {
 			add_ideas = SER_people_socialism_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5352,7 +5707,7 @@ focus_tree = {
 		icon = focus_SWE_form_rfsu
 		x = -5
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_social_dem
 		}
@@ -5369,7 +5724,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5379,7 +5734,7 @@ focus_tree = {
 		icon = women_in_the_economy
 		x = -5
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_antiauthoritarism
 		}
@@ -5396,7 +5751,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5405,7 +5760,7 @@ focus_tree = {
 		icon = social_democracy_2
 		x = -3
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_social_democracy
 		}
@@ -5420,7 +5775,7 @@ focus_tree = {
 			increase_social_spending = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5429,7 +5784,7 @@ focus_tree = {
 		icon = democracy6
 		x = -3
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_social_security
 		}
@@ -5444,7 +5799,7 @@ focus_tree = {
 			FRA = { country_event = ser_dem.1 }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5453,7 +5808,7 @@ focus_tree = {
 		icon = BRA_fome_zero_focus
 		x = -3
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_western_dominance
 		}
@@ -5467,7 +5822,7 @@ focus_tree = {
 			add_ideas = SER_social_mark_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5476,7 +5831,7 @@ focus_tree = {
 		icon = SER_ballkan_socdem
 		x = -4
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_social_market
 		}
@@ -5496,7 +5851,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5505,7 +5860,7 @@ focus_tree = {
 		icon = SER_socialist_party
 		x = -8
 		y = 1
-		cost = 7
+		cost = 2
 		prerequisite = {
 			focus = SER_free_elections
 		}
@@ -5532,7 +5887,7 @@ focus_tree = {
 		custom_effect_tooltip = SER_coalition_TT
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5541,7 +5896,7 @@ focus_tree = {
 		icon = SER_popular_socialism
 		x = -9
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_socialist_party
 		}
@@ -5552,10 +5907,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_popular_socialism"
-			add_ideas = SER_social_dem_idea
+			add_ideas = SER_people_socialism_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5564,7 +5919,7 @@ focus_tree = {
 		icon = green_biomass_plant
 		x = -9
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_popular_socialism
 		}
@@ -5588,7 +5943,7 @@ focus_tree = {
 		add_relative_party_popularity = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5597,7 +5952,7 @@ focus_tree = {
 		icon = welfare
 		x = -9
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_green_initiatives
 		}
@@ -5612,7 +5967,7 @@ focus_tree = {
 			increase_healthcare_budget = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5621,7 +5976,7 @@ focus_tree = {
 		icon = gen_coins_n
 		x = -7
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_socialist_party
 		}
@@ -5635,7 +5990,7 @@ focus_tree = {
 			add_ideas = SER_implement_econ_reg_idea
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5644,7 +5999,7 @@ focus_tree = {
 		icon = UKR_Vague_Balance_Holds
 		x = -7
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_implement_economic_regulations
 		}
@@ -5658,7 +6013,7 @@ focus_tree = {
 			country_event = ser_dem.4
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5667,7 +6022,7 @@ focus_tree = {
 		icon = orthodox_patriarh
 		x = -7
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_hard_pragmatism
 		}
@@ -5684,7 +6039,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5693,7 +6048,7 @@ focus_tree = {
 		icon = SER_socialist_renewal
 		x = -8
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_medicine_for_everyone
 		}
@@ -5713,7 +6068,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5757,7 +6112,7 @@ focus_tree = {
 			change_the_clergy_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5796,7 +6151,7 @@ focus_tree = {
 			change_the_clergy_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5805,15 +6160,20 @@ focus_tree = {
 
 		x = -8
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_democratic_ascendant
 			focus = SER_free_elections_again
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			country_exists = KOS
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		relative_position_id = SER_democratic_ascendant
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -5831,7 +6191,7 @@ focus_tree = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5840,14 +6200,19 @@ focus_tree = {
 
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_kosovo_question
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			country_exists = KOS
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		relative_position_id = SER_kosovo_question
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -5865,7 +6230,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5878,10 +6243,15 @@ focus_tree = {
 			focus = SER_coperate_kosovo_separatists
 		}
 		available = {
+			country_exists = KOS
 			BEL = { has_opinion = { target = SER value > 24 } }
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		relative_position_id = SER_kosovo_question
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -5890,7 +6260,7 @@ focus_tree = {
 			BEL = { country_event = Serbia.20 }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5898,14 +6268,19 @@ focus_tree = {
 		icon = peace_wall
 		x = 1
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_coperate_kosovo_separatists
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			country_exists = KOS
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		relative_position_id = SER_kosovo_question
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -5915,12 +6290,12 @@ focus_tree = {
 			132 = {
 				if = {
 					limit = { is_controlled_by = SER }
-					custom_effect_tooltip = "Add level 2 land forts in border with Kosovo!"
+					custom_effect_tooltip = SER_fortress_kos_border_TT
 					hidden_effect = {
 						add_building_construction = {
 							type = bunker
 							level = 2
-							province = 14612
+							province = 388
 							instant_build = yes
 						}
 						add_building_construction = {
@@ -5942,7 +6317,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5956,9 +6331,14 @@ focus_tree = {
 			focus = SER_brussels_agreement
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			country_exists = KOS
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		relative_position_id = SER_kosovo_question
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -5971,7 +6351,7 @@ focus_tree = {
 			add_relative_party_popularity = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -5979,14 +6359,19 @@ focus_tree = {
 		icon = anti_kla
 		x = -1
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_de_escalation
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			country_exists = KOS
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		mutually_exclusive = { focus = SER_recognize_kosovo }
 		relative_position_id = SER_kosovo_question
@@ -6018,7 +6403,7 @@ focus_tree = {
 			increase_military_spending = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6026,14 +6411,19 @@ focus_tree = {
 		icon = un_kosovo_protection
 		x = 1
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_de_escalation
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			country_exists = KOS
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		mutually_exclusive = { focus = SER_kosovo_is_serbia }
 		relative_position_id = SER_kosovo_question
@@ -6068,7 +6458,7 @@ focus_tree = {
 			end_puppet = KOS
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6076,7 +6466,7 @@ focus_tree = {
 		icon = sov_mechanize
 		x = 0
 		y = 4
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -6100,7 +6490,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6108,7 +6498,7 @@ focus_tree = {
 		icon = ser_arkan_guard
 		x = -10
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -6147,13 +6537,13 @@ focus_tree = {
 				limit = { ROOT = { has_full_control_of_state = PREV } }
 				prioritize = { 129 }
 				create_unit = {
-					division = "name = \"Serb Volunteer Guard\" division_template = \"Serb Volunteer Guard\" start_experience_factor = 1.0"
+					division = "name = \"Serb Volunteer Guard\" division_template = \"Serb Volunteer Guard\" start_experience_base = 1.0"
 					owner = SER
 				}
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6161,7 +6551,7 @@ focus_tree = {
 		icon = infantry_axis
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			nationalist_right_wing_populists_are_in_power = yes
 		}
@@ -6178,7 +6568,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6186,7 +6576,7 @@ focus_tree = {
 		icon = SER_money_eco
 		x = 28
 		y = 11
-		cost = 7
+		cost = 5
 		search_filters = { FOCUS_FILTER_ECONOMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_economic_development"
@@ -6200,7 +6590,7 @@ focus_tree = {
 			modify_population_tax_rate_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6208,7 +6598,7 @@ focus_tree = {
 		icon = generic_hospital
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_economic_development }
 		relative_position_id = SER_economic_development
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6218,7 +6608,7 @@ focus_tree = {
 			block_health_decrease = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6226,7 +6616,7 @@ focus_tree = {
 		icon = welfare
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_Belgrade_School_of_Medicine }
 		relative_position_id = SER_Belgrade_School_of_Medicine
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6235,7 +6625,7 @@ focus_tree = {
 			add_ideas = SER_medical_centers
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6243,7 +6633,7 @@ focus_tree = {
 		icon = free_higher_education
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_economic_development }
 		relative_position_id = SER_economic_development
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6257,7 +6647,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6266,7 +6656,7 @@ focus_tree = {
 
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_Ministry_of_Education }
 		relative_position_id = SER_Ministry_of_Education
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6277,7 +6667,7 @@ focus_tree = {
 			remove_ideas = SER_brain_drain_idea_2
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6285,7 +6675,7 @@ focus_tree = {
 		icon = goal_JAP_valueeven
 		x = 0
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_field_hospital_development }
 		prerequisite = { focus = SER_slow_down_the_brain_drain }
 		relative_position_id = SER_economic_development
@@ -6295,11 +6685,21 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_lick_the_wounds"
-			remove_ideas = SER_nato_bombings_scars_idea_1
-			add_stability = 0.05
+			if = {
+				limit = {
+					has_idea = SER_nato_bombings_scars_idea_1
+				}
+				remove_ideas = SER_nato_bombings_scars_idea_1
+			}
+			if = {
+				limit = {
+					has_idea = SER_nato_bombings_scars_idea
+				}
+				remove_ideas = SER_nato_bombings_scars_idea
+			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6322,7 +6722,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6330,7 +6730,7 @@ focus_tree = {
 		icon = windmills
 		x = 0
 		y = 5
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_our_exchange }
 		relative_position_id = SER_economic_development
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6351,7 +6751,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6369,7 +6769,7 @@ focus_tree = {
 			add_political_power = 100
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6377,7 +6777,7 @@ focus_tree = {
 		icon = gazprom_sheep5
 		x = -2
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_foreign_invest }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6404,9 +6804,13 @@ focus_tree = {
 			change_influence_percentage = yes
 			set_temp_variable = { temp_opinion = 5 }
 			change_fossil_fuel_industry_opinion = yes
+			SOV = {
+				set_temp_variable = { modify_capitalisation_gazprom = 0.430 }
+				modify_capitalisation_gazprom_support = yes
+			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6414,7 +6818,7 @@ focus_tree = {
 		icon = LUKOIL
 		x = -2
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_gazprom }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6440,7 +6844,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6448,7 +6852,7 @@ focus_tree = {
 		icon = rjd
 		x = -4
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_gazprom }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6462,22 +6866,23 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_rus_infra"
-			set_temp_variable = { percent_change = 3 }
-			set_temp_variable = { tag_index = SOV }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
-			one_random_infrastructure = yes
+			SOV = {
+				country_event = {
+					id = ser_invest.1
+					days = 1
+				}
+			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
-		id = SER_german_factories
+		id = SER_german_baseies
 		icon = align_to_germany
 		x = -1
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_foreign_invest }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6490,24 +6895,24 @@ focus_tree = {
 			has_war_with = GER
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SER_german_factories"
-			set_temp_variable = { percent_change = 3.5 }
-			set_temp_variable = { tag_index = GER }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
-			one_random_industrial_complex = yes
-			one_random_fossil_fuel_powerplant = yes
+			log = "[GetDateText]: [Root.GetName]: Focus SER_german_baseies"
+			GER = {
+				country_event = {
+					id = ser_invest.1
+					days = 1
+				}
+			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
-		id = SER_usa_factories
+		id = SER_usa_baseies
 		icon = focus_pringles
 		x = 1
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_foreign_invest }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6520,16 +6925,16 @@ focus_tree = {
 			has_war_with = USA
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SER_usa_factories"
-			set_temp_variable = { percent_change = 3.5 }
-			set_temp_variable = { tag_index = USA }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
-			one_random_industrial_complex = yes
-			one_random_fossil_fuel_powerplant = yes
+			log = "[GetDateText]: [Root.GetName]: Focus SER_usa_baseies"
+			USA = {
+				country_event = {
+					id = ser_invest.1
+					days = 1
+				}
+			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6537,9 +6942,9 @@ focus_tree = {
 		icon = align_to_italy
 		x = 0
 		y = 4
-		cost = 7
-		prerequisite = { focus = SER_usa_factories }
-		prerequisite = { focus = SER_german_factories }
+		cost = 5
+		prerequisite = { focus = SER_usa_baseies }
+		prerequisite = { focus = SER_german_baseies }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		available = {
@@ -6552,15 +6957,15 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_italian_business"
-			set_temp_variable = { percent_change = 2.6 }
-			set_temp_variable = { tag_index = ITA }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
-			one_office_construction = yes
-			one_random_fossil_fuel_powerplant = yes
+			ITA = {
+				country_event = {
+					id = ser_invest.1
+					days = 1
+				}
+			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6568,7 +6973,7 @@ focus_tree = {
 		icon = prc_sign
 		x = 2
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_foreign_invest }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6577,25 +6982,17 @@ focus_tree = {
 				has_war_with = CHI
 			}
 		}
-		bypass = {
-			has_war_with = CHI
-		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_metalls_china"
-			set_temp_variable = { treasury_change = -1.95 }
-			modify_treasury_effect = yes
-			add_resource = {
-				type = steel
-				amount = 5
-				state = 131
+			CHI = {
+				country_event = {
+					id = ser_invest.1
+					days = 1
+				}
 			}
-			set_temp_variable = { percent_change = 1.8 }
-			set_temp_variable = { tag_index = CHI }
-			set_temp_variable = { influence_target = SER }
-			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6603,7 +7000,7 @@ focus_tree = {
 		icon = huawei
 		x = 2
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_metalls_china }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6611,9 +7008,6 @@ focus_tree = {
 			NOT = {
 				has_war_with = CHI
 			}
-		}
-		bypass = {
-			has_war_with = CHI
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_huawei"
@@ -6623,7 +7017,7 @@ focus_tree = {
 				name = CHI_Huawei
 				bonus = 0.55
 				uses = 2
-				category = internet_tech
+				category = CAT_internet_tech
 			}
 			set_temp_variable = { percent_change = 2.8 }
 			set_temp_variable = { tag_index = CHI }
@@ -6631,7 +7025,7 @@ focus_tree = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6639,7 +7033,7 @@ focus_tree = {
 		icon = blr_china_modernisation_railtrain
 		x = 4
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_metalls_china }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6647,9 +7041,6 @@ focus_tree = {
 			NOT = {
 				has_war_with = CHI
 			}
-		}
-		bypass = {
-			has_war_with = CHI
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_china_infra"
@@ -6668,7 +7059,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6676,7 +7067,7 @@ focus_tree = {
 		icon = prc_coal
 		x = 3
 		y = 3
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_huawei }
 		prerequisite = { focus = SER_china_infra }
 		relative_position_id = SER_foreign_invest
@@ -6685,9 +7076,6 @@ focus_tree = {
 			NOT = {
 				has_war_with = CHI
 			}
-		}
-		bypass = {
-			has_war_with = CHI
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_china_energy"
@@ -6698,7 +7086,7 @@ focus_tree = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6720,18 +7108,15 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_a1"
-			set_temp_variable = { treasury_change = -3 }
-			modify_treasury_effect = yes
-			random_owned_controlled_state = {
-				add_building_construction = {
-					type = internet_station
-					level = 1
-					instant_build = yes
+			AUS = {
+				country_event = {
+					id = ser_invest.1
+					days = 1
 				}
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6739,7 +7124,7 @@ focus_tree = {
 		icon = microsoft
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = { focus = SER_a1 }
 		relative_position_id = SER_foreign_invest
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -6761,13 +7146,13 @@ focus_tree = {
 				name = USA_microsoft
 				bonus = 0.55
 				uses = 2
-				category = internet_tech
+				category = CAT_internet_tech
 			}
 			one_office_construction = yes
 			one_random_fossil_fuel_powerplant = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6775,7 +7160,7 @@ focus_tree = {
 		icon = Wheat_Industry
 		x = 2
 		y = 6
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_our_exchange
 		}
@@ -6788,7 +7173,7 @@ focus_tree = {
 			add_ideas = SER_agro_selhoz
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6796,7 +7181,7 @@ focus_tree = {
 		icon = zastava_car
 		x = 4
 		y = 7
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_our_exchange
 		}
@@ -6815,14 +7200,14 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -15 }
 			modify_treasury_effect = yes
 			add_tech_bonus = {
-				name = Cat_utility_vehicle
+				name = CAT_utility_vehicle
 				bonus = 0.35
 				uses = 2
-				category = Cat_UTIL
+				category = CAT_util
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -6833,6 +7218,11 @@ focus_tree = {
 		cost = 2
 		available = {
 			has_country_flag = SER_bulldozer_revolution
+			NOT = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes } }
+			OR = {
+				nationalist_monarchists_are_in_power = yes
+				nationalist_fascist_are_in_power = yes
+			}
 		}
 		prerequisite = { focus = SER_final_chapters_of_milosevic }
 		relative_position_id = SER_final_chapters_of_milosevic
@@ -6840,8 +7230,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_the_kingdom_of_serbia"
 			set_temp_variable = { party_index = 23 }
-			set_temp_variable = { party_popularity_increase = 0.55 }
-			set_temp_variable = { temp_outlook_increase = 0.55 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
 			add_relative_party_popularity = yes
 			hidden_effect = {
 			clear_array = ruling_party
@@ -6856,7 +7246,30 @@ focus_tree = {
 				elections_allowed = no
 			}
 			}
-			remove_ideas = SER_The_kleptocratic_1
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic
+				}
+				remove_ideas = SER_The_kleptocratic
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_1
+				}
+				remove_ideas = SER_The_kleptocratic_1
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_2
+				}
+				remove_ideas = SER_The_kleptocratic_2
+			}
+			if = {
+				limit = {
+					has_idea = SER_The_kleptocratic_3
+				}
+				remove_ideas = SER_The_kleptocratic_3
+			}
 			set_temp_variable = { temp_opinion = 5 }
 			change_landowners_opinion = yes
 			set_temp_variable = { temp_opinion = 5 }
@@ -6864,7 +7277,7 @@ focus_tree = {
 			set_cosmetic_tag = SER_AUTH_SS_nationalist
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 			modifier = {
 				factor = 300
 				has_global_flag = SER_SERBIAN_KINGDOM_FOCUS_PATH
@@ -6877,7 +7290,7 @@ focus_tree = {
 
 		x = 2
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -6896,7 +7309,7 @@ focus_tree = {
 			change_the_clergy_opinion = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6905,7 +7318,7 @@ focus_tree = {
 
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -6925,7 +7338,7 @@ focus_tree = {
 			recalculate_party = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6933,7 +7346,7 @@ focus_tree = {
 		icon = SER_Immortal_Yugoslavism
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -6955,7 +7368,7 @@ focus_tree = {
 			change_domestic_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6963,7 +7376,7 @@ focus_tree = {
 		icon = yugo_militans
 		x = 2
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -6984,7 +7397,7 @@ focus_tree = {
 			decrease_corruption = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -6993,7 +7406,7 @@ focus_tree = {
 
 		x = -2
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7016,7 +7429,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7025,7 +7438,7 @@ focus_tree = {
 
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7045,7 +7458,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7054,7 +7467,7 @@ focus_tree = {
 
 		x = 2
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7071,6 +7484,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_reinforce_the_population"
+			add_political_power = 100
 			random_owned_state = {
 				set_temp_variable = { movable_pop = THIS.state_population_k }
 				multiply_temp_variable = { movable_pop = 1 }
@@ -7096,7 +7510,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7105,7 +7519,7 @@ focus_tree = {
 
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7134,7 +7548,7 @@ focus_tree = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7143,7 +7557,7 @@ focus_tree = {
 
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7168,16 +7582,16 @@ focus_tree = {
 			set_cosmetic_tag = SER_REB_S_nationalist
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_bread_and_mother_serbia
-		icon = SER_yugoslavism
+		icon = right-wing_agrarianism
 
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7199,7 +7613,7 @@ focus_tree = {
 			change_the_clergy_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7208,7 +7622,7 @@ focus_tree = {
 
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7228,7 +7642,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7237,7 +7651,7 @@ focus_tree = {
 
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7283,7 +7697,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7292,7 +7706,7 @@ focus_tree = {
 
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7312,7 +7726,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7321,7 +7735,7 @@ focus_tree = {
 
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7346,7 +7760,7 @@ focus_tree = {
 			change_domestic_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7355,9 +7769,12 @@ focus_tree = {
 
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
-			nationalist_monarchists_are_in_power = yes
+			OR = {
+				nationalist_monarchists_are_in_power = yes
+				nationalist_fascist_are_in_power = yes
+			}
 			KOS = {
 				influence_higher_40 = yes
 			}
@@ -7386,7 +7803,7 @@ focus_tree = {
 			puppet = KOS
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7395,7 +7812,7 @@ focus_tree = {
 
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7431,7 +7848,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7440,7 +7857,7 @@ focus_tree = {
 
 		x = 2
 		y = 2
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7473,7 +7890,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7482,7 +7899,7 @@ focus_tree = {
 
 		x = 3
 		y = 6
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7507,7 +7924,7 @@ focus_tree = {
 			change_the_military_opinion = yes
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7516,7 +7933,7 @@ focus_tree = {
 
 		x = 3
 		y = 7
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7536,7 +7953,7 @@ focus_tree = {
 			}
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7545,7 +7962,7 @@ focus_tree = {
 
 		x = 3
 		y = 8
-		cost = 7
+		cost = 5
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
@@ -7581,17 +7998,17 @@ focus_tree = {
 			}
 			capital_scope = {
 				create_unit = {
-					division = "name =\"1st. Dusan Guard\" division_template = \"Dusan Guard\" start_experience_factor =  1.0"
+					division = "name = \"1st. Dusan Guard\" division_template = \"Dusan Guard\" start_experience_base = 1.0"
 					owner = ROOT
 					count = 1
 				}
 				create_unit = {
-					division = "name =\"2nd. Dusan Guard\" division_template = \"Dusan Guard\" start_experience_factor =  1.0"
+					division = "name = \"2nd. Dusan Guard\" division_template = \"Dusan Guard\" start_experience_base = 1.0"
 					owner = ROOT
 					count = 1
 				}
 				create_unit = {
-					division = "name =\"3rd. Dusan Guard\" division_template = \"Dusan Guard\" start_experience_factor =  1.0"
+					division = "name = \"3rd. Dusan Guard\" division_template = \"Dusan Guard\" start_experience_base = 1.0"
 					owner = ROOT
 					count = 1
 				}
@@ -7599,7 +8016,7 @@ focus_tree = {
 			set_cosmetic_tag = SER_AUTH_S_nationalist
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	focus = {
@@ -7607,7 +8024,7 @@ focus_tree = {
 		icon = ser_wife_milocevic
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_renewed_milosevic_serbia
 		}
@@ -7625,7 +8042,7 @@ focus_tree = {
 			add_relative_party_popularity = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7633,7 +8050,7 @@ focus_tree = {
 		icon = SER_yugleft_dest
 		x = -1
 		y = 1
-		cost = 7
+		cost = 5
 		mutually_exclusive = {
 			focus = SER_a_selective_merger
 		}
@@ -7650,7 +8067,7 @@ focus_tree = {
 			add_ideas = SER_shut_down_opposition
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7658,7 +8075,7 @@ focus_tree = {
 		icon = SER_yugleft_int
 		x = 1
 		y = 1
-		cost = 7
+		cost = 5
 		mutually_exclusive = {
 			focus = SER_shut_it_down_forcibly
 		}
@@ -7675,7 +8092,7 @@ focus_tree = {
 			add_ideas = SER_socialist_merger
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7683,7 +8100,7 @@ focus_tree = {
 		icon = SER_mil_patriot
 		x = 0
 		y = 2
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_a_selective_merger focus = SER_shut_it_down_forcibly
 		}
@@ -7696,22 +8113,40 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_full_milosevic_dictatorship"
 			hidden_effect = {
 				set_country_flag = no_leader_change
-				if = {
-					limit = {
-						has_government = fascism
-					}
-					set_politics = {
-						ruling_party = fascism
-						elections_allowed = no
-					}
+				set_politics = {
+					ruling_party = nationalist
+					elections_allowed = no
 				}
 				clr_country_flag = no_leader_change
+				set_country_flag = party0_banned
+				set_country_flag = party1_banned
+				set_country_flag = party2_banned
+				set_country_flag = party3_banned
+				set_country_flag = party4_banned
+				set_country_flag = party5_banned
+				set_country_flag = party6_banned
+				set_country_flag = party7_banned
+				set_country_flag = party8_banned
+				set_country_flag = party9_banned
+				set_country_flag = party10_banned
+				set_country_flag = party11_banned
+				set_country_flag = party12_banned
+				set_country_flag = party13_banned
+				set_country_flag = party14_banned
+				set_country_flag = party14_banned
+				set_country_flag = party15_banned
+				set_country_flag = party16_banned
+				set_country_flag = party17_banned
+				set_country_flag = party16_banned
+				set_country_flag = party17_banned
+				set_country_flag = party18_banned
+				set_country_flag = party19_banned
 			}
 			custom_effect_tooltip = SER_milosevic_dictatorship_tt
 			set_cosmetic_tag = SER_AUTH
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7719,7 +8154,7 @@ focus_tree = {
 		icon = blr_union_state_agree
 		x = -2
 		y = 4
-		cost = 7
+		cost = 5
 		prerequisite = {
 			focus = SER_full_milosevic_dictatorship
 			focus = SER_legacy_of_stefan_dusan
@@ -7738,106 +8173,119 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_union_state"
-			unlock_decision_category_tooltip = SER_Union_state_category
-			set_temp_variable = { modify_unions_state = 5 }
-			modify_unions_state_support = yes
+			unlock_decision_category_tooltip = USR_Union_state_category
 			SOV = {
 				country_event = {
-					id = SerbiaFocus.112
+					id = union_state.9
 					days = 1
 				}
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_union_state_propaganda
-		icon = srpska_soldier
+		icon = blr_union_state_propaganda
+
 		x = -3
 		y = 5
-		cost = 7
-		prerequisite = {
-			focus = SER_union_state
-		}
+		relative_position_id = SER_renewed_milosevic_serbia
+
+		cost = 5
+
+		prerequisite = { focus = SER_union_state }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
 				nationalist_fascist_are_in_power = yes
 				nationalist_right_wing_populists_are_in_power = yes
 			}
+			has_idea = USR_union_state_idea
 		}
-		relative_position_id = SER_renewed_milosevic_serbia
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_union_state_propaganda"
-			set_temp_variable = { modify_unions_state = 5 }
-			modify_unions_state_support = yes
+			add_political_power = 150
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_union_state_documents
 		icon = align_to_union_state
+
 		x = -1
 		y = 5
-		cost = 7
-		prerequisite = {
-			focus = SER_union_state
-		}
+		relative_position_id = SER_renewed_milosevic_serbia
+
+		cost = 5
+
+		prerequisite = { focus = SER_union_state }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
 				nationalist_fascist_are_in_power = yes
 				nationalist_right_wing_populists_are_in_power = yes
 			}
+			has_idea = USR_union_state_idea
 		}
-		relative_position_id = SER_renewed_milosevic_serbia
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		bypass = {
+			has_idea = USR_eternal_commitie_idea
+			has_idea = USR_money_palata_idea
+			has_idea = USR_council_ministers_idea
+			has_idea = USR_gos_sovet_idea
+			has_idea = USR_parlament_idea
+		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_union_state_documents"
-			set_temp_variable = { modify_unions_state = 5 }
-			modify_unions_state_support = yes
+			USR_first_tier_ministry_added = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
 		id = SER_union_state_referendum
 		icon = ser_russia
+
 		x = -2
 		y = 6
-		cost = 7
-		prerequisite = {
-			focus = SER_union_state_documents
-		}
-		prerequisite = {
-			focus = SER_union_state_propaganda
-		}
+		relative_position_id = SER_renewed_milosevic_serbia
+
+		cost = 5
+
+		prerequisite = { focus = SER_union_state_documents }
+		prerequisite = { focus = SER_union_state_propaganda }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
 			OR = {
 				nationalist_monarchists_are_in_power = yes
 				nationalist_fascist_are_in_power = yes
 				nationalist_right_wing_populists_are_in_power = yes
 			}
-			custom_trigger_tooltip = {
-				tooltip = UNS_support_for_union_more_80
-				check_variable = { SER.unions_state > 80 }
+			NOT = {
+				has_idea = USR_valute_idea
+				has_idea = USR_civils_idea
+				has_idea = USR_economic_space_idea
 			}
+			has_idea = USR_union_state_idea
 		}
-		relative_position_id = SER_renewed_milosevic_serbia
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_union_state_referendum"
-			set_temp_variable = { modify_unions_state = 20 }
-			modify_unions_state_support = yes
+			USR_second_tier_ministry_added = yes
 		}
 		ai_will_do = {
-			factor = 300
+			base = 300
 		}
 	}
 	focus = {
@@ -7856,13 +8304,17 @@ focus_tree = {
 			country_exists = MNT
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		x = 2
 		y = 3
-		cost = 7
+		cost = 5
 		relative_position_id = SER_national_framework
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -7883,10 +8335,12 @@ focus_tree = {
 				days = 100
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_begin_the_recognition_process
 		icon = UKR_Give_Up_Some_Political_power
@@ -7897,13 +8351,17 @@ focus_tree = {
 			country_exists = MNT
 		}
 		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
 		x = 0
 		y = 1
-		cost = 7
+		cost = 5
 		relative_position_id = SER_involve_un
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -7911,26 +8369,43 @@ focus_tree = {
 			134 = { set_demilitarized_zone = yes }
 			134 = { remove_claim_by = SER }
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_free_at_last
 		icon = deal_with_serbia_map
-		prerequisite = {
-			focus = SER_begin_the_recognition_process
-		}
-		available = {
-			NOT = { OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-			nationalist_monarchists_are_in_power = yes
-			nationalist_fascist_are_in_power = yes  } }
-		}
+
 		x = 0
 		y = 2
-		cost = 7
 		relative_position_id = SER_involve_un
+
+		cost = 5
+
+		prerequisite = { focus = SER_begin_the_recognition_process }
 		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			NOT = { country_exists = MNT }
+			has_full_control_of_state = 134
+			NOT = {
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+		bypass = {
+			OR = {
+				country_exists = MNT
+				MNT = { has_full_control_of_state = 134 }
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_free_at_last"
 			set_cosmetic_tag = SER_serbia_tag
@@ -7941,55 +8416,64 @@ focus_tree = {
 				days = 90
 			}
 		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
-	#
+
 	focus = {
 		id = SER_loosened_union
 		icon = serbia_montenegro
-		mutually_exclusive = {
-			focus = SER_involve_un
-		}
-		prerequisite = {
-			focus = SER_Redevelop_Ties_with_Bosnia
-		}
-		prerequisite = {
-			focus = SER_church_and_state
-		}
-		available = {
-		NOT = { country_exists = MNT
-		OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-		nationalist_monarchists_are_in_power = yes
-		nationalist_fascist_are_in_power = yes  } } }
+
 		x = -2
 		y = 3
-		cost = 7
 		relative_position_id = SER_national_framework
+
+		mutually_exclusive = { focus = SER_involve_un }
+		prerequisite = { focus = SER_Redevelop_Ties_with_Bosnia }
+		prerequisite = { focus = SER_church_and_state }
+		available = {
+			NOT = {
+				country_exists = MNT
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+		cost = 5
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SER_loosened_union"
 			add_to_variable = { var = SER_Montenegro_separatism value = -5 tooltip = Neg5SER_Montenegro_separatism }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_economic_autonomy
 		icon = focus_generic_financial_agreement
+		x = -1
+		y = 1
 		prerequisite = {
 			focus = SER_loosened_union
 		}
 		available = {
-		NOT = { OR = { country_exists = MNT
-		 has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-		nationalist_monarchists_are_in_power = yes
-		nationalist_fascist_are_in_power = yes  } } }
-		x = -1
-		y = 1
-		cost = 7
+			NOT = {
+				country_exists = MNT
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
+		}
+		cost = 5
 		relative_position_id = SER_loosened_union
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -8007,32 +8491,50 @@ focus_tree = {
 			add_to_variable = { var = SER_Montenegro_separatism value = -5 tooltip = Neg5SER_Montenegro_separatism }
 		}
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
+
 	focus = {
 		id = SER_shared_currency
 		icon = SER_money_eco
-		prerequisite = {
-			focus = SER_loosened_union
-		}
-		available = {
-		NOT = { country_exists = MNT
-		OR = { has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
-		nationalist_monarchists_are_in_power = yes
-		nationalist_fascist_are_in_power = yes  } } }
+
 		x = 1
 		y = 1
-		cost = 7
 		relative_position_id = SER_loosened_union
+
+		cost = 5
+
+		prerequisite = { focus = SER_loosened_union }
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SER_loosened_union"
-			add_ideas = SER_shared_currency_idea
-			add_to_variable = { var = SER_Montenegro_separatism value = -5 tooltip = Neg5SER_Montenegro_separatism }
+
+		available = {
+			NOT = {
+				country_exists = MNT
+				OR = {
+					has_country_leader = { name = "Slobodan Milošević" ruling_only = yes }
+					nationalist_monarchists_are_in_power = yes
+					nationalist_fascist_are_in_power = yes
+				}
+			}
 		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SER_shared_currency"
+			add_ideas = SER_shared_currency_idea
+			IF = {
+				limit = {
+					SER = {
+						has_country_flag = SER_montenegro_independence
+					}
+				}
+				add_to_variable = { var = SER_Montenegro_separatism value = -5 tooltip = Neg5SER_Montenegro_separatism }
+			}
+		}
+
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 }

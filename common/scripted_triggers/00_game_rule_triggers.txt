@@ -103,7 +103,7 @@ DIPLOMACY_MILACC_ENABLE_TRIGGER = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_access_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
@@ -122,6 +122,13 @@ DIPLOMACY_MILACC_ENABLE_TRIGGER = {
 			tooltip = RULE_ALLOW_MILITARY_ACCESS_BLOCKED_TT
 			always = no
 		}
+	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
 	}
 }
 DIPLOMACY_OFFER_MILACC_ENABLE_TRIGGER = {
@@ -129,7 +136,7 @@ DIPLOMACY_OFFER_MILACC_ENABLE_TRIGGER = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_access_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
@@ -148,6 +155,13 @@ DIPLOMACY_OFFER_MILACC_ENABLE_TRIGGER = {
 			tooltip = RULE_ALLOW_MILITARY_ACCESS_BLOCKED_TT
 			always = no
 		}
+	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
 	}
 }
 DIPLOMACY_DOCKING_RIGHTS_ENABLE_TRIGGER = {
@@ -155,7 +169,7 @@ DIPLOMACY_DOCKING_RIGHTS_ENABLE_TRIGGER = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_access_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
@@ -175,13 +189,20 @@ DIPLOMACY_DOCKING_RIGHTS_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
+	}
 }
 DIPLOMACY_OFFER_DOCKING_RIGHTS_ENABLE_TRIGGER = {
 	if = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_access_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	if = {
 		limit = {
@@ -194,12 +215,19 @@ DIPLOMACY_OFFER_DOCKING_RIGHTS_ENABLE_TRIGGER = {
 	}
 	if = {
 		limit = {
-				has_global_flag = GAME_RULE_allow_access_blocked
+			has_global_flag = GAME_RULE_allow_access_blocked
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_MILITARY_ACCESS_BLOCKED_TT
 			always = no
 		}
+	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
 	}
 }
 DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
@@ -207,13 +235,13 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_lend_lease_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_lend_lease_limited
 		}
-		always = yes #handled by game logic, see above
+		hidden_trigger = { always = yes } #handled by game logic, see above
 	}
 	else_if = {
 		limit = {
@@ -241,6 +269,13 @@ DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
 			tooltip = RULE_ALLOW_LEND_LEASE_BLOCKED_TT
 			always = no
 		}
+	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
 	}
 }
 DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
@@ -248,13 +283,13 @@ DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_lend_lease_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_lend_lease_limited
 		}
-		always = yes #handled by game logic, see above
+		hidden_trigger = { always = yes } #handled by game logic, see above
 	}
 	else_if = {
 		limit = {
@@ -283,13 +318,20 @@ DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
+	}
 }
 DIPLOMACY_REQUEST_LICENSED_PRODUCTION_ENABLE_TRIGGER = {
 	if = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_licensing_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
@@ -317,6 +359,13 @@ DIPLOMACY_REQUEST_LICENSED_PRODUCTION_ENABLE_TRIGGER = {
 			tooltip = RULE_ALLOW_LICENSING_BLOCKED_TT
 			always = no
 		}
+	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
 	}
 }
 DIPLOMACY_GENERATE_WARGOAL_ENABLE_TRIGGER = {
@@ -446,21 +495,6 @@ DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
-	else_if = {
-		limit = {
-			original_tag = CHI
-			OR = {
-				has_idea = sco_member
-				has_idea = sco_member_econ
-				has_idea = sco_member_pol
-				has_idea = sco_member_mil
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = sco_member_leave_faction_rule_tt
-			always = no
-		}
-	}
 }
 DIPLOMACY_ASSUME_FACTION_LEADERSHIP_ENABLE_TRIGGER = {
 	if = {
@@ -524,7 +558,7 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 		limit = {
 			has_global_flag = GAME_RULE_allow_volunteers_free
 		}
-		always = yes
+		hidden_trigger = { always = yes }
 	}
 	else_if = {
 		limit = {
@@ -550,6 +584,13 @@ DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
 			always = no
 		}
 	}
+	if = {
+		limit = {
+			original_tag = ERI
+			has_country_leader = { name = "Eritrean Transitional Government" }
+		}
+		ERI_is_transitional_government_DIPLO = yes
+	}
 }
 
 DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
@@ -573,16 +614,6 @@ DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
 			has_defensive_war = yes
 		}
 	}
-	#Black Sea Union is a defensive alliance
-	if = {
-		limit = {
-			has_idea = faction_baltic_black_sea_union_member
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_baltic_black_sea_union_member_call_ally_rule_tt
-			has_defensive_war = yes
-		}
-	}
 	#CENTO Alliance is a defensive alliance
 	if = {
 		limit = {
@@ -593,13 +624,13 @@ DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
 			has_defensive_war = yes
 		}
 	}
-	#GCA is a defensive alliance
+	#SEATO Alliance is a defensive alliance
 	if = {
 		limit = {
-			has_idea = faction_gca_alliance
+			has_idea = faction_seato_alliance
 		}
 		custom_trigger_tooltip = {
-			tooltip = faction_gca_alliance_call_ally_rule_tt
+			tooltip = faction_seato_alliance_call_ally_rule_tt
 			has_defensive_war = yes
 		}
 	}
@@ -620,6 +651,16 @@ DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = faction_mto_alliance_call_ally_rule_tt
+			has_defensive_war = yes
+		}
+	}
+	#TAJ Alliance is a defensive alliance
+	if = {
+		limit = {
+			has_idea = faction_taj_alliance
+		}
+		custom_trigger_tooltip = {
+			tooltip = faction_taj_alliance_call_ally_rule_tt
 			has_defensive_war = yes
 		}
 	}
@@ -646,29 +687,6 @@ DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = {
 			FROM = { has_defensive_war = yes }
 		}
 	}
-	#Black Sea Union is a defensive alliance
-	if = {
-		limit = {
-			has_idea = faction_baltic_black_sea_union_member
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_baltic_black_sea_union_member_join_ally_rule_tt
-			FROM = { has_defensive_war = yes }
-		}
-	}
-	#Monroe Alliance is defensive
-	if = {
-		limit = {
-			OR = {
-				FROM = { has_idea = faction_monroe_alliance }
-				has_idea = faction_monroe_alliance
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_monroe_alliance_join_ally_rule_tt
-			FROM = { has_defensive_war = yes }
-		}
-	}
 	#CENTO Is defensive
 	if = {
 		limit = {
@@ -682,16 +700,16 @@ DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = {
 			FROM = { has_defensive_war = yes }
 		}
 	}
-	#gca is defensive
+	#SEATO is defensive
 	if = {
 		limit = {
 			OR = {
-				FROM = { has_idea = faction_gca_alliance }
-				has_idea = faction_gca_alliance
+				FROM = { has_idea = faction_seato_alliance }
+				has_idea = faction_seato_alliance
 			}
 		}
 		custom_trigger_tooltip = {
-			tooltip = faction_gca_alliance_join_ally_rule_tt
+			tooltip = faction_seato_alliance_join_ally_rule_tt
 			FROM = { has_defensive_war = yes }
 		}
 	}
@@ -718,6 +736,20 @@ DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = faction_mto_alliance_join_ally_rule_tt
+
+			FROM = { has_defensive_war = yes }
+		}
+	}
+	# TAJ is Defensive
+	if = {
+		limit = {
+			OR = {
+				FROM = { has_idea = faction_taj_alliance }
+				has_idea = faction_taj_alliance
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = faction_taj_alliance_join_ally_rule_tt
 
 			FROM = { has_defensive_war = yes }
 		}
@@ -776,37 +808,6 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
-	#Can only invite post-Soviet states into faction
-	if = {
-		limit = {
-			FROM = { has_idea = faction_fia_alliance }
-		}
-		custom_trigger_tooltip = {
-			tooltip = fia_join_faction_rule_tt
-			OR = {
-				original_tag = SOV
-				original_tag = EST
-				original_tag = LAT
-				original_tag = LIT
-				original_tag = BLR
-				original_tag = UKR
-				original_tag = NOV
-				original_tag = MLV
-				original_tag = PMR
-				original_tag = GEO
-				original_tag = ABK
-				original_tag = SOO
-				original_tag = AZE
-				original_tag = ARM
-				original_tag = NKR
-				original_tag = KAZ
-				original_tag = UZB
-				original_tag = TRK
-				original_tag = TAJ
-				original_tag = KYR
-			}
-		}
-	}
 	#Can only invite post-Warsaw Pact
 	if = {
 		limit = {
@@ -827,47 +828,14 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
-	#Only communists allowed in the 5th internatioanl
+	#Only nationalist allowed in the Moscow Pact
 	if = {
 		limit = {
-			FROM = { has_idea = faction_fifth_international_member }
+			FROM = { has_idea = S0V_russian_sphere_idea }
 		}
 		custom_trigger_tooltip = {
-			tooltip = faction_fifth_international_member_join_faction_rule_tt
-			OR = {
-				is_in_array = { ruling_party = 4 }
-				is_in_array = { ruling_party = 19 }
-			}
-		}
-	}
-	#Only certain countries allowd in the Black Sea Union
-	if = {
-		limit = {
-			FROM = { has_idea = faction_baltic_black_sea_union_member }
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_baltic_black_sea_union_member_join_faction_rule_tt
-			original_tag = EST
-			original_tag = LAT
-			original_tag = LIT
-			original_tag = BLR
-			original_tag = UKR
-			original_tag = POL
-			original_tag = MLV
-			original_tag = ROM
-		}
-	}
-	#Israel and neighbours are allowed in the Jerusalem Defence Pact
-	if = {
-		limit = {
-			FROM = { has_idea = faction_jerusalem_defence_pact_member }
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_jerusalem_defence_pact_member_join_faction_rule_tt
-			OR = {
-				original_tag = ISR
-				is_neighbor_of = ISR
-			}
+			tooltip = faction_moscow_pact_member_join_faction_rule_tt
+			has_government = nationalist
 		}
 	}
 	#GCC is limited to GCC members
@@ -878,31 +846,6 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 		custom_trigger_tooltip = {
 			tooltip = gcc_member_state_join_faction_rule_tt
 			has_idea = idea_gcc_member_state
-		}
-	}
-	#British Commonwealth only accepts Commonwealth members
-	if = {
-		limit = {
-			FROM = { has_idea = faction_british_commonwealth }
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_british_commonwealth_join_faction_rule_tt
-			has_idea = commonwealth_of_nations_member
-		}
-	}
-	#Monroe Alliance only for North and South America
-	if = {
-		limit = {
-			FROM = { has_idea = faction_monroe_alliance }
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_monroe_alliance_join_faction_rule_tt
-			capital_scope = {
-				OR = {
-					is_on_continent = north_america
-					is_on_continent = south_america
-				}
-			}
 		}
 	}
 	#Only Middle Eastern Countries can join CENTO
@@ -920,6 +863,21 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
+	# Only Asian countries can join SEATO
+	if = {
+		limit = {
+			FROM = { has_idea = faction_seato_alliance }
+		}
+		custom_trigger_tooltip = {
+			tooltip = faction_seato_alliance_join_faction_rule_tt
+			capital_scope = {
+				OR = {
+					is_on_continent = australia
+					is_on_continent = asia
+				}
+			}
+		}
+	}
 	#Only European countries can join the Imperial Bloc
 	if = {
 		limit = {
@@ -929,20 +887,6 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 			tooltip = faction_imperial_bloc_join_faction_rule_tt
 			capital_scope = {
 				is_on_continent = europe
-			}
-		}
-	}
-	if = {
-		limit = {
-			FROM = { has_idea = faction_gca_alliance }
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_gca_alliance_join_faction_rule_tt
-			capital_scope = {
-				OR = {
-					is_on_continent = south_america
-					is_on_continent = north_america
-				}
 			}
 		}
 	}
@@ -981,43 +925,19 @@ DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
-	#Chinese United Front only for certain countries
+	#Only Middle Eastern and & Asian countries can join TAJ
 	if = {
 		limit = {
-			FROM = { has_idea = faction_chinese_united_front }
+			FROM = { has_idea = faction_taj_alliance }
 		}
 		custom_trigger_tooltip = {
-			tooltip = faction_chinese_united_front_join_faction_rule_tt
-			OR = {
-				original_tag = CHI
-				original_tag = TAI
-				original_tag = TIB
-				original_tag = ETK
-				original_tag = MON
-				original_tag = HKG
-				original_tag = MAC
-			}
-		}
-	}
-	if = {
-		limit = {
-			FROM = {
-				original_tag = CHI
+			tooltip = faction_taj_alliance_join_faction_rule_tt
+			capital_scope = {
 				OR = {
-					has_idea = sco_member
-					has_idea = sco_member_econ
-					has_idea = sco_member_pol
-					has_idea = sco_member_mil
+					is_on_continent = middle_east
+					is_on_continent = asia
 				}
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = sco_member_join_faction_rule_tt
-			OR = {
-				has_idea = sco_member
-				has_idea = sco_member_econ
-				has_idea = sco_member_pol
-				has_idea = sco_member_mil
+
 			}
 		}
 	}
@@ -1077,39 +997,6 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
-	#Can only invite post-Soviet states into faction
-	if = {
-		limit = {
-			has_idea = faction_fia_alliance
-		}
-		custom_trigger_tooltip = {
-			tooltip = fia_offer_join_faction_rule_tt
-			FROM = {
-				OR = {
-					original_tag = SOV
-					original_tag = EST
-					original_tag = LAT
-					original_tag = LIT
-					original_tag = BLR
-					original_tag = UKR
-					original_tag = NOV
-					original_tag = MLV
-					original_tag = PMR
-					original_tag = GEO
-					original_tag = ABK
-					original_tag = SOO
-					original_tag = AZE
-					original_tag = ARM
-					original_tag = NKR
-					original_tag = KAZ
-					original_tag = UZB
-					original_tag = TRK
-					original_tag = TAJ
-					original_tag = KYR	
-				}
-			}
-		}
-	}
 	#Can only invite post-Warsaw Pact
 	if = {
 		limit = {
@@ -1130,53 +1017,14 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
-	#Only communists allowed in the 5th internatioanl
+	#Only nationalist allowed in the Moscow Pact
 	if = {
 		limit = {
-			has_idea = faction_fifth_international_member
+			FROM = { has_idea = S0V_russian_sphere_idea }
 		}
 		custom_trigger_tooltip = {
-			tooltip = faction_fifth_international_member_offer_join_faction_rule_tt
-			FROM = {
-				OR = {
-					is_in_array = { ruling_party = 4 }
-					is_in_array = { ruling_party = 19 }
-				}
-			}
-		}
-	}
-	#Only certain countries allowd in the Black Sea Union
-	if = {
-		limit = {
-			has_idea = faction_baltic_black_sea_union_member
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_baltic_black_sea_union_member_offer_join_faction_rule_tt
-			FROM = {
-				original_tag = EST
-				original_tag = LAT
-				original_tag = LIT
-				original_tag = BLR
-				original_tag = UKR
-				original_tag = POL
-				original_tag = MLV
-				original_tag = ROM
-			}
-		}
-	}
-	#Israel and neighbours are allowed in the Jerusalem Defence Pact
-	if = {
-		limit = {
-			has_idea = faction_jerusalem_defence_pact_member
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_jerusalem_defence_pact_member_offer_join_faction_rule_tt
-			FROM = {
-				OR = {
-					original_tag = ISR
-					is_neighbor_of = ISR
-				}
-			}
+			tooltip = faction_moscow_pact_member_join_faction_rule_tt
+			has_government = nationalist
 		}
 	}
 	#GCC is limited to GCC members
@@ -1188,33 +1036,6 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 			tooltip = gcc_member_state_offer_join_faction_rule_tt
 			FROM = {
 				has_idea = idea_gcc_member_state
-			}
-		}
-	}
-	#British Commonwealth only accepts Commonwealth members
-	if = {
-		limit = {
-			has_idea = faction_british_commonwealth
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_british_commonwealth_offer_join_faction_rule_tt
-			FROM = { has_idea = commonwealth_of_nations_member }
-		}
-	}
-	#Monroe Alliance only for North and South America
-	if = {
-		limit = {
-			has_idea = faction_monroe_alliance
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_monroe_alliance_offer_join_faction_rule_tt
-			FROM = {
-				capital_scope = {
-					OR = {
-						is_on_continent = north_america
-						is_on_continent = south_america
-					}
-				}
 			}
 		}
 	}
@@ -1256,6 +1077,27 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
+	#Only Certain countries can join SEATO
+	if = {
+		limit = {
+			has_idea = faction_seato_alliance
+		}
+		custom_trigger_tooltip = {
+			tooltip = faction_seato_alliance_offer_join_faction_rule_tt
+			FROM = {
+				original_tag = KOR
+				original_tag = TAI
+				original_tag = NKR
+				original_tag = PHI
+				original_tag = AST
+				original_tag = NZL
+				original_tag = IND
+				original_tag = PAP
+				original_tag = MAY
+				original_tag = VIE
+			}
+		}
+	}
 	#Only certain countries can join Imperial bloc
 	if = {
 		limit = {
@@ -1270,31 +1112,6 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 				original_tag = FRA
 				original_tag = SPR
 				original_tag = FIN
-			}
-		}
-	}
-	#Only certain countires can join GCA
-	if = {
-		limit = {
-			has_idea = faction_gca_alliance
-		}
-		custom_trigger_tooltip = {
-			tooltip = faction_gca_alliance_offer_join_faction_rule_tt
-			FROM = {
-				original_tag = ECU
-				original_tag = PRU
-				original_tag = GUY
-				original_tag = PAN
-				original_tag = BOL
-				original_tag = COL
-				original_tag = MEX
-				original_tag = CHL
-				original_tag = COS
-				original_tag = NIC
-				original_tag = HON
-				original_tag = ELS
-				original_tag = GUA
-				original_tag = BLZ
 			}
 		}
 	}
@@ -1319,50 +1136,29 @@ DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
 			}
 		}
 	}
-	#Chinese United Front only for certain countries
+	#Only Certain countries can join TAJ
 	if = {
 		limit = {
-			has_idea = faction_chinese_united_front
+			has_idea = faction_taj_alliance
 		}
 		custom_trigger_tooltip = {
-			tooltip = faction_chinese_united_front_offer_join_faction_rule_tt
+			tooltip = faction_taj_alliance_offer_join_faction_rule_tt
 			FROM = {
-				OR = {
-					original_tag = CHI
-					original_tag = TAI
-					original_tag = TIB
-					original_tag = ETK
-					original_tag = MON
-					original_tag = HKG
-					original_tag = MAC
-				}
-			}
-		}
-	}
-	if = {
-		limit = {
-			original_tag = CHI
-			OR = {
-				has_idea = sco_member
-				has_idea = sco_member_econ
-				has_idea = sco_member_pol
-				has_idea = sco_member_mil
-			}
-		}
-		custom_trigger_tooltip = {
-			tooltip = sco_member_offer_join_faction_rule_tt
-			FROM = {
-				OR = {
-					has_idea = sco_member
-					has_idea = sco_member_econ
-					has_idea = sco_member_pol
-					has_idea = sco_member_mil
-				}
+				original_tag = TAJ
+				original_tag = AFG
+				original_tag = PER
+				original_tag = UZB
+				original_tag = KAZ
+				original_tag = TRK
+				original_tag = KUR
+				original_tag = SOO
 			}
 		}
 	}
 }
 DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
+	#RUSSIAN SUBJECTS
+	#CHECHNYA
 	if = {
 		limit = {
 			has_game_rule = {
@@ -1374,10 +1170,7 @@ DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_CHE_TOOLTIP
-			OR = {
-				has_completed_focus = SOV_referendum_in_chechnya
-				has_completed_focus = SOV_question_of_chechnya
-			}
+			has_completed_focus = SOV_referendum_in_chechnya
 		}
 	}
 	if = {
@@ -1395,10 +1188,866 @@ DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_CHE_TOOLTIP
-			OR = {
-				has_completed_focus = SOV_referendum_in_chechnya
-				has_completed_focus = SOV_question_of_chechnya
+			has_completed_focus = SOV_referendum_in_chechnya
+		}
+	}
+	#BASHKORTOSTAN
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
 			}
+			original_tag = SOV
+			FROM = { original_tag = BSH }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_BSH_TOOLTIP
+			has_completed_focus = SOV_referendum_in_bashkiria
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = BSH }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_BSH_TOOLTIP
+			has_completed_focus = SOV_referendum_in_bashkiria
+		}
+	}
+	#TATARSTAN
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = TAT }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_TAT_TOOLTIP
+			has_completed_focus = SOV_referendum_in_tatarstan
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = TAT }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_TAT_TOOLTIP
+			has_completed_focus = SOV_referendum_in_tatarstan
+		}
+	}
+	#YUGRA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KHM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_KHM_TOOLTIP
+			has_completed_focus = SOV_referendum_in_khmao
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KHM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_KHM_TOOLTIP
+			has_completed_focus = SOV_referendum_in_khmao
+		}
+	}
+	#CRIMEA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = CRM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_CRM_TOOLTIP
+			has_completed_focus = SOV_referendum_in_crimea
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = CRM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_CRM_TOOLTIP
+			has_completed_focus = SOV_referendum_in_crimea
+		}
+	}
+	#KABARDINO-BALKARIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KBK }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KBK }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#TUVA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = TUV }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = TUV }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#YAKUTIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = YAK }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = YAK }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#BURYATIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = BRY }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = BRY }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#KOMI
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KOM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KOM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#ALTAI
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = ALT }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = ALT }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#KHAKASSIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KHS }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KHS }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#KARELIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KAE }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KAE }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#CHUKOTKA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = CKK }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = CKK }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#YAMALO-NENETS
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = YAM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = YAM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#NENETS
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = NEE }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = NEE }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#KARACHAEVO-CHERKESSIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KCC }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KCC }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#ADYGEA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = ADY }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = ADY }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#INGUSHETIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = ING }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = ING }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#DAGESTAN
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = DAG }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = DAG }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#KALMYKIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = KLM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = KLM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#CHUVASHIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = CHU }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = CHU }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#MORDOVIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = MOV }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = MOV }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#UDMURTIA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = UDM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = UDM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#MARI EL
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = SOV
+			FROM = { original_tag = MEL }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = SOV
+			FROM = { original_tag = MEL }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_RUSSIA_SUBJECT_RF_TOOLTIP
+			has_country_flag = SOV_subject_free_all
+		}
+	}
+	#UKRAINIAN SUBJECTS
+	#DONETSK
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = UKR
+			FROM = { original_tag = DPR }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_UKRAINE_FEDERALIZE_TOOLTIP
+			DPR = { has_country_flag = UKR_subject_agree }
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = UKR
+			FROM = { original_tag = DPR }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_UKRAINE_FEDERALIZE_TOOLTIP
+			DPR = { has_country_flag = UKR_subject_agree }
+		}
+	}
+	#CRIMEA
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = FREE
+			}
+			original_tag = UKR
+			FROM = { original_tag = CRM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_UKRAINE_FEDERALIZE_TOOLTIP
+			CRM = { has_country_flag = UKR_subject_agree }
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_release_nations
+				option = PEACE_ONLY
+			}
+			original_tag = UKR
+			FROM = { original_tag = CRM }
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_PEACE_ONLY_TOOLTIP
+			has_war = no
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_UKRAINE_FEDERALIZE_TOOLTIP
+			CRM = { has_country_flag = UKR_subject_agree }
 		}
 	}
 	if = {
@@ -1538,6 +2187,26 @@ DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
 		}
 		custom_trigger_tooltip = {
 			tooltip = RULE_ALLOW_RELEASE_NATIONS_BLOCKED_TOOLTIP
+			always = no
+		}
+	}
+	if = {
+		limit = {
+			original_tag = ETH
+			has_country_flag = ETH_locked_annexation_FLAG
+		}
+		custom_trigger_tooltip = {
+			tooltip = ETH_BANNED_RELEASE_ERI_TOOLTIP
+			FROM = { original_tag = ERI }
+			NOT = { has_country_flag = ETH_locked_annexation_FLAG }
+		}
+	}
+}
+DIPLOMACY_PEACE_PROPOSAL_ENABLE_TRIGGER = {
+	if = {
+		limit = { has_global_flag = GAME_RULE_conditional_peace_deals_ENABLED }
+		custom_trigger_tooltip = {
+			tooltip = RULE_PEACE_PROPOSAL_BLOCKED_TT
 			always = no
 		}
 	}

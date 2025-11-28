@@ -1,6 +1,8 @@
 #Made by PAKMAN and Bondex
 focus_tree = {
 	id = montenegro_focus
+	shared_focus = USoE001
+	shared_focus = POTEF001
 	country = {
 		factor = 0
 		modifier = {
@@ -36,7 +38,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus MNT_restore_port"
-			hidden_effect = { add_dynamic_modifier = { modifier = MNT_port_bar } 
+			hidden_effect = { add_dynamic_modifier = { modifier = MNT_port_bar }
 			add_to_variable = { MNT_port_bar_tax_gain_multiplier_modifier = -0.04 }
 			add_to_variable = { MNT_port_bar_dockyard_income_tax_modifier = -0.05 }
 			add_to_variable = { MNT_port_bar_resource_export_multiplier_modifier = -0.06 } }
@@ -95,7 +97,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus MNT_support_tourism"
-			add_ideas = MNT_agro_reviving
+			add_ideas = MNT_tourism_on_the_rise
 		}
 	}
 
@@ -194,7 +196,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = MNT_better_then_before
+		id = MNT_better_than_before
 		icon = goal_JAP_valueup
 		x = 5
 		y = 5
@@ -205,7 +207,7 @@ focus_tree = {
 		prerequisite = { focus = MNT_wind_power }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus MNT_better_then_before"
+			log = "[GetDateText]: [Root.GetName]: Focus MNT_better_than_before"
 			MNT_economy_change = yes
 			swap_ideas = {
 				remove_idea = MNT_industry
@@ -423,7 +425,7 @@ focus_tree = {
 		relative_position_id = MNT_Economy_baby
 		prerequisite = { focus = MNT_agri_revival }
 		prerequisite = { focus = MNT_tourist_mecca }
-		prerequisite = { focus = MNT_better_then_before }
+		prerequisite = { focus = MNT_better_than_before }
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus MNT_ageconomic_prosperity"
@@ -493,13 +495,7 @@ focus_tree = {
 		relative_position_id = MNT_aremd_forces
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus MNT_save_yug_boat"
-			if = {
-				limit = { has_dlc = "Man the Guns" }
-					set_technology = { corvette_hull_1 = 1 }
-			}
-			else = {
-					set_technology = { corvette_1 = 1 }
-			}
+			set_technology = { corvette_hull_1 = 1 }
 		}
 	}
 
@@ -1106,7 +1102,7 @@ focus_tree = {
 		relative_position_id = MNT_foreign_affairs
 		prerequisite = { focus = MNT_seek_rus_trade focus = MNT_seek_serb_trade }
 		bypass = {
-			OR = {	
+			OR = {
 				has_war_with = CHI
 				NOT = { country_exists = CHI }
 			}
@@ -1176,10 +1172,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus MNT_sco_observer"
 			add_tech_bonus = {
-				name = BUL_SCO_partnership
+				name = MNT_sco_observer
 				bonus = 0.5
 				uses = 1
-				category = Cat_nuclear_reactors
+				category = CAT_nuclear_reactors
 			}
 			BUL = {
 				add_opinion_modifier = {
@@ -1733,10 +1729,10 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_independent_politics }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1758,10 +1754,10 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_montenegro_dem }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1781,10 +1777,10 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_european_agenda }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1825,10 +1821,10 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_montenegro_dem }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1851,10 +1847,10 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_democratisation }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1875,10 +1871,10 @@ focus_tree = {
 		prerequisite = { focus = MNT_montenegro_nationalism }
 		prerequisite = { focus = MNT_anti_oligarchism }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1899,10 +1895,10 @@ focus_tree = {
 		prerequisite = { focus = MNT_montenegro_nationalism }
 		prerequisite = { focus = MNT_anti_oligarchism }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1935,7 +1931,7 @@ focus_tree = {
 				add_to_variable = { MNT_port_bar_corporate_tax_income_multiplier_modifier = 0.08 }
 				add_to_variable = { MNT_port_bar_dockyard_income_tax_modifier = -0.13 }
 				add_to_variable = { MNT_port_bar_police_cost_multiplier_modifier = -0.1 }
-				add_to_variable = { MNT_port_bar_increase_corrutiption_cost = -0.09 }
+				add_to_variable = { MNT_port_bar_increase_graft_cost = -0.09 }
 				add_to_variable = { MNT_port_bar_resource_export_multiplier_modifier = -0.1 }
 				clr_country_flag = MNT_pirate_bay
 					}
@@ -1954,10 +1950,10 @@ focus_tree = {
 		prerequisite = { focus = MNT_montenegro_nationalism }
 		prerequisite = { focus = MNT_anti_oligarchism }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1979,10 +1975,10 @@ focus_tree = {
 		prerequisite = { focus = MNT_fight_organized }
 		prerequisite = { focus = MNT_multiparty_system }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2026,10 +2022,10 @@ focus_tree = {
 		prerequisite = { focus = MNT_fight_organized }
 		prerequisite = { focus = MNT_multiparty_system }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2050,10 +2046,10 @@ focus_tree = {
 		prerequisite = { focus = MNT_kill_serb_nats }
 		prerequisite = { focus = MNT_freetrade }
 		available = {
-			OR = { 
+			OR = {
 				western_conservatism_are_in_power = yes
 				western_liberals_are_in_power = yes
-				western_social_democrats_are_in_power = yes 
+				western_social_democrats_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2096,7 +2092,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2119,7 +2115,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2146,7 +2142,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2170,7 +2166,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2192,7 +2188,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2218,7 +2214,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2256,7 +2252,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2278,7 +2274,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2305,7 +2301,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2330,7 +2326,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2355,7 +2351,7 @@ focus_tree = {
 		available = {
 			OR = {
 				nationalist_fascist_are_in_power = yes
-				nationalist_monarchists_are_in_power = yes 
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2375,12 +2371,12 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_independent_politics }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2401,12 +2397,12 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_serb_democrats }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2426,12 +2422,12 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_serb_democrats }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2452,12 +2448,12 @@ focus_tree = {
 		prerequisite = { focus = MNT_fight_corruption }
 		prerequisite = { focus = MNT_promote_serbian_culture }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2478,12 +2474,12 @@ focus_tree = {
 		prerequisite = { focus = MNT_fight_corruption }
 		prerequisite = { focus = MNT_promote_serbian_culture }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2517,12 +2513,12 @@ focus_tree = {
 		prerequisite = { focus = MNT_fight_corruption }
 		prerequisite = { focus = MNT_promote_serbian_culture }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2548,7 +2544,7 @@ focus_tree = {
 					remove_idea = MNT_organised_crime_soften
 					add_idea = MNT_organised_crime_non
 				}
-					
+
 			}
 			hidden_effect = {
 			if = {
@@ -2556,7 +2552,7 @@ focus_tree = {
 			add_to_variable = { MNT_port_bar_corporate_tax_income_multiplier_modifier = 0.08 }
 			add_to_variable = { MNT_port_bar_dockyard_income_tax_modifier = -0.13 }
 			add_to_variable = { MNT_port_bar_police_cost_multiplier_modifier = -0.1 }
-			add_to_variable = { MNT_port_bar_increase_corrutiption_cost = -0.09 }
+			add_to_variable = { MNT_port_bar_increase_graft_cost = -0.09 }
 			add_to_variable = { MNT_port_bar_resource_export_multiplier_modifier = -0.1 }
 			clr_country_flag = MNT_pirate_bay
 				}
@@ -2576,12 +2572,12 @@ focus_tree = {
 		prerequisite = { focus = MNT_serbian_cooperation }
 		prerequisite = { focus = MNT_traditional_values }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2614,12 +2610,12 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_cooperation_with_russia }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2641,12 +2637,12 @@ focus_tree = {
 		prerequisite = { focus = MNT_serbian_cooperation }
 		prerequisite = { focus = MNT_traditional_values }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2666,12 +2662,12 @@ focus_tree = {
 		relative_position_id = MNT_independent_politics
 		prerequisite = { focus = MNT_serbian_language_in_constitution }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2692,12 +2688,12 @@ focus_tree = {
 		prerequisite = { focus = MNT_serbian_chucrh }
 		prerequisite = { focus = MNT_economic_regulations }
 		available = {
-			OR = { 
+			OR = {
 				emerging_reactionaries_are_in_power = yes
 				neutrality_neutral_conservatism_are_in_power = yes
 				neutrality_neutral_social_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
-				nationalist_right_wing_populists_are_in_power = yes 
+				nationalist_right_wing_populists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2851,7 +2847,7 @@ focus_tree = {
 					remove_idea = MNT_organised_crime_non
 					add_idea = MNT_organised_crime_of_the_year
 				}
-					
+
 			}
 		}
 	}
@@ -2900,7 +2896,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus MNT_friend_in_the_west"
-			SOV = { country_event = Montenegro.22 }
+			USA = { country_event = Montenegro.22 }
 		}
 	}
 
@@ -2944,7 +2940,7 @@ focus_tree = {
 		}
 	}
 
-	
+
 	focus = {
 		id = MNT_castle_of_montenegro
 		icon = lion_economy

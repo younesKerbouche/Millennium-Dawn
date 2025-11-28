@@ -60,19 +60,6 @@ modify_batka_support = {
 		add_ideas = BLR_batka_very_weak
 	}
 }
-
-modify_union_state_support = {
-	add_to_variable = { union_state = modify_union_state }
-
-	custom_effect_tooltip = UNS_union_state_TT
-
-	clamp_variable = {
-		var = union_state
-		min = 0
-		max = 100
-	}
-}
-
 modify_tracktors_support = {
 	add_to_variable = { tracktors = modify_tracktors }
 
@@ -85,34 +72,46 @@ modify_tracktors_support = {
 	}
 }
 
+modify_white_legion_support = {
+	add_to_variable = { white_legion = modify_white_legion }
+
+	custom_effect_tooltip = BLR_white_legions_TT
+
+	clamp_variable = {
+		var = white_legion
+		min = 0
+		max = 4000
+	}
+}
+
 batka_deleted = {
 	if = {
 		limit = {
 		has_idea = BLR_batka_very_weak
 		}
 		remove_ideas = BLR_batka_very_weak
-				
+
 	}
 	if = {
 		limit = {
 		has_idea = BLR_batka_weak
 		}
 		remove_ideas = BLR_batka_weak
-				
+
 	}
 		if = {
 		limit = {
 		has_idea = BLR_batka_medium
 		}
 		remove_ideas = BLR_batka_medium
-					
+
 	}
 	if = {
 		limit = {
 		has_idea = BLR_batka_very_strong
 		}
 		remove_ideas = BLR_batka_very_strong
-					
+
 	}
 	if = {
 		limit = {
@@ -120,5 +119,79 @@ batka_deleted = {
 		}
 		remove_ideas = BLR_batka_strong
 	}
-}			
-	
+}
+KGB_idea_belarus = {
+	if = {
+		limit = { has_idea = BLR_kgb2 }
+		swap_ideas = {
+			remove_idea = BLR_kgb2
+			add_idea = BLR_kgb3
+		}
+	}
+	else_if = {
+		limit = { has_idea = BLR_kgb1 }
+		swap_ideas = {
+			remove_idea = BLR_kgb1
+			add_idea = BLR_kgb2
+		}
+	}
+	else_if = {
+		limit = { has_idea = BLR_kgb }
+		swap_ideas = {
+			remove_idea = BLR_kgb
+			add_idea = BLR_kgb1
+		}
+	}
+	else_if = {
+		limit = { NOT = { has_idea = BLR_kgb } }
+		add_ideas = BLR_kgb1
+	}
+}
+AGRO_idea_belarus = {
+	if = {
+		limit = { has_idea = BLR_agriculture2 }
+		swap_ideas = {
+			remove_idea = BLR_agriculture2
+			add_idea = BLR_agriculture3
+		}
+	}
+	else_if = {
+		limit = { has_idea = BLR_agriculture }
+		swap_ideas = {
+			remove_idea = BLR_agriculture
+			add_idea = BLR_agriculture2
+		}
+	}
+}
+BLR_idea_army = {
+	if = {
+		limit = { has_idea = BLR_reforming_army2 }
+		swap_ideas = {
+			remove_idea = BLR_reforming_army2
+			add_idea = BLR_reforming_army3
+		}
+	}
+	else_if = {
+		limit = { has_idea = BLR_reforming_army1 }
+		swap_ideas = {
+			remove_idea = BLR_reforming_army1
+			add_idea = BLR_reforming_army2
+		}
+	}
+	else_if = {
+		limit = { has_idea = BLR_reforming_army }
+		swap_ideas = {
+			remove_idea = BLR_reforming_army
+			add_idea = BLR_reforming_army1
+		}
+	}
+	else_if = {
+		limit = { has_idea = BLR_outdated_army }
+		swap_ideas = {
+			remove_idea = BLR_outdated_army
+			add_idea = BLR_reforming_army
+		}
+	}
+}
+
+

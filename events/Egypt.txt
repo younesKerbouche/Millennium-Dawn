@@ -279,19 +279,19 @@ country_event = {
 			producer = EGY
 		}
 		add_equipment_to_stockpile = {
-			type = mbt_hull_2
+			type = medium_tank_chassis_2
 			variant_name = "T-90"
 			amount = 10
 			producer = EGY
 		}
 		add_equipment_to_stockpile = {
-			type = ifv_hull_1
+			type = medium_tank_flame_chassis_1
 			variant_name = "BMP-3"
 			amount = 10
 			producer = EGY
 		}
 		add_equipment_to_stockpile = {
-			type = apc_hull_1
+			type = medium_tank_amphibious_chassis_1
 			variant_name = "BTR-80"
 			amount = 20
 			producer = EGY
@@ -425,10 +425,10 @@ country_event = {
 		}
 		SYR = {
 			country_event = Egypt.10
-	   }
+	  }
 	   EGY = {
 			country_event = Egypt.10
-	  }
+	 }
 	}
 	option = {
 		name = Egypt.8.b
@@ -463,10 +463,10 @@ country_event = {
 		}
 	   SYR = {
 			country_event = Egypt.9
-	   }
+	  }
 	   EGY = {
 			country_event = Egypt.9
-	  }
+	 }
 	}
 }
 
@@ -751,8 +751,8 @@ country_event = {
 		hidden_effect = { set_country_flag = didsupp_egy_terror }
 	}
 	option = {
-		name = Egypt.19.a
-		log = "[GetDateText]: [This.GetName]: Egypt.19.a executed"
+		name = Egypt.19.b
+		log = "[GetDateText]: [This.GetName]: Egypt.19.b executed"
 		ai_chance = { base = 0 }
 		add_political_power = 50
 		add_popularity = {
@@ -841,7 +841,7 @@ country_event = {
 			name = EGY_automobile_factories
 			bonus = 0.5
 			uses = 1
-			category = Cat_UTIL
+			category = CAT_util
 		}
 		set_temp_variable = { int_investment_change = 5 }
 		modify_international_investment_effect = yes
@@ -867,7 +867,7 @@ country_event = {
 			name = EGY_arab_uk_helis
 			bonus = 0.15
 			uses = 3
-			category = Cat_ATT_HELI
+			category = CAT_atk_heli
 		}
 		set_temp_variable = { int_investment_change = 5 }
 		modify_international_investment_effect = yes
@@ -971,10 +971,10 @@ country_event = {
 			modify_treasury_effect = yes
 		}
 		add_tech_bonus = {
-			name = Cat_ARTILLERY
+			name = CAT_artillery
 			bonus = 0.25
 			uses = 2
-			category = Cat_nuclear_reactors
+			category = CAT_nuclear_reactors
 		}
 	}
 }
@@ -1311,7 +1311,7 @@ country_event = {
 		give_guarantee = SUD
 		if = {
 			limit = { is_in_faction = no }
-			create_faction = morsan_allianc
+			create_faction_from_template = faction_template_morsan_allianc
 		}
 		SUD = { country_event = Egypt.41 }
 		create_wargoal = {
@@ -2367,12 +2367,12 @@ country_event = {
 			two_random_network_infrastructure = yes
 			set_temp_variable = { treasury_change = 6 }
 			modify_treasury_effect = yes
-			set_temp_variable = { percent_change = 5 }
-			set_temp_variable = { tag_index = ROOT }
-			set_temp_variable = { influence_target = EGY }
-			change_influence_percentage = yes
 			country_event = Egypt.116
 		}
+		set_temp_variable = { percent_change = 5 }
+		set_temp_variable = { tag_index = ROOT }
+		set_temp_variable = { influence_target = EGY }
+		change_influence_percentage = yes
 		set_temp_variable = { treasury_change = -6 }
 		modify_treasury_effect = yes
 	}
@@ -2647,14 +2647,14 @@ country_event = {
 			limit = { has_dlc = "No Step Back" }
 			USA = {
 				add_equipment_to_stockpile = {
-					type = spart_hull_0
+					type = medium_tank_artillery_chassis_1
 					variant_name = "M109A5"
 					amount = -100
 				}
 			}
 			EGY = {
 				add_equipment_to_stockpile = {
-					type = spart_hull_0
+					type = medium_tank_artillery_chassis_1
 					variant_name = "M109A5"
 					amount = 100
 					producer = USA
@@ -2734,7 +2734,7 @@ country_event = {
 			limit = { has_dlc = "No Step Back" }
 			USA = {
 				add_equipment_to_stockpile = {
-					type = mbt_hull_1
+					type = medium_tank_chassis_1
 					variant_name = "M1A2 Abrams"
 					amount = -120
 					producer = USA
@@ -2742,7 +2742,7 @@ country_event = {
 			}
 			EGY = {
 				add_equipment_to_stockpile = {
-					type = mbt_hull_1
+					type = medium_tank_chassis_1
 					variant_name = "M1A2 Abrams"
 					amount = 120
 					producer = USA
@@ -2822,7 +2822,7 @@ country_event = {
 			limit = { has_dlc = "No Step Back" }
 			SOV = {
 				add_equipment_to_stockpile = {
-					type = apc_hull_0
+					type = medium_tank_amphibious_chassis_1
 					variant_name = "BTR-70"
 					amount = -90
 					producer = SOV
@@ -2830,7 +2830,7 @@ country_event = {
 			}
 			EGY = {
 				add_equipment_to_stockpile = {
-					type = apc_hull_0
+					type = medium_tank_amphibious_chassis_1
 					variant_name = "BTR-70"
 					amount = 90
 					producer = SOV
@@ -2962,18 +2962,20 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: egypt.138.a executed"
 		SOV = {
 			add_equipment_to_stockpile = {
-				type = Anti_tank_2
-				amount = 250
+				type = Anti_tank_1
+				variant_name = "9M133 Kornet"
 				producer = SOV
+				amount = 250
 			}
 			set_temp_variable = { treasury_change = 4 }
 			modify_treasury_effect = yes
 		}
 		EGY = {
 			add_equipment_to_stockpile = {
-				type = Anti_tank_2
-				amount = 250
+				type = Anti_tank_1
+				variant_name = "9M133 Kornet"
 				producer = SOV
+				amount = 250
 			}
 			set_temp_variable = { treasury_change = -4 }
 			modify_treasury_effect = yes
@@ -3016,8 +3018,6 @@ country_event = {
 ##########COUP
 country_event = {
 	id = egypt.141
-	immediate = { log = "[GetDateText]: [Root.GetName]: event egypt.141" }
-
 	title = egypt.141.t
 	desc = egypt.141.d
 	picture = GFX_turkeycoup
@@ -3033,37 +3033,24 @@ country_event = {
 			limit = { NOT = { has_idea = EGY_guards_of_secularism } }
 			add_ideas = EGY_guards_of_secularism
 		}
-		hidden_effect = {
-			clear_array = ruling_party
-			clear_array = gov_coalition_array
-			add_to_array = { ruling_party = 22 }
-			update_government_coalition_strength = yes
-			update_party_name = yes
-			set_coalition_drift = yes
-			meta_effect = {
-				text = { set_country_flag = [META_SET_RULING_PARTY] }
-				META_SET_RULING_PARTY = "[meta_set_ruling_leader]"
-			}
-			create_country_leader = {
-				name = "High Military Command of Egypt"
-				picture = "egypt_junta.dds"
-				ideology = Nat_Autocracy
-				traits = {
-					nationalist_Nat_Autocracy
-					military_career
-					staunch_constitutionalist
-					inexperienced
-				}
-			}
-			set_leader = yes
+
+		if = {
+			limit = { NOT = { is_in_array = { ruling_party = 22 } } }
+			set_temp_variable = { rul_party_temp = 22 }
+			set_temp_variable = { enable_elections = 0 }
+			change_ruling_party_effect = yes
 		}
-		set_politics = {
-			ruling_party = nationalist
-			elections_allowed = no
-		}
-		add_popularity = {
-			ideology = nationalist
-			popularity = 0.05
+
+		create_country_leader = {
+			name = "High Military Command of Egypt"
+			picture = "egypt_junta.dds"
+			ideology = Nat_Autocracy
+			traits = {
+				nationalist_Nat_Autocracy
+				military_career
+				staunch_constitutionalist
+				inexperienced
+			}
 		}
 		set_cosmetic_tag = EGY_REB_S_nationalist
 	}
@@ -3379,19 +3366,10 @@ country_event = {
 			limit = { original_tag = GER }
 			custom_effect_tooltip = EGY_GER_agree_to_sell_tt
 			hidden_effect = {
-				if = {
-					limit = { has_dlc = "Man the Guns" }
-					EGY = {
+				EGY = {
 						set_technology = { attack_submarine_hull_1 = 1 }
 						load_oob = "EGY_buy_german_subs_MTG"
 					}
-				}
-				else = {
-					EGY = {
-						set_technology = { diesel_attack_submarine_2 = 1 }
-						load_oob = "EGY_buy_german_subs"
-					}
-				}
 				GER = {
 					set_temp_variable = { treasury_change = 6 }
 					modify_treasury_effect = yes
@@ -3407,18 +3385,9 @@ country_event = {
 			limit = { original_tag = ITA }
 			custom_effect_tooltip = EGY_ITA_agree_to_sell_tt
 			hidden_effect = {
-				if = {
-					limit = { has_dlc = "Man the Guns" }
-					EGY = {
-						set_technology = { frigate_hull_3 = 1 }
-						load_oob = "EGY_buy_italian_frigates_MTG"
-					}
-				}
-				else = {
-					EGY = {
-						set_technology = { frigate_2 = 1 }
-						load_oob = "EGY_buy_italian_frigates"
-					}
+				EGY = {
+					set_technology = { frigate_hull_3 = 1 }
+					load_oob = "EGY_buy_italian_frigates_MTG"
 				}
 				ITA = {
 					set_temp_variable = { treasury_change = 6 }
@@ -3435,36 +3404,27 @@ country_event = {
 			limit = { original_tag = FRA }
 			custom_effect_tooltip = EGY_FRA_agree_to_sell_tt
 			hidden_effect = {
-				if = {
-					limit = { has_dlc = "Man the Guns" }
-					create_equipment_variant = {
-						#фикшионал хуйня
-						name = "Charles de Gaulle Class 2"
-						type = helicopter_operator_hull_2
-						parent_version = 0
-						modules = {
-							fixed_ship_engine_slot = module_surface_diesel_power
-							fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-							fixed_ship_radar_slot = module_radar_4
-							fixed_ship_auxillary_slot_3 = module_fuel_tank
-							fixed_ship_auxillary_slot_2 = module_chain_gun
-							fixed_ship_auxillary_slot = module_chain_gun
-							fixed_ship_battery_slot = module_light_flight_deck_1
-							front_1_custom_slot = module_helipads_2
-							mid_1_custom_slot = module_helipads_2
-							rear_1_custom_slot = module_helipads_2
-						}
-					}
-					EGY = {
-						set_technology = { helicopter_operator_hull_2 = 1 }
-						load_oob = "EGY_buy_french_helioperator_MTG"
+				create_equipment_variant = {
+					#фикшионал хуйня
+					name = "Charles de Gaulle Class 2"
+					type = helicopter_operator_hull_2
+					parent_version = 0
+					modules = {
+						fixed_ship_engine_slot = module_surface_diesel_power
+						fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+						fixed_ship_radar_slot = module_radar_4
+						fixed_ship_auxillary_slot_3 = module_fuel_tank
+						fixed_ship_auxillary_slot_2 = module_chain_gun
+						fixed_ship_auxillary_slot = module_chain_gun
+						fixed_ship_battery_slot = module_light_flight_deck_1
+						front_1_custom_slot = module_helipads_2
+						mid_1_custom_slot = module_helipads_2
+						rear_1_custom_slot = module_helipads_2
 					}
 				}
-				else = {
-					EGY = {
-						set_technology = { modern_carrier_2 = 1 }
-						load_oob = "EGY_buy_french_helioperator"
-					}
+				EGY = {
+					set_technology = { helicopter_operator_hull_2 = 1 }
+					load_oob = "EGY_buy_french_helioperator_MTG"
 				}
 				FRA = {
 					set_temp_variable = { treasury_change = 8 }
@@ -3701,4 +3661,264 @@ country_event = {
 		}
 	}
 }
+country_event = {
+	id = egypt.154
+	title = egypt.154.t
+	desc = egypt.154.d
+	picture = GFX_israeli_soldiers_injured
 
+	is_triggered_only = yes
+
+	option = {
+		name = egypt.154.a
+		log = "[GetDateText]: [This.GetName]: egypt.154.a executed"
+		USA = {
+			set_temp_variable = { treasury_change = 12 }
+			modify_treasury_effect = yes
+		}
+		EGY = {
+			set_temp_variable = { treasury_change = -12 }
+			modify_treasury_effect = yes
+			country_event = egypt.155
+		}
+		if = {
+			limit = { has_dlc = "By Blood Alone" }
+			USA = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					variant_name = "F-16C Blk 40/42"
+					amount = 27
+				}
+			}
+			EGY = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					variant_name = "F-16C Blk 40/42"
+					amount = 27
+					producer = USA
+				}
+			}
+		}
+		else = {
+			USA = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					amount = -27
+					producer = USA
+				}
+			}
+			EGY = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					amount = 27
+					producer = USA
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+	option = {
+		name = egypt.154.b
+		log = "[GetDateText]: [This.GetName]: egypt.154.b executed"
+		EGY = { country_event = egypt.156 }
+		ai_chance = { base = 0 }
+	}
+}
+country_event = {
+	id = egypt.155
+	title = egypt.155.t
+	desc = egypt.155.d
+	picture = GFX_israeli_soldiers_injured
+	is_triggered_only = yes
+	option = {
+		name = egypt.155.a
+		log = "[GetDateText]: [This.GetName]: egypt.155.a executed"
+		ai_chance = { base = 1 }
+	}
+}
+country_event = {
+	id = egypt.156
+	title = egypt.156.t
+	desc = egypt.156.d
+	picture = GFX_israeli_soldiers_injured
+	is_triggered_only = yes
+	option = {
+		name = egypt.156.a
+		log = "[GetDateText]: [This.GetName]: egypt.156.a executed"
+		ai_chance = { base = 1 }
+	}
+}
+country_event = {
+	id = egypt.157
+	title = egypt.157.t
+	desc = egypt.157.d
+	picture = GFX_israeli_soldiers_injured
+
+	is_triggered_only = yes
+
+	option = {
+		name = egypt.157.a
+		log = "[GetDateText]: [This.GetName]: egypt.157.a executed"
+		SOV = {
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+		EGY = {
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+			country_event = egypt.158
+		}
+		if = {
+			limit = { has_dlc = "By Blood Alone" }
+			SOV = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					variant_name = "MiG-29 Fulcrum"
+					amount = -20
+				}
+			}
+			EGY = {
+				add_equipment_to_stockpile = {
+					type = small_plane_airframe_2
+					variant_name = "MiG-29 Fulcrum"
+					amount = 20
+					producer = SOV
+				}
+			}
+		}
+		else = {
+			SOV = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					amount = -20
+					producer = SOV
+				}
+			}
+			EGY = {
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					amount = 20
+					producer = SOV
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+	option = {
+		name = egypt.157.b
+		log = "[GetDateText]: [This.GetName]: egypt.157.b executed"
+		EGY = { country_event = egypt.159 }
+		ai_chance = { base = 0 }
+	}
+}
+country_event = {
+	id = egypt.158
+	title = egypt.158.t
+	desc = egypt.158.d
+	picture = GFX_israeli_soldiers_injured
+	is_triggered_only = yes
+	option = {
+		name = egypt.158.a
+		log = "[GetDateText]: [This.GetName]: egypt.158.a executed"
+		ai_chance = { base = 1 }
+	}
+}
+country_event = {
+	id = egypt.159
+	title = egypt.159.t
+	desc = egypt.159.d
+	picture = GFX_israeli_soldiers_injured
+	is_triggered_only = yes
+	option = {
+		name = egypt.158.a
+		log = "[GetDateText]: [This.GetName]: egypt.159.a executed"
+		ai_chance = { base = 1 }
+	}
+}
+country_event = {
+	id = egypt.160
+	title = egypt.160.t
+	desc = egypt.160.d
+	picture = GFX_israeli_soldiers_injured
+
+	is_triggered_only = yes
+
+	option = {
+		name = egypt.160.a
+		log = "[GetDateText]: [This.GetName]: egypt.160.a executed"
+		SOV = {
+			set_temp_variable = { treasury_change = 3 }
+			modify_treasury_effect = yes
+		}
+		EGY = {
+			set_temp_variable = { treasury_change = -3 }
+			modify_treasury_effect = yes
+			country_event = egypt.161
+		}
+		if = {
+			limit = { has_dlc = "No Step Back" }
+			SOV = {
+				add_equipment_to_stockpile = {
+					type = medium_tank_aa_chassis_1
+					variant_name = "9K37 Buk"
+					amount = 30
+				}
+			}
+			EGY = {
+				add_equipment_to_stockpile = {
+					type = medium_tank_aa_chassis_1
+					variant_name = "9K37 Buk"
+					amount = 30
+					producer = SOV
+				}
+			}
+		}
+		else = {
+			SOV = {
+				add_equipment_to_stockpile = {
+					type = medium_tank_aa_chassis_1
+					variant_name = "9K37 Buk"
+					amount = 30
+				}
+			}
+			EGY = {
+				add_equipment_to_stockpile = {
+					type = medium_tank_aa_chassis_1
+					variant_name = "9K37 Buk"
+					amount = 30
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+	option = {
+		name = egypt.160.b
+		log = "[GetDateText]: [This.GetName]: egypt.160.b executed"
+		EGY = { country_event = egypt.161 }
+		ai_chance = { base = 0 }
+	}
+}
+country_event = {
+	id = egypt.161
+	title = egypt.161.t
+	desc = egypt.161.d
+	picture = GFX_israeli_soldiers_injured
+	is_triggered_only = yes
+	option = {
+		name = egypt.161.a
+		log = "[GetDateText]: [This.GetName]: egypt.161.a executed"
+		ai_chance = { base = 1 }
+	}
+}
+country_event = {
+	id = egypt.162
+	title = egypt.162.t
+	desc = egypt.162.d
+	picture = GFX_israeli_soldiers_injured
+	is_triggered_only = yes
+	option = {
+		name = egypt.161.a
+		log = "[GetDateText]: [This.GetName]: egypt.162.a executed"
+		ai_chance = { base = 1 }
+	}
+}

@@ -176,7 +176,12 @@ calculate_expected_military_spending = {
 	round_variable = expected_military_sp
 
 	if = {
-		limit = { THIS = { has_idea = non_power } }
+		limit = {
+			OR = {
+				THIS = { has_idea = non_power }
+				THIS = { has_idea = no_military }
+			}
+		}
 		set_variable = { expected_military_sp = 1 }
 	}
 
@@ -189,14 +194,14 @@ calculate_expected_military_spending = {
 		clamp_variable = {
 			var = expected_military_sp
 			min = 1
-			max = 6
+			max = 4
 		}
 	}
 	else = {
 		clamp_variable = {
 			var = expected_military_sp
 			min = 1
-			max = 10
+			max = 8
 		}
 	}
 }
@@ -427,7 +432,7 @@ setup_initial_expected_spending_by_party = {
 	add_to_array = { global.expected_military_sp = 2 }
 	add_to_array = { global.expected_military_sp = 1.5 }
 	add_to_array = { global.expected_military_sp = 1 }
-	add_to_array = { global.expected_military_sp = 3 }
+	add_to_array = { global.expected_military_sp = 2.5 }
 	add_to_array = { global.expected_military_sp = 3 }
 	add_to_array = { global.expected_military_sp = 2.5 }
 	add_to_array = { global.expected_military_sp = 2 }
@@ -437,7 +442,7 @@ setup_initial_expected_spending_by_party = {
 	add_to_array = { global.expected_military_sp = 2 }
 	add_to_array = { global.expected_military_sp = 2.5 }
 	add_to_array = { global.expected_military_sp = 2.5 }
-	add_to_array = { global.expected_military_sp = 2 }
+	add_to_array = { global.expected_military_sp = 1.5 }
 	add_to_array = { global.expected_military_sp = 2 }
 	add_to_array = { global.expected_military_sp = 2 }
 	add_to_array = { global.expected_military_sp = 2.5 }
@@ -646,47 +651,22 @@ give_in_to_protestors_effect = {
 	# AI helper to not overspend
 	if = {
 		limit = { is_ai = yes }
-
-		if = {
-			limit = {
-				check_variable = { expected_adm_spending < bureaucracy }
-			}
-
+		if = { limit = { check_variable = { expected_adm_spending < bureaucracy } }
 			decrease_centralization = yes
 		}
-		if = {
-			limit = {
-				check_variable = { expected_police_spending < crime_fighting }
-			}
-
+		if = { limit = { check_variable = { expected_police_spending < crime_fighting } }
 			decrease_policing_budget = yes
 		}
-		if = {
-			limit = {
-				check_variable = { expected_edu_spending < education_budget }
-			}
-
+		if = { limit = { check_variable = { expected_edu_spending < education_budget } }
 			decrease_education_budget = yes
 		}
-		if = {
-			limit = {
-				check_variable = { expected_health_spending < health_budget }
-			}
-
+		if = { limit = { check_variable = { expected_health_spending < health_budget } }
 			decrease_healthcare_budget = yes
 		}
-		if = {
-			limit = {
-				check_variable = { expected_welfare_spending < social_budget }
-			}
-
+		if = { limit = { check_variable = { expected_welfare_spending < social_budget } }
 			decrease_social_spending = yes
 		}
-		if = {
-			limit = {
-				check_variable = { expected_military_sp < Military_Spending }
-			}
-
+		if = { limit = { check_variable = { expected_military_sp < Military_Spending } }
 			decrease_military_spending = yes
 		}
 	}

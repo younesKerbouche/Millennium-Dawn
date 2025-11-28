@@ -20,9 +20,15 @@ country_event = {
 				NOT = { controls_state = 437 }
 				NOT = { controls_state = 9 }
 				NOT = { controls_state = 8 }
+				NOT = { controls_state = 1194 }
+				NOT = { controls_state = 1195 }
+				NOT = { controls_state = 1196 }
 				437 = { owner = { NOT = { has_war_with = ENG } } }
 				9 = { owner = { NOT = { has_war_with = ENG } } }
 				8 = { owner = { NOT = { has_war_with = ENG } } }
+				1194 = { owner = { NOT = { has_war_with = ENG } } }
+				1195 = { owner = { NOT = { has_war_with = ENG } } }
+				1196 = { owner = { NOT = { has_war_with = ENG } } }
 			}
 		}
 		OR = {	#WASes
@@ -32,7 +38,9 @@ country_event = {
 			}
 			AND = {	#The state of WASes might have been lost.
 				NOT = { controls_state = 16 }
+				NOT = { controls_state = 1192 }
 				16 = { owner = { NOT = { has_war_with = ENG } } }
+				1192 = { owner = { NOT = { has_war_with = ENG } } }
 			}
 		}
 	}
@@ -55,7 +63,7 @@ country_event = {
 		add_political_power = 10
 
 		ai_chance = {
-			factor = 100
+			base = 100
 		}
 	}
 
@@ -66,7 +74,7 @@ country_event = {
 		set_country_flag = refused_to_be_england
 
 		ai_chance = {
-			factor = 0
+			base = 0
 		}
 	}
 }
@@ -329,16 +337,14 @@ country_event = {
 			25 = {
 				random_owned_state = {
 					limit = {
-						state_population > 5000
 						free_building_slots = {
 							building = industrial_complex
 							size > 0
 							include_locked = yes
 						}
 						OR = {
-							region = 1
-							region = 2
-							region = 3
+							is_in_home_area = yes
+							state = 17
 						}
 					}
 					add_building_construction = {
@@ -354,16 +360,14 @@ country_event = {
 			25 = {
 				random_owned_state = {
 					limit = {
-						state_population > 5000
 						free_building_slots = {
 							building = arms_factory
 							size > 0
 							include_locked = yes
 						}
 						OR = {
-							region = 1
-							region = 2
-							region = 3
+							is_in_home_area = yes
+							state = 17
 						}
 					}
 					add_building_construction = {
@@ -379,16 +383,15 @@ country_event = {
 			25 = {
 				random_owned_state = {
 					limit = {
-						state_population > 5000
+						is_coastal = yes
 						free_building_slots = {
 							building = dockyard
 							size > 0
 							include_locked = yes
 						}
 						OR = {
-							region = 1
-							region = 2
-							region = 3
+							is_in_home_area = yes
+							state = 17
 						}
 					}
 					add_building_construction = {
@@ -404,16 +407,14 @@ country_event = {
 			25 = {
 				random_owned_state = {
 					limit = {
-						state_population > 5000
 						free_building_slots = {
 							building = offices
 							size > 0
 							include_locked = yes
 						}
 						OR = {
-							region = 1
-							region = 2
-							region = 3
+							is_in_home_area = yes
+							state = 17
 						}
 					}
 					add_building_construction = {
@@ -539,7 +540,7 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 75
+			base = 75
 
 			modifier = {
 				add = -50
@@ -571,7 +572,7 @@ country_event = {
 		}
 
 		ai_chance = {
-			factor = 25
+			base = 25
 
 			modifier = {
 				add = 50
@@ -734,7 +735,7 @@ country_event = {
 		add_ideas = ENG_merit_based_education_system_idea
 		increase_education_budget = yes
 		ai_chance = {
-			factor = 3
+			base = 3
 		}
 	}
 
@@ -748,7 +749,7 @@ country_event = {
 		add_political_power = -25
 		increase_education_budget = yes
 		ai_chance = {
-			factor = 5
+			base = 5
 			modifier = {
 				OR = {
 					is_in_array = { ruling_party = 21 }
@@ -767,7 +768,7 @@ country_event = {
 		add_ideas = ENG_hybrid_based_education_system_idea
 		increase_education_budget = yes
 		ai_chance = {
-			factor = 2
+			base = 2
 			modifier = {
 				OR = {
 					democratic > 0.20
@@ -895,7 +896,6 @@ country_event = {
 		army_experience = 25
 		random_owned_state = {
 			limit = {
-				state_population > 5000
 				free_building_slots = {
 					building = arms_factory
 					size > 0
@@ -923,9 +923,6 @@ news_event = {
 	option = {
 		name = britain_md.22.o1
 		log = "[GetDateText]: [This.GetName]: britain_md.22.o1 executed"
-		#add_stability = -0.05
-		#remove_ideas = EU_member
-		#news_event = news.4
 	}
 }
 
@@ -941,7 +938,6 @@ news_event = {
 	option = {
 		name = britain_md.23.o1
 		log = "[GetDateText]: [This.GetName]: britain_md.23.o1 executed"
-		#add_stability = -0.05
 	}
 }
 

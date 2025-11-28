@@ -193,6 +193,17 @@
 			}
 			opt_party1_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party1_banned
 			}
 			opt_party1_allow_button_click_enabled = {
@@ -273,6 +284,17 @@
 						}
 					}
 				}
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 			}
 			opt_party2_allow_button_click_enabled = {
 				# must have party banned
@@ -281,6 +303,17 @@
 					has_country_flag = partyall_banned
 				}
 				has_political_power > 9
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 			}
 			#Button 3
 			opt_party3_boost_button_click_enabled = {
@@ -324,6 +357,17 @@
 			}
 			opt_party3_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party3_banned
 			}
 			opt_party3_allow_button_click_enabled = {
@@ -335,20 +379,16 @@
 			#Button 4
 			opt_party4_boost_button_click_enabled = {
 				democratic_outlook_larger_than_0 = yes
-				#party_3_is_not_maxed = yes
-
 				NOT = {
 					has_country_flag = party4_banned
 				}
-			}
-			opt_party4_boost_button_click_enabled = {
+				has_political_power > 99
 				if = {
 					limit = {
 						original_tag = TUR
 					}
 					NOT = { has_idea = TUR_party_rumours }
 				}
-				has_political_power > 99
 			}
 			opt_party4_attack_button_click_enabled = {
 				party_3_has_more_than_threshold = yes
@@ -382,6 +422,17 @@
 			}
 			opt_party4_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party4_banned
 			}
 			opt_party4_allow_button_click_enabled = {
@@ -399,9 +450,23 @@
 					has_country_flag = party5_banned
 				}
 				has_political_power > 99
-				if = { limit = { tag = POL }
+				if = {
+					limit = {
+						OR = {
+							tag = POL
+							tag = EST
+							tag = LAT
+							tag = LIT
+							tag = FIN
+						}
+					}
 					NOT = {
 						has_idea = POL_intolerance_of_communism_idea
+					}
+				}
+				if = { limit = { tag = CZE }
+					NOT = {
+						has_country_flag = CZE_kscm_eu_problem_flag
 					}
 				}
 			}
@@ -436,6 +501,17 @@
 			}
 			opt_party5_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party5_banned
 			}
 			opt_party5_allow_button_click_enabled = {
@@ -459,7 +535,16 @@
 					has_country_flag = ITA_five_star_movement_founded
 				}
 				has_political_power > 99
-				if = { limit = { tag = POL }
+				if = {
+					limit = {
+						OR = {
+							tag = POL
+							tag = EST
+							tag = LAT
+							tag = LIT
+							tag = FIN
+						}
+					}
 					NOT = {
 						has_idea = POL_intolerance_of_communism_idea
 					}
@@ -500,6 +585,17 @@
 			}
 			opt_party6_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party6_banned
 			}
 			opt_party6_allow_button_click_enabled = {
@@ -555,6 +651,17 @@
 			}
 			opt_party7_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party7_banned
 			}
 			opt_party7_allow_button_click_enabled = {
@@ -610,6 +717,17 @@
 			}
 			opt_party8_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party8_banned
 			}
 			opt_party8_allow_button_click_enabled = {
@@ -628,10 +746,8 @@
 				}
 				if = {
 					limit = { original_tag = PER }
-					NOT = {
-						emerging_hardline_shiite_are_in_power = yes
-						emerging_moderate_shiite_are_in_power = yes
-					}
+					emerging_hardline_shiite_are_not_in_power = yes
+					emerging_moderate_shiite_are_not_in_power = yes
 				}
 				#countries with a shiite population
 				OR = {
@@ -655,6 +771,9 @@
 					original_tag = DRU
 					original_tag = NIG
 					original_tag = OMA
+					original_tag = UAE
+					original_tag = QAT
+					original_tag = YEM
 				}
 				has_political_power > 99
 			}
@@ -670,10 +789,8 @@
 				}
 				if = {
 					limit = { original_tag = PER }
-					NOT = {
-						emerging_hardline_shiite_are_in_power = yes
-						emerging_moderate_shiite_are_in_power = yes
-					}
+					emerging_hardline_shiite_are_not_in_power = yes
+					emerging_moderate_shiite_are_not_in_power = yes
 				}
 
 				if = {
@@ -693,10 +810,8 @@
 				}
 				if = {
 					limit = { original_tag = PER }
-					NOT = {
-						emerging_hardline_shiite_are_in_power = yes
-						emerging_moderate_shiite_are_in_power = yes
-					}
+					emerging_hardline_shiite_are_not_in_power = yes
+					emerging_moderate_shiite_are_not_in_power = yes
 				}
 			}
 			opt_party9_ban_button_click_enabled = {
@@ -728,10 +843,8 @@
 				}
 				if = {
 					limit = { original_tag = PER }
-					NOT = {
-						emerging_hardline_shiite_are_in_power = yes
-						emerging_moderate_shiite_are_in_power = yes
-					}
+					emerging_hardline_shiite_are_not_in_power = yes
+					emerging_moderate_shiite_are_not_in_power = yes
 				}
 				OR = {
 					original_tag = PER
@@ -754,6 +867,9 @@
 					original_tag = DRU
 					original_tag = NIG
 					original_tag = OMA
+					original_tag = UAE
+					original_tag = QAT
+					original_tag = YEM
 				}
 				has_political_power > 99
 			}
@@ -769,10 +885,8 @@
 				}
 				if = {
 					limit = { original_tag = PER }
-					NOT = {
-						emerging_hardline_shiite_are_in_power = yes
-						emerging_moderate_shiite_are_in_power = yes
-					}
+					emerging_hardline_shiite_are_not_in_power = yes
+					emerging_moderate_shiite_are_not_in_power = yes
 				}
 
 				if = {
@@ -792,10 +906,8 @@
 				}
 				if = {
 					limit = { original_tag = PER }
-					NOT = {
-						emerging_hardline_shiite_are_in_power = yes
-						emerging_moderate_shiite_are_in_power = yes
-					}
+					emerging_hardline_shiite_are_not_in_power = yes
+					emerging_moderate_shiite_are_not_in_power = yes
 				}
 			}
 			opt_party10_ban_button_click_enabled = {
@@ -834,6 +946,9 @@
 					original_tag = QAT
 					original_tag = SAU
 					original_tag = YEM
+
+					# Custom Content
+					original_tag = EGY
 				}
 				has_political_power > 99
 			}
@@ -868,6 +983,17 @@
 			}
 			opt_party11_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party11_banned
 			}
 			opt_party11_allow_button_click_enabled = {
@@ -910,7 +1036,6 @@
 						original_tag = COM
 						original_tag = TNZ
 						original_tag = KEN
-						original_tag = SRF
 						original_tag = DAR
 						original_tag = SUD
 						original_tag = MAU
@@ -970,6 +1095,17 @@
 			}
 			opt_party12_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party12_banned
 			}
 			opt_party12_allow_button_click_enabled = {
@@ -1015,7 +1151,6 @@
 						original_tag = COM
 						original_tag = TNZ
 						original_tag = KEN
-						original_tag = SRF
 						original_tag = DAR
 						original_tag = SUD
 						original_tag = MAU
@@ -1056,6 +1191,14 @@
 						has_political_power > 99
 					}
 				}
+				if = {
+					limit = {
+						original_tag = TAJ
+					}
+					NOT = {
+						has_idea = TAJ_woes_of_the_civilwar
+					}
+				}
 			}
 			opt_party13_ban_button_visible = {
 				# can't attack yourself or allies
@@ -1070,22 +1213,30 @@
 						has_political_power > 99
 					}
 				}
-				has_elections = no
-				NOT = {
-					OR = {
-						has_idea = christian
-						has_idea = orthodox_christian
-						has_idea = hindu
-						has_idea = buddism
-						has_idea = cheondo
-						has_idea = shinto
-						has_idea = judaism
+				if = {
+					limit = {
+						original_tag = TAJ
+					}
+					NOT = {
+						has_idea = TAJ_woes_of_the_civilwar
 					}
 				}
+				has_elections = no
 				neutrality_muslim_brotherhood_not_in_power_or_coalition = yes
 			}
 			opt_party13_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party13_banned
 			}
 			opt_party13_allow_button_click_enabled = {
@@ -1141,6 +1292,17 @@
 			}
 			opt_party14_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party14_banned
 			}
 			opt_party14_allow_button_click_enabled = {
@@ -1191,6 +1353,17 @@
 			}
 			opt_party15_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party15_banned
 			}
 			opt_party15_allow_button_click_enabled = {
@@ -1250,6 +1423,17 @@
 			}
 			opt_party16_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party16_banned
 			}
 			opt_party16_allow_button_click_enabled = {
@@ -1300,6 +1484,17 @@
 			}
 			opt_party17_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party17_banned
 			}
 			opt_party17_allow_button_click_enabled = {
@@ -1350,6 +1545,17 @@
 			}
 			opt_party18_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party18_banned
 			}
 			opt_party18_allow_button_click_enabled = {
@@ -1403,6 +1609,17 @@
 			}
 			opt_party19_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party19_banned
 			}
 			opt_party19_allow_button_click_enabled = {
@@ -1414,18 +1631,18 @@
 			#Button 20
 			opt_party20_boost_button_click_enabled = {
 				neutrality_outlook_larger_than_0 = yes
-				#party_19_is_not_maxed = yes
-
 				NOT = {
 					has_country_flag = party20_banned
 				}
-			}
-			opt_party20_boost_button_click_enabled = {
-				NOT = {
-					has_idea = TUR_PKK_insurgency_ceasefire
-					has_idea = TUR_PKK_insurgency_active
-				}
 				has_political_power > 99
+				if = {
+					limit = { original_tag = TUR }
+
+					NOT = {
+						has_idea = TUR_PKK_insurgency_ceasefire
+						has_idea = TUR_PKK_insurgency_active
+					}
+				}
 			}
 			opt_party20_attack_button_click_enabled = {
 				party_19_has_more_than_threshold = yes
@@ -1458,6 +1675,17 @@
 			}
 			opt_party20_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party20_banned
 			}
 			opt_party20_allow_button_click_enabled = {
@@ -1489,6 +1717,15 @@
 						has_political_power > 99
 					}
 				}
+
+				if = {
+					limit = {
+						original_tag = TAJ
+					}
+					NOT = {
+						has_idea = TAJ_woes_of_the_civilwar
+					}
+				}
 			}
 			opt_party21_ban_button_visible = {
 				# can't attack yourself or allies
@@ -1507,10 +1744,29 @@
 				if = { limit = { original_tag = GER }
 					NOT = { has_idea = german_legacy }
 				}
+				if = {
+					limit = {
+						original_tag = TAJ
+					}
+					NOT = {
+						has_idea = TAJ_woes_of_the_civilwar
+					}
+				}
 				nationalist_right_wing_populists_are_not_in_power_or_coalition = yes
 			}
 			opt_party21_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party21_banned
 			}
 			opt_party21_allow_button_click_enabled = {
@@ -1560,6 +1816,17 @@
 			}
 			opt_party22_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party22_banned
 			}
 			opt_party22_allow_button_click_enabled = {
@@ -1609,6 +1876,17 @@
 			}
 			opt_party23_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party23_banned
 			}
 			opt_party23_allow_button_click_enabled = {
@@ -1665,6 +1943,17 @@
 			}
 			opt_party24_allow_button_visible = {
 				# must have party banned
+				if = {
+					limit = {
+						original_tag = PER
+					}
+					NOT = {
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
 				has_country_flag = party24_banned
 			}
 			opt_party24_allow_button_click_enabled = {
@@ -1736,8 +2025,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 0 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party1_attack_button_click = {
@@ -1750,10 +2042,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 0 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party1_ban_button_click = {
@@ -1777,8 +2071,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 1 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party2_attack_button_click = {
@@ -1790,8 +2087,11 @@
 				}
 
 				set_temp_variable = { party_index = 1 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party2_ban_button_click = {
@@ -1815,8 +2115,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 2 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party3_attack_button_click = {
@@ -1831,8 +2134,11 @@
 				}
 
 				set_temp_variable = { party_index = 2 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party3_ban_button_click = {
@@ -1855,8 +2161,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 3 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party4_attack_button_click = {
@@ -1871,8 +2180,11 @@
 				}
 
 				set_temp_variable = { party_index = 3 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party4_ban_button_click = {
@@ -1896,8 +2208,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 4 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party5_attack_button_click = {
@@ -1912,8 +2227,11 @@
 				}
 
 				set_temp_variable = { party_index = 4 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party5_ban_button_click = {
@@ -1937,8 +2255,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 5 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party6_attack_button_click = {
@@ -1953,8 +2274,11 @@
 				}
 
 				set_temp_variable = { party_index = 5 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party6_ban_button_click = {
@@ -1978,8 +2302,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 6 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party7_attack_button_click = {
@@ -1994,8 +2321,11 @@
 				}
 
 				set_temp_variable = { party_index = 6 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party7_ban_button_click = {
@@ -2019,8 +2349,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 7 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party8_attack_button_click = {
@@ -2035,8 +2368,11 @@
 				}
 
 				set_temp_variable = { party_index = 7 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party8_ban_button_click = {
@@ -2060,8 +2396,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 8 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party9_attack_button_click = {
@@ -2076,8 +2415,11 @@
 				}
 
 				set_temp_variable = { party_index = 8 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party9_ban_button_click = {
@@ -2101,8 +2443,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 9 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party10_attack_button_click = {
@@ -2117,8 +2462,11 @@
 				}
 
 				set_temp_variable = { party_index = 9 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party10_ban_button_click = {
@@ -2142,8 +2490,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 10 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party11_attack_button_click = {
@@ -2158,8 +2509,11 @@
 				}
 
 				set_temp_variable = { party_index = 10 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party11_ban_button_click = {
@@ -2183,8 +2537,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 11 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party12_attack_button_click = {
@@ -2199,8 +2556,11 @@
 				}
 
 				set_temp_variable = { party_index = 11 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party12_ban_button_click = {
@@ -2224,8 +2584,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 12 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party13_attack_button_click = {
@@ -2240,8 +2603,11 @@
 				}
 
 				set_temp_variable = { party_index = 12 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party13_ban_button_click = {
@@ -2265,8 +2631,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 13 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party14_attack_button_click = {
@@ -2281,8 +2650,11 @@
 				}
 
 				set_temp_variable = { party_index = 13 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party14_ban_button_click = {
@@ -2306,8 +2678,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 14 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party15_attack_button_click = {
@@ -2320,10 +2695,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 14 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party15_ban_button_click = {
@@ -2346,8 +2723,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 15 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party16_attack_button_click = {
@@ -2360,10 +2740,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 15 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party16_ban_button_click = {
@@ -2387,8 +2769,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 16 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party17_attack_button_click = {
@@ -2401,10 +2786,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 16 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party17_ban_button_click = {
@@ -2428,8 +2815,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 17 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party18_attack_button_click = {
@@ -2442,10 +2832,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 17 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party18_ban_button_click = {
@@ -2468,8 +2860,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 18 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party19_attack_button_click = {
@@ -2482,10 +2877,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 18 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party19_ban_button_click = {
@@ -2509,8 +2906,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 19 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party20_attack_button_click = {
@@ -2523,10 +2923,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 19 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party20_ban_button_click = {
@@ -2549,8 +2951,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 20 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party21_attack_button_click = {
@@ -2565,8 +2970,11 @@
 				}
 
 				set_temp_variable = { party_index = 20 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party21_ban_button_click = {
@@ -2590,8 +2998,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 21 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party22_attack_button_click = {
@@ -2604,10 +3015,12 @@
 						add_political_power = -100
 					}
 				}
-
 				set_temp_variable = { party_index = 21 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party22_ban_button_click = {
@@ -2631,8 +3044,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 22 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party23_attack_button_click = {
@@ -2647,8 +3063,11 @@
 				}
 
 				set_temp_variable = { party_index = 22 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party23_ban_button_click = {
@@ -2672,8 +3091,11 @@
 				add_political_power = -100
 
 				set_temp_variable = { party_index = 23 }
+				set_temp_variable = { boost_multiplier = 1 }
+				add_to_temp_variable = { boost_multiplier = modifier@popularity_boost_modifier }
 				set_temp_variable = { party_popularity_increase = 0.02 }
-				set_temp_variable = { temp_outlook_increase = 0.01 }
+				multiply_temp_variable = { party_popularity_increase = boost_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = 0 max = 100 }
 				add_relative_party_popularity = yes
 			}
 			opt_party24_attack_button_click = {
@@ -2688,8 +3110,11 @@
 				}
 
 				set_temp_variable = { party_index = 23 }
+				set_temp_variable = { attack_multiplier = 1 }
+				add_to_temp_variable = { attack_multiplier = modifier@popularity_attack_modifier }
 				set_temp_variable = { party_popularity_increase = -0.02 }
-				set_temp_variable = { temp_outlook_increase = -0.01 }
+				multiply_temp_variable = { party_popularity_increase = attack_multiplier }
+				clamp_temp_variable = { var = party_popularity_increase min = -0.1 }
 				add_relative_party_popularity = yes
 			}
 			opt_party24_ban_button_click = {

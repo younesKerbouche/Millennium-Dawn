@@ -1,11 +1,22 @@
-##Generic Save PP when needed!!!
+# Author(s): AngriestBird
 save_pp_for_laws = {
 	enable = {
-		has_country_flag = AI_economic_downspiral
+		count_triggers = {
+			amount = 2
+			has_country_flag = AI_economic_downspiral
+			check_variable = { interest_rate > 10 }
+			NOT = {
+				has_idea = economic_boom
+				has_idea = fast_growth
+				has_idea = stable_growth
+			}
+			NOT = {
+				has_idea = slight_corruption
+				has_idea = negligible_corruption
+			}
+		}
 	}
-	abort = {
-		NOT = { has_country_flag = AI_economic_downspiral }
-	}
+	abort_when_not_enabled = yes
 
 	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
 	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
@@ -17,45 +28,10 @@ save_pp_for_laws = {
 	ai_strategy = { type = pp_spend_amount id = idea value = 500 }
 }
 
-save_pp_for_laws_flag_aggresive_economic_ai = {
-	enable = {
-		NOT = {
-			has_idea = economic_boom
-		}
-	}
-	abort = { has_idea = economic_boom }
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = general value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = idea value = 2500 } #Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_amount id = idea value = 700 }
-}
-
-save_pp_for_laws_flag_aggresive_economic_ai_2 = {
-	enable = {
-		NOT = {
-			has_idea = negligible_corruption
-		}
-	}
-	abort = { has_idea = negligible_corruption }
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = general value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = idea value = 2500 } #Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_amount id = idea value = 800 }
-}
-
 default_military_ratio_to_civvies = {
 	allowed = {
 		NOT = {
+			original_tag = ANT #Antigua and Barbuda
 			original_tag = MNC #Monaco
 			original_tag = ADO #Andorra
 			original_tag = LIC #Lic
@@ -63,10 +39,10 @@ default_military_ratio_to_civvies = {
 			original_tag = BRU #Brunei
 			original_tag = MIC #Micronesia
 			original_tag = SAM #Samoa
-			original_tag = STK #Saint Kitts
+			original_tag = STK #Saint Kitts and Nevis
 			original_tag = DMI #Dominica
 			original_tag = STL #Saint Lucia
-			original_tag = STV #Saint Vincent
+			original_tag = STV #Saint Vincent and the Grenadines
 			original_tag = BAR #Barbados
 			original_tag = BAH #Bahamas
 			original_tag = GRA #Grenada
@@ -260,156 +236,6 @@ AI_production_of_factories_Russia = {
 		id = industrial_complex
 		value = 15
 	}
-}
-
-AI_focus_laws_supers = {
-	allowed = {
-		#BRICS
-		tag = SOV
-		tag = CHI
-		tag = BRA
-		tag = SAF
-		tag = RAJ
-		#G7
-		tag = GER
-		tag = FRA
-		tag = ITA
-		tag = CAN
-		tag = USA
-		tag = ITA
-		tag = JAP
-	}
-	enable = {
-		date < 2003.6.1
-		has_war = no
-	}
-	abort = {
-		OR = {
-			date > 2003.5.1
-		}
-	}
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	# It is crisis. Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_priority id = idea value = 3000 }
-	ai_strategy = { type = pp_spend_amount id = idea value = 800 }
-
-}
-
-AI_focus_laws_supers2006 = {
-	allowed = {
-		#BRICS
-		tag = SOV
-		tag = CHI
-		tag = BRA
-		tag = SAF
-		tag = RAJ
-		#G7
-		tag = GER
-		tag = FRA
-		tag = ITA
-		tag = CAN
-		#tag = USA # crisis 2008
-		tag = ITA
-		tag = JAP
-	}
-	enable = {
-		date > 2006.1.1
-		has_war = no
-	}
-	abort = {
-		OR = {
-			has_war = yes
-			date > 2009.6.1
-		}
-	}
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	# It is crisis. Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_priority id = idea value = 3000 }
-	ai_strategy = { type = pp_spend_amount id = idea value = 1000 }
-}
-
-AI_focus_laws_supers2012 = {
-	allowed = {
-		#BRICS
-		tag = SOV
-		#tag = CHI
-		tag = BRA
-		tag = SAF
-		tag = RAJ
-		#G7
-		tag = GER
-		tag = FRA
-		tag = ITA
-		tag = CAN
-		tag = USA
-		tag = ITA
-		tag = JAP
-	}
-	enable = {
-		date > 2012.1.1
-		has_war = no
-	}
-	abort = {
-		OR = {
-			has_war = yes
-			date > 2014.6.1
-		}
-	}
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	# It is crisis. Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_priority id = idea value = 3000 }
-	ai_strategy = { type = pp_spend_amount id = idea value = 800 }
-
-}
-
-AI_focus_laws_supers2017 = {
-	allowed = {
-		#BRICS
-		tag = SOV
-		#tag = CHI
-		tag = BRA
-		tag = SAF
-		tag = RAJ
-		#G7
-		tag = GER
-		tag = FRA
-		tag = ITA
-		tag = CAN
-		tag = USA
-		tag = ITA
-		tag = JAP
-	}
-	enable = {
-		date > 2017.1.1
-		has_war = no
-	}
-	abort = {
-		OR = {
-			has_war = yes
-			date > 2020.6.1
-		}
-	}
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	# It is crisis. Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_priority id = idea value = 3000 }
-	ai_strategy = { type = pp_spend_amount id = idea value = 800 }
-
 }
 
 AI_minor_military_factories = {
@@ -952,8 +778,112 @@ AI_stop_building_civilian_industry = {
 	ai_strategy = { type = building_target id = industrial_complex value = -50 }
 	ai_strategy = { type = building_target id = arms_factory value = -50 }
 	ai_strategy = { type = building_target id = dockyard value = -50 }
+	ai_strategy = { type = building_target id = agriculture_district value = -50 }
 
 	# Create Other Infrastructure While Low unemployment
 	ai_strategy = { type = building_target id = internet_station value = 25 }
 	ai_strategy = { type = building_target id = infrastructure value = 25 }
+}
+
+AI_build_agricultural_districts = {
+	enable = {
+		check_variable = {
+			overall_productivity < 850
+		}
+		num_of_available_civilian_factories > 10
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = building_target id = agriculture_district value = 50 }
+}
+
+AI_no_military_industry = {
+	enable = {
+		has_war = no
+		threat < 0.25
+		num_of_available_civilian_factories < 5
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = building_target id = arms_factory value = -50 }
+}
+
+AI_internet_station_level_one = {
+	enable = {
+		has_tech = internet2
+		any_owned_state = {
+			free_building_slots = {
+				building = internet_station
+				size < 2
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# Good for Keeping Productivity Up
+	ai_strategy = { type = building_target id = internet_station value = 100 }
+}
+
+AI_internet_station_level_two = {
+	enable = {
+		has_tech = internet3
+		any_owned_state = {
+			free_building_slots = {
+				building = internet_station
+				size < 3
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# Good for Keeping Productivity Up
+	ai_strategy = { type = building_target id = internet_station value = 100 }
+}
+
+AI_internet_station_level_three = {
+	enable = {
+		has_tech = internet4
+		any_owned_state = {
+			free_building_slots = {
+				building = internet_station
+				size < 4
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# Good for Keeping Productivity Up
+	ai_strategy = { type = building_target id = internet_station value = 100 }
+}
+
+AI_internet_station_level_four = {
+	enable = {
+		has_tech = internet5
+		any_owned_state = {
+			free_building_slots = {
+				building = internet_station
+				size < 5
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# Good for Keeping Productivity Up
+	ai_strategy = { type = building_target id = internet_station value = 100 }
+}
+
+AI_internet_station_level_five = {
+	enable = {
+		has_tech = internet6
+		any_owned_state = {
+			free_building_slots = {
+				building = internet_station
+				size < 6
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	# Good for Keeping Productivity Up
+	ai_strategy = { type = building_target id = internet_station value = 100 }
 }
