@@ -397,17 +397,12 @@ scripted_gui = {
 			}
 
 			company_action_1_click_enabled = {
-				set_temp_variable = { cac_needed_money = 1 }
+				set_temp_variable = { cac_needed_money_base = 1 }
+				set_temp_variable = { cac_slot = opened_company_details }
+
 				set_temp_variable = { cac_less_than_or_equals_expenses_per_factory = -0.25 }
 				AND = {
-					custom_trigger_tooltip = {
-						tooltip = CAC_have_money_tooltip
-						check_variable = {
-							var = CAC_companies_money^opened_company_details
-							value = cac_needed_money
-							compare = greater_than_or_equals
-						}
-					}
+					cac_needed_money_for_action = yes
 					custom_trigger_tooltip = {
 						tooltip = CAC_less_than_or_equals_expenses_per_factory_tooltip
 						check_variable = {
@@ -421,18 +416,12 @@ scripted_gui = {
 			}
 
 			company_action_2_click_enabled = {
-				set_temp_variable = { cac_needed_money = 2.5 }
+				set_temp_variable = { cac_needed_money_base = 2.5 }
+				set_temp_variable = { cac_slot = opened_company_details }
+				
 				set_temp_variable = { cac_less_than_or_equals_income_per_factory = 0.5 }
 				AND = {
-					#NOT = { has_country_flag = company_action_2_timeout }
-					custom_trigger_tooltip = {
-						tooltip = CAC_have_money_tooltip
-						check_variable = {
-							var = CAC_companies_money^opened_company_details
-							value = cac_needed_money
-							compare = greater_than_or_equals
-						}
-					}
+					cac_needed_money_for_action = yes
 					custom_trigger_tooltip = {
 						tooltip = cac_less_than_or_equals_income_per_factory_tooltip
 						check_variable = {
@@ -445,33 +434,15 @@ scripted_gui = {
 			}
 
 			company_action_3_click_enabled = {
-				
-				set_temp_variable = { cac_needed_money = 5 }
-				AND = {
-					#NOT = { has_country_flag = company_action_3_timeout }
-					custom_trigger_tooltip = {
-						tooltip = CAC_have_money_tooltip
-						check_variable = {
-							var = CAC_companies_money^opened_company_details
-							value = cac_needed_money
-							compare = greater_than_or_equals
-						}
-					}
-				}
+				set_temp_variable = { cac_needed_money_base = 5 }
+				set_temp_variable = { cac_slot = opened_company_details }
+				cac_needed_money_for_action = yes
 			}
 
 			company_action_4_click_enabled = {
-				set_temp_variable = { cac_needed_money = 10 }
-				AND = {
-					custom_trigger_tooltip = {
-						tooltip = CAC_have_money_tooltip
-						check_variable = {
-							var = CAC_companies_money^opened_company_details
-							value = cac_needed_money
-							compare = greater_than_or_equals
-						}
-					}
-				}
+				set_temp_variable = { cac_needed_money_base = 10 }
+				set_temp_variable = { cac_slot = opened_company_details }
+				cac_needed_money_for_factory = yes
 			}
 
 			country_action_1_click_enabled = {
@@ -629,12 +600,17 @@ scripted_gui = {
 
 			company_action_4_click = {
                 set_temp_variable = { cac_money_change = -10 }
+				set_temp_variable = { cac_money_change_modifier = 1 }
+
+				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
 
 				if = {
 					limit = { check_variable = { CAC_companies_selected_ceo^opened_company_details = 2 } }
-					
-					multiply_temp_variable = { cac_money_change = CAC_companies_selected_ceo_level_modifier^cac_slot }
+
+					add_to_temp_variable = { cac_money_change_modifier = CAC_companies_selected_ceo_level_modifier^opened_company_details }
 				}
+
+				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
 
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_money_effect = yes
@@ -651,18 +627,21 @@ scripted_gui = {
 					value = 1
 				}
 
-				set_temp_variable = { money_to_change = -2 }
-				multiply_temp_variable = { money_to_change = CAC_companies_modifier_from_size^opened_company_details }
+				set_temp_variable = { cac_money_change = -2 }
+				
+				set_temp_variable = { cac_money_change_modifier = 1 }
+				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
+				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
 
-				set_temp_variable = { treasury_change = money_to_change }
+				set_temp_variable = { treasury_change = cac_money_change }
 				modify_treasury_effect = yes
 
-				add_political_power = -100
+				multiply_temp_variable = { cac_money_change = -1 }
 
-				multiply_temp_variable = { money_to_change = -1 }
-				set_temp_variable = { cac_money_change = money_to_change }
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_money_effect = yes
+
+				add_political_power = -100
 				
 				ROOT = {
 					if = {
@@ -775,16 +754,19 @@ scripted_gui = {
 					value = 1
 				}
 
-				set_temp_variable = { money_to_change = -3 }
-				multiply_temp_variable = { money_to_change = CAC_companies_modifier_from_size^opened_company_details }
+				set_temp_variable = { cac_money_change = -3 }
+				
+				set_temp_variable = { cac_money_change_modifier = 1 }
+				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
+				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
 
-				set_temp_variable = { treasury_change = money_to_change }
+				set_temp_variable = { treasury_change = cac_money_change }
 				modify_treasury_effect = yes
 
-				multiply_temp_variable = { money_to_change = -1 }
+				multiply_temp_variable = { cac_money_change = -1 }
 
-				set_temp_variable = { cac_money_change = money_to_change }
 				set_temp_variable = { cac_slot = opened_company_details }
+				CAC_modify_money_effect = yes
 
 				ROOT = {
 					if = {
@@ -870,8 +852,6 @@ scripted_gui = {
 						}
 					}
 				}
-
-				CAC_modify_money_effect = yes
 			}
 
 			country_action_3_click = {
@@ -881,18 +861,20 @@ scripted_gui = {
 					value = 1
 				}
 
-				set_temp_variable = { money_to_change = -5 }
-				multiply_temp_variable = { money_to_change = CAC_companies_modifier_from_size^opened_company_details }
+				set_temp_variable = { cac_money_change = -5 }
+				
+				set_temp_variable = { cac_money_change_modifier = 1 }
+				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
+				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
 
-				set_temp_variable = { treasury_change = money_to_change }
+				set_temp_variable = { treasury_change = cac_money_change }
 				modify_treasury_effect = yes
 
-				multiply_temp_variable = { money_to_change = -0.9 }
+				multiply_temp_variable = { cac_money_change = -0.9 }
 
-				set_temp_variable = { int_investment_change = money_to_change }
+				set_temp_variable = { int_investment_change = cac_money_change }
 				modify_international_investment_effect = yes
 
-				set_temp_variable = { cac_money_change = money_to_change }
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_money_effect = yes
 			}
@@ -904,15 +886,17 @@ scripted_gui = {
 					value = 1
 				}
 
-				set_temp_variable = { money_to_change = -8 }
-				multiply_temp_variable = { money_to_change = CAC_companies_modifier_from_size^opened_company_details }
+				set_temp_variable = { cac_money_change = -8 }
+				
+				set_temp_variable = { cac_money_change_modifier = 1 }
+				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
+				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
 
-				set_temp_variable = { treasury_change = money_to_change }
+				set_temp_variable = { treasury_change = cac_money_change }
 				modify_treasury_effect = yes
 
-				multiply_temp_variable = { money_to_change = -0.8 }
+				multiply_temp_variable = { cac_money_change = -0.8 }
 
-				set_temp_variable = { cac_money_change = money_to_change }
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_money_effect = yes
 			}
