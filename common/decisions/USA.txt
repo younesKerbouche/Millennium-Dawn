@@ -689,7 +689,6 @@ USA_senate_chart = {
 			always = yes
 		}
 		custom_cost_text = [USA_lobbying_cost]
-		cost = 0
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -739,7 +738,6 @@ USA_senate_chart = {
 			always = yes
 		}
 		custom_cost_text = [USA_lobbying_cost]
-		cost = 0
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -1340,8 +1338,6 @@ USA_asteroid_mining_decision = {
 			log = "[GetDateText]: [Root.GetName]: Decision timeout USA_asteroid_mining_mission"
 			country_event = donald_trump.12
 		}
-		fire_only_once = no
-		days_remove = 0
 	}
 	USA_pull_small_asteroid_into_orbit = {
 		icon = GFX_decision_asteroid_mining
@@ -4507,7 +4503,7 @@ USA_foreign_policy = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove USA_natos_man"
 			clr_country_flag = USA_doing_decision
-			every_country = {
+			every_other_country = {
 				limit = {
 					has_idea = NATO_member
 				}
@@ -4535,6 +4531,7 @@ USA_foreign_policy = {
 		days_remove = 365
 
 		available = {
+			country_exists = BLR
 			BLR = {
 				NOT = {
 					is_subject_of = USA
@@ -4544,24 +4541,13 @@ USA_foreign_policy = {
 					emerging_reactionaries_are_in_power = yes
 				}
 			}
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-					USA	= {
-						is_ai = no
-					}
-				}
+			if = { limit = { has_dlc = "La Resistance" }
 				network_strength = {
 					target = BLR
 					value > 45
 				}
 			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_dlc = "La Resistance"
-					}
-				}
+			else = {
 				BLR = {
 					influence_higher_15 = yes
 				}
@@ -5337,9 +5323,10 @@ USA_foreign_policy = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove USA_two_percent"
 			clr_country_flag = USA_doing_decision
-			every_country = {
+			every_other_country = {
 				limit = {
 					has_idea = NATO_member
+					NOT = { original_tag = USA }
 				}
 				country_event = {
 					id = department_of_state.60

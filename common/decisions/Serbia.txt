@@ -423,15 +423,16 @@ SER_The_Montenegro_Confederacy = {
 				has_country_flag = SER_montenegro_independence_violent
 			}
 			NOT = {
-				has_country_flag = SER_montenegro_independence_ded
+				has_country_flag = SER_montenegro_independence_dead
 			}
 			check_variable = { SER_Montenegro_separatism < 100 }
 		}
 		days_mission_timeout = 70
 		is_good = no
 		fire_only_once = no
+
 		timeout_effect = {
-			log = "[GetDateText]: [Root.GetName]: Mission timeout SER_rename_nation_2"
+			log = "[GetDateText]: [Root.GetName]: Mission timeout SER_Political_separatism"
 			add_to_variable = {
 				var = SER_Montenegro_separatism
 				value = 10
@@ -484,11 +485,6 @@ SER_The_Montenegro_Confederacy = {
 		}
 		remove_effect = {
 			custom_effect_tooltip = SER_losing_troops_war_idk
-			add_to_variable = { var = SER_Serbian_combatants value = 15 }
-			clamp_variable = { var = SER_Serbian_combatants min = 0 max = 8000 }
-			# Montenegro gets 5
-			add_to_variable = { var = SER_Montenegro_combatants value = 5 }
-			clamp_variable = { var = SER_Montenegro_combatants min = 0 max = 8000 }
 			hidden_effect = {
 				random_list = {
 					25 = {

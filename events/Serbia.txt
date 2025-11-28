@@ -594,8 +594,9 @@ country_event = { #Zoran Đinđić Assassinated Prevention With Neither Đinđi�
 		ai_chance = { base = 25 }
 	}
 }
-#
-country_event = { #Montenegro begins independence movements
+
+# Montenegro Begins Independence Movements
+country_event = {
 	id = Serbia.14
 	title = Serbia.14.t
 	desc = Serbia.14.d
@@ -612,7 +613,9 @@ country_event = { #Montenegro begins independence movements
 		log = "[GetDateText]: [This.GetName]: Serbia.14.a executed"
 		name = Serbia.14.a
 		set_country_flag = SER_montenegro_independence
-		custom_effect_tooltip = SER_MNT_EVENT_MECHANIC
+
+		unlock_decision_category_tooltip = SER_The_Montenegro_Confederacy
+
 		hidden_effect = {
 			country_event = {
 				id = Serbia.16
@@ -622,8 +625,9 @@ country_event = { #Montenegro begins independence movements
 		ai_chance = { base = 75 }
 	}
 }
-#
-country_event = { #Montenegro breaks off
+
+# Montenegro Breaks Off
+country_event = {
 	id = Serbia.15
 	title = Serbia.15.t
 	desc = Serbia.15.d
@@ -640,38 +644,7 @@ country_event = { #Montenegro breaks off
 		name = Serbia.15.a
 		release = MNT
 		MNT = {
-			hidden_effect = {
-				set_variable = { civilian_factory_employment_var = 1 }
-				set_variable = { naval_factory_employment_var = 1 }
-				set_variable = { military_factory_employment_var = 1 }
-				set_variable = { office_employment_var = 1 }
-				set_variable = { gdpc_converging_var = PREV.gdpc_converging_var }
-				inherit_technology = PREV
-				if = {
-					limit = {
-						NOT = { has_variable = domestic_influence_amount }
-					}
-					set_variable = { domestic_influence_amount = 100 }
-				}
-				if = {
-					limit = { NOT = { has_variable = corporate_tax_rate } }
-					set_variable = { var = corporate_tax_rate value = 20 }
-				}
-				if = {
-					limit = { NOT = { has_variable = population_tax_rate } }
-					set_variable = { var = population_tax_rate value = 20 }
-				}
-				ingame_init_investment_system = yes
-				calculate_influence_percentage = yes #set alignment drifts from influence
-				startup_politics = yes
-				ingame_update_setup = yes 	#money system
-				setup_init_factions = yes 	#flags for int. factions
-				set_law_vars = yes 	#vars for change laws secondary effects
-				update_neighbors_effects = yes # Updates Neighbor Effects
-				economic_cycle_drift_popularity = yes #drift from neighbor
-				ai_update_build_units = yes
-				calculate_expected_spending = yes
-			}
+			ingame_startup_nations_effect = yes
 		}
 		ai_chance = { base = 75 }
 	}
@@ -707,38 +680,7 @@ country_event = { #Montenegrans become militarized
 		release = MNT
 		clr_country_flag = SER_MNT_wont_fail_timer_flag
 		MNT = {
-			## Setup Values
-			hidden_effect = {
-				set_variable = { civilian_factory_employment_var = 1 }
-				set_variable = { naval_factory_employment_var = 1 }
-				set_variable = { military_factory_employment_var = 1 }
-				set_variable = { office_employment_var = 1 }
-				set_variable = { gdpc_converging_var = PREV.gdpc_converging_var }
-				inherit_technology = PREV
-				if = {
-					limit = {
-						NOT = { has_variable = domestic_influence_amount }
-					}
-					set_variable = { domestic_influence_amount = 100 }
-				}
-				if = {
-					limit = { NOT = { has_variable = corporate_tax_rate } }
-					set_variable = { var = corporate_tax_rate value = 20 }
-				}
-				if = {
-					limit = { NOT = { has_variable = population_tax_rate } }
-					set_variable = { var = population_tax_rate value = 20 }
-				}
-				calculate_influence_percentage = yes #set alignment drifts from influence
-				startup_politics = yes
-				ingame_update_setup = yes 	#money system
-				setup_init_factions = yes 	#flags for int. factions
-				set_law_vars = yes 	#vars for change laws secondary effects
-				update_neighbors_effects = yes # Updates Neighbor Effects
-				economic_cycle_drift_popularity = yes #drift from neighbor
-				ai_update_build_units = yes
-				calculate_expected_spending = yes
-			}
+			ingame_startup_nations_effect = yes
 		}
 		ai_chance = { base = 75 }
 	}
@@ -749,23 +691,25 @@ country_event = {
 	id = Serbia.17
 	title = Serbia.17.t
 	desc = Serbia.17.d
-	#picture = GFX_Arkan_Assassination
-	fire_only_once = yes
+	#picture = GFX_Arkan_Assassination # TODO: Add a picture here
+	is_triggered_only = yes
 	trigger = {
 		134 = {
 			is_owned_and_controlled_by = SER
 		}
 	}
-	is_triggered_only = yes
+
 	option = {
 		log = "[GetDateText]: [This.GetName]: Serbia.17.a executed"
 		name = Serbia.17.a
+		set_country_flag = SER_montenegro_independence_dead
+
 		clr_country_flag = SER_montenegro_independence
-		clr_country_flag = SER_montenegro_independence_dead
 		clr_country_flag = SER_MNT_wont_fail_timer_flag
 		ai_chance = { base = 75 }
 	}
 }
+
 country_event = {
 	id = Serbia.18
 	title = Serbia.18.t
@@ -1186,38 +1130,7 @@ country_event = {
 		}
 		VOJ = {
 			add_ideas = SER_subject_idea
-			## Setup Values
-			hidden_effect = {
-				set_variable = { civilian_factory_employment_var = 1 }
-				set_variable = { naval_factory_employment_var = 1 }
-				set_variable = { military_factory_employment_var = 1 }
-				set_variable = { office_employment_var = 1 }
-				set_variable = { gdpc_converging_var = PREV.gdpc_converging_var }
-				inherit_technology = PREV
-				if = {
-					limit = {
-						NOT = { has_variable = domestic_influence_amount }
-					}
-					set_variable = { domestic_influence_amount = 100 }
-				}
-				if = {
-					limit = { NOT = { has_variable = corporate_tax_rate } }
-					set_variable = { var = corporate_tax_rate value = 20 }
-				}
-				if = {
-					limit = { NOT = { has_variable = population_tax_rate } }
-					set_variable = { var = population_tax_rate value = 20 }
-				}
-				calculate_influence_percentage = yes #set alignment drifts from influence
-				startup_politics = yes
-				ingame_update_setup = yes 	#money system
-				setup_init_factions = yes 	#flags for int. factions
-				set_law_vars = yes 	#vars for change laws secondary effects
-				update_neighbors_effects = yes # Updates Neighbor Effects
-				economic_cycle_drift_popularity = yes #drift from neighbor
-				ai_update_build_units = yes
-				calculate_expected_spending = yes
-			}
+			ingame_startup_nations_effect = yes
 		}
 		ai_chance = { base = 10 }
 	}
@@ -4095,6 +4008,7 @@ country_event = { #COUNTRY denies recognition
 		}
 	}
 }
+
 country_event = {
 	id = kosovo_rec.16
 	title = kosovo_rec.16.t
@@ -4106,48 +4020,16 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: kosovo_rec.16.a executed"
 		SER = {
 			release = MNT
-		MNT = {
-			## Setup Values
-			hidden_effect = {
-				country_event = kosovo_rec.17
-				set_variable = { civilian_factory_employment_var = 1 }
-				set_variable = { naval_factory_employment_var = 1 }
-				set_variable = { military_factory_employment_var = 1 }
-				set_variable = { office_employment_var = 1 }
-				set_variable = { gdpc_converging_var = PREV.gdpc_converging_var }
-				inherit_technology = PREV
-				if = {
-					limit = {
-						NOT = { has_variable = domestic_influence_amount }
-					}
-					set_variable = { domestic_influence_amount = 100 }
-				}
-				if = {
-					limit = { NOT = { has_variable = corporate_tax_rate } }
-					set_variable = { var = corporate_tax_rate value = 20 }
-				}
-				if = {
-					limit = { NOT = { has_variable = population_tax_rate } }
-					set_variable = { var = population_tax_rate value = 20 }
-				}
-				ingame_init_investment_system = yes
-				calculate_influence_percentage = yes #set alignment drifts from influence
-				startup_politics = yes
-				ingame_update_setup = yes 	#money system
-				setup_init_factions = yes 	#flags for int. factions
-				set_law_vars = yes 	#vars for change laws secondary effects
-				update_neighbors_effects = yes # Updates Neighbor Effects
-				economic_cycle_drift_popularity = yes #drift from neighbor
-				ai_update_build_units = yes
-				calculate_expected_spending = yes
+			MNT = {
+				ingame_startup_nations_effect = yes
 			}
-		}
 		}
 		ai_chance = {
 			base = 1
 		}
 	}
 }
+
 country_event = {
 	id = kosovo_rec.17
 	title = kosovo_rec.17.t
@@ -4225,12 +4107,12 @@ country_event = {
 	option = { #Ok
 	name = kosovo_un.1.c
 	log = "[GetDateText]: [This.GetName]: kosovo_un.1.c executed"
-	ai_chance = {
-		base = 1
+		ai_chance = {
+			base = 1
+		}
+		add_timed_idea = {
+			idea = KOS_social_focus_idea
+			days = 600
+		}
 	}
-	add_timed_idea = {
-		idea = KOS_social_focus_idea
-		days = 600
-	}
-}
 }
