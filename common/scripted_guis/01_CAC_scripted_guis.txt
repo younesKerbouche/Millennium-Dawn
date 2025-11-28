@@ -49,7 +49,22 @@ scripted_gui = {
 		
 		effects = {
 			companies_details_button_click = {
-				set_variable = { opened_company_details = CAC_companies^v }
+				for_each_loop = {
+					array = CAC_companies
+					value = company_id
+					index = index
+					break = break
+
+					if = {
+						limit = {
+							check_variable = { v = company_id }
+						}
+
+						set_variable = { opened_company_details = index }
+						set_temp_variable = { break = 1 }
+					}
+				}
+
 				clr_country_flag = ceo_window_open
 			}
 
@@ -1105,7 +1120,7 @@ scripted_gui = {
 							CAC_modify_additional_income_effect = yes
 						}
 
-						set_temp_variable = { break = break }
+						set_temp_variable = { break = 1 }
 					}
 				}
 			}
