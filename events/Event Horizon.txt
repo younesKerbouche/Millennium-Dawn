@@ -172,9 +172,10 @@ news_event = { #Russian tactical nuke dropped in Kashgar
 	option = {
 		name = EH_event.307.a
 		log = "[GetDateText]: [This.GetName]: EH_event.307.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.308 days = 2 random_days = 5 }
+		ALN = {
+			set_province_controller = 5016
+			hidden_effect = {
+				news_event = { id = EH_event.308 days = 2 }
 			}
 		}
 	}
@@ -191,9 +192,42 @@ news_event = { #portals open fully after nuke
 	option = {
 		name = EH_event.308.a
 		log = "[GetDateText]: [This.GetName]: EH_event.308.a executed"
+		trigger = {
+			NOT = {
+				original_tag = ALN
+			}
+		}
 		hidden_effect = {
 			random_country = {
 				news_event = { id = EH_event.309 days = 2 }
+			}
+		}
+		ALN = {
+			set_province_controller = 10775
+			set_province_controller = 15059
+			set_province_controller = 5173
+		}
+	}
+	option = {
+		name = EH_event.308.b
+		log = "[GetDateText]: [This.GetName]: EH_event.308.b executed"
+		trigger = {
+			original_tag = ALN
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					NOT = {
+						original_tag = ALN
+					}
+					capital_scope = {
+						is_on_continent = asia
+					}
+				}
+				declare_war_on = {
+					target = ALN
+					type = annex_everything
+				}
 			}
 		}
 	}
