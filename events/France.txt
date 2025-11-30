@@ -2468,7 +2468,7 @@ country_event = {
 	}
 }
 #decrease your support during the crisis
-country_event = {
+country_event = {#+event about macron switching side
 	id = france_md.161
 	title = france_md.161.t
 	desc = france_md.161.d
@@ -2477,7 +2477,7 @@ country_event = {
 		name = france_md.161.a
 		log = "[GetDateText]: [This.GetName]: france_md.161.a executed"
 		set_temp_variable = { party_index = 3 }
-		set_temp_variable = { party_popularity_increase = -0.15 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
 		add_relative_party_popularity = yes
 		ai_chance = {
 			factor = 200
@@ -7969,6 +7969,104 @@ country_event = {#leb said no
 		add_relative_party_popularity = yes
 		add_stability = 0.1
 		add_ideas = FRA_political_preassure
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#france ask us to be puppet and red
+	id = france_md.313
+	title = france_md.313.t
+	desc = france_md.313.d
+	is_triggered_only = yes
+	option = {#yes
+		name = france_md.313.a
+		log = "[GetDateText]: [This.GetName]: france_md.313.a executed"
+		FRA= {
+			country_event = france_md.314
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.313.b
+		log = "[GetDateText]: [This.GetName]: france_md.313.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
+		set_temp_variable = { temp_outlook_increase = -0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.15
+		add_war_support = 0.1
+		FRA= {
+			country_event = france_md.315
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#target accept
+	id = france_md.314
+	title = france_md.314.t
+	desc = france_md.314.d
+	is_triggered_only = yes
+	option = {#cool
+		name = france_md.314.a
+		log = "[GetDateText]: [This.GetName]: france_md.314.a executed"
+			if = {
+				limit = { NOT = { FROM = { is_subject_of = FRA } } }
+				puppet = FROM
+			}
+			FROM = {
+				hidden_effect = {
+					clear_array = ruling_party
+					clear_array = gov_coalition_array
+					add_to_array = { ruling_party = 4 }
+					update_government_coalition_strength = yes
+					set_coalition_drift = yes
+					set_ruling_leader = yes
+					set_leader = yes
+					set_politics = {
+						ruling_party = communism
+						elections_allowed = no
+					}
+				}
+			}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#target said no
+	id = france_md.315
+	title = france_md.315.t
+	desc = france_md.315.d
+	is_triggered_only = yes
+	option = {#wargoal
+		name = france_md.315.a
+		log = "[GetDateText]: [This.GetName]: france_md.315.a executed"
+		set_temp_variable = { party_index = 4 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+		add_war_support = 0.05
+		create_wargoal = {
+			type = puppet_wargoal_focus
+			target = FROM
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#nothing
+		name = france_md.315.b
+		log = "[GetDateText]: [This.GetName]: france_md.315.b executed"
+		set_temp_variable = { party_index = 4 }
+		set_temp_variable = { party_popularity_increase = -0.05}
+		set_temp_variable = { temp_outlook_increase = -0.05}
+		add_relative_party_popularity = yes
+		add_political_power = -50
 		ai_chance = {
 			base = 1
 		}

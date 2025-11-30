@@ -301,7 +301,7 @@ FRA_invest_LEB_decision_category = {
 		}
 	}
 }
-LFI6th_category = {
+FRA_LFI6th_decision_category = {
 	FRA_6threp_mission = {
 		available = { always = no }
 		activation = { has_completed_focus = FRA_toward_6th_rep }
@@ -321,10 +321,13 @@ LFI6th_category = {
 		}
 	}
 	FRA_rally_support = {
+		available = {
+			has_active_mission = FRA_6threp_mission
+		}
 		cost = 150
 		icon = political_actions
 
-		days_remove = 35
+		days_remove = 50
 		days_re_enable = 35
 		fire_only_once = no
 
@@ -348,7 +351,9 @@ LFI6th_category = {
 		}
 	}
 	FRA_rally_ennemy = {
-		available = { always = no }
+		available = {
+			has_active_mission = FRA_6threp_mission
+		}
 		activation = { has_completed_focus = FRA_toward_6th_rep }
 		days_mission_timeout = 100
 		is_good = no
@@ -356,7 +361,12 @@ LFI6th_category = {
 		days_re_enable = 0
 		icon = political_actions
 		cancel_trigger = {
-			has_completed_focus = FRA_dawn_6th_rep
+			OR = {
+				has_completed_focus = FRA_dawn_6th_rep
+				NOT = {
+					has_active_mission = FRA_6threp_mission
+				}
+			}
 		}
 		timeout_effect = {
 			country_event = { id = france_md.237 }
@@ -364,7 +374,7 @@ LFI6th_category = {
 	}
 }
 
-Socialist_collapse_category = {
+FRA_french_socialist_downfall_decision_category = {
 	FRA_timebomb_mission = {
 		available = { always = no }
 		activation = { has_completed_focus = FRA_timebomb }
@@ -393,23 +403,28 @@ Socialist_collapse_category = {
 			}
 		}
 	}
-	FRA_timebomb_mission = {
+	FRA_support_decrease_mission = {
 		available = { always = no }
 		activation = { has_completed_focus = FRA_timebomb }
 		days_mission_timeout = 100
 		is_good = no
-		fire_only_once = yes
+		fire_only_once = no
 		days_re_enable = 0
 		icon = political_actions
 		cancel_trigger = {
-			has_completed_focus = FRA_ps_win
+			NOT = {
+				has_idea = FRA_ineluctable_collapse
+			}
 		}
 		timeout_effect = {
 			country_event = { id = france_md.161 }
 		}
 	}
 	FRA_campaign_against_extremism = {
-		cost = 200
+		available = {
+			has_active_mission = FRA_timebomb_mission
+		}
+		cost = 100
 		icon = political_actions
 
 		days_remove = 80
@@ -443,6 +458,9 @@ Socialist_collapse_category = {
 		}
 	}
 	FRA_campaign_clash_traitors = {
+		available = {
+			has_active_mission = FRA_timebomb_mission
+		}
 		cost = 200
 		icon = political_actions
 
@@ -502,6 +520,7 @@ FRA_frexit_decision_category = {
 	FRA_boost_eurosceptism = {
 		available = {
 			has_completed_focus = FRA_neccesity_leaving
+			has_idea = EU_member
 		}
 		cost = 100
 		icon = political_actions
@@ -540,6 +559,7 @@ FRA_frexit_decision_category = {
 	FRA_disobey_treaties = {
 		available = {
 			has_completed_focus = FRA_anti_eu
+			has_idea = EU_member
 		}
 		cost = 200
 		icon = political_actions
@@ -574,6 +594,7 @@ FRA_frexit_decision_category = {
 	FRA_denounce_eu_policies = {
 		available = {
 			has_completed_focus = FRA_anti_eu
+			has_idea = EU_member
 		}
 		cost = 200
 		icon = political_actions
@@ -610,6 +631,7 @@ FRA_frexit_decision_category = {
 	FRA_threaten_media = {
 		available = {
 			has_completed_focus = FRA_anti_eu
+			has_idea = EU_member
 		}
 		cost = 200
 		icon = political_actions
@@ -943,4 +965,308 @@ FRA_french_construction_decision_category = {  # rename
 			clr_country_flag = FRA_timed_mission
         }
     }
+}
+FRA_french_communism_expansionism_decision_category = {
+	FRA_red_benelux = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			OR = {
+				AND = {
+					country_exists = BEL
+					BEL = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				AND = {
+					country_exists = HOL
+					HOL = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				AND = {
+					country_exists = LUX
+					LUX = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_red_benelux"
+			if = {
+				limit = {
+					BEL = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				HOL={
+					country_event = france_md.313
+				}
+			}
+			if = {
+				limit = {
+					HOL = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				LUX={
+					country_event = france_md.313
+				}
+			}
+			if = {
+				limit = {
+					LUX = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				LUX={
+					country_event = france_md.313
+				}
+			}
+		}
+	}
+	FRA_done_with_dumping = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			OR = {
+				AND = {
+					country_exists = SWI
+					SWI = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				AND = {
+					country_exists = ADO
+					ADO = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				AND = {
+					country_exists = MNC
+					MNC = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_done_with_dumping"
+			if = {
+				limit = {
+					SWI = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				SWI={
+					country_event = france_md.313
+				}
+			}
+			if = {
+				limit = {
+					MNC = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				MNC={
+					country_event = france_md.313
+				}
+			}
+			if = {
+				limit = {
+					ADO = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				ADO={
+					country_event = france_md.313
+				}
+			}
+		}
+	}
+	FRA_redo_the_republic = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 25
+		visible = {
+			AND = {
+				country_exists = SPR
+				SPR = {
+					NOT = {
+						OR = {
+							is_in_faction_with = FRA
+							is_subject_of = FRA
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_redo_the_republic"
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = SPR
+			}
+		}
+	}
+	FRA_ciao_bella = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 25
+		visible = {
+			AND = {
+				country_exists = ITA
+				ITA = {
+					NOT = {
+						OR = {
+							is_in_faction_with = FRA
+							is_subject_of = FRA
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_ciao_bella"
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = ITA
+			}
+		}
+	}
+	FRA_avenge_long_knife = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 25
+		visible = {
+			OR = {
+				AND = {
+					country_exists = GER
+					GER = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				AND = {
+					country_exists = AUS
+					AUS = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_avenge_long_knife"
+			if = {
+				limit = {
+					GER = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = GER
+				}
+			}
+			if = {
+				limit = {
+					AUS = {
+						NOT = {
+							OR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				AUS={
+					country_event = france_md.313
+				}
+			}
+		}
+	}
 }
