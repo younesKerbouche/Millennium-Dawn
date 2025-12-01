@@ -1,0 +1,46 @@
+faction_goal_secure_central_asia = {
+	name = secure_central_asia_name
+	description = secure_central_asia_desc
+	category = short_term
+	group = FOCUS_FILTER_POLITICAL_CHARACTER
+	visible = {
+		has_faction_template = faction_template_csto
+		NOT = {
+			TRK = {
+				has_idea = CSTO_member
+			}
+			UZB = {
+				has_idea = CSTO_member
+			}
+		}
+	}
+	completed = {
+		if = {
+			limit = {
+				country_exists = UZB
+				is_subject = no
+			}
+			UZB = {
+				has_idea = CSTO_member
+			}
+		}
+		if = {
+			limit = {
+				country_exists = TRK
+				is_subject = no
+			}
+			TRK = {
+				has_idea = CSTO_member
+			}
+		}
+	}
+	complete_effect = {
+		add_faction_power_projection = 200
+		custom_effect_tooltip = generic_skip_one_line_tt
+		custom_effect_tooltip = THE_FACTION_LEADER
+		add_faction_initiative = 1
+	}
+	ai_will_do = {
+		base = 1
+	}
+}
