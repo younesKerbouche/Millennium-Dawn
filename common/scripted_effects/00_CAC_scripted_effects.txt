@@ -111,7 +111,7 @@ CAC_add_company = {
         if = {
             limit = { check_variable = { cac_company_expenses_per_factory = 0 } }
 
-            set_temp_variable = { cac_company_expenses_per_factory = -0.35 }
+            set_temp_variable = { cac_company_expenses_per_factory = -1.35 } # DEBUG 0.35
         }
 
         set_temp_variable = { cac_expenses_per_factory_change = cac_company_expenses_per_factory }
@@ -225,13 +225,13 @@ CAC_add_company = {
         if = { 
             limit = { check_variable = { cac_company_type = 0 } } 
             
-            set_temp_variable = { index = cac_selected_company }
+            set_temp_variable = { index = company_slot_temp }
             multiply_temp_variable = { index = 30 }
             add_to_temp_variable = { index = 0 }
 
             set_variable = { CAC_companies_upgrades_2d^index = 2 }
 
-            set_temp_variable = { index = cac_selected_company }
+            set_temp_variable = { index = company_slot_temp }
             multiply_temp_variable = { index = 30 }
             add_to_temp_variable = { index = 11 }
 
@@ -240,13 +240,13 @@ CAC_add_company = {
         if = { 
             limit = { check_variable = { cac_company_type = 1 } } 
             
-            set_temp_variable = { index = cac_selected_company }
+            set_temp_variable = { index = company_slot_temp }
             multiply_temp_variable = { index = 30 }
             add_to_temp_variable = { index = 0 }
 
             set_variable = { CAC_companies_upgrades_2d^index = 2 }
 
-            set_temp_variable = { index = cac_selected_company }
+            set_temp_variable = { index = company_slot_temp }
             multiply_temp_variable = { index = 30 }
             add_to_temp_variable = { index = 11 }
 
@@ -1233,9 +1233,6 @@ CAC_update_upkeep = {
             end = CAC_companies^num
             value = i
 
-            set_temp_variable = { company_new_money = CAC_companies_revenue^i }
-            add_to_temp_variable = { company_new_money = CAC_companies_money^i }
-
             # ceo
             if = {
                 limit = {
@@ -1246,34 +1243,24 @@ CAC_update_upkeep = {
                 set_temp_variable = { cac_slot = i }
                 CAC_modify_ceo_xp_effect = yes
             }
-            
 
+            set_temp_variable = { company_new_value = CAC_companies_value^i }
+            add_to_temp_variable = { company_new_value = CAC_companies_revenue^i }
+
+            # bankrupcy
             if = {
                 limit = {
-                    check_variable = { company_new_money < 0 }
+                    check_variable = { company_new_value < 0 }
                 }
+                
+                set_variable = { CAC_companies_value^i = 0 }
 
-                set_variable = { CAC_companies_money^i = 0 }
-
-                set_temp_variable = { new_value = CAC_companies_value^i }
-                add_to_temp_variable = { new_value = company_new_money }
-
-                if = {
-                    limit = { check_variable = { new_value < 0 } }
-
-                    add_to_variable = { CAC_companies_value^i = 0 }
-
-                    ROOT = {
-                        country_event = {
-                            id = CAC_event.1
-                            days = 7
-                        }
+                ROOT = {
+                    country_event = {
+                        id = cac_event.1
+                        days = 7
                     }
                 }
-                else = {
-                    add_to_variable = { CAC_companies_value^i = company_new_money }
-                }
-
             }
             else = {
                 add_to_variable = { CAC_companies_money^i = CAC_companies_revenue^i }

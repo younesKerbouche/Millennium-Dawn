@@ -13,15 +13,13 @@ country_event = {
 		name = cac_event.1.a
 		log = "[GetDateText]: [This.GetName]: cac_event.1.a executed"
 
-		set_temp_variable = { money_to_change = -10 }
-		multiply_temp_variable = { money_to_change = CAC_companies_modifier_from_size^i }
+		set_temp_variable = { cac_money_change = CAC_companies_money^i }
 
-		set_temp_variable = { treasury_change = money_to_change }
+		set_temp_variable = { treasury_change = cac_money_change }
 		modify_treasury_effect = yes
 
-		multiply_temp_variable = { money_to_change = -0.9 }
+		multiply_temp_variable = { cac_money_change = -1 }
 
-		set_temp_variable = { cac_money_change = money_to_change }
 		set_temp_variable = { cac_slot = i }
 		CAC_modify_money_effect = yes
 
@@ -31,7 +29,7 @@ country_event = {
 	}
 
 	if = { 
-		limit = { check_variable = { CAC_companies_factories^i > 0 } }
+		limit = { check_variable = { CAC_companies_factories^i > 1 } }
 
 		# Sell Company Assets
 		option = {
