@@ -470,226 +470,31 @@ news_event = { #EU Megastate
 	option = {
 		name = EH_event.400.a
 		log = "[GetDateText]: [This.GetName]: EH_event.400.a executed"
-	}
-}
-#Num 500 events are post invasion tech event leading to first proto HACS
-news_event = { #Dr. Lisa Randall discovers Randallite
-	id = EH_event.500
-	major = yes
-	title = EH_event.500.t
-	desc = EH_event.500.d
-	picture = GFX_randallite_discovery_event
 
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.500.a
-		log = "[GetDateText]: [This.GetName]: EH_event.500.a executed"
-	}
-}
-news_event = { #Proto HACS event
-	id = EH_event.501
-	major = yes
-	title = EH_event.501.t
-	desc = EH_event.501.d
-	picture = GFX_proto_HACS_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.501.a
-		log = "[GetDateText]: [This.GetName]: EH_event.501.a executed"
-	}
-}
-news_event = { #Bosphorus counter attack HACS
-	id = EH_event.511
-	major = yes
-	title = EH_event.511.t
-	desc = EH_event.511.d
-	picture = GFX_counter_attack_bosphorus_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.511.a
-		log = "[GetDateText]: [This.GetName]: EH_event.511.a executed"
-	}
-}
-#Num 800 events are defense lines and their fall
-news_event = {
-	id = EH_event.800
-	major = yes
-	title = EH_event.800.t
-	desc = EH_event.800.d
-	picture = GFX_zenobia_line_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.800.a
-		log = "[GetDateText]: [This.GetName]: EH_event.800.a executed"
-		
-		217 = {
-			add_building_construction = {
-				type = landmark_zenobia_wall
-				level = 1
-				instant_build = yes
-				province = 3871
+		every_country = {
+			limit = {
+				is_in_europe = yes
+			}
+			country_event = {
+				id = EH_event.7
 			}
 		}
 	}
 }
-news_event = {
-	id = EH_event.801 #Zenobia and Saladin line fall
-	major = yes
-	title = EH_event.801.t
-	desc = EH_event.801.d
-	picture = GFX_defense_line_suez_fallen_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.801.a
-		log = "[GetDateText]: [This.GetName]: EH_event.801.a executed"
-		
-		217 = {
-			damage_building = {
-				type = landmark_zenobia_wall
-				damage = 1 # levels of damage
-				province = 3871
-				repair_speed_modifier = -0.9
-			}
-		}
-	}
-}
-news_event = {
-	id = EH_event.802 #Bosphorus line
-	major = yes
-	title = EH_event.802.t
-	desc = EH_event.802.d
-	picture = GFX_defense_line_suez_fallen_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.802.a
-		log = "[GetDateText]: [This.GetName]: EH_event.802.a executed"
-	}
-}
-news_event = {
-	id = EH_event.803 #Bosphorus line fall
-	major = yes
-	title = EH_event.803.t
-	desc = EH_event.803.d
-	picture = GFX_defense_line_suez_fallen_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.803.a
-		log = "[GetDateText]: [This.GetName]: EH_event.803.a executed"
-	}
-}
-#Num 900 events are the fall of famous cities
-news_event = { #Washington DC fall
-	id = EH_event.900
-	major = yes
-	title = EH_event.900.t
-	desc = EH_event.900.d
-	picture = GFX_convergence_event_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.900.a
-		log = "[GetDateText]: [This.GetName]: EH_event.900.a executed"
-	}
-}
-news_event = { #NY fall
-	id = EH_event.901
-	major = yes
-	title = EH_event.901.t
-	desc = EH_event.901.d
-	picture = GFX_convergence_event_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.901.a
-		log = "[GetDateText]: [This.GetName]: EH_event.901.a executed"
-	}
-}
-news_event = { #LA fall
-	id = EH_event.902
-	major = yes
-	title = EH_event.902.t
-	desc = EH_event.902.d
-	picture = GFX_convergence_event_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.902.a
-		log = "[GetDateText]: [This.GetName]: EH_event.902.a executed"
-	}
-}
-news_event = { #San Francisco fall
-	id = EH_event.903
-	major = yes
-	title = EH_event.903.t
-	desc = EH_event.903.d
-	picture = GFX_city_lost_sanfrancisco_global_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.903.a
-		log = "[GetDateText]: [This.GetName]: EH_event.903.a executed"
-	}
-}
-news_event = { #Moscow fall
-	id = EH_event.904
-	major = yes
-	title = EH_event.904.t
-	desc = EH_event.904.d
-	picture = GFX_convergence_event_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.904.a
-		log = "[GetDateText]: [This.GetName]: EH_event.904.a executed"
-	}
-}
-news_event = { #Shanghai fall
-	id = EH_event.905
-	major = yes
-	title = EH_event.905.t
-	desc = EH_event.905.d
-	picture = GFX_city_lost_shanghai_global_event
-
-	is_triggered_only = yes
-
-	option = {
-		name = EH_event.905.a
-		log = "[GetDateText]: [This.GetName]: EH_event.905.a executed"
-	}
-}
-
 
 # Country Events
 
 country_event = { # Formation of USN
- 	id = EH_event.1
-	title = EH_event.1.t
-	desc = EH_event.1.d
+ 	id = EH_event.401
+	title = EH_event.401.t
+	desc = EH_event.401.d
 	picture = GFX_convergence_event
 
 	is_triggered_only = yes
 
 	option = {
-		name = EH_event.1.a
-		log = "[GetDateText]: [This.GetName]: EH_event.1.a executed"
+		name = EH_event.401.a
+		log = "[GetDateText]: [This.GetName]: EH_event.401.a executed"
 		# FORMING NORTH AMERICA
 		every_country = {
 			limit = {
@@ -1528,6 +1333,210 @@ country_event = { # Formation of ODU
 				add_core_of = ODU
 			}
 		}
+	}
+}
+
+#Num 500 events are post invasion tech event leading to first proto HACS
+news_event = { #Dr. Lisa Randall discovers Randallite
+	id = EH_event.500
+	major = yes
+	title = EH_event.500.t
+	desc = EH_event.500.d
+	picture = GFX_randallite_discovery_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.500.a
+		log = "[GetDateText]: [This.GetName]: EH_event.500.a executed"
+	}
+}
+news_event = { #Proto HACS event
+	id = EH_event.501
+	major = yes
+	title = EH_event.501.t
+	desc = EH_event.501.d
+	picture = GFX_proto_HACS_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.501.a
+		log = "[GetDateText]: [This.GetName]: EH_event.501.a executed"
+	}
+}
+news_event = { #Bosphorus counter attack HACS
+	id = EH_event.511
+	major = yes
+	title = EH_event.511.t
+	desc = EH_event.511.d
+	picture = GFX_counter_attack_bosphorus_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.511.a
+		log = "[GetDateText]: [This.GetName]: EH_event.511.a executed"
+	}
+}
+#Num 800 events are defense lines and their fall
+news_event = {
+	id = EH_event.800
+	major = yes
+	title = EH_event.800.t
+	desc = EH_event.800.d
+	picture = GFX_zenobia_line_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.800.a
+		log = "[GetDateText]: [This.GetName]: EH_event.800.a executed"
+		
+		217 = {
+			add_building_construction = {
+				type = landmark_zenobia_wall
+				level = 1
+				instant_build = yes
+				province = 3871
+			}
+		}
+	}
+}
+news_event = {
+	id = EH_event.801 #Zenobia and Saladin line fall
+	major = yes
+	title = EH_event.801.t
+	desc = EH_event.801.d
+	picture = GFX_defense_line_suez_fallen_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.801.a
+		log = "[GetDateText]: [This.GetName]: EH_event.801.a executed"
+		
+		217 = {
+			damage_building = {
+				type = landmark_zenobia_wall
+				damage = 1 # levels of damage
+				province = 3871
+				repair_speed_modifier = -0.9
+			}
+		}
+	}
+}
+news_event = {
+	id = EH_event.802 #Bosphorus line
+	major = yes
+	title = EH_event.802.t
+	desc = EH_event.802.d
+	picture = GFX_defense_line_suez_fallen_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.802.a
+		log = "[GetDateText]: [This.GetName]: EH_event.802.a executed"
+	}
+}
+news_event = {
+	id = EH_event.803 #Bosphorus line fall
+	major = yes
+	title = EH_event.803.t
+	desc = EH_event.803.d
+	picture = GFX_defense_line_suez_fallen_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.803.a
+		log = "[GetDateText]: [This.GetName]: EH_event.803.a executed"
+	}
+}
+#Num 900 events are the fall of famous cities
+news_event = { #Washington DC fall
+	id = EH_event.900
+	major = yes
+	title = EH_event.900.t
+	desc = EH_event.900.d
+	picture = GFX_convergence_event_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.900.a
+		log = "[GetDateText]: [This.GetName]: EH_event.900.a executed"
+	}
+}
+news_event = { #NY fall
+	id = EH_event.901
+	major = yes
+	title = EH_event.901.t
+	desc = EH_event.901.d
+	picture = GFX_convergence_event_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.901.a
+		log = "[GetDateText]: [This.GetName]: EH_event.901.a executed"
+	}
+}
+news_event = { #LA fall
+	id = EH_event.902
+	major = yes
+	title = EH_event.902.t
+	desc = EH_event.902.d
+	picture = GFX_convergence_event_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.902.a
+		log = "[GetDateText]: [This.GetName]: EH_event.902.a executed"
+	}
+}
+news_event = { #San Francisco fall
+	id = EH_event.903
+	major = yes
+	title = EH_event.903.t
+	desc = EH_event.903.d
+	picture = GFX_city_lost_sanfrancisco_global_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.903.a
+		log = "[GetDateText]: [This.GetName]: EH_event.903.a executed"
+	}
+}
+news_event = { #Moscow fall
+	id = EH_event.904
+	major = yes
+	title = EH_event.904.t
+	desc = EH_event.904.d
+	picture = GFX_convergence_event_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.904.a
+		log = "[GetDateText]: [This.GetName]: EH_event.904.a executed"
+	}
+}
+news_event = { #Shanghai fall
+	id = EH_event.905
+	major = yes
+	title = EH_event.905.t
+	desc = EH_event.905.d
+	picture = GFX_city_lost_shanghai_global_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.905.a
+		log = "[GetDateText]: [This.GetName]: EH_event.905.a executed"
 	}
 }
 
