@@ -1,0 +1,535 @@
+decisions_ENG = {
+	ENG_invest_northern_ireland_mission = {
+		allowed = { original_tag = ENG }
+		icon = x
+
+		days_mission_timeout = 180
+
+		days_re_enable = 1
+
+		selectable_mission = no
+
+		is_good = yes
+
+		fire_only_once = no
+
+		activation = {
+			has_completed_focus = ENG_found_invest_northern_ireland
+			NOT = {
+				check_variable = {
+					ENG_invest_northern_ireland_count > 7
+				}
+			}
+		}
+
+		available = {
+			always = no
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_invest_northern_ireland_mission"
+			add_to_variable = {
+				ENG_invest_northern_ireland_count = 1
+			}
+			random_list = {
+				17 = {
+					25 = {
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = offices
+						level = 1
+						instant_build = yes
+					}
+				}
+					25 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					25 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+					25 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = dockyard
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_ireland_border_cooperation = {
+		allowed = { always = yes }
+		icon = x
+
+		days_re_enable = 30
+
+		cost = 50
+
+		targets = { IRE }
+
+		visible = {
+			has_completed_focus = ENG_cross_border_cooperation
+			NOT = { has_idea = ENG_ireland_border_cooperation_idea_ENG }
+		}
+
+		available = {
+			has_completed_focus = ENG_cross_border_cooperation
+			NOT = { has_idea = ENG_ireland_border_cooperation_idea_ENG }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_ireland_border_cooperation"
+			IRE = { country_event = United_Kingdom.003 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_bankers_switch_faction = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 250
+
+		available = {
+			has_completed_focus = ENG_national_data_infrastructure
+			NOT = { has_idea = international_bankers }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_bankers_switch_faction"
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				swap_ideas = {
+					remove_idea = fossil_fuel_industry
+					add_idea = international_bankers
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_idea = fossil_fuel_industry }
+					has_idea = defense_industry
+				}
+				swap_ideas = {
+					remove_idea = defense_industry
+					add_idea = international_bankers
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_idea = fossil_fuel_industry }
+					NOT = { has_idea = defense_industry }
+					has_idea = labour_unions
+				}
+				swap_ideas = {
+					remove_idea = labour_unions
+					add_idea = international_bankers
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_clydach_nickel_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_clydach_nickel_decision"
+			16 = {
+				add_resource = {
+					type = chromium
+					amount = 5
+				}
+			}
+			set_country_flag = ENG_clydach_nickel_decision_completed
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_alloys_modernisation = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			hidden_trigger = {
+				has_country_flag = ENG_clydach_nickel_decision_completed
+			}
+		}
+
+		available = {
+			NOT = { has_country_flag = ENG_active_resource_project }
+			num_of_available_civilian_factories > 5
+			hidden_trigger = {
+				has_country_flag = ENG_clydach_nickel_decision_completed
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_alloys_modernisation"
+			16 = {
+				add_resource = {
+					type = chromium
+					amount = 5
+				}
+			}
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_ellesmere_port_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_ellesmere_port_decision"
+			11 = {
+				add_resource = {
+					type = tungsten
+					amount = 5
+				}
+			}
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_shetland_hydrocarbon_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_shetland_hydrocarbon_decision"
+			8 = {
+				add_resource = {
+					type = oil
+					amount = 6
+				}
+			}
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_rosebank_field_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_rosebank_field_decision"
+			8 = {
+				add_resource = {
+					type = oil
+					amount = 6
+				}
+			}
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_cambo_offshore_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_cambo_offshore_decision"
+			437 = {
+				add_resource = {
+					type = oil
+					amount = 6
+				}
+			}
+			set_country_flag = ENG_cambo_offshore_decision_completed
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_hornsea_wind_farm_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			hidden_trigger = {
+				has_country_flag = ENG_cambo_offshore_decision_completed
+			}
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_hornsea_wind_farm_decision"
+			10 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+			}
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_drakeland_tungsten_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_drakeland_tungsten_decision"
+			973 = {
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+			set_country_flag = ENG_drakeland_tungsten_decision_completed
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_south_crofty_tin_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		cost = 100
+
+		days_remove = 180
+
+		visible = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			hidden_trigger = {
+				has_country_flag = ENG_drakeland_tungsten_decision_completed
+			}
+		}
+
+		available = {
+			has_completed_focus = ENG_critical_minerals_strategy
+			num_of_available_civilian_factories > 5
+			NOT = { has_country_flag = ENG_active_resource_project }
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_active_resource_project
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_south_crofty_tin_decision"
+			973 = {
+				add_resource = {
+					type = steel
+					amount = 6
+				}
+			}
+			clr_country_flag = ENG_active_resource_project
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}

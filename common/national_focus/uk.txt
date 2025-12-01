@@ -4703,7 +4703,7 @@ focus_tree = {
 # ECONOMY FOCUS TREE
 	focus = {
 		id = ENG_codify_service_economy
-		icon = x
+		icon = pound_sterling
 
 		x = 4
 		y = 0
@@ -4715,6 +4715,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_codify_service_economy"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_offices_productivity_change = 0.05
+			}
+			update_ENG_offices_productivity = yes
+			set_temp_variable = {
+				ENG_office_park_income_tax_modifier_change = 0.05
+			}
+			update_ENG_office_park_income_tax_modifier = yes
+
 		}
 
 		ai_will_do = {
@@ -4723,7 +4733,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_gate_burton_energy
-		icon = x
+		icon = windmill
 
 		x = -3
 		y = 1
@@ -4743,6 +4753,7 @@ focus_tree = {
 					instant_build = yes
 				}
 				add_extra_state_shared_building_slots = 3
+				custom_effect_tooltip = ENG_gate_burton_energy_tt
 				add_to_variable = { number_of_battery_parks_state_var = 1 }
 			}
 			set_temp_variable = { treasury_change = -28.50 }
@@ -4755,7 +4766,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_ai_white_collar
-		icon = x
+		icon = radical_tax_reform
 
 		x = -1
 		y = 1
@@ -4778,17 +4789,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_ai_white_collar"
-			1191 = {
-				add_building_construction = {
-					type = synthetic_refinery
-					level = 3
-					instant_build = yes
-				}
-				add_extra_state_shared_building_slots = 3
-				add_to_variable = { number_of_battery_parks_state_var = 1 }
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_offices_worker_requirement_modifier_change = -0.05
 			}
-			set_temp_variable = { treasury_change = -28.50 }
-			modify_treasury_effect = yes
+			update_ENG_offices_worker_requirement_modifier = yes
+			set_temp_variable = {
+				ENG_offices_productivity_change = 0.05
+			}
+			update_ENG_offices_productivity = yes
+			set_temp_variable = {
+				ENG_energy_use_modifier_offices_change = 0.05
+			}
+			update_ENG_energy_use_modifier_offices = yes
 		}
 
 		ai_will_do = {
@@ -4797,7 +4810,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_empower_city_london
-		icon = x
+		icon = London_Industry
 
 		x = 1
 		y = 1
@@ -4811,6 +4824,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_empower_city_london"
+			13 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = offices
+					level = 2
+					instant_build = yes
+				}
+				add_dynamic_modifier = {
+					modifier = ENG_enpower_london
+				}
+			}
+			set_temp_variable = { treasury_change = -26.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -4819,7 +4845,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_empower_edinburgh
-		icon = x
+		icon = crane_and_tower
 
 		x = 3
 		y = 1
@@ -4833,6 +4859,24 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_empower_edinburgh"
+			9 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = offices
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_dynamic_modifier = {
+					modifier = ENG_enpower_edinburgh
+				}
+			}
+			set_temp_variable = { treasury_change = -30.50 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -4841,7 +4885,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_found_invest_northern_ireland
-		icon = x
+		icon = Ulster_Industry
 
 		x = -3
 		y = 2
@@ -4849,11 +4893,22 @@ focus_tree = {
 
 		cost = 5
 
+		available = {
+			owns_state = 17
+		}
+
 		prerequisite = { focus = ENG_gate_burton_energy }
 		search_filters = { FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_found_invest_northern_ireland"
+			17 = {
+				add_dynamic_modifier = {
+					modifier = ENG_invest_northern_ireland
+				}
+				set_state_flag = ENG_found_invest_northern_ireland_active
+			}
+			activate_mission = ENG_invest_northern_ireland_mission
 		}
 
 		ai_will_do = {
@@ -4862,7 +4917,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_digital_government
-		icon = x
+		icon = economic_internet
 
 		x = 0
 		y = 2
@@ -4872,7 +4927,7 @@ focus_tree = {
 
 		available = {
 			has_idea = bureau_04
-			offices > 34
+			offices > 36
 		}
 
 		prerequisite = { focus = ENG_ai_white_collar }
@@ -4884,6 +4939,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_digital_government"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_centralization_cost_change = -0.10
+			}
+			update_ENG_centralization_cost = yes
+			set_temp_variable = {
+				ENG_political_power_factor_change = 0.05
+			}
+			update_ENG_political_power_factor = yes
+			set_temp_variable = {
+				ENG_tax_gain_multiplier_modifier_change = 0.05
+			}
+			update_ENG_tax_gain_multiplier_modifier = yes
 		}
 
 		ai_will_do = {
@@ -4892,7 +4960,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_invest_silicon_glenn
-		icon = x
+		icon = economic_sciencer
 
 		x = 2
 		y = 2
@@ -4908,6 +4976,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_invest_silicon_glenn"
+			9 = {
+				add_dynamic_modifier = {
+					modifier = ENG_sillicon_glenn
+				}
+			}
+			hidden_effect = {
+				9 = {
+					owner = {
+						country_event = {
+							id = United_Kingdom.002
+							days = 365
+						}
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -4916,7 +4999,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_cross_border_cooperation
-		icon = x
+		icon = customs_union
 
 		x = -2
 		y = 3
@@ -4929,6 +5012,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_cross_border_cooperation"
+			activate_decision = ENG_ireland_border_cooperation
+			effect_tooltip = {
+				IRE = { country_event = United_Kingdom.003 }
+			}
 		}
 
 		ai_will_do = {
@@ -4937,7 +5024,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_national_data_infrastructure
-		icon = x
+		icon = construction
 
 		x = 0
 		y = 3
@@ -4955,6 +5042,56 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_national_data_infrastructure"
+			add_timed_idea = {
+				idea = ENG_mational_data_infrastructure_idea
+				years = 2
+			}
+			newline = yes
+			unlock_decision_tooltip = ENG_bankers_switch_faction
+			effect_tooltip = {
+				if = {
+				limit = { has_idea = fossil_fuel_industry }
+				swap_ideas = {
+					remove_idea = fossil_fuel_industry
+					add_idea = international_bankers
+				}
+			}
+				else_if = {
+					limit = {
+						NOT = { has_idea = fossil_fuel_industry }
+						has_idea = defense_industry
+					}
+					swap_ideas = {
+						remove_idea = defense_industry
+						add_idea = international_bankers
+					}
+				}
+				else_if = {
+					limit = {
+						NOT = { has_idea = fossil_fuel_industry }
+						NOT = { has_idea = defense_industry }
+						has_idea = labour_unions
+					}
+					swap_ideas = {
+						remove_idea = labour_unions
+						add_idea = international_bankers
+					}
+				}
+			}
+			newline = yes
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_supply_node_range_change = 0.10
+			}
+			update_ENG_supply_node_range = yes
+			set_temp_variable = {
+				ENG_production_factory_max_efficiency_factor_change = 0.10
+			}
+			update_ENG_production_factory_max_efficiency_factor = yes
+			set_temp_variable = {
+				ENG_productivity_growth_change = 5
+			}
+			update_ENG_productivity_cost = yes
 		}
 
 		ai_will_do = {
@@ -4963,7 +5100,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_admiral_group
-		icon = x
+		icon = South_ossetia_barn
 
 		x = 2
 		y = 3
@@ -4976,6 +5113,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_admiral_group"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_welfare_cost_change = -0.05
+			}
+			update_ENG_welfare_cost = yes
+			set_temp_variable = {
+				ENG_health_cost_change = -0.05
+			}
+			update_ENG_healthcare_cost = yes
 		}
 
 		ai_will_do = {
@@ -4984,7 +5130,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_fintech_open_banking
-		icon = x
+		icon = economic_another_money
 
 		x = -2
 		y = 1
@@ -4994,18 +5140,10 @@ focus_tree = {
 
 		available = {
 			offices > 44
-			has_idea = international_bankers_opinion
+			has_idea = international_bankers
 			check_variable = {
 				international_bankers_opinion > 49
 			}
-		}
-
-		bypass = {
-			NOT = { has_idea = international_bankers_opinion }
-		}
-
-		bypass_effect = {
-			one_office_construction = yes
 		}
 
 		prerequisite = { focus = ENG_national_data_infrastructure }
@@ -5013,6 +5151,35 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_fintech_open_banking"
+			random_owned_state = {
+				limit = {
+					is_great_britain_state_owned = yes
+				}
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			newline = yes
+			add_to_variable = {
+				international_bankers_opinion = 5
+			}
+			change_international_bankers_opinion = yes
+			newline = yes
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_corporate_tax_factor_change = 0.05
+			}
+			update_ENG_corporate_tax_cost = yes
+			set_temp_variable = {
+				ENG_interest_rate_multiplier_modifier_change = -0.5
+			}
+			update_ENG_interest_rate_multiplier_modifier = yes
+			newline = yes
+			set_temp_variable = { treasury_change = -13.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -5021,7 +5188,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_global_consulting_state
-		icon = x
+		icon = liberalization
 
 		x = 0
 		y = 1
@@ -5034,6 +5201,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_global_consulting_state"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_foreign_influence_modifier_change = 0.05
+			}
+			update_ENG_foreign_influence_modifier = yes
+			set_temp_variable = {
+				ENG_research_speed_factor_change = 0.02
+			}
+			update_ENG_research_speed_factor = yes
+			set_temp_variable = {
+				ENG_return_on_investment_modifier_change = 0.02
+			}
+			update_ENG_return_on_investment_modifier = yes
 		}
 
 		ai_will_do = {
@@ -5042,7 +5222,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_lean_manufacturing
-		icon = x
+		icon = economic_robots
 
 		x = 2
 		y = 1
@@ -5050,11 +5230,40 @@ focus_tree = {
 
 		cost = 5
 
+		available = {
+			has_tech = advanced_industrial_robotics
+		}
+
 		prerequisite = { focus = ENG_national_data_infrastructure }
 		search_filters = { FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_lean_manufacturing"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_energy_use_modifier_civs_multiplier_change = 0.05
+			}
+			update_ENG_energy_use_modifier_civs_multiplier = yes
+			set_temp_variable = {
+				ENG_energy_use_modifier_mils_multiplier_change = 0.05
+			}
+			update_ENG_energy_use_modifier_mils_multiplier = yes
+			set_temp_variable = {
+				ENG_civ_facs_worker_requirement_modifier_change = -0.10
+			}
+			update_ENG_civ_facs_worker_requirement_modifier = yes
+			set_temp_variable = {
+				ENG_mil_facs_worker_requirement_modifier_change = -0.10
+			}
+			update_ENG_mil_facs_worker_requirement_modifier = yes
+			set_temp_variable = {
+				ENG_industrial_capacity_factory_change = 0.05
+			}
+			update_ENG_industrial_capacity_factory = yes
+			set_temp_variable = {
+				ENG_production_factory_efficiency_gain_factor_change = 0.05
+			}
+			update_ENG_production_factory_efficiency_gain_factor = yes
 		}
 
 		ai_will_do = {
@@ -5063,7 +5272,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_cloud_isles
-		icon = x
+		icon = construction2
 
 		x = -1
 		y = 2
@@ -5077,6 +5286,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_cloud_isles"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_energy_use_modifier_offices_change = 0.05
+			}
+			update_ENG_energy_use_modifier_offices = yes
+			set_temp_variable = {
+				ENG_office_park_income_tax_modifier_change = 0.10
+			}
+			update_ENG_office_park_income_tax_modifier = yes
+			set_temp_variable = {
+				ENG_research_speed_factor_change = 0.02
+			}
+			update_ENG_research_speed_factor = yes
 		}
 
 		ai_will_do = {
@@ -5085,7 +5307,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_algorithmic_finance
-		icon = x
+		icon = economic_tech
 
 		x = 1
 		y = 2
@@ -5101,6 +5323,27 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_algorithmic_finance"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_centralization_cost_change = -0.05
+			}
+			update_ENG_centralization_cost = yes
+			set_temp_variable = {
+				ENG_health_cost_change = -0.05
+			}
+			update_ENG_healthcare_cost = yes
+			set_temp_variable = {
+				ENG_education_cost_multiplier_modifier_change = -0.05
+			}
+			update_ENG_education_cost_multiplier_modifier = yes
+			set_temp_variable = {
+				ENG_welfare_cost_change = -0.05
+			}
+			update_ENG_welfare_cost = yes
+			set_temp_variable = {
+				ENG_border_control_multiplier_modifier_change = -0.05
+			}
+			update_ENG_border_control_multiplier_modifier = yes
 		}
 
 		ai_will_do = {
@@ -5109,7 +5352,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_invest_harland_wolff
-		icon = x
+		icon = naval_industry
 
 		x = 3
 		y = 2
@@ -5122,6 +5365,23 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_invest_harland_wolff"
+			17 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			newline = yes
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_industrial_capacity_dockyard_change = 0.05
+			}
+			update_ENG_industrial_capacity_dockyard = yes
+			newline = yes
+			set_temp_variable = { treasury_change = -17.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -5130,7 +5390,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_critical_minerals_strategy
-		icon = x
+		icon = focus_generic_resource_extraction
 
 		x = 9
 		y = 1
@@ -5141,6 +5401,18 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_critical_minerals_strategy"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_local_resources_factor_change = 0.05
+			}
+			update_ENG_local_resources_factor = yes
+			newline = yes
+			unlock_decision_tooltip = ENG_clydach_nickel_decision
+			unlock_decision_tooltip = ENG_ellesmere_port_decision
+			unlock_decision_tooltip = ENG_shetland_hydrocarbon_decision
+			unlock_decision_tooltip = ENG_rosebank_field_decision
+			unlock_decision_tooltip = ENG_cambo_offshore_decision
+			unlock_decision_tooltip = ENG_drakeland_tungsten_decision
 		}
 
 		ai_will_do = {
@@ -5149,7 +5421,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_dogger_bank_offshore
-		icon = x
+		icon = BRA_renewable_energy_funds
 
 		x = 0
 		y = 1
@@ -5161,7 +5433,12 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ENG_critical_minerals_strategy"
+			log = "[GetDateText]: [Root.GetName]: Focus ENG_dogger_bank_offshore"
+			14 = {
+				add_dynamic_modifier = {
+					modifier = ENG_dogger_bank_offshore
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -5170,7 +5447,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_hinkley_point_c
-		icon = x
+		icon = goal_JAP_restart_nukepowerplant
 
 		x = 0
 		y = 2
@@ -5183,6 +5460,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_hinkley_point_c"
+			15 = {
+				add_building_construction = {
+					type = nuclear_reactor
+					level = 2
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { treasury_change = -18.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -5191,7 +5477,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_acknowledge_industrial_collapse
-		icon = x
+		icon = empty_coffers
 
 		x = 15
 		y = 0
@@ -5203,6 +5489,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_acknowledge_industrial_collapse"
+			add_stability = 0.05
+			add_tech_bonus = {
+				name = ENG_acknowledge_industrial_collapse
+				category = CAT_industry
+				uses = 5
+				bonus = 0.15
+			}
 		}
 
 		ai_will_do = {
@@ -5211,7 +5504,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_building_brittain_fit_future
-		icon = x
+		icon = construction3
 
 		x = 0
 		y = 1
@@ -5224,6 +5517,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_building_brittain_fit_future"
+			add_timed_idea = {
+				idea = ENG_building_britain_idea
+				years = 1
+			}
 		}
 
 		ai_will_do = {
@@ -5232,7 +5529,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_northern_powerhouse
-		icon = x
+		icon = construct_infrastructure
 
 		x = 0
 		y = 2
@@ -5245,6 +5542,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_northern_powerhouse"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_global_building_slots_factor = 0.05
+			}
+			update_ENG_global_building_slots_factor = yes
+			set_temp_variable = {
+				ENG_production_speed_infrastructure_factor = 0.10
+			}
+			update_ENG_production_speed_infrastructure_factor = yes
 		}
 
 		ai_will_do = {
@@ -5255,7 +5561,7 @@ focus_tree = {
 		id = ENG_steel_guarantee
 		icon = x
 
-		x = -2
+		x = -3
 		y = 2
 		relative_position_id = ENG_acknowledge_industrial_collapse
 
@@ -5291,8 +5597,8 @@ focus_tree = {
 		id = ENG_celsa_steel
 		icon = x
 
-		x = -2
-		y = 3
+		x = -3
+		y = 5
 		relative_position_id = ENG_acknowledge_industrial_collapse
 
 		cost = 5
@@ -5313,7 +5619,7 @@ focus_tree = {
 		icon = x
 
 		x = -4
-		y = 3
+		y = 4
 		relative_position_id = ENG_acknowledge_industrial_collapse
 
 		cost = 5
