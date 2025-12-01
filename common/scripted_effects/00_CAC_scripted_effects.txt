@@ -222,8 +222,34 @@ CAC_add_company = {
         }
 
         # upgrades
+        if = {
+            limit = { check_variable = { CAC_companies_upgrades_2d^num = 0 } }
+
+            for_loop_effect = {
+                start = 0
+                end = 11
+                value = company_index
+
+                for_loop_effect = {
+                    start = 0
+                    end = 30
+                    value = upgrade_id
+
+                    set_temp_variable = { index = company_index }
+                    multiply_temp_variable = { index = 30 }
+                    add_to_temp_variable = { index = upgrade_id }
+
+                    add_to_array = {
+                        array = CAC_companies_upgrades_2d
+                        value = 3
+                        index = index
+                    }
+                }
+            }
+        }
+
         if = { 
-            limit = { check_variable = { cac_company_type = 0 } } 
+            limit = { check_variable = { cac_company_type = 0 } }
             
             set_temp_variable = { index = company_slot_temp }
             multiply_temp_variable = { index = 30 }
@@ -237,7 +263,7 @@ CAC_add_company = {
 
             set_variable = { CAC_companies_upgrades_2d^index = 2 }
         }
-        if = { 
+        else_if = { 
             limit = { check_variable = { cac_company_type = 1 } } 
             
             set_temp_variable = { index = company_slot_temp }

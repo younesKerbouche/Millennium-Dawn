@@ -40,6 +40,7 @@ on_actions = {
 				CAC_add_company = yes
 			}
 
+
 			# GLOBAL VARIABLES
 
 			# ceo
@@ -59,29 +60,6 @@ on_actions = {
 
 				# foreign companies
 				set_variable = { CAC_foreign_companies_limit = 6 }
-
-				# upgrades
-				for_loop_effect = {
-					start = 0
-					end = 11
-					value = company_id
-
-					for_loop_effect = {
-						start = 0
-						end = 30
-						value = upgrade_id
-
-						set_temp_variable = { index = company_id }
-						multiply_temp_variable = { index = 30 }
-						add_to_temp_variable = { index = upgrade_id }
-
-						add_to_array = {
-							array = CAC_companies_upgrades_2d
-							value = 3
-							index = index
-						}
-					}
-				}
 
 				# ui variables
 				set_variable = { opened_company_details = -1 }
