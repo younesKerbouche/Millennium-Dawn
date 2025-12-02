@@ -16,6 +16,15 @@ scripted_gui = {
 		context_type = player_context
 
 		visible = { has_country_flag = open_bfv_screen }
+
+		dynamic_lists = {
+			BfV_counter_terror_faction_girdbox = {
+				array = GER.CT_counter_terror_faction_list
+				entry_container = "CT_counter_terror_faction_ENTRY"
+				change_scope = yes
+			}
+		}
+
 		triggers = {
 			main_bfv_open_button_visible = { NOT = { has_country_flag = GER_BFV_GONE } }
 			GFX_GER_map_visible = { NOT = { OR = { has_country_flag = open_dep2_screen has_country_flag = open_dep5_screen has_country_flag = open_dep6_screen } } }
