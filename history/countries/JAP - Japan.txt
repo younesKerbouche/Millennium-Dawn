@@ -7,7 +7,7 @@
 	set_country_flag = JAP_COALITION_KOMEITO
 	set_rule = { can_create_factions = no }
 	set_rule = { can_not_declare_war = yes }
-	complete_special_project = sp:sp_aircraft_project
+
 
 	set_variable = { jap_demographics_depopulation_reform = 0 }
 	# ANTI-CORRUPTION
@@ -395,8 +395,6 @@
 		construction2 = 1
 	}
 
-		complete_special_project = sp:sp_helicopter_project
-
 	if = { limit = { has_dlc = "Gotterdammerung" }
 		set_technology = {
 			ballistic_missile = 1
@@ -429,13 +427,7 @@
 			hid_tech_missile_6 = 1
 		}
 
-		complete_special_project = sp:sp_space_program_gdm
-		complete_special_project = sp:sp_missile_project
-
 		set_variable = { num_launchers_set = 6 }
-		else = {
-			complete_special_project = sp:sp_space_program_non_gdm
-		}
 	}
 
 	if = {
@@ -889,8 +881,7 @@
 			model = "USA_attack_helo_bat_entity"
 		}
 
-		complete_special_project = sp:sp_armoured_vehicle_project
-		complete_special_project = sp:sp_tank_nera_armor
+
 
 		else = {
 			set_oob = "JAP_2000_nonnsb"
@@ -1363,7 +1354,23 @@
 			obsolete = yes
 		}
 
-		complete_special_project = sp:sp_naval_vessel_project
+		#Special Projects
+		if = {
+			limit = { has_dlc = Gotterdammerung }
+			complete_special_project = sp:sp_space_program_gdm
+		}
+		else = {
+			complete_special_project = sp:sp_naval_vessel_project
+			complete_special_project = sp:sp_aircraft_project
+			complete_special_project = sp:sp_medium_naval_nuclear_engines
+			complete_special_project = sp:sp_armoured_vehicle_project
+			complete_special_project = sp:sp_tank_nera_armor
+			complete_special_project = sp:sp_missile_project
+			complete_special_project = sp:sp_space_program_non_gdm
+			complete_special_project = sp:sp_helicopter_project
+		}
+
+
 
 		set_technology = {
 			corvette_hull_1 = 1
@@ -1851,9 +1858,6 @@
 			}
 			obsolete = yes
 		}
-
-		complete_special_project = sp:sp_naval_vessel_project
-		complete_special_project = sp:sp_medium_naval_nuclear_engines
 	}
 	if = {
 		limit = { has_dlc = "By Blood Alone" }
@@ -2165,7 +2169,7 @@
 			hid_tech_missile_6 = 1
 		}
 
-		complete_special_project = sp:sp_missile_project
+
 
 		set_variable = { num_launchers_set = 6 }
 	}
@@ -2310,9 +2314,6 @@
 	reverse_add_opinion_modifier = { target = RAJ modifier = military_cooperation }
 	add_opinion_modifier = { target = IND modifier = large_commercial_relations }
 	reverse_add_opinion_modifier = { target = IND modifier = large_commercial_relations }
-
-	complete_special_project = sp:sp_space_program_gdm
-	complete_special_project = sp:sp_space_program_non_gdm
 
 	set_technology = {
 		COMSAT1 = 1

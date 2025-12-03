@@ -1527,7 +1527,7 @@ catdec_mdmosjap_JAP_war_strategies = {
 					}
 					#AND = { #TODO: support this
 					#	OR = {
-					#		is_SE_Asia = yes
+					#		is_asean_nation = yes
 					#		is_East_Asia = yes
 					#	}
 					#	has_civil_war = yes
@@ -1715,7 +1715,7 @@ catdec_mdmosjap_JAP_war_strategies = {
 		target_trigger = {
 			FROM = {
 				OR = {
-					is_SE_Asia = yes
+					is_asean_nation = yes
 					is_East_Asia = yes
 					is_oceania_nation = yes
 				}
@@ -2374,7 +2374,7 @@ JAP_great_east_japan_earthquake_decision = {
 			if = {
 				limit = {
 					616 = {
-						industrial_complex = 3
+						industrial_complex > 2
 					}
 				}
 				country_event = Japan.2011031110
@@ -2424,11 +2424,11 @@ JAP_great_east_japan_earthquake_decision = {
     	}
 
 		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_kanto_industrial_recovery_decision" 
+			log = "[GetDateText]: [Root.GetName]: Decision remove JAP_kanto_industrial_recovery_decision"
 			if = {
 				limit = {
 					615 = {
-						industrial_complex = 9
+						industrial_complex > 8
 					}
 				}
 				country_event = Japan.2011031112
