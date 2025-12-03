@@ -919,4 +919,126 @@ decisions_ENG = {
 			factor = 10
 		}
 	}
+	ENG_hs2_mission = {
+		allowed = { original_tag = ENG }
+		icon = x
+
+		days_mission_timeout = 1460
+
+		fire_only_once = yes
+
+		selectable_mission = no
+
+		is_good = yes
+
+		activation = {
+			has_completed_focus = ENG_hs2
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_hs2_mission"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_offices_productivity_change = 0.20
+			}
+			update_ENG_offices_productivity = yes
+			newline = yes
+			13 = {
+				add_dynamic_modifier = {
+					modifier = ENG_hs2_idea
+				}
+			}
+			14 = {
+				add_dynamic_modifier = {
+					modifier = ENG_hs2_idea
+				}
+			}
+			12 = {
+				add_dynamic_modifier = {
+					modifier = ENG_hs2_idea
+				}
+			}
+			newline = yes
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				build_railway = {
+					path = { 11333 9239 9268 6270 9297 }
+					level = 2
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_northen_powerhouse_mission = {
+		allowed = { original_tag = ENG }
+		icon = x
+
+		days_mission_timeout = 1460
+
+		fire_only_once = yes
+
+		selectable_mission = no
+
+		is_good = yes
+
+		activation = {
+			has_completed_focus = ENG_hs2
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_northen_powerhouse_mission"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_civilian_factories_productivity_change = 0.10
+			}
+			update_ENG_civilian_factories_productivity = yes
+			set_temp_variable = {
+				ENG_military_factories_productivity_change = 0.10
+			}
+			update_ENG_military_factories_productivity = yes
+			newline = yes
+			11 = {
+				add_dynamic_modifier = {
+					modifier = ENG_northern_powerhouse_rail_idea
+				}
+			}
+			10 = {
+				add_dynamic_modifier = {
+					modifier = ENG_northern_powerhouse_rail_idea
+				}
+			}
+			1191 = {
+				add_dynamic_modifier = {
+					modifier = ENG_northern_powerhouse_rail_idea
+				}
+			}
+			newline = yes
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				build_railway = {
+					path = { 9315 3205 6268 9379 9269 11297  }
+					level = 2
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
 }

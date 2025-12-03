@@ -924,7 +924,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_type_31_frigate_inspiration_class
-		icon = frigates
+		icon = ENG_type31_frigate
 
 		x = -1
 		y = 1
@@ -1078,7 +1078,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_harpoon_replacement
-		icon = cruisers
+		icon = torpedo
 
 		x = 0
 		y = 1
@@ -1211,7 +1211,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_astute_class
-		icon = submarines
+		icon = ENG_astute_submarine
 
 		x = 1
 		y = 1
@@ -1259,7 +1259,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_dreadnought_class
-		icon = anti_submarine
+		icon = ENG_dreadnought_submarine
 
 		x = 0
 		y = 1
@@ -1434,7 +1434,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_qinetiq_dragonfire_system
-		icon = defense
+		icon = ENG_dragonfire
 
 		x = 0
 		y = 3
@@ -1799,7 +1799,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_AS90
-		icon = focus_FIN_foreign_anti_air
+		icon = ENG_as90
 
 		x = -3
 		y = 2
@@ -1872,7 +1872,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_M270
-		icon = focus_FIN_salvaged_and_retooled
+		icon = Generic_MLRS
 
 		x = -5
 		y = 2
@@ -2264,7 +2264,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_bae_cv90_MkIV
-		icon = apc_sheep
+		icon = ENG_bae_cv90
 
 		x = 1
 		y = 1
@@ -3682,7 +3682,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_virgin_galactic
-		icon = spacex2
+		icon = ENG_virgin_galactic
 
 		x = 0
 		y = 2
@@ -4766,7 +4766,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_ai_white_collar
-		icon = radical_tax_reform
+		icon = brain_power
 
 		x = -1
 		y = 1
@@ -4810,7 +4810,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_empower_city_london
-		icon = London_Industry
+		icon = ENG_london_developments
 
 		x = 1
 		y = 1
@@ -4845,7 +4845,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_empower_edinburgh
-		icon = crane_and_tower
+		icon = ENG_edinburgh_skyline
 
 		x = 3
 		y = 1
@@ -4960,7 +4960,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_invest_silicon_glenn
-		icon = economic_sciencer
+		icon = ENG_silicon_glen
 
 		x = 2
 		y = 2
@@ -4999,7 +4999,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_cross_border_cooperation
-		icon = customs_union
+		icon = ENG_ireland_collaboration
 
 		x = -2
 		y = 3
@@ -5100,7 +5100,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_admiral_group
-		icon = South_ossetia_barn
+		icon = ENG_admiral_group
 
 		x = 2
 		y = 3
@@ -5188,7 +5188,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_global_consulting_state
-		icon = liberalization
+		icon = british_global_defense
 
 		x = 0
 		y = 1
@@ -6302,7 +6302,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_develop_bae_aerospace
-		icon = aviation_industry
+		icon = ENG_bae_scotland
 
 		x = -1
 		y = 4
@@ -6538,7 +6538,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_hs2
-		icon = x
+		icon = ENG_hs2
 
 		x = -1
 		y = 2
@@ -6555,6 +6555,38 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_hs2"
+			activate_mission = ENG_hs2_mission
+			effect_tooltip = {
+				custom_effect_tooltip = ENG_change_economy_spirit_tt
+				set_temp_variable = {
+					ENG_offices_productivity_change = 0.20
+				}
+				update_ENG_offices_productivity = yes
+				newline = yes
+				13 = {
+					add_dynamic_modifier = {
+						modifier = ENG_hs2_idea
+					}
+				}
+				14 = {
+					add_dynamic_modifier = {
+						modifier = ENG_hs2_idea
+					}
+				}
+				12 = {
+					add_dynamic_modifier = {
+						modifier = ENG_hs2_idea
+					}
+				}
+				newline = yes
+				if = {
+					limit = { has_dlc = "No Step Back" }
+					build_railway = {
+						path = { 11333 9239 9268 6270 9297 }
+						level = 2
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -6563,7 +6595,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_northern_powerhouse_rail
-		icon = x
+		icon = ENG_scotland_train
 
 		x = 1
 		y = 2
@@ -6580,6 +6612,42 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_northern_powerhouse_rail"
+			activate_mission = ENG_northen_powerhouse_mission
+			effect_tooltip = {
+				custom_effect_tooltip = ENG_change_economy_spirit_tt
+				set_temp_variable = {
+					ENG_civilian_factories_productivity_change = 0.10
+				}
+				update_ENG_civilian_factories_productivity = yes
+				set_temp_variable = {
+					ENG_military_factories_productivity_change = 0.10
+				}
+				update_ENG_military_factories_productivity = yes
+				newline = yes
+				11 = {
+					add_dynamic_modifier = {
+						modifier = ENG_northern_powerhouse_rail_idea
+					}
+				}
+				10 = {
+					add_dynamic_modifier = {
+						modifier = ENG_northern_powerhouse_rail_idea
+					}
+				}
+				1191 = {
+					add_dynamic_modifier = {
+						modifier = ENG_northern_powerhouse_rail_idea
+					}
+				}
+				newline = yes
+				if = {
+					limit = { has_dlc = "No Step Back" }
+					build_railway = {
+						path = { 9315 3205 6268 9379 9269 11297  }
+						level = 2
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -6588,7 +6656,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_euston_canary_wharf_integration
-		icon = x
+		icon = crane_and_tower
 
 		x = -2
 		y = 3
@@ -6601,6 +6669,24 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_euston_canary_wharf_integration"
+			add_days_mission_timeout = {
+				mission = ENG_hs2_mission
+				days = -150
+			}
+			newline = yes
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = {
+				ENG_offices_productivity_change = 0.05
+			}
+			update_ENG_offices_productivity = yes
+			set_temp_variable = {
+				ENG_office_park_income_tax_modifier_change = 0.05
+			}
+			update_ENG_office_park_income_tax_modifier = yes
+			set_temp_variable = {
+				ENG_trade_opinion_factor_change = 10
+			}
+			update_ENG_trade_opinion_factor = yes
 		}
 
 		ai_will_do = {
@@ -6609,7 +6695,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_midland_main_lines
-		icon = focus_generic_railroad
+		icon = ENG_midland_train
 
 		x = 0
 		y = 3
@@ -6635,7 +6721,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_russel_group
-		icon = x
+		icon = focus_generic_university_3
 
 		x = 2
 		y = 3
@@ -6648,6 +6734,18 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_russel_group"
+			random_scientist = {
+				add_scientist_xp = {
+					experience = 500
+					specialization = specialization_land
+				}
+			}
+			random_scientist = {
+				add_scientist_xp = {
+					experience = 500
+					specialization = specialization_land
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -6656,7 +6754,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_golden_triangle_research
-		icon = x
+		icon = focus_generic_university_2
 
 		x = -3
 		y = 4
@@ -6669,6 +6767,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_golden_triangle_research"
+			every_scientist = {
+				add_scientist_level = {
+					level = 1
+					specialization = specialization_nuclear
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -6677,7 +6781,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_imperial_king_tech_clusters
-		icon = x
+		icon = focus_generic_university_1
 
 		x = -1
 		y = 4
@@ -6690,6 +6794,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_imperial_king_tech_clusters"
+			every_scientist = {
+				add_scientist_level = {
+					level = 1
+					specialization = specialization_land
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -6729,6 +6839,10 @@ focus_tree = {
 				ENG_recruitable_population_change = 0.50
 			}
 			update_ENG_recruitable_population = yes
+			set_temp_variable = {
+				ENG_production_factory_start_efficiency_factor_change = 0.05
+			}
+			update_ENG_production_factory_start_efficiency_factor = yes
 		}
 
 		ai_will_do = {
