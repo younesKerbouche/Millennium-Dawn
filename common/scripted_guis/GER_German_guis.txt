@@ -14,16 +14,10 @@ scripted_gui = {
 	GER_bfv_gui_window = {
 		window_name = "GER_bfv_gui_window"
 		context_type = player_context
+		dirty = GER.refresh_bfv
 
 		visible = { has_country_flag = open_bfv_screen }
 
-		dynamic_lists = {
-			BfV_counter_terror_faction_girdbox = {
-				array = GER.CT_counter_terror_faction_list
-				entry_container = "CT_counter_terror_faction_ENTRY"
-				change_scope = yes
-			}
-		}
 
 		triggers = {
 			main_bfv_open_button_visible = { NOT = { has_country_flag = GER_BFV_GONE } }
@@ -97,7 +91,6 @@ scripted_gui = {
 			GER_rightists_active_visible = { has_country_flag = GER_RIGHTISTS_ARE_ACTIVE NOT = { OR = { has_country_flag = open_dep5_screen has_country_flag = open_dep6_screen has_country_flag = open_dep2_screen } } }
 		}
 		effects = {
-			close_button_click = { clr_country_flag = open_bfv_screen }
 			GFX_ideology_fascism_group_button_click = { #Button for opening Islamists window
 				if = {
 					limit = { NOT = { has_country_flag = open_dep2_screen } }
@@ -250,6 +243,30 @@ scripted_gui = {
 					clr_country_flag = open_bfv_screen
 				}
 			}
+		}
+	}
+	BFV_faction_window = {
+		window_name = "BFV_faction_window"
+		context_type = player_context
+		parent_scripted_gui = GER_bfv_gui_window
+		dirty = GER.refresh_bfv
+	}
+	BfV_RW_factions_container = {
+		window_name = "BfV_RW_factions_container"
+		context_type = player_context
+		parent_scripted_gui = BFV_faction_window
+		dirty = GER.refresh_bfv
+
+		dynamic_lists = {
+			BfV_RW_faction_girdbox = {
+				array = GER.BFV_RW_Factions_list_ARRAY
+				entry_container = "BFV_RW_faction_ENTRY"
+				change_scope = yes
+			}
+		}
+		
+		effects = {
+			BFV_RW_Factions_button_click = { GER =  { add_political_power = 1 GER_1st_button_DEBUG = yes } }
 		}
 	}
 }
