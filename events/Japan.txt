@@ -12331,20 +12331,446 @@ country_event = {
 					has_country_flag = JAP_kor_accept_intellectual_platform
 					has_country_flag = JAP_chi_accept_intellectual_platform
 				}
-				country_event = { 
+				country_event = {
 					id = JAP_diplomacy.08
 					days = 3
 				}
 			}
 			else = {
-				country_event = { 
-					id = JAP_diplomacy.09 
+				country_event = {
+					id = JAP_diplomacy.09
 					days = 3
 				}
 			}
 		}
-	}   
+	}
 }
+country_event = {
+    id = JAP_diplomacy.11
+    title = JAP_diplomacy.11.t
+    desc = JAP_diplomacy.11.d
+    is_triggered_only = yes
+
+    option = {
+		name = JAP_diplomacy.11.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.11.a executed"
+        ai_chance = {
+           base = 5
+            modifier = {
+                factor = 5
+                OR = {
+					western_autocrats_are_in_power_or_coalition = yes
+					western_conservatism_are_in_power_or_coalition = yes
+					emerging_reactionaries_are_in_coalition = yes
+					emerging_reactionaries_are_in_power = yes
+					nationalist_fascists_are_in_power_or_coalition = yes
+					nationalist_military_junta_are_in_power_or_coalition = yes
+					nationalist_monarchists_are_in_power_or_coalition = yes
+				}
+            }
+        }
+
+        add_power_balance_value = {
+            id = JAP_article_nine
+            value = 0.2
+        }
+
+		add_opinion_modifier = {
+			target = USA
+			modifier = JAP_usa_article_nine_accepted
+		}
+		reverse_add_opinion_modifier = {
+			target = JAP
+			modifier = JAP_usa_article_nine_accepted
+		}
+
+        USA = { country_event = JAP_diplomacy.13 }
+    }
+    option = {
+        name = JAP_diplomacy.11.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.11.b executed"
+        ai_chance = {
+            base = 5
+            modifier = {
+                factor = 5
+                OR = {
+					western_liberal_are_in_power_or_coalition = yes
+					emerging_communist_state_in_power_or_coalition = yes
+					emerging_anarchist_communism_in_power_or_coalition = yes
+					neutrality_neutral_communism_in_power_or_coalition = yes
+				}
+            }
+        }
+
+		add_opinion_modifier = {
+			target = USA
+			modifier = JAP_usa_article_nine_refused
+		}
+		reverse_add_opinion_modifier = {
+			target = JAP
+			modifier = JAP_usa_article_nine_refused
+		}
+
+        USA = { country_event = JAP_diplomacy.12 }
+    }
+}
+
+country_event = {
+    id = JAP_diplomacy.12
+    title = JAP_diplomacy.12.t
+    desc = JAP_diplomacy.12.d
+    is_triggered_only = yes
+
+     option = {
+        name = JAP_diplomacy.12.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.12.a executed"
+		ai_chance = {
+			base = 5
+			modifier = {
+				western_liberals_are_in_power = yes
+				factor = 5
+			}
+		}
+    }
+
+    option = {
+        name = JAP_diplomacy.12.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.12.b executed"
+        ai_chance = {
+            base = 5
+            modifier = {
+                factor = 5
+                western_conservatism_are_in_power = yes
+            }
+			modifier = {
+                factor = 5
+                USA = { has_country_leader = { name = "Donald Trump" } }
+            }
+        }
+
+        JAP = { country_event = JAP_diplomacy.14 }
+    }
+}
+
+country_event = {
+    id = JAP_diplomacy.13
+    title = JAP_diplomacy.13.t
+    desc = JAP_diplomacy.13.d
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.13.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.13.a executed"
+		set_temp_variable = { percent_change = 10 }
+		set_temp_variable = { tag_index = USA }
+		set_temp_variable = { influence_target = JAP }
+		change_influence_percentage = yes
+
+    }
+}
+country_event = {
+    id = JAP_diplomacy.14
+    title = JAP_diplomacy.14.t
+    desc = JAP_diplomacy.14.d
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.14.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.14.a executed"
+		USA = { country_event = JAP_diplomacy.16 }
+        ai_chance = {
+            base = 5
+            modifier = {
+                NOT = { USA = { is_top5_influencer = yes } }
+				factor = 0.5
+            }
+        }
+    }
+
+    option = {
+        name = JAP_diplomacy.14.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.14.b executed"
+        ai_chance = {
+            base = 5
+            modifier = {
+                factor = 5
+                OR = {
+					western_autocrats_are_in_power_or_coalition = yes
+					western_conservatism_are_in_power_or_coalition = yes
+					emerging_reactionaries_are_in_coalition = yes
+					emerging_reactionaries_are_in_power = yes
+					nationalist_fascists_are_in_power_or_coalition = yes
+					nationalist_military_junta_are_in_power_or_coalition = yes
+					nationalist_monarchists_are_in_power_or_coalition = yes
+				}
+            }
+        }
+        add_power_balance_value = {
+            id = JAP_article_nine
+            value = 0.2
+        }
+
+        add_stability = -0.05
+
+		USA = { country_event = JAP_diplomacy.15 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.15
+    title = JAP_diplomacy.15.t
+    desc = JAP_diplomacy.15.d
+    is_triggered_only = yes
+
+    trigger = {
+        tag = USA
+        FROM = { tag = JAP }
+        has_country_flag = USA_increasing_pressure_on_JAP
+    }
+
+    option = {
+        name = JAP_diplomacy.15.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.15.a executed"
+        add_political_power = 25
+		set_temp_variable = { percent_change = 15 }
+		set_temp_variable = { tag_index = USA }
+		set_temp_variable = { influence_target = JAP }
+		change_influence_percentage = yes
+    }
+}
+country_event = {
+    id = JAP_diplomacy.16
+    title = JAP_diplomacy.16.t
+    desc = JAP_diplomacy.16.d
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.16.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.16.a executed"
+    }
+
+    option = {
+		trigger = {
+			JAP = {
+				is_guaranteed_by = USA
+			}
+		}
+        name = JAP_diplomacy.16.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.16.b executed"
+		diplomatic_relation = {
+			country = JAP
+			relation = guarantee
+			active = no
+		}
+		set_country_flag = JAP_usa_removed_guarantee_article_nine
+    }
+
+    option = {
+        name = JAP_diplomacy.16.c
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.16.c executed"
+		JAP = { country_event = JAP_diplomacy.17 }
+    }
+
+    option = {
+        name = JAP_diplomacy.16.d
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.16.d executed"
+		diplomatic_relation = {
+			country = JAP
+			relation = naval_blockade
+			active = yes
+		}
+		set_country_flag = JAP_american_naval_blockade_active
+    }
+}
+country_event = {
+    id = JAP_diplomacy.17
+    title = JAP_diplomacy.17.t
+    desc  = JAP_diplomacy.17.d
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.17.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.17.a executed"
+		add_ideas = JAP_american_pressure_article_nine
+
+		USA = {
+			add_opinion_modifier = {
+				target = JAP
+				modifier = JAP_usa_trade_pressure
+			}
+		}
+    }
+}
+country_event = {
+    id = JAP_diplomacy.18
+    title = JAP_diplomacy.18.t
+    desc  = JAP_diplomacy.18.d
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.18.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.18.a executed"
+		JAP = { country_event = JAP_diplomacy.19 }
+    }
+
+    option = {
+        name = JAP_diplomacy.18.b
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.18.b executed"
+		JAP = { country_event = JAP_diplomacy.20 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.19
+    title = JAP_diplomacy.19.t
+    desc  = JAP_diplomacy.19.d
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.19.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.19.a executed"
+		remove_ideas = JAP_american_pressure_article_nine
+		USA = {
+			remove_opinion_modifier = {
+				target = JAP
+				modifier = JAP_usa_trade_pressure
+			}
+		}
+
+    }
+}
+country_event = {
+    id = JAP_diplomacy.20
+    title = JAP_diplomacy.20.t
+    desc  = JAP_diplomacy.20.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.20.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.20.a executed"
+    }
+}
+country_event = {
+    id = JAP_diplomacy.21
+    title = JAP_diplomacy.21.t
+    desc  = JAP_diplomacy.21.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.21.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.21.a executed"
+		JAP = { country_event = JAP_diplomacy.22 }
+    }
+
+    option = {
+        name = JAP_diplomacy.21.b
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.21.b executed"
+		JAP = { country_event = JAP_diplomacy.23 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.22
+    title = JAP_diplomacy.22.t
+    desc  = JAP_diplomacy.22.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.22.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.22.a executed"
+		USA = {
+			diplomatic_relation = {
+				country = JAP
+				relation = guarantee
+			}
+		}
+		add_power_balance_value = {
+			id = JAP_article_nine
+			value = 0.20
+		}
+    }
+}
+country_event = {
+    id = JAP_diplomacy.23
+    title = JAP_diplomacy.23.t
+    desc  = JAP_diplomacy.23.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.23.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.23.a executed"
+    }
+}
+country_event = {
+    id = JAP_diplomacy.24
+    title = JAP_diplomacy.24.t
+    desc  = JAP_diplomacy.24.d
+    picture = GFX_report_event
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.24.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.24.a executed"
+		JAP = { country_event = JAP_diplomacy.25 }
+    }
+
+    option = {
+        name = JAP_diplomacy.24.b
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.24.b executed"
+		JAP = { country_event = JAP_diplomacy.26 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.25
+    title = JAP_diplomacy.25.t
+    desc  = JAP_diplomacy.25.d
+    picture = GFX_report_event
+    is_triggered_only = yes
+
+    trigger = {
+        tag  = JAP
+        FROM = { tag = USA }
+        has_country_flag = jap_requested_end_of_naval_pressure
+        NOT = { has_idea = jap_us_naval_pressure_idea }
+    }
+
+    option = {
+        name = JAP_diplomacy.25.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.25.a executed"
+        add_power_balance_value = {
+            id           = JAP_article_nine
+            value        = 0.2
+        }
+        USA = {
+            diplomatic_relation = {
+				country = JAP
+				relation = naval_blockade
+				active = no
+			}
+        }
+        clr_country_flag = JAP_american_naval_blockade_active
+    }
+}
+country_event = {
+    id = JAP_diplomacy.26
+    title = JAP_diplomacy.26.t
+    desc  = JAP_diplomacy.26.d
+    picture = GFX_report_event
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.26.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.26.a executed"
+		set_temp_variable = { party_index = 20 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+    }
+}
+
+
+
 
 news_event = {
     id = JAP_news.01
@@ -12359,7 +12785,7 @@ news_event = {
 		trigger = {
 				tag = JAP
 			}
-	
+
         ai_chance = {
             base = 1
         }

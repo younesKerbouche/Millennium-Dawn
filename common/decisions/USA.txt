@@ -4282,6 +4282,43 @@ USA_foreign_policy = {
 		}
 	}
 
+	USA_demand_japanese_article_9_interpetation = {
+		icon = x
+		fire_only_once = no
+
+		days_re_enable = 365
+
+		targets = {	JAP }
+
+		available = {
+			JAP = {
+				has_power_balance = {
+					id = JAP_article_nine
+				}
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Completed: USA_demand_japanese_article_9_interpetation"
+			JAP = { country_event = JAP_diplomacy.11 }
+		}
+
+		ai_will_do = {
+			base = 0
+			modifier = {
+				has_country_flag = war_on_terror_speech
+				add = 5
+			}
+			modifier = {
+				has_completed_focus = USA_focus_starting_the_war_on_terror
+				add = 5
+			}
+			modifier = {
+				has_country_leader = { name = "Donald Trump" }
+				add = 5
+			}
+		}
+	}
+
 	# Next 4 Decisions, 2004 to 2009
 
 	USA_our_backyard = {

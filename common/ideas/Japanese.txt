@@ -8,38 +8,6 @@ ideas = {
 	#----------------------------------------------------------------
 	country = {
 		#At 2000 Start //////////////////////////////////////////////////////////////////
-		#ARTICLE 9
-		JAP_japanese_article_9 = {
-			picture = spirit_JAP_article_9
-			allowed = { always = no }
-
-			modifier = {
-				stability_factor = 0.10
-				war_support_factor = -0.40
-				justify_war_goal_time = 10
-				Conscription_Law_cost_factor = 13.00
-				conversion_cost_civ_to_mil_factor = 0.7
-				generate_wargoal_tension = 2.00
-				send_volunteers_tension = 1.00
-				guarantee_tension = 1.00
-				join_faction_tension = 1.00
-				Military_Spending_cost_factor = 16.00
-				nationalist_drift = -0.01
-				nationalist_acceptance = -10
-				ai_focus_defense_factor = 1.000
-				lend_lease_tension = 1.00
-				health_cost_multiplier_modifier = 0.10
-				expected_mil_modifier = -2
-			}
-			research_bonus = {
-				Cat_N_CV  = -0.20
-				Cat_CV = -0.20
-				Cat_LHA = -0.05
-			}
-
-			#Special Rule: Three factions of LDP always form coalition with each other LDP factions if there's no national epic change yet.
-		}
-
 		#Japan-US SOFA
 		JAP_JP_USA_SOFA_1 = {
 			picture = WIP_idea
@@ -1699,6 +1667,57 @@ ideas = {
 			modifier = {
 				production_speed_fossil_powerplant_factor = 0.2
 				custom_modifier_tooltip = JAP_focus_energy_TT
+			}
+		}
+		JAP_american_pressure_article_nine = {
+			allowed_civil_war = { always = yes }
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea JAP_american_pressure_article_nine" }
+
+			targeted_modifier = {
+				tag = USA
+				resource_trade_cost_bonus_per_factory = -1
+				foreign_influence_defense_modifier = -0.05
+			}
+		}
+		JAP_army_idea1 = {
+			allowed_civil_war = { always = yes }
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea JAP_army_idea1" }
+
+			modifier = {
+				experience_gain_air = 0.05
+				experience_gain_army = 0.05
+				experience_gain_navy = 0.05
+			}
+		}
+		JAP_army_idea2 = {
+			allowed_civil_war = { always = yes }
+			name = JAP_army_idea1
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea JAP_army_idea2" }
+
+			modifier = {
+				experience_gain_air = 0.05
+				experience_gain_army = 0.05
+				experience_gain_navy = 0.05
+				max_planning = 0.10
+				training_time_factor = -0.10
+				org_loss_when_moving = -0.10
+			}
+		}
+		JAP_army_idea3 = {
+			allowed_civil_war = { always = yes }
+			name = JAP_army_idea1
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea JAP_army_idea3" }
+
+			modifier = {
+				experience_gain_air = 0.05
+				experience_gain_army = 0.05
+				experience_gain_navy = 0.05
+				max_planning = 0.10
+				training_time_factor = -0.10
+				org_loss_when_moving = -0.10
+				resistance_damage_to_garrison = -0.25
+				resistance_growth = -0.05
+				police_cost_multiplier_modifier = -0.10
 			}
 		}
 	}
