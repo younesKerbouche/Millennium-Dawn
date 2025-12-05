@@ -3055,3 +3055,341 @@ JAP_article_nine_balance_of_power_category = {
 		}
 	}
 }
+JAP_military_decision_category = {
+	JAP_consolidate_national_defense_framework_mission = {
+		icon = x
+
+		allowed = {
+			original_tag = JAP
+		}
+
+		days_mission_timeout = 30
+
+		fire_only_once = no
+
+		is_good = yes
+
+		selectable_mission = no
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_completed_focus = JAP_secure_public_support
+			has_dynamic_modifier = { modifier = JAP_article9_modifier_hidden }
+		}
+
+		cancel_trigger = {
+			AND = {
+				check_variable = {
+					var = JAP_stability_factor_article9
+					value = 0
+					compare = less_than_or_equals
+				}
+				check_variable = {
+					var = JAP_war_support_weekly_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_recruitable_population_factor_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+			}
+		}
+
+		cancel_effect = {
+			set_country_flag = JAP_consolidate_national_defense_framework_done
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_consolidate_national_defense_framework_mission"
+			custom_effect_tooltip = JAP_change_article9_tt
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_stability_factor_article9
+					value = 0
+					compare = greater_than
+					}
+				}
+				set_temp_variable = {
+					JAP_stability_factor_article9_change = -0.025
+				}
+				update_JAP_stability_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_war_support_weekly_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_war_support_weekly_article9_change = 0.0001
+				}
+				update_JAP_war_support_weekly_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_recruitable_population_factor_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_recruitable_population_factor_article9_change = 0.05
+				}
+				update_JAP_recruitable_population_factor_article9_effect = yes
+			}
+		}
+	}
+	JAP_modernize_joint_command_mission = {
+		icon = x
+
+		allowed = {
+			original_tag = JAP
+		}
+
+		days_mission_timeout = 30
+
+		fire_only_once = no
+
+		is_good = yes
+
+		selectable_mission = no
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_completed_focus = JAP_secure_public_support
+			has_dynamic_modifier = { modifier = JAP_article9_modifier_hidden }
+		}
+
+		cancel_trigger = {
+			AND = {
+				check_variable = {
+					var = JAP_experience_gain_air_factor_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_experience_gain_army_factor_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_experience_gain_navy_factor_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_max_command_power_mult_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_army_leader_cost_factor_article9
+					value = 0
+					compare = less_than_or_equals
+				}
+			}
+		}
+
+		cancel_effect = {
+			set_country_flag = JAP_modernize_joint_command_done
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_modernize_joint_command_mission"
+			custom_effect_tooltip = JAP_change_article9_tt
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_experience_gain_air_factor_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_experience_gain_air_factor_article9_change = 0.05
+				}
+				update_JAP_experience_gain_air_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_experience_gain_army_factor_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_experience_gain_army_factor_article9_change = 0.05
+				}
+				update_JAP_experience_gain_army_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_experience_gain_navy_factor_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_experience_gain_navy_factor_article9_change = 0.05
+				}
+				update_JAP_experience_gain_navy_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_max_command_power_mult_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_max_command_power_mult_article9_change = 0.05
+				}
+				update_JAP_max_command_power_mult_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_army_leader_cost_factor_article9
+					value = 0
+					compare = greater_than
+					}
+				}
+				set_temp_variable = {
+					JAP_army_leader_cost_factor_article9_change = -0.05
+				}
+				update_JAP_army_leader_cost_factor_article9_effect = yes
+			}
+		}
+	}
+	JAP_JAP_normalize_defense_procurement_mission = {
+		icon = x
+
+		allowed = {
+			original_tag = JAP
+		}
+
+		days_mission_timeout = 30
+
+		fire_only_once = no
+
+		is_good = yes
+
+		selectable_mission = no
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_completed_focus = JAP_secure_public_support
+			has_dynamic_modifier = { modifier = JAP_article9_modifier_hidden }
+		}
+
+		cancel_trigger = {
+			AND = {
+				check_variable = {
+					var = JAP_army_attack_factor_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_army_core_attack_factor_article9
+					value = 0
+					compare = less_than_or_equals
+				}
+				check_variable = {
+					var = JAP_army_defence_factor_article9
+					value = 0
+					compare = greater_than_or_equals
+				}
+				check_variable = {
+					var = JAP_army_core_defence_factor_article9
+					value = 0
+					compare = less_than_or_equals
+				}
+			}
+		}
+
+		cancel_effect = {
+			set_country_flag = JAP_normalize_defense_procurement_done
+		}
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_JAP_normalize_defense_procurement_mission"
+			custom_effect_tooltip = JAP_change_article9_tt
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_army_attack_factor_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_army_attack_factor_article9_change = 0.05
+				}
+				update_JAP_army_attack_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_army_core_attack_factor_article9
+					value = 0
+					compare = greater_than
+					}
+				}
+				set_temp_variable = {
+					JAP_army_core_attack_factor_article9_change = -0.05
+				}
+				update_JAP_army_core_attack_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_army_defence_factor_article9
+					value = 0
+					compare = less_than
+					}
+				}
+				set_temp_variable = {
+					JAP_army_defence_factor_article9_change = 0.05
+				}
+				update_JAP_army_defence_factor_article9_effect = yes
+			}
+			if = {
+				limit = {
+					check_variable = {
+					var = JAP_army_core_defence_factor_article9
+					value = 0
+					compare = greater_than
+					}
+				}
+				set_temp_variable = {
+					JAP_army_core_defence_factor_article9_change = -0.05
+				}
+				update_JAP_army_core_defence_factor_article9_effect = yes
+			}
+		}
+	}
+}

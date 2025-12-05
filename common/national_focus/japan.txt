@@ -7420,6 +7420,9 @@ focus = {
 		prerequisite = {
 			focus = JAP_central_readiness_force
 		}
+		prerequisite = {
+			focus = JAP_amphibious_rapid_deployment
+		}
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
@@ -7436,7 +7439,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_maritime_self_defence_force
-		icon = x
+		icon = goal_JAP_JMSDF
 
 		x = 1
 		y = 1
@@ -7451,6 +7454,14 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_maritime_self_defence_force"
+			add_ideas = JAP_navy_idea1
+			newline = yes
+			add_tech_bonus = {
+				name = JAP_maritime_self_defence_force
+				category = CAT_destroyer
+				uses = 1
+				bonus = 0.15
+			}
 		}
 
 		ai_will_do = {
@@ -7459,7 +7470,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_amphibious_rapid_deployment
-		icon = x
+		icon = generic_landing_ship
 
 		x = 0
 		y = 2
@@ -7470,7 +7481,7 @@ focus = {
 		available = {
 			power_balance_value = {
 				id = JAP_article_nine
-				value > 0.19
+				value > 0.20
 			}
 		}
 
@@ -7480,10 +7491,23 @@ focus = {
 		prerequisite = {
 			focus = JAP_central_readiness_force
 		}
+		prerequisite = {
+			focus = JAP_air_self_defence_force
+		}
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_amphibious_rapid_deployment"
+			add_tech_bonus = {
+				name = JAP_amphibious_rapid_deployment
+				category = CAT_landing_craft
+				uses = 2
+				bonus = 0.50
+			}
+			swap_ideas = {
+				remove_idea = JAP_navy_idea1
+				add_idea = JAP_navy_idea2
+			}
 		}
 
 		ai_will_do = {
@@ -7492,13 +7516,17 @@ focus = {
 	}
 	focus = {
 		id = JAP_atago_destroyer
-		icon = x
+		icon = generic_ship1
 
 		x = 1
 		y = 1
 		relative_position_id = JAP_maritime_self_defence_force
 
 		cost = 5
+
+		available = {
+			has_tech = destroyer_hull_3
+		}
 
 		prerequisite = {
 			focus = JAP_maritime_self_defence_force
@@ -7507,6 +7535,45 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_atago_destroyer"
+			create_equipment_variant = {
+				type = destroyer_hull_3
+				design_team = mio:JAP_mitsubishi_shipbuilding_naval_manufacturer
+				name = "Atago-class destroyer"
+				modules = {
+					front_1_custom_slot = module_asm_3
+					mid_1_custom_slot = module_ciws_3
+					mid_2_custom_slot = module_torpedoes_3
+					rear_1_custom_slot = module_light_helipad_1
+					fixed_ship_auxillary_slot_1 = module_ciws_3
+					fixed_ship_auxillary_slot_2 = module_vls_sam_3
+					fixed_ship_auxillary_slot_3 = module_vls_sub_asm_3
+					fixed_ship_battery_slot = module_127mm_battery
+					fixed_ship_radar_slot = module_radar_4
+					fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+					fixed_ship_engine_slot = module_surface_jet_turbine_power2
+
+				}
+			}
+			add_equipment_production = {
+				equipment = {
+					version_name = "Atago-class destroyer"
+					type = destroyer_hull_3
+				}
+				industrial_manufacturer = mio:JAP_mitsubishi_shipbuilding_naval_manufacturer
+				amount = 1
+				progress = 0.40
+				requested_factories = 5
+			}
+			add_equipment_production = {
+				equipment = {
+					version_name = "Atago-class destroyer"
+					type = destroyer_hull_3
+				}
+				industrial_manufacturer = mio:JAP_mitsubishi_shipbuilding_naval_manufacturer
+				amount = 1
+				progress = 0.40
+				requested_factories = 5
+			}
 		}
 
 		ai_will_do = {
@@ -7515,7 +7582,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_keen_sword_operation
-		icon = x
+		icon = naval_doctrine
 
 		x = 0
 		y = 2
@@ -7530,6 +7597,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_keen_sword_operation"
+			add_timed_idea = {
+				idea = JAP_keen_sword_operation_idea
+				days = 180
+			}
 		}
 
 		ai_will_do = {
@@ -7538,7 +7609,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_air_self_defence_force
-		icon = x
+		icon = goal_JAP_JASDF
 
 		x = 4
 		y = 1
@@ -7553,6 +7624,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_air_self_defence_force"
+			add_ideas = JAP_airforce_idea1
 		}
 
 		ai_will_do = {
@@ -7561,7 +7633,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_modernize_jadge
-		icon = x
+		icon = army_radar
 
 		x = 0
 		y = 1
@@ -7576,6 +7648,12 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_modernize_jadge"
+			add_tech_bonus = {
+				name = JAP_modernize_jadge
+				ahead_reduction = 5
+				uses = 1
+				category = CAT_sam
+			}
 		}
 
 		ai_will_do = {
@@ -7584,7 +7662,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_deploy_ballistic_warning_radars
-		icon = x
+		icon = mlw_sam_sites
 
 		x = 1
 		y = 2
@@ -7599,6 +7677,42 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_deploy_ballistic_warning_radars"
+			random_owned_state = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7607,7 +7721,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_p_maritime_patrol
-		icon = x
+		icon = naval_bombers
 
 		x = 2
 		y = 2
@@ -7625,6 +7739,43 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_p_maritime_patrol"
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				create_equipment_variant = {
+					name = "P-1"
+					type = large_plane_maritime_patrol_airframe_1
+					parent_version = 0
+					modules = {
+						fixed_main_weapon_slot = weap_as_hardpoint_2
+						fixed_gun_slot = empty
+						engine_type_slot = engine_prop_quad_2
+						avionics_type_slot = avionics_manned_2
+						wingform_type_slot = wing_straight
+						special_slot_type_1 = spec_countermeasures_2
+						special_slot_type_2 = spec_mad_2
+						special_slot_type_3 = spec_refuel_2
+						fixed_auxiliary_weapon_slot_1 = weap_as_hardpoint_2
+						fixed_auxiliary_weapon_slot_2 = weap_as_hardpoint_2
+					}
+					design_team = mio:JAP_kawasaki_aerospace_company_aircraft_manufacturer
+				}
+				add_equipment_production = {
+					equipment = {
+						type = large_plane_maritime_patrol_airframe_1
+						version_name = "P-1"
+					}
+					efficiency = 60
+					requested_factories = 2
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = JAP_p_maritime_patrol
+					uses = 1
+					bonus = 0.50
+					category = CAT_naval_plane
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7633,7 +7784,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_hyuga_class
-		icon = x
+		icon = carriers
 
 		x = 2
 		y = 3
@@ -7648,6 +7799,23 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_hyuga_class"
+			create_equipment_variant = {
+				name = "Hyūga classs"
+				type = helicopter_operator_hull_2
+				design_team = mio:JAP_ihi_corporation_naval_manufacturer
+				modules = {
+					fixed_ship_engine_slot = module_surface_jet_turbine_power
+					fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+					fixed_ship_radar_slot = module_radar_3
+					fixed_ship_auxillary_slot_2 = module_torpedoes_3
+					fixed_ship_auxillary_slot_1 = module_vls_sub_asm_3
+					fixed_ship_auxillary_slot = module_vls_sam_3
+					fixed_ship_flight_deck = module_flight_deck_2
+					front_1_custom_slot = module_helipads_2
+					mid_1_custom_slot = module_helipads_2
+					rear_1_custom_slot = module_ciws_3
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7656,7 +7824,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_f15_defensive_updat_programe
-		icon = x
+		icon = fighter_plane
 
 		x = 3
 		y = 1
@@ -7671,6 +7839,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_f15_defensive_updat_programe"
+			add_timed_idea = {
+				idea = JAP_f15_programe
+				years = 1
+			}
 		}
 
 		ai_will_do = {
@@ -7679,7 +7851,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_f2_multirole_defensive_enhancement
-		icon = x
+		icon = fighters2
 
 		x = 3
 		y = 2
@@ -7694,6 +7866,42 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_f2_multirole_defensive_enhancement"
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				create_equipment_variant = {
+					name = "F2"
+					type = small_plane_strike_airframe_2
+					parent_version = 2
+					modules = {
+						fixed_main_weapon_slot = weap_mp_med_hardpoint_2
+						fixed_gun_slot = weap_multi_gun_2
+						fixed_ship_auxillary_slot = weap_a2a_hardpoint_2
+						engine_type_slot = engine_light_single_3
+						avionics_type_slot = avionics_manned_3
+						wingform_type_slot = wing_delta
+						special_slot_type_1 = spec_countermeasures_2
+						special_slot_type_2 = spec_tgp_2
+						special_slot_type_3 = spec_refuel_3
+					}
+					upgrades = {
+						plane_bba_radar_upgrade = 4
+						plane_bba_engine_upgrade = 3
+					}
+					design_team = mio:JAP_mitsubishi_aerospace_aircraft_manufacturer
+				}
+				add_equipment_to_stockpile = {
+					type = small_plane_strike_airframe_2
+					variant_name = "F2"
+					amount = 100
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = MR_Fighter3
+					amount = 100
+					variant_name = "F2"
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -7702,7 +7910,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_article_nine_transition_comittee
-		icon = focus_JAP_revere_the_emperor_destroy_the_traitors
+		icon = goal_JAP_peace_nine
 
 		x = 0
 		y = 4
@@ -7759,8 +7967,20 @@ focus = {
 				set_variable = { JAP_org_loss_when_moving_landforces = -0.10 }
 				set_variable = { JAP_resistance_damage_to_garrison_landforces = -0.25 }
 				set_variable = { JAP_resistance_growth_landforces = -0.05 }
+				set_variable = { JAP_navy_org_factor_navy = 0.10 }
 				set_variable = { JAP_police_cost_multiplier_modifier_landforces = -0.10 }
+				set_variable = { JAP_navy_submarine_detection_factor_navy = 0.10 }
+				set_variable = { JAP_naval_coordination_navy = 0.10 }
+				set_variable = { JAP_unit_marine_design_cost_factor_navy = -0.50 }
+				set_variable = { JAP_special_forces_attack_factor_navy = 0.10 }
+				set_variable = { JAP_naval_invasion_prep_speed_navy = 0.20 }
+				set_variable = { JAP_air_detection_airforce = 0.10 }
+				set_variable = { JAP_air_mission_efficiency_airforce = 0.05 }
+				set_variable = { JAP_air_attack_factor_airforce = 0.05 }
+				set_variable = { JAP_air_mission_xp_gain_factor_airforce = 0.05 }
 				remove_ideas = JAP_army_idea3
+				remove_ideas = JAP_navy_idea2
+				remove_ideas = JAP_airforce_idea1
 			}
 		}
 
@@ -7769,33 +7989,10 @@ focus = {
 		}
 	}
 	focus = {
-		id = JAP_consolidate_national_defense_framework
-		icon = x
-
-		x = -3
-		y = 1
-		relative_position_id = JAP_article_nine_transition_comittee
-
-		cost = 5
-
-		prerequisite = {
-			focus = JAP_article_nine_transition_comittee
-		}
-		search_filters = { FOCUS_FILTER_MILITARY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus JAP_consolidate_national_defense_framework"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-	focus = {
 		id = JAP_secure_public_support
-		icon = x
+		icon = goal_JAP_revision
 
-		x = -1
+		x = -2
 		y = 1
 		relative_position_id = JAP_article_nine_transition_comittee
 
@@ -7808,6 +8005,24 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_secure_public_support"
+			activate_mission = JAP_consolidate_national_defense_framework_mission
+			custom_effect_tooltip = mission_will_give_every_30_days_tt
+			newline = yes
+			effect_tooltip = {
+				custom_effect_tooltip = JAP_change_article9_tt
+				set_temp_variable = {
+						JAP_stability_factor_article9_change = -0.025
+					}
+				update_JAP_stability_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_war_support_weekly_article9_change = 0.0001
+					}
+				update_JAP_war_support_weekly_article9_effect = yes
+				set_temp_variable = {
+						JAP_recruitable_population_factor_article9_change = 0.05
+					}
+				update_JAP_recruitable_population_factor_article9_effect = yes
+			}
 		}
 
 		ai_will_do = {
@@ -7816,9 +8031,9 @@ focus = {
 	}
 	focus = {
 		id = JAP_modernize_joint_command
-		icon = x
+		icon = focus_JAP_the_imperial_defense_plan
 
-		x = 1
+		x = 0
 		y = 1
 		relative_position_id = JAP_article_nine_transition_comittee
 
@@ -7831,6 +8046,32 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_modernize_joint_command"
+			activate_mission = JAP_modernize_joint_command_mission
+			custom_effect_tooltip = mission_will_give_every_30_days_tt
+			newline = yes
+			effect_tooltip = {
+				custom_effect_tooltip = JAP_change_article9_tt
+				set_temp_variable = {
+						JAP_experience_gain_air_factor_article9_change = 0.05
+					}
+				update_JAP_experience_gain_air_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_experience_gain_army_factor_article9_change = 0.05
+					}
+				update_JAP_experience_gain_army_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_experience_gain_navy_factor_article9_change = 0.05
+					}
+				update_JAP_experience_gain_navy_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_max_command_power_mult_article9_change = 0.05
+					}
+				update_JAP_max_command_power_mult_article9_effect = yes
+				set_temp_variable = {
+						JAP_army_leader_cost_factor_article9_change = -0.05
+					}
+				update_JAP_army_leader_cost_factor_article9_effect = yes
+			}
 		}
 
 		ai_will_do = {
@@ -7839,9 +8080,9 @@ focus = {
 	}
 	focus = {
 		id = JAP_normalize_defense_procurement
-		icon = x
+		icon = focus_JAP_balanced_naval_approach
 
-		x = 3
+		x = 2
 		y = 1
 		relative_position_id = JAP_article_nine_transition_comittee
 
@@ -7854,6 +8095,28 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_normalize_defense_procurement"
+			activate_mission = JAP_JAP_normalize_defense_procurement_mission
+			custom_effect_tooltip = mission_will_give_every_30_days_tt
+			newline = yes
+			effect_tooltip = {
+				custom_effect_tooltip = JAP_change_article9_tt
+				set_temp_variable = {
+						JAP_army_attack_factor_article9_change = 0.05
+					}
+				update_JAP_army_attack_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_army_core_attack_factor_article9_change = -0.05
+					}
+				update_JAP_army_core_attack_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_army_defence_factor_article9_change = 0.05
+					}
+				update_JAP_army_defence_factor_article9_effect = yes
+				set_temp_variable = {
+						JAP_army_core_defence_factor_article9_change = -0.05
+					}
+				update_JAP_army_core_defence_factor_article9_effect = yes
+			}
 		}
 
 		ai_will_do = {
@@ -7862,7 +8125,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_formalize_national_defense
-		icon = x
+		icon = focus_JAP_revere_the_emperor_destroy_the_traitors
 
 		x = 0
 		y = 2
@@ -7870,9 +8133,12 @@ focus = {
 
 		cost = 5
 
-		prerequisite = {
-			focus = JAP_consolidate_national_defense_framework
+		available = {
+			has_country_flag = JAP_normalize_defense_procurement_done
+			has_country_flag = JAP_modernize_joint_command_done
+			has_country_flag = JAP_consolidate_national_defense_framework_done
 		}
+
 		prerequisite = {
 			focus = JAP_secure_public_support
 		}
@@ -7886,6 +8152,12 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_formalize_national_defense"
+			remove_dynamic_modifier = {
+				modifier = JAP_article9_modifier_hidden
+			}
+			add_dynamic_modifier = {
+				modifier = JAP_defense_industry_hidden
+			}
 		}
 
 		ai_will_do = {
@@ -7894,7 +8166,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_national_defense_professionalization
-		icon = x
+		icon = Generic_Revanchism02
 
 		x = -8
 		y = 1
@@ -7909,6 +8181,26 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_national_defense_professionalization"
+			random_army_leader = {
+				add_trait = {
+					trait = thorough_planner
+				}
+			}
+			random_army_leader = {
+				add_trait = {
+					trait = thorough_planner
+				}
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_max_planning_landforces_change = 0.10
+			}
+			update_JAP_max_planning_landforces_effect = yes
+			set_temp_variable = {
+				JAP_experience_gain_army_landforces_change = 0.10
+			}
+			update_JAP_experience_gain_army_landforces_effect = yes
 		}
 
 		ai_will_do = {
@@ -7917,7 +8209,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_deploy_next_generation
-		icon = x
+		icon = draw_up_war_plans
 
 		x = -1
 		y = 1
@@ -7932,6 +8224,30 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_deploy_next_generation"
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.25
+				name = JAP_deploy_next_generation
+			}
+			add_tech_bonus = {
+				name = JAP_deploy_next_generation
+				category = CAT_armor
+				uses = 2
+				bonus = 0.25
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_recon_factor_while_entrenched_landforces_change = 0.10
+			}
+			update_JAP_recon_factor_while_entrenched_landforces_effect = yes
+			set_temp_variable = {
+				JAP_army_artillery_attack_factor_landforces_change = 0.10
+			}
+			update_JAP_army_artillery_attack_factor_landforces_effect = yes
+			set_temp_variable = {
+				JAP_army_armor_speed_factor_landforces_change = 0.05
+			}
+			update_JAP_army_armor_speed_factor_landforces_effect = yes
 		}
 
 		ai_will_do = {
@@ -7940,7 +8256,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_expand_mechanized_brigades
-		icon = x
+		icon = apc
 
 		x = -1
 		y = 2
@@ -7955,18 +8271,30 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_expand_mechanized_brigades"
+			add_design_template_bonus = {
+				uses = 1
+				cost_factor = -1
+				equipment = medium_tank_flame_chassis
+				equipment = medium_tank_amphibious_chassis
+			}
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_mechanized_attack_factor_landforces_change = 0.075
+			}
+			update_JAP_mechanized_attack_factor_landforces_effect = yes
 		}
 
 		ai_will_do = {
 			base = 1
 		}
 	}
+
 	focus = {
-		id = JAP_establish_marine_infantry_corps
-		icon = x
+		id = JAP_long_range_strike_missile_artillery_forces
+		icon = artillery2
 
 		x = 1
-		y = 1
+		y = 2
 		relative_position_id = JAP_national_defense_professionalization
 
 		cost = 5
@@ -7977,30 +8305,28 @@ focus = {
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus JAP_establish_marine_infantry_corps"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-	focus = {
-		id = JAP_long_range_strike_missile_artillery_forces
-		icon = x
-
-		x = 1
-		y = 3
-		relative_position_id = JAP_national_defense_professionalization
-
-		cost = 5
-
-		prerequisite = {
-			focus = JAP_establish_marine_infantry_corps
-		}
-		search_filters = { FOCUS_FILTER_MILITARY }
-
-		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_long_range_strike_missile_artillery_forces"
+			add_tech_bonus = {
+				name = JAP_long_range_strike_missile_artillery_forces
+				bonus = 0.15
+				uses = 3
+				category = CAT_missile
+				category = CAT_artillery
+			}
+			newline	= yes
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_medium_tank_rocket_chassis_design_cost_factor_landforce_change = -0.50
+			}
+			update_JAP_medium_tank_rocket_chassis_design_cost_factor_landforces_effect = yes
+			set_temp_variable = {
+				JAP_rocket_attack_factor_landforces_change = 0.05
+			}
+			update_JAP_rocket_attack_factor_landforces_effect = yes
+			set_temp_variable = {
+				JAP_trait_artillery_expert_xp_gain_factor_landforces_change = 0.15
+			}
+			update_JAP_trait_artillery_expert_xp_gain_factor_landforces_effect = yes
 		}
 
 		ai_will_do = {
@@ -8009,7 +8335,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_full_defense_industrial_mobilisation
-		icon = x
+		icon = industry_military
 
 		x = 0
 		y = 1
@@ -8024,29 +8350,16 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_full_defense_industrial_mobilisation"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-	focus = {
-		id = JAP_expand_f35_program
-		icon = x
-
-		x = 5
-		y = 1
-		relative_position_id = JAP_full_defense_industrial_mobilisation
-
-		cost = 5
-
-		prerequisite = {
-			focus = JAP_full_defense_industrial_mobilisation
-		}
-		search_filters = { FOCUS_FILTER_MILITARY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus JAP_expand_f35_program"
+			add_timed_idea = {
+				idea = JAP_full_defense_industrial_mobilisation_idea
+				years = 2
+			}
+			if = {
+				limit = { has_idea = defense_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_defense_industry_opinion = yes
+				newline = yes
+			}
 		}
 
 		ai_will_do = {
@@ -8055,7 +8368,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_establish_japan_defense_technology_agency
-		icon = x
+		icon = focus_JAP_expand_the_showa_research_association
 
 		x = -5
 		y = 1
@@ -8070,6 +8383,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_establish_japan_defense_technology_agency"
+			add_ideas = JAP_defense_technology_agency1
 		}
 
 		ai_will_do = {
@@ -8078,7 +8392,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_high_tech_domestic_manufacturing
-		icon = x
+		icon = science
 
 		x = 0
 		y = 1
@@ -8093,6 +8407,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_high_tech_domestic_manufacturing"
+			swap_ideas = {
+				remove_idea = JAP_defense_technology_agency1
+				add_idea = JAP_defense_technology_agency2
+			}
 		}
 
 		ai_will_do = {
@@ -8101,7 +8419,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_advanced_missile_development
-		icon = x
+		icon = rocketry
 
 		x = 0
 		y = 3
@@ -8112,10 +8430,18 @@ focus = {
 		prerequisite = {
 			focus = JAP_high_tech_domestic_manufacturing
 		}
+		prerequisite = {
+			focus = JAP_long_range_strike_missile_artillery_forces
+		}
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_advanced_missile_development"
+			custom_effect_tooltip = JAP_change_defense_industry
+			swap_ideas = {
+				remove_idea = JAP_defense_technology_agency2
+				add_idea = JAP_defense_technology_agency3
+			}
 		}
 
 		ai_will_do = {
@@ -8124,21 +8450,51 @@ focus = {
 	}
 	focus = {
 		id = JAP_mext_generation_air_dominance
-		icon = x
+		icon = airforce_base_1
 
-		x = -1
+		x = 5
 		y = 1
-		relative_position_id = JAP_expand_f35_program
+		relative_position_id = JAP_full_defense_industrial_mobilisation
 
 		cost = 5
 
 		prerequisite = {
-			focus = JAP_expand_f35_program
+			focus = JAP_full_defense_industrial_mobilisation
 		}
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_mext_generation_air_dominance"
+			add_tech_bonus = {
+				name = JAP_mext_generation_air_dominance
+				category = CAT_air_eqp
+				uses = 4
+				bonus = 0.25
+			}
+			add_tech_bonus = {
+				name = JAP_mext_generation_air_dominance
+				category = CAT_h_air
+				category = CAT_fighter
+				category = CAT_heli
+				ahead_reduction = 2.5
+				uses = 1
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { treasury_change = -10.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -8147,47 +8503,36 @@ focus = {
 	}
 	focus = {
 		id = JAP_establish_long_range_strike_aviation
-		icon = x
-
-		x = 1
-		y = 1
-		relative_position_id = JAP_expand_f35_program
-
-		cost = 5
-
-		prerequisite = {
-			focus = JAP_expand_f35_program
-		}
-		search_filters = { FOCUS_FILTER_MILITARY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus JAP_establish_long_range_strike_aviation"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-	focus = {
-		id = JAP_integrated_air_space_command
-		icon = x
+		icon = bombs4
 
 		x = 0
-		y = 2
-		relative_position_id = JAP_expand_f35_program
+		y = 3
+		relative_position_id = JAP_mext_generation_air_dominance
 
 		cost = 5
 
-		prerequisite = {
-			focus = JAP_establish_long_range_strike_aviation
-		}
 		prerequisite = {
 			focus = JAP_mext_generation_air_dominance
 		}
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus JAP_integrated_air_space_command"
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_establish_long_range_strike_aviation"
+			custom_effect_tooltip = JAP_change_airforce_tt
+			set_temp_variable = {
+				JAP_air_range_factor_airforce_change = 0.10
+			}
+			update_JAP_air_range_factor_airforce_effect = yes
+			set_temp_variable = {
+				JAP_air_cas_efficiency_airforce_change = 0.10
+			}
+			update_JAP_air_cas_efficiency_airforce_effect = yes
+			newline = yes
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_rocket_attack_factor_landforces_change = 0.05
+			}
+			update_JAP_rocket_attack_factor_landforces_effect = yes
 		}
 
 		ai_will_do = {
@@ -8196,7 +8541,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_establish_joint_rapid_deployment_command
-		icon = x
+		icon = legacy_of_marines
 
 		x = 8
 		y = 1
@@ -8211,6 +8556,17 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_establish_joint_rapid_deployment_command"
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_planning_speed_landforces_change = 0.10
+			}
+			update_JAP_planning_speed_landforces_effect = yes
+			newline = yes
+			custom_effect_tooltip = JAP_change_navy_tt
+			set_temp_variable = {
+				JAP_naval_invasion_prep_speed_navy_change = 0.10
+			}
+			update_JAP_naval_invasion_prep_speed_navy_effect = yes
 		}
 
 		ai_will_do = {
@@ -8219,7 +8575,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_expand_multi_role_destroyer_fleet
-		icon = x
+		icon = generic_ship2
 
 		x = -1
 		y = 1
@@ -8234,6 +8590,21 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_expand_multi_role_destroyer_fleet"
+			add_tech_bonus = {
+				name = JAP_expand_multi_role_destroyer_fleet
+				technology = destroyer_hull_3
+				bonus = 0.25
+				uses = 1
+			}
+			add_design_template_bonus = {
+				uses = 1
+				cost_factor = -1
+				equipment = destroyer_hull_3
+			}
+			add_breakthrough_progress = {
+				value = 0.75
+				specialization = specialization_naval
+			}
 		}
 
 		ai_will_do = {
@@ -8242,7 +8613,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_submarine_modernization_project
-		icon = x
+		icon = Generic_Submarine1
 
 		x = 1
 		y = 1
@@ -8257,6 +8628,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_submarine_modernization_project"
+			add_timed_idea = {
+				idea = JAP_submarine_modernization_idea
+				years = 2
+			}
 		}
 
 		ai_will_do = {
@@ -8265,7 +8640,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_carrier_aviation_development
-		icon = x
+		icon = carriers2
 
 		x = 0
 		y = 2
@@ -8283,6 +8658,12 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_carrier_aviation_development"
+			add_ideas = JAP_carrier_aviation
+			add_design_template_bonus = {
+				uses = 1
+				cost_factor = -1
+				equipment = carrier_hull_3
+			}
 		}
 
 		ai_will_do = {
@@ -8291,7 +8672,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_rebuild_blue_water_navy
-		icon = x
+		icon = focus_SMB_blue_water_fleet
 
 		x = 0
 		y = 3
@@ -8306,6 +8687,23 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_rebuild_blue_water_navy"
+			custom_effect_tooltip = JAP_change_navy_tt
+			set_temp_variable = {
+				JAP_navy_max_range_factor_navy_change = 0.075
+			}
+			update_JAP_navy_max_range_factor_navy_effect = yes
+			set_temp_variable = {
+				JAP_positioning_navy_change = 0.10
+			}
+			update_JAP_positioning_navy_effect = yes
+			set_temp_variable = {
+				JAP_trait_air_controller_xp_gain_factor_navy_change = 0.15
+			}
+			update_JAP_trait_air_controller_xp_gain_factor_navy_effect = yes
+			set_temp_variable = {
+				JAP_trait_ironside_xp_gain_factor_navy_change = 0.15
+			}
+			update_JAP_trait_ironside_xp_gain_factor_navy_effect = yes
 		}
 
 		ai_will_do = {
@@ -8314,7 +8712,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_revitalize_defense_production
-		icon = x
+		icon = construction2
 
 		x = 0
 		y = 1
@@ -8329,6 +8727,31 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_revitalize_defense_production"
+			custom_effect_tooltip = JAP_change_defense_industry
+			set_temp_variable = {
+				JAP_production_factory_max_efficiency_factor_industry_change = 0.5
+			}
+			update_JAP_production_factory_max_efficiency_factor_industry_effect = yes
+			set_temp_variable = {
+				JAP_production_speed_dockyard_factor_industry_change = 0.10
+			}
+			update_JAP_production_speed_dockyard_factor_industryeffect = yes
+			set_temp_variable = {
+				JAP_production_speed_arms_factory_factor_industry_change = 0.10
+			}
+			update_JAP_production_speed_arms_factory_factor_industry_effect = yes
+			if = {
+				limit = { has_idea = defense_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_defense_industry_opinion = yes
+				newline = yes
+			}
+			if = {
+				limit = { has_idea = maritime_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_maritime_industry_opinion = yes
+				newline = yes
+			}
 		}
 
 		ai_will_do = {
@@ -8337,7 +8760,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_yokosuka_dockyard_expansion
-		icon = x
+		icon = naval_dockyard
 
 		x = -2
 		y = 1
@@ -8352,6 +8775,23 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_yokosuka_dockyard_expansion"
+			615 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			newline = yes
+			if = {
+				limit = { has_idea = maritime_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_maritime_industry_opinion = yes
+				newline = yes
+			}
+			set_temp_variable = { treasury_change = -17.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -8360,7 +8800,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_sasebo_fleet_support_complex
-		icon = x
+		icon = Focus_BEL_antwerp_maritime_academy
 
 		x = 0
 		y = 1
@@ -8375,6 +8815,33 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_sasebo_fleet_support_complex"
+			if = {
+				limit = { has_dlc = "No Compromise, No Surrender" }
+				609 = {
+					add_building_construction = {
+						type = naval_supply_hub
+						level = 1
+						instant_build = yes
+						province = 1158
+					}
+				}
+			}
+			else = {
+				609 = {
+					add_building_construction = {
+						type = naval_base
+						level = 1
+						instant_build = yes
+						province = 1158
+					}
+				}
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_change_navy_tt
+			set_temp_variable = {
+				JAP_navy_max_range_factor_navy_change = 0.10
+			}
+			update_JAP_navy_max_range_factor_navy_effect = yes
 		}
 
 		ai_will_do = {
@@ -8383,7 +8850,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_kure_naval_arsenal_revival
-		icon = x
+		icon = focus_generic_refit_civilian_ships
 
 		x = 0
 		y = 1
@@ -8398,6 +8865,19 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_kure_naval_arsenal_revival"
+			611 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			mio:JAP_jmu_corporation_naval_manufacturer = {
+				add_mio_task_capacity = 2
+			}
+			set_temp_variable = { treasury_change = -17.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -8406,7 +8886,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_nagasaki_shipyard_defense
-		icon = x
+		icon = gioia_tauro_port
 
 		x = 0
 		y = 1
@@ -8421,6 +8901,24 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_nagasaki_shipyard_defense"
+			609 = {
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_change_defense_industry
+			set_temp_variable = {
+				JAP_industrial_capacity_dockyard_industry_change = 0.05
+			}
+			update_JAP_industrial_capacity_dockyard_industry_effect = yes
+			set_temp_variable = {
+				JAP_production_speed_dockyard_factor_industry_change = 0.05
+			}
+			update_JAP_production_speed_dockyard_factor_industryeffect = yes
 		}
 
 		ai_will_do = {
@@ -8429,13 +8927,13 @@ focus = {
 	}
 	focus = {
 		id = JAP_kobo_maritime_heavy_industry_corridor
-		icon = x
+		icon = focus_JAP_the_five_great_cities
 
 		x = 1
 		y = 2
 		relative_position_id = JAP_yokosuka_dockyard_expansion
 
-		cost = 5
+		cost = 10
 
 		prerequisite = {
 			focus = JAP_sasebo_fleet_support_complex
@@ -8447,6 +8945,32 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_kobo_maritime_heavy_industry_corridor"
+			612 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				newline = yes
+				add_dynamic_modifier = {
+					modifier = JAP_maritime_heavy_industry_corridor
+				}
+			}
+			set_temp_variable = { treasury_change = -25.50 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -8455,7 +8979,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_aichi_nagoya_aerospace_defense_cluster
-		icon = x
+		icon = aviation_industry
 
 		x = 2
 		y = 1
@@ -8470,6 +8994,26 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_aichi_nagoya_aerospace_defense_cluster"
+			612 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_change_defense_industry
+			set_temp_variable = {
+				JAP_production_speed_arms_factory_factor_industry_change = 0.05
+			}
+			update_JAP_production_speed_arms_factory_factor_industry_effect = yes
+			newline = yes
+			custom_effect_tooltip = JAP_change_airforce_tt
+			set_temp_variable = {
+				JAP_air_equipment_upgrade_xp_cost_airforce_change = -0.30
+			}
+			update_JAP_air_equipment_upgrade_xp_cost_airforce_effect = yes
 		}
 
 		ai_will_do = {
@@ -8478,7 +9022,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_gifu_test_aerospace_development_center
-		icon = x
+		icon = focus_generic_university_3
 
 		x = 0
 		y = 1
@@ -8493,6 +9037,21 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_gifu_test_aerospace_development_center"
+			612 = {
+				add_building_construction = {
+					type = air_facility
+					level = 1
+					instant_build = yes
+					province = 11960
+				}
+			}
+			add_breakthrough_progress = {
+				value = 0.80
+				specialization = specialization_air
+			}
+			newline = yes
+			set_temp_variable = { treasury_change = -15.00 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -8501,7 +9060,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_atla_defense_technology_consolidation
-		icon = x
+		icon = tech_sharing
 
 		x = 0
 		y = 2
@@ -8516,6 +9075,30 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_atla_defense_technology_consolidation"
+			random_owned_state = {
+				limit = {
+					NOT = { state = 612 }
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_change_defense_industry
+			set_temp_variable = {
+				JAP_industrial_capacity_factory_industry_change = 0.05
+			}
+			update_JAP_industrial_capacity_factory_industry_effect = yes
+			set_temp_variable = {
+				JAP_line_change_production_efficiency_factor_industry_change = 0.10
+			}
+			update_JAP_line_change_production_efficiency_factor_industry_effect = yes
+			set_temp_variable = {
+				JAP_mil_facs_worker_requirement_modifier_industry_change = -0.02
+			}
+			update_JAP_mil_facs_worker_requirement_modifier_industry_effect = yes
 		}
 
 		ai_will_do = {
@@ -8523,7 +9106,7 @@ focus = {
 		}
 	}
 	focus = {
-		id = JAP_space_operations_squadron
+		id = JAP_integrated_air_space_command
 		icon = x
 
 		x = 0
@@ -8554,12 +9137,12 @@ focus = {
 
 		x = 0
 		y = 1
-		relative_position_id = JAP_space_operations_squadron
+		relative_position_id = JAP_integrated_air_space_command
 
 		cost = 5
 
 		prerequisite = {
-			focus = JAP_space_operations_squadron
+			focus = JAP_integrated_air_space_command
 		}
 		search_filters = { FOCUS_FILTER_SPACE }
 
@@ -8577,7 +9160,7 @@ focus = {
 
 		x = 0
 		y = 2
-		relative_position_id = JAP_space_operations_squadron
+		relative_position_id = JAP_integrated_air_space_command
 
 		cost = 5
 
@@ -8600,7 +9183,7 @@ focus = {
 
 		x = 0
 		y = 3
-		relative_position_id = JAP_space_operations_squadron
+		relative_position_id = JAP_integrated_air_space_command
 
 		cost = 5
 
