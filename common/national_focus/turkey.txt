@@ -4584,59 +4584,90 @@ focus_tree = {
 
 # DEMOCRACY BRANCH
 
-	#DSP branch
+	# DSP NEW
+
 	focus = {
-		id = TUR_forward_with_social_democracy
+		id = TUR_the_legacy_of_ecevits
 		icon = dsp_icon
 		cost = 5.72
-		prerequisite = {
-			focus = TUR_through_troubles
-		}
+
 		x = -24
 		y = 1
 		relative_position_id = TUR_through_troubles
 
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
+		prerequisite = { focus = TUR_through_troubles }
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_forward_with_social_democracy"
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_the_legacy_of_ecevits"
 			add_political_power = 100
 		}
-
-	}
-
-	focus = {
-		id = TUR_approach_the_eu
-		icon = BRA_the_european_social_democrat_model
-		cost = 5
-		prerequisite = {
-			focus = TUR_forward_with_social_democracy
-		}
-		x = -2
-		y = 1
-		relative_position_id = TUR_forward_with_social_democracy
 
 		ai_will_do = {
 			factor = 1
 		}
+	}
+
+	focus = {
+		id = TUR_constitutional_amendments
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -2
+		y = 1
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_the_legacy_of_ecevits }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
 			western_social_democrats_are_in_power = yes
 		}
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_FOREIGN_POLICY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_constitutional_amendments"
+			add_ideas = TUR_constitutional_amendments_idea
+			newline = yes
+			random_list = {
+				50 = {
+					country_event = Turkey.200
+				}
+				50 = {
+					country_event = Turkey.201
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_european_ambitions
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -3
+		y = 2
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_constitutional_amendments }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_approach_the_eu"
-			add_popularity = { ideology = democratic popularity = 0.05 }
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_european_ambitions"
 			every_country = {
 				limit = { has_idea = EU_member }
 				add_opinion_modifier = {
@@ -4650,700 +4681,379 @@ focus_tree = {
 			}
 		}
 
+		ai_will_do = {
+			factor = 1
+		}
 	}
 
 	focus = {
-		id = TUR_appease_conglomerate
-		icon = resource_extraction
-		cost = 7
-		prerequisite = {
-			focus = TUR_forward_with_social_democracy
+		id = TUR_eu_poster_child
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -4
+		y = 3
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_european_ambitions }
+
+		mutually_exclusive = {
+			focus = TUR_not_our_problem
 		}
-		x = 2
-		y = 1
-		relative_position_id = TUR_forward_with_social_democracy
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_eu_poster_child"
+			add_political_power = 100
+		}
 
 		ai_will_do = {
 			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_abolition_of_the_death_penalty
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -3
+		y = 4
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_eu_poster_child }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_abolition_of_the_death_penalty"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_not_our_problem
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -2
+		y = 3
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_european_ambitions }
+
+		mutually_exclusive = {
+			focus = TUR_eu_poster_child
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_not_our_problem"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+	focus = {
+		id = TUR_central_bank_autonomy
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 0
+		y = 1
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_the_legacy_of_ecevits }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_central_bank_autonomy"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_expanded_workers_rights
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -1
+		y = 2
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_constitutional_amendments }
+		prerequisite = { focus = TUR_central_bank_autonomy }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		mutually_exclusive = {
+			focus = TUR_appease_the_congolomerates
 		}
 
 		available = {
 			western_social_democrats_are_in_power = yes
 		}
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_FOREIGN_POLICY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_expanded_workers_rights"
+			# This'll piss off the congolomerates, but it'll give you better workers productivity
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_state_funded_unions
+		icon = dsp_icon
+		cost = 5.72
+
+		x = -1
+		y = 4
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_expanded_workers_rights }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_commit_to_divided_cyprus"
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_state_funded_unions"
 			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_kemalist_social_democract
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 0
+		y = 3
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_expanded_workers_rights focus = TUR_appease_the_congolomerates }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_kemalist_social_democract"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_a_cyprus_divided
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 0
+		y = 5
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_kemalist_social_democract }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_a_cyprus_divided"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_harsh_stance_against_pkk
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 1
+		y = 4
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_kemalist_social_democract }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_harsh_stance_against_pkk"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_appease_the_congolomerates
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 1
+		y = 2
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_constitutional_amendments }
+		prerequisite = { focus = TUR_central_bank_autonomy }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		mutually_exclusive = {
+			focus = TUR_expanded_workers_rights
+		}
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_appease_the_congolomerates"
 			set_temp_variable = { temp_opinion = 5 }
 			change_industrial_conglomerates_opinion = yes
-			set_temp_variable = { party_index = 3 }
-			set_temp_variable = { party_popularity_increase = 0.05 }
-			set_temp_variable = { temp_outlook_increase = 0.05 }
-			add_relative_party_popularity = yes
 		}
-
-	}
-
-	focus = {
-		id = TUR_kemalist_social_democracy
-		icon = purge_the_kemalists
-		cost = 10
-		prerequisite = {
-			focus = TUR_forward_with_social_democracy
-		}
-		x = 0
-		y = 1
-		relative_position_id = TUR_forward_with_social_democracy
 
 		ai_will_do = {
 			factor = 1
 		}
+	}
+
+	focus = {
+		id = TUR_invest_in_the_iett
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 2
+		y = 3
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_appease_the_congolomerates }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
 			western_social_democrats_are_in_power = yes
 		}
 
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_kemalist_social_democracy"
-			set_temp_variable = { party_index = 3 }
-			set_temp_variable = { party_popularity_increase = 0.10 }
-			set_temp_variable = { temp_outlook_increase = 0.10 }
-			add_relative_party_popularity = yes
-			newline = yes
-			random_list = {
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^1 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 1 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^4 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 4 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^5 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 5 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^7 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 7 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^17 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 17 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^18 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 18 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^19 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 19 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-			}
-			newline = yes
-			random_list = {
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^1 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 1 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^4 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 4 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^18 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 18 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^22 < 0.02 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 22 }
-					set_temp_variable = { party_popularity_increase = -0.02 }
-					set_temp_variable = { temp_outlook_increase = -0.02 }
-					add_relative_party_popularity = yes
-				}
-			}
-			recalculate_party = yes
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_invest_in_the_iett"
+			add_political_power = 100
 		}
 
+		ai_will_do = {
+			factor = 1
+		}
 	}
 
 	focus = {
-		id = TUR_repair_relations_with_left
-		icon = communist_propaganda
-		cost = 7
-		prerequisite = {
-			focus = TUR_kemalist_social_democracy
+		id = TUR_qualified_industrial_zones
+		icon = dsp_icon
+		cost = 5.72
+
+		x = 2
+		y = 1
+		relative_position_id = TUR_the_legacy_of_ecevits
+
+		prerequisite = { focus = TUR_the_legacy_of_ecevits }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
 		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_qualified_industrial_zones"
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = TUR_employment_incentives
+		icon = dsp_icon
+		cost = 5.72
+
 		x = 3
 		y = 2
-		relative_position_id = TUR_forward_with_social_democracy
+		relative_position_id = TUR_the_legacy_of_ecevits
 
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
+		prerequisite = { focus = TUR_qualified_industrial_zones }
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_repair_relations_with_left"
-			add_ideas = TUR_win_over_workers
-		}
-
-	}
-
-	focus = {
-		id = TUR_subsidise_military
-		icon = focus_generic_women_in_military
-		cost = 5.72
-		prerequisite = {
-			focus = TUR_kemalist_social_democracy
-		}
-		mutually_exclusive = {
-			focus = TUR_disarmament_program
-		}
-		x = -1
-		y = 2
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
 		available = {
 			western_social_democrats_are_in_power = yes
 		}
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_FACTION }
-
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_subsidise_military"
-			block_defence_decrease = yes
-			increase_military_spending = yes
-			set_temp_variable = { temp_opinion = 5 }
-			change_the_Military_opinion = yes
+			log = "[GetDateText]: [Root.GetName]: Focus TUR_qualified_industrial_zones"
+			add_political_power = 100
 		}
-
-	}
-
-	focus = {
-		id = TUR_disarmament_program
-		icon = disbanded_02
-		cost = 5.72
-		prerequisite = {
-			focus = TUR_kemalist_social_democracy
-		}
-		mutually_exclusive = {
-			focus = TUR_subsidise_military
-		}
-		x = 1
-		y = 2
-		relative_position_id = TUR_forward_with_social_democracy
 
 		ai_will_do = {
 			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_FACTION }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_disarmament_program"
-			block_defence_increase = yes
-			decrease_military_spending = yes
-			block_intervention_increase = yes
-			decrease_intervention_law_effect = yes
-			set_temp_variable = { temp_opinion = -5 }
-			change_the_Military_opinion = yes
-		}
-
-	}
-
-	focus = {
-		id = TUR_improve_workers_rights
-		icon = Generic_Workers_Democracy
-		cost = 5.72
-		prerequisite = {
-			focus = TUR_kemalist_social_democracy
-		}
-		x = -3
-		y = 2
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_FACTION }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_improve_workers_rights"
-			add_stability = 0.05
-			newline = yes
-			set_party_index_to_ruling_party = yes
-			set_temp_variable = { party_popularity_increase = 0.05 }
-			set_temp_variable = { temp_outlook_increase = 0.05 }
-			add_relative_party_popularity = yes
-			newline = yes
-			random_list = {
-				10 = {
-					set_temp_variable = { party_index = 4 }
-					set_temp_variable = { party_popularity_increase = 0.03 }
-					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					set_temp_variable = { party_index = 5 }
-					set_temp_variable = { party_popularity_increase = 0.03 }
-					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					set_temp_variable = { party_index = 7 }
-					set_temp_variable = { party_popularity_increase = 0.03 }
-					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					set_temp_variable = { party_index = 17 }
-					set_temp_variable = { party_popularity_increase = 0.03 }
-					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^18 < 0.005 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 18 }
-					set_temp_variable = { party_popularity_increase = 0.03 }
-					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
-				}
-				10 = {
-					modifier = {
-						check_variable = { party_pop_array^19 < 0.005 }
-						factor = 0
-					}
-					set_temp_variable = { party_index = 19 }
-					set_temp_variable = { party_popularity_increase = 0.03 }
-					set_temp_variable = { temp_outlook_increase = 0.03 }
-					add_relative_party_popularity = yes
-				}
-			}
-			set_temp_variable = { temp_opinion = 5 }
-			change_labour_unions_opinion = yes
-			recalculate_party = yes
-		}
-
-	}
-
-	focus = {
-		id = TUR_protect_the_unions
-		icon = labor_unions
-		cost = 10
-		prerequisite = {
-			focus = TUR_improve_workers_rights
-		}
-		x = -3
-		y = 3
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		bypass = {
-			has_idea = labour_unions
-		}
-
-		search_filters = { FOCUS_FILTER_INTERNAL_FACTION }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_protect_the_unions"
-			if = {
-				limit = { has_idea = The_Ulema }
-				remove_ideas = The_Ulema
-				add_ideas = labour_unions
-			}
-			else_if = {
-				limit = { has_idea = industrial_conglomerates }
-				remove_ideas = industrial_conglomerates
-				add_ideas = labour_unions
-			}
-			else = {
-				random_list = {
-					10 = {
-						modifier = {
-							NOT = { has_idea = small_medium_business_owners }
-							factor = 0
-						}
-						remove_ideas = small_medium_business_owners
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = international_bankers }
-							factor = 0
-						}
-						remove_ideas = international_bankers
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = fossil_fuel_industry }
-							factor = 0
-						}
-						remove_ideas = fossil_fuel_industry
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = maritime_industry }
-							factor = 0
-						}
-						remove_ideas = maritime_industry
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = defense_industry }
-							factor = 0
-						}
-						remove_ideas = defense_industry
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = intelligence_community }
-							factor = 0
-						}
-						remove_ideas = intelligence_community
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = landowners }
-							factor = 0
-						}
-						remove_ideas = landowners
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							NOT = { has_idea = farmers }
-							factor = 0
-						}
-						remove_ideas = farmers
-						add_ideas = labour_unions
-					}
-					10 = {
-						modifier = {
-							OR = {
-								NOT = { has_idea = the_Military }
-								has_idea = TUR_guards_of_kemalism
-							}
-							factor = 0
-						}
-						IF = {
-							limit = { has_idea = the_military }
-							remove_ideas = the_military
-						}
-						add_ideas = labour_unions
-					}
-				}
-			}
-		}
-	}
-
-	focus = {
-		id = TUR_banking_reform
-		icon = generic_banks
-		cost = 7.15
-		prerequisite = {
-			focus = TUR_disarmament_program
-			focus = TUR_subsidise_military
-		}
-		x = -1
-		y = 3
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_CORRUPTION FOCUS_FILTER_INTERNAL_FACTION }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_banking_reform"
-			decrease_corruption = yes
-			set_temp_variable = { temp_opinion = 5 }
-			change_international_bankers_opinion = yes
-		}
-
-	}
-
-	focus = {
-		id = TUR_invest_in_iett
-		icon = Generic_Loadsamoney
-		cost = 7.15
-		prerequisite = {
-			focus = TUR_disarmament_program
-			focus = TUR_subsidise_military
-		}
-		x = 1
-		y = 3
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_invest_in_iett"
-			set_temp_variable = { treasury_change = -24 }
-			modify_treasury_effect = yes
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = offices
-					level = 2
-					instant_build = yes
-				}
-			}
-			set_temp_variable = { treasury_change = -7 }
-			modify_treasury_effect = yes
-			if = {
-				limit = {
-					934 = { infrastructure < 5 }
-					155 = { infrastructure < 5 }
-				}
-				934 = {
-					add_building_construction = {
-						type = infrastructure
-						level = 1
-						instant_build = yes
-					}
-				}
-				155 = {
-					add_building_construction = {
-						type = infrastructure
-						level = 1
-						instant_build = yes
-					}
-				}
-			}
-			else = {
-				random_owned_controlled_state = {
-					limit = { infrastructure < 4 }
-					add_building_construction = {
-						type = infrastructure
-						level = 2
-						instant_build = yes
-					}
-				}
-			}
-		}
-
-	}
-
-	focus = {
-		id = TUR_legacy_of_ecevits
-		icon = social_paternalism
-		cost = 5
-		prerequisite = {
-			focus = TUR_invest_in_iett
-		}
-		prerequisite = {
-			focus = TUR_banking_reform
-		}
-		x = 0
-		y = 4
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_STABILITY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_legacy_of_ecevits"
-			add_stability = 0.05
-		}
-	}
-	focus = {
-		id = TUR_increase_central_bank_autonomy
-		icon = money
-		cost = 10
-		prerequisite = {
-			focus = TUR_legacy_of_ecevits
-		}
-		x = 2
-		y = 5
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_STABILITY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_increase_central_bank_autonomy"
-			increase_economic_growth = yes
-		}
-	}
-	focus = {
-		id = TUR_abolition_of_death_penalty
-		icon = peace
-		cost = 7.15
-		prerequisite = {
-			focus = TUR_legacy_of_ecevits
-		}
-		x = 0
-		y = 5
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_STABILITY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_abolition_of_death_penalty"
-			add_country_leader_trait = defender_of_rights
-		}
-	}
-	focus = {
-		id = TUR_harsh_stance_pkk
-		icon = tanks2
-		cost = 7.15
-		prerequisite = {
-			focus = TUR_legacy_of_ecevits
-		}
-		x = -2
-		y = 5
-		relative_position_id = TUR_forward_with_social_democracy
-
-		ai_will_do = {
-			factor = 1
-		}
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		search_filters = { FOCUS_FILTER_STABILITY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus TUR_harsh_stance_pkk"
-			custom_effect_tooltip = TUR_DECREASE_PKK_STRENGTH_2
-			add_to_variable = { TUR_PKK_strength = -2 }
 		}
 	}
 
@@ -6912,7 +6622,7 @@ focus_tree = {
 		prerequisite = {
 			focus = TUR_through_troubles
 		}
-		x = -37
+		x = -38
 		y = 1
 		relative_position_id = TUR_through_troubles
 
