@@ -959,6 +959,9 @@ GER_DEBUG_FACTION_LIST_START_UP = {
 	add_to_array = { GER.BFV_RW_Factions_list_ARRAY = 0001 }
 	add_to_array = { GER.BFV_RW_Factions_list_ARRAY = 0002 }
 	add_to_array = { GER.BFV_RW_Factions_list_ARRAY = 0003 }
+	clr_country_flag = BFV_faction_number_one
+	clr_country_flag = BFV_faction_number_two
+	clr_country_flag = BFV_faction_number_three
 }
 
 GER_1st_button_DEBUG = { #Penis = 04
@@ -966,13 +969,48 @@ GER_1st_button_DEBUG = { #Penis = 04
 	set_variable = { GER.BFV_RW_button_value_var = GER.BFV_RW_Factions_list_ARRAY^i }
 	if = { #Effects
 		limit = { check_variable = { GER.BFV_RW_button_value_var = 0001 } }
+		clr_country_flag = BFV_faction_number_two
+		clr_country_flag = BFV_faction_number_three
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = BFV_faction_number_one
+				}
+			}
+			set_country_flag = BFV_faction_number_one
+		}
 		launch_nuke = {
 			province = 11506
 		}
 	}
-	
+	if = { #Effects
+		limit = { check_variable = { GER.BFV_RW_button_value_var = 0002 } }
+		clr_country_flag = BFV_faction_number_one
+		clr_country_flag = BFV_faction_number_three
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = BFV_faction_number_two
+				}
+			}
+			set_country_flag = BFV_faction_number_two
+		}
+	}
+	if = { #Effects
+		limit = { check_variable = { GER.BFV_RW_button_value_var = 0003 } }
+		clr_country_flag = BFV_faction_number_one
+		clr_country_flag = BFV_faction_number_two
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = BFV_faction_number_three
+				}
+			}
+			set_country_flag = BFV_faction_number_three
+		}
+		scoped_sound_effect = "BFV_Button_sound_generic" #Agent_Event_Notification_Enemy_Agent_Captured_01
+	}
 	GER_refresh_bfv = yes
-	
 }
 
 GER_refresh_bfv = {
