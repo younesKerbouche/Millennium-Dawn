@@ -8152,9 +8152,26 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_formalize_national_defense"
-			remove_dynamic_modifier = {
-				modifier = JAP_article9_modifier_hidden
+			if = {
+				limit = {
+					NOT = {
+						has_dynamic_modifier = {
+							modifier = JAP_article9_modifier_hidden
+						}
+					}
+				}
+				effect_tooltip = {
+					remove_power_balance = {
+						id = JAP_article_nine
+					}
+				}
 			}
+			else = {
+				remove_dynamic_modifier = {
+					modifier = JAP_article9_modifier_hidden
+				}
+			}
+			newline = yes
 			add_dynamic_modifier = {
 				modifier = JAP_defense_industry_hidden
 			}
@@ -8227,6 +8244,7 @@ focus = {
 			add_doctrine_cost_reduction = {
 				cost_reduction = 0.25
 				name = JAP_deploy_next_generation
+				category = CAT_land_doctrine
 			}
 			add_tech_bonus = {
 				name = JAP_deploy_next_generation
@@ -8273,7 +8291,7 @@ focus = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_expand_mechanized_brigades"
 			add_design_template_bonus = {
 				uses = 1
-				cost_factor = -1
+				cost_factor = 1
 				equipment = medium_tank_flame_chassis
 				equipment = medium_tank_amphibious_chassis
 			}
@@ -8316,7 +8334,7 @@ focus = {
 			newline	= yes
 			custom_effect_tooltip = JAP_change_landforce_tt
 			set_temp_variable = {
-				JAP_medium_tank_rocket_chassis_design_cost_factor_landforce_change = -0.50
+				JAP_medium_tank_rocket_chassis_design_cost_factor_landforces_change = -0.50
 			}
 			update_JAP_medium_tank_rocket_chassis_design_cost_factor_landforces_effect = yes
 			set_temp_variable = {
@@ -8437,7 +8455,6 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_advanced_missile_development"
-			custom_effect_tooltip = JAP_change_defense_industry
 			swap_ideas = {
 				remove_idea = JAP_defense_technology_agency2
 				add_idea = JAP_defense_technology_agency3
@@ -8479,6 +8496,7 @@ focus = {
 				ahead_reduction = 2.5
 				uses = 1
 			}
+			newline = yes
 			random_owned_state = {
 				add_building_construction = {
 					type = air_base
@@ -8493,6 +8511,7 @@ focus = {
 					instant_build = yes
 				}
 			}
+			newline = yes
 			set_temp_variable = { treasury_change = -10.00 }
 			modify_treasury_effect = yes
 		}
@@ -8598,7 +8617,7 @@ focus = {
 			}
 			add_design_template_bonus = {
 				uses = 1
-				cost_factor = -1
+				cost_factor = 1
 				equipment = destroyer_hull_3
 			}
 			add_breakthrough_progress = {
@@ -8661,7 +8680,7 @@ focus = {
 			add_ideas = JAP_carrier_aviation
 			add_design_template_bonus = {
 				uses = 1
-				cost_factor = -1
+				cost_factor = 1
 				equipment = carrier_hull_3
 			}
 		}
@@ -8729,7 +8748,7 @@ focus = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_revitalize_defense_production"
 			custom_effect_tooltip = JAP_change_defense_industry
 			set_temp_variable = {
-				JAP_production_factory_max_efficiency_factor_industry_change = 0.5
+				JAP_production_factory_max_efficiency_factor_industry_change = 0.05
 			}
 			update_JAP_production_factory_max_efficiency_factor_industry_effect = yes
 			set_temp_variable = {
@@ -9045,6 +9064,7 @@ focus = {
 					province = 11960
 				}
 			}
+			newline = yes
 			add_breakthrough_progress = {
 				value = 0.80
 				specialization = specialization_air
@@ -9107,7 +9127,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_integrated_air_space_command
-		icon = x
+		icon = international_space_station
 
 		x = 0
 		y = 4
@@ -9125,6 +9145,35 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_space_operations_squadron"
+			custom_effect_tooltip = JAP_change_airforce_tt
+			set_temp_variable = {
+				JAP_spysat_production_speed_modifier_airforce_change = -0.15
+			}
+			update_JAP_spysat_production_speed_modifier_airforce_effect = yes
+			set_temp_variable = {
+				JAP_airforce_intel_factor_airforce_change = 0.125
+			}
+			update_JAP_airforce_intel_factor_airforce_effect = yes
+			newline = yes
+			custom_effect_tooltip = JAP_change_landforce_tt
+			set_temp_variable = {
+				JAP_recon_factor_landforces_change = 0.125
+			}
+			update_JAP_recon_factor_landforces_effect = yes
+			set_temp_variable = {
+				JAP_army_intel_factor_landforces_change = 0.125
+			}
+			update_JAP_army_intel_factor_landforces_effect = yes
+			newline = yes
+			custom_effect_tooltip = JAP_change_navy_tt
+			set_temp_variable = {
+				JAP_naval_coordination_navy_change = 0.05
+			}
+			update_JAP_naval_coordination_navy_effect = yes
+			set_temp_variable = {
+				JAP_navy_intel_factor_navy_change = 0.125
+			}
+			update_JAP_navy_intel_factor_navy_effect = yes
 		}
 
 		ai_will_do = {
