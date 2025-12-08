@@ -87,6 +87,27 @@ on_actions = {
                     }
                 }
             }
+
+            if = {
+                limit = {
+                    ALN = {
+                        has_country_flag = EH_humanity_must_crush_chimera_flag
+                        exists = yes
+                    }
+                }
+                every_country = {
+                    limit = {
+                        NOT = {
+                            original_tag = ALN
+                            has_war_with = ALN
+                        }
+                    }
+                    declare_war_on = {
+                        target = ALN
+                        type = annex_everything
+                    }
+                }
+            }
         }
     }
 
@@ -110,38 +131,38 @@ on_actions = {
                     NOT = {
                         has_country_flag = EH_event_fired_flag
                     }
-                    random = {
-                        chance = 30
-                        if = {
-                            limit = {
-                                NOT = {
-                                    has_country_flag = EH_event_1_fired_flag
-                                }
+                }
+                random = {
+                    chance = 30
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = EH_event_1_fired_flag
                             }
-                            country_event = EH_focus_event.9
                         }
+                        country_event = EH_focus_event.9
                     }
-                    random = {
-                        chance = 50
-                        if = {
-                            limit = {
-                                NOT = {
-                                    has_country_flag = EH_event_2_fired_flag
-                                }
+                }
+                random = {
+                    chance = 50
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = EH_event_2_fired_flag
                             }
-                            country_event = EH_focus_event.10
                         }
+                        country_event = EH_focus_event.10
                     }
-                    random = {
-                        chance = 10
-                        if = {
-                            limit = {
-                                NOT = {
-                                    has_country_flag = EH_event_3_fired_flag
-                                }
+                }
+                random = {
+                    chance = 10
+                    if = {
+                        limit = {
+                            NOT = {
+                                has_country_flag = EH_event_3_fired_flag
                             }
-                            country_event = EH_focus_event.11
                         }
+                        country_event = EH_focus_event.11
                     }
                 }
             }

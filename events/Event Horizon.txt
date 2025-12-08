@@ -31,11 +31,6 @@ news_event = { #convergence event, CERN have created an atom sized bridge betwee
 	option = {
 		name = EH_event.300.a
 		log = "[GetDateText]: [This.GetName]: EH_event.300.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.301 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #UN convoy attacked in Africa
@@ -50,11 +45,6 @@ news_event = { #UN convoy attacked in Africa
 	option = {
 		name = EH_event.301.a
 		log = "[GetDateText]: [This.GetName]: EH_event.301.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.302 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #weird seismic activity in China
@@ -69,11 +59,6 @@ news_event = { #weird seismic activity in China
 	option = {
 		name = EH_event.302.a
 		log = "[GetDateText]: [This.GetName]: EH_event.302.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.303 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #China Pamir outpost radio silence
@@ -88,11 +73,6 @@ news_event = { #China Pamir outpost radio silence
 	option = {
 		name = EH_event.303.a
 		log = "[GetDateText]: [This.GetName]: EH_event.303.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.304 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #Alaska park rangers goes missing
@@ -107,11 +87,6 @@ news_event = { #Alaska park rangers goes missing
 	option = {
 		name = EH_event.304.a
 		log = "[GetDateText]: [This.GetName]: EH_event.304.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.305 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #Peruvian village strange happenings
@@ -126,11 +101,6 @@ news_event = { #Peruvian village strange happenings
 	option = {
 		name = EH_event.305.a
 		log = "[GetDateText]: [This.GetName]: EH_event.305.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.306 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #PLA base attacked, armed response+RU reinforcement
@@ -145,11 +115,6 @@ news_event = { #PLA base attacked, armed response+RU reinforcement
 	option = {
 		name = EH_event.306.a
 		log = "[GetDateText]: [This.GetName]: EH_event.306.a executed"
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.307 days = 7 random_days = 7 }
-			}
-		}
 	}
 }
 news_event = { #Russian tactical nuke dropped in Aksai Chin
@@ -185,11 +150,6 @@ news_event = { #Russian tactical nuke dropped in Aksai Chin
 		234 = {
 			transfer_state_to = ALN
 		}
-		random_country = {
-			hidden_effect = {
-				news_event = { id = EH_event.308 days = 2 }
-			}
-		}
 	}
 }
 
@@ -208,11 +168,6 @@ news_event = { #portals open fully after nuke
 		trigger = {
 			NOT = {
 				original_tag = ALN
-			}
-		}
-		hidden_effect = {
-			random_country = {
-				news_event = { id = EH_event.309 days = 2 }
 			}
 		}
 	}
@@ -416,6 +371,9 @@ country_event = {
 				type = annex_everything
 			}
 		}
+		ALN = {
+			set_country_flag = EH_humanity_must_crush_chimera_flag
+		}
 	}
 }
 
@@ -433,8 +391,14 @@ news_event = { #UN Emergency session
 		log = "[GetDateText]: [This.GetName]: EH_event.309.a executed"
 		hidden_effect = {
 			random_country = {
+				limit = {
+					NOT = {
+						has_global_flag = EH_event_chain_10_flag
+					}
+				}
 				news_event = { id = EH_event.310 days = 3 }
 			}
+			set_global_flag = EH_event_chain_10_flag
 		}
 	}
 }
@@ -450,14 +414,6 @@ news_event = { #UN Joint Commander created, also first mention of states thinkin
 	option = {
 		name = EH_event.310.a
 		log = "[GetDateText]: [This.GetName]: EH_event.310.a executed"
-		hidden_effect = {
-			random_country = {
-				limit = {
-					is_in_north_america = yes
-				}
-				country_event = { id = EH_event.401 days = 14 random_days = 7 }
-			}
-		}
 	}
 }
 #Num 400 events are post invasion events such as unifications, alliances, and megastates
@@ -478,6 +434,9 @@ country_event = { # Formation of USN
 		every_country = {
 			limit = {
 				is_in_north_america = yes
+				NOT = {
+					original_tag = ALN
+				}
 			}
 			country_event = {
 				id = EH_event.402
@@ -1480,6 +1439,9 @@ news_event = { #Dr. Lisa Randall discovers Randallite
 	option = {
 		name = EH_event.500.a
 		log = "[GetDateText]: [This.GetName]: EH_event.500.a executed"
+		ROOT = {
+			set_country_flag = EH_discovered_randallite_flag
+		}
 	}
 }
 news_event = { #Proto HACS event
