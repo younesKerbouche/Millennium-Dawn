@@ -12768,10 +12768,190 @@ country_event = {
 		add_relative_party_popularity = yes
     }
 }
+country_event = {
+    id = JAP_diplomacy.28
+    title = JAP_diplomacy.28.t
+    desc  = JAP_diplomacy.28.d
+
+	is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.28.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.28.a executed"
+
+        set_country_flag = jap_kaguya_satellite_invest
+		set_temp_variable = { treasury_change = gdp_per_capita }
+		multiply_temp_variable = { treasury_change = -0.10 }
+		modify_treasury_effect = yes
+        country_event = { id = JAP_diplomacy.29 days = 180 }
+    }
+
+    option = {
+        name = JAP_diplomacy.28.b
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.28.b executed"
+
+        set_temp_variable = { party_index = 2 }
+		set_party_index_to_ruling_party = yes
+		set_temp_variable = { party_popularity_increase = -0.05 }
+		set_temp_variable = { temp_outlook_increase = -0.05 }
+		add_relative_party_popularity = yes
+        country_event = { id = JAP_diplomacy.29 days = 365 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.29
+    title = JAP_diplomacy.29.t
+    desc  = JAP_diplomacy.29.d
+
+    is_triggered_only = yes
 
 
+    option = {
+        name = JAP_diplomacy.29.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.29.a executed"
+        set_country_flag = jap_kaguya_rocketry_invest
+        set_temp_variable = { treasury_change = gdp_per_capita }
+		multiply_temp_variable = { treasury_change = -0.10 }
+		modify_treasury_effect = yes
+        country_event = { id = JAP_diplomacy.31 days = 365 }
+    }
 
+    option = {
+        name = JAP_diplomacy.29.b
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.29.b executed"
 
+        set_temp_variable = { party_index = 2 }
+		set_party_index_to_ruling_party = yes
+		set_temp_variable = { party_popularity_increase = -0.05 }
+		set_temp_variable = { temp_outlook_increase = -0.05 }
+		add_relative_party_popularity = yes
+        country_event = { id = JAP_diplomacy.30 days = 365 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.30
+    title = JAP_diplomacy.30.t
+    desc  = JAP_diplomacy.30.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.30.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.30.a executed"
+        country_event = { id = JAP_diplomacy.31 days = 365 }
+    }
+}
+country_event = {
+    id = JAP_diplomacy.31
+    title = JAP_diplomacy.31.t
+    desc  = JAP_diplomacy.31.d
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_diplomacy.31.a
+        log  = "[GetDateText]: [This.GetName]: JAP_diplomacy.31.a executed"
+		custom_effect_tooltip = JAP_change_landforce_tt
+		set_temp_variable = {
+			JAP_max_planning_landforces_change = 0.10
+		}
+		update_JAP_max_planning_landforces_effect = yes
+		set_temp_variable = {
+			JAP_recon_factor_landforces_change = 0.15
+		}
+		update_JAP_recon_factor_landforces_effect = yes
+		newline = yes
+        if = {
+            limit = { has_country_flag = jap_kaguya_satellite_invest }
+			custom_effect_tooltip = jap_kaguya_satellite_invest_tt
+            add_tech_bonus = {
+                bonus    = 0.75
+                uses     = 2
+                category = CAT_satellite
+            }
+        }
+		if = {
+            limit = { has_country_flag = jap_kaguya_rocketry_invest }
+			custom_effect_tooltip = jap_kaguya_rocketry_invest_tt
+            add_tech_bonus = {
+                bonus    = 0.5
+                uses     = 2
+                category = CAT_missile
+            }
+			newline = yes
+			custom_effect_tooltip = JAP_change_airforce_tt
+			set_temp_variable = {
+				JAP_strategic_bomb_visibility_airforce_change = 0.15
+			}
+			update_JAP_strategic_bomb_visibility_airforce_effect = yes
+        }
+		set_temp_variable = { party_index = 2 }
+		set_party_index_to_ruling_party = yes
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+		set_country_flag = JAP_moon_base_completed
+    }
+}
+country_event = {
+	id = JAP_diplomacy.32
+	title = JAP_diplomacy.32.t
+	desc = JAP_diplomacy.32.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.32.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.32.a executed"
+		add_timed_idea = {
+			idea = special_project_consumer_costs_medium
+			days = 180
+		}
+	}
+
+	option = {
+		name = JAP_diplomacy.32.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.32.b executed"
+
+		add_days_mission_timeout = {
+			mission = JAP_mars_mission_program_mission
+			days = 100
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.33
+	title = JAP_diplomacy.33.t
+	desc = JAP_diplomacy.33.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.33.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.33.a executed"
+		add_ideas = JAP_mars_colony1
+	}
+
+	option = {
+		name = JAP_diplomacy.33.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.33.b executed"
+		add_ideas = JAP_mars_colony2
+	}
+
+	option = {
+		name = JAP_diplomacy.33.c
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.33.c executed"
+		add_ideas = JAP_mars_colony3
+	}
+
+	option = {
+		name = JAP_diplomacy.33.d
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.33.d executed"
+		add_ideas = JAP_mars_colony4
+	}
+}
+
+### News ###
 news_event = {
     id = JAP_news.01
     title = JAP_news.01.t

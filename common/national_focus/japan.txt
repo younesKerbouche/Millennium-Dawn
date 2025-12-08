@@ -1755,10 +1755,12 @@ focus_tree = {
 	focus = {
 		id = JAP_nationalise_infrastructure
 		icon = goal_JAP_seized
-		x = -5
-		y = 7
+		x = 0
+		y = 2
+		relative_position_id = JAP_reacquire_public_corporations
+
 		cost = 10
-		relative_position_id = JAP_central_government_reform
+
 		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY FOCUS_FILTER_EXPENDITURE }
 
 		prerequisite = { focus = JAP_wealth_taxation }
@@ -2155,14 +2157,11 @@ focus_tree = {
 			add_political_power = 25
 			every_other_country = {
 				limit = {
-					AND = {
-						OR = {
-							OR = { #only bother decently developed powers outside asia
-								has_idea = superpower
-								has_idea = great_power
-								has_idea = large_power
-								has_idea = regional_power
-							}
+					OR = {
+							has_idea = superpower
+							has_idea = great_power
+							has_idea = large_power
+							has_idea = regional_power
 							AND = { #minor power or above for SEA or oceania
 								OR = {
 									has_idea = superpower
@@ -2178,7 +2177,6 @@ focus_tree = {
 							}
 						}
 						NOT = { has_war_with = JAP }
-					}
 				}
 				country_event = Japan.100004010 #NHK World Established
 			}
@@ -3900,7 +3898,7 @@ focus = {
 
 focus = {
 	id = JAP_disaster_countermeasure_cooperation
-	#icon
+	icon = x
 
 	x = -1
 	y = 1
@@ -3974,7 +3972,7 @@ focus = {
 
 focus = {
 	id = JAP_tai_tourist_visa
-	#icon
+	icon = x
 
 	x = 1
 	y = 1
@@ -4044,7 +4042,7 @@ focus = {
 
 focus = {
 	id = JAP_history_education
-	#icon
+	icon = x
 
 	x = 5
 	y = 0
@@ -4071,7 +4069,7 @@ focus = {
 
 focus = {
 	id = JAP_statement
-	#icon
+	icon = x
 
 	x = 0
 	y = 1
@@ -4447,7 +4445,7 @@ focus = {
 
 focus = {
 	id = JAP_kor_cultural_exchange
-	#icon
+	icon = x
 
 	x = 1
 	y = 1
@@ -4490,7 +4488,7 @@ focus = {
 
 focus = {
 	id = JAP_kor_aging
-	#icon
+	icon = x
 
 	x = 0
 	y = 1
@@ -4572,7 +4570,7 @@ focus = {
 
 focus = {
 	id = JAP_sov_far_east_development
-	#icon
+	icon = x
 
 	x = -1
 	y = 1
@@ -6696,13 +6694,12 @@ focus = {
 		id = JAP_basic_reconstruction_policy
 		icon = goal_JAP_tablet_computer
 
-		x = 0
-		y = 2
-		relative_position_id = JAP_nationalise_infrastructure
+		x = 5
+		y = 10
 
 		cost = 10
 
-		allow_branch = { has_country_flag = JAP_great_east_japan_earthquake_flag }
+		#allow_branch = { has_country_flag = JAP_great_east_japan_earthquake_flag }
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -6755,7 +6752,7 @@ focus = {
 
 	focus = {
 		id = JAP_fishery_revival
-		#icon
+		icon = x
 
 		x = 0
 		y = 1
@@ -6774,7 +6771,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_fishery_revival"
-			set_temp_variable = { treasury_change = -3.75 }
+			set_temp_variable = { treasury_change = -4.75 }
 			modify_treasury_effect = yes
 			616 = {
 				add_building_construction = {
@@ -6782,6 +6779,7 @@ focus = {
 					level = 1
 					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 1
 			}
 		}
 
@@ -6811,7 +6809,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_tohoku_port"
-			set_temp_variable = { treasury_change = -7.50 }
+			set_temp_variable = { treasury_change = -8.50 }
 			modify_treasury_effect = yes
 			616 = {
 				add_building_construction = {
@@ -6819,6 +6817,7 @@ focus = {
 					level = 1
 					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 1
 			}
 		}
 
@@ -6892,7 +6891,7 @@ focus = {
 
 	focus = {
 		id = JAP_reconstruction_agency
-		#icon
+		icon = x
 
 		x = 0
 		y = 1
@@ -6968,7 +6967,7 @@ focus = {
 
 	focus = {
 		id = JAP_housing_reconstruction
-		#icon
+		icon = x
 
 		x = 1
 		y = 1
@@ -6994,7 +6993,7 @@ focus = {
 
 	focus = {
 		id = JAP_reconstruction_completed_focus
-		#icon
+		icon = x
 
 		x = 0
 		y = 2
@@ -8208,7 +8207,6 @@ focus = {
 					trait = thorough_planner
 				}
 			}
-			newline = yes
 			custom_effect_tooltip = JAP_change_landforce_tt
 			set_temp_variable = {
 				JAP_max_planning_landforces_change = 0.10
@@ -9141,6 +9139,10 @@ focus = {
 		prerequisite = {
 			focus = JAP_atla_defense_technology_consolidation
 		}
+
+		available = {
+			has_completed_focus = JAP_san_gaku_kan
+		}
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		completion_reward = {
@@ -9182,7 +9184,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_kaguya_starward_expedition
-		icon = x
+		icon = JAP_sattelite
 
 		x = 0
 		y = 1
@@ -9197,6 +9199,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_kaguya_starward_expedition"
+			activate_mission = JAP_establish_asterioid_mining_network_mission
 		}
 
 		ai_will_do = {
@@ -9205,7 +9208,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_tsukuyomi_lunar_program
-		icon = x
+		icon = JAP_moon_mission
 
 		x = 0
 		y = 2
@@ -9218,8 +9221,18 @@ focus = {
 		}
 		search_filters = { FOCUS_FILTER_SPACE }
 
+		available = {
+			NOT = { has_active_mission = JAP_establish_asterioid_mining_network_mission }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_tsukuyomi_lunar_program"
+			custom_effect_tooltip = JAP_kaguya_starward_expedition_tt
+			hidden_effect = {
+				JAP = {
+					country_event = { id = JAP_diplomacy.28 days = 30 }
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -9228,13 +9241,17 @@ focus = {
 	}
 	focus = {
 		id = JAP_amaterasu_martian_dawn
-		icon = x
+		icon = JAP_mars
 
 		x = 0
 		y = 3
 		relative_position_id = JAP_integrated_air_space_command
 
 		cost = 5
+
+		available = {
+			has_country_flag = JAP_moon_base_completed
+		}
 
 		prerequisite = {
 			focus = JAP_tsukuyomi_lunar_program
@@ -9243,6 +9260,18 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_amaterasu_martian_dawn"
+			activate_mission = JAP_mars_mission_program_mission
+			custom_effect_tooltip = mission_will_give_tt
+			effect_tooltip = {
+				country_event = japan_mars.20
+			}
+			hidden_effect = {
+				country_event = {
+					id = JAP_diplomacy.32
+					days = 750
+					random_days = 360
+				}
+			}
 		}
 
 		ai_will_do = {
