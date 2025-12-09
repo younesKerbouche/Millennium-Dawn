@@ -2647,114 +2647,120 @@ on_actions = {
 					add_to_variable = { int_investments = FROM.int_investments }
 				}
 				if = {
-					limit = {
-						is_in_array = { ruling_party = 0 }
-					}
-					set_politics = {
-						ruling_party = democratic
-						elections_allowed = no
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 1 }
-							is_in_array = { ruling_party = 2 }
-							is_in_array = { ruling_party = 3 }
+					limit = { NOT = { has_country_flag = generic_civil_war_skip_elections } }
+					if = {
+						limit = {
+							is_in_array = { ruling_party = 0 }
+						}
+						set_politics = {
+							ruling_party = democratic
+							elections_allowed = no
 						}
 					}
-					set_politics = {
-						ruling_party = democratic
-						elections_allowed = yes
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 4 }
-							is_in_array = { ruling_party = 7 }
-							is_in_array = { ruling_party = 9 }
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 1 }
+								is_in_array = { ruling_party = 2 }
+								is_in_array = { ruling_party = 3 }
+							}
+						}
+						set_politics = {
+							ruling_party = democratic
+							elections_allowed = yes
 						}
 					}
-					set_politics = {
-						ruling_party = communism
-						elections_allowed = no
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 5 }
-							is_in_array = { ruling_party = 6 }
-							is_in_array = { ruling_party = 8 }
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 4 }
+								is_in_array = { ruling_party = 7 }
+								is_in_array = { ruling_party = 9 }
+							}
+						}
+						set_politics = {
+							ruling_party = communism
+							elections_allowed = no
 						}
 					}
-					set_politics = {
-						ruling_party = communism
-						elections_allowed = yes
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 10 }
-							is_in_array = { ruling_party = 11 }
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 5 }
+								is_in_array = { ruling_party = 6 }
+								is_in_array = { ruling_party = 8 }
+							}
+						}
+						set_politics = {
+							ruling_party = communism
+							elections_allowed = yes
 						}
 					}
-					set_politics = {
-						ruling_party = fascism
-						elections_allowed = no
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 13 }
-							is_in_array = { ruling_party = 19 }
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 10 }
+								is_in_array = { ruling_party = 11 }
+							}
+						}
+						set_politics = {
+							ruling_party = fascism
+							elections_allowed = no
 						}
 					}
-					set_politics = {
-						ruling_party = neutrality
-						elections_allowed = no
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 12 }
-							is_in_array = { ruling_party = 14 }
-							is_in_array = { ruling_party = 15 }
-							is_in_array = { ruling_party = 16 }
-							is_in_array = { ruling_party = 17 }
-							is_in_array = { ruling_party = 18 }
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 13 }
+								is_in_array = { ruling_party = 19 }
+							}
+						}
+						set_politics = {
+							ruling_party = neutrality
+							elections_allowed = no
 						}
 					}
-					set_politics = {
-						ruling_party = neutrality
-						elections_allowed = yes
-					}
-				}
-				else_if = {
-					limit = {
-						OR = {
-							is_in_array = { ruling_party = 21 }
-							is_in_array = { ruling_party = 22 }
-							is_in_array = { ruling_party = 23 }
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 12 }
+								is_in_array = { ruling_party = 14 }
+								is_in_array = { ruling_party = 15 }
+								is_in_array = { ruling_party = 16 }
+								is_in_array = { ruling_party = 17 }
+								is_in_array = { ruling_party = 18 }
+							}
+						}
+						set_politics = {
+							ruling_party = neutrality
+							elections_allowed = yes
 						}
 					}
-					set_politics = {
-						ruling_party = nationalist
-						elections_allowed = no
+					else_if = {
+						limit = {
+							OR = {
+								is_in_array = { ruling_party = 21 }
+								is_in_array = { ruling_party = 22 }
+								is_in_array = { ruling_party = 23 }
+							}
+						}
+						set_politics = {
+							ruling_party = nationalist
+							elections_allowed = no
+						}
+					}
+					else_if = {
+						limit = {
+							is_in_array = { ruling_party = 20 }
+						}
+						set_politics = {
+							ruling_party = nationalist
+							elections_allowed = yes
+						}
 					}
 				}
-				else_if = {
-					limit = {
-						is_in_array = { ruling_party = 20 }
-					}
-					set_politics = {
-						ruling_party = nationalist
-						elections_allowed = yes
-					}
+				else = {
+					clr_country_flag = generic_civil_war_skip_elections
 				}
 
 				# Cartel Event
@@ -2850,7 +2856,6 @@ on_actions = {
 				set_all_KILLSAT_tech = yes
 				set_all_sat_mass = yes
 				set_all_spp_mass = yes
-				set_RODS_damage = yes
 				set_missile_display_stats = yes
 
 				setup_starting_world_hydropower = yes
@@ -3001,7 +3006,11 @@ on_actions = {
 				}
 
 				# AI Configuration
-				if = { limit = { is_ai = yes }
+				if = {
+					limit = {
+						is_ai = yes
+						NOT = { original_tag = ZOM }
+					}
 					give_AI_templates = yes
 					ai_update_build_units = yes
 					if = { limit = { gifted_income_list = yes }
