@@ -150,6 +150,9 @@ news_event = { #Russian tactical nuke dropped in Aksai Chin
 		234 = {
 			transfer_state_to = ALN
 		}
+		ALN = {
+			set_capital = { state = 234 }
+		}
 	}
 }
 
@@ -165,55 +168,6 @@ news_event = { #portals open fully after nuke
 	option = {
 		name = EH_event.308.a
 		log = "[GetDateText]: [This.GetName]: EH_event.308.a executed"
-		trigger = {
-			NOT = {
-				original_tag = ALN
-			}
-		}
-	}
-	option = {
-		name = EH_event.308.b
-		log = "[GetDateText]: [This.GetName]: EH_event.308.b executed"
-		trigger = {
-			original_tag = ALN
-		}
-		hidden_effect = {
-			country_event = { id = EH_chimera_declare_war.1 days = 50 }
-			news_event = { id = EH_chimera_declare_war.2 days = 50 }
-		}
-	}
-}
-
-country_event = {
-	id = EH_chimera_declare_war.1
-	title = EH_chimera_declare_war.1.t
-	desc = EH_chimera_declare_war.1.d
-	picture = GFX_news_event_horizon_introduction
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		name = EH_chimera_declare_war.1.a
-		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.1.a executed"
-		ALN = {
-			set_country_flag = EH_humanity_must_crush_chimera_flag
-		}
-	}
-}
-
-news_event = {
-	id = EH_chimera_declare_war.2
-	title = EH_chimera_declare_war.2.t
-	desc = EH_chimera_declare_war.2.d
-	picture = GFX_news_generic_soldiers
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		name = EH_chimera_declare_war.2.a
-		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.2.a executed"
 	}
 }
 
@@ -399,6 +353,21 @@ country_event = { # Formation of RCA
 					change_tag_from = ROOT
 				}
 			}
+			if = {
+				limit = {
+					NOT = {
+						USN = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = USN
+						type = annex_everything
+					}
+				}
+			}
 		}
 		RCA = {
 			annex_country = {
@@ -483,6 +452,21 @@ country_event = { # Formation of USM
 					change_tag_from = ROOT
 				}
 			}
+			if = {
+				limit = {
+					NOT = {
+						RCA = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = RCA
+						type = annex_everything
+					}
+				}
+			}
 		}
 		USM = {
 			annex_country = {
@@ -551,13 +535,26 @@ country_event = { # Formation of EUF
 						is_ai = no
 					}
 				}
-				hidden_effect = {
-					70 = {
-						transfer_state_to = EUF
-					}
+				70 = {
+					transfer_state_to = EUF
 				}
 				EUF = {
 					change_tag_from = ROOT
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						USM = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = USM
+						type = annex_everything
+					}
 				}
 			}
 		}
@@ -628,13 +625,26 @@ country_event = { # Formation of AFD
 						is_ai = no
 					}
 				}
-				hidden_effect = {
-					70 = {
-						transfer_state_to = AFD
-					}
+				70 = {
+					transfer_state_to = AFD
 				}
 				AFD = {
 					change_tag_from = ROOT
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						EUF = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = EUF
+						type = annex_everything
+					}
 				}
 			}
 		}
@@ -714,6 +724,21 @@ country_event = { # Formation of CRU
 					change_tag_from = ROOT
 				}
 			}
+			if = {
+				limit = {
+					NOT = {
+						AFD = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = AFD
+						type = annex_everything
+					}
+				}
+			}
 		}
 		CRU = {
 			annex_country = {
@@ -787,6 +812,21 @@ country_event = { # Formation of ERF
 				}
 				ERF = {
 					change_tag_from = ROOT
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						CRU = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = CRU
+						type = annex_everything
+					}
 				}
 			}
 		}
@@ -864,6 +904,21 @@ country_event = { # Formation of CHN
 					change_tag_from = ROOT
 				}
 			}
+			if = {
+				limit = {
+					NOT = {
+						ERF = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = ERF
+						type = annex_everything
+					}
+				}
+			}
 		}
 		CHN = {
 			annex_country = {
@@ -937,6 +992,21 @@ country_event = { # Formation of ASE
 				}
 				ASE = {
 					change_tag_from = ROOT
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						CHN = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = CHN
+						type = annex_everything
+					}
 				}
 			}
 		}
@@ -1014,6 +1084,21 @@ country_event = { # Formation of EAC
 					change_tag_from = ROOT
 				}
 			}
+			if = {
+				limit = {
+					NOT = {
+						ASE = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = ASE
+						type = annex_everything
+					}
+				}
+			}
 		}
 		EAC = {
 			annex_country = {
@@ -1051,6 +1136,9 @@ country_event = { # Formation of ODU
 		}
 		hidden_effect = {
 			random_country = {
+				limit = {
+					is_oceanic_defense_union_country = no
+				}
 				news_event = { id = EH_event.500 days = 45 random_days = 15 }
 				news_event = { id = EH_event.433 days = 1 }
 			}
@@ -1084,6 +1172,21 @@ country_event = { # Formation of ODU
 				}
 				ODU = {
 					change_tag_from = ROOT
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						EAC = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = EAC
+						type = annex_everything
+					}
 				}
 			}
 		}
@@ -1263,6 +1366,23 @@ news_event = { # Oceanic Defense Union Formed
 	option = {
 		name = EH_event.433.a
 		log = "[GetDateText]: [This.GetName]: EH_event.433.a executed"
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						ODU = {
+							has_war_with = ALN
+						}
+					}
+				}
+				ALN = {
+					declare_war_on = {
+						target = ODU
+						type = annex_everything
+					}
+				}
+			}
+		}
 	}
 }
 
