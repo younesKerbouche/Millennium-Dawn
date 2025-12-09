@@ -1,10 +1,6 @@
 ﻿add_namespace = United_Kingdom
 add_namespace = britain_md
 add_namespace = United_Kingdom_News
-add_namespace = britain_news
-add_namespace = uk
-add_namespace = britain_news
-add_namespace = britain_md
 add_namespace = devolution
 add_namespace = ENG_military
 ########################## Asteroid Mining Event Chain #########################
@@ -1317,60 +1313,21 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: ENG_military.044.a executed"
 	}
 }
-#The Future of the NHS
+
+# Political Events
+
 country_event = {
 	id = britain_md.1
 	title = britain_md.1.t
 	desc = britain_md.1.d
-	picture = GFX_ENG_generic
 	is_triggered_only = yes
 
 	option = {
 		name = britain_md.1.a
 		log = "[GetDateText]: [This.GetName]: britain_md.1.a executed"
-		add_ideas = ENG_idea_expanded_nhs
-		add_stability = 0.03
-		add_popularity = {
-			ideology = democratic
-			popularity = 0.02
-		}
-		add_popularity = {
-			ideology = communism
-			popularity = 0.02
-		}
-		recalculate_party = yes
-		increase_healthcare_budget = yes
-	}
 
-	option = {
-		name = britain_md.1.b
-		log = "[GetDateText]: [This.GetName]: britain_md.1.b executed"
-		add_ideas = ENG_idea_privatized_nhs
-		add_popularity = {
-			ideology = communism
-			popularity = 0.03
-		}
-		add_popularity = {
-			ideology = nationalist
-			popularity = 0.02
-		}
-		recalculate_party = yes
-		if = {
-			limit = { has_idea = health_06 }
-			swap_ideas = {
-				add_idea = health_04
-				remove_idea = health_06
-			}
-		}
-		else_if = {
-			limit = { has_idea = health_05 }
-			swap_ideas = {
-				add_idea = health_04
-				remove_idea = health_05
-			}
-		}
-		else = {
-			decrease_healthcare_budget = yes
+		ai_chance = {
+			base = 1
 		}
 	}
 }
