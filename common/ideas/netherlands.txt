@@ -271,7 +271,8 @@ ideas = {
 				return_on_investment_modifier = 0.02
 				police_cost_multiplier_modifier = -0.05
 				international_market_income_modifier = 0.10
-				trade_opinion_factor = 0.20
+				trade_opinion_factor = 0.15
+				resource_export_multiplier_modifier = 0.05
 				democratic_acceptance = 10
 				neutrality_acceptance = 10
 			}
@@ -295,7 +296,8 @@ ideas = {
 				dockyard_productivity = 0.15
 				international_market_income_modifier = 0.10
 				resource_trade_cost_bonus_per_factory = 1
-				trade_opinion_factor = 0.25
+				trade_opinion_factor = 0.20
+				resource_export_multiplier_modifier = 0.10
 				democratic_acceptance = 10
 				neutrality_acceptance = 10
 				communism_acceptance = 10
@@ -2807,8 +2809,8 @@ ideas = {
 				bureaucracy_cost_multiplier_modifier = 0.05
 			}
 		}
-		HOL_restoring_royal_authority = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea HOL_restoring_royal_authority" }
+		HOL_restoring_royal_authority_nationalist = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea HOL_restoring_royal_authority_nationalist" }
 			picture = puppet_master
 
 			allowed = { original_tag = HOL }
@@ -2818,6 +2820,25 @@ ideas = {
 			modifier = {
 				foreign_influence_defense_modifier = 0.10
 				nationalist_drift = 0.10
+				subjects_autonomy_gain = -0.10
+				stability_weekly_factor = 0.001
+				political_power_factor = -0.15
+				police_cost_multiplier_modifier = 0.20
+
+			}
+		}
+		HOL_restoring_royal_authority_western = {
+			name = HOL_restoring_royal_authority_nationalist
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea HOL_restoring_royal_authority_western" }
+			picture = puppet_master
+
+			allowed = { original_tag = HOL }
+
+			allowed_civil_war = { always = yes }
+
+			modifier = {
+				foreign_influence_defense_modifier = 0.10
+				democratic_drift = 0.10
 				subjects_autonomy_gain = -0.10
 				stability_weekly_factor = 0.001
 				political_power_factor = -0.15
