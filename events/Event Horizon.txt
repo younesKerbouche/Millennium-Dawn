@@ -178,21 +178,8 @@ news_event = { #portals open fully after nuke
 			original_tag = ALN
 		}
 		hidden_effect = {
-			every_country = {
-				limit = {
-					NOT = {
-						original_tag = ALN
-					}
-					capital_scope = {
-						is_on_continent = asia
-					}
-				}
-				declare_war_on = {
-					target = ALN
-					type = annex_everything
-				}
-			}
-			country_event = { id = EH_chimera_declare_war.1 days = 2 }
+			country_event = { id = EH_chimera_declare_war.1 days = 50 }
+			news_event = { id = EH_chimera_declare_war.2 days = 50 }
 		}
 	}
 }
@@ -209,29 +196,17 @@ country_event = {
 	option = {
 		name = EH_chimera_declare_war.1.a
 		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.1.a executed"
-		every_country = {
-			limit = {
-				NOT = {
-					original_tag = ALN
-				}
-				capital_scope = {
-					is_on_continent = africa
-				}
-			}
-			declare_war_on = {
-				target = ALN
-				type = annex_everything
-			}
+		ALN = {
+			set_country_flag = EH_humanity_must_crush_chimera_flag
 		}
-		country_event = { id = EH_chimera_declare_war.2 days = 2 }
 	}
 }
 
-country_event = {
+news_event = {
 	id = EH_chimera_declare_war.2
 	title = EH_chimera_declare_war.2.t
 	desc = EH_chimera_declare_war.2.d
-	picture = GFX_news_event_horizon_introduction
+	picture = GFX_news_generic_soldiers
 
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -239,141 +214,6 @@ country_event = {
 	option = {
 		name = EH_chimera_declare_war.2.a
 		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.2.a executed"
-		every_country = {
-			limit = {
-				NOT = {
-					original_tag = ALN
-				}
-				capital_scope = {
-					is_on_continent = north_america
-				}
-			}
-			declare_war_on = {
-				target = ALN
-				type = annex_everything
-			}
-		}
-		country_event = { id = EH_chimera_declare_war.3 days = 2  }
-	}
-}
-
-country_event = {
-	id = EH_chimera_declare_war.3
-	title = EH_chimera_declare_war.3.t
-	desc = EH_chimera_declare_war.3.d
-	picture = GFX_chimera_declare_war_event
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		name = EH_chimera_declare_war.3.a
-		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.3.a executed"
-		every_country = {
-			limit = {
-				NOT = {
-					original_tag = ALN
-				}
-				capital_scope = {
-					is_on_continent = south_america
-				}
-			}
-			declare_war_on = {
-				target = ALN
-				type = annex_everything
-			}
-		}
-		country_event = { id = EH_chimera_declare_war.4 days = 2  }
-	}
-}
-
-country_event = {
-	id = EH_chimera_declare_war.4
-	title = EH_chimera_declare_war.4.t
-	desc = EH_chimera_declare_war.4.d
-	picture = GFX_news_event_horizon_introduction
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		name = EH_chimera_declare_war.4.a
-		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.4.a executed"
-		every_country = {
-			limit = {
-				NOT = {
-					original_tag = ALN
-				}
-				capital_scope = {
-					is_on_continent = middle_east
-				}
-			}
-			declare_war_on = {
-				target = ALN
-				type = annex_everything
-			}
-		}
-		country_event = { id = EH_chimera_declare_war.5 days = 2  }
-	}
-}
-
-country_event = {
-	id = EH_chimera_declare_war.5
-	title = EH_chimera_declare_war.5.t
-	desc = EH_chimera_declare_war.5.d
-	picture = GFX_news_event_horizon_introduction
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		name = EH_chimera_declare_war.5.a
-		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.5.a executed"
-		every_country = {
-			limit = {
-				NOT = {
-					original_tag = ALN
-				}
-				capital_scope = {
-					is_on_continent = europe
-				}
-			}
-			declare_war_on = {
-				target = ALN
-				type = annex_everything
-			}
-		}
-		country_event = { id = EH_chimera_declare_war.6 days = 2  }
-	}
-}
-
-country_event = {
-	id = EH_chimera_declare_war.6
-	title = EH_chimera_declare_war.6.t
-	desc = EH_chimera_declare_war.6.d
-	picture = GFX_news_event_horizon_introduction
-
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	option = {
-		name = EH_chimera_declare_war.6.a
-		log = "[GetDateText]: [This.GetName]: EH_chimera_declare_war.6.a executed"
-		every_country = {
-			limit = {
-				NOT = {
-					original_tag = ALN
-					has_war_with = ALN
-				}
-			}
-			declare_war_on = {
-				target = ALN
-				type = annex_everything
-			}
-		}
-		ALN = {
-			set_country_flag = EH_humanity_must_crush_chimera_flag
-		}
 	}
 }
 
