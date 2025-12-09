@@ -1041,4 +1041,28 @@ decisions_ENG = {
 			factor = 10
 		}
 	}
+
+	ENG_build_london = {
+		activation = {
+			always = no
+		}
+		available = {
+			13 = {
+				infrastructure > 4
+			}
+		}
+		days_mission_timeout = 365
+		is_good = no
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = -0.025 }
+			add_relative_party_popularity = yes
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
+			set_temp_variable = { temp_productivity_change = 50 }
+			13 = { state_flat_productivity_change_effect = yes }
+		}
+	}
 }
