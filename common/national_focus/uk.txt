@@ -3757,28 +3757,24 @@ focus_tree = {
 				limit = {
 					NOT = { is_in_faction_with = GAM }
 				}
-				create_wargoal = {
-					target = GAM
-					type = annex_everything
-				}
+				GAM = { save_event_target_as = annexation_target_event }
+				annexation_request_effect = yes
 			}
 			if = {
 				limit = {
 					NOT = { is_in_faction_with = SIE }
 				}
-				create_wargoal = {
-					target = SIE
-					type = annex_everything
-				}
+				newline = yes
+				SIE = { save_event_target_as = annexation_target_event }
+				annexation_request_effect = yes
 			}
 			if = {
 				limit = {
 					NOT = { is_in_faction_with = BEN }
 				}
-				create_wargoal = {
-					target = BEN
-					type = annex_everything
-				}
+				newline = yes
+				BEN = { save_event_target_as = annexation_target_event }
+				annexation_request_effect = yes
 			}
 		}
 
@@ -3809,10 +3805,8 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_subjugate_ireland"
-			create_wargoal = {
-				target = IRE
-				type = annex_everything
-			}
+			IRE = { save_event_target_as = annexation_target_event }
+			annexation_request_effect = yes
 		}
 
 		ai_will_do = {
@@ -4222,10 +4216,9 @@ focus_tree = {
 		will_lead_to_war_with = SAF
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_restore_the_cape_colony"
-			create_wargoal = {
-				type = puppet_wargoal_focus
-				target = SAF
-			}
+			SAF = { save_event_target_as = puppeting_target_event }
+			puppeting_request_effect = yes
+			newline = yes
 			every_country = {
 				limit = {
 					OR = {
@@ -4539,10 +4532,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ENG_restore_the_raj"
-			create_wargoal = {
-				type = puppet_wargoal_focus
-				target = RAJ
-			}
+			RAJ = { save_event_target_as = puppeting_target_event }
+			puppeting_request_effect = yes
+			newline = yes
 			news_event = britain_news.63
 		}
 
