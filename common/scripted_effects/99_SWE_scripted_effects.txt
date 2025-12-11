@@ -823,3 +823,94 @@ SWE_royal_acceptance_resolve = {
 		}
 	}
 }
+
+SWE_check_western_alignment = {
+	if = {
+		limit = {
+			SWE = {
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+				}
+			}
+			var:temp_country = {
+				SWE = {
+					has_opinion = {
+						target = PREV
+						value > 15
+					}
+				}
+				OR = {
+					has_idea = EU_member
+					has_idea = NATO_member
+					has_government = democratic
+					has_government = neutrality
+				}
+				NOT = { has_government = fascism }
+				NOT = { has_government = communism }
+				has_idea = NATO_member
+			}
+			country_exists = var:temp_country
+			NOT = { has_war_with = var:temp_country }
+		}
+		if = {
+			limit = { check_variable = { temp_change = 1 } }
+			add_power_balance_value = {
+				id = SWE_balance_of_power
+				value = -0.01
+			}
+		}
+		if = {
+			limit = { check_variable = { temp_change = 2 } }
+			add_power_balance_value = {
+				id = SWE_balance_of_power
+				value = 0.02
+			}
+		}
+	}
+}
+
+SWE_check_eastern_alignment = {
+	if = {
+		limit = {
+			SWE = {
+				OR = {
+					has_government = fascism
+					has_government = communism
+				}
+			}
+			var:temp_country = {
+				SWE = {
+					has_opinion = {
+						target = PREV
+						value > 15
+					}
+				}
+				OR = {
+					has_idea = CSTO_member
+					has_government = fascism
+					has_government = communism
+				}
+				NOT = { has_government = democratic }
+				NOT = { has_government = neutrality }
+				has_idea = NATO_member
+			}
+			country_exists = var:temp_country
+			NOT = { has_war_with = var:temp_country }
+		}
+		if = {
+			limit = { check_variable = { temp_change = 1 } }
+			add_power_balance_value = {
+				id = SWE_balance_of_power
+				value = -0.01
+			}
+		}
+		if = {
+			limit = { check_variable = { temp_change = 2 } }
+			add_power_balance_value = {
+				id = SWE_balance_of_power
+				value = 0.02
+			}
+		}
+	}
+}
