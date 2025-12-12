@@ -339,4 +339,52 @@ scripted_gui = {
 			}
 		}
 	}
+
+	EH_open_randallite_scripted_gui = {
+		window_name = "EH_open_randallite_tab_gui_window"
+		context_type = player_context
+		parent_window_token = production_tab
+
+		visible = {
+			# ROOT = {
+			#     has_country_flag = EH_discovered_randallite_flag
+			# }
+			always = yes
+		}
+
+		effects = {
+			EH_open_randallite_tab_button_click = {
+				if = {
+					limit = {
+						has_country_flag = EH_randallite_tab_open_flag
+					}
+					clr_country_flag = EH_randallite_tab_open_flag
+				}
+				else = {
+					set_country_flag = EH_randallite_tab_open_flag
+				}
+			}
+		}
+
+		triggers = {
+		}
+	}
+
+	EH_randallite_scripted_gui = {
+		window_name = "EH_randallite_scripted_gui_window"
+		context_type = player_context
+		parent_window_token = production_tab
+
+		visible = {
+			ROOT = {
+			    has_country_flag = EH_randallite_tab_open_flag
+			}
+		}
+
+		effects = {
+		}
+
+		triggers = {
+		}
+	}
 }
