@@ -25,8 +25,8 @@
 		officer_military_academy
 
 		# Starting Ideas
-		idea_HLS_holy_see
-		idea_HLS_vatican_library
+		HLS_idea_holy_see
+		HLS_idea_vatican_library
 	}
 
 	set_technology = {
@@ -138,8 +138,6 @@
 	}
 	if = {
 		limit = { has_dlc = "No Step Back" }
-
-
 		# should be mbt 2 but I don't care
 		set_technology = {
 			mbt_tech_ops = 1
@@ -190,11 +188,11 @@
 	set_variable = { var = corporate_tax_rate value = 24 }
 	set_variable = { var = population_tax_rate value = 31 }
 	set_variable = { var = int_investments value = 8 }
-	set_variable = { gdp_per_capita = 100 }
+	set_variable = { gdp_per_capita = 27 }
 	every_controlled_state = {
-		set_variable = { productivity_state_var = 1000 }
+		set_variable = { productivity_state_var = 750 }
 	}
-	set_variable = { overall_productivity = 1000 }
+	set_variable = { overall_productivity = 750 }
 
 	set_popularities = {
 		democratic = 100
@@ -253,41 +251,13 @@
 		ideology = Western_Autocracy
 		traits = {
 			western_Western_Autocracy
+			anti_communism
 		}
 	}
 
-		##Leaders - Leaders of the Swiss Guard
-	create_corps_commander = {
-		name = "Elma Theodor Mader"
-		picture = "elma_theodor_mader.dds"
-		skill = 3
-		attack_skill = 1
-		defense_skill = 4
-		planning_skill = 3
-		logistics_skill = 2
-		traits = {
-			unyielding_defender
-		}
-	}
-	create_corps_commander = {
-		name = "Christoph Graf"
-		picture = "christoph_graf.dds"
-		skill = 1
-		attack_skill = 1
-		defense_skill = 3
-		planning_skill = 2
-		logistics_skill = 1
-	}
-	create_corps_commander = {
-		name = "Daniel Anrig"
-		picture = "daniel_anrig.dds"
-		skill = 2
-		attack_skill = 2
-		defense_skill = 4
-		planning_skill = 3
-		logistics_skill = 2
-	}
-
+	recruit_character = HLS_elmar_mader
+	recruit_character = HLS_daniel_anrig
 	recruit_character = HLS_pius_segmuller
+	recruit_character = HLS_christoph_graf
 	recruit_character = HLS_air_chief
 }

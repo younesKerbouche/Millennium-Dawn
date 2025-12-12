@@ -2456,6 +2456,31 @@ on_actions = {
 						}
 					}
 				}
+
+				# Vatican City
+				if = { limit = { ROOT = { original_tag = HLS } }
+					if = {
+						limit = {
+							FROM = {
+								has_war_with = HLS
+								OR = {
+									has_idea = sunni
+									has_idea = sufi_islam
+									has_idea = shia
+									has_idea = ibadi
+									tag = NIG
+									tag = ISI
+								}
+								NOT = { has_idea = HLS_idea_global_crusade_target }
+								NOT = { has_idea = HLS_idea_holy_war }
+								HLS = { NOT = { has_government = fascism } }
+							}
+						}
+						FROM = {
+							HLS = { country_event = vatican.7 }
+						}
+					}
+				}
 			}
 		}
 	}

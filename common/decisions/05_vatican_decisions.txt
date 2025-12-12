@@ -1,7 +1,6 @@
-decisions_HLS = {
-	decisions_HLS_ask_for_more_swiss_guard_unit = {
+HLS_decision_category = {
+	HLS_ask_for_more_swiss_guard_unit = {
 		visible = {
-			tag = HLS
 			OR = {
 				SWI = { is_subject_of = HLS }
 				country_exists = SWI
@@ -14,7 +13,6 @@ decisions_HLS = {
 		icon = generic_political_discourse
 
 		cost = 50
-		fire_only_once = no
 		days_re_enable = 100
 		days_remove = 100
 
@@ -69,22 +67,22 @@ decisions_HLS = {
 		}
 	}
 
-	decisions_HLS_accept_islam = {
+	HLS_accept_islam = {
 		visible = {
 			tag = HLS
-			NOT = { has_idea = idea_HLS_rejected_islam }
+			NOT = { has_idea = HLS_idea_rejected_islam }
 		}
 		available = {
 			NOT = { has_completed_focus = HLS_anti_islamist_crusade }
-			NOT = { has_idea = idea_HLS_rejected_islam }
+			NOT = { has_idea = HLS_idea_rejected_islam }
 		}
 		icon = eng_propaganda_campaigns
 		cost = 250
 		fire_only_once = yes
 		complete_effect = {
-			add_ideas = idea_HLS_accepted_islam
+			add_ideas = HLS_idea_accepted_islam
 			hidden_effect = {
-				news_event = vatican_news_events.2
+				news_event = vatican_news.2
 				every_country = {
 					limit = {
 						has_government = fascism
@@ -93,7 +91,7 @@ decisions_HLS = {
 					reverse_add_opinion_modifier = { target = ROOT modifier = accepted_islam }
 				}
 			}
-			custom_effect_tooltip = decisions_HLS_accept_islam_tooltip
+			custom_effect_tooltip = HLS_accept_islam_tooltip
 		}
 		ai_will_do = {
 			factor = 0
@@ -104,22 +102,22 @@ decisions_HLS = {
 		}
 	}
 
-	decisions_HLS_condemn_islam = {
+	HLS_condemn_islam = {
 		visible = {
 			tag = HLS
-			NOT = { has_idea = idea_HLS_accepted_islam }
+			NOT = { has_idea = HLS_idea_accepted_islam }
 		}
 		available = {
 			NOT = { has_completed_focus = HLS_a_dark_path }
-			NOT = { has_idea = idea_HLS_accepted_islam }
+			NOT = { has_idea = HLS_idea_accepted_islam }
 		}
 		icon = oppression
 		cost = 50
 		fire_only_once = yes
 		complete_effect = {
-			add_ideas = idea_HLS_rejected_islam
+			add_ideas = HLS_idea_rejected_islam
 			hidden_effect = {
-				news_event = vatican_news_events.3
+				news_event = vatican_news.3
 				every_country = {
 					limit = {
 						has_idea = sunni
@@ -133,7 +131,7 @@ decisions_HLS = {
 					reverse_add_opinion_modifier = { target = ROOT modifier = rejected_islam }
 				}
 			}
-			custom_effect_tooltip = decisions_HLS_condemn_islam_tooltip
+			custom_effect_tooltip = HLS_condemn_islam_tooltip
 		}
 		ai_will_do = {
 			factor = 2
@@ -144,7 +142,7 @@ decisions_HLS = {
 		}
 	}
 
-	decisions_HLS_general_audience = {
+	HLS_general_audience = {
 		visible = {
 			tag = HLS
 		}
@@ -185,7 +183,7 @@ decisions_HLS = {
 		}
 	}
 
-	decisions_HLS_rename_istanbul = {
+	HLS_rename_istanbul = {
 		visible = {
 			tag = HLS
 			HLS = { controls_state = 934 }
@@ -205,7 +203,7 @@ decisions_HLS = {
 			add_stability = 0.05
 			934 = { set_state_name = "Constantinople" }
 			add_state_core = 934
-			news_event = vatican_news_events.4
+			news_event = vatican_news.4
 		}
 
 		ai_will_do = {
@@ -213,7 +211,7 @@ decisions_HLS = {
 		}
 	}
 
-	decisions_HLS_religious_recruits = {
+	HLS_religious_recruits_decision = {
 		visible = {
 			tag = HLS
 			NOT = { has_completed_focus = HLS_a_dark_path }
@@ -267,7 +265,7 @@ decisions_HLS = {
 		}
 	}
 
-	decisions_HLS_international_jihadists = {
+	HLS_international_jihadists_decision = {
 		visible = {
 			tag = HLS
 			has_completed_focus = HLS_a_dark_path
@@ -310,7 +308,7 @@ decisions_HLS = {
 				}
 				add_manpower = 2000
 			}
-			custom_effect_tooltip = HLS_international_jihadists_tt
+			custom_effect_tooltip = HLS_international_jihadists_decision_tt
 		}
 
 		ai_will_do = {
