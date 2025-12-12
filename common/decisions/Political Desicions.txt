@@ -229,6 +229,10 @@ generic_coalition_politics_decisions = {
 				}
 			}
 			if = {
+				limit = { original_tag = LBA }
+				NOT = { has_idea = LBA_aftermath_of_the_civil_war }
+			}
+			if = {
 				limit = { tag = ARM }
 				NOT = {
 					emerging_reactionaries_are_in_power = yes
@@ -318,6 +322,10 @@ generic_coalition_politics_decisions = {
 
 		available = {
 			NOT = { has_active_mission = coalition_countdown }
+			if = {
+				limit = { original_tag = LBA }
+				NOT = { has_idea = LBA_aftermath_of_the_civil_war }
+			}
 		}
 
 		complete_effect = {
@@ -473,6 +481,7 @@ generic_coalition_politics_decisions = {
 		}
 
 		available = {
+			has_civil_war = no
 			if = {
 				limit = { original_tag = LBA }
 				OR = {
@@ -1121,7 +1130,6 @@ generic_coalition_politics_decisions = {
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision vilayat_e_faqih_extremist_civil_war"
-
 			hidden_effect = {
 				#Release copy of existing
 				start_civil_war_with_no_leader_change = yes
@@ -1130,7 +1138,7 @@ generic_coalition_politics_decisions = {
 				random_other_country = {
 					limit = {
 						original_tag = PREV
-						NOT = { TAG = PREV }
+						NOT = { tag = PREV }
 					}
 					civil_war_replication_effect = yes
 				}
@@ -1150,6 +1158,8 @@ generic_coalition_politics_decisions = {
 					add_to_array = { ruling_party = 9 } #shiite theocracy
 					set_variable = { party_pop_array^9 = 0.9 } #generate the rest
 					startup_politics = yes
+
+					add_ideas = shia
 				}
 
 				#Switch to shiite leader
@@ -2340,95 +2350,6 @@ generic_coalition_politics_decisions = {
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision HOL_remove_dutchaid"
 			remove_ideas = HOL_dutchaid
-		}
-	}
-
-	strategy_of_invigorating_through_STE = {
-
-		allowed = { original_tag = CHI }
-
-		icon = GFX_decision_generic_research
-
-		is_good = yes
-
-		days_mission_timeout = 730
-
-		days_remove = 730
-
-		fire_only_once = yes
-
-		activation = {
-			has_completed_focus = CHI_Invigorate_Country_Through_STE
-		}
-
-		available = {
-			has_completed_focus = CHI_Invigorate_Country_Through_STE
-		}
-
-		modifier = {
-			education_cost_multiplier_modifier = 0.05
-		}
-
-		timeout_effect = {
-			random_list = {
-				50 = {
-					add_tech_bonus = {
-						name = strategy_of_invigorating_through_STE
-						bonus = 0.3
-						uses = 1
-						category = CAT_internet_tech
-					}
-				}
-				50 = {
-					add_tech_bonus = {
-						name = strategy_of_invigorating_through_STE
-						bonus = 0.3
-						uses = 1
-						category = CAT_computing_tech
-					}
-				}
-			}
-		}
-	}
-
-	increase_research_funds = {
-		icon = GFX_decision_category_debt_payments
-
-		allowed = { original_tag = CHI }
-
-		icon = GFX_decision_generic_research
-
-		available = {
-			has_completed_focus = CHI_Invigorate_Country_Through_STE
-		}
-
-		activation = {
-			has_completed_focus = CHI_Invigorate_Country_Through_STE
-		}
-
-		custom_cost_trigger = {
-			check_variable = { treasury > 3.49 }
-		}
-
-		custom_cost_text = cost_3_5
-
-		days_mission_timeout = 120
-
-		days_re_enable = 60
-
-		days_remove = 120
-
-		selectable_mission = no
-
-		is_good = yes
-
-		modifier = {
-			research_speed_factor = 0.05
-		}
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = -3.5 }
-			modify_treasury_effect = yes
 		}
 	}
 
