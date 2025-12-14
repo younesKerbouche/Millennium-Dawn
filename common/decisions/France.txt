@@ -1010,6 +1010,14 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_red_benelux"
+			set_temp_variable = { temp_change = 0.01 }
+			FRA_WR_commie_drift = yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_coreattack =yes
+			set_temp_variable = { temp_change = -0.2 }
+			FRA_WR_education_cost =yes
+			set_temp_variable = { temp_change = -0.025 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1103,6 +1111,14 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_done_with_dumping"
+			set_temp_variable = { temp_change = 0.01 }
+			FRA_WR_commie_drift = yes
+			set_temp_variable = { temp_change = -1 }
+			FRA_WR_interest =yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_office_money = yes
+			set_temp_variable = { temp_change = -0.025 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1152,28 +1168,78 @@ FRA_french_communism_expansionism_decision_category = {
 			}
 		}
 	}
-	FRA_redo_the_republic = {
+	FRA_red_iberia = {
 		fire_only_once = yes
 		days_remove = 35
 		cost = 25
 		visible = {
-			AND = {
-				country_exists = SPR
-				NOT = {
-					OR = {
-						SPR = {
-							is_in_faction_with = FRA
-							is_subject_of = FRA
+			OR = {
+				AND = {
+					country_exists = SPR
+					NOT = {
+						OR = {
+							SPR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+				AND = {
+					country_exists = POR
+					NOT = {
+						OR = {
+							POR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
 						}
 					}
 				}
 			}
 		}
 		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision FRA_redo_the_republic"
-			create_wargoal = {
-				type = puppet_wargoal_focus
-				target = SPR
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_red_iberia"
+			set_temp_variable = { temp_change = 0.02 }
+			FRA_WR_commie_drift = yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_WR_terrain_penalty =yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_construction = yes
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_WR_stab =yes
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							SPR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = SPR
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							POR = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+
+						}
+					}
+				}
+				POR={
+					country_event = france_md.313
+				}
 			}
 		}
 	}
@@ -1196,6 +1262,14 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_ciao_bella"
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_WR_propaganda = yes
+			set_temp_variable = { temp_change = -0.15 }
+			FRA_WR_terrain_penalty =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_navy_speed = yes
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_WR_stab =yes
 			create_wargoal = {
 				type = puppet_wargoal_focus
 				target = ITA
@@ -1234,6 +1308,16 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_avenge_long_knife"
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_WR_coredefence = yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_tank_attack =yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_tank_speed =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_renable =yes
+			set_temp_variable = { temp_change = -0.075 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1389,6 +1473,14 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_ostalgia"
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_WR_coredefence = yes
+			set_temp_variable = { temp_change = -0.15 }
+			FRA_WR_consummer_goods = yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_agriculture_prod =yes
+			set_temp_variable = { temp_change = -0.1 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1594,6 +1686,16 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_birthplace_revolution"
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_WR_artillery_attack = yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_winter_climat = yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_agriculture_prod =yes
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_WR_police_cost =yes
+			set_temp_variable = { temp_change = -0.12 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1699,6 +1801,16 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_no_more_neutrality"
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_WR_social_cost = yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_winter_climat = yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_prod_effi =yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_WR_reco =yes
+			set_temp_variable = { temp_change = -0.075 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1797,6 +1909,16 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_cold_war2"
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_amphibious_invasion_speed = yes
+			set_temp_variable = { temp_change = 0.2 }
+			FRA_WR_navy_range = yes
+			set_temp_variable = { temp_change = 0.075 }
+			FRA_WR_navy_coord =yes
+			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_special_forces_attack =yes
+			set_temp_variable = { temp_change = -0.15 }
+			FRA_WR_stab =yes
 			if = {
 				limit = {
 					NOT = {
@@ -1829,6 +1951,48 @@ FRA_french_communism_expansionism_decision_category = {
 				create_wargoal = {
 					type = puppet_wargoal_focus
 					target = ENG
+				}
+			}
+		}
+	}
+	FRA_red_Europe = {
+		fire_only_once = yes
+		days_remove = 50
+		cost = 100
+		visible = {
+			AND = {
+				is_subject = no
+				any_country = {
+					limit = {
+						AND = {
+							is_in_europe = yes
+							NOT = {
+								is_in_faction_with = FRA
+								is_subject_of = FRA
+							}
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_red_Europe"
+			country_event = france_md.316
+			every_other_country = {
+				limit = {
+					AND = {
+						is_in_europe = yes
+						NOT = {
+							is_in_faction_with = FRA
+							is_subject_of = FRA
+						}
+					}
+				}
+				FRA = {
+					create_wargoal = {
+						type = puppet_wargoal_focus
+						target = FROM
+					}
 				}
 			}
 		}
