@@ -1388,7 +1388,7 @@
 	focus = {
 		id = SWI_armee_suisse
 		icon = focus_SWI_continuous_support_active_militias
-		x = 12
+		x = 16
 		y = 10
 		cost = 7.2
 		search_filters = { FOCUS_FILTER_ARMY }
@@ -1409,7 +1409,7 @@
 	focus = {
 		id = SWI_mil_industry_expansion
 		icon = industry_civilian
-		x = 12
+		x = 16
 		y = 11
 		cost = 7.2
 		prerequisite = {
@@ -1418,14 +1418,9 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_mil_industry_expansion"
-				add_ideas = SWI_mil_industry_expansion
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					military_factory_construction_speed = 0.20
-				}
+				add_ideas = SWI_mil_industry_1
+				set_temp_variable = { SWI_production_speed_arms_factory_factor_change = 0.2 }
+				update_SWI_production_speed_arms_factory_factor = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1435,7 +1430,7 @@
 	focus = {
 		id = SWI_sig_neuhausen_factory
 		icon = industry_military
-		x = 11
+		x = 15
 		y = 12
 		cost = 7.2
 		prerequisite = {
@@ -1461,7 +1456,7 @@
 	focus = {
 		id = SWI_sig_graubunden_factory
 		icon = industry_military
-		x = 13
+		x = 17
 		y = 12
 		cost = 7.2
 		prerequisite = {
@@ -1487,7 +1482,7 @@
 	focus = {
 		id = SWI_fund_arms_production
 		icon = focus_SWI_issue_war_bonds
-		x = 10
+		x = 14
 		y = 13
 		cost = 7.2
 		prerequisite = {
@@ -1496,13 +1491,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_fund_arms_production"
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					military_factory_revenue = 0.25
-				}
+				set_temp_variable = { SWI_military_industry_tax_modifier_change = 0.25 }
+				update_SWI_military_industry_tax_modifier = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1512,7 +1502,7 @@
 	focus = {
 		id = SWI_infrastructural_advancement
 		icon = infrastructure1
-		x = 12
+		x = 16
 		y = 13
 		cost = 7.2
 		prerequisite = {
@@ -1547,7 +1537,7 @@
 	focus = {
 		id = SWI_expand_gdels_mowag
 		icon = focus_SWI_embrace_panoramaheim
-		x = 14
+		x = 18
 		y = 13
 		cost = 7.2
 		prerequisite = {
@@ -1572,7 +1562,7 @@
 	focus = {
 		id = SWI_arms_industry_automatization
 		icon = army_military_industryy
-		x = 11
+		x = 15
 		y = 14
 		cost = 7.2
 		prerequisite = {
@@ -1584,13 +1574,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_arms_industry_automatization"
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					var:econ_production_efficiency_cap = 0.15
-				}
+				set_temp_variable = { SWI_production_factory_max_efficiency_factor_change = 0.15 }
+				update_SWI_production_factory_max_efficiency_factor = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1600,7 +1585,7 @@
 	focus = {
 		id = SWI_workforce_exploitation
 		icon = focus_generic_full_employment
-		x = 13
+		x = 17
 		y = 14
 		cost = 7.2
 		prerequisite = {
@@ -1612,14 +1597,10 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_workforce_exploitation"
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					var:econ_factory_output = 0.10
-					recruitable_population = -0.025
-				}
+				set_temp_variable = { SWI_conscription_factor_change = 0.02 }
+				update_SWI_conscription_factor = yes
+				set_temp_variable = { SWI_industrial_capacity_factory_change = 0.10 }
+				update_SWI_industrial_capacity_factory = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1629,7 +1610,7 @@
 	focus = {
 		id = SWI_new_factory_ruag
 		icon = construct_factory
-		x = 12
+		x = 16
 		y = 15
 		cost = 7.2
 		prerequisite = {
@@ -1657,7 +1638,7 @@
 	focus = {
 		id = SWI_cooperation_with_rheinmetall
 		icon = revive_rhineland
-		x = 11
+		x = 15
 		y = 16
 		cost = 7.2
 		prerequisite = {
@@ -1666,13 +1647,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_cooperation_with_rheinmetall"
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					armored_vehicle_production_cost = -0.15
-				}
+				add_ideas = SWI_rheinmetall_cooperation
 			}
 		ai_will_do = {
 			base = 1
@@ -1682,7 +1657,7 @@
 	focus = {
 		id = SWI_cooperation_with_thales
 		icon = thales_group_france
-		x = 13
+		x = 17
 		y = 16
 		cost = 7.2
 		prerequisite = {
@@ -1691,13 +1666,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_cooperation_with_thales"
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					armored_vehicle_resource_cost = -0.10
-				}
+				add_ideas = SWI_thales_cooperation
 			}
 		ai_will_do = {
 			base = 1
@@ -1707,7 +1676,7 @@
 	focus = {
 		id = SWI_cooperation_with_lufthansa
 		icon = lufthansa_logo
-		x = 12
+		x = 16
 		y = 17
 		cost = 7.2
 		prerequisite = {
@@ -1719,14 +1688,209 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_cooperation_with_lufthansa"
-				modify_idea = {
-					idea = SWI_mil_industry_expansion
-					allowed = {
-						has_idea = SWI_mil_industry_expansion
-					}
-					light_airframe_production_cost = -0.15
-					medium_airframe_production_cost = -0.15
-				}
+				add_ideas = SWI_lufthansa_cooperation
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_general_staff
+		icon = Swiss_Army_2
+		x = 21
+		y = 12
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_mil_industry_expansion
+		}
+		prerequisite = {
+			focus = SWI_airforce_modernization
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_general_staff"
+				set_temp_variable = { SWI_army_org_factor_change = 0.1 }
+				update_SWI_army_org_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_combined_arms_implementation
+		icon = Focus_Mobile_Warfare_Doctrine
+		x = 21
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_general_staff
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_combined_arms_implementation"
+				set_temp_variable = { SWI_modifier_army_sub_unit_Mech_Inf_Bat_attack_factor_change = 0.05 }
+				update_SWI_modifier_army_sub_unit_Mech_Inf_Bat_attack_factor = yes
+				set_temp_variable = { SWI_modifier_army_sub_unit_Mech_Inf_Bat_defence_factor_change = 0.05 }
+				update_SWI_modifier_army_sub_unit_Mech_Inf_Bat_defence_factor = yes
+				set_temp_variable = { SWI_modifier_army_sub_unit_Arm_Inf_Bat_attack_factor_change = 0.05 }
+				update_SWI_modifier_army_sub_unit_Arm_Inf_Bat_attack_factor = yes
+				set_temp_variable = { SWI_modifier_army_sub_unit_Arm_Inf_Bat_defence_factor_change = 0.05 }
+				update_SWI_modifier_army_sub_unit_Arm_Inf_Bat_defence_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_gemeinsames_ok
+		icon = spec-ops
+		x = 20
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_combined_arms_implementation
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_gemeinsames_ok"
+				set_temp_variable = { SWI_land_doctrine_cost_factor_change = -0.1 }
+				update_SWI_land_doctrine_cost_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_ausbildungskommando
+		icon = Generic_Barricade
+		x = 22
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_combined_arms_implementation
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_ausbildungskommando"
+				set_temp_variable = { SWI_training_time_factor_change = -0.1 }
+				update_SWI_training_time_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_army_on_wheels
+		icon = the_road_of_life
+		x = 21
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_gemeinsames_ok
+		}
+		prerequisite = {
+			focus = SWI_ausbildungskommando
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_army_on_wheels"
+				set_temp_variable = { SWI_breakthrough_factor_change = 0.05 }
+				update_SWI_breakthrough_factor = yes
+				set_temp_variable = { SWI_army_defence_factor_change = 0.05 }
+				update_SWI_army_defence_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_gebirgstruppen
+		icon = kurd_mountainwarafre
+		x = 20
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_army_on_wheels
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_gebirgstruppen"
+				set_temp_variable = { SWI_mountaineers_special_forces_contribution_factor_change = 0.05 }
+				update_SWI_mountaineers_special_forces_contribution_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_territorrial_divisions
+		icon = Generic_Colonial_Army
+		x = 22
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_army_on_wheels
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_territorrial_divisions"
+				add_ideas = SWI_territorial_divisions
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_logistikbasis_der_armee
+		icon = kurd_mountainwarafre
+		x = 21
+		y = 17
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_gebirgstruppen
+		}
+		prerequisite = {
+			focus = SWI_territorrial_divisions
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_logistikbasis_der_armee"
+				set_temp_variable = { SWI_supply_consumption_factor_change = 0.1 }
+				update_SWI_supply_consumption_factor = yes
+				set_temp_variable = { SWI_army_fuel_capacity_factor_change = 0.1 }
+				update_SWI_army_fuel_capacity_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_kommando_specialkrafte
+		icon = counter
+		x = 21
+		y = 18
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_logistikbasis_der_armee
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_kommando_specialkrafte"
+				set_temp_variable = { SWI_modifier_army_sub_unit_Special_Forces_attack_factor_change = 0.05 }
+				update_SWI_modifier_army_sub_unit_Special_Forces_attack_factor = yes
+				set_temp_variable = { SWI_modifier_army_sub_unit_Special_Forces_defence_factor_change = 0.05 }
+				update_SWI_modifier_army_sub_unit_Special_Forces_defence_factor = yes
+				set_temp_variable = { SWI_special_forces_out_of_supply_factor_change = 0.3 }
+				update_SWI_special_forces_out_of_supply_factor = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1736,7 +1900,7 @@
 	focus = {
 		id = SWI_research_and_development
 		icon = research2
-		x = 2
+		x = 4
 		y = 11
 		cost = 7.2
 		prerequisite = {
@@ -1745,7 +1909,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_research_and_development"
-				research_speed_factor = 0.05
+				add_ideas = SWI_research_and_development
 			}
 		ai_will_do = {
 			base = 1
@@ -1753,9 +1917,391 @@
 	}
 
 	focus = {
+		id = SWI_asd_gruppe
+		icon = research3
+		x = 4
+		y = 12
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_research_and_development
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_asd_gruppe"
+			swap_ideas = {
+				remove_idea = SWI_research_and_development
+				add_idea = SWI_asd_gruppe
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_small_arms_development
+		icon = generic_rifle2
+		x = 2
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_asd_gruppe
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_small_arms_development"
+				add_tech_bonus = {
+					name = CAT_small_arms
+					bonus = 0.5
+					uses = 2
+					category = CAT_small_arms
+				}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_armored_vehicles_study
+		icon = Focus_Examine_Foreign_Tanks
+		x = 4
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_asd_gruppe
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_armored_vehicles_study"
+				add_tech_bonus = {
+					name = CAT_armor
+					bonus = 0.5
+					uses = 2
+					category = CAT_armor
+				}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_airframes_study
+		icon = modern_fighter
+		x = 6
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_asd_gruppe
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_airframes_study"
+				add_tech_bonus = {
+					name = CAT_BBA_aircraft
+					bonus = 0.5
+					uses = 2
+					category = CAT_BBA_aircraft
+				}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_sig_ag_research_teams
+		icon = army_build_rifle
+		x = 1
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_small_arms_development
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_sig_ag_research_teams"
+				add_ideas = SWI_sig_sauer_ag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_precision_launch_platforms
+		icon = army_pzrk1
+		x = 0
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_sig_ag_research_teams
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_precision_launch_platforms"
+				add_ideas = SWI_precision_launch_platforms
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_support_platforms_research
+		icon = Generic_Support_Equipment
+		x = 2
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_sig_ag_research_teams
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_support_platforms_research"
+				swap_ideas = {
+				remove_idea = SWI_sig_sauer_ag
+				add_idea = SWI_sig_sauer_ag_2
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_mass_produced_firearms
+		icon = army_more_m16
+		x = 1
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_precision_launch_platforms
+		}
+		prerequisite = {
+			focus = SWI_support_platforms_research
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_mass_produced_firearms"
+				swap_ideas = {
+				remove_idea = SWI_sig_sauer_ag_2
+				add_idea = SWI_sig_sauer_ag_3
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_mbt_concept
+		icon = stridsvagn_122
+		x = 3
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_armored_vehicles_study
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_mbt_concept"
+				add_ideas = SWI_ruag_ag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_spart_systems
+		icon = Generic_SPG
+		x = 5
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_armored_vehicles_study
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_spart_systems"
+				add_ideas = SWI_mowag_ag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_spaa_systems
+		icon = army_antiair
+		x = 4
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_mbt_concept
+		}
+		prerequisite = {
+			focus = SWI_spart_systems
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_spaa_systems"
+				swap_ideas = {
+				remove_idea = SWI_mowag_ag
+				add_idea = SWI_mowag_ag_2
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_production_line_innovations
+		icon = army_tank_industry
+		x = 4
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_spaa_systems
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_production_line_innovations"
+				swap_ideas = {
+				remove_idea = SWI_ruag_ag
+				add_idea = SWI_ruag_ag_2
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_import_missile_tech
+		icon = focus_rocketry
+		x = 7
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_airframes_study
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_import_missile_tech"
+				add_ideas = SWI_pilatus_ag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_helicopter_research
+		icon = helicopter_1
+		x = 6
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_import_missile_tech
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_helicopter_research"
+				add_tech_bonus = {
+					name = CAT_air_techs
+					bonus = 0.5
+					uses = 2
+					category = CAT_air_techs
+				}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_air_cavalry_armament
+		icon = people_helicopter
+		x = 8
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_import_missile_tech
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_air_cavalry_armament"
+				swap_ideas = {
+				remove_idea = SWI_pilatus_ag
+				add_idea = SWI_sig_pilatus_ag_2
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_gunship_development
+		icon = Generic_Attack_Helicopter_Upgrade
+		x = 7
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_helicopter_research
+		}
+		prerequisite = {
+			focus = SWI_air_cavalry_armament
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_gunship_development"
+				swap_ideas = {
+				remove_idea = SWI_pilatus_ag_2
+				add_idea = SWI_sig_pilatus_ag_3
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_generational_leap
+		icon = old_new_doctrine
+		x = 4
+		y = 17
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_mass_produced_firearms
+		}
+		prerequisite = {
+			focus = SWI_production_line_innovations
+		}
+		prerequisite = {
+			focus = SWI_gunship_development
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_production_line_innovations"
+				swap_ideas = {
+				remove_idea = SWI_ruag_ag_2
+				add_idea = SWI_ruag_ag_3
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
 		id = SWI_airforce_modernization
-		icon = air_force
-		x = 20
+		icon = Swiss_Air_Force_1
+		x = 27
 		y = 11
 		cost = 7.2
 		prerequisite = {
@@ -1765,12 +2311,54 @@
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_airforce_modernization"
 				add_ideas = SWI_airforce_modernization
-				modify_idea = {
-					idea = SWI_airforce_modernization
-					allowed = {
-						has_idea = SWI_airforce_modernization
-					}
-					air_experience_gain = 0.10
+				set_temp_variable = { SWI_experience_gain_air_change = 0.10 }
+				update_SWI_experience_gain_air = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_general_air_defense
+		icon = fighters
+		x = 25
+		y = 12
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_airforce_modernization
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_general_air_defense"
+				set_temp_variable = { SWI_air_superiority_efficiency_change = 0.05 }
+				update_SWI_air_superiority_efficiency = yes
+				set_temp_variable = { SWI_air_attack_change = 0.05 }
+				update_SWI_air_attack = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_import_eurofighters
+		icon = fighter_plane
+		x = 24
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_general_air_defense
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_import_eurofighters"
+				set_temp_variable = { treasury_change = gdp_per_capita }
+				multiply_temp_variable = { treasury_change = -0.15 }
+				modify_treasury_effect = yes
+				add_equipment_to_stockpile = {
+					type = AS_Fighter_equipment
+					amount = 40
 				}
 			}
 		ai_will_do = {
@@ -1779,9 +2367,246 @@
 	}
 
 	focus = {
+		id = SWI_import_rafale_fighters
+		icon = Generic_Firebombing
+		x = 26
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_general_air_defense
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_import_rafale_fighters"
+				set_temp_variable = { treasury_change = gdp_per_capita }
+				multiply_temp_variable = { treasury_change = -0.15 }
+				modify_treasury_effect = yes
+				add_equipment_to_stockpile = {
+					type = AS_Fighter_equipment
+					amount = 40
+				}
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_german_manufactoring
+		icon = Jet_Fighters
+		x = 24
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_import_eurofighters
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_german_manufactoring"
+				add_ideas = SWI_german_manufactoring
+			}
+				ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_french_manufactoring
+		icon = Jet_Fighters
+		x = 26
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_import_rafale_fighters
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_french_manufactoring"
+				add_ideas = SWI_french_manufactoring
+			}
+				ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_interception_practices
+		icon = escort_fighters
+		x = 25
+		y = 15
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_german_manufactoring
+		}
+		prerequisite = {
+			focus = SWI_french_manufactoring
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_interception_practices"
+				set_temp_variable = { SWI_air_interception_efficiency_change = 0.08 }
+				update_SWI_air_interception_efficiency = yes
+				set_temp_variable = { SWI_air_escort_efficiency_change = 0.08 }
+				update_SWI_air_escort_efficiency = yes
+			}
+				ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_multi_role_specialization
+		icon = f35
+		x = 24
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_interception_practices
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_multi_role_specialization"
+				add_ideas = SWI_multi_role_specialization
+			}
+				ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_air_sup_adaptation
+		icon = fighters2
+		x = 26
+		y = 16
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_interception_practices
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_air_sup_adaptation"
+				add_ideas = SWI_air_sup_adaptation
+			}
+				ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_acquire_transport_planes
+		icon = Generic_Transport_Aircraft
+		x = 25
+		y = 17
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_multi_role_specialization
+		}
+		prerequisite = {
+			focus = SWI_air_sup_adaptation
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_acquire_transport_planes"
+				set_temp_variable = { treasury_change = gdp_per_capita }
+				multiply_temp_variable = { treasury_change = -0.15 }
+				modify_treasury_effect = yes
+				add_equipment_to_stockpile = {
+					type = transport_plane4
+					amount = 25
+				}
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_airbase_expansion
+		icon = airforce_base_1
+		x = 28
+		y = 12
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_airforce_modernization
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_airbase_expansion"
+				72 = {
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+				}
+				74 = {
+					add_building_construction = {
+						type = air_base
+						instant_build = yes
+					}
+				}
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_nasams_batteries
+		icon = mlw_sam_sites
+		x = 28
+		y = 13
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_airbase_expansion
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_nasams_batteries"
+				72 = {
+					add_building_construction = {
+						type = anti_air_building
+						level = 2
+						instant_build = yes
+					}
+				}
+				74 = {
+					add_building_construction = {
+						type = anti_air_building
+						level = 2
+						instant_build = yes
+					}
+				}
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_florako
+		icon = radar2
+		x = 28
+		y = 14
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_nasams_batteries
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_florako"
+				add_ideas = SWI_spirit_mil_industry_1
+				set_temp_variable = { SWI_production_speed_radar_station_factor_change = 0.1 }
+				update_SWI_production_speed_radar_station_factor = yes}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
 		id = SWI_revise_isolation_strategy
 		icon = focus_SWI_federal_police
-		x = 7
+		x = 11
 		y = 12
 		cost = 7.2
 		prerequisite = {
@@ -1794,13 +2619,6 @@
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_revise_isolation_strategy"
 				add_ideas = SWI_defensive_strategy
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					division_defense = 0.05
-				}
 			}
 		ai_will_do = {
 			base = 1
@@ -1810,7 +2628,7 @@
 	focus = {
 		id = SWI_log_tunnel_network
 		icon = amprop
-		x = 7
+		x = 11
 		y = 13
 		cost = 7.2
 		prerequisite = {
@@ -1819,13 +2637,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_log_tunnel_network"
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					var:org_loss_when_moving = -0.10
-				}
+				set_temp_variable = { SWI_org_loss_when_moving_change = -0.10 }
+				update_SWI_org_loss_when_moving = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1835,7 +2648,7 @@
 	focus = {
 		id = SWI_domestic_res_output
 		icon = focus_generic_resource_extraction
-		x = 6
+		x = 10
 		y = 14
 		cost = 7.2
 		prerequisite = {
@@ -1844,13 +2657,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_domestic_res_output"
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					local_resources_factor = 0.20
-				}
+				set_temp_variable = { SWI_local_resources_factor_change = 0.20 }
+				update_SWI_local_resources_factor = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1860,7 +2668,7 @@
 	focus = {
 		id = SWI_strat_supply_reserves
 		icon = barrels
-		x = 8
+		x = 12
 		y = 14
 		cost = 7.2
 		prerequisite = {
@@ -1893,7 +2701,7 @@
 	focus = {
 		id = SWI_environmental_adaptation
 		icon = generic_entrenchment
-		x = 7
+		x = 11
 		y = 15
 		cost = 7.2
 		prerequisite = {
@@ -1905,13 +2713,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_environmental_adaptation"
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					army_core_defence_factor = 0.15
-				}
+				set_temp_variable = { SWI_army_core_defence_factor_change = 0.15 }
+				update_SWI_army_core_defence_factor = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1921,7 +2724,7 @@
 	focus = {
 		id = SWI_repair_decaying_forts
 		icon = focus_SWI_complete_siegfried_line
-		x = 6
+		x = 10
 		y = 16
 		cost = 7.2
 		prerequisite = {
@@ -1959,8 +2762,8 @@
 
 	focus = {
 		id = SWI_piece_of_our_past
-		icon = focus_SWI_patriotic_shooting_clubs
-		x = 8
+		icon = focus_SWI_helvetic_junta
+		x = 12
 		y = 16
 		cost = 7.2
 		prerequisite = {
@@ -1969,13 +2772,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_piece_of_our_past"
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					civilian_industry_tax_modifier = 0.05
-				}
+				set_temp_variable = { civilian_industry_tax_modifier_change = 0.05 }
+				update_civilian_industry_tax_modifier = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1985,7 +2783,7 @@
 	focus = {
 		id = SWI_graubunden_gold_silver
 		icon = gold_standard
-		x = 5
+		x = 9
 		y = 17
 		cost = 7.2
 		prerequisite = {
@@ -2009,7 +2807,7 @@
 	focus = {
 		id = SWI_natural_deterrence
 		icon = static_defense
-		x = 7
+		x = 11
 		y = 17
 		cost = 7.2
 		prerequisite = {
@@ -2021,13 +2819,8 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_natural_deterrence"
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					cas_damage_reduction = 0.15
-				}
+				set_temp_variable = { SWI_cas_damage_reduction_change = 0.10 }
+				update_SWI_cas_damage_reduction = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -2037,7 +2830,7 @@
 	focus = {
 		id = SWI_graubunden_iron_mines
 		icon = focus_CHL_silverworking
-		x = 9
+		x = 13
 		y = 17
 		cost = 7.2
 		prerequisite = {
@@ -2061,7 +2854,7 @@
 	focus = {
 		id = SWI_defensive_fortifications
 		icon = focus_SWI_the_national_redoubt
-		x = 7
+		x = 11
 		y = 18
 		cost = 7.2
 		prerequisite = {
@@ -2070,13 +2863,75 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_defensive_fortifications"
-				modify_idea = {
-					idea = SWI_defensive_strategy
-					allowed = {
-						has_idea = SWI_defensive_strategy
-					}
-					land_bunker_effectiveness_factor = 0.15
-				}
+				set_temp_variable = { SWI_land_bunker_effectiveness_factor_change = 0.15 }
+				update_SWI_land_bunker_effectiveness_factor = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_fourth_generation_warfare
+		icon = army_cyberwar
+		x = 16
+		y = 19
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_defensive_fortifications
+		}
+		prerequisite = {
+			focus = SWI_cooperation_with_lufthansa
+		}
+		prerequisite = {
+			focus = SWI_kommando_specialkrafte
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_fourth_generation_warfare"
+				add_ideas = SWI_fourth_generation_warfare
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_nationale_csz
+		icon = cryptography
+		x = 16
+		y = 20
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_fourth_generation_warfare
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_nationale_csz"
+				set_temp_variable = { SWI_agency_upgrade_time_change = 0.15 }
+				update_SWI_agency_upgrade_time = yes
+				set_temp_variable = { SWI_foreign_subversive_activites_change = -0.10 }
+				update_SWI_foreign_subversive_activites = yes
+			}
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = SWI_offensive_ambitions
+		icon = focus_SWI_expand_the_federation
+		x = 16
+		y = 21
+		cost = 7.2
+		prerequisite = {
+			focus = SWI_nationale_csz
+		}
+		search_filters = { FOCUS_FILTER_ARMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus SWI_offensive_ambitions"
+				set_temp_variable = { SWI_breakthrough_factor_change = 0.1 }
+				update_SWI_breakthrough_factor = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -6533,7 +7388,7 @@
 			focus = SWI_neutral_foreign_policy
 		}
 		completion_reward = {
-			set_temp_variable = { percent_change = +5 }
+			set_temp_variable = { percent_change = 5 }
 			change_domestic_influence_percentage = yes
 
 		}
