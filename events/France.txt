@@ -2658,7 +2658,7 @@ country_event = {
 		SOV = {
 			add_ideas=FRA_russian_cooperation2
 		}
-		add_war_support = 0.15
+		add_war_support = 0.075
 
 		ai_chance = {
 			base = 1
@@ -2667,23 +2667,7 @@ country_event = {
 	option = {
 		name = france_md.183.c
 		log = "[GetDateText]: [This.GetName]: france_md.183.c executed"
-		FRA = {
-			country_event = france_md.186
-		}
-		SOV = {
-			add_ideas=FRA_Paris_Moscow_Axis
-		}
-		add_war_support = 0.2
-		add_political_power = -100
-
-		ai_chance = {
-			base = 1
-		}
-	}
-	option = {
-		name = france_md.183.d
-		log = "[GetDateText]: [This.GetName]: france_md.183.d executed"
-		add_stability = 0.15
+		add_stability = 0.1
 		add_political_power = 150
 		FRA = {
 			country_event = france_md.187
@@ -2718,33 +2702,6 @@ country_event = {
 		name = france_md.185.a
 		log = "[GetDateText]: [This.GetName]: france_md.185.a executed"
 		add_ideas=FRA_russian_cooperation2
-
-		ai_chance = {
-			base = 1
-		}
-	}
-}
-country_event = {
-	id = france_md.186
-	title = france_md.186.t
-	desc = france_md.186.d
-	is_triggered_only = yes
-	option = {
-		name = france_md.186.a
-		log = "[GetDateText]: [This.GetName]: france_md.186.a executed"
-		add_ideas=FRA_Paris_Moscow_Axis
-		SOV = {
-			add_opinion_modifier = { target = ROOT modifier = has_expressed_loyalty }
-			reverse_add_opinion_modifier = { target = ROOT modifier = has_expressed_loyalty }
-			diplomatic_relation = {
-				country = FRA
-				relation = guarantee
-			}
-		}
-		diplomatic_relation = {
-			country = SOV
-			relation = guarantee
-		}
 
 		ai_chance = {
 			base = 1
@@ -8086,5 +8043,55 @@ country_event = {#european_commonwealth
 		}
 	}
 }
+country_event = {#attack benelux
+	id = france_md.317
+	title = france_md.317.t
+	desc = france_md.317.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.317.a
+		log = "[GetDateText]: [This.GetName]: france_md.317.a executed"
+		add_manpower = 10000
+		add_war_support = 0.05
+		add_timed_idea = { idea = FRA_attack_benelux days = 70 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#attack iberia
+	id = france_md.318
+	title = france_md.318.t
+	desc = france_md.318.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.318.a
+		log = "[GetDateText]: [This.GetName]: france_md.318.a executed"
+		add_manpower = 15000
+		add_war_support = 0.075
+		add_timed_idea = { idea = FRA_attack_iberia days =100 }
+		add_ideas = FRA_counter_insurgency
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#attack germany
+	id = france_md.319
+	title = france_md.319.t
+	desc = france_md.319.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.319.a
+		log = "[GetDateText]: [This.GetName]: france_md.319.a executed"
+		add_manpower = 20000
+		add_war_support = 0.1
+		add_timed_idea = { idea = FRA_attack_germany days = 130 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 
 

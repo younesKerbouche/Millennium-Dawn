@@ -3703,7 +3703,7 @@ focus_tree = {
 		}
 	}
 	focus = {#bypass if completed tie with moscow
-		id = FRA_old_bound
+		id = FRA_rebalance_foreign_policy
 		icon = russian_cooperation
 
 		x = 21
@@ -3716,18 +3716,12 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus FRA_old_bound"
-			set_temp_variable = { percent_change = 5 }
-			set_temp_variable = { tag_index = SOV.id }
-			set_temp_variable = { influence_target = FRA.id }
-			change_influence_percentage = yes
-			SOV = {
-					add_opinion_modifier = {
-						target = ROOT
-						modifier = great_trade_positive
-					}
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_rebalance_foreign_policy"
+			if = { limit = { country_exists = SOV }
+				SOV = {
+					country_event = france_md.183
+				}
 			}
-			add_political_power = 100
 		}
 
 		ai_will_do = {
@@ -3782,9 +3776,9 @@ focus_tree = {
 			factor = 1
 		}
 	}
-	focus = {
-		id = FRA_reconize_russian_claim
-		icon = pro_Russian_parties_sheep
+	focus = {#focus on independance
+		id = FRA_strategic_autonomy
+		icon = france
 
 		x = 22
 		y = 7
@@ -3792,31 +3786,13 @@ focus_tree = {
 
 		cost = 10
 
-		prerequisite = { focus = FRA_old_bound }
+		prerequisite = { focus = FRA_rebalance_foreign_policy }
 		prerequisite = { focus = FRA_leave_nato }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_reconize_russian_claim"
-			if = { limit = { country_exists = UKR }
-				UKR = {
-					add_opinion_modifier = {
-						modifier = major_breach_of_trust
-						target = FRA
-					}
-				}
-			}
-			if = { limit = { country_exists = SOV }
-				SOV = {
-					add_opinion_modifier = {
-						modifier = supports_us
-						target = FRA
-					}
-				}
-				SOV = {
-					country_event = france_md.182
-				}
-			}
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_strategic_autonomy"
+			add_ideas = FRA_strategic_independance
 		}
 
 		ai_will_do = {
@@ -3885,25 +3861,26 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_formalize_alliance
-		icon = align_to_russia2
-
+		id = FRA_our_own_sphere
+		icon = france
 		x = 22
 		y = 9
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_reconize_russian_claim }
+		prerequisite = { focus = FRA_strategic_autonomy }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		completion_reward = {
+		completion_reward = {#TODO localiation for faction
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_formalize_alliance"
-			if = { limit = { country_exists = SOV }
-				SOV = {
-					country_event = france_md.183
-				}
+			if = { limit = { is_faction_leader = yes }
+				dismantle_faction = yes
 			}
+			else_if = { limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+			create_faction = Francosphere
 
 		}
 
@@ -3963,7 +3940,7 @@ focus_tree = {
 		cost = 10
 
 		prerequisite = { focus = FRA_recover }
-		prerequisite = { focus = FRA_formalize_alliance }
+		prerequisite = { focus = FRA_our_own_sphere }
 		prerequisite = { focus = FRA_strong_people }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
@@ -8382,6 +8359,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_reclaim_empire"
+			unlock_decision_category_tooltip = FRA_3rd_empire_decision_category
 		}
 
 		ai_will_do = {

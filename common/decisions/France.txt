@@ -1692,7 +1692,7 @@ FRA_french_communism_expansionism_decision_category = {
 			FRA_WR_winter_climat = yes
 			set_temp_variable = { temp_change = 0.15 }
 			FRA_WR_agriculture_prod =yes
-			set_temp_variable = { temp_change = 0.2 }
+			set_temp_variable = { temp_change = -0.2 }
 			FRA_WR_police_cost =yes
 			set_temp_variable = { temp_change = -0.12 }
 			FRA_WR_stab =yes
@@ -1909,13 +1909,13 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_cold_war2"
-			set_temp_variable = { temp_change = 0.15 }
-			FRA_WR_amphibious_invasion_speed = yes
-			set_temp_variable = { temp_change = 0.2 }
-			FRA_WR_navy_range = yes
-			set_temp_variable = { temp_change = 0.075 }
-			FRA_WR_navy_coord =yes
 			set_temp_variable = { temp_change = 0.1 }
+			FRA_WR_amphibious_invasion_speed = yes
+			set_temp_variable = { temp_change = 0.15 }
+			FRA_WR_navy_range = yes
+			set_temp_variable = { temp_change = 0.05 }
+			FRA_WR_navy_coord =yes
+			set_temp_variable = { temp_change = 0.075 }
 			FRA_WR_special_forces_attack =yes
 			set_temp_variable = { temp_change = -0.15 }
 			FRA_WR_stab =yes
@@ -1993,6 +1993,93 @@ FRA_french_communism_expansionism_decision_category = {
 						type = puppet_wargoal_focus
 						target = FROM
 					}
+				}
+			}
+		}
+	}
+}
+FRA_3rd_empire_decision_category = {
+	FRA_reunionism = {#claim belgium holland luxembourg
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			OR = {
+				country_exists = BEL
+				country_exists = HOL
+				country_exists = LUX
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_reunionism"
+			country_event = france_md.317
+			if = {
+				limit = {country_exists = BEL}
+				create_wargoal = {
+						type = annex_everything
+						target = BEL
+				}
+			}
+			if = {
+				limit = {country_exists = HOL}
+				create_wargoal = {
+						type = annex_everything
+						target = HOL
+				}
+			}
+			if = {
+				limit = {country_exists = LUX}
+				create_wargoal = {
+						type = annex_everything
+						target = LUX
+				}
+			}
+		}
+	}
+	FRA_Never_another_guerilla = {#claim catalogna
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			OR = {
+				country_exists = SPR
+				country_exists = POR
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_Never_another_guerilla"
+			country_event = france_md.318
+			if = {
+				limit = {country_exists = SPR}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = SPR
+				}
+			}
+			if = {
+				limit = {country_exists = POR}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = POR
+				}
+			}
+		}
+	}
+	FRA_Avenge_Sedan = {#claim Rheinland
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			country_exists = GER
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_Avenge_Sedan"
+			country_event = france_md.319
+			if = {
+				limit = {country_exists = GER}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = GER
 				}
 			}
 		}
