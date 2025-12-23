@@ -1841,6 +1841,14 @@ country_event = {
 	title = russia.61.t
 	desc = russia.61.d
 	is_triggered_only = yes
+	trigger = {
+		OR = {
+			has_global_flag = SOV_THE_RED_MENACE_PATH
+			has_global_flag = SOV_RISE_OF_RUSSIA_PATH
+			has_global_flag = SOV_NAZBOL_RUSSIA_PATH
+			has_global_flag = SOV_PEACEFUL_REFORM_PATH
+		}
+	}
 	option = {
 		name = russia.61.a
 		log = "[GetDateText]: [This.GetName]: russia.61.a"
@@ -1917,6 +1925,58 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = russia.611
+	title = russia.611.t
+	desc = russia.611.d
+	is_triggered_only = yes
+	trigger = {
+		is_ai = yes
+		is_historical_focus_on = no
+		NOT = {
+			has_global_flag = SOV_THE_RED_MENACE_PATH
+			has_global_flag = SOV_RISE_OF_RUSSIA_PATH
+			has_global_flag = SOV_NAZBOL_RUSSIA_PATH
+			has_global_flag = SOV_PEACEFUL_REFORM_PATH
+		}
+	}
+	option = {
+		name = russia.611.a
+		log = "[GetDateText]: [This.GetName]: russia.611.a"
+		set_party_index_to_ruling_party = yes
+		set_temp_variable = { party_popularity_increase = -0.35 }
+		add_relative_party_popularity = yes
+		news_event = russia_news.10000
+		random_list = {
+			25 = {
+				set_temp_variable = { party_index = 2 }
+				set_temp_variable = { party_popularity_increase = 0.60 }
+				set_temp_variable = { temp_outlook_increase = 0.60 }
+				add_relative_party_popularity = yes
+			}
+			25 = {
+				set_temp_variable = { party_index = 4 }
+				set_temp_variable = { party_popularity_increase = 0.60 }
+				set_temp_variable = { temp_outlook_increase = 0.60 }
+				add_relative_party_popularity = yes
+			}
+			25 = {
+				set_temp_variable = { party_index = 20 }
+				set_temp_variable = { party_popularity_increase = 0.60 }
+				set_temp_variable = { temp_outlook_increase = 0.60 }
+				add_relative_party_popularity = yes
+			}
+			25 = {
+				set_temp_variable = { party_index = 15 }
+				set_temp_variable = { party_popularity_increase = 0.60 }
+				set_temp_variable = { temp_outlook_increase = 0.60 }
+				add_relative_party_popularity = yes
+			}
+		}
+	}
+}
+
 
 ##Lebed
 country_event = {
@@ -3273,6 +3333,59 @@ country_event = {
 	}
 }
 
+# Canonization of the Romanov Family
+country_event = {
+	id = russia.119
+	title = russia.119.t
+	desc = russia.119.d
+	is_triggered_only = yes
+	picture = GFX_SOV_generic # TODO: Add an event picture to this at some point
+
+	# Martyrs... Fucking Commies
+	option = {
+		name = russia.119.a
+		log = "[GetDateText]: [This.GetName]: russia.119.a executed"
+		set_temp_variable = { party_index = 4 }
+		set_temp_variable = { party_popularity_increase = -0.02 }
+		set_temp_variable = { temp_outlook_increase = -0.02 }
+		add_relative_party_popularity = yes
+		set_temp_variable = { party_index = 20 }
+		set_temp_variable = { party_popularity_increase = 0.02 }
+		set_temp_variable = { temp_outlook_increase = 0.02 }
+		add_relative_party_popularity = yes
+
+		ai_chance = {
+			base = 0
+		}
+	}
+
+	# Honor the Dead
+	option = {
+		name = russia.119.a
+		log = "[GetDateText]: [This.GetName]: russia.119.a executed"
+		add_stability = 0.02
+		set_party_index_to_ruling_party = yes
+		set_temp_variable = { party_popularity_increase = 0.02 }
+		set_temp_variable = { temp_outlook_increase = 0.02 }
+		add_relative_party_popularity = yes
+	}
+}
+
+# Crash of the Su-37
+country_event = {
+	id = russia.120
+	title = russia.120.t
+	desc = russia.120.d
+	is_triggered_only = yes
+	picture = GFX_SOV_generic # TODO: Add an event picture to this at some point
+
+	# Unfourtnate...
+	option = {
+		name = russia.120.a
+		log = "[GetDateText]: [This.GetName]: russia.120.a executed"
+	}
+}
+
 #Livonia Governorate
 country_event = {
 	id = russia_governorate.1
@@ -4391,6 +4504,21 @@ country_event = {
 
 ####Russian News----
 #Putin elected President
+news_event = {
+	id = russia_news.10000
+	title = russia_news.10000.t
+	desc = russia_news.10000.d
+	picture = GFX_news_putin
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = russia_news.10000.a
+		log = "[GetDateText]: [This.GetName]: russia_news.10000.a executed"
+	}
+}
+
 news_event = {
 	id = russia_news.1
 	title = russia_news.1.t

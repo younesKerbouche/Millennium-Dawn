@@ -268,37 +268,6 @@ CUB_Tesak = {
 	}
 }
 
-PER_Zoroastrian_state = {
-	name = "RULE_PER_ZOROASTRIAN_STATE"
-	group = "MD_FOCUS_TREE_RULES"
-	icon = "GFX_kick_from_faction"
-	option = {
-		name = yes
-		text = "RULE_OPTION_YES"
-		desc = "RULE_PER_ZOROASTRIAN_STATE_ALLOWED_DESC"
-	}
-	default = {
-		name = no
-		text = "RULE_OPTION_NO"
-		desc = "RULE_PER_ZOROASTRIAN_STATE_BLOCKED_DESC"
-	}
-}
-#HOL_Bugundian_focus_branch = {
-#	name = "HOL_Bugundian_focus_branch"
-#	group = "MD_FOCUS_TREE_RULES"
-#	icon = "GFX_kick_from_faction"
-#	option = {
-#		name = yes
-#		text = "RULE_OPTION_YES"
-#		desc = "HOL_Bugundian_focus_branch_ALLOWED_DESC"
-#	}
-#	default = {
-#		name = no
-#		text = "RULE_OPTION_NO"
-#		desc = "HOL_Bugundian_focus_branch_BLOCKED_DESC"
-#	}
-#}
-
 GEO_NATIONALIST_behavior = {
 	name = "GEO_NATIONALIST_behavior"
 	group = "MD_FOCUS_TREE_RULES"
@@ -945,6 +914,12 @@ rule_internal_faction_tick_amount = {
 	icon = "GFX_production_licenses"
 
 	option = {
+		name = point_00
+		text = "RULE_OPTION_IF_POINT_00"
+		desc = "RULE_OPTION_IF_POINT_00_DESC"
+		allow_achievements = no
+	}
+	option = {
 		name = point_10
 		text = "RULE_OPTION_IF_POINT_10"
 		desc = "RULE_OPTION_IF_POINT_10_DESC"
@@ -1251,16 +1226,32 @@ allow_recall_intervention_forces = {
 	name = "RULE_ALLOW_RECALL_INTERVENTION_FORCES"
 	group = "RULE_GROUP_GENERAL_FOREIGN_POLICY"
 	icon = "GFX_volunteers"
-	option = {
+	default = {
 		name = yes
 		text = "RULE_OPTION_YES"
 		desc = "RULE_YES_ALLOW_INTERVENTION_FORCES"
-		allow_achievements = yes
 	}
-	default = {
+	option = {
 		name = no
 		text = "RULE_OPTION_NO"
 		desc = "RULE_NO_ALLOW_INTERVENTION_FORCES"
+		allow_achievements = yes
+	}
+}
+allow_forcing_a_white_peace = {
+	name = "RULE_ALLOW_FORCING_A_WHITE_PEACE"
+	group = "RULE_GROUP_GENERAL_FOREIGN_POLICY"
+	icon = "GFX_volunteers"
+	default = {
+		name = yes
+		text = "RULE_OPTION_YES"
+		desc = "RULE_YES_FORCING_A_WHITE_PEACE"
+	}
+	option = {
+		name = no
+		text = "RULE_OPTION_NO"
+		desc = "RULE_NO_FORCING_A_WHITE_PEACE"
+		allow_achievements = yes
 	}
 }
 allow_guarantees = {
@@ -1852,6 +1843,16 @@ CZE_ai_behavior = {
 		name = COMMUNISM
 		text = "CZE_COMMUNISM"
 		desc = "CZE_COMMUNISM_DESC"
+	}
+	option = {
+		name = MONARCHY_KING
+		text = "CZE_MONARCHY_KING"
+		desc = "CZE_MONARCHY_KING_DESC"
+	}
+	option = {
+		name = MONARCHY_PRESIDENT
+		text = "CZE_MONARCHY_PRESIDENT"
+		desc = "CZE_MONARCHY_PRESIDENT_DESC"
 	}
 }
 
@@ -3094,5 +3095,51 @@ rule_allow_MP_enhancements = {
 		name = yes
 		text = "RULE_OPTION_YES"
 		desc = "RULE_ALLOW_MP_ENHANCEMENTS_DESC"
+	}
+}
+
+zombie_mode_enabled = {
+	name = "RULE_ZOMBIE_GAME_MODE"
+	group = "RULE_ZOMBIE"
+	icon = "GFX_wargoals"
+	default = {
+		name = no
+		text = "RULE_OPTION_NO"
+		desc = "RULE_ZOMBIE_GAME_MODE_NO_DESC"
+	}
+	option = {
+		name = yes
+		text = "RULE_OPTION_YES"
+		desc = "RULE_ZOMBIE_GAME_MODE_YES_DESC"
+		allow_achievements = no
+	}
+}
+
+zombie_difficulty = {
+	name = "RULE_ZOMBIE_DIFFICULTY"
+	group = "RULE_ZOMBIE"
+	icon = "GFX_wargoals"
+	default = {
+		name = "NORMAL"
+		text = "RULE_ZOMBIE_DIFFICULTY_NORMAL"
+		desc = "RULE_ZOMBIE_DIFFICULTY_NORMAL_DESC"
+	}
+	option = {
+		name = "HARD"
+		text = "RULE_ZOMBIE_DIFFICULTY_HARD"
+		desc = "RULE_ZOMBIE_DIFFICULTY_HARD_DESC"
+		allow_achievements = no
+	}
+	option = {
+		name = "EXTREME"
+		text = "RULE_ZOMBIE_DIFFICULTY_EXTREME"
+		desc = "RULE_ZOMBIE_DIFFICULTY_EXTREME_DESC"
+		allow_achievements = no
+	}
+	option = {
+		name = "INSANE"
+		text = "RULE_ZOMBIE_DIFFICULTY_INSANE"
+		desc = "RULE_ZOMBIE_DIFFICULTY_INSANE_DESC"
+		allow_achievements = no
 	}
 }
