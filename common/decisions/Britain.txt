@@ -1075,21 +1075,27 @@ decisions_ENG = {
 			always = no
 		}
 		available = {
-			13 = {
-				infrastructure > 4
+			1192 = {
+				industrial_complex > 0
+			}
+			437 = {
+				industrial_complex > 1
 			}
 		}
-		days_mission_timeout = 365
+		days_mission_timeout = 450
 		is_good = no
 		timeout_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_promise_labour"
 			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.1 }
 			add_relative_party_popularity = yes
 		}
 		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
-			
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_promise_labour"
+			set_temp_variable = { temp_opinion = 15 }
+			change_labour_unions_opinion = yes
+			newline = yes
+			one_random_industrial_complex = yes
 		}
 	}
 
@@ -1098,22 +1104,29 @@ decisions_ENG = {
 		activation = {
 			always = no
 		}
+
 		available = {
-			13 = {
-				infrastructure > 4
+			1192 = {
+				industrial_complex > 0
+			}
+			1194 = {
+				industrial_complex > 0
 			}
 		}
-		days_mission_timeout = 365
+		days_mission_timeout = 450
 		is_good = no
 		timeout_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_promise_military"
 			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.1 }
 			add_relative_party_popularity = yes
 		}
 		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
-			
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_promise_military"
+			set_temp_variable = { temp_opinion = 15 }
+			change_defense_industry_opinion = yes
+			newline = yes
+			one_random_arms_factory = yes
 		}
 	}
 
@@ -1123,21 +1136,34 @@ decisions_ENG = {
 			always = no
 		}
 		available = {
-			13 = {
-				infrastructure > 4
+			437 = {
+				fossil_powerplant > 1
+			}
+			9 = {
+				fossil_powerplant > 1
+			}
+			1194 = {
+				fossil_powerplant > 1
 			}
 		}
-		days_mission_timeout = 365
+		days_mission_timeout = 450
 		is_good = no
 		timeout_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_promise_fossil_fuel"
 			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = -0.1 }
 			add_relative_party_popularity = yes
 		}
 		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision ENG_build_london"
-			
+			log = "[GetDateText]: [Root.GetName]: Decision ENG_promise_fossil_fuel"
+			set_temp_variable = { temp_opinion = 15 }
+			change_fossil_fuel_industry_opinion = yes
+			newline = yes
+			add_resource = {
+				type = oil
+				amount = 5
+				state = 9
+			}
 		}
 	}
 }
