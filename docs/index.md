@@ -16,9 +16,9 @@ Further, it offers a new and unique economic system, a new political system, nat
 
 ## Welcome to the Millennium Dawn Wiki!
 
-**Current Expected Version:** v1.12.2a
+**Current Expected Version:** v1.12.3a
 
-**Current Expected Checksum:** 4588
+**Current Expected Checksum:** 8830
 
 **The following Wiki is currently a work in progress. However, we will do our best to get meaningful content updated and placed on this page.**
 
@@ -65,6 +65,13 @@ The development team requires that you are at least 16 years of age and own a le
 - [Focus Tree Tool](/Millennium-Dawn/dev-resources/focus-tree-tool)
 - [Localization Tool](/Millennium-Dawn/dev-resources/localization-tool)
 - [Logging Tool](/Millennium-Dawn/dev-resources/logging-tool)
+
+
+### Submods
+
+**DISCLAIMER** Any issues with a submod should be first reported to the submod you are playing with. Even something as simple as a graphics mod could break something in Millennium Dawn. Please try without submods if you encounter any issues.
+
+For a list of Known Submods follow this [link](misc/known-submods).
 
 ## **Credits**
 
