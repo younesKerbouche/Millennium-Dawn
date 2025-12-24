@@ -7339,8 +7339,6 @@ focus_tree = {
 			custom_effect_tooltip = ENG_change_economy_spirit_tt
 			set_temp_variable = { ENG_production_factory_efficiency_gain_factor_change = 0.05 }
 			update_ENG_production_factory_efficiency_gain_factor = yes
-			set_temp_variable = { ENG_high_unemployment_threshold_modifier_change = 0.1 }
-			update_ENG_high_unemployment_threshold_modifier = yes
 			newline = yes
 			custom_effect_tooltip = ENG_build_something_you_bum_TT
 			hidden_effect = {
@@ -7470,6 +7468,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_reinassaince_of_status"
+			set_temp_variable = { ENG_offices_productivity_change = 0.10 }
+			update_ENG_offices_productivity = yes
+			set_temp_variable = { ENG_offices_worker_requirement_modifier_change = 0.10 }
+			update_ENG_offices_worker_requirement_modifier = yes
+			newline = yes
+			country_event = britain_md.2
 		}
 
 		ai_will_do = {
@@ -7594,10 +7598,18 @@ focus_tree = {
 
 		available = {
 			western_social_democrats_are_in_power = yes
+			OR = {
+				has_idea = labour_unions
+				has_idea = defense_industry
+				has_idea = fossil_fuel_industry
+			}
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_the_foundation"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_grand_promise"
+			country_event = britain_md.3
+			newline = yes
+			custom_effect_tooltip = ENG_grand_promise_TT
 		}
 
 		ai_will_do = {
@@ -7665,6 +7677,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_prioritize_the_doctors"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = { ENG_health_cost_change = 0.025 }
+			update_ENG_healthcare_cost = yes
+			set_temp_variable = { ENG_monthly_population_change = 0.025 }
+			update_ENG_monthly_population = yes
+			newline = yes
+			custom_effect_tooltip = ENG_change_politics_spirit_tt
+			set_temp_variable = { ENG_expected_healthcare_modifier_change = -1.00 }
+			update_ENG_expected_healthcare_modifier = yes
 		}
 
 		ai_will_do = {
@@ -7689,10 +7710,34 @@ focus_tree = {
 
 		available = {
 			western_social_democrats_are_in_power = yes
+			10 = {
+				is_owned_and_controlled_by = ENG
+			}
+		}
+
+		bypass = {
+			NOT = {
+				10 = {
+					is_owned_and_controlled_by = ENG
+				}
+			}
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_more_frontline_staff"
+			set_temp_variable = { ENG_high_unemployment_threshold_modifier_change = 0.1 }
+			update_ENG_high_unemployment_threshold_modifier = yes
+			newline	= yes
+			10 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agriculture_district
+					level = 2
+				}
+			}
+			newline = yes
+			set_temp_variable = { treasury_change = -7.50 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -7725,6 +7770,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_prioritize_the_teachers"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = { ENG_education_cost_multiplier_modifier_change = 0.025 }
+			update_ENG_education_cost_multiplier_modifier = yes
+			set_temp_variable = { ENG_research_speed_factor_change = 0.05 }
+			update_ENG_research_speed_factor = yes
+			newline	= yes
+			increase_education_budget = yes
 		}
 
 		ai_will_do = {
@@ -7921,7 +7973,10 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_prioritize_the_teachers"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_productivity_challenge"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = { ENG_productivity_cost_change = 0.05 }
+			update_ENG_productivity_cost = yes
 		}
 
 		ai_will_do = {
