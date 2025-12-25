@@ -1002,6 +1002,8 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: germany.19.a executed"
 		custom_effect_tooltip = GER_bavarian_nationalism_decrease_1
 		add_to_variable = { GER_bavarian_nationalism_var = -1 }
+		newline = yes
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_police_cost_change = 0.02 }
 		update_GER_police_cost = yes
 
@@ -1794,6 +1796,7 @@ country_event = {
 	option = {
 		name = germany.44.a
 		log = "[GetDateText]: [This.GetName]: germany.44.a executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_health_cost_change = -0.03 }
 		update_GER_healthcare_cost = yes
 	}
@@ -2417,47 +2420,47 @@ country_event = {
 	}
 }
 country_event = {
-    id = germany.66
-    title = germany.66.t
-    desc = germany.66.d
-    picture = GFX_BMW_Car
+	id = germany.66
+	title = germany.66.t
+	desc = germany.66.d
+	picture = GFX_BMW_Car
 
 	is_triggered_only = yes
 
-    trigger = {
+	trigger = {
 		has_dlc = "Arms Against Tyranny"
-    }
+	}
 
-    option = {
-        name = germany.66.a
-        log = "[GetDateText]: [This.GetName]: germany.65.b executed"
+	option = {
+		name = germany.66.a
+		log = "[GetDateText]: [This.GetName]: germany.65.b executed"
 		unlock_military_industrial_organization_tooltip = mio:GER_BMW
 		set_country_flag = ger_bmw_unlocked
-    }
-    option = {
-        name = germany.66.b
-        log = "[GetDateText]: [This.GetName]: germany.65.b executed"
+	}
+	option = {
+		name = germany.66.b
+		log = "[GetDateText]: [This.GetName]: germany.65.b executed"
 		army_experience = 25
-    }
+	}
 }
 country_event = {
-    id = germany.67
-    title = germany.67.t
-    desc = germany.67.d
-    picture = GFX_internal_faction_business_purchase
+	id = germany.67
+	title = germany.67.t
+	desc = germany.67.d
+	picture = GFX_internal_faction_business_purchase
 
-    is_triggered_only = yes
+	is_triggered_only = yes
 
-    trigger = {
+	trigger = {
 		has_dlc = "Arms Against Tyranny"
-    }
+	}
 
-    option = {
-        name = germany.67.a # Acknowledge
-        log = "[GetDateText]: [Root.GetName]: germany.67.a executed"
-        set_country_flag = ger_helsing_se_founded
+	option = {
+		name = germany.67.a # Acknowledge
+		log = "[GetDateText]: [Root.GetName]: germany.67.a executed"
+		set_country_flag = ger_helsing_se_founded
 		unlock_military_industrial_organization_tooltip = mio:GER_helsing_se
-    }
+	}
 }
 #NSU
 
@@ -3567,41 +3570,7 @@ country_event = {
 		newline = yes
 		release = BAY
 		BAY = {
-			## Setup Values
-			hidden_effect = {
-				set_variable = { civilian_factory_employment_var = 1 }
-				set_variable = { naval_factory_employment_var = 1 }
-				set_variable = { military_factory_employment_var = 1 }
-				set_variable = { office_employment_var = 1 }
-				set_variable = { gdpc_converging_var = PREV.gdpc_converging_var }
-				inherit_technology = PREV
-				if = {
-					limit = {
-						NOT = { has_variable = domestic_influence_amount }
-					}
-					set_variable = { domestic_influence_amount = 100 }
-				}
-				if = {
-					limit = { NOT = { has_variable = corporate_tax_rate } }
-					set_variable = { var = corporate_tax_rate value = 20 }
-				}
-				if = {
-					limit = { NOT = { has_variable = population_tax_rate } }
-					set_variable = { var = population_tax_rate value = 20 }
-				}
-				ingame_init_investment_system = yes
-				init_auto_influence_array = yes
-
-				calculate_influence_percentage = yes #set alignment drifts from influence
-				startup_politics = yes
-				ingame_update_setup = yes 	#money system
-				setup_init_factions = yes 	#flags for int. factions
-				set_law_vars = yes 	#vars for change laws secondary effects
-				update_neighbors_effects = yes # Updates Neighbor Effects
-				economic_cycle_drift_popularity = yes #drift from neighbor
-				ai_update_build_units = yes
-				calculate_expected_spending = yes
-			}
+			ingame_startup_nations_effect = yes
 		}
 		ai_chance = {
 			base = 3
@@ -3616,41 +3585,7 @@ country_event = {
 		newline = yes
 		release = BAY
 		BAY = {
-			## Setup Values
-			hidden_effect = {
-				set_variable = { civilian_factory_employment_var = 1 }
-				set_variable = { naval_factory_employment_var = 1 }
-				set_variable = { military_factory_employment_var = 1 }
-				set_variable = { office_employment_var = 1 }
-				set_variable = { gdpc_converging_var = PREV.gdpc_converging_var }
-				inherit_technology = PREV
-				if = {
-					limit = {
-						NOT = { has_variable = domestic_influence_amount }
-					}
-					set_variable = { domestic_influence_amount = 100 }
-				}
-				if = {
-					limit = { NOT = { has_variable = corporate_tax_rate } }
-					set_variable = { var = corporate_tax_rate value = 20 }
-				}
-				if = {
-					limit = { NOT = { has_variable = population_tax_rate } }
-					set_variable = { var = population_tax_rate value = 20 }
-				}
-				ingame_init_investment_system = yes
-				init_auto_influence_array = yes
-
-				calculate_influence_percentage = yes #set alignment drifts from influence
-				startup_politics = yes
-				ingame_update_setup = yes 	#money system
-				setup_init_factions = yes 	#flags for int. factions
-				set_law_vars = yes 	#vars for change laws secondary effects
-				update_neighbors_effects = yes # Updates Neighbor Effects
-				economic_cycle_drift_popularity = yes #drift from neighbor
-				ai_update_build_units = yes
-				calculate_expected_spending = yes
-			}
+			ingame_startup_nations_effect = yes
 		}
 		newline = yes
 		declare_war_on = {
@@ -3846,12 +3781,11 @@ country_event = { # The drug question
 	option = {	# Legalize it
 		name = Germany.204.a
 		log = "[GetDateText]: [This.GetName]: Germany.204.a executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_police_cost_change = -0.02 }
 		update_GER_police_cost = yes
-		newline = yes
 		set_temp_variable = { GER_health_cost_change = 0.01 }
 		update_GER_healthcare_cost = yes
-		newline = yes
 		hidden_effect = {
 			random_list = {
 				70 = {
@@ -3864,9 +3798,9 @@ country_event = { # The drug question
 	option = {	# No! Hard ban on all drugs!
 		name = Germany.204.b
 		log = "[GetDateText]: [This.GetName]: Germany.204.a executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_police_cost_change = 0.01 }
 		update_GER_police_cost = yes
-		newline = yes
 		set_temp_variable = { GER_health_cost_change = -0.02 }
 		update_GER_healthcare_cost = yes
 	}
@@ -3992,6 +3926,7 @@ country_event = { # Sanctuary for fleeing LGBT?
 		set_temp_variable = { influence_target = GER }
 		change_influence_percentage = yes
 		newline = yes
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_health_cost_change = -0.05 }
 		update_GER_healthcare_cost = yes
 	}
@@ -4009,6 +3944,8 @@ country_event = { # Circumcisions?
 		name = Germany.209.a
 		log = "[GetDateText]: [This.GetName]: Germany.209.a executed"
 		decrease_healthcare_budget = yes
+		newline = yes
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_health_cost_change = -0.01 }
 		update_GER_healthcare_cost = yes
 		add_stability = -0.05
@@ -4732,6 +4669,7 @@ country_event = {
 	option = {
 		name = Germany.230.a
 		log = "[GetDateText]: [This.GetName]: Germany.230.a executed"
+		GER = { country_event = Germany.232 }
 		ai_chance = {
 			base = 5
 		}
@@ -4740,19 +4678,12 @@ country_event = {
 	option = {
 		name = Germany.230.b
 		log = "[GetDateText]: [This.GetName]: Germany.230.b executed"
-		818 = { transfer_state_to = GER }
-		821 = { transfer_state_to = GER }
-		819 = { transfer_state_to = GER }
-		820 = { transfer_state_to = GER }
-		hidden_effect = {
-			818 = {	remove_core_of = USA }
-			821 = {	remove_core_of = USA }
-			819 = {	remove_core_of = USA }
-			820 = {	remove_core_of = USA }
-			818 = {	add_core_of = GER }
-			821 = {	add_core_of = GER }
-			819 = {	add_core_of = GER }
-			820 = {	add_core_of = GER }
+		GER = { country_event = Germany.231 }
+		effect_tooltip = {
+			818 = {  transfer_state_to = GER }
+			821 = { transfer_state_to = GER }
+			819 = { transfer_state_to = GER }
+			820 = { transfer_state_to = GER }
 		}
 		ai_chance = {
 			base = 5
@@ -4771,10 +4702,24 @@ country_event = {
 	picture = GFX_us_flag
 
 	is_triggered_only = yes
-	# Okay
+
 	option = {
 		name = Germany.231.a
 		log = "[GetDateText]: [This.GetName]: Germany.231.a executed"
+		818 = {  transfer_state_to = GER }
+		821 = { transfer_state_to = GER }
+		819 = { transfer_state_to = GER }
+		820 = { transfer_state_to = GER }
+		hidden_effect = {
+			818 = {	remove_core_of = USA }
+			821 = {	remove_core_of = USA }
+			819 = {	remove_core_of = USA }
+			820 = {	remove_core_of = USA }
+			818 = {	add_core_of = GER }
+			821 = {	add_core_of = GER }
+			819 = {	add_core_of = GER }
+			820 = {	add_core_of = GER }
+		}
 		ai_chance = {
 			base = 5
 		}
@@ -4788,7 +4733,7 @@ country_event = {
 	picture = GFX_us_flag
 
 	is_triggered_only = yes
-	# Okay
+
 	option = {
 		name = Germany.232.a
 		log = "[GetDateText]: [This.GetName]: Germany.232.a executed"
@@ -4803,6 +4748,10 @@ country_event = {
 		USA = {
 			add_stability = -0.05
 		}
+		818 = {	add_claim_by = GER }
+		821 = {	add_claim_by = GER }
+		819 = {	add_claim_by = GER }
+		820 = {	add_claim_by = GER }
 		ai_chance = {
 			base = 5
 		}
@@ -6363,6 +6312,8 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: germany_yearly.8.a executed"
 		set_temp_variable = { temp_opinion = -5 }
 		change_labour_unions_opinion = yes
+		newline = yes
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_welfare_cost_change = -0.02 }
 		update_GER_welfare_cost = yes
 		ai_chance = {
@@ -6375,6 +6326,8 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: germany_yearly.8.b executed"
 		set_temp_variable = { temp_opinion = 5 }
 		change_labour_unions_opinion = yes
+		newline = yes
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_welfare_cost_change = 0.01 }
 		update_GER_welfare_cost = yes
 		ai_chance = {
@@ -6550,6 +6503,7 @@ country_event = {
 	option = {
 		name = germany_yearly.14.b
 		log = "[GetDateText]: [This.GetName]: germany_yearly.14.b executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_health_cost_change = 0.01 }
 		update_GER_healthcare_cost = yes
 		add_stability = 0.04
@@ -6611,6 +6565,7 @@ country_event = {
 	option = {
 		name = germany_yearly.15.b
 		log = "[GetDateText]: [This.GetName]: germany_yearly.15.b executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_police_cost_change = 0.01 }
 		update_GER_police_cost = yes
 		ai_chance = {
@@ -6646,6 +6601,7 @@ country_event = {
 	option = {
 		name = germany_yearly.16.b
 		log = "[GetDateText]: [This.GetName]: germany_yearly.16.b executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_welfare_cost_change = 0.01 }
 		update_GER_welfare_cost = yes
 		ai_chance = {
@@ -6908,6 +6864,7 @@ country_event = {
 	option = {
 		name = germany_yearly.21.a
 		log = "[GetDateText]: [This.GetName]: germany_yearly.21.a executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_welfare_cost_change = 0.01 }
 		update_GER_welfare_cost = yes
 		set_temp_variable = { temp_opinion = -3 }
@@ -6924,6 +6881,7 @@ country_event = {
 	option = {
 		name = germany_yearly.21.b
 		log = "[GetDateText]: [This.GetName]: germany_yearly.21.b executed"
+		custom_effect_tooltip = GER_change_public_budget
 		set_temp_variable = { GER_welfare_cost_change = -0.01 }
 		update_GER_welfare_cost = yes
 		set_temp_variable = { temp_opinion = 3 }
@@ -8255,7 +8213,7 @@ country_event = { #Weizsäcker results
 		air_experience = 10
 		hidden_effect = {
 			country_event = { id = GER_Cold_War.20 days = 30 }
-			country_event = { id = GER_Cold_War.21 days = 50 }
+			#country_event = { id = GER_Cold_War.21 days = 50 }
 			country_event = { id = GER_Cold_War.22 days = 70 }
 			country_event = { id = GER_Cold_War.23 days = 90 }
 			country_event = { id = GER_Cold_War.24 days = 110 }
@@ -11536,18 +11494,35 @@ country_event = { #Rec
 		name = GER_Cold_War.20.a
 		log = "[GetDateText]: [This.GetName]: GER_Cold_War.20.a executed"
 		custom_effect_tooltip = GER_Fennek_TT
-		add_ideas = GER_idea_JFST
-		set_temp_variable = { treasury_change = GER.gdp_per_capita }
-		multiply_temp_variable = { treasury_change = -0.20 }
-		modify_treasury_effect = yes
-		GER = {
-			add_equipment_to_stockpile = {
+		newline = yes
+		custom_effect_tooltip = GER_change_heer_spirit
+		set_temp_variable = { GER_Army_defence_change = 0.02 }
+		update_GER_Army_defence = yes
+		set_temp_variable = { GER_Army_attack_change = 0.02 }
+		update_GER_Army_attack = yes
+		set_temp_variable = { Ger_army_artillery_attack_factor_change = 0.09 }
+		update_Ger_army_artillery_attack_factor = yes
+		set_temp_variable = { GER_army_speed_factor_change = 0.02 }
+		update_GER_army_speed_factor = yes
+		set_temp_variable = { GER_intel_network_gain_factor_heer_change = 0.03 }
+		update_GER_intel_network_gain_factor_heer = yes
+		set_temp_variable = { GER_recon_factor_change = 0.08 }
+		update_GER_recon_factor = yes
+		newline = yes
+		custom_effect_tooltip = GER_change_luftwaffe_spirit
+		set_temp_variable = { GER_ground_attack_change = 0.05 }
+		update_GER_ground_attack = yes
+		newline	= yes
+		add_equipment_to_stockpile = {
 				type = medium_tank_destroyer_chassis_2
 				variant_name = "Fennek"
 				amount = 220
 				producer = GER
 			}
-		}
+		newline = yes
+		set_temp_variable = { treasury_change = GER.gdp_per_capita }
+		multiply_temp_variable = { treasury_change = -0.20 }
+		modify_treasury_effect = yes
 	}
 	option = {	# Update Template design_team = mio:GER_rheinmetall_tank_manufacturer
 		name = GER_Cold_War.20.b
@@ -11624,7 +11599,7 @@ country_event = { #Rec
 #				division_has_majority_template = armor_Bat
 #			}
 #			PREV = {
-#				
+#
 #				delete_unit = {
 #					division_template = "Panzerdivision"
 #					disband = yes
@@ -11749,288 +11724,288 @@ country_event = { #The Eurofighter
 		}
 	}
 }
-#country_event = { #The Eurofighter
-#	id = GER_Eurofighter.2
-#	title = GER_Eurofighter.2.t
-#	desc = GER_Eurofighter.2.d
-#	picture = GFX_GER_euroifighter
-#
-#	is_triggered_only = yes
-#
-#	immediate = {
-#		hidden_effect = {
-#			set_country_flag = Eurofighter_naval
-#		}
-#	}
-#
-#	option = {
-#		name = GER_Eurofighter.2.a
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.2.a executed"
-#		custom_effect_tooltip = GER_Eurofighter.2.a_desc
-#		create_equipment_variant = {
-#			name = "Eurofighter Thyphoon Naval"
-#			type = medium_plane_maritime_patrol_airframe_2
-#			design_team = mio:GER_Eurofighter_aircraft_manufacturer
-#			modules = {
-#				fixed_main_weapon_slot = weap_mp_med_hardpoint_1
-#				fixed_gun_slot = weap_multi_gun_1
-#				engine_type_slot = engine_jet_double_3
-#				avionics_type_slot = avionics_manned_3
-#				wingform_type_slot = wing_delta_canard
-#				special_slot_type_1 = spec_countermeasures_2
-#				special_slot_type_2 = spec_refuel_3
-#				special_slot_type_3 = spec_tgp_2
-#				fixed_auxiliary_weapon_slot_1 = weap_mp_light_hardpoint_2
-#				fixed_auxiliary_weapon_slot_2 = weap_as_hardpoint_2
-#			}
-#			icon = "gfx/interface/technologies/GER/AIR/E2000.dds"
-#			model = "GER_medium_plane_airframe_2_entity"
-#		}
-#	}
-#	option = {
-#		name = GER_Eurofighter.2.b
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.2.b executed"
-#		custom_effect_tooltip = GER_Eurofighter.2.b_desc
-#		create_equipment_variant = {
-#			name = "Eurofighter Thyphoon CV"
-#			type = cv_medium_plane_airframe_2
-#			design_team = mio:GER_Eurofighter_aircraft_manufacturer
-#			modules = {
-#				fixed_main_weapon_slot = weap_mp_med_hardpoint_2
-#				fixed_gun_slot = weap_multi_gun_1
-#				engine_type_slot = engine_jet_double_3
-#				avionics_type_slot = avionics_manned_3
-#				wingform_type_slot = wing_delta_canard
-#				special_slot_type_1 = spec_countermeasures_2
-#				special_slot_type_2 = spec_refuel_3
-#				special_slot_type_3 = spec_tgp_2
-#				fixed_auxiliary_weapon_slot_1 = weap_mp_light_hardpoint_2
-#				fixed_auxiliary_weapon_slot_2 = weap_as_hardpoint_2
-#			}
-#			icon = "gfx/interface/technologies/GER/AIR/E2000.dds"
-#			model = "GER_medium_plane_airframe_2_entity"
-#		}
-#	}
-#	option = {
-#		name = GER_Eurofighter.2.c
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.2.c executed"
-#		custom_effect_tooltip = GER_Eurofighter.2.c_desc
-#		mio:GER_Eurofighter_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#			add_mio_size_up_requirement_factor = -0.1
-#
-#		}
-#	}
-#}
-#country_event = { #The Eurofighter
-#	id = GER_Eurofighter.3
-#	title = GER_Eurofighter.3.t
-#	desc = GER_Eurofighter.3.d
-#	picture = GFX_GER_euroifighter
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_Eurofighter.3.a
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.3.a executed"
-#		set_country_flag = Eurofighter_joint
-#		mio:GER_Eurofighter_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#			add_to_variable = { free_trait_picks = 1 }
-#		}
-#	}
-#	option = {
-#		name = GER_Eurofighter.3.b
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.3.b executed"
-#		set_country_flag = Eurofighter_joint
-#		set_temp_variable = { percent_change = 2 }
-#			change_domestic_influence_percentage = yes
-#		every_country = {
-#			limit = {
-#				has_country_flag = GER_the_Eurofighter
-#			}
-#			add_opinion_modifier = {
-#				modifier = GER_Rejected_mutual_project
-#				target = Root
-#			}
-#		}
-#	}
-#}
-#country_event = { #The Eurofighter
-#	id = GER_Eurofighter.4
-#	title = GER_Eurofighter.4.t
-#	desc = GER_Eurofighter.4.d
-#	picture = GFX_GER_euroifighter
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_Eurofighter.4.a
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.4.a executed"
-#		set_country_flag = Eurofighter_joint_2
-#		mio:GER_Eurofighter_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#		}
-#	}
-#	option = {
-#		name = GER_Eurofighter.4.b
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.4.b executed"
-#		set_country_flag = Eurofighter_joint_2
-#		set_temp_variable = { percent_change = 2 }
-#			change_domestic_influence_percentage = yes
-#		every_country = {
-#			limit = {
-#				has_country_flag = GER_the_Eurofighter
-#			}
-#			add_opinion_modifier = {
-#				modifier = GER_Rejected_mutual_project
-#				target = Root
-#			}
-#		}
-#	}
-#}
-#news_event = { #The Eurofighter
-#	id = GER_Eurofighter.5
-#	title = GER_Eurofighter.5.t
-#	desc = GER_Eurofighter.5.d
-#	picture = GFX_Eurofighter_naked
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_Eurofighter.5.a
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.5.a executed"
-#		set_country_flag = Eurofighter_wings
-#		mio:GER_Eurofighter_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#		}
-#	}
-#}
-#news_event = { #The Eurofighter
-#	id = GER_Eurofighter.6
-#	title = GER_Eurofighter.6.t
-#	desc = GER_Eurofighter.6.d
-#	picture = GFX_Eurofighter_naked
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_Eurofighter.6.a
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.6.a executed"
-#		set_country_flag = Eurofighter_rump_middle
-#		mio:GER_Eurofighter_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#		}
-#	}
-#}
-#news_event = { #The Eurofighter
-#	id = GER_Eurofighter.7
-#	title = GER_Eurofighter.7.t
-#	desc = GER_Eurofighter.7.d
-#	picture = GFX_Eurofighter_naked
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_Eurofighter.7.a
-#		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.7.a executed"
-#		set_country_flag = Eurofighter_rump_nose
-#		mio:GER_Eurofighter_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#			add_mio_research_bonus = 0.07
-#		}
-#	}
-#}
-##panavia
-#country_event = { #The Tornado
-#	id = GER_panavia.1
-#	title = GER_panavia.1.t
-#	desc = GER_panavia.1.d
-#	picture = GFX_GER_tornado
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_panavia.1.a
-#		log = "[GetDateText]: [This.GetName]: GER_panavia.1.a executed"
-#		set_country_flag = Tornado_is_back
-#		mio:GER_panavia_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#			add_to_variable = { free_trait_picks = 1 }
-#		}
-#	}
-#	option = {
-#		name = GER_panavia.1.b
-#		log = "[GetDateText]: [This.GetName]: GER_panavia.1.b executed"
-#		set_country_flag = Tornado_is_back
-#		air_experience = 20
-#	}
-#}
-#country_event = { #panavia stealth
-#	id = GER_panavia.2
-#	title = GER_panavia.2.t
-#	desc = GER_panavia.2.d
-#	picture = GFX_GER_tornado
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_panavia.2.a
-#		log = "[GetDateText]: [This.GetName]: GER_panavia.2.a executed"
-#		set_country_flag = Tornado_is_hidden
-#		mio:GER_panavia_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#		}
-#		add_tech_bonus = {
-#			name = CAT_air_stealth
-#			bonus = 0.20
-#			uses = 2
-#			category = CAT_air_stealth
-#		}
-#		set_temp_variable = { treasury_change = GER.gdp_per_capita }
-#				multiply_temp_variable = { treasury_change = -0.12 }
-#				modify_treasury_effect = yes
-#	}
-#	option = {
-#		name = GER_panavia.2.b
-#		log = "[GetDateText]: [This.GetName]: GER_panavia.2.b executed"
-#		set_country_flag = Tornado_is_hidden
-#		air_experience = 20
-#	}
-#}
-#country_event = { #panavia stealth
-#	id = GER_panavia.3
-#	title = GER_panavia.3.t
-#	desc = GER_panavia.3.d
-#	picture = GFX_GER_tornado
-#
-#	is_triggered_only = yes
-#
-#	option = {
-#		name = GER_panavia.3.a
-#		log = "[GetDateText]: [This.GetName]: GER_panavia.3.a executed"
-#		set_country_flag = Tornado_is_agil
-#		mio:GER_panavia_aircraft_manufacturer = {
-#			add_mio_funds = 300
-#		}
-#		add_tech_bonus = {
-#			name = CAT_avionics
-#			bonus = 0.40
-#			uses = 3
-#			category = CAT_avionics
-#			category = CAT_wings
-#		}
-#		set_temp_variable = { treasury_change = GER.gdp_per_capita }
-#				multiply_temp_variable = { treasury_change = -0.08 }
-#				modify_treasury_effect = yes
-#	}
-#	option = {
-#		name = GER_panavia.3.b
-#		log = "[GetDateText]: [This.GetName]: GER_panavia.3.b executed"
-#		set_country_flag = Tornado_is_agil
-#		air_experience = 20
-#	}
-#}
+country_event = { #The Eurofighter
+	id = GER_Eurofighter.2
+	title = GER_Eurofighter.2.t
+	desc = GER_Eurofighter.2.d
+	picture = GFX_GER_euroifighter
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = Eurofighter_naval
+		}
+	}
+
+	option = {
+		name = GER_Eurofighter.2.a
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.2.a executed"
+		custom_effect_tooltip = GER_Eurofighter.2.a_desc
+		create_equipment_variant = {
+			name = "Eurofighter Thyphoon Naval"
+			type = medium_plane_maritime_patrol_airframe_2
+			design_team = mio:GER_Eurofighter_aircraft_manufacturer
+			modules = {
+				fixed_main_weapon_slot = weap_mp_med_hardpoint_1
+				fixed_gun_slot = weap_multi_gun_1
+				engine_type_slot = engine_jet_double_3
+				avionics_type_slot = avionics_manned_3
+				wingform_type_slot = wing_delta_canard
+				special_slot_type_1 = spec_countermeasures_2
+				special_slot_type_2 = spec_refuel_3
+				special_slot_type_3 = spec_tgp_2
+				fixed_auxiliary_weapon_slot_1 = weap_mp_light_hardpoint_2
+				fixed_auxiliary_weapon_slot_2 = weap_as_hardpoint_2
+			}
+			icon = "gfx/interface/technologies/GER/AIR/E2000.dds"
+			model = "GER_medium_plane_airframe_2_entity"
+		}
+	}
+	option = {
+		name = GER_Eurofighter.2.b
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.2.b executed"
+		custom_effect_tooltip = GER_Eurofighter.2.b_desc
+		create_equipment_variant = {
+			name = "Eurofighter Thyphoon CV"
+			type = cv_medium_plane_airframe_2
+			design_team = mio:GER_Eurofighter_aircraft_manufacturer
+			modules = {
+				fixed_main_weapon_slot = weap_mp_med_hardpoint_2
+				fixed_gun_slot = weap_multi_gun_1
+				engine_type_slot = engine_jet_double_3
+				avionics_type_slot = avionics_manned_3
+				wingform_type_slot = wing_delta_canard
+				special_slot_type_1 = spec_countermeasures_2
+				special_slot_type_2 = spec_refuel_3
+				special_slot_type_3 = spec_tgp_2
+				fixed_auxiliary_weapon_slot_1 = weap_mp_light_hardpoint_2
+				fixed_auxiliary_weapon_slot_2 = weap_as_hardpoint_2
+			}
+			icon = "gfx/interface/technologies/GER/AIR/E2000.dds"
+			model = "GER_medium_plane_airframe_2_entity"
+		}
+	}
+	option = {
+		name = GER_Eurofighter.2.c
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.2.c executed"
+		custom_effect_tooltip = GER_Eurofighter.2.c_desc
+		mio:GER_Eurofighter_aircraft_manufacturer = {
+			add_mio_funds = 300
+			add_mio_size_up_requirement_factor = -0.1
+
+		}
+	}
+}
+country_event = { #The Eurofighter
+	id = GER_Eurofighter.3
+	title = GER_Eurofighter.3.t
+	desc = GER_Eurofighter.3.d
+	picture = GFX_GER_euroifighter
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_Eurofighter.3.a
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.3.a executed"
+		set_country_flag = Eurofighter_joint
+		mio:GER_Eurofighter_aircraft_manufacturer = {
+			add_mio_funds = 300
+			add_to_variable = { free_trait_picks = 1 }
+		}
+	}
+	option = {
+		name = GER_Eurofighter.3.b
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.3.b executed"
+		set_country_flag = Eurofighter_joint
+		set_temp_variable = { percent_change = 2 }
+			change_domestic_influence_percentage = yes
+		every_country = {
+			limit = {
+				has_country_flag = GER_the_Eurofighter
+			}
+			add_opinion_modifier = {
+				modifier = GER_Rejected_mutual_project
+				target = Root
+			}
+		}
+	}
+}
+country_event = { #The Eurofighter
+	id = GER_Eurofighter.4
+	title = GER_Eurofighter.4.t
+	desc = GER_Eurofighter.4.d
+	picture = GFX_GER_euroifighter
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_Eurofighter.4.a
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.4.a executed"
+		set_country_flag = Eurofighter_joint_2
+		mio:GER_Eurofighter_aircraft_manufacturer = {
+			add_mio_funds = 300
+		}
+	}
+	option = {
+		name = GER_Eurofighter.4.b
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.4.b executed"
+		set_country_flag = Eurofighter_joint_2
+		set_temp_variable = { percent_change = 2 }
+			change_domestic_influence_percentage = yes
+		every_country = {
+			limit = {
+				has_country_flag = GER_the_Eurofighter
+			}
+			add_opinion_modifier = {
+				modifier = GER_Rejected_mutual_project
+				target = Root
+			}
+		}
+	}
+}
+news_event = { #The Eurofighter
+	id = GER_Eurofighter.5
+	title = GER_Eurofighter.5.t
+	desc = GER_Eurofighter.5.d
+	picture = GFX_Eurofighter_naked
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_Eurofighter.5.a
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.5.a executed"
+		set_country_flag = Eurofighter_wings
+		mio:GER_Eurofighter_aircraft_manufacturer = {
+			add_mio_funds = 300
+		}
+	}
+}
+news_event = { #The Eurofighter
+	id = GER_Eurofighter.6
+	title = GER_Eurofighter.6.t
+	desc = GER_Eurofighter.6.d
+	picture = GFX_Eurofighter_naked
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_Eurofighter.6.a
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.6.a executed"
+		set_country_flag = Eurofighter_rump_middle
+		mio:GER_Eurofighter_aircraft_manufacturer = {
+			add_mio_funds = 300
+		}
+	}
+}
+news_event = { #The Eurofighter
+	id = GER_Eurofighter.7
+	title = GER_Eurofighter.7.t
+	desc = GER_Eurofighter.7.d
+	picture = GFX_Eurofighter_naked
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_Eurofighter.7.a
+		log = "[GetDateText]: [This.GetName]: GER_Eurofighter.7.a executed"
+		set_country_flag = Eurofighter_rump_nose
+		mio:GER_Eurofighter_aircraft_manufacturer = {
+			add_mio_funds = 300
+			add_mio_research_bonus = 0.07
+		}
+	}
+}
+#panavia
+country_event = { #The Tornado
+	id = GER_panavia.1
+	title = GER_panavia.1.t
+	desc = GER_panavia.1.d
+	picture = GFX_GER_tornado
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_panavia.1.a
+		log = "[GetDateText]: [This.GetName]: GER_panavia.1.a executed"
+		set_country_flag = Tornado_is_back
+		mio:GER_panavia_aircraft_manufacturer = {
+			add_mio_funds = 300
+			add_to_variable = { free_trait_picks = 1 }
+		}
+	}
+	option = {
+		name = GER_panavia.1.b
+		log = "[GetDateText]: [This.GetName]: GER_panavia.1.b executed"
+		set_country_flag = Tornado_is_back
+		air_experience = 20
+	}
+}
+country_event = { #panavia stealth
+	id = GER_panavia.2
+	title = GER_panavia.2.t
+	desc = GER_panavia.2.d
+	picture = GFX_GER_tornado
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_panavia.2.a
+		log = "[GetDateText]: [This.GetName]: GER_panavia.2.a executed"
+		set_country_flag = Tornado_is_hidden
+		mio:GER_panavia_aircraft_manufacturer = {
+			add_mio_funds = 300
+		}
+		add_tech_bonus = {
+			name = CAT_air_stealth
+			bonus = 0.20
+			uses = 2
+			category = CAT_air_stealth
+		}
+		set_temp_variable = { treasury_change = GER.gdp_per_capita }
+				multiply_temp_variable = { treasury_change = -0.12 }
+				modify_treasury_effect = yes
+	}
+	option = {
+		name = GER_panavia.2.b
+		log = "[GetDateText]: [This.GetName]: GER_panavia.2.b executed"
+		set_country_flag = Tornado_is_hidden
+		air_experience = 20
+	}
+}
+country_event = { #panavia stealth
+	id = GER_panavia.3
+	title = GER_panavia.3.t
+	desc = GER_panavia.3.d
+	picture = GFX_GER_tornado
+
+	is_triggered_only = yes
+
+	option = {
+		name = GER_panavia.3.a
+		log = "[GetDateText]: [This.GetName]: GER_panavia.3.a executed"
+		set_country_flag = Tornado_is_agil
+		mio:GER_panavia_aircraft_manufacturer = {
+			add_mio_funds = 300
+		}
+		add_tech_bonus = {
+			name = CAT_avionics
+			bonus = 0.40
+			uses = 3
+			category = CAT_avionics
+			category = CAT_wings
+		}
+		set_temp_variable = { treasury_change = GER.gdp_per_capita }
+				multiply_temp_variable = { treasury_change = -0.08 }
+				modify_treasury_effect = yes
+	}
+	option = {
+		name = GER_panavia.3.b
+		log = "[GetDateText]: [This.GetName]: GER_panavia.3.b executed"
+		set_country_flag = Tornado_is_agil
+		air_experience = 20
+	}
+}
 country_event = { #Heeresflieger
 	id = GER_Cold_War.23
 	title = GER_Cold_War.23.t
@@ -13567,7 +13542,7 @@ country_event = {
 		add_equipment_to_stockpile = {
 			type = small_plane_strike_airframe_2
 			amount = 35
-			variant_name = "JAS 39 Gripen"
+			variant_name = "JAS 39 Gripen A/B"
 			producer = SWE
 		}
 		SWE = {
@@ -13575,7 +13550,7 @@ country_event = {
 				target = GER
 				equipment = {
 					type = small_plane_strike_airframe_2
-					#variant_name = "JAS 39 Gripen"
+					version_name = "JAS 39 Gripen A/B"
 				}
 				cost_factor = 1
 			}
@@ -16176,7 +16151,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = germany_foci.140.b 
+		name = germany_foci.140.b
 		log = "[GetDateText]: [This.GetName]: germany_foci.140.b executed"
 		custom_effect_tooltip = germany_foci.140.b_desc
 		set_temp_variable = { treasury_change = GER.gdp_per_capita }
@@ -16193,7 +16168,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = germany_foci.140.c 
+		name = germany_foci.140.c
 		log = "[GetDateText]: [This.GetName]: germany_foci.140.c executed"
 		custom_effect_tooltip = germany_foci.140.c_desc
 		set_temp_variable = { treasury_change = GER.gdp_per_capita }
