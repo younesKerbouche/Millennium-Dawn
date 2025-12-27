@@ -7506,6 +7506,25 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_foster_the_tech_revolution"
+			add_tech_bonus = {
+				name = nuclear_reactors_research_bonus
+				bonus = 1
+				uses = 1
+				category = CAT_internet_tech
+				category = CAT_computing_tech
+				category = CAT_ai
+			}
+			newline = yes
+			13 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = offices
+					level = 1
+				}
+			}
+			newline = yes
+			set_temp_variable = { treasury_change = -11.50 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -7538,6 +7557,32 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_uplift_traditional_industry"
+			16 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			newline = yes
+			1191 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			newline = yes
+			973 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			newline = yes
+			set_temp_variable = { treasury_change = -22.50 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -7725,11 +7770,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_more_frontline_staff"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
 			set_temp_variable = { ENG_high_unemployment_threshold_modifier_change = 0.1 }
 			update_ENG_high_unemployment_threshold_modifier = yes
 			newline	= yes
 			10 = {
-				add_extra_state_shared_building_slots = 1
+				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = agriculture_district
 					level = 2
@@ -7786,7 +7832,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_no_one_left_behind
-		icon = god_save_the_king
+		icon = cash_grap
 
 		x = 0
 		y = 4
@@ -7805,6 +7851,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_no_one_left_behind"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = { ENG_centralization_cost_change = -0.05 }
+			update_ENG_centralization_cost = yes
+			newline	= yes
+			custom_effect_tooltip = ENG_change_politics_spirit_tt
+			set_temp_variable = { ENG_political_power_factor_change = 0.03 }
+			update_ENG_political_power_factor = yes
+			newline	= yes
+			add_stability = 0.02
 		}
 
 		ai_will_do = {
@@ -7814,7 +7869,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_welfare_reform
-		icon = god_save_the_king
+		icon = welfare
 
 		x = 1
 		y = 5
@@ -7833,6 +7888,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_welfare_reform"
+			custom_effect_tooltip = ENG_change_economy_spirit_tt
+			set_temp_variable = { ENG_welfare_cost_change = 0.025 }
+			update_ENG_welfare_cost = yes
+			set_temp_variable = { ENG_consumer_goods_factor_change = -0.05 }
+			update_ENG_consumer_goods_factor = yes
+			newline = yes
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.025 }
+			add_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
@@ -7842,7 +7907,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_criminal_justice_reform
-		icon = god_save_the_king
+		icon = judiciary
 
 		x = -1
 		y = 5
@@ -7861,6 +7926,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_criminal_justice_reform"
+			custom_effect_tooltip = ENG_change_politics_spirit_tt
+			set_temp_variable = { ENG_corruption_cost_change = -0.10 }
+			update_ENG_corruption_cost = yes
+			set_temp_variable = { ENG_democratic_drift_change = 0.03 }
+			update_ENG_democratic_drift = yes
+			newline = yes
+			decrease_corruption = yes
 		}
 
 		ai_will_do = {
@@ -7870,7 +7942,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_tax_reform
-		icon = god_save_the_king
+		icon = Generic_Loadsamoney
 
 		x = 0
 		y = 6
@@ -7889,7 +7961,8 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_criminal_justice_reform"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_tax_reform"
+			country_event = britain_md.4
 		}
 
 		ai_will_do = {
@@ -7899,7 +7972,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_strengthening_communities
-		icon = god_save_the_king
+		icon = social_liberal
 
 		x = -2
 		y = 4
@@ -7917,7 +7990,14 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_prioritize_the_teachers"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_strengthening_communities"
+			set_temp_variable = { percent_change = 5 }
+			change_domestic_influence_percentage = yes
+			newline = yes
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = 0.025 }
+			set_temp_variable = { temp_outlook_increase = 0.015 }
+			add_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
@@ -7927,7 +8007,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_to_europa_and_beyond
-		icon = god_save_the_king
+		icon = europe
 
 		x = -2
 		y = 6
@@ -7942,10 +8022,29 @@ focus_tree = {
 
 		available = {
 			western_social_democrats_are_in_power = yes
+			has_idea = EU_member
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_prioritize_the_teachers"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_to_europa_and_beyond"
+			custom_effect_tooltip = ENG_change_politics_spirit_tt
+			set_temp_variable = { ENG_foreign_influence_home_continent_modifier_change = 0.05 }
+			update_ENG_foreign_influence_home_continent_modifier = yes
+			newline	= yes
+			every_country = {
+				limit = {
+					is_european_nation = yes
+				}
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = ENG }
+				set_temp_variable = { influence_target = THIS }
+				change_influence_percentage = yes
+			}
+			newline = yes
+			set_temp_variable = { modify_eurosceptic = -0.03 }
+			set_temp_variable = { modify_eurosceptic_target = ROOT }
+			eurosceptic_change = yes
+
 		}
 
 		ai_will_do = {
@@ -7955,7 +8054,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_productivity_challenge
-		icon = god_save_the_king
+		icon = export_economy
 
 		x = 2
 		y = 4
@@ -7977,6 +8076,9 @@ focus_tree = {
 			custom_effect_tooltip = ENG_change_economy_spirit_tt
 			set_temp_variable = { ENG_productivity_cost_change = 0.05 }
 			update_ENG_productivity_cost = yes
+			newline = yes
+			set_temp_variable = { temp_opinion = 5 }
+			change_labour_unions_opinion = yes
 		}
 
 		ai_will_do = {
