@@ -2084,4 +2084,188 @@ FRA_3rd_empire_decision_category = {
 			}
 		}
 	}
+	FRA_crush_coalition = {#claim Rheinland
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			country_exists = AUS
+			country_exists = HUN
+			country_exists = ITA
+			country_exists = SLO
+			country_exists = CZE
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_crush_coalition"
+			country_event = france_md.320
+			if = {
+				limit = {country_exists = AUS}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = AUS
+				}
+			}
+			if = {
+				limit = {country_exists = HUN}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = HUN
+				}
+			}
+			if = {
+				limit = {country_exists = ITA}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = ITA
+				}
+			}
+			if = {
+				limit = {country_exists = CZE}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = CZE
+				}
+			}
+			if = {
+				limit = {country_exists = SLO}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = SLO
+				}
+			}
+		}
+	}
+	FRA_prepare_russia = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			country_exists = POL
+			country_exists = ROM
+			country_exists = LAT
+			country_exists = EST
+			country_exists = LIT
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_prepare_russia"
+			country_event = france_md.322
+			if = {
+				limit = {
+					AND = {
+						country_exists = POL
+						NOT = {POL = {is_in_faction_with = FRA}}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = POL
+				}
+			}
+			else_if = {
+				limit = {
+					AND = {
+						country_exists = POL
+						POL = {is_in_faction_with = FRA}
+					}
+				}
+				POL = {
+					country_event = france_md.321
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						country_exists = ROM
+						NOT = {ROM = {is_in_faction_with = FRA}}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = ROM
+				}
+			}
+			else_if = {
+				limit = {
+					AND = {
+						country_exists = ROM
+						ROM = {is_in_faction_with = FRA}
+					}
+				}
+				ROM = {
+					country_event = france_md.321
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						country_exists = LAT
+						NOT = {LAT = {is_in_faction_with = FRA}}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = LAT
+				}
+			}
+			else_if = {
+				limit = {
+					AND = {
+						country_exists = LAT
+						LAT = {is_in_faction_with = FRA}
+					}
+				}
+				LAT = {
+					country_event = france_md.321
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						country_exists = EST
+						NOT = {EST = {is_in_faction_with = FRA}}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = EST
+				}
+			}
+			else_if = {
+				limit = {
+					AND = {
+						country_exists = EST
+						EST = {is_in_faction_with = FRA}
+					}
+				}
+				EST = {
+					country_event = france_md.321
+				}
+			}
+			if = {
+				limit = {
+					AND = {
+						country_exists = LIT
+						NOT = {LIT = {is_in_faction_with = FRA}}
+					}
+				}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = LIT
+				}
+			}
+			else_if = {
+				limit = {
+					AND = {
+						country_exists = LIT
+						LIT = {is_in_faction_with = FRA}
+					}
+				}
+				LIT = {
+					country_event = france_md.321
+				}
+			}
+		}
+	}
 }
