@@ -9,6 +9,8 @@ technologies = {
 	@2005 = 6
 	@2015 = 8
 	@2035 = 10
+	@2055 = 12
+	@2075 = 14
 
 	#Y Axis
 	@row1 = -4
@@ -280,6 +282,10 @@ technologies = {
 			heavy_tank_chassis_4
 			heavy_tank_amphibious_chassis_4
 		}
+		path = {
+			leads_to_tech = nsb_attack_helicopter_tech_6
+			research_cost_coeff = 1
+		}
 		research_cost = 1.7
 		start_year = 2035
 		folder = {
@@ -311,6 +317,103 @@ technologies = {
 		}
 	}
 
+	#2055
+	nsb_attack_helicopter_tech_6 = {
+		on_research_complete = {
+		}
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+		enable_equipments = {
+			heavy_tank_chassis_5
+			heavy_tank_amphibious_chassis_5
+		}
+		research_cost = 1.7
+		start_year = 2055
+		path = {
+			leads_to_tech = nsb_attack_helicopter_tech_7
+			research_cost_coeff = 1
+		}
+		folder = {
+			name = air_techs_folder
+			position = { x = @row3 y = @2055 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				check_variable = {
+					gdp_per_capita > 19.999
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = {
+						gdp_per_capita < 20
+					}
+				}
+			}
+		}
+	}
+	#2075
+	nsb_attack_helicopter_tech_7 = {
+		on_research_complete = {
+		}
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+		enable_equipments = {
+			heavy_tank_chassis_6
+			heavy_tank_amphibious_chassis_6
+		}
+		research_cost = 1.7
+		start_year = 2075
+		folder = {
+			name = air_techs_folder
+			position = { x = @row3 y = @2075 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				check_variable = {
+					gdp_per_capita > 19.999
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = {
+						gdp_per_capita < 20
+					}
+				}
+			}
+		}
+	}
+
 	#non-nsb attack helicopters
 	#1965
 	attack_helicopter1 = {
@@ -325,7 +428,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			attack_helicopter1 #not created
+			attack_helicopter1
 		}
 		enable_subunits = {
 			attack_helo_bat
@@ -428,7 +531,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			attack_helicopter3 #not created
+			attack_helicopter3
 		}
 
 		path = {
@@ -478,7 +581,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			attack_helicopter4 #not created
+			attack_helicopter4
 		}
 
 		path = {
@@ -577,6 +680,106 @@ technologies = {
 		}
 	}
 
+	#2055
+	attack_helicopter6 = {
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+
+		enable_equipments = {
+			attack_helicopter6
+		}
+
+		research_cost = 2.4
+		start_year = 2055
+
+		folder = {
+			name = air_techs_folder
+			position = { x = @row3 y = @2055 }
+		}
+
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				date < 2055.01.01
+			}
+			modifier = {
+				factor = 0.2
+				date < 2050.01.01
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = { gdp_per_capita < 20 }
+				}
+			}
+		}
+	}
+
+	#2075
+	attack_helicopter7 = {
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+
+		enable_equipments = {
+			attack_helicopter7
+		}
+
+		research_cost = 2.4
+		start_year = 2075
+
+		folder = {
+			name = air_techs_folder
+			position = { x = @row3 y = @2075 }
+		}
+
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				date < 2075.01.01
+			}
+			modifier = {
+				factor = 0.2
+				date < 2070.01.01
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = { gdp_per_capita < 20 }
+				}
+			}
+		}
+	}
+
 	# Helicopter Operations/Technologies
 	helo_ops_tech = {
 		allow_branch = { has_dlc = "No Step Back" }
@@ -649,7 +852,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter1 #not created
+			transport_helicopter1
 		}
 
 		path = {
@@ -699,7 +902,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter2 #not created
+			transport_helicopter2
 		}
 
 		path = {
@@ -749,7 +952,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter3 #not created
+			transport_helicopter3
 		}
 
 		path = {
@@ -811,7 +1014,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter4 #not created
+			transport_helicopter4
 		}
 
 		path = {
@@ -870,7 +1073,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter5 #not created
+			transport_helicopter5
 		}
 
 		research_cost = 2
@@ -927,7 +1130,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter1 #not created
+			transport_helicopter1
 		}
 		enable_subunits = {
 			L_Air_assault_Bat
@@ -980,7 +1183,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter2 #not created
+			transport_helicopter2
 		}
 
 		path = {
@@ -1030,7 +1233,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter3 #not created
+			transport_helicopter3
 		}
 
 		path = {
@@ -1092,7 +1295,7 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter4 #not created
+			transport_helicopter4
 		}
 
 		path = {
@@ -1151,11 +1354,15 @@ technologies = {
 		}
 
 		enable_equipments = {
-			transport_helicopter5 #not created
+			transport_helicopter5
 		}
 
 		research_cost = 2
 		start_year = 2035
+		path = {
+			leads_to_tech = transport_helicopter6
+			research_cost_coeff = 1
+		}
 
 		folder = {
 			name = air_techs_folder
@@ -1195,7 +1402,103 @@ technologies = {
 				}
 			}
 		}
-	} ##ASW Helis Deleted. Unnecessary. Will add replacement techs to just be like "better" ASW warfare capabilities
+	}
+	#2055
+	transport_helicopter6 = {
+		enable_equipments = {
+			transport_helicopter6
+		}
+		research_cost = 2
+		start_year = 2055
+		path = {
+			leads_to_tech = transport_helicopter7
+			research_cost_coeff = 1
+		}
+		folder = {
+			name = air_techs_folder
+			position = { x = @row1 y = @2055 }
+		}
+		categories = {
+			CAT_heli
+			CAT_trans_heli
+			CAT_Military
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				date < 2055.01.01
+			}
+			modifier = {
+				factor = 0.2
+				date < 2050.01.01
+			}
+			modifier = {
+				factor = 2
+				check_variable = {
+					gdp_per_capita > 59.999
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = {
+						gdp_per_capita < 20
+					}
+				}
+			}
+		}
+	}
+	#2075
+	transport_helicopter7 = {
+		enable_equipments = {
+			transport_helicopter7
+		}
+		research_cost = 2
+		start_year = 2075
+		folder = {
+			name = air_techs_folder
+			position = { x = @row1 y = @2075 }
+		}
+		categories = {
+			CAT_heli
+			CAT_trans_heli
+			CAT_Military
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				date < 2075.01.01
+			}
+			modifier = {
+				factor = 0.2
+				date < 2070.01.01
+			}
+			modifier = {
+				factor = 2
+				check_variable = {
+					gdp_per_capita > 59.999
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = {
+						gdp_per_capita < 20
+					}
+				}
+			}
+		}
+	}
 
 	#1965 Turbine Engine Tech
 	nsb_engine_tech_1 = {
