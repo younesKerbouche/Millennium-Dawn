@@ -1,4 +1,4 @@
-# Author(s): Kalkalash
+# Author(s): Kalkalash, TheGeneral
 #Special projects related to infantry equipment tech tab
 sp_caseless_ammunition = {
 	specialization = specialization_land
@@ -7,12 +7,6 @@ sp_caseless_ammunition = {
 
 	ai_will_do = {
 		base = 1
-	}
-
-	visible = {
-		FROM = {
-			has_tech = infantry_weapons1
-		}
 	}
 
 	available = {
@@ -93,8 +87,7 @@ sp_caseless_ammunition = {
 	}
 
 }
-
-sp_fire_support_land_drone = {
+sp_smart_bullets = {
 	specialization = specialization_land
 
 	project_tags = sp_tag_infantry_equipment
@@ -103,13 +96,138 @@ sp_fire_support_land_drone = {
 		base = 1
 	}
 
-	visible = {
-		FROM = {
-			OR = {
-				has_tech = land_Drone_equipment2
-				has_tech = support_weapons4
+	special_project_parent = {
+		sp_caseless_ammunition
+	}
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	project_output = {
+		equipment_bonus = {
+			Inf_equipment = {
+				soft_attack = 0.15
+				build_cost_ic = 0.05
+				instant = yes
 			}
 		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_scientist_xp_3
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_army_xp_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_major_progress_3
+		sp_land_generic_reward_test_failure_1
+		sp_land_generic_reward_test_failure_2
+		sp_land_generic_reward_test_failure_3
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_resource_scarcity
+		sp_land_generic_reward_critical_failure
+	}
+
+	unique_prototype_rewards = {
+		sp_caseless_ammunition_reward_new_propellant = {
+			fire_only_once = yes
+
+			threshold = {
+				min = 0
+				max = 100
+			}
+
+			weight = {
+				base = 1
+			}
+
+			option = {
+				token = sp_caseless_ammunition_reward_new_propellant_option
+
+				iteration_output = {
+					equipment_bonus = {
+						Inf_equipment = {
+							reliability = 0.025
+						}
+					}
+
+					country_effects = {
+						FROM = {
+							add_project_progress_ratio = constant:sp_progress.gain.low
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+sp_recon_land_drone = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry_equipment
+
+	ai_will_do = {
+		base = 1
+	}
+
+	available = {
+		FROM = {
+			has_tech = land_Drone_equipment3
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+
+	prototype_time = sp_time.prototype.medium
+
+	complexity = sp_complexity.medium
+
+	project_output = {
+		enable_subunits = {
+			Drone_Recce_Comp
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_scientist_xp_3
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_army_xp_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_major_progress_3
+		sp_land_generic_reward_test_failure_1
+		sp_land_generic_reward_test_failure_2
+		sp_land_generic_reward_test_failure_3
+		sp_land_generic_reward_infantry_tech_1
+		sp_land_generic_reward_infantry_tech_2
+		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_resource_scarcity
+		sp_land_generic_reward_critical_failure
+	}
+}
+sp_fire_support_land_drone = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_infantry_equipment
+
+	ai_will_do = {
+		base = 1
 	}
 
 	available = {
@@ -213,15 +331,6 @@ sp_tactical_augmented_reality = {
 		base = 1
 	}
 
-	visible = {
-		FROM = {
-			OR = {
-				has_tech = command_control_equipment3
-				has_tech = night_vision_4
-			}
-		}
-	}
-
 	available = {
 		FROM = {
 			has_tech = command_control_equipment4
@@ -317,12 +426,6 @@ sp_double_shot_rifle = {
 
 	ai_will_do = {
 		base = 1
-	}
-
-	visible = {
-		FROM = {
-			has_tech = special_forces2
-		}
 	}
 
 	available = {
@@ -523,15 +626,6 @@ sp_experimental_exoskeleton = {
 		base = 1
 	}
 
-	visible = {
-		FROM = {
-			OR = {
-				has_tech = body_armor_2010
-				has_tech = advanced_industrial_robotics
-			}
-		}
-	}
-
 	available = {
 		FROM = {
 			has_tech = body_armor_2010
@@ -630,12 +724,6 @@ sp_active_camouflage = {
 
 	ai_will_do = {
 		base = 1
-	}
-
-	visible = {
-		FROM = {
-			has_tech = camouflage3
-		}
 	}
 
 	available = {
@@ -827,12 +915,6 @@ sp_truck_modular_seating = {
 		base = 1
 	}
 
-	visible = {
-		FROM = {
-			has_tech = util_vehicle_1
-		}
-	}
-
 	available = {
 		FROM = {
 			has_tech = util_vehicle_3
@@ -924,12 +1006,6 @@ sp_utility_vehicle_electric_engines = {
 		base = 1
 	}
 
-	visible = {
-		FROM = {
-			has_tech = util_vehicle_3
-		}
-	}
-
 	available = {
 		FROM = {
 			has_tech = util_vehicle_5
@@ -998,9 +1074,6 @@ sp_utility_vehicle_electric_engines = {
 							uses = 1
 							category = CAT_fuel_oil
 						}
-					}
-
-					country_effects = {
 						FROM = {
 							add_project_progress_ratio = constant:sp_progress.gain.low
 						}
@@ -1019,12 +1092,6 @@ sp_coilgun_memes = {
 
 	ai_will_do = {
 		base = 1
-	}
-
-	visible = {
-		FROM = {
-			is_special_project_completed = sp:sp_railgun_cannon
-		}
 	}
 
 	available = {
@@ -1110,6 +1177,64 @@ sp_coilgun_memes = {
 		sp_land_generic_reward_infantry_tech_1
 		sp_land_generic_reward_infantry_tech_2
 		sp_land_generic_reward_infantry_tech_3
+		sp_land_generic_reward_resource_scarcity
+		sp_land_generic_reward_critical_failure
+	}
+}
+sp_airless_tires = {
+	specialization = specialization_land
+
+	project_tags = sp_tag_armored_vehicles
+
+	ai_will_do = {
+		base = 1
+	}
+
+	available = {
+		FROM = {
+			has_tech = util_vehicle_5
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_land = 1
+	}
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	project_output = {
+		equipment_bonus = {
+			util_vehicle_equipment = {
+				build_cost_ic = 0.10
+				reliability = 0.25
+				instant = yes
+			}
+		}
+		sub_unit_bonus = {
+			motorized = {
+				maximum_speed = 0.10
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_scientist_xp_3
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_army_xp_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_major_progress_3
+		sp_land_generic_reward_test_failure_1
+		sp_land_generic_reward_test_failure_2
+		sp_land_generic_reward_test_failure_3
+		sp_land_generic_reward_motorised_tech_1
+		sp_land_generic_reward_motorised_tech_2
+		sp_land_generic_reward_motorised_tech_3
 		sp_land_generic_reward_resource_scarcity
 		sp_land_generic_reward_critical_failure
 	}

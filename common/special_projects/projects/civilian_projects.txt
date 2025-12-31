@@ -1,15 +1,10 @@
-# Author(s): AngriestBird, Doolittle
+# Author(s): AngriestBird, Doolittle, TheGeneral
 sp_fusion_reactors = {
 
 	specialization = specialization_nuclear
 
 	project_tags = sp_tag_energy
 
-	visible = {
-		FROM = {
-			has_tech = reactor7
-		}
-	}
 	available = {
 		FROM = {
 			has_tech = reactor9
@@ -95,11 +90,6 @@ sp_space_based_solar_farms = {
 		specialization_nuclear = 1
 	}
 
-	visible = {
-		FROM = {
-			has_tech = improved_modern_renewables
-		}
-	}
 	available = {
 		FROM = {
 			has_tech = advanced_modern_renewables
@@ -153,11 +143,6 @@ sp_improved_based_solar_farms = {
 	icon = GFX_sp_improved_space_based_solar_farms
 	project_tags = sp_tag_energy
 
-	visible = {
-		FROM = {
-			has_tech = improved_modern_renewables
-		}
-	}
 	available = {
 		FROM = {
 			has_tech = improved_modern_renewables
@@ -281,11 +266,6 @@ sp_construction_exoskeletons = {
 		specialization_nuclear = 1
 	}
 
-	visible = {
-		FROM = {
-			has_tech = construction7
-		}
-	}
 	available = {
 		FROM = {
 			has_tech = construction8
@@ -331,11 +311,6 @@ sp_thorium_nuclear_fuel = {
 		specialization_nuclear = 3
 	}
 
-	visible = {
-		FROM = {
-			has_tech = reactor2
-		}
-	}
 	available = {
 		FROM = {
 			has_tech = reactor3
@@ -414,9 +389,6 @@ sp_wireless_power_grid_expansion = {
 		sp_civilian_generic_reward_test_failure_3
 		sp_civilian_generic_reward_resource_scarcity
 		sp_civilian_generic_reward_critical_failure
-	}
-
-	unique_prototype_rewards = {
 	}
 
 	ai_will_do = {
@@ -591,11 +563,6 @@ sp_space_weapons_gdm = {
 	special_project_parent = {
 		sp_space_program_gdm
 	}
-	visible = {
-		FROM = {
-			is_special_project_completed = sp:sp_space_program_gdm
-		}
-	}
 
 	prototype_time = sp_time.prototype.very_long
 
@@ -728,11 +695,6 @@ sp_space_weapons_non_gdm = {
 	special_project_parent = {
 		sp_space_program_non_gdm
 	}
-	visible = {
-		FROM = {
-			is_special_project_completed = sp:sp_space_program_non_gdm
-		}
-	}
 
 	prototype_time = sp_time.prototype.very_long
 
@@ -833,5 +795,283 @@ sp_electronic_government = {
 				}
 			}
 		}
+	}
+}
+sp_deep_sea_mining = {
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = excavation6
+			any_owned_state = {
+				is_coastal = yes
+			}
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 1
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_deep_sea_mining_idea
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_agriculture_drone = {
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = satellite_based_agricultural_planning
+			has_built = {
+				type = agriculture_district
+				value > 0
+			}
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 1
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_agriculture_drone_idea
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_vertical_farming = {
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = improved_harvesting_automation
+			has_tech = construction6
+			has_built = {
+				type = agriculture_district
+				value > 0
+			}
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 1
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_vertical_farming_idea
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_robotic_humanoid = {
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = human_imitation_ai
+			has_tech = internet5
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 3
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_robotic_humanoid_idea
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_robotic_surgery = {
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = human_imitation_ai
+			has_tech = internet5
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 3
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_robotic_surgery_idea
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_smart_grid = {
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = construction7
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 3
+	}
+
+	project_output = {
+		country_effects = {
+			 #Want to increase infrastructure state level
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
 	}
 }

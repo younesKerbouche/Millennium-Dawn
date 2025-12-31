@@ -1011,6 +1011,12 @@ technologies = {
 	}
 
 	nanocellulose_in_medicine = {
+		allow = {
+			is_special_project_completed = sp:sp_robotic_surgery
+		}
+
+		is_special_project_tech = yes
+
 		productivity_growth_modifier = 0.2
 		health_cost_multiplier_modifier = -0.10
 		combat_service_support_company = {
@@ -5430,6 +5436,19 @@ technologies = {
 		}
 	}
 	excavation6 = {
+		on_research_complete = {
+			if = {
+				limit = {
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_deep_sea_mining
+				}
+			}
+		}
 		local_resources_factor = 0.075
 
 		path = {
@@ -5516,6 +5535,12 @@ technologies = {
 		}
 	}
 	construction7 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_smart_grid
+			}
+		}
 		production_speed_buildings_factor = 0.075
 		industry_repair_factor = 0.075
 		global_building_slots_factor = 0.075
@@ -6037,6 +6062,12 @@ technologies = {
 	}
 	early_maglev_rail = {
 
+		allow = {
+			is_special_project_completed = sp:sp_improved_maglev_trains
+		}
+
+		is_special_project_tech = yes
+
 		path = {
 			leads_to_tech = standardised_maglev_rail
 			research_cost_coeff = 1
@@ -6429,6 +6460,13 @@ technologies = {
 		research_cost = 1.75
 		start_year = 2010
 
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_agriculture_drone
+			}
+		}
+
 		agricolture_productivity_modifier = 0.025
 		agriculture_workers_modifier = -0.05
 		agriculture_district_worker_requirement_modifier = -0.05
@@ -6582,6 +6620,13 @@ technologies = {
 
 		research_cost = 1.75
 		start_year = 2020
+
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_vertical_farming
+			}
+		}
 
 		agricolture_productivity_modifier = 0.03
 		agriculture_workers_modifier = -0.03
