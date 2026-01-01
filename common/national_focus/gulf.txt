@@ -3151,7 +3151,7 @@ focus_tree = {
 				else_if = {
 					limit = { PER = { NOT = { has_government = communism } } }
 					add_ideas = faction_resistance_axis_member
-					create_faction = RESISTANCE_AXIS
+					create_faction_from_template = faction_template_aor
 					every_other_country = {
 						limit = {
 							OR = {
@@ -3198,13 +3198,13 @@ focus_tree = {
 				if = {
 					limit = { IRQ = { has_government = nationalist } }
 					IRQ = {
-						create_faction = UNITED_ARAB_ALLIANCE
+						create_faction_from_template = faction_template_united_arab_alliance
 						country_event = { id = gulf.9 }
 					}
 				}
 				else_if = {
 					limit = { IRQ = { NOT = { has_government = nationalist } } }
-					create_faction = UNITED_ARAB_ALLIANCE
+					create_faction_from_template = faction_template_united_arab_alliance
 					every_other_country = {
 						limit = {
 							OR = {
@@ -4371,13 +4371,6 @@ focus_tree = {
 						target = ROOT
 						modifier = terrorism_is_no_no_trade
 					}
-					# add_ai_strategy = { type = befriend id = ROOT value = -200 }
-					# add_ai_strategy = { type = support id = ROOT value = -200 }
-					# add_ai_strategy = { type = protect id = ROOT value = -200 }
-					# add_ai_strategy = { type = send_volunteers_desire id = ROOT value = -200 }
-					# add_ai_strategy = { type = contain id = ROOT value = 200 }
-					# add_ai_strategy = { type = antagonize id = ROOT value = 200 }
-					# # add_ai_strategy = { type = conquer id = ROOT value = 200 }
 				}
 			}
 			if = {
@@ -4433,13 +4426,6 @@ focus_tree = {
 						target = ROOT
 						modifier = terrorism_is_no_no_trade
 					}
-					# add_ai_strategy = { type = befriend id = ROOT value = -200 }
-					# add_ai_strategy = { type = support id = ROOT value = -200 }
-					# add_ai_strategy = { type = protect id = ROOT value = -200 }
-					# add_ai_strategy = { type = send_volunteers_desire id = ROOT value = -200 }
-					# add_ai_strategy = { type = contain id = ROOT value = 200 }
-					# add_ai_strategy = { type = antagonize id = ROOT value = 200 }
-					# # add_ai_strategy = { type = conquer id = ROOT value = 200 }
 				}
 			}
 			if = {
@@ -11198,30 +11184,39 @@ focus_tree = {
 					value > -1
 				}
 			}
-			CHI = { has_tech = Air_UAV1 }
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				CHI = { has_tech = gen_4_light }
+
+				else = {
+					CHI = { has_tech = Air_UAV1 }
+				}
+			}
 		}
 
 		completion_reward = {
+			log = "[GetDateText]: [This.GetName]: focus GCC_chinese_uavs executed"
 			set_temp_variable = { treasury_change = -2 }
 			modify_treasury_effect = yes
-			add_equipment_to_stockpile = {
-				type = Air_UAV1
-				amount = 75
-				producer = CHI
-			}
-			CHI = {
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = large_commercial_relations
+			if = {
+				limit = { has_dlc = "By Blood Alone" }
+				add_equipment_to_stockpile = {
+					type = small_plane_suicide_airframe_2
+					amount = 75
+					producer = CHI
 				}
 			}
-			ROOT = {
-				add_opinion_modifier = {
-					target = CHI
-					modifier = large_commercial_relations
+			else = {
+				add_equipment_to_stockpile = {
+					type = Air_UAV1
+					amount = 75
+					producer = CHI
 				}
 			}
-			log = "[GetDateText]: [This.GetName]: focus GCC_chinese_uavs executed"
+			add_opinion_modifier = { target = CHI modifier = large_commercial_relations }
+			reverse_add_opinion_modifier = { target = CHI modifier = large_commercial_relations }
 		}
 
 		ai_will_do = { base = 1 }

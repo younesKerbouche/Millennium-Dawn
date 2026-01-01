@@ -475,7 +475,9 @@ country_event = {
 		effect_tooltip = {
 			FROM = {
 				set_temp_variable = { treasury_change = gdp_total }
-				multiply_temp_variable = { treasury_change = 0.03 }
+				multiply_temp_variable = { treasury_change = 0.02 }
+				clamp_temp_variable = { var = treasury_change min = 0 max = 150 }
+
 				set_temp_variable = { temp_reparation = treasury_change }
 				modify_treasury_effect = yes
 			}
@@ -502,7 +504,7 @@ country_event = {
 			modifier = {
 				factor = 0
 				set_temp_variable = { input_cost = FROM.gdp_total }
-				multiply_temp_variable = { input_cost = 0.03 }
+				multiply_temp_variable = { input_cost = 0.02 }
 				set_temp_variable = { interest_rate_check = 7.99 }
 				calculate_ai_interest = yes
 			}
@@ -524,7 +526,8 @@ country_event = {
 		custom_effect_tooltip = MD_reparation2_TT
 		ROOT = {
 			set_temp_variable = { treasury_change = gdp_total }
-			multiply_temp_variable = { treasury_change = 0.10 }
+			multiply_temp_variable = { treasury_change = 0.02 }
+			clamp_temp_variable = { var = treasury_change min = 0 max = 150 }
 			set_temp_variable = { temp_reparation = treasury_change }
 			modify_treasury_effect = yes
 		}
@@ -769,6 +772,15 @@ country_event = {
 			target = FROM
 			modifier = violated_neighbors_sovereignty
 		}
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = waived_notif_warning
+				}
+			}
+			custom_effect_tooltip = disable_raid_notifs_TT
+		}
+		set_country_flag = waived_notif_warning
 		ai_chance = {
 			base = 5
 			modifier = {
@@ -785,7 +797,15 @@ country_event = {
 	option = {
 		name = MD_raid.10.b
 		log = "[GetDateText]: [This.GetName]: MD_raid.10.b executed"
-
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = waived_notif_warning
+				}
+			}
+			custom_effect_tooltip = disable_raid_notifs_TT
+		}
+		set_country_flag = waived_notif_warning
 		ai_chance = {
 			base = 5
 		}
@@ -816,6 +836,15 @@ country_event = {
 			target = FROM
 			modifier = dislike_when_they_do_stuff
 		}
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = waived_notif_warning
+				}
+			}
+			custom_effect_tooltip = disable_raid_notifs_TT
+		}
+		set_country_flag = waived_notif_warning
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -836,6 +865,15 @@ country_event = {
 	option = {
 		name = MD_raid.11.b
 		log = "[GetDateText]: [This.GetName]: MD_raid.11.b executed"
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = waived_notif_warning
+				}
+			}
+			custom_effect_tooltip = disable_raid_notifs_TT
+		}
+		set_country_flag = waived_notif_warning
 		ai_chance = {
 			base = 1
 			modifier = {
@@ -865,6 +903,15 @@ country_event = {
 			target = FROM
 			modifier = violated_allies_sovereignty
 		}
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = waived_notif_warning
+				}
+			}
+			custom_effect_tooltip = disable_raid_notifs_TT
+		}
+		set_country_flag = waived_notif_warning
 		ai_chance = {
 			base = 40
 		}
@@ -873,6 +920,15 @@ country_event = {
 	option = {
 		name = MD_raid.12.b
 		log = "[GetDateText]: [This.GetName]: MD_raid.12.b executed"
+		if = {
+			limit = {
+				NOT = {
+					has_country_flag = waived_notif_warning
+				}
+			}
+			custom_effect_tooltip = disable_raid_notifs_TT
+		}
+		set_country_flag = waived_notif_warning
 		ai_chance = {
 			base = 1
 		}

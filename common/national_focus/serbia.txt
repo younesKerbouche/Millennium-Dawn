@@ -700,7 +700,7 @@ focus_tree = {
 			add_stability = 0.07
 			add_political_power = -100
 			custom_effect_tooltip = SER_MNT_give_up
-			set_country_flag = SER_montenegro_independence_ded
+			set_country_flag = SER_montenegro_independence_dead
 		}
 
 		ai_will_do = {
@@ -740,6 +740,10 @@ focus_tree = {
 			modifier = {
 				factor = 300
 				has_global_flag = SER_MILOCEVIC_NATI_FOCUS_PATH
+			}
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
 			}
 		}
 	}
@@ -3397,7 +3401,7 @@ focus_tree = {
 				capital_scope = {
 					create_unit = {
 						division = "name = \"Srpska Guard\" division_template = \"Srpska Guard\" start_experience_base = 1.0"
-						owner = ROOT
+						owner = SER
 						count = 1
 					}
 				}
@@ -3465,26 +3469,26 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -2.45 }
 			modify_treasury_effect = yes
 			hidden_effect = {
-			division_template = {
-				name = "Military Police Battalion"
-				is_locked = yes
-				regiments = {
-					Militia_Bat = { x = 0 y = 0 }
-					Militia_Bat = { x = 0 y = 1 }
-					Militia_Bat = { x = 1 y = 0 }
-					Militia_Bat = { x = 1 y = 1 }
-					}
-					support = {
-						Mot_Recce_Comp = { x = 0 y = 0 }
-					}
-			}
-			capital_scope = {
-				create_unit = {
-					division = "name = \"Military Police Battalion Kobra\" division_template = \"Military Police Battalion\" start_experience_base = 1.0"
-					owner = ROOT
-					count = 1
+				division_template = {
+					name = "Military Police Battalion"
+					is_locked = yes
+					regiments = {
+						Militia_Bat = { x = 0 y = 0 }
+						Militia_Bat = { x = 0 y = 1 }
+						Militia_Bat = { x = 1 y = 0 }
+						Militia_Bat = { x = 1 y = 1 }
+						}
+						support = {
+							Mot_Recce_Comp = { x = 0 y = 0 }
+						}
 				}
-			}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"Military Police Battalion - Kobra\" division_template = \"Military Police Battalion\" start_experience_base = 1.0"
+						owner = ROOT
+						count = 1
+					}
+				}
 			}
 		}
 

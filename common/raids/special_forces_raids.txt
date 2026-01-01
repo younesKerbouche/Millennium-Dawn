@@ -12,9 +12,6 @@ types = {
 		arrow = {
 			type = line
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		# Specific Target is visible
 		show_target = {
@@ -315,6 +312,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -361,9 +367,6 @@ types = {
 
 		arrow = {
 			type = line
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		allowed = {
@@ -759,6 +762,15 @@ types = {
 				}
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -809,9 +821,6 @@ types = {
 
 		arrow = {
 			type = line
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		# Specific Target is visible
@@ -1164,6 +1173,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -1211,9 +1229,6 @@ types = {
 		arrow = {
 			type = line
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		# Specific Target is visible
 		show_target = {
@@ -1254,37 +1269,14 @@ types = {
 			any_owned_state = {
 				is_coastal = yes
 			}
-			if = {
-				limit = {
-					has_dlc = "Man the Guns"
-				}
-				has_tech = tech_mtg_landing_craft
-			}
-			else = {
-				has_tech = landing_craft
-			}
+			has_tech = tech_landing_craft
 			custom_trigger_tooltip = {
 				tooltip = has_modern_landing_craft_TT
 				if = {
-					limit = {
-						has_dlc = "Man the Guns"
-					}
 					if = {
 						limit = {
 							NOT = {
-								has_tech = tech_mtg_modern_landing_craft
-							}
-						}
-						FROM = {
-							PREV_is_on_same_continent = yes
-						}
-					}
-				}
-				else = {
-					if = {
-						limit = {
-							NOT = {
-								has_tech = modern_landing_craft
+								has_tech = tech_modern_landing_craft
 							}
 						}
 						FROM = {
@@ -1594,6 +1586,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -1640,9 +1641,6 @@ types = {
 
 		arrow = {
 			type = line
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		allowed = {
@@ -2070,6 +2068,15 @@ types = {
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -2334,9 +2341,6 @@ types = {
 
 		arrow = {
 			type = line
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		# Specific Target is visible
@@ -2739,7 +2743,7 @@ types = {
 		}
 
 		ai_will_do = {
-			base = 0
+			base = 50
 		}
 	}
 }

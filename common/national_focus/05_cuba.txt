@@ -1443,7 +1443,16 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		available = {
-			PER = { has_tech = Air_UAV1 }
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				PER = { has_tech = gen_3_medium }
+
+				else = {
+					PER = { has_tech = Air_Kamikaze1 }
+				}
+			}
 			country_exists = PER
 			NOT = {
 				has_war_with = PER
@@ -1468,19 +1477,13 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CUB_upgrade_airbase"
 			add_equipment_to_stockpile = {
-				type = Kamikaze_drone_equipment
+				type = medium_plane_suicide_airframe
 				amount = 500
 				producer = PER
 			}
-			add_opinion_modifier = {
-				target = PER
-				modifier = military_deals
-			}
-		   PER = {
-			add_opinion_modifier = {
-				target = CUB
-				modifier = military_deals
-				}
+			add_opinion_modifier = { target = PER modifier = military_deals }
+			PER = {
+				add_opinion_modifier = { target = CUB modifier = military_deals }
 			}
 			set_temp_variable = { treasury_change = -10 }
 			modify_treasury_effect = yes
@@ -9376,7 +9379,7 @@ icon = CUB_fidelcastro
 		}
 	}
 	focus = {
-		id = CUB_welfare_fonds
+		id = CUB_welfare_funds
 		icon = generic_hospital2
 
 		x = 0
@@ -9404,11 +9407,11 @@ icon = CUB_fidelcastro
 
 		x = 0
 		y = 1
-		relative_position_id = CUB_welfare_fonds
+		relative_position_id = CUB_welfare_funds
 
 		cost = 3
 
-		prerequisite = { focus = CUB_welfare_fonds }
+		prerequisite = { focus = CUB_welfare_funds }
 
 		search_filters = { FOCUS_FILTER_INFLUENCE }
 
@@ -10852,8 +10855,7 @@ icon = CUB_fidelcastro
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CUB_cuba_for_cubans"
-			create_faction = greater_spanish_aliance
-			add_ideas = CUB_greater_spanish_alliacne_idea
+			create_faction_from_template = faction_template_greater_spanish_alliance
 		}
 
 		ai_will_do = {
@@ -13137,7 +13139,7 @@ icon = CUB_fidelcastro
 		}
 	}
 	focus = {
-		id = CUB_talsks_with_jamaica
+		id = CUB_talks_with_jamaica
 		icon = cubinvitejamaica
 
 		x = 1
@@ -13181,7 +13183,7 @@ icon = CUB_fidelcastro
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus CUB_talsks_with_jamaica"
+			log = "[GetDateText]: [Root.GetName]: Focus CUB_talks_with_jamaica"
 			custom_effect_tooltip = CUB_invite_jamaica_tt
 		}
 
@@ -13194,7 +13196,7 @@ icon = CUB_fidelcastro
 		}
 	}
 	focus = {
-		id = CUB_talsks_with_colombia
+		id = CUB_talks_with_colombia
 		icon = invitecolumbia
 
 		x = 3
@@ -13238,7 +13240,7 @@ icon = CUB_fidelcastro
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus CUB_talsks_with_colombia"
+			log = "[GetDateText]: [Root.GetName]: Focus CUB_talks_with_colombia"
 			custom_effect_tooltip = CUB_invite_colombia_tt
 		}
 
@@ -13256,12 +13258,12 @@ icon = CUB_fidelcastro
 
 		x = -1
 		y = 1
-		relative_position_id = CUB_talsks_with_colombia
+		relative_position_id = CUB_talks_with_colombia
 
 		cost = 5
 
-		prerequisite = { focus = CUB_talsks_with_jamaica }
-		prerequisite = { focus = CUB_talsks_with_colombia }
+		prerequisite = { focus = CUB_talks_with_jamaica }
+		prerequisite = { focus = CUB_talks_with_colombia }
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -13281,7 +13283,7 @@ icon = CUB_fidelcastro
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CUB_new_center_of_caribean"
-			add_ideas = CUB_caribean_nation
+			add_ideas = CUB_caribbean_nation
 		}
 
 		ai_will_do = {
