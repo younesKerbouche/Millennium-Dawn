@@ -1210,6 +1210,109 @@ cartels_decision_category = {
 		}
 	}
 
+	# Mass Arrests
+	mass_arrests_of_cartel_members_decision = {
+		icon = GFX_decision_category_cartel
+
+		available = {
+			has_cartels_penalties = yes
+			has_autocratic_government = yes
+		}
+
+		cost = 50
+		fixed_random_seed = no
+		days_remove = 90
+		days_re_enable = 30
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove mass_arrests_of_cartel_members_decision"
+			random_list = {
+				30 = {
+					modifier = {
+						has_decision = utilize_the_military_decisions
+						factor = 1.25
+					}
+					modifier = {
+						has_decision = police_investments_decision
+						factor = 1.15
+					}
+					modifier = {
+						OR = {
+							has_idea = police_03
+							has_idea = police_04
+							has_idea = police_05
+						}
+						factor = 2.0
+					}
+					set_party_index_to_ruling_party = yes
+					set_temp_variable = { party_popularity_increase = 0.03 }
+					set_temp_variable = { temp_outlook_increase = 0.03 }
+					add_relative_party_popularity = yes
+
+					add_stability = 0.03
+
+					set_temp_variable = { strength_modifier = ROOT.strength_of_cartels }
+					divide_temp_variable = { strength_modifier = 100 }
+					add_to_temp_variable = { strength_modifier = 2 }
+
+					set_temp_variable = { cart_strength_change = -5 }
+					multiply_temp_variable = { cart_strength_change = strength_modifier }
+					set_temp_variable = { cart_influence_change = -3 }
+					modify_cartel_variables_effect = yes
+				}
+				70 = {
+					modifier = {
+						set_temp_variable = { temp_political_modifier = strength_of_cartels }
+						subtract_from_temp_variable = { temp_political_modifier = 50 }
+						divide_temp_variable = { temp_political_modifier = 100 }
+						add_to_temp_variable = { temp_political_modifier = 1 }
+						always = yes
+						factor = temp_political_modifier
+					}
+					modifier = {
+						factor = 1.50
+						OR = {
+							has_idea = paralyzing_corruption
+							has_idea = crippling_corruption
+							has_idea = rampant_corruption
+						}
+					}
+					modifier = {
+						factor = 1.25
+						OR = {
+							has_idea = unrestrained_corruption
+							has_idea = systematic_corruption
+							has_idea = widespread_corruption
+						}
+					}
+					modifier = {
+						factor = 1.40
+						difficulty > 3
+					}
+					modifier = {
+						factor = 1.20
+						difficulty > 2
+					}
+					modifier = {
+						factor = 1.10
+						difficulty > 1
+					}
+					set_party_index_to_ruling_party = yes
+					set_temp_variable = { party_popularity_increase = -0.03 }
+					set_temp_variable = { temp_outlook_increase = -0.03 }
+					add_relative_party_popularity = yes
+
+					set_temp_variable = { cart_strength_change = 2 }
+					set_temp_variable = { cart_influence_change = 5 }
+					modify_cartel_variables_effect = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
 	# # Assist Neighbours in Combating Cartels
 	# send_neighbor_assistance_against_cartel = {
 
@@ -1565,6 +1668,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -1674,6 +1778,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -1784,6 +1889,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -1894,6 +2000,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -2003,6 +2110,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -2067,37 +2175,37 @@ cartels_decision_category = {
 		}
 	}
 	# Coahuila
-	MEX_coahuila_tamaulpas_cartel = {
+	MEX_coahuila_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				833 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				833 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				833 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				833 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				833 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				833 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				833 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				833 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 833
 			833 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2111,6 +2219,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -2119,7 +2228,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			833 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2164,10 +2273,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
@@ -2178,37 +2287,37 @@ cartels_decision_category = {
 
 	# Guanajuato
 
-	MEX_guanajuato_tamaulpas_cartel = {
+	MEX_guanajuato_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				834 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				834 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				834 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				834 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				834 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				834 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				834 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				834 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 834
 			834 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2222,6 +2331,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -2230,7 +2340,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			834 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2275,10 +2385,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
@@ -2288,37 +2398,37 @@ cartels_decision_category = {
 	}
 
 	# Nuevo Leon
-	MEX_nuevo_leon_tamaulpas_cartel = {
+	MEX_nuevo_leon_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				832 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				832 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				832 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				832 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				832 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				832 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				832 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				832 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 832
 			832 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2332,6 +2442,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -2340,7 +2451,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			832 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2385,10 +2496,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
@@ -2442,6 +2553,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -2553,6 +2665,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -2663,6 +2776,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -2726,37 +2840,37 @@ cartels_decision_category = {
 			factor = 10
 		}
 	}
-	MEX_mexico_tamaulpas_cartel = {
+	MEX_mexico_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				835 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				835 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				835 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				835 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				835 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				835 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				835 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				835 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 835
 			835 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2771,6 +2885,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -2778,7 +2893,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			835 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -2823,10 +2938,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
@@ -2879,6 +2994,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -2988,6 +3104,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -3051,37 +3168,37 @@ cartels_decision_category = {
 			factor = 10
 		}
 	}
-	MEX_veracruz_tamaulpas_cartel = {
+	MEX_veracruz_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				838 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				838 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				838 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				838 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				838 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				838 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				838 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				838 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 838
 			838 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -3096,6 +3213,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -3103,7 +3221,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			838 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -3148,10 +3266,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
@@ -3160,37 +3278,37 @@ cartels_decision_category = {
 		}
 	}
 	# Chiapas
-	MEX_chiapas_tamaulpas_cartel = {
+	MEX_chiapas_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				839 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				839 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				839 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				839 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				839 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				839 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				839 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				839 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 839
 			839 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -3204,6 +3322,7 @@ cartels_decision_category = {
 		}
 		on_map_mode = map_and_decisions_view
 		cost = 100
+		fixed_random_seed = no
 		fire_only_once = no
 		days_remove = 14
 
@@ -3212,7 +3331,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			839 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -3257,10 +3376,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
@@ -3269,37 +3388,37 @@ cartels_decision_category = {
 		}
 	}
 	# Yucatan
-	MEX_yucatan_tamaulpas_cartel = {
+	MEX_yucatan_tamaulipas_cartel = {
 		allowed = { original_tag = MEX }
 		icon = {
-			key = GFX_decision_tamaulpas_high
+			key = GFX_decision_tamaulipas_high
 			trigger = {
-				840 = { check_variable = { var = MEX_tamaulpas_state_control value = 4 compare = equals } }
+				840 = { check_variable = { var = MEX_tamaulipas_state_control value = 4 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_medium
+			key = GFX_decision_tamaulipas_medium
 			trigger = {
-				840 = { check_variable = { var = MEX_tamaulpas_state_control value = 3 compare = equals } }
+				840 = { check_variable = { var = MEX_tamaulipas_state_control value = 3 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_low
+			key = GFX_decision_tamaulipas_low
 			trigger = {
-				840 = { check_variable = { var = MEX_tamaulpas_state_control value = 2 compare = equals } }
+				840 = { check_variable = { var = MEX_tamaulipas_state_control value = 2 compare = equals } }
 			}
 		}
 		icon = {
-			key = GFX_decision_tamaulpas_none
+			key = GFX_decision_tamaulipas_none
 			trigger = {
-				840 = { check_variable = { var = MEX_tamaulpas_state_control value = 1 compare = equals } }
+				840 = { check_variable = { var = MEX_tamaulipas_state_control value = 1 compare = equals } }
 			}
 		}
 		available = {
 			has_full_control_of_state = 840
 			840 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -3314,6 +3433,7 @@ cartels_decision_category = {
 		on_map_mode = map_and_decisions_view
 		cost = 100
 		fire_only_once = no
+		fixed_random_seed = no
 		days_remove = 14
 
 		visible = {
@@ -3321,7 +3441,7 @@ cartels_decision_category = {
 			NOT = { has_global_flag = flag_mexico_cartel_war }
 			840 = {
 				check_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = 0
 					compare = greater_than
 				}
@@ -3366,10 +3486,10 @@ cartels_decision_category = {
 					value = 0.5
 				}
 				add_to_variable = {
-					var = MEX_tamaulpas_state_control
+					var = MEX_tamaulipas_state_control
 					value = -1
 				}
-				custom_effect_tooltip = reduce_cartel_influece_tamaulpas_TT
+				custom_effect_tooltip = reduce_cartel_influece_tamaulipas_TT
 			}
 			clr_country_flag = MEX_already_attacking_cartels_flag
 		}
