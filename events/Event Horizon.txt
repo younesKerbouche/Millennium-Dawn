@@ -1419,6 +1419,32 @@ news_event = { # Oceanic Defense Union Formed
 					}
 				}
 			}
+			ALN = {
+				news_event = { id = EH_event.434 days = 5 random_days = 3 }
+			}
+		}
+	}
+}
+
+news_event = {
+	id = EH_event.434
+	title = EH_event.434.t
+	desc = EH_event.434.d
+	picture = GFX_space_debris
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.434.a
+		log = "[GetDateText]: [This.GetName]: EH_event.434.a executed"
+		if = {
+			limit = {
+				NOT = {
+					tag = ALN
+				}
+			}
+			add_ideas = EH_disrupted_satellite_network_idea
 		}
 	}
 }
