@@ -208,3 +208,68 @@ EH_add_randallite_effect = {
 	custom_effect_tooltip = EH_add_randallite_effect_tt
 	add_to_variable = { available_randallite_var = add_randallite }
 }
+
+EH_randallite_effects = {
+    set_variable = { EH_randallite_productivity_var = 0.01 }
+    set_variable = { EH_randallite_mech_production_speed_var = 0.004 }
+    set_variable = { EH_randallite_resource_income_var = 0.006 }
+    set_variable = { EH_randallite_industrial_capacity_var = 0.005 }
+    set_variable = { EH_randallite_cic_construction_boost_var = 0.01 }
+
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_randallite_productivity_var > 0 }
+                check_variable = { EH_temp_randallite_productivity_var < 0 }
+            }
+        }
+        add_to_variable = { EH_randallite_productivity_var = EH_temp_randallite_productivity_var }
+        custom_effect_tooltip = EH_randallite_productivity_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_randallite_mech_production_speed_var > 0 }
+                check_variable = { EH_temp_randallite_mech_production_speed_var < 0 }
+            }
+        }
+        add_to_variable = { EH_randallite_mech_production_speed_var = EH_temp_randallite_mech_production_speed_var }
+        custom_effect_tooltip = EH_randallite_mech_production_speed_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_randallite_resource_income_var > 0 }
+                check_variable = { EH_temp_randallite_resource_income_var < 0 }
+            }
+        }
+        add_to_variable = { EH_randallite_resource_income_var = EH_temp_randallite_resource_income_var }
+        custom_effect_tooltip = EH_randallite_resource_income_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_randallite_industrial_capacity_var > 0 }
+                check_variable = { EH_temp_randallite_industrial_capacity_var < 0 }
+            }
+        }
+        add_to_variable = { EH_randallite_industrial_capacity_var = EH_temp_randallite_industrial_capacity_var }
+        custom_effect_tooltip = EH_randallite_industrial_capacity_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_randallite_cic_construction_boost_var > 0 }
+                check_variable = { EH_temp_randallite_cic_construction_boost_var < 0 }
+            }
+        }
+        add_to_variable = { EH_randallite_cic_construction_boost_var = EH_temp_randallite_cic_construction_boost_var }
+        custom_effect_tooltip = EH_randallite_cic_construction_boost_modified_TT
+    }
+
+    multiply_variable = { EH_randallite_productivity_var = available_randallite_var }
+    multiply_variable = { EH_randallite_mech_production_speed_var = available_randallite_var }
+    multiply_variable = { EH_randallite_resource_income_var = available_randallite_var }
+    multiply_variable = { EH_randallite_industrial_capacity_var = available_randallite_var }
+    multiply_variable = { EH_randallite_cic_construction_boost_var = available_randallite_var }
+}
