@@ -1186,6 +1186,11 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			set_temp_variable = { check_randallite = 4 }
+			EH_check_randallite_trigger = yes
+		}
+
 		prerequisite = {
 			focus = EH_military_advantages
 		}
@@ -1194,7 +1199,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_ranjets"
-
+			add_tech_bonus = {
+				name = EH_ranjets
+				bonus = 0.2
+				uses = 2
+				category = CAT_air_eqp
+				ahead_reduction = 5
+			}
+			add_ideas = EH_randallite_aircraft_idea
 		}
 
 		ai_will_do = {
@@ -1212,6 +1224,11 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			set_temp_variable = { check_randallite = 2 }
+			EH_check_randallite_trigger = yes
+		}
+
 		prerequisite = {
 			focus = EH_military_advantages
 		}
@@ -1220,7 +1237,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_not_so_heavy_weapons"
-
+			add_ideas = EH_lighter_weapons_idea
 		}
 
 		ai_will_do = {
@@ -1290,6 +1307,10 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			EH_stable_situation_trigger = yes
+		}
+
 		prerequisite = {
 			focus = EH_a_new_resource
 		}
@@ -1298,7 +1319,8 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_civilian_benefits"
-
+			two_random_industrial_complex = yes
+			add_ideas = EH_randallite_among_us_idea
 		}
 
 		ai_will_do = {
@@ -1316,6 +1338,10 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			EH_stable_situation_trigger = yes
+		}
+
 		prerequisite = {
 			focus = EH_civilian_benefits
 		}
@@ -1324,7 +1350,23 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_a_wonderful_prosthesis"
-
+			add_tech_bonus = {
+				name = EH_a_wonderful_prosthesis
+				bonus = 0.5
+				uses = 1
+				category = CAT_computing_tech
+			}
+			add_tech_bonus = {
+				name = EH_a_wonderful_prosthesis
+				bonus = 0.25
+				uses = 1
+				category = CAT_ai
+				ahead_reduction = 5
+			}
+			newline = yes
+			increase_healthcare_budget = yes
+			newline = yes
+			add_ideas = EH_age_of_health_idea
 		}
 
 		ai_will_do = {
@@ -1342,6 +1384,12 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			set_temp_variable = { check_randallite = 2 }
+			EH_check_randallite_trigger = yes
+			EH_stable_situation_trigger = yes
+		}
+
 		prerequisite = {
 			focus = EH_civilian_benefits
 		}
@@ -1350,7 +1398,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_market_potential"
-
+			increase_exports = yes
+			increase_economic_growth = yes
+			add_ideas = EH_export_of_the_randallite_idea
+			set_temp_variable = { treasury_change = 14 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
