@@ -204,9 +204,17 @@ EH_convergence_event_chain_effect = {
     }
 }
 
+EH_set_randallite_effect = {
+    set_variable = { EH_randallite_stockpile = EH_available_randallite_var }
+    subtract_from_variable = { EH_randallite_stockpile = modifier@randallite_resource_cost_modifier }
+
+    set_variable = { EH_randallite_usage_var = EH_available_randallite_var }
+    subtract_from_variable = { EH_randallite_usage_var = EH_randallite_stockpile }
+}
+
 EH_add_randallite_effect = {
 	custom_effect_tooltip = EH_add_randallite_effect_tt
-	add_to_variable = { available_randallite_var = add_randallite }
+	add_to_variable = { EH_available_randallite_var = add_randallite }
 }
 
 EH_randallite_effects = {
@@ -267,9 +275,52 @@ EH_randallite_effects = {
         custom_effect_tooltip = EH_randallite_cic_construction_boost_modified_TT
     }
 
-    multiply_variable = { EH_randallite_productivity_var = available_randallite_var }
-    multiply_variable = { EH_randallite_mech_production_speed_var = available_randallite_var }
-    multiply_variable = { EH_randallite_resource_income_var = available_randallite_var }
-    multiply_variable = { EH_randallite_industrial_capacity_var = available_randallite_var }
-    multiply_variable = { EH_randallite_cic_construction_boost_var = available_randallite_var }
+    multiply_variable = { EH_randallite_productivity_var = EH_randallite_stockpile }
+    multiply_variable = { EH_randallite_mech_production_speed_var = EH_randallite_stockpile }
+    multiply_variable = { EH_randallite_resource_income_var = EH_randallite_stockpile }
+    multiply_variable = { EH_randallite_industrial_capacity_var = EH_randallite_stockpile }
+    multiply_variable = { EH_randallite_cic_construction_boost_var = EH_randallite_stockpile }
+}
+
+EH_battlefield_adaptation_effect = {
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_army_morale_factor_var3 > 0 }
+                check_variable = { EH_temp_army_morale_factor_var3 < 0 }
+            }
+        }
+        add_to_variable = { EH_army_morale_factor_var3 = EH_temp_army_morale_factor_var3 }
+        custom_effect_tooltip = EH_battlefield_adaptation_army_morale_factor_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_army_strength_factor_var3 > 0 }
+                check_variable = { EH_temp_army_strength_factor_var3 < 0 }
+            }
+        }
+        add_to_variable = { EH_army_strength_factor_var3 = EH_temp_army_strength_factor_var3 }
+        custom_effect_tooltip = EH_battlefield_adaptation_army_strength_factor_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_research_speed_factor_var3 > 0 }
+                check_variable = { EH_temp_research_speed_factor_var3 < 0 }
+            }
+        }
+        add_to_variable = { EH_research_speed_factor_var3 = EH_temp_research_speed_factor_var3 }
+        custom_effect_tooltip = EH_battlefield_adaptation_research_speed_factor_modified_TT
+    }
+    if = {
+        limit = {
+            OR = {
+                check_variable = { EH_temp_production_lack_of_resource_penalty_factor_var3 > 0 }
+                check_variable = { EH_temp_production_lack_of_resource_penalty_factor_var3 < 0 }
+            }
+        }
+        add_to_variable = { EH_production_lack_of_resource_penalty_factor_var3 = EH_temp_production_lack_of_resource_penalty_factor_var3 }
+        custom_effect_tooltip = EH_battlefield_adaptation_production_lack_of_resource_penalty_factor_modified_TT
+    }
 }

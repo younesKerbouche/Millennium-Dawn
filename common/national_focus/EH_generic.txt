@@ -1135,6 +1135,12 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			set_temp_variable = { check_randallite = 4 }
+			EH_check_randallite_trigger = yes
+			has_completed_focus = EH_disassemble_invader_armor
+		}
+
 		prerequisite = {
 			focus = EH_a_new_resource
 		}
@@ -1143,7 +1149,26 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_military_advantages"
-
+			add_tech_bonus = {
+				name = EH_military_advantages
+				bonus = 0.15
+				uses = 2
+				category = CAT_inf
+				ahead_reduction = 5
+			}
+			add_tech_bonus = {
+				name = EH_military_advantages
+				bonus = 0.2
+				uses = 2
+				category = CAT_armor
+				ahead_reduction = 5
+			}
+			newline = yes
+			set_temp_variable = { EH_temp_army_morale_factor_var3 = 0.1 }
+			set_temp_variable = { EH_temp_production_lack_of_resource_penalty_factor_var3 = 0.15 }
+			EH_battlefield_adaptation_effect = yes
+			newline = yes
+			add_ideas = EH_randallite_in_machinery_idea
 		}
 
 		ai_will_do = {
@@ -1355,7 +1380,7 @@ focus_tree = {
 					modifier = EH_battlefield_adaptation_idea
 				}
 			}
-			add_to_variable = { EH_army_attack_factor_var3 = 0.04 }
+			add_to_variable = {EH_army_attack_factor_var3 = 0.04 }
 			add_to_variable = { EH_army_defence_factor_var3 = 0.04 }
 			custom_effect_tooltip = EH_battlefield_adaptation_idea_TT
 			newline = yes
@@ -1477,10 +1502,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_disassemble_invader_armor"
-			custom_effect_tooltip = EH_battlefield_adaptation_idea2_TT
-			add_to_variable = { EH_army_morale_factor_var3 = 0.08 }
-			add_to_variable = { EH_research_speed_factor_var3 = 0.05 }
-			add_to_variable = { EH_army_strength_factor_var3 = 0.1 }
+			set_temp_variable = { EH_temp_army_morale_factor_var3 = 0.08 }
+			set_temp_variable = { EH_temp_research_speed_factor_var3 = 0.05 }
+			set_temp_variable = { EH_temp_army_strength_factor_var3 = 0.1 }
+			EH_battlefield_adaptation_effect = yes
 
 			country_event = EH_focus_event.2
 		}
