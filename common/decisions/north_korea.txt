@@ -169,7 +169,7 @@ NKO_united_front_department = {
 				KOR = {
 					custom_trigger_tooltip = {
 						tooltip = KOR_democratic_party_governing_tt
-						is_in_array = { ruling_party = 3  }
+						is_in_array = { ruling_party = 3 }
 					}
 				}
 				NKO = { has_government = democratic }
@@ -204,6 +204,7 @@ NKO_Arduous_March = {
 	#Send Citizens to Countryside
 	NKO_medicine_relief = {
 		icon = GFX_decision_nko_medicine_relief_button
+		cost = 25
 		days_remove = 100
 		days_re_enable = 45
 		visible = {
@@ -213,7 +214,6 @@ NKO_Arduous_March = {
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision add NKO_medicine_relief_active"
-			add_political_power = -25
 			random_owned_state = {
 				add_manpower = 2000
 			}
@@ -241,6 +241,7 @@ NKO_Arduous_March = {
 	}
 	NKO_accept_money = {
 		icon = GFX_decision_bancru_ask_button
+		cost = 25
 		days_remove = 10
 		fire_only_once = yes
 		visible = {
@@ -250,7 +251,6 @@ NKO_Arduous_March = {
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision add NKO_accept_money"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 3 }
 			modify_treasury_effect = yes
 			set_country_flag = NKO_accept_money_active
@@ -270,6 +270,7 @@ NKO_Arduous_March = {
 	}
 	NKO_build_factory1 = {
 		icon = GFX_decision_nko_build_factory_button
+		cost = 50
 		days_remove = 150
 		days_re_enable = 1
 		visible = {
@@ -277,7 +278,6 @@ NKO_Arduous_March = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_build_factory1"
-			add_political_power = -50
 			one_random_industrial_complex = yes
 		}
 		ai_will_do = {
@@ -291,6 +291,7 @@ NKO_Arduous_March = {
 	# Request International Assistance
 	NKO_international_assistance = {
 		icon = GFX_decision_nkp_international_assistance_button
+		cost = 25
 		days_remove = 90
 		days_re_enable = 45
 		visible = {
@@ -346,7 +347,6 @@ NKO_Arduous_March = {
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision add NKO_international_assistance_active"
-			add_political_power = -25
 			set_country_flag = NKO_international_assistance_active
 		}
 		remove_effect = {
@@ -365,8 +365,8 @@ NKO_Arduous_March = {
 	NKO_resource_extraction = {
 		icon = GFX_decision_nko_resource_extraction_button
 		cost = 150
-		days_remove = 365
-		days_re_enable = 120
+		days_remove = 180
+		days_re_enable = 180
 		fixed_random_seed = no
 		visible = {
 			has_completed_focus = NKO_modern_mining_operations
@@ -374,99 +374,51 @@ NKO_Arduous_March = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove BNKO_resource_extraction"
-			set_temp_variable = { subsidy_size = gdp_total }
-			multiply_temp_variable = { subsidy_size = 0.15 }
-			subtract_from_variable = { treasury = subsidy_size }
-			custom_effect_tooltip = SUBSIDY_COST_TT
-			random_list = {
-				10 = {
-					modifier = {
-						factor = 4
-						any_owned_state = {
-							oil > 0
-						}
-					}
-					random_owned_state = {
-						add_resource = {
-							type = oil
-							amount = 2
-						}
-					}
-				}
-				10 = {
-					modifier = {
-						factor = 4
-						any_owned_state = {
-							aluminium > 0
-						}
-					}
-					random_owned_state = {
+			set_temp_variable = { treasury_change = -20 }
+			modify_treasury_effect = yes
+			random_owned_state = {
+				random_list = {
+					10 = {
 						add_resource = {
 							type = aluminium
-							amount = 5
+							amount = 1
 						}
 					}
-				}
-				10 = {
-					modifier = {
-						factor = 4
-						any_owned_state = {
-							rubber > 0
-						}
-					}
-					random_owned_state = {
-						add_resource = {
-							type = rubber
-							amount = 5
-						}
-					}
-				}
-				10 = {
-					modifier = {
-						factor = 4
-						any_owned_state = {
-							tungsten > 0
-						}
-					}
-					random_owned_state = {
-						add_resource = {
-							type = tungsten
-							amount = 2
-						}
-					}
-				}
-				10 = {
-					modifier = {
-						factor = 4
-						any_owned_state = {
-							steel > 0
-						}
-					}
-					random_owned_state = {
+					10 = {
 						add_resource = {
 							type = steel
-							amount = 5
+							amount = 1
 						}
 					}
-				}
-				10 = {
-					modifier = {
-						factor = 4
-						any_owned_state = {
-							chromium > 0
+					10 = {
+						add_resource = {
+							type = oil
+							amount = 1
 						}
 					}
-					random_owned_state = {
+					10 = {
+						add_resource = {
+							type = rubber
+							amount = 1
+						}
+					}
+					10 = {
+						add_resource = {
+							type = tungsten
+							amount = 1
+						}
+					}
+					10 = {
 						add_resource = {
 							type = chromium
-							amount = 2
+							amount = 1
 						}
 					}
 				}
 			}
 		}
 		ai_will_do = {
-			factor = 300
+			factor = 10
 		}
 	}
 }
@@ -572,11 +524,11 @@ NKO_Power_struggle = {
 
 	Kim_Jong_un_support = {
 		icon = GFX_decision_nko_un_support_button
+		cost = 100
 		days_remove = 60
 		fixed_random_seed = no
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: add NKO_2_5_increase_Kim_Jong_Nam_tt "
-			add_political_power = -100
 			custom_effect_tooltip = NKO_2_5_increase_Kim_Jong_un_tt
 			hidden_effect = {
 				random_list = {
@@ -744,6 +696,7 @@ NKO_black_market = {
 	#USA
 	NKO_hacks_bank_usa = {
 		icon = GFX_decision_nko_hack_bank_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -763,7 +716,6 @@ NKO_black_market = {
 			has_country_flag = NKO_black_market_bad_mechanic_open
 		}
 		remove_effect = {
-			add_political_power = -25
 			set_temp_variable = { percent_change = -12 }
 			set_temp_variable = { tag_index = NKO.id }
 			set_temp_variable = { influence_target = USA.id }
@@ -794,6 +746,7 @@ NKO_black_market = {
 	#Japan
 	NKO_hacks_bank_japan = {
 		icon = GFX_decision_nko_hack_bank_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -814,7 +767,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_hacks_bank_japan"
-			add_political_power = -25
 			set_temp_variable = { percent_change = -12 }
 			set_temp_variable = { tag_index = NKO.id }
 			set_temp_variable = { influence_target = JAP.id }
@@ -845,6 +797,7 @@ NKO_black_market = {
 	#South Korea
 	NKO_hacks_bank_korea = {
 		icon = GFX_decision_nko_hack_bank_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -865,7 +818,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_hacks_bank_korea"
-			add_political_power = -25
 			set_temp_variable = { percent_change = -12 }
 			set_temp_variable = { tag_index = NKO.id }
 			set_temp_variable = { influence_target = KOR.id }
@@ -896,6 +848,7 @@ NKO_black_market = {
 	#Germany
 	NKO_hacks_bank_germany = {
 		icon = GFX_decision_nko_hack_bank_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -916,7 +869,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_hacks_bank_germany"
-			add_political_power = -25
 			set_temp_variable = { percent_change = -12 }
 			set_temp_variable = { tag_index = NKO.id }
 			set_temp_variable = { influence_target = GER.id }
@@ -947,6 +899,7 @@ NKO_black_market = {
 	#France
 	NKO_hacks_bank_france = {
 		icon = GFX_decision_nko_hack_bank_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -967,7 +920,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_hacks_bank_france"
-			add_political_power = -25
 			set_temp_variable = { percent_change = -12 }
 			set_temp_variable = { tag_index = NKO.id }
 			set_temp_variable = { influence_target = FRA.id }
@@ -998,6 +950,7 @@ NKO_black_market = {
 	#England
 	NKO_hacks_bank_england = {
 		icon = GFX_decision_nko_hack_bank_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -1018,7 +971,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_hacks_bank_england "
-			add_political_power = -25
 			set_temp_variable = { percent_change = -12 }
 			set_temp_variable = { tag_index = NKO.id }
 			set_temp_variable = { influence_target = ENG.id }
@@ -1050,6 +1002,7 @@ NKO_black_market = {
 	#USA
 	NKO_smuggles_drugs_abroad_usa = {
 		icon = GFX_decision_nko_drugs_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 180
 		fixed_random_seed = no
@@ -1069,7 +1022,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_smuggles_drugs_abroad_usa"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.5 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1096,6 +1048,7 @@ NKO_black_market = {
 	#Japan
 	NKO_smuggles_drugs_abroad_japan = {
 		icon = GFX_decision_nko_drugs_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 180
 		fixed_random_seed = no
@@ -1115,7 +1068,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_smuggles_drugs_abroad_japan"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.5 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1142,6 +1094,7 @@ NKO_black_market = {
 	#South Korea
 	NKO_smuggles_drugs_abroad_korea = {
 		icon = GFX_decision_nko_drugs_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 150
 		fixed_random_seed = no
@@ -1161,7 +1114,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_smuggles_drugs_abroad_korea"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.5 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1188,6 +1140,7 @@ NKO_black_market = {
 	#England
 	NKO_smuggles_drugs_abroad_england = {
 		icon = GFX_decision_nko_drugs_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -1207,7 +1160,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_smuggles_drugs_abroad_england"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.5 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1234,6 +1186,7 @@ NKO_black_market = {
 	#Germany
 	NKO_smuggles_drugs_abroad_germany = {
 		icon = GFX_decision_nko_drugs_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 360
 		fixed_random_seed = no
@@ -1253,7 +1206,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_smuggles_drugs_abroad_germany"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.5 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1280,6 +1232,7 @@ NKO_black_market = {
 	#France
 	NKO_smuggles_drugs_abroad_france = {
 		icon = GFX_decision_nko_drugs_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 360
 		fixed_random_seed = no
@@ -1299,7 +1252,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_smuggles_drugs_abroad_france"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.5 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1327,6 +1279,7 @@ NKO_black_market = {
 	#USA
 	NKO_print_money_usa = {
 		icon = GFX_decision_nko_fake_currency_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 250
 		fixed_random_seed = no
@@ -1346,7 +1299,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_print_money_usa"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.2 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1403,6 +1355,7 @@ NKO_black_market = {
 	#Japan
 	NKO_print_money_japan = {
 		icon = GFX_decision_nko_fake_currency_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 150
 		fixed_random_seed = no
@@ -1422,7 +1375,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_print_money_japan"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.2 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1479,6 +1431,7 @@ NKO_black_market = {
 	#South Korea
 	NKO_print_money_korea = {
 		icon = GFX_decision_nko_fake_currency_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 120
 		fixed_random_seed = no
@@ -1498,7 +1451,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_print_money_korea"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.2 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1555,6 +1507,7 @@ NKO_black_market = {
 	#Germany
 	NKO_print_money_germany = {
 		icon = GFX_decision_nko_fake_currency_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 180
 		fixed_random_seed = no
@@ -1574,7 +1527,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_print_money_germany"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.2 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1631,6 +1583,7 @@ NKO_black_market = {
 	#France
 	NKO_print_money_france = {
 		icon = GFX_decision_nko_fake_currency_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 180
 		fixed_random_seed = no
@@ -1650,7 +1603,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_print_money_france"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.2 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -1707,6 +1659,7 @@ NKO_black_market = {
 	#England
 	NKO_print_money_england = {
 		icon = GFX_decision_nko_fake_currency_button
+		cost = 25
 		days_remove = 30
 		days_re_enable = 180
 		fixed_random_seed = no
@@ -1726,7 +1679,6 @@ NKO_black_market = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Finished NKO_print_money_england"
-			add_political_power = -25
 			set_temp_variable = { treasury_change = 0.2 }
 			modify_treasury_effect = yes
 			random_list = {
@@ -2370,10 +2322,7 @@ NKO_rus_friend_category = {
 		icon = GFX_decision_sov_gazrpom_button
 		days_remove = 25
 		fire_only_once = no
-		custom_cost_trigger = {
-			has_political_power > 75
-		}
-		custom_cost_text = political_power_more_than_75
+		cost = 75
 
 		available = {
 			SOV = {
@@ -2392,11 +2341,6 @@ NKO_rus_friend_category = {
 					has_country_flag = SOV_gazprom_mechanic_korean_stream_agree
 				}
 			}
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_coop_russian_gas_pipeline"
-			add_political_power = -75
 		}
 
 		remove_effect = {
@@ -2439,7 +2383,7 @@ NKO_rus_friend_category = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_coop_russian_gas_pipeline"
 			add_ideas = SOV_korean_stream_idea
 			hidden_effect = {
-				SOV = { 
+				SOV = {
 					add_ideas = SOV_korean_stream_sov_idea
 				}
 			}
@@ -2472,7 +2416,7 @@ NKO_rus_friend_category = {
 		days_remove = 60
 		available = {
 			SOV = {
-				OR = { 
+				OR = {
 					has_completed_focus = SOV_economic_reform_gazprom
 					has_completed_focus = SOV_economic_reform_rosneft
 				}
@@ -2509,10 +2453,7 @@ NKO_rus_friend_category = {
 		icon = GFX_decision_sov_rosatom_button
 		fire_only_once = yes
 		days_remove = 35
-		custom_cost_trigger = {
-			has_political_power > 75
-		}
-		custom_cost_text = political_power_more_than_75
+		cost = 150
 
 		available = {
 			SOV = {
@@ -2531,17 +2472,11 @@ NKO_rus_friend_category = {
 			}
 		}
 
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_coop_russian_nuclear"
-			add_political_power = -75
-		}
-
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_coop_russian_nuclear"
 			SOV = {
 				country_event = { id = korea_russia.4 }
 			}
-			add_political_power = -250
 		}
 		ai_will_do = {
 			factor = 355
@@ -2552,10 +2487,7 @@ NKO_rus_friend_category = {
 		fire_only_once = yes
 		days_remove = 380
 
-		custom_cost_trigger = {
-			has_political_power > 75
-		}
-		custom_cost_text = political_power_more_than_75
+		cost = 75
 
 		available = {
 			SOV = {
@@ -2570,11 +2502,6 @@ NKO_rus_friend_category = {
 				has_idea = NKO_korean_russian_frienship
 			}
 			has_country_flag = SOV_agree_nuclear
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_coop_russian_nuclear_build"
-			add_political_power = -75
 		}
 
 		remove_effect = {
@@ -2785,7 +2712,7 @@ NKO_rus_friend_category = {
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision NKO_coop_korean_military_base"
 			add_command_power = -25
-		} 
+		}
 
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_coop_korean_military_base"

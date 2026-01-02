@@ -21,7 +21,7 @@ state = {
 		victory_points = { 10412 1 } #Lynchburg
 		victory_points = { 9931 1 } #Danville
 		victory_points = { 951 1 } #Winchester
-		victory_points = { 6848 5 } #Fredericksburg
+		victory_points = { 16062 5 } #Fredericksburg
 
 		buildings = {
 			infrastructure = 3
@@ -36,12 +36,21 @@ state = {
 			}
 			865 = {
 				naval_base = 10
+				naval_headquarters = {
+					level = 1
+					allowed = {
+						has_dlc = "No Compromise, No Surrender"
+					}
+				}
 			}
 			16056 = {
 				# northsmthsmth
 				naval_facility = 1
 			}
 		}
+		set_variable = { hydroelectric_energy_production_var = 3.693 }
+		set_variable = { hydroelectric_energy_storage_var = 0 }
+		add_dynamic_modifier = { modifier = hydroelectric_infrastructure_in_state }
 		add_core_of = USA
 	}
 
