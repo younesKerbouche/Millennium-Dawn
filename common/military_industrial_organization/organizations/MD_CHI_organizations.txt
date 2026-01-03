@@ -1,7 +1,31 @@
 # Author(s): TheGeneral
 # Armor
 CHI_norinco_manufacturer = {
-	allowed = { original_tag = CHI }
+	allowed = { OR = { original_tag = CHI tag = UOE } }
+
+	visible = {
+		OR = {
+			FROM = { original_tag = CHI }
+			FROM = { has_country_flag = UOE_Selected_CHI has_country_flag = uoe_selected_norinco }
+		}
+	}
+	available = {
+		if = {
+			limit = {
+				FROM = { NOT = { original_tag = CHI } }
+			}
+			FROM = { NOT = { has_war_with = CHI } }
+		}
+		if = {
+			limit = {
+				FROM = { tag = UOE }
+			}
+			FROM = {
+				has_country_flag = UOE_Selected_CHI
+				has_country_flag = uoe_selected_norinco
+			}
+		}
+	}
 	icon = GFX_idea_Norinco_CHI
 
 	task_capacity = 18
@@ -1975,6 +1999,7 @@ CHI_norinco_manufacturer = {
 }
 CHI_caic_manufacturer = {
 	allowed = { original_tag = CHI }
+
 	icon = GFX_idea_Changhe_Aircraft_Corp_CHI
 
 	equipment_type = {
@@ -4054,7 +4079,31 @@ CHI_inner_mongolia_first_machinery_tank_manufacturer = {
 
 # Air
 CHI_avic_manufacturer = {
-	allowed = { original_tag = CHI }
+	allowed = { OR = { original_tag = CHI tag = UOE } }
+
+	visible = {
+		OR = {
+			FROM = { original_tag = CHI }
+			FROM = { has_country_flag = UOE_Selected_CHI has_country_flag = uoe_selected_chengdu }
+		}
+	}
+	available = {
+		if = {
+			limit = {
+				FROM = { NOT = { original_tag = CHI } }
+			}
+			FROM = { NOT = { has_war_with = CHI } }
+		}
+		if = {
+			limit = {
+				FROM = { tag = UOE }
+			}
+			FROM = {
+				has_country_flag = UOE_Selected_CHI
+				has_country_flag = uoe_selected_chengdu
+			}
+		}
+	}
 	icon = GFX_idea_avic_company
 
 	task_capacity = 13
@@ -8057,7 +8106,31 @@ CHI_haig_manufacturer = {
 	}
 }
 CHI_sac_manufacturer = {
-	allowed = { original_tag = CHI }
+	allowed = { OR = { original_tag = CHI tag = UOE } }
+
+	visible = {
+		OR = {
+			FROM = { original_tag = CHI }
+			FROM = { has_country_flag = UOE_Selected_CHI has_country_flag = uoe_selected_shenyang }
+		}
+	}
+	available = {
+		if = {
+			limit = {
+				FROM = { NOT = { original_tag = CHI } }
+			}
+			FROM = { NOT = { has_war_with = CHI } }
+		}
+		if = {
+			limit = {
+				FROM = { tag = UOE }
+			}
+			FROM = {
+				has_country_flag = UOE_Selected_CHI
+				has_country_flag = uoe_selected_shenyang
+			}
+		}
+	}
 	icon = GFX_idea_sac_company
 
 	task_capacity = 8
@@ -8662,7 +8735,32 @@ CHI_sac_manufacturer = {
 
 # Naval
 CHI_cssc_manufacturer = {
-	allowed = { original_tag = CHI }
+	allowed = { OR = { original_tag = CHI tag = UOE } }
+
+	visible = {
+		OR = {
+			FROM = { original_tag = CHI }
+			FROM = { has_country_flag = UOE_Selected_CHI has_country_flag = uoe_selected_china_state }
+		}
+	}
+	available = {
+		if = {
+			limit = {
+				FROM = { NOT = { original_tag = CHI } }
+			}
+			FROM = { NOT = { has_war_with = CHI } }
+		}
+		if = {
+			limit = {
+				FROM = { tag = UOE }
+			}
+			FROM = {
+				has_country_flag = UOE_Selected_CHI
+				has_country_flag = uoe_selected_china_state
+			}
+		}
+	}
+
 	icon = GFX_idea_China_State_Shipbuilding_Corporation_CHI
 
 	task_capacity = 8
