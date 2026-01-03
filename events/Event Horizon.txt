@@ -1883,3 +1883,99 @@ country_event = {
 		set_country_flag = { flag = EH_event_fired_flag days = 45 }
 	}
 }
+
+country_event = {
+ 	id = EH_focus_event.12
+	title = EH_focus_event.12.t
+	desc = EH_focus_event.12.d
+	picture = GFX_steel_mill
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.12.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.12.a executed"
+		set_variable = { EH_set_up_mine_time_var = 75 }
+		set_country_flag = EH_setting_up_randallite_mine_flag
+		set_temp_variable = { treasury_change = -30 }
+		modify_treasury_effect = yes
+
+		set_variable_to_random = {
+			var = EH_add_randallite_random
+			min = 4
+			max = 6
+			integer = yes
+		}
+
+		activate_mission = EH_set_up_mine_mission
+	}
+	option = {
+		name = EH_focus_event.12.b
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.12.b executed"
+		add_political_power = -150
+	}
+}
+
+country_event = {
+ 	id = EH_focus_event.13
+	title = EH_focus_event.13.t
+	desc = EH_focus_event.13.d
+	picture = GFX_steel_mill
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.13.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.13.a executed"
+		set_variable = { EH_set_up_mine_time_var = 35 }
+		set_country_flag = EH_setting_up_iron_mine_flag
+		set_temp_variable = { treasury_change = -12 }
+		modify_treasury_effect = yes
+
+		activate_mission = EH_set_up_mine_mission
+	}
+	option = {
+		name = EH_focus_event.13.b
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.13.b executed"
+		add_political_power = -50
+	}
+}
+
+country_event = {
+ 	id = EH_focus_event.14
+	title = EH_focus_event.14.t
+	desc = EH_focus_event.14.d
+	picture = GFX_steel_mill
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.14.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.14.a executed"
+		set_variable = { EH_set_up_mine_time_var = 35 }
+		set_country_flag = EH_setting_up_aluminium_mine_flag
+		set_temp_variable = { treasury_change = -12 }
+		modify_treasury_effect = yes
+
+		activate_mission = EH_set_up_mine_mission
+	}
+	option = {
+		name = EH_focus_event.14.b
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.14.b executed"
+		add_political_power = -50
+	}
+}
+
+country_event = {
+ 	id = EH_focus_event.15
+	title = EH_focus_event.15.t
+	desc = EH_focus_event.15.d
+	picture = GFX_generic_factory
+
+	is_triggered_only = yes
+
+	option = {
+		name = EH_focus_event.15.a
+		log = "[GetDateText]: [This.GetName]: EH_focus_event.15.a executed"
+	}
+}

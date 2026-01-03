@@ -847,6 +847,37 @@ focus_tree = {
 			}
 			newline = yes
 			custom_effect_tooltip = EH_randallite_tab_enabled_idea_TT
+
+			if = {
+				limit = {
+					num_of_controlled_states > 80
+				}
+				set_variable_to_random = {
+					var = EH_add_randallite_random
+					min = 5
+					max = 10
+					integer = yes
+				}
+			}
+			else_if = {
+				limit = {
+					num_of_controlled_states > 50
+				}
+				set_variable_to_random = {
+					var = EH_add_randallite_random
+					min = 3
+					max = 7
+					integer = yes
+				}
+			}
+			else = {
+				set_variable_to_random = {
+					var = EH_add_randallite_random
+					min = 2
+					max = 4
+					integer = yes
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -1263,7 +1294,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_find_new_veins"
-
+			set_temp_variable = { add_randallite = EH_add_randallite_random }
+			EH_add_randallite_effect = yes
+			custom_effect_tooltip = EH_find_new_veins_TT
 		}
 
 		ai_will_do = {
@@ -1432,7 +1465,7 @@ focus_tree = {
 					modifier = EH_battlefield_adaptation_idea
 				}
 			}
-			add_to_variable = {EH_army_attack_factor_var3 = 0.04 }
+			add_to_variable = { EH_army_attack_factor_var3 = 0.04 }
 			add_to_variable = { EH_army_defence_factor_var3 = 0.04 }
 			custom_effect_tooltip = EH_battlefield_adaptation_idea_TT
 			newline = yes

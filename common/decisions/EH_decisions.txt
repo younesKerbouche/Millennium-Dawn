@@ -355,3 +355,140 @@ EH_research_sites_category = {
         }
     }
 }
+
+EH_find_new_veins_category = {
+    EH_search_for_randallite_veins = {
+        icon = GFX_decision_resource_production
+        days_remove = 2
+        days_re_enable = 5
+
+        fixed_random_seed = no
+
+        available = {
+            set_temp_variable = { EH_controlled_states = num_of_controlled_states }
+            divide_temp_variable = { EH_controlled_states = 7 }
+            round_temp_variable = EH_controlled_states
+            custom_trigger_tooltip = {
+                tooltip = EH_randallite_veins_limit_TT
+                check_variable = { EH_mines_set_up_var < EH_controlled_states }
+            }
+
+            NOT = {
+                has_active_mission = EH_set_up_mine_mission
+            }
+        }
+
+        modifier = {
+            cic_construction_boost_factor = -0.06
+            resource_sector_workers_modifier = 0.08
+        }
+
+        complete_effect = {
+            set_temp_variable = { treasury_change = -10 }
+            modify_treasury_effect = yes
+        }
+
+        remove_effect = {
+            random_list = {
+                60 = {
+                    country_event = EH_focus_event.12
+                }
+                20 = {
+                    country_event = EH_focus_event.13
+                }
+                20 = {
+                    country_event = EH_focus_event.14
+                }
+            }
+        }
+    }
+
+    EH_set_up_mine_mission = {
+        icon = GFX_decision_steel
+        is_good = yes
+        days_mission_timeout = var:EH_set_up_mine_time_var
+
+        activation = {
+            always = no
+        }
+
+        available = {
+            always = no
+        }
+
+        timeout_effect = {
+            if = {
+                limit = {
+                    has_country_flag = EH_setting_up_randallite_mine_flag
+                }
+                set_temp_variable = { add_randallite = EH_add_randallite_random }
+                EH_add_randallite_effect = yes
+                clr_country_flag = EH_setting_up_randallite_mine_flag
+            }
+            if = {
+                limit = {
+                    has_country_flag = EH_setting_up_iron_mine_flag
+                }
+                random_controlled_state = {
+                    add_resource = {
+                        type = steel
+                        amount = 2
+                    }
+                }
+                clr_country_flag = EH_setting_up_iron_mine_flag
+            }
+            if = {
+                limit = {
+                    has_country_flag = EH_setting_up_aluminium_mine_flag
+                }
+                random_controlled_state = {
+                    add_resource = {
+                        type = aluminium
+                        amount = 2
+                    }
+                }
+                clr_country_flag = EH_setting_up_aluminium_mine_flag
+            }
+            add_to_variable = { EH_mines_set_up_var = 1 }
+        }
+    }
+
+    EH_large_company_seeks_for_randallite_mission = {
+        icon = GFX_decision_gre_investment_decisions
+        days_mission_timeout = 100
+
+        available = {
+            always = no
+        }
+
+        timeout_effect = {
+            random = {
+                chance = 80
+                country_event = EH_focus_event.15
+                set_variable = { EH_non_state_mines_corporate_tax_income_var = 0.05 }
+                add_to_variable = { EH_non_state_mines_var = 1 }
+                multiply_variable = { EH_non_state_mines_corporate_tax_income_var = EH_non_state_mines_var }
+
+                if = {
+                    limit = {
+                        NOT = {
+                            has_dynamic_modifier = {
+                                modifier = EH_non_state_mines_modifier
+                                scope = ROOT
+                            }
+                        }
+                    }
+                    add_dynamic_modifier = {
+                        modifier = EH_non_state_mines_modifier
+                        scope = ROOT
+                    }
+                    newline = yes
+                    custom_effect_tooltip = EH_non_state_mines_modifier_TT
+                }
+                add_to_variable = { EH_mines_set_up_var = 1 }
+                newline = yes
+                custom_effect_tooltip = EH_non_state_mines_TT
+            }
+        }
+    }
+}
