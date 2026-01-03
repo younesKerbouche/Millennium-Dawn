@@ -345,7 +345,7 @@ EH_research_sites_category = {
             }
         }
 
-        icon = GFX_decision_message_accept_button
+        icon = GFX_decision_jennifer_emmanuelle
         is_good = yes
         days_mission_timeout = 280
 
@@ -359,7 +359,7 @@ EH_research_sites_category = {
 EH_find_new_veins_category = {
     EH_search_for_randallite_veins = {
         icon = GFX_decision_resource_production
-        days_remove = 2
+        days_remove = var:EH_search_for_randallite_veins_time_var
         days_re_enable = 5
 
         fixed_random_seed = no
@@ -457,8 +457,16 @@ EH_find_new_veins_category = {
         icon = GFX_decision_gre_investment_decisions
         days_mission_timeout = 100
 
+        activation = {
+            NOT = {
+                has_country_flag = EH_outlawed_randallite_extraction_flag
+            }
+        }
+
         available = {
-            always = no
+            NOT = {
+                has_country_flag = EH_outlawed_randallite_extraction_flag
+            }
         }
 
         timeout_effect = {
@@ -485,10 +493,70 @@ EH_find_new_veins_category = {
                     newline = yes
                     custom_effect_tooltip = EH_non_state_mines_modifier_TT
                 }
-                add_to_variable = { EH_mines_set_up_var = 1 }
+                set_variable = { EH_non_state_mines_var = 0 }
                 newline = yes
                 custom_effect_tooltip = EH_non_state_mines_TT
             }
+        }
+    }
+
+    EH_outlaw_randallite_extraction = {
+        icon = GFX_decision_oppression
+        days_remove = 30
+
+        visible = {
+            NOT = {
+                has_country_flag = EH_outlawed_randallite_extraction_flag
+            }
+            check_variable = { EH_non_state_mines_var > 0 }
+        }
+
+        modifier = {
+            political_power_gain = -1
+        }
+
+        remove_effect = {
+            set_temp_variable = { EH_outlaw_randallite_stability_penalty = -0.04 }
+            set_temp_variable = { EH_outlaw_randallite_pp_penalty = -50 }
+            set_temp_variable = { EH_outlaw_randallite_randallite_gain = 2 }
+
+            multiply_temp_variable = { EH_outlaw_randallite_stability_penalty = EH_non_state_mines_var }
+            multiply_temp_variable = { EH_outlaw_randallite_pp_penalty = EH_non_state_mines_var }
+            multiply_temp_variable = { EH_outlaw_randallite_randallite_gain = EH_non_state_mines_var }
+
+            add_stability = EH_outlaw_randallite_stability_penalty
+            add_political_power = EH_outlaw_randallite_pp_penalty
+            set_temp_variable = { add_randallite = EH_outlaw_randallite_randallite_gain }
+            EH_add_randallite_effect = yes
+
+            set_variable = { EH_non_state_mines_var = 0 }
+
+            newline = yes
+
+            set_country_flag = EH_outlawed_randallite_extraction_flag
+            custom_effect_tooltip = EH_outlaw_randallite_extraction_TT
+
+            newline = yes
+
+            increase_corruption = yes
+        }
+    }
+
+    EH_legalize_randallite_extraction = {
+        icon = GFX_decision_relation
+        days_remove = 30
+
+        visible = {
+            has_country_flag = EH_outlawed_randallite_extraction_flag
+        }
+
+        modifier = {
+            political_power_gain = -0.5
+        }
+
+        remove_effect = {
+            clr_country_flag = EH_outlawed_randallite_extraction_flag
+            custom_effect_tooltip = EH_legalize_randallite_extraction_TT
         }
     }
 }

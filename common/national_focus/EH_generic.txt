@@ -1297,6 +1297,7 @@ focus_tree = {
 			set_temp_variable = { add_randallite = EH_add_randallite_random }
 			EH_add_randallite_effect = yes
 			custom_effect_tooltip = EH_find_new_veins_TT
+			set_variable = { EH_search_for_randallite_veins_time_var = 25 }
 		}
 
 		ai_will_do = {
@@ -1322,7 +1323,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_more_precious_than_gold"
-
+			set_temp_variable = { add_randallite = 3 }
+			EH_add_randallite_effect = yes
+			set_variable = { EH_search_for_randallite_veins_time_new_var = 10 }
+			subtract_from_variable = { EH_search_for_randallite_veins_time_var = EH_search_for_randallite_veins_time_new_var }
+			newline = yes
+			custom_effect_tooltip = EH_search_for_randallite_decreased_TT
+			newline = yes
+			custom_effect_tooltip = EH_more_precious_than_gold_TT
 		}
 
 		ai_will_do = {
