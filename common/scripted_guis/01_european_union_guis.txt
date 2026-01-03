@@ -9,6 +9,7 @@ scripted_gui = {
 
 		visible = {
 			NOT = { has_global_flag = GAME_RULE_eu_disabled }
+			NOT = { has_global_flag = usoe_formed }
 			is_ai = no
 		}
 
@@ -587,7 +588,11 @@ scripted_gui = {
 				}
 			}
 
-			# European Parliament Triggers
+			####################################
+			####################################
+			### European Parliament Triggers ###
+			####################################
+			####################################
 			PG_party_0_influence_visible = {
 				EU_european_union_euro_parliament_trigger = yes
 				has_idea = EU_member
@@ -1132,8 +1137,12 @@ scripted_gui = {
 				}
 				hidden_trigger = { is_ai = no }
 			}
-
-			# Euro-Info
+			#################
+			#################
+			### Euro-Info ###
+			#################
+			#################
+			
 			# Euro Sceptic Stuff
 			euroscepticism_country_button_visible = {
 				EU_european_union_euro_info_trigger = yes
@@ -1230,8 +1239,11 @@ scripted_gui = {
 				NOT = { check_variable = { global.current_active_vote_disp = 0 } }
 				NOT = { is_in_array = { array = global.EU_active_vote_rejecters value = THIS } }
 			}
-
-			# Fiscal buttons
+			####################
+			####################
+			### Central Bank ###
+			####################
+			####################
 			EU_min_call_rate_visible = {
 				EU_european_union_euro_fiscal_trigger = yes
 			}
@@ -2568,18 +2580,16 @@ scripted_gui = {
 								limit = { has_idea = EU_member }
 								if = {
 									limit = {
-										has_country_flag = EU_budget_draft
+										has_country_flag = EU_budget_EP_block
 										check_variable = { global.current_active_agenda_disp = 999 }
 									}
-									clr_country_flag = EU_budget_draft
 									clr_country_flag = EU_budget_EP_block
 								}
 								if = {
 									limit = {
-										has_country_flag = EU_mff_draft
+										has_country_flag = EU_mff_EP_block
 										check_variable = { global.current_active_agenda_disp = 998 }
 									}
-									clr_country_flag = EU_mff_draft
 									clr_country_flag = EU_mff_EP_block
 								}
 							}
@@ -2595,7 +2605,7 @@ scripted_gui = {
 								set_the_eu_parliament_delay = yes
 							}
 							every_country = {
-								limit = { has_idea = EU_commission_president }
+								limit = { has_idea = ECB_president }
 								remove_mission = EU_parliament_focus_EUXXX_approve
 							}
 							set_variable = { global.current_active_agenda_disp = 0 }
@@ -2634,18 +2644,16 @@ scripted_gui = {
 								limit = { has_idea = EU_member }
 								if = {
 									limit = {
-										has_country_flag = EU_budget_draft
+										has_country_flag = EU_budget_EP_block
 										check_variable = { global.current_active_agenda_disp = 999 }
 									}
-									clr_country_flag = EU_budget_draft
 									clr_country_flag = EU_budget_EP_block
 								}
 								if = {
 									limit = {
-										has_country_flag = EU_mff_draft
+										has_country_flag = EU_mff_EP_block
 										check_variable = { global.current_active_agenda_disp = 998 }
 									}
-									clr_country_flag = EU_mff_draft
 									clr_country_flag = EU_mff_EP_block
 								}
 							}
@@ -2659,7 +2667,7 @@ scripted_gui = {
 								set_the_eu_parliament_delay = yes
 							}
 							every_country = {
-								limit = { has_idea = EU_commission_president }
+								limit = { has_idea = ECB_president }
 								remove_mission = EU_parliament_focus_EUXXX_approve
 							}
 							set_variable = { global.current_active_agenda_disp = 0 }
@@ -5201,8 +5209,6 @@ scripted_gui = {
 				custom_trigger_tooltip = {
 					tooltip = no_active_budget_mff_draft
 					NOT = {
-						has_country_flag = EU_budget_draft
-						has_country_flag = EU_mff_draft
 						has_country_flag = EU_budget_EP_block
 						has_country_flag = EU_mff_EP_block
 					}
@@ -5575,17 +5581,6 @@ scripted_gui = {
 						is_in_array = { global.EU_passed_votes = 652 }
 					}
 				}
-				else_if = { limit = { check_variable = { v = 112 } }
-					custom_trigger_tooltip = {
-						tooltip = federalized_eu_tt
-						is_in_array = { global.EU_passed_votes = 110 }
-					}
-					custom_trigger_tooltip = {
-						tooltip = not_usoe_tt
-						NOT = { is_in_array = { global.EU_passed_votes = 111 } }
-					}
-					has_political_power > 300
-				}
 				else_if = { limit = { check_variable = { v = 110 } }
 					custom_trigger_tooltip = {
 						tooltip = euro_min_fin_eco_tt
@@ -5612,6 +5607,17 @@ scripted_gui = {
 					custom_trigger_tooltip = {
 						tooltip = not_poteuf_tt
 						NOT = { is_in_array = { global.EU_passed_votes = 112 } }
+					}
+					has_political_power > 300
+				}
+				else_if = { limit = { check_variable = { v = 112 } }
+					custom_trigger_tooltip = {
+						tooltip = federalized_eu_tt
+						is_in_array = { global.EU_passed_votes = 110 }
+					}
+					custom_trigger_tooltip = {
+						tooltip = not_usoe_tt
+						NOT = { is_in_array = { global.EU_passed_votes = 111 } }
 					}
 					has_political_power > 300
 				}
@@ -5917,6 +5923,26 @@ scripted_gui = {
 									check_variable = { v = 101 }
 									check_variable = { v = 102 }
 									check_variable = { v = 103 }
+								}
+							}
+							# EU Expansion Focus
+							modifier = {
+								add = 200
+								OR = {
+									check_variable = { v = 601 }
+									check_variable = { v = 602 }
+									check_variable = { v = 603 }
+									check_variable = { v = 605 }
+									check_variable = { v = 606 }
+									check_variable = { v = 607 }
+									check_variable = { v = 608 }
+									check_variable = { v = 609 }
+									check_variable = { v = 610 }
+									check_variable = { v = 611 }
+									check_variable = { v = 650 }
+									check_variable = { v = 651 }
+									check_variable = { v = 652 }
+									check_variable = { v = 653 }
 								}
 							}
 							# Killswitch

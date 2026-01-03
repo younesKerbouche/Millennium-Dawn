@@ -1,10 +1,18 @@
 ﻿### Constitute the new European Nation ###
 shared_focus = {
 	id = USoE001
-	#icon = europe
 	icon = USoE001
 	x = 21
 	y = 18
+	cost = 26
+	search_filters = { FOCUS_FILTER_EUROPEAN_UNION FOCUS_FILTER_POLITICAL }
+	available = {
+		has_country_flag = USoE
+		custom_trigger_tooltip = {
+			tooltip = requires_usoe_tt
+			is_in_array = { array = global.EU_passed_votes value = 111 }
+		}
+	}
 
 	# Offsets for Custom Focus Trees
 	offset = {
@@ -238,22 +246,6 @@ shared_focus = {
 		NOT = { has_global_flag = GAME_RULE_eu_disabled }
 	}
 
-	search_filters = { FOCUS_FILTER_EUROPEAN_UNION FOCUS_FILTER_POLITICAL }
-
-
-	cost = 26
-
-	available = {
-		has_country_flag = USoE
-		custom_trigger_tooltip = {
-			tooltip = requires_usoe_tt
-			is_in_array = {
-				array = global.EU_passed_votes
-				value = 111
-			}
-		}
-	}
-
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus USoE001"
 		remove_ideas = EU_member
@@ -264,6 +256,7 @@ shared_focus = {
 			}
 			remove_ideas = german_legacy
 		}
+		set_global_flag = usoe_formed
 	}
 
 	ai_will_do = {
