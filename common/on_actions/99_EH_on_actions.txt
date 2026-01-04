@@ -70,6 +70,7 @@ on_actions = {
                         NOT = {
                             has_country_flag = EH_research_sites_strike_cooldown_flag
                         }
+                        has_war_with = ALN
                     }
                 }
                 ROOT = {
@@ -118,8 +119,12 @@ on_actions = {
             }
             if = {
                 limit = {
-                    NOT = {
-                        has_country_flag = EH_event_fired_flag
+                    ROOT = {
+                        check_variable = { EH_research_sites_constructed_var > 0 }
+                        has_country_flag = EH_research_sites_enabled
+                        NOT = {
+                            has_country_flag = EH_event_fired_flag
+                        }
                     }
                 }
                 random = {
