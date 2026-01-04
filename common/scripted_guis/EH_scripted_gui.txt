@@ -402,6 +402,12 @@ scripted_gui = {
 			EH_mech_production_start_factory_5_click = {
 				ROOT = { EH_start_mech_production_factory_5_effect = yes }
 			}
+
+			EH_select_mech_1_click = {
+				set_country_flag = EH_mech_selected_flag
+				set_country_flag = EH_mech_1_selected_flag
+				set_variable = { EH_mech_production_cost_var = 5 }
+			}
 		}
 
 		triggers = {
@@ -451,6 +457,17 @@ scripted_gui = {
 			}
 			EH_mech_production_start_cancel_5_visible = {
 				ROOT = { has_country_flag = EH_mech_production_5_in_progress_flag }
+			}
+
+			EH_select_mech_1_click_enabled = {
+				ROOT = {
+					has_country_flag = EH_hacs_one_project_completed_flag
+					hidden_trigger = {
+						NOT = {
+							has_country_flag = EH_mech_1_selected_flag
+						}
+					}
+				}
 			}
 		}
 	}
