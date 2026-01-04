@@ -360,7 +360,7 @@ EH_find_new_veins_category = {
     EH_search_for_randallite_veins = {
         icon = GFX_decision_resource_production
         days_remove = var:EH_search_for_randallite_veins_time_var
-        days_re_enable = 5
+        days_re_enable = 10
 
         fixed_random_seed = no
 
@@ -373,8 +373,11 @@ EH_find_new_veins_category = {
                 check_variable = { EH_mines_set_up_var < EH_controlled_states }
             }
 
-            NOT = {
-                has_active_mission = EH_set_up_mine_mission
+            OR = {
+                NOT = {
+                    has_active_mission = EH_set_up_mine_mission
+                }
+                has_completed_focus = EH_new_enemy_new_strategy
             }
         }
 
@@ -384,8 +387,20 @@ EH_find_new_veins_category = {
         }
 
         complete_effect = {
-            set_temp_variable = { treasury_change = -10 }
-            modify_treasury_effect = yes
+            if = {
+                limit = {
+                    NOT = {
+                        has_active_mission = EH_set_up_mine_mission
+                    }
+                }
+                set_temp_variable = { treasury_change = -10 }
+                modify_treasury_effect = yes
+            }
+            else = {
+                set_temp_variable = { treasury_change = -25 }
+                modify_treasury_effect = yes
+                add_timed_idea = { idea = EH_economy_overload_idea days = var:EH_search_for_randallite_veins_time_var }
+            }
         }
 
         remove_effect = {
