@@ -126,7 +126,7 @@ focus_tree = {
 		y = 28
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -154,20 +154,23 @@ focus_tree = {
 		icon = edik_sher_victory
 		x = 12
 		y = 0
+
 		cost = 5
-		search_filters = {
-			FOCUS_FILTER_POLITICAL
-		}
-		ai_will_do = {
-			factor = 155
-		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_shervad_victory"
 			country_event = georg.1000
 			add_political_power = 50
 			add_stability = 0.025
 		}
+
+		ai_will_do = {
+			base = 155
+		}
 	}
+
 	#polt_crisis_aknowl
 	focus = {
 		id = GEO_polt_crisis_aknowl
@@ -183,7 +186,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 5
 				original_tag = GEO
@@ -206,7 +209,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 		}
 		relative_position_id = GEO_polt_crisis_aknowl
 		search_filters = {
@@ -234,7 +237,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_COMMUNISM_PATH
@@ -325,7 +328,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_askchina
 		search_filters = {
@@ -350,7 +353,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_arm_help_com
 		search_filters = {
@@ -488,7 +491,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_arm_help_com
 		search_filters = {
@@ -1201,40 +1204,6 @@ focus_tree = {
 	}
 
 	focus = {
-		id = GEO_rodina_zakav_com
-		icon = GEO_beria_labour
-
-		x = 1
-		y = 1
-		relative_position_id = GEO_exapnd_com_party
-
-		cost = 10
-
-		prerequisite = { focus = GEO_exapnd_com_party }
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		available = {
-			is_subject = no
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_rodina_zakav_com"
-			if = { limit = { is_faction_leader = yes }
-				dismantle_faction = yes
-			}
-			else_if = { limit = { is_in_faction = yes }
-				leave_faction = yes
-			}
-			create_faction = ARM_the_fifth_international
-			custom_effect_tooltip = SOV_the_fifth_international_TT
-		}
-
-		ai_will_do = {
-			factor = 15
-		}
-	}
-
-	focus = {
 		id = GEO_no_opium_for_people
 		icon = anti_orthodoxy
 		x = 1
@@ -1286,7 +1255,7 @@ focus_tree = {
 	focus = {
 		id = GEO_clearup_local_gov
 		icon = GEO_beria_gamer
-		x = -1
+		x = 0
 		y = 1
 		cost = 10
 		relative_position_id = GEO_exapnd_com_party
@@ -1310,7 +1279,7 @@ focus_tree = {
 	focus = {
 		id = GEO_new_nep
 		icon = GEO_beria_economy
-		x = 0
+		x = -1
 		y = 1
 		cost = 10
 		relative_position_id = GEO_clearup_local_gov
@@ -1334,10 +1303,10 @@ focus_tree = {
 	focus = {
 		id = GEO_help_othercommies
 		icon = GEO_beria_liberty
-		x = 0
+		x = 1
 		y = 1
 		cost = 10
-		relative_position_id = GEO_rodina_zakav_com
+		relative_position_id = GEO_clearup_local_gov
 		ai_will_do = { factor = 15 }
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -1353,7 +1322,7 @@ focus_tree = {
 			}
 		}
 		prerequisite = {
-			focus = GEO_rodina_zakav_com
+			focus = GEO_clearup_local_gov
 		}
 	}
 	focus = {
@@ -1664,7 +1633,7 @@ focus_tree = {
 		y = 12
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -1802,7 +1771,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_pmc_support_instr"
 			add_timed_idea = {
-				idea = GEO_pmc_help
+				idea = GEO_pmc_help_idea
 				days = 365
 			}
 		}
@@ -3121,7 +3090,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 5
 				original_tag = GEO
@@ -3297,7 +3266,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 		}
 		relative_position_id = GEO_polt_crisis_aknowl
 		search_filters = {
@@ -3312,18 +3281,6 @@ focus_tree = {
 				add_idea = GEO_political_opposition
 			}
 			SOV = { country_event = georg.1243 }
-			USA = {
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT
-					value = 15
-				}
-				add_ai_strategy = {
-					type = support
-					id = ROOT
-					value = 25
-				}
-			}
 		}
 		prerequisite = {
 			focus = GEO_polt_crisis_aknowl
@@ -3345,7 +3302,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3371,7 +3328,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3396,7 +3353,7 @@ focus_tree = {
 		cost = 5
 		relative_position_id = GEO_ensure_for_russians
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3433,7 +3390,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3465,7 +3422,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3495,7 +3452,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3526,7 +3483,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3554,7 +3511,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 15.05
 			}
@@ -3623,7 +3580,7 @@ focus_tree = {
 		}
 
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_PRO_RUS_PATH
@@ -3637,7 +3594,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_NATIONALIST_PATH
@@ -3689,7 +3646,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_revive_mhedrioni
 		search_filters = {
@@ -3719,7 +3676,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_revive_high_council
 		search_filters = {
@@ -3740,7 +3697,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_puppet_shervad
 		search_filters = {
@@ -3774,7 +3731,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_empower_yoseliani
 		search_filters = {
@@ -3805,7 +3762,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_empower_yoseliani
 		search_filters = {
@@ -3835,7 +3792,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_seek_for_greater_georgia
 		search_filters = {
@@ -3858,7 +3815,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -3885,7 +3842,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -3913,7 +3870,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_empower_yoseliani
 		search_filters = {
@@ -3947,7 +3904,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_diplomatic_approach
 		search_filters = {
@@ -3987,7 +3944,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_reketir_opposition
 		search_filters = {
@@ -4016,7 +3973,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_reketir_opposition
 		search_filters = {
@@ -4076,7 +4033,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_reform_governmant
 		search_filters = {
@@ -4103,7 +4060,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_NATIONALIST_PRO_AZER_PATH
@@ -4147,7 +4104,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4173,7 +4130,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4212,7 +4169,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_NATIONALIST_OWN_PATH
@@ -4266,7 +4223,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4313,7 +4270,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_both
 		search_filters = {
@@ -4342,7 +4299,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_nat_azeri
 		search_filters = {
@@ -4369,7 +4326,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_nat_azeri
 		search_filters = {
@@ -4397,7 +4354,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_both
 		search_filters = {
@@ -4426,7 +4383,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_nat_armeni
 		search_filters = {
@@ -4452,7 +4409,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_nat_armeni
 		search_filters = {
@@ -4480,7 +4437,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_crush_northcauc
 		search_filters = {
@@ -4508,7 +4465,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_NATIONALIST_PRO_ARM_PATH
@@ -4579,7 +4536,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				NOT = { has_global_flag = GEO_NATIONALIST_PRO_ARM_PATH }
@@ -4662,11 +4619,11 @@ focus_tree = {
 				leave_faction = yes
 			}
 
-			create_faction = GEO_all_of_geo
+			create_faction_from_template = faction_template_geo_aog
 		}
 
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 	}
 	focus = {
@@ -4676,7 +4633,7 @@ focus_tree = {
 		y = 3
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4713,7 +4670,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_NATIONALIST_PRO_ARM_PATH
@@ -4760,7 +4717,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_befriend_nat_armenia
 		search_filters = {
@@ -4783,7 +4740,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4822,7 +4779,7 @@ focus_tree = {
 			has_government = nationalist
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_loyal_guard
 		search_filters = {
@@ -4843,7 +4800,7 @@ focus_tree = {
 		y = 2
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4907,7 +4864,7 @@ focus_tree = {
 		}
 		relative_position_id = GEO_monarchist_council
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -4921,7 +4878,7 @@ focus_tree = {
 				add_idea = the_clergy
 			}
 			change_the_priesthood_opinion = yes
-			add_ideas = USA_christian_influence
+			add_ideas = GEO_orthodox_church_influence
 		}
 		prerequisite = {
 			focus = GEO_killt_opposition
@@ -4934,7 +4891,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4965,7 +4922,7 @@ focus_tree = {
 		y = 2
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = {
 			has_government = nationalist
@@ -4993,7 +4950,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		relative_position_id = GEO_revive_high_council
 		search_filters = {
@@ -5019,7 +4976,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 155
+			base = 155
 			modifier = {
 				factor = 155
 				has_global_flag = GEO_PRO_WEST_SHEVA_PATH
@@ -5072,18 +5029,6 @@ focus_tree = {
 				}
 			}
 			SOV = { country_event = georg.1243 }
-			USA = {
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT
-					value = 15
-				}
-				add_ai_strategy = {
-					type = support
-					id = ROOT
-					value = 25
-				}
-			}
 			hidden_effect = {
 				remove_state_core = 466
 				add_ideas = GEO_adjara_unstable
@@ -5111,7 +5056,7 @@ focus_tree = {
 		y = 4
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5139,7 +5084,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_russian_mil_in_geo"
@@ -5164,7 +5109,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_start_talks_with_russia"
@@ -5205,7 +5150,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_vygod_svet"
@@ -5234,7 +5179,7 @@ focus_tree = {
 		y = 6
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5301,7 +5246,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_kill_oppos_leaders"
@@ -5335,7 +5280,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_deport_oppos"
@@ -5369,7 +5314,7 @@ focus_tree = {
 			FOCUS_FILTER_POLITICAL
 		}
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_befriend_armenia"
@@ -5396,7 +5341,7 @@ focus_tree = {
 		y = 9
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5421,7 +5366,7 @@ focus_tree = {
 		y = 7
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5457,7 +5402,7 @@ focus_tree = {
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5515,7 +5460,7 @@ focus_tree = {
 		y = 7
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5539,7 +5484,7 @@ focus_tree = {
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5575,7 +5520,7 @@ focus_tree = {
 		y = 8
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		bypass = {
 			OR = {
@@ -5643,7 +5588,7 @@ focus_tree = {
 		y = 11
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5719,7 +5664,7 @@ focus_tree = {
 		y = 12
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5743,7 +5688,7 @@ focus_tree = {
 		y = 14
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5777,7 +5722,7 @@ focus_tree = {
 		y = 13
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -5804,7 +5749,7 @@ focus_tree = {
 		y = 15
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5923,7 +5868,7 @@ focus_tree = {
 		y = 13
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5949,7 +5894,7 @@ focus_tree = {
 		y = 16
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -5984,7 +5929,7 @@ focus_tree = {
 		y = 16
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6008,7 +5953,7 @@ focus_tree = {
 		y = 15
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6036,7 +5981,7 @@ focus_tree = {
 		y = 17
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6342,7 +6287,7 @@ focus_tree = {
 		y = 29
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6510,7 +6455,7 @@ focus_tree = {
 		y = 32
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6573,7 +6518,7 @@ focus_tree = {
 		y = 30
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6664,7 +6609,7 @@ focus_tree = {
 		y = 26
 		cost = 1
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6701,7 +6646,7 @@ focus_tree = {
 		y = 28
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6731,7 +6676,7 @@ focus_tree = {
 		y = 27
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -6753,7 +6698,7 @@ focus_tree = {
 		y = 29
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: GEO_mistakes_of_prevgov"
@@ -6779,7 +6724,7 @@ focus_tree = {
 		y = 30
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -6905,7 +6850,7 @@ focus_tree = {
 		y = 30
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -6939,7 +6884,7 @@ focus_tree = {
 		y = 31
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -6967,7 +6912,7 @@ focus_tree = {
 		y = 31
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -7004,7 +6949,7 @@ focus_tree = {
 		y = 32
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -7042,7 +6987,7 @@ focus_tree = {
 		y = 33
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -7062,7 +7007,7 @@ focus_tree = {
 		y = 34
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_WAR_SUPPORT
@@ -7142,7 +7087,7 @@ focus_tree = {
 		y = 26
 		cost = 1
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -7176,7 +7121,7 @@ focus_tree = {
 		y = 29
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -7220,7 +7165,7 @@ focus_tree = {
 		y = 26
 		cost = 1
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -7248,13 +7193,6 @@ focus_tree = {
 		x = 28
 		y = 25
 		cost = 5
-		ai_will_do = {
-			factor = 155
-			modifier = {
-				factor = 155
-				has_global_flag = GEO_UNITED_GEORGIA_PATH
-			}
-		}
 		available = {
 			cis_trade_above_50 = yes
 			has_completed_focus = GEO_epoch_of_peace
@@ -7293,6 +7231,14 @@ focus_tree = {
 			}
 			recalculate_party = yes
 		}
+
+		ai_will_do = {
+			base = 155
+			modifier = {
+				factor = 155
+				has_global_flag = GEO_UNITED_GEORGIA_PATH
+			}
+		}
 	}
 	#deepen_rus_coop
 	focus = {
@@ -7302,7 +7248,7 @@ focus_tree = {
 		y = 27
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_POLITICAL
@@ -7420,7 +7366,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7455,7 +7401,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7478,7 +7424,7 @@ focus_tree = {
 		y = 4
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7501,7 +7447,7 @@ focus_tree = {
 		y = 5
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7527,7 +7473,7 @@ focus_tree = {
 		y = 5
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7553,7 +7499,7 @@ focus_tree = {
 		y = 6
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7593,7 +7539,7 @@ focus_tree = {
 		y = 7
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7625,7 +7571,7 @@ focus_tree = {
 		y = 7
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7650,7 +7596,7 @@ focus_tree = {
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7702,7 +7648,7 @@ focus_tree = {
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7728,7 +7674,7 @@ focus_tree = {
 		y = 9
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7759,7 +7705,7 @@ focus_tree = {
 		y = 10
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7783,7 +7729,7 @@ focus_tree = {
 		y = 11
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7806,7 +7752,7 @@ focus_tree = {
 		y = 11
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7827,7 +7773,7 @@ focus_tree = {
 		y = 12
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7851,7 +7797,7 @@ focus_tree = {
 		y = 13
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -7872,44 +7818,40 @@ focus_tree = {
 	focus = {
 		id = GEO_fertilizer_import
 		icon = GEO_Colectivize_the_farms
+
 		x = 46
 		y = 9
 		cost = 5
+
+		prerequisite = { focus = GEO_agree_with_armenia_on_rail }
+		prerequisite = { focus = GEO_agriculture_reform }
+		search_filters = { FOCUS_FILTER_INTERNAL_FACTION }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_fertilizer_import"
+			add_ideas = BUL_idea_pro_farmers
+			set_temp_variable = { temp_opinion = 5 }
+			change_farmers_opinion = yes
+		}
+
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		prerequisite = {
-			focus = GEO_agree_with_armenia_on_rail
-		}
-		prerequisite = {
-			focus = GEO_agriculture_reform
-		}
-		completion_reward = { log = "[GetDateText]: [Root.GetName]: Focus GEO_fertilizer_import"
-		add_ideas = BUL_idea_pro_farmers
-		set_temp_variable = { temp_opinion = 5 }
-		change_farmers_opinion = yes
 	}
-	}
+
 	focus = {
-		id = GEO_partial_restavration
+		id = GEO_partial_restoration
 		icon = orthodox_defense
 		x = 48
 		y = 3
+
 		cost = 5
-		ai_will_do = {
-			factor = 15
-		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		prerequisite = {
-			focus = GEO_foreign_planning
-		}
+
+		prerequisite = { focus = GEO_foreign_planning }
+		search_filters = { FOCUS_FILTER_INTERNAL_FACTION FOCUS_FILTER_STABILITY }
+
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_partial_restavration"
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_partial_restoration"
 			add_stability = 0.05
 			set_temp_variable = { temp_opinion = 5 }
 			change_the_priesthood_opinion = yes
@@ -7917,22 +7859,23 @@ focus_tree = {
 			change_the_wahabi_ulema_opinion = yes
 			change_the_clergy_opinion = yes
 		}
+
+		ai_will_do = {
+			base = 15
+		}
 	}
+
 	focus = {
 		id = GEO_german_archeologists
 		icon = align_to_germany
 		x = 48
 		y = 4
+
 		cost = 10
-		ai_will_do = {
-			factor = 15
-		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		prerequisite = {
-			focus = GEO_partial_restavration
-		}
+
+		prerequisite = { focus = GEO_partial_restoration }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_german_archeologists"
 			add_timed_idea = {
@@ -7940,22 +7883,22 @@ focus_tree = {
 				days = 100
 			}
 		}
+
+		ai_will_do = {
+			base = 15
+		}
 	}
+
 	focus = {
 		id = GEO_baku_supsa
 		icon = baku_supsa
 		x = 51
-		y = 2
+		y = 3
 		cost = 10
-		ai_will_do = {
-			factor = 15
-		}
-		search_filters = {
-			FOCUS_FILTER_INDUSTRY
-		}
-		prerequisite = {
-			focus = GEO_foreign_planning
-		}
+
+		prerequisite = { focus = GEO_foreign_planning }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_baku_supsa"
 			one_random_synthetic_refinery = yes
@@ -7971,15 +7914,20 @@ focus_tree = {
 			set_temp_variable = { influence_target = GEO }
 			change_influence_percentage = yes
 		}
+
+		ai_will_do = {
+			base = 15
+		}
 	}
+
 	focus = {
 		id = GEO_tbilisi_ceyhan
 		icon = oil_trade
 		x = 51
-		y = 3
+		y = 4
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8014,37 +7962,33 @@ focus_tree = {
 		id = GEO_befriend_britain
 		icon = align_to_britain3
 		x = 50
-		y = 4
+		y = 5
+
 		cost = 5
-		ai_will_do = {
-			factor = 15
-		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
 		}
-		prerequisite = {
-			focus = GEO_tbilisi_ceyhan
-		}
+		prerequisite = { focus = GEO_tbilisi_ceyhan }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_befriend_armenia"
-			add_opinion_modifier = {
-				target = ENG
-				modifier = diplomatic_support
-			}
-			reverse_add_opinion_modifier = {
-				target = ENG
-				modifier = diplomatic_support
-			}
+			add_opinion_modifier = { target = ENG modifier = diplomatic_support }
+			reverse_add_opinion_modifier = { target = ENG modifier = diplomatic_support }
+		}
+
+		ai_will_do = {
+			base = 15
 		}
 	}
+
 	focus = {
 		id = GEO_baku_erzurum
 		icon = baku_erzurum
 		x = 51
-		y = 5
+		y = 6
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8100,10 +8044,10 @@ focus_tree = {
 		id = GEO_vladikavkaz_kazbegi
 		icon = vladikavkaz_kazbegi
 		x = 51
-		y = 6
+		y = 7
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8134,7 +8078,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8161,7 +8105,7 @@ focus_tree = {
 		y = 3
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8190,7 +8134,7 @@ focus_tree = {
 		y = 3
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8218,7 +8162,7 @@ focus_tree = {
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8243,7 +8187,7 @@ focus_tree = {
 		y = 3
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8263,7 +8207,7 @@ focus_tree = {
 		y = 5
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8283,7 +8227,7 @@ focus_tree = {
 		y = 6
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8312,7 +8256,7 @@ focus_tree = {
 		y = 6
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8339,7 +8283,7 @@ focus_tree = {
 		y = 7
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8370,7 +8314,7 @@ focus_tree = {
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8390,7 +8334,7 @@ focus_tree = {
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8410,7 +8354,7 @@ focus_tree = {
 		y = 9
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { eu_trade_above_80 = yes }
 
@@ -8444,7 +8388,7 @@ focus_tree = {
 		y = 10
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { eu_trade_above_80 = yes }
 
@@ -8490,7 +8434,7 @@ focus_tree = {
 		y = 12
 		cost = 7
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { eu_trade_above_50 = yes }
 
@@ -8513,7 +8457,7 @@ focus_tree = {
 		x = 35
 		y = 12
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { cis_trade_above_50 = yes }
 		cost = 5
@@ -8543,7 +8487,7 @@ focus_tree = {
 		y = 13
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8566,7 +8510,7 @@ focus_tree = {
 		y = 14
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8586,7 +8530,7 @@ focus_tree = {
 		y = 15
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8609,7 +8553,7 @@ focus_tree = {
 		y = 16
 		cost = 7
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8637,7 +8581,7 @@ focus_tree = {
 		y = 17
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8662,7 +8606,7 @@ focus_tree = {
 		y = 17
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8687,7 +8631,7 @@ focus_tree = {
 		y = 10
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8715,7 +8659,7 @@ focus_tree = {
 		y = 11
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8744,7 +8688,7 @@ focus_tree = {
 		y = 12
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8775,7 +8719,7 @@ focus_tree = {
 		y = 13
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8795,7 +8739,7 @@ focus_tree = {
 		y = 14
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8821,13 +8765,13 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GEO_mktavari_tpp
+		id = GEO_mtkvari_tpp
 		icon = mtkavari_tes
 		x = 38
 		y = 15
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -8836,7 +8780,7 @@ focus_tree = {
 			focus = GEO_HES_of_geo
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_mktavari_tpp"
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_mtkvari_tpp"
 			if = {
 				limit = {
 					NOT = {
@@ -8870,22 +8814,22 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GEO_mktavari_tpp1
+		id = GEO_mtkvari_tpp1
 		icon = improve_relations
 		x = 37
 		y = 16
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = {
-			focus = GEO_mktavari_tpp
+			focus = GEO_mtkvari_tpp
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_mktavari_tpp1"
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_mtkvari_tpp1"
 			if = {
 				limit = {
 					NOT = {
@@ -8915,22 +8859,22 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GEO_mktavari_tpp2
+		id = GEO_mtkvari_tpp2
 		icon = improve_relations_blue
 		x = 39
 		y = 16
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = {
-			focus = GEO_mktavari_tpp
+			focus = GEO_mtkvari_tpp
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_mktavari_tpp2"
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_mtkvari_tpp2"
 			if = {
 				limit = {
 					NOT = {
@@ -8966,7 +8910,7 @@ focus_tree = {
 		y = 15
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { cis_trade_above_50 = yes }
 
@@ -8992,7 +8936,7 @@ focus_tree = {
 		y = 16
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { cis_trade_above_50 = yes }
 
@@ -9010,13 +8954,13 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GEO_zestaphon
+		id = GEO_zestaponi
 		icon = ferro_factory
 		x = 38
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9025,7 +8969,7 @@ focus_tree = {
 			focus = GEO_aboba
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_zestaphon"
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_zestaponi"
 			one_random_industrial_complex = yes
 		}
 	}
@@ -9041,7 +8985,7 @@ focus_tree = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = {
-			focus = GEO_zestaphon
+			focus = GEO_zestaponi
 			focus = GEO_chiaturmarganets
 		}
 		completion_reward = {
@@ -9060,13 +9004,13 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = GEO_mandeul_plant
+		id = GEO_telavi_plant
 		icon = mandeul_factory
 		x = 41
 		y = 8
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9075,7 +9019,7 @@ focus_tree = {
 			focus = GEO_aboba
 		}
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GEO_mandeul_plant"
+			log = "[GetDateText]: [Root.GetName]: Focus GEO_telavi_plant"
 			one_random_industrial_complex = yes
 		}
 	}
@@ -9090,8 +9034,8 @@ focus_tree = {
 			FOCUS_FILTER_INDUSTRY
 		}
 		prerequisite = {
-			focus = GEO_zestaphon
-			focus = GEO_mandeul_plant
+			focus = GEO_zestaponi
+			focus = GEO_marneuli_plant
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_migrant_programs"
@@ -9105,7 +9049,7 @@ focus_tree = {
 		y = 10
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9134,7 +9078,7 @@ focus_tree = {
 		cost = 5
 		available = { eu_trade_above_80 = yes }
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9169,7 +9113,7 @@ focus_tree = {
 		y = 12
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9193,7 +9137,7 @@ focus_tree = {
 		y = 4
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9221,7 +9165,7 @@ focus_tree = {
 		y = 5
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9254,7 +9198,7 @@ focus_tree = {
 		x = 40
 		y = 6
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		cost = 10
 
@@ -9275,7 +9219,7 @@ focus_tree = {
 		x = 41
 		y = 4
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		cost = 5
 
@@ -9288,10 +9232,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_decrease_import"
-			swap_ideas = {
-				remove_idea = mixed_economy
-				add_idea = semi_consumption_economy
-			}
+			decrease_exports = yes
 		}
 	}
 	focus = {
@@ -9301,7 +9242,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9324,7 +9265,7 @@ focus_tree = {
 		y = 2
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9351,7 +9292,7 @@ focus_tree = {
 		y = 2
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9378,7 +9319,7 @@ focus_tree = {
 		y = 3
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9406,7 +9347,7 @@ focus_tree = {
 		y = 4
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9429,7 +9370,7 @@ focus_tree = {
 		y = 4
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9452,7 +9393,7 @@ focus_tree = {
 		y = 5
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9472,7 +9413,7 @@ focus_tree = {
 		x = 25
 		y = 1
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		cost = 5
 		search_filters = {
@@ -9494,7 +9435,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { cis_trade_above_50 = yes }
 
@@ -9541,7 +9482,7 @@ focus_tree = {
 		y = 3
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9565,7 +9506,7 @@ focus_tree = {
 		y = 4
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9591,7 +9532,7 @@ focus_tree = {
 		y = 4
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9613,7 +9554,7 @@ focus_tree = {
 		y = 3
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9635,7 +9576,7 @@ focus_tree = {
 		y = 2
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { eu_trade_above_50 = yes }
 
@@ -9683,7 +9624,7 @@ focus_tree = {
 		y = 5
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		available = { eu_trade_above_80 = yes }
 
@@ -9709,7 +9650,7 @@ focus_tree = {
 		x = 28
 		y = 6
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		cost = 5
 
@@ -9730,7 +9671,7 @@ focus_tree = {
 		x = 28
 		y = 7
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		cost = 5
 
@@ -9751,7 +9692,7 @@ focus_tree = {
 		x = 29
 		y = 8
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		cost = 10
 
@@ -9774,7 +9715,7 @@ focus_tree = {
 		y = 9
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9807,7 +9748,7 @@ focus_tree = {
 		y = 10
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9827,7 +9768,7 @@ focus_tree = {
 		y = 7
 		cost = 7
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9849,7 +9790,7 @@ focus_tree = {
 		y = 6
 		cost = 10
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9871,7 +9812,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -9907,7 +9848,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 15
+			base = 15
 		}
 		search_filters = {
 			FOCUS_FILTER_INDUSTRY
@@ -10243,28 +10184,6 @@ focus_tree = {
 			}
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_iraq_stuff_prepare"
 			add_ideas = Enduring_Freedom
-			add_ai_strategy = {
-				type = befriend
-				id = "USA"
-				value = 15
-			}
-			add_ai_strategy = {
-				type = support
-				id = "USA"
-				value = 25
-			}
-			USA = {
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT
-					value = 15
-				}
-				add_ai_strategy = {
-					type = support
-					id = ROOT
-					value = 25
-				}
-			}
 		}
 		prerequisite = {
 			focus = GEO_mrpi
@@ -11565,15 +11484,20 @@ focus_tree = {
 					value > -1
 				}
 			}
-			ISR = {
-				has_tech = Air_UAV1
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				ISR = { has_tech = gen_4_light }
+
+				else = {
+					ISR = { has_tech = Air_UAV1 }
+				}
 			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_skylark"
-			set_temp_variable = {
-				treasury_change = -4.5
-			}
+			set_temp_variable = { treasury_change = -4.5 }
 			modify_treasury_effect = yes
 			if = {
 				limit = { has_dlc = "By Blood Alone" }
@@ -11582,7 +11506,8 @@ focus_tree = {
 					amount = 20
 					producer = ISR
 				}
-			} else = {
+			}
+			else = {
 				add_equipment_to_stockpile = {
 					type = Air_UAV1
 					amount = 20
@@ -12090,10 +12015,8 @@ focus_tree = {
 				name = GRE_surface_fleet
 				bonus = 0.3
 				uses = 1
-				technology = destroyer_1
-				technology = destroyer_2
-				technology = missile_destroyer_1
-				technology = missile_destroyer_2
+				technology = destroyer_hull_1
+				technology = destroyer_hull_2
 			}
 			set_temp_variable = {
 				treasury_change = -5
@@ -12241,10 +12164,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GEO_radioloc_usa"
 			add_tech_bonus = {
-				name = CAT_m_cruiser
+				name = CAT_cruiser
 				bonus = 0.3
 				uses = 1
-				category = CAT_m_cruiser
+				category = CAT_cruiser
 			}
 		}
 	}

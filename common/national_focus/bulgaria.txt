@@ -448,8 +448,6 @@ focus_tree = {
 
 		completion_reward = {
 			one_random_synthetic_refinery = yes
-			set_temp_variable = { treasury_change = -9.50 }
-			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -475,9 +473,10 @@ focus_tree = {
 		}
 
 		completion_reward = {
+			log = "[GetDateText]: [This.GetName]: BUL_restore_pleven"
 			one_random_synthetic_refinery = yes
-			set_temp_variable = { treasury_change = -9.50 }
-			modify_treasury_effect = yes
+			add_resource = { type = oil amount = 2 state = 153 }
+			add_ideas = BUL_plama_pleven_refinery
 		}
 
 		ai_will_do = {
@@ -750,7 +749,7 @@ focus_tree = {
 			add_political_power = 50
 			set_temp_variable = { percent_change = 10 }
 			change_domestic_influence_percentage = yes
-			create_faction = BUL_all_of_geo
+			create_faction_from_template = faction_template_all_of_geo
 		}
 
 		ai_will_do = {
@@ -1179,7 +1178,7 @@ focus_tree = {
 			add_political_power = 100
 			add_stability = -0.05
 			swap_ideas = {
-				remove_idea = labour_unions
+				remove_idea = small_medium_business_owners
 				add_idea = oligarchs
 			}
 		}
@@ -1203,7 +1202,7 @@ focus_tree = {
 				category = CAT_special_forces
 			}
 			swap_ideas = {
-				remove_idea = small_medium_business_owners
+				remove_idea = oligarchs
 				add_idea = intelligence_community
 			}
 			set_party_index_to_ruling_party = yes
@@ -1513,7 +1512,7 @@ focus_tree = {
 		ai_will_do = { factor = 1 }
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: BUL_christian_values"
-			add_ideas = USA_christian_influence
+			add_ideas = BUL_christian_democracy
 		}
 	}
 	focus = {
@@ -2083,28 +2082,6 @@ focus_tree = {
 				target = SOV
 				modifier = diplomatic_support
 			}
-			add_ai_strategy = {
-				type = befriend
-				id = "SOV"
-				value = 25
-			}
-			add_ai_strategy = {
-				type = support
-				id = "SOV"
-				value = 25
-			}
-			SOV = {
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT
-					value = 25
-				}
-				add_ai_strategy = {
-					type = support
-					id = ROOT
-					value = 35
-				}
-			}
 		}
 	}
 	focus = {
@@ -2142,28 +2119,6 @@ focus_tree = {
 			reverse_add_opinion_modifier = {
 				target = SER
 				modifier = diplomatic_support
-			}
-			add_ai_strategy = {
-				type = befriend
-				id = "SER"
-				value = 25
-			}
-			add_ai_strategy = {
-				type = support
-				id = "SER"
-				value = 25
-			}
-			SER = {
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT
-					value = 25
-				}
-				add_ai_strategy = {
-					type = support
-					id = ROOT
-					value = 35
-				}
 			}
 		}
 	}
@@ -2768,7 +2723,7 @@ focus_tree = {
 			add_stability = 0.05
 			set_temp_variable = { temp_opinion = 10 }
 			change_the_priesthood_opinion = yes
-			add_ideas = USA_christian_influence
+			add_ideas = BUL_orthodox_national_values
 		}
 	}
 	focus = {
@@ -2830,11 +2785,6 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus BUL_ally_to_greece"
 			GRE = {
 				country_event = { id = bul_ACDI.1 }
-				add_ai_strategy = {
-					type = alliance
-					id = BUL
-					value = 200
-				}
 			}
 		}
 	}
@@ -2851,11 +2801,6 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus BUL_ally_to_turks"
 			TUR = {
 				country_event = { id = bul_ACDI.1 }
-				add_ai_strategy = {
-					type = alliance
-					id = BUL
-					value = 200
-				}
 			}
 		}
 	}
@@ -2896,11 +2841,6 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus BUL_approach_armenia"
 			ARM = {
 				country_event = { id = bul_ACDI.1 }
-				add_ai_strategy = {
-					type = alliance
-					id = BUL
-					value = 200
-				}
 			}
 		}
 	}
@@ -2933,17 +2873,12 @@ focus_tree = {
 		cost = 5
 		ai_will_do = { factor = 1 }
 		completion_reward = {
-		log = "[GetDateText]: [Root.GetName]: Focus BUL_ally_serbia"
-		SER = {
-			country_event = { id = bul_ACDI.1 }
-			add_ai_strategy = {
-				type = alliance
-				id = BUL
-				value = 200
+			log = "[GetDateText]: [Root.GetName]: Focus BUL_ally_serbia"
+			SER = {
+				country_event = { id = bul_ACDI.1 }
 			}
-		}
-		set_country_flag = BUL_serb_export_weapon_flag
-		custom_effect_tooltip = BUL_serb_export_weapon_TT
+			set_country_flag = BUL_serb_export_weapon_flag
+			custom_effect_tooltip = BUL_serb_export_weapon_TT
 		}
 	}
 	focus = {
@@ -3058,13 +2993,8 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus BUL_bosnian_friendship"
 			BOS = {
 				country_event = { id = bul_ACDI.1 }
-				add_ai_strategy = {
-					type = alliance
-					id = BUL
-					value = 200
-				}
 			}
-			}
+		}
 	}
 	focus = {
 		id = BUL_crush_romania

@@ -4,17 +4,594 @@ title: "Changelogs"
 description: "Changelogs for Millennium Dawn: A Modern Day Mod"
 ---
 
-
-### Purpose of this Page
+## Purpose of this Page
 
 This page is a list of all MD's changelogs from our documentation. In case you were looking to pull up stuff from forever ago.
 
-## v1.12.0 'Every Tank an Upgrade'
+### v1.12.0 'Every Tank an Upgrade'
+
+<details><summary>v1.12.3b</summary>
+{% capture md %}
+
+ AI:
+  - The Zombie AI should now properly build Zombie units ontop of their spawning numbers
+  - AI should be less likely to propose trade agreements or investment treaties as a non power or minor power (save their PP for more important work)
+  - AI should be less likely to propose trade agreements or investment treaties as if they are not on the same continent and they are a regional power or below
+  - AI should be more likely to propose trade agreements or investment treaties if they are on the same continent
+  - AI will no longer offer investment treaties or trade agreements if they have a pending bankruptcy mission (this was a super rare case)
+  - MD AI should now look to fill out more faction offices now for things such as Head of Cybersecurity etc
+  - Increased the likelihood of recruiting scientists for the AI so they aren't as stunted research wise (still will need work to ensure they're working the right direction)
+  - The European Union AI should now be more likely to issue Pre-Accession programs during the tick for it
+  - Increased the AI priority for saving political power to join the European Union
+  - Fixed the AI not properly expanding its research slots via the Research menu
+  - AI democratic nations now should be less likely to raid other nations if they have added less than 5% world tension
+  - AI should no longer revoke satellite access within 6 months minimizing them from instantly rejecting
+  - Fixed the AI rejecting satellite access if Russia is in the EU and has satellite access to an EU member
+  - AI will be more likely to send satellites in the event they are an influencer in your nation
+
+ Bugfix:
+ - Fixed the Zombies not building units due to the productivity system
+ - Fixed the decision for Rwanda taking the historical flag in 2001 (gotta love five year old bugs)
+ - Fixed the Wehrbereichkommando name list not working as expected when recruiting additional units
+ - Removed out of place Swedish general portraits
+ - Fixed the Iranian focus "The Mountains of Iran" requiring the wrong focus allowing you to do it much sooner than expected
+ - Fixed the Swedish focus "Eurasian Rail Link" having weird line configuration due to requiring a focus lower than it
+ - Fixed the Swedish focus "Vattenfall Energy Link to Germany" only requiring Sweden to own Sjaelland. Made it so any ally or Denmark can own it as well to make it easier to do that focus
+ - Fixed the Swedish focuses "Transatlantic Economic Forum" and "Cybershield" allowing you to reject your own initiative
+ - Fixed an oversight in various Swedish focuses using the "Is a Puppet" trigger instead of "Is a subject" as it is not fully inclusive all subject types
+ - Fixed the Arsenal Bird not being deployable so that late game shitpost now works
+ - Fixed Hamas not being correctly setup as it did not start with OOB
+ - Fixed a bug in the raids where they were getting significantly more funds back then expected
+ - Fixed a large number of issues with part of the BBA conversion using the older references hull types causing issues with dozens of bonuses and equipment
+ - Fixed people being double charged for Attack Helicopters, Tanks and Air Assault Battalions
+ - Fixed Ranger unit not being counted for money system
+ - Added missing ship types to be counted for money system
+ - Fixed the German event "Public Park Damaged by Armored Vehicles"
+ - Fixed CZE Skoda Superb bills ideas not properly removing themselves when paying off the bills
+ - Fixed CZE Increase Eastern Trade focus not possible to complete as Czechoslovakia
+ - Fixed the God of War not properly giving Army, Air, Naval Experience every month
+ - Fixed the weird gap in the "Pansarregementen" division template
+ - Fixed a handful of issues regarding female leaders of all types randomly bugging
+
+ Balance:
+  - Rebalanced the organization of the zombie units so they play a little differently rather then having permanent organization
+  - Zombies in the Zombie game mode should now spawn more units depending on the difficulty
+  - You can now set 8 Headquarters instead of 3 for naval headquarters
+  - Netherlands no longer can achieve mega stonks of 30%+ ROI from the Grey Dilemma decisions
+  - Modified the Iranian infantry brigade template (Tip-e Piade Nezam) to be manned by light infantry and not motorized
+  - Reduced the naval dominance required for sea zones by 15% so it is easier to achieve naval dominance in areas
+  - Increased the naval dominance gain from Frigates from 20 to 25
+  - Increased the naval dominance gain from Stealth Frigates from 25 to 30
+  - Made the Railguns for ships more devastating in ship to ship combat and slightly reduced their IC cost so they're more worthwhile to incorporate on heavier ship classes
+  - Slightly increased the Pre-Accession Program Political Power gain to 400 from 360
+  - Reduced the Air Wing Volunteer cap in several nations who currently had unlimited air volunteers
+  - Replaced a pointless doctrine cost reduction in American focus "Adaptive Tactics" with mastery gain
+  - Increased the interest reduction in Swedish Focusses
+  - Increased the multiplication cost of nuclear reactors as they're much stronger due to the naval dominance mechanic now
+  - Reduced the amount paid in Raid Reparations to 2% from 3%
+  - Clamped the total amount of billed reparations to $150 Billion
+  - Changed modules of Polish naval vessels to better reflect their real life counterparts from 2000
+  - All support companies should now impact speed as they should
+  - God of War now grants mastery for the AI when they have doctrines
+  - Non-AAT defense companies values are standardized at Level 5 bonus (7.5% of their respective bonus) while retaining their old custom bonus due to reducing the complexity of the old defense companies
+  - Made some non-AAT defense companies worth taking now that are at least as good as the generic ones
+
+ Content:
+  - Added a Zombie outbreak random event that triggers to spread Zombies around the world to make the game mode more interesting
+  - Serbia won't start the 3rd Balkan War when historical is on
+  - "Complete the Bothnia Line" Swedish Focus gives a research bonus to all rail tech instead of high-speed rail
+  - Artillery Doctrine Track Mastery can also be gained by MLRS now
+  - Changed Norway Mining Tooltips in the Focus Tree
+  - Changed Events in Swedish focus tree to gain them instantly instead of 7 days
+  - Russia can actually see the focus tree for the European Union now
+
+ Database:
+  - Adjusted the F-15E Strike Eagle to have 2 Medium Hardpoints instead of 1 Medium Hardpoints and 1 CAS Hardpoint
+  - Made the "Change Flag" decision for Country Flag Decisions more flexible for the USA and other tags
+  - You can now mount VLS into all auxiliary slots on the Battlecruisers like God intended
+  - All starting naval bases of 8 and higher have a naval headquarters assigned
+  - Added the module "Refueling 2" to the Su-24M and Mig-31 Foxhound so they have extra
+  - Added on-game-start production for military Iranian equipment
+  - Made some Swedish Equipment Obsolete to give the player a clearer start on equipment
+  - Mechanised Marine gives mastery to the Mechanized doctrine track
+  - Changed Israel's starting intervention law from limited to Regional
+  - AI, 3D Printing, and Nanofibers tech provide Civilian Specialization (breakthrough points) for researching those techs
+  - Removed all unused non-AAT designer companies traits that were not used
+
+ Documentation:
+  - Reformatted the Code Resource on the website to be more approachable for submodders and developers
+  - Added MIO Company and Trait Code Stylization Guide for developers and others who are looking to contribute to MD
+
+ Graphics:
+  - Assigned the USA b6 icon temporarily to the Arsenal Bird
+  - Assigned generic icons for the Arsenal Bird until we have more custom graphics created for them
+  - Fixed a missing icon in Myanmar's tech tree for infantry equipment
+  - Fixed a missing icon for the Repair and Support ships when looking at them in the naval screen and on map
+
+ Localization:
+  - Fixed the "Canonization of the Romanov Family" having two identical text for options
+  - Added a description to the Kenyan "Social Democratic Party of Kenya"
+  - Fixed the localization in the Kursk Submarine Disaster stating the August date
+  - Updated Swedish modifier localisation so the effects are more clear in the focus tree
+  - Removed the work 'Factory' for Military and Civilian Research category
+  - Fixed missing tooltip for "Strike Operations Focus" Swedish Focus
+
+ Map:
+  - Added a new state for the Australia Capital Territory
+  - Rebalanced Ukraine resources so it is more accurately represented with their resource placement
+  - Slightly reduced German starting steel to be more reliant on outsiders for resource requirements
+
+ Performance:
+  - Removed an every state call at the startup of the game to improve load time performance for the Hydroelectric configuration for the energy system
+  - Reduced the every country calls on monthly to speed up the monthly tick
+
+ User Interface:
+  - Fixed some missing unit details in the naval screens regarding Naval Dominance and Support values
+  - Fixed the broken buttons in the faction rules being unable to select additional faction rules
+  - Fixed conflicting UI in the ship menu with the new ship classes added
+  - Fixed missing national spirit icons for Sweden
+  - Added some spacing in Swedish focusses for better view at the focus rewards
+  - Fixed some issues with the Unit Leader interface namely around missing sorting buttons when promoting a unit leader
+  - Added the missing containers about factions commanders that was causing some issues
+
+{% endcapture %}
+{{ md | markdownify }}
+</details>
+
+<details><summary>v1.12.3a</summary>
+{% capture md %}
+
+ Bugfix:
+  - Fixed being able to send a ceasefire to the Zombies via the Public War Weariness
+  - Fixed the generic Military Industrial Organizations using the wrong hull types
+  - Fixed the broken "War in Europe" game rule where it would send a ton of events at the beginning of the game
+  - Fixed the Zombies puppeting nations during the game rule which causes the Zombies to break
+
+ Database:
+  - Added a failsafe for the Zombies to annex subject nations if they do ever somehow have subjects
+
+ Game Rules:
+  - Added a game rule for the Zombie game rule for allowing all or no majors into the zombie coalition
+
+ Localization:
+  - Fixed the missing faction localization for the Anti Zombie Coalition faction
+
+{% endcapture %}
+{{ md | markdownify }}
+</details>
+
+<details><summary>v1.12.3</summary>
+{% capture md %}
+
+ AI:
+  - Improved the conditions for NATO joining on historical game mode so nations do not randomly join who shouldn't
+  - Improved the AI selection for their grand doctrines
+  - Improved the flow of the European Union law selection when on the "Historical Game Mode" option
+  - Improved the AI supporting or rejecting specific European Union measures when on the historical game rule
+  - Ensure the AI is more likely to reduce Population and Corporate tax if they have less than 25% GDP to Debt Ratio
+  - Ensure that the AI is more likely to reduce Population and Corporate tax if they have than 5% interest with positive income
+  - AI controlled US will now properly scrap the Iowa class battleships when playing on historical
+  - AI controlled Bulgaria will now not start a war with Macedonia when playing on historial
+
+ Bugfix:
+  - Replaced Singapore's local_building_slots_factor with global_building_slots_factor allowing for the idea bonus to give a bonus
+  - Fixed Spain not starting with its navy as it should
+  - Fixed not gaining income from the sale of missile equipment on the International Market
+  - Fixed naval invasions not being able to be upgraded by techs
+  - Fixed naval invasions not being able to have more than x amount of divisions in a particular invasion
+  - Fixed Bavaria, Sicily, East Turkmenistan, Montenegro, Vojvodina, and Free Syrian Army not being correctly configured when released via national content
+  - Fixed Chinese STE missions and moved them to an idea
+  - Fixed German Paravia MIO not being able to use for medium planes
+  - Fixed EU voting breaking after annexing the country that proposed the law
+  - Fixed decreasing EU Global Call Rate not taking political power
+  - Fixed EU Global Call Rate not changing all countries' Call Rates
+  - Annexing an EU country should stop any ongoing votes
+  - Fixed a broken clamp variable that would error for Max Stored Energy causing some small internal issues w/ the storage energy system
+  - Fixed a broken Swedish Event that did not correctly spawn a unit
+  - Fixed the Fiji tree erroring for a removing a dynamic modifier regarding Fijian Ethnic Tensions, Homelessness, and Emigration Crisis
+  - Fixed a Cuban event making Russia give itself military access causing some intermittent save game corruption
+  - Fixed the North Korean event "North Korea Asks For Protection" causing China to sometimes try to give double guarantees
+  - Fixed the Sudanese event "Uprising in El Fasher" trying to trigger uprisings that it can't trigger
+  - Fixed the Islamic Emirate of Kurdistan being double subjected
+  - Fixed a number of Iraq events that were incorrectly not spawning units as they should due to a missing unit template
+  - Fixed released tags starting with a massive amount of research speed and their satellite system broken
+  - Fixed the Network Satellite Civilian percentage of coverage for the Communication Satellites showing up as an overflow variables
+  - Fixed a bug where the Union of South American Nations required the Rhineland instead of Curaco
+  - Actually fixed the Iranian and Lebanese support focuses for Hezbollah properly giving you money
+  - Fixed a bug in the Indian tree for the national focus "Dealing with European Companies" to properly
+  - Fixed the major crash for games at high world tension (the issue was due to template failover from vanilla being missed in MD)
+  - Swedish MIO Ericsson now uses a modern icon
+  - Fixed a potential issue with the overflow of gdp/c and productivity due to divide by zero
+  - Fixed the faction button for NCNS owners not fitting properly
+  - Fixed the Austro-Hungarian highlight state trigger not properly displaying all nations as they should be highlighted
+  - Fixed the Austro-Hungarian formable nation not being able to be properly annexed
+  - Fixed female leaders showing up with blank/no portrait (Thanks Davey!)
+  - Fixed the Marine Commando special effect not properly working and applying damage to the state on naval invasions
+  - Fixed the issue where if you changed away from a doctrine you were unable to pick that doctrine type again without manually clearing things
+  - Fixed a spamming issue in the doctrine menu when viewing the doctrine tracks
+  - Fixed an issue with the minimum default garrison law causing a small error in validation on game start
+  - Fixed the Iowa Class event not properly triggering for the United State
+  - Fixed the container not allowing you to add a "Faction Goal" due to a misconfiguration on a vanilla container
+  - Fixed the Influence decisions for attacking the largest influencer not working as expected causing some issues about not giving you the full -5%
+  - Fixed North Korea being double charged political power for decisions
+  - Fixed Chechnya not being puppeted by the AI Russia
+  - Fixed the Swedish getting an infinite money glitch when annexing Norway due to the code improperly referencing Norway instead of Sweden
+  - Fixed the event "Swedish Investment in Our Banking Sector" showing an error regarding influence
+  - Fixed some Chinese internal factions sometimes lying about the opinion required for some of the focuses
+  - Fixed German Demand of American Island events. Not you get informed as Germany what America does
+  - Fixed Sweden's focus "Form a Royal Circle" which sends an event to itself
+
+ Balance:
+  - The Post-Crisis Fiscal Decisions event now makes the Labour Union unhappy instead of happy
+  - Removed an error involving the Abkhazian focus "Free Education" referencing a non-existent idea
+  - Made the Venezuela oil decisions fire only once so you can't get permanent oil from the decisions
+  - The internal faction decision "Subsidize Workers Wages" should now increase social spending to accurately represent subsidies
+  - Major powers can now create factions as well
+  - Added the support company nerf to the SP Arty, SP Rocket Arty, and SP AA batteries that were currently missing them making them as effective as the regular battalion
+  - Adjusted the Armenian focus "Excavating Deep Resources" to give 6 oil and 6 steel while also only requiring Excavation 5 so it's not so late game
+  - Applying to the EU requires less than 15% Euroscepticism
+  - Reduced the cost of suicide drones to 45 with 15% increases in IC per level
+  - Set the manpower level of Kamikaze Drones to 1 to minimize their manpower cost
+  - Opened up the ability to use different types of missiles in raids
+  - Rebalanced missile tech bonuses based on generation
+  - Extended the length of time the state modifier Nuclear Fallout from 365 days to 1095 (shouldn't be so short term)
+  - Significantly reduced the bonuses Iraq receives from winning the 2nd Gulf War
+  - Set the base chance for female leaders to be 5% assuming your national laws support having female leaders
+  - Improve the balance of the Chinese tree with "The Military" and "Communist Cadres" internal faction so it doesn't soft-lock you out of content
+  - Slightly reduce the total equipment cost for all equipment types
+  - Slightly reduce the total time for equipment to get delivered across the board from the International Market
+  - Reduced the contribution gain for "Supporting with Scientists" for factions
+  - Increased the Faction contribution score for being the leader so it's more substantial
+  - Clamped the total amount of consumption if you manage to get over 100% bonuses to nuclear consumption so you don't get free fuel
+  - Norway asking for oil investments, also gives a benefit to the country wanting to invest. Instead of giving money and not gaining anything
+  - Slightly reduced the starting position of the cartels in the Philippines
+
+ Content:
+  - Added Latvian political parties with expanded descriptions and flavor text (thanks to Pakman who wrote these some time ago!)
+  - Added a time for battery park for construction and added a shift click option for 3 to be built at once
+  - Added an automated buy fuel button for the Energy GUI "Buy Fuel from the Market"
+  - Russia can now join the EU via the new 4 Extended Enlargement Framework Laws
+  - Freedom of Russia Legion can join the EU via the Internal Enlargement Law
+  - Added a new Eastern country category to the EU
+  - In order to start a vote in the EU Parliament or Council, there must be an EU Commission President
+  - Ukraine, Belarus, Russia and Freedom of Russia Legion are part of the Eastern countries category
+  - Merged POTEF several POTEF ideas into a dynamic modifier
+  - Added an Eastern Doctrine branch to POTEF tree
+  - Revamped the Parliament MEP calculations
+  - Reworked the EU Budget to be periodic and have AI engage in it more
+  - Added Minimum Call Rate to EU Budget. Allows for adjusting the minimum Call Rate for every country during MFF Drafts
+  - Added triggers for a few EU parties to change their names and logos at specific dates
+  - You can rejoin the EU after leaving it
+  - Added the Swedish communist party to the left wing tree and the eastern alignment tree
+  - When you now launch a coup for Shia government it'll switch your religion to Shia
+  - The requirements for Debt Assumption if the nation if the nation is your subject are reduced and only require you to have positive opinion
+  - Added an event for the canonization of the Romanov family as a nice little flavor event for Russia
+  - Added a new opinion modifier for State Visit to Vietnam
+  - Added an event for the crash of the Su-37 in Russia
+  - Hid additional national focuses custom factions behind visible always no so they don't show up when they're not supposed to
+  - Added a new game rule for gameplay "Zombie Mode" based off of the Doomsday Series submod for Millennium Dawn
+  - CV90 platform changes. CV9030 exists as license for Finland, Switzerland and Norway. CV9035 exists as license for Denmark and the Netherlands
+  - Two new Swedish events handling Visby Corvettes and CV90 BILL
+  - Sweden now starts with the Patria XA-185 and XA-203. Named Patgb 185 and Patgb 203.'
+  - Sweden has new MIOs. Alvis Hägglunds - Strv. Focused on MBTs and light tanks. Alvis Hägglunds - Strf. Focused on IFVs and APCs. Saab Bofors Dynamics AA manufacturer. Bofors Weapon Systems AT manufacturer. Saab Bofors Dynamics - Gevärsfaktoriet as Infantry manufacturer.
+  - Increased amount of Swedish cities across their states. Alongside changed resources and state buildings
+  - Made it so the German v fall decisions do not ensure you are unable to do nuclear things if you have done the focus "German Nuclear Program"
+  - Modernized the Uzbek Karakalpakstan and adjusted some of the tooltips to display the current opinion of the Uzbek and Karakalpak
+  - Added the "Holy See" idea to the Papacy so they do not bankrupt themselves constantly and get income from the Christian nations of the world
+  - New monarchist branch for Czechia
+  - 2 new game rules for Czechia
+  - New monarchist party and its leaders for Czechia
+  - New alliance, The New Entente, possible to form by king-ruled Czechia
+  - Added the sale of the Kee-Lung Class Destroyer to Taiwan for the United States Foreign Policy decisions
+  - Internal Factions minimum opinion for monthly tick is now relative to your ideas (if an idea adds +10 opinion the monthly tick won't go below 60)
+  - Adjusted the number of dockyards, military factories and technologies start for North Korea so it is less awful then normal
+  - Changed the German military national spirit to the dynamic modifiers if possible to have it better grouped in the UI
+  - Changed all German changing modifiers tooltip for better readability
+  - Created default preset for MIOs for SOV and USA
+
+ Database:
+  - Removed the ahistorical "7th MARDIV - 35th Marine Regiment" from the United States
+  - Fixed the namelist of the Marine Regiments being properly ordered with the correct number denomination, no more 34rd
+  - Added a new Battleship and Battlecruiser for 2045
+  - T-80B/BV should now have Late Cold War Medium Tank guns
+  - Add Wallis and Futuna, Tristan Da Cunha, Tokelau, Niue, Norfolk Island, Cook Islands to the content.
+  - Enormous number of EU variables, gui elements and localisation keys renamed
+  - Removed all/most code related to EU002 law and other redundant EU code
+  - Changed all EU party names for easier dynamization in meta effects/triggers
+  - SOV and CHI influence in EU countries has been seperated
+  - Moved the unlock of the Assault Cannon modules to the assault cannon techs
+  - Comprehensive improvements to the Russian OOB such as changes for cast turrets for various vehicles, armor, and more as well as adjustments to ships for better accuracy
+  - Fixed the Isle of Mann not correctly starting with a religion idea when released
+  - The Russian "Sierra" class is now properly a nuclear submarine
+  - Added another enrichment facility to the United States to stabilize early game nuclear fuel production for the USA
+  - Changes for Sweden. Ikv 91 changed from HAT to light tank. Gripen no longer has A2A refueling. Gripen is now called Gripen A. No longer starts with Visby Class. Pbv 302 now has it's turret. 9 new characters. Piranha III APC's from Switzerland were removed. Stridsvagn 122 now uses level 3 smoke launchers. Stidsvagn 121 now starts with gen 1 thermals.
+	Bv 206 is now exclusively an APC. Changed order of utility vehicles, now it's Personlastterängbil 903 - Terrängbil 11/13 - Terrängbil 14 - Terrängbil 15. Land rover removed. Now has better represented HAT, with the Pvtrgb-B RBS-55 and Pvrbv-551. Now starts with Lvkv 9040A, Grkpbv 90 and the improved Strf 9040B. No longer starts with medium airframe techs.
+	No longer starts with Attack helicopter, both tech and Mo Bo-155 attack helicopter variants. Swedish equipment now starts with MIO's assigned to the things that can/should have it. Infantry equipment has been changed around to better represent their IRL equivalent.
+  - Sweden now uses the Regiment System. They still start with the same amount of units. But these are now more closely based on how Swedish units looked. Following "Battle Order"'s batallion breakdown of Swedish armored forces alongside existing documentation.
+  - Shifted all 3 variants of the Harrier to the Medium Hardpoint so they can be used as naval strike craft
+  - Converted the Ratel 90 from Light Tank to IFV
+  - Integrated the new Energy Infrastructure and Industrial Infrastructure buildings
+  - Enabled the "Support Ship" and "Repair Ship" from vanilla for better supporting units for the ships
+  - Added an opinion buff to the civil war that comes out of the influence coup mechanic
+  - Expanded the number of ship names for the United States Navy with a variety of additional ships such as decommissioned ships and otherwise
+  - Increased the size of your total amount of stockpile to 2 billion from 2 million due to backend upgrades from PDX
+  - Expanded the political landscape of the Philippines with greater detail and leaders
+  - Expanded the number of generals and advisors in the Philippines
+
+ Game Rules:
+  - Removed the "Change Legacy Doctrines" game rules since they no longer exist in the traditional manner
+  - Set "Recall Volunteers" to default to yes since Paradox makes the recall actually take time for the troops to return now
+  - Created a new game rule for "Allow Enforce Peace" diplomatic action
+  - Fixed a tooltip for the "Historical Event Trigger" to explain they are still randomized but not perfectly on time for specific events only
+
+ Graphics:
+  - Removed idea description images for now until we have a more consistent use case for them
+  - Fixed graphics for various variants that were relying on the generic afv profiles
+  - Added new operative graphics and additional generals for the Indian subcontinent
+
+ Localization:
+  - Fixed the event "Nord Stream" and "Nord Stream 2" having two "agrees" instead of an agree and decline
+  - Fixed a number of "Unknown promotion" errors in the error log during runtime
+  - Renamed the religious idea "Christian" to "Western Christian" to more accurately portray it
+  - Changes made to Swedish MIO names. Aligning them more closely to what they were in 2000.
+  - Fixed some missing localization in the doctrines for some of the unit categories like Light Fighters and All Aircraft
+  - Fixed default focus tree search filter typo (`FOCUS_FILTER_MILITARY_EQUIPMENT` -> `FOCUS_FILTER_EQUIPMENT`).
+  - Added a tooltip for the V Fall events stating that if you do them you are unable to change your nuclear status
+
+ Performance:
+  - Reduced duplicate code across on actions which should hopefully optimize various actions throughout the game
+  - Removed a number of non-essential code from the Space System which should minimize the size of save game files
+  - Optimized the on startup scripts by removing unneeded every country calls reducing the load time for people
+
+ User Interface:
+  - Fixed some containers showing all 6 digits for the decimals (will be a overtime process)
+  - Added an additional openable display to the EU UI, currently accessible only in the Parliament tab, which shows MEPs per country
+  - EU Parliament Party Influence buttons are now green if they're available to click
+  - Added an Average Economy display to the EU Budget window
+  - Added a new tooltip to the Satellite Orbit screen and tooltips to be more clear about hwo to change the satellite orbit view
+  - Removed all placeholders in the doctrine section and created unique GFX for each tab
+  - Increased the size of the buildings in the construction menu and added missing buildings GFX
+  - Added tooltips for buildings to see what their production speed modifier is in the construction menu.
+  - Changed state view to align new building state modifier with the dynamic modifiers.
+  - Added a display in the Energy screen to show you how much power the reactor or fossil fuel power plant will produce
+  - Added the "Stored Energy" to the Counter UI under the "Energy Balance" header
+
+{% endcapture %}
+{{ md | markdownify }}
+</details>
+
+<details><summary>v1.12.2a 11/22/2025 - Hotfix A</summary>
+{% capture md %}
+
+ AI:
+  - If Estonia has a wargoal and they're less than on-par strength to Russia they won't declare war on Russia
+  - Estonia should try to actively pursue more relations with Latvia and Lithuania, vice-versa
+  - Increased the desire for nations with lots of nuclear reactors to try and build additional enrichment facilities
+
+ Bugfix:
+  - Fixed broken drop downs in the air UI menus for change day night, aggressiveness showing blank menus instead of the correct options
+  - Fixed a crash due to a missing button for legacy faction menus
+  - Fixed missing frames around officer corps leader
+  - Added different effects to "Expanding The Public Sector" Focus of Germany to prevent no effects given
+  - Fixed some triggers for news events for NATO
+  - Reduced cost of taking Chechen states for Russia
+  - Fixed the LAR operation "Steal Naval Blueprint" consuming a civilian token instead of a naval token
+  - Removed a Man the Guns check in the game rules for "Take over Faction"
+  - Fixed the internal faction "Industrial Conglomerates" not properly initializing when switched during the game
+
+ Balance:
+  - Dramatically increased the base Energy Production so the Lack of Power modifier should not appear
+  - Reduced the vanilla energy consumption mechanic closer to 0 to help with Lack of Power sometimes appearing in game
+  - Reduced the amount of ROI you can get via the focus tree for Sweden. Damn Swedes and their savvy investments
+
+ Content:
+  - Added a new diplomatic action "Negotiate Operative Release" allowing you to pay some money and political power for the release of a captive operative
+  - Adjusted the triggers for Threat of Terrorism for India so you don't get locked out of the tree if for some reason America cannot do Operation Enduring Freedom
+
+ Database:
+  - Fixed some minor discrepancies with Swedish starting variants
+  - Rebalanced the starting Swedish party popularity to their most recent election result (as of 2000)
+  - Added 1 enrichment facility to India
+  - The 2K12 Kub now has off vehicle radar and 2 missile pack instead of the incorrect on vehicle radar and 4 missile pack
+  - Lowered the generation of World Tension
+  - Updated the Ecuadorian OOB to be more accurate w/ light tanks and some missing self propelled systems
+  - Removed the defunct Super Heavy Tank Barrel special project (removed in favor of the reworked ammo system for tanks)
+  - Gave the United States another enrichment facility
+  - Cleaned up some unused variables in the Coptic system for Egypt
+  - Fixed the event "A Royal Visit with Strategic Intent?" not correctly giving influence
+
+ Factions:
+  - Added a new long term NATO goal "NATO Economic Development" asking you to get every member state to 25k GDP/c
+
+ Game Rule:
+  - Added a game rule for people who want to freely change internal factions without downloading a submod (express content prohibiting it will still block it)
+
+ Graphics:
+  - Set a default temp icon for Naval Headquarters so its easy for people to see
+  - Fixed "Agent K" not properly having his leader portrait populate
+  - Fixed missing Ranger Division icon (Credits to WHACK)
+  - Fixed broken portraits for the Indian generic generals when they get promoted
+
+ Localization:
+  - Fixed some missing localization in the faction tooltips
+  - Fixed missing Localisation for German HDW Traits
+  - Rewrote the alert for "Insufficient Energy" to tell players to dismiss. It is not actually there but should relieve people's stress.
+  - Fixed the Swedish "Crypto Income" mechanic not displaying properly in the Additional Income section
+  - Added a tooltip for the Swedish "Allow Crypto" focus to notify people of the Cryptocurrency Mechanic so they don't get spoked by the sudden destruction of their economy
+
+ User Interface:
+  - Fixed the broken Intelligence Agency buttons and UI
+  - Removed the non-working Missile Doctrine button
+  - Fixed a missing icon for "unit_med_cas_fighter_icon_small"
+  - Adjusted the air doctrines positions in the officer corps view
+  - Fixed the tiny faction logo in the politics UI view
+
+{% endcapture %}
+{{ md | markdownify }}
+
+</details>
+
+<details><summary>v1.12.2 11/20/2025 - HOI 1.17 Compatch</summary>
+
+{% capture md %}
+
+ Achievements:
+  - Added new achievements "Waa-shington State" and "Make America Libertarian Again"
+
+ AI:
+  - Cleaned up some references to add_ai_strategy to be more performance friendly
+  - Added a check to ensure that Erdoğan and Turkey do not leave NATO as an extra safety measure
+
+ Bugfix:
+  - Fixed a bug where the United States would receive an event about a SHORAD project it proposed to NATO members (The U.S. was not supposed to receive it)
+  - Fixed a bug where NATO members were unable to reject the SHORAD project proposal from the United States
+  - Fixed a bug where France "Stage" focuses were not properly checking for their respective regions
+  - Removed a bugged event that was causing other nations get an idea that is meant for Armenia/Georgia
+  - Fixed an issue where Italy would send an event to Egypt that had an improperly targeted state for the oil deal adding oil to Argentina instead of Egypt
+  - Fixed a bug where the Greenland capital was set to the impassable state instead of the correct state which has Nuuk
+  - Fixed a bug where the POTEF focus for German Doctrine incorrectly asking for an AND condition of Bayern and Germany instead of OR
+  - Fixed an issue where Italy's NIMBYs could suddenly start benefiting the government more than it should
+  - Fixed a bug where the Syrian Civil War from the Arab Spring would not unlock the post-civil war focuses for Syria
+  - Fixed a bug where China's economic focuses for developing various regions did not accommodate for subjects such as the SARs
+  - Fixed a bug with the Arab Spring mechanic where the "Extensive Welfare State" idea was not properly reducing the Arab Spring change
+  - Introduced a degree of randomness to when the Arab Spring protest events spawn for each nation after the mission timeout so the world doesn't get spammed with events at the same time
+  - Fixed a bug where Singapore's opinion modifiers were not properly decaying and instead were increasing the opinion
+  - Removed duplicate defines that were in the defines
+  - Fixed the achievement "Perot Meritorious Service Award" not properly triggering due to a bug in the tooltip looking for neutral conservatism instead of neutral autocracy
+  - Fixed the Soviet division name "98th Guards Airborne Division" not properly being set to 98 and instead taking the name of 96th
+  - Fixed the SCO GUI not properly being displayed and instead showing the dynamic lists twice
+  - Fixed the Iraqi event "Iraqi Forces Storm our Embassy" not properly creating a unit for the Iraqi forces
+  - Fixed the Russian Event regarding Alexander Lebed dying triggering when Alexander Lebed is in control of PMR
+  - Fixed the Arab Spring events about army mutinies happening when the Arab Spring has been completed
+  - Fixed the cosmetic tag for the Maghreb Federation not properly being set which was causing it to not properly show the flag
+  - Fixed the Singaporean ideas using the wrong building slots factor modifier causing it to not properly work
+  - Fixed the Israeli focus "The Oslo Accord" not properly requiring you to complete the focus "The Regulation Act" soft-locking you on the sub tree
+  - Fixed the Hezbollahi idea "Increased Iraninan Support" not properly giving money as expected
+  - Fixed broken tooltips for Burmese Insurgency mechanic regarding influence
+  - Fixed a broken localization for the United States Foreign Policy with it stating something about africa when it's in respects to resetting relations with Russia
+  - Fixed other countries then HOL and BEL receiving Belgium and Dutch characters traits
+  - Changed ai weights to Russian focusses, preventing them going to war without bordering NATO or Ukraine without preperation
+  - Added missing starting coalition members for Netherlands
+  - Remove unintended double polical power gain penalty when monarch is blocking laws in The Netherlands
+  - Added bypass triggers for VOC focusses when the country is the puppet of the Netherlands
+  - Fixed wrong bypass triggers for Dutch WIC focus tree branch. Now it properly bypasses when the country doesn't exist, or you already own the state.
+  - Fixed Dutch Liberal Society modifier not giving the reduction cost to economic focusses
+  - Fixed numerous fixes for the VOC content for the Netherlands
+  - Fixed Dutch Mars event chain not giving rewards or penalties
+  - Fixed German MIO's not being selectable for their equipment groups, while having traits for it
+  - Added tooltip to inform player how the Dutch PvdA Leader gets elected
+  - Fixed the lingering configuration of the European Union on nation states that retain configuration from the European Union post-civil war
+  - Fixed the constant civil wars if you disable the Libyan Triablism mechanic and have less than 10% opinion for any of the breakaway tags
+  - Fixed the broken influence actions in the Libya focus tree when the conditions for the targets are not valid
+  - Fixed the broken Spanish Empire cosmetic tag going away
+  - Fixed a broken influence target in the Syrian national focus tree for the focus "Chinese Anime"
+  - Removed a broken event in the German tree referencing GER_cold_war.26
+  - Fixed two Iranian Parliament missions giving some impossible requests if a IRQ or SYR do not exist
+  - Fixed Dutch focusses and events not giving production lines for naval ships
+  - Fixed Iraq scientist not being available after event
+  - Fixed a broken influence tooltip in the Syrian "Anime Industry Boom"
+  - Preventing Belarusian civil war when there is no police funding
+  - Prevent Romania start world war 3 when Historical is on
+  - Added visibility condition check to Spanish `Install the Carlist Monarchy` decision
+  - Removed global stability penalty for news event `United States Not So United?`
+  - Fixed unexpected combatants increments to both sides when using the Serbian `Attack Montenegrin Militants` decisions.
+  - Fixed Incorrect state transfer and tech inherit for Catalunya independent event.
+  - Fixed hard coded welfare decrease.
+  - Fixed the USA getting the event about increasing it's military spending for NATO
+  - Fixed Vadim Corneliu Tudor reincarnating after his daughter gets retired, damn Transylvanian
+  - Fixed Indian subcontinent breakaways having Chinese portraits instead of Indian ones
+  - Added a check to ensure that Belarus exists for America to be able to do the Belarus Democracy Reauthorization Act
+  - Fixed USA being able to do the Belarus Democracy Reauthorization Act without having any influence or network strength
+
+ Balance:
+  - Reduced the stability penalty for the "Nuclear Power (Offensive)" idea from -0.15 to -0.10
+  - Reduced the cost from Somali Pirate event from 25 billion to 15 billion and instead of 5 convoys, you only lose 2 convoys
+  - removed the regional power requirement from the Space Programs for civilian projects
+  - Reduced the cost of the special project facilities from 50,000 to 45,000
+  - Changed the modifier for the "Global Diplomacy" ideas for Singapore from send_volunteer_factor to send_volunteer_size so you can send more volunteers
+  - Made the Bolivian focus "Purchase Russian Aircraft" purchase MiG-29 Fulcrum instead of Tu-160 since these are more realistic for Bolivia
+  - Added more factors to the various economic events (too many random little changes to help fluctates the events and make some often unsee ones a little more likely to come up)
+  - Reduced some of the Italian productivity modifiers so it's not so substantial where they end up passing USA just by being Italy
+  - Added a check that Bosnia needs to be at peace to take the focus allowing them to join NATO
+  - Fixed non-Arabic countries finding their way to being able to be invited to the UAR
+  - Increased the penalty of using VOC or WIC occupation laws
+  - Having increased healthcare spending (Level 3+, low corruption, and government popularity) should now reduce your Arab Spring protests
+  - Increased the amount of oil gained via the focus tree for VEN to better represent their large-scale/sized oil reserves
+  - Adjusted the trade opinion so it's more penalizing on trade opinion factor with the trade laws
+  - Adjusted the penalties for Dutch non-selfsufficient idea
+  - Added additional triggers to Dutch Space Focusses
+  - Added a additional trigger for allowing a nation to go to Neo Imperialism if you have the intervention idea
+
+ Content:
+  - New Content For MP Under Game Rule to Speed games up
+  - NEW/IMPROVED FOCUS TREE: Sweden, South/North Korea
+  - NEW MIO TREE: Romania, Brazil, Australia, China and Japan
+  - Added new decisions for Bolivia to allow them to develop their oil reserves
+  - Added "Robert Hanssen" as an operative for the Russians to use with American citizenship
+  - Added an event for Venezuela where Hugo Chavez dies and Nicolás Maduro becomes the president (Requires Hugo Chavez to be in power at the time)
+  - Added a date trigger for the United States event "Lehman Brothers Collapse" to be any time after 2005.1.1
+  - Added new content for North and South Korea as well as a new Sub Tree for North Korea
+  - Added new decisions for Venezuela to further exploit more of your oil reserves
+  - Changed Chinese STE decision to a mission so there is less micromanagement. Also added a new mission, which was not visible do to a wrong trigger.
+  - Added a bypass for "Recognize Novorossiya" so the Russian tree doesn't get soft locked when Ukraine is invaded earlier and before the NOV rebellion
+
+ Database:
+  - Added 16 Su-24MRs to the Ukrainian stockpile in 2000
+  - Added 2 missing Marine Regiments to the USA in 2000
+  - Changed the starting economic cycle for the USA to "Stable Growth"
+  - Added 2 enrichment facilities to France
+  - Changed the 9k33 OSA to properly have the battlestation it should have
+  - Added the Mid Air Refueling module to AMX Ghibli (International)
+  - Changed the T72A so it has an Cold War Battlestation instead of an Early Cold War Battlestation
+  - Added Modern A2A Weapons tech to Ukraine due to their company Artem designing a lot of the advanced Russian missiles
+  - Added Highlight states for all Formable Countries, making easier to see which states you need
+  - Added tooltips for Dutch Focus trees to let you see the reward when sending an event to a country
+  - Sorted the Country AI behavior Game rules to alphabetic order
+  - Changed CAT_naval_misc to CAT_naval_modules for clearer information
+  - Changed CAT_naval_eqp to CAT_naval_all for clearer information
+  - Reclassified the S3-Viking as the more modern version of the plane type over the S-2 Tracker
+  - Added new generic general portraits for Indian subcontinent nations
+
+ Game Rules:
+  - Added a new game rule to disable the AI from puppeting other nations via the influence system
+  - Added a new game rule to disables aggressive features for Western nations
+
+ Graphics:
+  - Converted all PNG assets to DDS to better optimize for lower end machines
+  - Fixed a broken graphic for Belarus in their utility vehicle graphics
+  - Created new MIO Trait icons
+  - Created new Organisation select icons
+  - Restructured the MIO selection screen
+  - Fixed Czechia having access to the T72M2 Moderna and Slovakia having the T72M4CZ
+  - Added missing Special Project GFX
+
+ Localization:
+  - Removed a confusing statement in the Arab Spring events where it mentioned caretaker governments but was using the name of the former leader instead
+  - Fixed the localization for the Transport Helicopter Equipments
+  - Improved the localization for the influence tooltip for when a nation is trying to influence
+  - Fixed the missing localization for the Cuban focus "Talks with Colombia"
+  - Improved the grammar and structure for some Serbian events
+  - Fixed the localization for the Indian events about communist rebellions not properly referencing India
+  - Fixed the name of "Megawati Sukarnoputri" being incorrect for the Indonesian politician
+
+ Map:
+  - Moved Al-Amarah north of Basrah instead of its currently inaccurate position
+
+ Performance:
+  - Numerous improvements and cleanup on old and antiquated systems making them more in line with modern standards
+  - Removed a large number of unused assets and localization optimizing load times
+  - Removed a series of country flags and arrays that were not being used further optimizing the save file
+
+ User Interface:
+  - Fixed a broken UI element when trying to design Self-Propelled Artillery as Russia
+
+	{% endcapture %}
+	{{ md | markdownify }}
+</details>
+
 
 <details><summary>v1.12.1b 8/22/25 Hotfix</summary>
-
-v1.12.1b
-
+	{% capture md %}
  AI:
   - AI is less likely to continue to combat influence if their highest influence has a very positive opinion (+100)
   - Improved some of the AI handling of the buying and selling of reactor grade fuel
@@ -94,13 +671,12 @@ v1.12.1b
   - Fixed the special project window for different projects having bad overlap with longer descriptions
   - Fixed the special project window for projects that have multiple options not being properly aligned and having a large amount of overlap
   - Fixed the Economic Numbers overlap in the diplomacy window for people who do not own the La Resistance DLC
-
+	{% endcapture %}
+	{{ md | markdownify }}
 </details>
 
 <details><summary>v1.12.1a 8/15/25 Hotfix</summary>
-
-v1.12.1a
-
+	{% capture md %}
   AI:
   - Moved more add_ai_strategy to the ai_strategy file for better performances
   - Expanded the AI for Ukraine to be more reactionary to the Russian nation if they're justifying or have a wargoal against them
@@ -146,12 +722,12 @@ v1.12.1a
  Graphics:
  - Fixed various missing National Spirit GFX
 
-
+	{% endcapture %}
+	{{ md | markdownify }}
 </details>
 
 <details><summary>v1.12.1</summary>
-
-v1.12.1
+	{% capture md %}
 
  AI:
   - The AI will not pursue a debt war if a nation is guaranteed by a NATO member or CSTO member
@@ -285,6 +861,8 @@ v1.12.1
   - Removed floating "Armour_TITLE_WEAPONS" text from the tech tree
   - Added several national focus filters to Iran and reassigned existing filters to improve playability.
 
+	{% endcapture %}
+	{{ md | markdownify }}
 </details>
 
 <details><summary>v1.12.0d - 7/02/25 Hotfix</summary>
@@ -625,7 +1203,7 @@ v1.12.0
 
 </details>
 
-## v1.11.0 'Missiles, Holidays, and Snatch-and-Grabs'
+### v1.11.0 'Missiles, Holidays, and Snatch-and-Grabs'
 
 <details><summary>v1.11.2a - 2/20/25 Hotfix</summary>
 
@@ -1221,7 +1799,7 @@ v1.11.0
 
 </details>
 
-## v1.10.0 'The Lion of Brussels and Babylon'
+### v1.10.0 'The Lion of Brussels and Babylon'
 
 <details><summary>v1.10.5</summary>
 
@@ -2207,7 +2785,7 @@ Achievements:
 
 </details>
 
-## v1.9 'Top Gun' -- Nov 16th
+### v1.9 'Top Gun' -- Nov 16th
 
 <details><summary>v1.9.6</summary>
 
@@ -3083,7 +3661,7 @@ income is less than 30% of Pop and Corp taxes combined (and you're not at war). 
 
 </details>
 
-## v1.8 'The Tiger, The Rose, and the APCs'
+### v1.8 'The Tiger, The Rose, and the APCs'
 
 <details><summary>v1.8.8 - 1.13 Compatch</summary>
 
@@ -3932,7 +4510,7 @@ GUI
 
 </details>
 
-## v1.7 "Make Millennium Dawn Great Again"
+### v1.7 "Make Millennium Dawn Great Again"
 
 <details><summary>v1.7.5 - Hotfix</summary>
 
@@ -4498,7 +5076,7 @@ Quality of Life (QoL):
 
 </details>
 
-## v1.6 - 1.11 Compatibility and Economic Rework
+### v1.6 - 1.11 Compatibility and Economic Rework
 
 <details><summary>v1.6.3 Minor Patch</summary>
 
@@ -5140,7 +5718,7 @@ Techtree:
 
 </details>
 
-## v1.5 Changes
+### v1.5 Changes
 
 <details><summary>v1.5.1 Hotfix</summary>
 
@@ -5499,7 +6077,7 @@ Units
 
 </details>
 
-## v1.4 Changes
+### v1.4 Changes
 
 <details><summary>v1.4.0</summary>
 
@@ -5567,7 +6145,7 @@ Politics
 
 </details>
 
-## v1.3 Changes
+### v1.3 Changes
 
 <details><summary>v1.3.2 Hotfix</summary>
 
@@ -5768,7 +6346,7 @@ Music
 
 </details>
 
-## v1.2 Changes
+### v1.2 Changes
 
 <details><summary>v1.2.0 1.9 Patch and Content</summary>
 
@@ -5885,7 +6463,7 @@ Map
 
 </details>
 
-## v1.1 Changes
+### v1.1 Changes
 
 <details><summary>v1.1.1 Hotfix</summary>
 
@@ -5933,7 +6511,7 @@ Units
 </details>
 
 <details><summary>v1.1 Main</summary>
-
+{% capture md %}
 Stability
 
 - Fixed an issue with save games bloating
@@ -6084,16 +6662,19 @@ Localisation
 - Lots of spelling mistakes fixed
 - Added localisation to the Swiss faction
 
+	{% endcapture %}
+	{{ md | markdownify }}
+
 </details>
 
-## v1.0 Changes
+### v1.0 Changes
 
 <details><summary>v1.0.1 Hotfix</summary>
 
-Stability:
-
-- Fixed CTD if launching the 2000 bookmark without DoD
-- Fixed CTD from Free College focus
+{% capture md %}
+ Stability:
+  - Fixed CTD if launching the 2000 bookmark without DoD
+  - Fixed CTD from Free College focus
 
 Bugfixes:
 
@@ -6137,6 +6718,10 @@ Map:
 - Westen Georgia renamed to Western Georgia
 - Added localisation to the new straits
 
+
+	{% endcapture %}
+	{{ md | markdownify }}
+
 </details>
 
 <details><summary>v1.0.2 Hotfix</summary>
@@ -6156,6 +6741,8 @@ Database:
 </details>
 
 <details><summary>v1.0.3 Hotfix</summary>
+
+{% capture md %}
 
 Game rules:
 
@@ -6243,24 +6830,25 @@ Map:
 - Removed Hatay as core of FSA
 - Map fixes
 
+	{% endcapture %}
+	{{ md | markdownify }}
+
 </details>
 
 <details><summary>v1.0.4 Hotfix</summary>
 
-Features
+{% capture md %}
+ Features
+  - Compatibility with 1.7
+  - All Outlooks can boost any Outlook in a foreign country (Boost Party Popularity diplo action)
 
-- Compatibility with 1.7
-- All Outlooks can boost any Outlook in a foreign country (Boost Party Popularity diplo action)
+ Stability
+  - Fixed savegame corruption bug caused by broken templates
+  - Changed how AI strategies are setup, hopefully bringing some performance improvements to some users
 
-Stability
-
-- Fixed savegame corruption bug caused by broken templates
-- Changed how AI strategies are setup, hopefully bringing some performance improvements to some users
-
-Balance
-
-- Increased range of aircrafts somewhat to reflect max combat radius (+5% to 20% increased range depending on model)
-- Removed some exessive armored vehicles for Russia. Poorly maintained and unoperational vehicles in storage now only counted as 1/4 extra ingame vehicle
+ Balance
+  - Increased range of aircrafts somewhat to reflect max combat radius (+5% to 20% increased range depending on model)
+  - Removed some exessive armored vehicles for Russia. Poorly maintained and unoperational vehicles in storage now only counted as 1/4 extra ingame vehicle
 
 Civil Wars
 
@@ -6319,36 +6907,33 @@ Graphics
 - Added party icons for EST & LAT
 - Improved Custom GUI for influence to allow longer names
 
-Database
+ Database
+ - Removed EU national idea from countries that weren't EU members in 2000
+ - Iraq is now Sunni in the 2000 bookmark, and Shia in 2017
+ - Adjusted tax for China, India, USA 2000
+ - Downgraded Angola to 4K gdpc
+ - Corrected 2017 Vietnam popularites
 
-- Removed EU national idea from countries that weren't EU members in 2000
-- Iraq is now Sunni in the 2000 bookmark, and Shia in 2017
-- Adjusted tax for China, India, USA 2000
-- Downgraded Angola to 4K gdpc
-- Corrected 2017 Vietnam popularites
+ Localisation
+ - Added texts to news.50 (Kursk Submarine Disaster)
+ - Improved text of investment events
+ - Influence GUI now use the normal variant of name, not the Def. version of them (avoiding annoying "the"'a)
 
-Localisation
+ Music
+ - Removed music tracks that turned out to be copyrighted (sorry Daniel)
 
-- Added texts to news.50 (Kursk Submarine Disaster)
-- Improved text of investment events
-- Influence GUI now use the normal variant of name, not the Def. version of them (avoiding annoying "the"'a)
+ Politics
+  - Made boosting and attacking parties affect outlooks too
+  - Fixed error where elections did not appear if a different party was winning
+  - Solved a bug where adding popularities or changing election laws would change leader
+  - Added more safeguard values to various situations
+  - Added a bunch of new starting opinion modifiers between countries
+  - Redid Syrian starting politics for 2017
 
-Music
+ Map
+  - Afghanistan has a hidden port and hidden canal so that far-off allies can send supplies to anti-taliban forces if Pakistan is friendly
+  - State of Savoy in SE France
 
-- Removed music tracks that turned out to be copyrighted (sorry Daniel)
-
-Politics
-
-- Made boosting and attacking parties affect outlooks too
-- Fixed error where elections did not appear if a different party was winning
-- Solved a bug where adding popularities or changing election laws would change leader
-- Added more safeguard values to various situations
-- Added a bunch of new starting opinion modifiers between countries
-- Redid Syrian starting politics for 2017
-
-Map
-
-- Afghanistan has a hidden port and hidden canal so that far-off allies can send supplies to anti-taliban forces if Pakistan is friendly
-- State of Savoy in SE France
-
+{% endcapture %}
+{{ md | markdownify }}
 </details>

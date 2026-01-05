@@ -13,9 +13,6 @@ types = {
 		arrow = {
 			type = air
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		# Specific Target is visible
 		show_target = {
@@ -601,6 +598,15 @@ types = {
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_war_with = FROM }
@@ -632,9 +638,6 @@ types = {
 
 		arrow = {
 			type = line
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		# Specific Target is visible
@@ -1103,9 +1106,6 @@ types = {
 
 		arrow = {
 			type = air
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		available = {
