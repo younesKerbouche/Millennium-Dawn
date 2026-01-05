@@ -3,124 +3,21 @@
 equipments = {
 
 	HACS_equipment = {
-		year = 1984
-
 		is_archetype = yes
-		active = yes
-		picture = archetype_modern_tank_equipment
-		is_buildable = no
+
+		type = infantry
 		group_by = archetype
-		type = armor
+		picture = archetype_hacs_equipment
 
-		interface_category = interface_category_armor
+		priority = 10
 
-		module_slots = {
-			nose_gun_type_slot = {
-				required = no
-				allowed_module_categories = {
-				}
-			}
-			top_mount_type_slot = {
-				required = no
-				allowed_module_categories = {
-					#Enable these off engines
-					#Some engines should not allow mast mounting
-					#helicopter_mast_mounted_radar
-					#helicopter_mast_mounted_camera
-				}
-			}
-			helicopter_body_layout = {
-				required = yes
-				allowed_module_categories = {
-					#this sets what the helo can mount
-					#also sets if helo is troop transport / cargo
-				}
-			}
-			chassis_type_slot = {
-				required = yes
-				allowed_module_categories = {
-					helicopter_chassis_type
-				}
-			}
-			engine_type_slot = {
-				required = yes
-				allowed_module_categories = {
-				}
-			}
-			armor_type_slot = {
-				required = no
-				allowed_module_categories = {
-				}
-			}
-			helicopter_body_mount_1 = {
-				required = no
-				allowed_module_categories = {
-				}
-			}
-			helicopter_body_mount_2 = {
-				required = no
-				allowed_module_categories = {
-				}
-			}
-			helicopter_wing_mount_1 = {
-				required = no
-				allowed_module_categories = {
-				}
-			}
-			helicopter_wing_mount_2 = {
-				required = no
-				allowed_module_categories = {
-				}
-			}
-			sensor_and_avionics_slot = {
-				required = yes
-				allowed_module_categories = {
-					helicopter_sensor_and_avionics_type
-				}
-			}
-			defence_type_slot = {
-				required = no
-				allowed_module_categories = {
-					helicopter_defence_type
-					helicopter_stealth_module
-					helicopter_em_lock_type
-					helicopter_active_defence_type
-				}
-			}
-			defence_type_slot_2 = {
-				required = no
-				allowed_module_categories = {
-					helicopter_defence_type
-					helicopter_stealth_module
-					helicopter_em_lock_type
-					helicopter_active_defence_type
-				}
-			}
-		}
+		interface_category = interface_category_land
 
-		module_count_limit = {
-			category = helicopter_stealth_module
-			count < 2
-		}
-		module_count_limit = {
-			category = helicopter_active_defence_type
-			count < 2
-		}
-		module_count_limit = {
-			category = helicopter_em_lock_type
-			count < 2
-		}
-		module_count_limit = {
-			category = helicopter_heavy_atgm_type
-			count < 3
-		}
-		module_count_limit = {
-			category = helicopter_multiple_atgm_type
-			count < 3
-		}
-
-		default_modules = {
-			chassis_type_slot = helicopter_medium_chassis
+		upgrades = {
+			Inf_eq_gadjets
+			Inf_eq_mortars
+			Inf_eq_heavy_weapons
+			Inf_eq_cutting_corners
 		}
 
 		#Misc Abilities
@@ -153,17 +50,11 @@ equipments = {
 	}
 
 	HACS_0 = {
-		year = 1999
+		year = 1965
 
-		active = yes
-		picture = archetype_modern_tank_equipment
-		is_buildable = no
-		type = armor
 		archetype = HACS_equipment
-		visual_level = 0
-		module_slots = inherit
-
-		interface_category = interface_category_armor
+		visual_level = 2
+		available = yes
 
 		#Misc Abilities
 		reliability = 1
