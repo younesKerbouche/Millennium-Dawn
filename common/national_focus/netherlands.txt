@@ -7211,7 +7211,21 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_MILITARY_LAWS }
 		prerequisite = { focus = HOL_Munition_Investments }
 		available = {
-			has_tech = Anti_Air_2
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				has_tech = nsb_Anti_Air_2
+			}
+			else = {
+				has_tech = Anti_Air_2
+			}
+		}
+
+		bypass = {
+			HOL = {
+				all_owned_state = {
+					anti_air_building > 4
+				}
+			}
 		}
 
 		completion_reward = {
@@ -10821,14 +10835,8 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus HOL_support_intervention_Iraq"
-			add_opinion_modifier = {
-				modifier = declaration_of_friendship
-				target = USA
-			}
-			reverse_add_opinion_modifier = {
-				modifier = declaration_of_friendship
-				target = HOL
-			}
+			add_opinion_modifier = { modifier = declaration_of_friendship target = USA }
+			reverse_add_opinion_modifier = { modifier = declaration_of_friendship target = HOL }
 			newline = yes
 			add_timed_idea = {
 				idea = Enduring_Freedom
@@ -10839,28 +10847,6 @@ focus_tree = {
 				can_send_volunteers = yes
 			}
 			add_war_support = 0.05
-			add_ai_strategy = {
-				type = befriend
-				id = "USA"
-				value = 15
-			}
-			add_ai_strategy = {
-				type = support
-				id = "USA"
-				value = 25
-			}
-			USA = {
-				add_ai_strategy = {
-					type = befriend
-					id = ROOT
-					value = 15
-				}
-				add_ai_strategy = {
-					type = support
-					id = ROOT
-					value = 25
-				}
-			}
 		}
 
 		ai_will_do = {

@@ -8655,11 +8655,13 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus USA_focus_adaptive_tactics"
-			add_doctrine_cost_reduction = {
-				name = USA_focus_adaptive_tactics
-				category = CAT_land_doctrine
-				uses = 2
-				cost_reduction = 0.75
+			add_mastery = {
+				amount = 15
+				folder = land
+			}
+			add_mastery = {
+				amount = 15
+				folder = equipment
 			}
 		}
 
@@ -14915,10 +14917,7 @@ focus_tree = {
 		y = 8
 		cost = 1
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 			NOT = { has_completed_focus = USA_the_tides_of_the_peoples_will }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -14964,10 +14963,7 @@ focus_tree = {
 		relative_position_id = USA_focus_congressional_chaos
 		prerequisite = { focus = USA_focus_congressional_chaos }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -15013,10 +15009,7 @@ focus_tree = {
 		relative_position_id = USA_focus_secretary_to_president
 		prerequisite = { focus = USA_focus_secretary_to_president }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_ECONOMY }
 		completion_reward = {
@@ -15056,10 +15049,7 @@ focus_tree = {
 		relative_position_id = USA_focus_secretary_to_president
 		prerequisite = { focus = USA_focus_secretary_to_president }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -15111,10 +15101,7 @@ focus_tree = {
 		relative_position_id = USA_focus_secretary_to_president
 		prerequisite = { focus = USA_focus_secretary_to_president }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -15177,10 +15164,7 @@ focus_tree = {
 		prerequisite = { focus = USA_focus_restarting_aid_programs }
 		prerequisite = { focus = USA_focus_specification_act }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -15244,10 +15228,7 @@ focus_tree = {
 		prerequisite = { focus = USA_focus_restarting_aid_programs }
 		prerequisite = { focus = USA_focus_specification_act }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -15301,10 +15282,7 @@ focus_tree = {
 		prerequisite = { focus = USA_focus_national_armed_services_audit }
 		prerequisite = { focus = USA_focus_reduce_and_expand_act }
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = USA_has_western_autocrats_in_charge_TT
-				is_in_array = { ruling_party = 0 }
-			}
+			western_autocrats_are_in_power = yes
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -41622,73 +41600,3 @@ focus_tree = {
 
 }
 
-#focus = {
-#	id = <focus id>
-#	icon = <icon>
-#
-#	cost = <number>
-#
-#	allow_branch = {
-#		<trigger>
-#	}
-#
-#	x = <position>
-#	y = <position>
-#	relative_position_id = <previous focus>
-#	offset = {
-#		x = <position>
-#		y = <position>
-#		trigger = {
-#			<trigger>
-#		}
-#	}
-#
-#	prerequisite = {
-#		focus = <focus id>
-#	}
-#
-#	mutually_exclusive = {
-#		focus = <focus id>
-#	}
-#
-#	available = {
-#		<trigger>
-#	}
-#
-#	bypass = {
-#		<trigger>
-#	}
-#
-#	historical_ai = {
-#		<trigger>
-#	}
-#
-#	cancel = {
-#		<trigger>
-#	}
-#
-#	available_if_capitulated = <yes/no>
-#	cancel_if_invalid = <yes/no>
-#	continue_if_invalid = <yes/no>
-#	will_lead_to_war_with = <tag>
-#	search_filters = { <focus filters, separated by spaces if multiple> }
-#
-#	select_effect = {
-#		<command>
-#	}
-#
-#	completion_reward = {
-#		<effect>
-#	}
-#
-#	complete_tooltip = {
-#		<effect>
-#	}
-#
-#	ai_will_do = {
-#		base = 1
-#		modifier = {
-#			<modifier>
-#		}
-#	}
-#}

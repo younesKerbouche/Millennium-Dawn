@@ -508,7 +508,6 @@ country_event = {
 #Gripen E in Brazil
 country_event = {
 	id = Sweden.17
-	immediate = { log = "[GetDateText]: [Root.GetName]: event Sweden.17" }
 	title = Sweden.17.t
 	desc = Sweden.17.d
 	# picture = GFX_politics_talks
@@ -520,17 +519,11 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: Sweden.17.o1 executed"
 
 		add_political_power = 200
-	#	equipment_bonus = {
-	#			MR_Fighter_equipment = {
-	#				build_cost_ic = -0.10
-	#				instant = yes
-	#			}
-	#		}
 		add_tech_bonus = {
-				name = SWE_mr_fighters
-				bonus = 0.1
-				uses = 1
-				technology = MR_Fighter4
+			name = SWE_mr_fighters
+			bonus = 0.1
+			uses = 1
+			technology = MR_Fighter4
 		}
 		air_experience = 100
 		add_opinion_modifier = { target = BRA modifier = huge_increase }
@@ -541,7 +534,6 @@ country_event = {
 #First Gripen E arrives in brazil
 country_event = {
 	id = Sweden.18
-	immediate = { log = "[GetDateText]: [Root.GetName]: event Sweden.18" }
 	title = Sweden.18.t
 	desc = Sweden.18.d
 	# picture = GFX_politics_talks
@@ -571,7 +563,6 @@ country_event = {
 #Sink USS Reagan in exercise
 news_event = {
 	id = Sweden.19
-	immediate = { log = "[GetDateText]: [Root.GetName]: event Sweden.19" }
 	title = Sweden.19.t
 	desc = Sweden.19.d
 	# picture = GFX_submarine
@@ -853,6 +844,113 @@ country_event = {
 		set_temp_variable = { temp_outlook_increase = 0.02 }
 		add_relative_party_popularity = yes
 
+	}
+}
+
+#Visby Program Finishes
+country_event = {
+	id = Sweden.29
+	title = Sweden.29.t
+	desc = Sweden.29.d
+	picture = "gfx/event_pictures/europe/sweden - SWE/SWE_VisbyEvent.dds"
+
+	is_triggered_only = yes
+
+	option = { # Wonderful
+		name = Sweden.29.o1
+		log = "[GetDateText]: [This.GetName]: Sweden.29.o1 executed"
+		if = {
+			limit = { NOT = { has_tech = stealth_corvette_hull_1 } }
+			set_technology = {
+				stealth_corvette_hull_1 = 1
+				popup = no
+			}
+		}
+		#Visby Class
+		create_equipment_variant = {
+			name = "Visby Class"
+			type = stealth_corvette_hull_1
+			name_group = SWE_DD_HISTORICAL
+			parent_version = 0
+			modules = {
+				fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+				fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+				fixed_ship_radar_slot = module_radar_4
+				fixed_ship_auxillary_slot = module_asm_3
+				fixed_ship_battery_slot = module_76mm_gun_3
+				front_1_custom_slot = module_torpedoes_3
+				rear_1_custom_slot = module_light_helipad_2
+			}
+		}
+	}
+}
+
+#Strf 90BILL
+country_event = {
+	id = Sweden.30
+	title = Sweden.30.t
+	desc = Sweden.30.d
+	picture = "gfx/event_pictures/europe/sweden - SWE/SWE_Strf90BILLEvent.dds"
+
+	is_triggered_only = yes
+
+	option = { # Adopt it as Heavy Anti Tank
+		name = Sweden.30.o1
+		log = "[GetDateText]: [This.GetName]: Sweden.30.o1 executed"
+		create_equipment_variant = {
+			type = Heavy_Anti_tank_2
+			name = "Strf 9040BILL"
+			upgrades = {
+				H_AT_Fire_Control = 3
+				H_AT_Warhead = 2
+				H_AT_Reliability = 2
+			}
+			icon = "gfx/interface/technologies/SWE/LAND/Strf90BILL.dds"
+		}
+		ai_chance = {
+			base = 15
+		}
+	}
+	option = { # Adopt it as Light Tank
+		name = Sweden.30.o2
+		log = "[GetDateText]: [This.GetName]: Sweden.30.o1 executed"
+		create_equipment_variant = {
+			name = "Strf 9040BILL"
+			type = medium_tank_destroyer_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = big_autocannon_2
+				secondary_armament_slot = afv_atgm_gen2
+				turret_type_slot = tank_base_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension_medium
+				armor_type_slot = tank_steel_armor_gen2
+				engine_type_slot = tank_diesel_engine_gen3
+				special_type_slot_1 = smoke_launchers
+				special_type_slot_3 = afv_reverse_doors
+				special_type_slot_4 = tank_battlestation_2_thermal
+				special_type_slot_5 = tank_aux_engine
+				ammunition_load_slot = mixed_autocannon_ammo_2
+			}
+			upgrades = {
+				tank_nsb_armor_upgrade = 6
+			}
+			icon = "gfx/interface/technologies/SWE/LAND/Strf90BILL.dds"
+			model = "NOR_CV9030_entity"
+		}
+		ai_chance = {
+			base = 25
+		}
+	}
+	option = { # Scrap it
+		name = Sweden.30.o3
+		log = "[GetDateText]: [This.GetName]: Sweden.30.o1 executed"
+		ai_chance = {
+			base = 20
+			modifier = {
+				add = 50
+				is_historical_focus_on = yes
+			}
+		}
 	}
 }
 
@@ -2866,7 +2964,7 @@ country_event = {
 	#concentrate on own project
 	option = {
 		name = Sweden_foci.7.o4
-		log = "[GetDateText]: [This.GetName]: Sweden_foci.5.o4 executed"
+		log = "[GetDateText]: [This.GetName]: Sweden_foci.7.o4 executed"
 		add_political_power = 70
 		navy_experience = 20
 		add_tech_bonus = {
@@ -3846,7 +3944,7 @@ country_event = {
 		modify_debt_effect = yes
 		set_temp_variable = { percent_change = 5 }
 		set_temp_variable = { tag_index = SWE }
-		set_temp_variable = { influence_target = FROM }
+		set_temp_variable = { influence_target = THIS }
 		change_influence_percentage = yes
 		SWE = {
 			country_event = {
@@ -5356,14 +5454,14 @@ country_event = {
 		### Spendings ###
 		if = {
 			limit = {
-				threat > 40
+				threat > 0.40
 				NOT = { has_idea = draft_army }
 			}
 			increase_conscription_effect = yes
 		}
 		if = {
 			limit = {
-				threat > 35
+				threat > 0.35
 				NOT = { has_idea = drafted_women }
 			}
 			if = {
@@ -5469,16 +5567,11 @@ country_event = {
 					owner = SWE
 					prioritize_location = 6040
 				}
-			}
-			else_if = {
-				limit = {
-					has_country_flag = SWE_no_f20
+				create_unit = {
+					division = "division_template = \"Kavallerietregemente\" start_experience_factor = 0.2 start_equipment_factor = 0.01"
+					owner = SWE
+					prioritize_location = 6040
 				}
-			}
-			create_unit = {
-				division = "division_template = \"Kavallerietregemente\" start_experience_factor = 0.2 start_equipment_factor = 0.01"
-				owner = SWE
-				prioritize_location = 6040
 			}
 		}
 		random_list = {
@@ -5685,7 +5778,7 @@ country_event = {
 		}
 		add_equipment_to_stockpile = {
 			type = medium_tank_flame_chassis_2
-			variant_name = "CV-90"
+			variant_name = "Strf 9040B"
 			amount = 60
 			producer = SWE
 		}
@@ -5732,7 +5825,7 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: Sweden_Forsvarsbeslutet.3.a executed"
 		add_equipment_to_stockpile = {
 			type = small_plane_strike_airframe_2
-			variant_name = "JAS 39 Gripen"
+			variant_name = "JAS 39 Gripen A/B"
 			amount = 20
 			producer = SWE
 		}
@@ -5781,7 +5874,7 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: Sweden_Forsvarsbeslutet.4.a executed"
 		add_equipment_to_stockpile = {
 			type = small_plane_strike_airframe_2
-			variant_name = "JAS 39 Gripen"
+			variant_name = "JAS 39 Gripen A/B"
 			amount = 15
 			producer = SWE
 		}
@@ -5793,7 +5886,7 @@ country_event = {
 		}
 		add_equipment_to_stockpile = {
 			type = medium_tank_flame_chassis_2
-			variant_name = "CV-90"
+			variant_name = "Strf 9040B"
 			amount = 40
 			producer = SWE
 		}
