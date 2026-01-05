@@ -1582,7 +1582,11 @@ startup_politics = {
 	set_failsafe_values = yes #adds needed values if missing
 	add_up_party_totals = yes
 	set_party_positions = yes
-	setup_election_threshold = yes #adds election_threshold if not set
+
+	if = { limit = { NOT = { has_variable = election_threshold } }
+		set_variable = { election_threshold = 0.05 } #5% used as default
+	}
+
 	store_election_values = yes #add to election array
 	update_majority_threshold = yes
 	update_government_coalition_strength = yes
@@ -2294,23 +2298,15 @@ calculate_banned_parties = {
 }
 
 
-
-#only on startup
-setup_election_threshold = {
-	if = { limit = { NOT = { has_variable = election_threshold } }
-		set_variable = { election_threshold = 0.05 } #5% used as default
-	}
-}
-
 #only needed for elections
 update_majority_threshold = {
-		set_temp_variable = { sum = 0 }
-		for_each_loop = {
-			array = party_pop_elect_array
-			add_to_temp_variable = { sum = v }
-		}
-		set_variable = { majority_threshold = sum }
-		divide_variable = { majority_threshold = 2 }
+	set_temp_variable = { sum = 0 }
+	for_each_loop = {
+		array = party_pop_elect_array
+		add_to_temp_variable = { sum = v }
+	}
+	set_variable = { majority_threshold = sum }
+	divide_variable = { majority_threshold = 2 }
 }
 
 campaign_spending_initial = {
@@ -8036,6 +8032,7 @@ change_ruling_party_effect = {
 	# Rul Party Addition
 	set_temp_variable = { add_col_one = rul_party_temp }
 	custom_effect_tooltip = ruling_party_changed_tt
+
 	add_to_array = { ruling_party = add_col_one }
 
 	# Coalition Array Parameters
@@ -8057,34 +8054,41 @@ change_ruling_party_effect = {
 
 	# Enable Elections of 0 means that they have elections
 	if = { limit = { check_variable = { enable_elections = 0 } }
+		custom_effect_tooltip = ruling_party_changed_elections_tt
 		if = {
 			limit = {
 				check_variable = { rul_party_temp > -1 }
 				check_variable = { rul_party_temp < 4 }
 			}
-			set_politics = {
-				ruling_party = democratic
-				elections_allowed = yes
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					elections_allowed = yes
+				}
 			}
 		}
 		else_if = {
 			limit = {
 				check_variable = { rul_party_temp > 3 }
-				check_variable = { rul_party_temp < 11 }
+				check_variable = { rul_party_temp < 10 }
 			}
-			set_politics = {
-				ruling_party = communism
-				elections_allowed = yes
+			hidden_effect = {
+				set_politics = {
+					ruling_party = communism
+					elections_allowed = yes
+				}
 			}
 		}
 		else_if = {
 			limit = {
-				check_variable = { rul_party_temp > 10 }
+				check_variable = { rul_party_temp > 9 }
 				check_variable = { rul_party_temp < 12 }
 			}
-			set_politics = {
-				ruling_party = fascism
-				elections_allowed = yes
+			hidden_effect = {
+				set_politics = {
+					ruling_party = fascism
+					elections_allowed = yes
+				}
 			}
 		}
 		else_if = {
@@ -8092,9 +8096,11 @@ change_ruling_party_effect = {
 				check_variable = { rul_party_temp > 11 }
 				check_variable = { rul_party_temp < 20 }
 			}
-			set_politics = {
-				ruling_party = neutrality
-				elections_allowed = yes
+			hidden_effect = {
+				set_politics = {
+					ruling_party = neutrality
+					elections_allowed = yes
+				}
 			}
 		}
 		else_if = {
@@ -8102,21 +8108,26 @@ change_ruling_party_effect = {
 				check_variable = { rul_party_temp > 19 }
 				check_variable = { rul_party_temp < 24 }
 			}
-			set_politics = {
-				ruling_party = nationalist
-				elections_allowed = yes
+			hidden_effect = {
+				set_politics = {
+					ruling_party = nationalist
+					elections_allowed = yes
+				}
 			}
 		}
 	}
 	else = {
+		custom_effect_tooltip = ruling_party_changed_no_elections_tt
 		if = {
 			limit = {
 				check_variable = { rul_party_temp > -1 }
 				check_variable = { rul_party_temp < 4 }
 			}
-			set_politics = {
-				ruling_party = democratic
-				elections_allowed = no
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					elections_allowed = no
+				}
 			}
 		}
 		else_if = {
@@ -8124,9 +8135,11 @@ change_ruling_party_effect = {
 				check_variable = { rul_party_temp > 3 }
 				check_variable = { rul_party_temp < 11 }
 			}
-			set_politics = {
-				ruling_party = communism
-				elections_allowed = no
+			hidden_effect = {
+				set_politics = {
+					ruling_party = communism
+					elections_allowed = no
+				}
 			}
 		}
 		else_if = {
@@ -8134,9 +8147,11 @@ change_ruling_party_effect = {
 				check_variable = { rul_party_temp > 10 }
 				check_variable = { rul_party_temp < 12 }
 			}
-			set_politics = {
-				ruling_party = fascism
-				elections_allowed = no
+			hidden_effect = {
+				set_politics = {
+					ruling_party = fascism
+					elections_allowed = no
+				}
 			}
 		}
 		else_if = {
@@ -8144,9 +8159,11 @@ change_ruling_party_effect = {
 				check_variable = { rul_party_temp > 11 }
 				check_variable = { rul_party_temp < 20 }
 			}
-			set_politics = {
-				ruling_party = neutrality
-				elections_allowed = no
+			hidden_effect = {
+				set_politics = {
+					ruling_party = neutrality
+					elections_allowed = no
+				}
 			}
 		}
 		else_if = {
@@ -8154,9 +8171,11 @@ change_ruling_party_effect = {
 				check_variable = { rul_party_temp > 19 }
 				check_variable = { rul_party_temp < 24 }
 			}
-			set_politics = {
-				ruling_party = nationalist
-				elections_allowed = no
+			hidden_effect = {
+				set_politics = {
+					ruling_party = nationalist
+					elections_allowed = no
+				}
 			}
 		}
 	}
@@ -9640,4 +9659,59 @@ copy_subideolgy_leader_throughput = {
 	set_variable = { Nat_Fascism_leader = nation_to_copy_from.Nat_Fascism_leader?0 }
 	set_variable = { Nat_Autocracy_leader = nation_to_copy_from.Nat_Autocracy_leader?0 }
 	set_variable = { Monarchist_leader = nation_to_copy_from.Monarchist_leader?0 }
+}
+
+# Effect: replicate_configure_politics
+# Purpose: Replicates and configure politics
+# Parameters:
+#  - nation_to_copy_from - the nation to copy the configure politics
+replicate_configure_politics = {
+	set_temp_variable = { temp_democratic = nation_to_copy_from.party_popularity@democratic }
+	multiply_temp_variable = { temp_democratic = 100 }
+	set_temp_variable = { temp_total = temp_democratic }
+	set_temp_variable = { temp_communism = nation_to_copy_from.party_popularity@communism }
+	multiply_temp_variable = { temp_communism = 100 }
+	add_to_temp_variable = { temp_total = temp_communism }
+	set_temp_variable = { temp_neutrality = nation_to_copy_from.party_popularity@neutrality }
+	multiply_temp_variable = { temp_neutrality = 100 }
+	add_to_temp_variable = { temp_total = temp_neutrality }
+	set_temp_variable = { temp_fascism = nation_to_copy_from.party_popularity@fascism }
+	multiply_temp_variable = { temp_fascism = 100 }
+	add_to_temp_variable = { temp_total = temp_fascism }
+	set_temp_variable = { temp_nationalist = nation_to_copy_from.party_popularity@nationalist }
+	multiply_temp_variable = { temp_nationalist = 100 }
+	add_to_temp_variable = { temp_total = temp_nationalist }
+	subtract_from_temp_variable = { temp_total = 100 }
+	multiply_temp_variable = { temp_total = -1 }
+	add_to_temp_variable = { temp_nationalist = temp_total }
+
+	set_popularities = {
+		democratic = temp_democratic
+		communism = temp_communism
+		neutrality = temp_neutrality
+		fascism = temp_fascism
+		nationalist = temp_nationalist
+	}
+	add_popularity = {
+		ideology = neutrality
+		popularity = -0.2
+	}
+	start_politics_input = yes
+	#copy politics
+	for_loop_effect = {
+		end = party_pop_array^num
+		value = v
+		set_variable = { party_pop_array^v = nation_to_copy_from.party_pop_array^v }
+	}
+	add_to_array = { ruling_party = nation_to_copy_from.ruling_party^0 }
+	for_loop_effect = {
+		end = gov_coalition_array^num
+		value = v
+		add_to_array = { gov_coalition_array = nation_to_copy_from.gov_coalition_array^v }
+	}
+	set_variable = { party_pop_array^19 = 0.01 } #all moved to fight ;)
+	set_variable = { party_pop_elect_array^19 = 0 } #made illegal
+	add_up_party_totals = yes
+	set_party_positions = yes
+	startup_politics = yes
 }

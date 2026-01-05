@@ -154,7 +154,7 @@ defined_text = {
 	name = additional_income_summary_south_american_cartles_income
 	text = {
 		trigger = { has_idea = HEZ_our_cartels_in_south_america }
-		localization_key = "HEZ_south_american_cartles_income_TT" #define this summary "$$[?HEZ_south_american_cartles_income|+3] from §Y$HEZ_south_american_cartles_income$§!\n"
+		localization_key = "HEZ_south_american_cartels_income_TT" #define this summary "$$[?HEZ_south_american_cartels_income|+3] from §Y$HEZ_south_american_cartels_income$§!\n"
 	}
 	text = {
 		trigger = { NOT = { has_idea = HEZ_our_cartels_in_south_america } }
@@ -783,6 +783,18 @@ defined_text = {
 	}
 	text = {
 		trigger = { NOT = { has_idea = WAA_Narcotics_Producer } }
+		localization_key = ""
+	}
+}
+# South Korea
+defined_text = {
+	name = additional_income_KOR_samsung_phone_sales_gain
+	text = {
+		trigger = { has_idea = KOR_samsung_phone_sales }
+		localization_key = "KOR_samsung_phone_sales_TT"
+	}
+	text = {
+		trigger = { NOT = { has_idea = KOR_samsung_phone_sales } }
 		localization_key = ""
 	}
 }
@@ -1514,6 +1526,16 @@ defined_text = {
 	text = { localization_key = "" }
 }
 defined_text = {
+	name = additional_income_SWE_border_trade
+	text = {
+		trigger = {
+			original_tag = SWE
+			country_exists = NOR }
+		localization_key = SWE_border_trade_income_tt
+		}
+	text = { localization_key = "" }
+}
+defined_text = {
 	name = additional_income_GER_Ökosteuer
 	text = {
 		trigger = { has_idea = GER_idea_okosteuer }
@@ -1522,11 +1544,59 @@ defined_text = {
 	text = { localization_key = "" }
 }
 defined_text = {
+	name = additional_income_SWE_Value_added_Tax
+	text = {
+		trigger = { original_tag = SWE }
+		localization_key = SWE_Value_added_Tax_income_tt
+		}
+	text = { localization_key = "" }
+}
+defined_text = {
 	name = additional_income_GER_Solidaritatszuschlag
 	text = {
 		trigger = { has_country_flag = GER_Solidaritatszuschlag }
 		localization_key = GER_Solidaritatszuschlag_income_tt
 	}
+	text = { localization_key = "" }
+}
+defined_text = {
+	name = additional_income_SWE_Social_insurance
+	text = {
+		trigger = { original_tag = SWE }
+		localization_key = SWE_Social_insurance_income_tt
+		}
+	text = { localization_key = "" }
+}
+defined_text = {
+	name = additional_income_SWE_tourism_1
+	text = {
+		trigger = { original_tag = SWE }
+		localization_key = SWE_additional_income_SWE_tourism_1_tt
+		}
+	text = { localization_key = "" }
+}
+defined_text = {
+	name = additional_income_SWE_tourism_2
+	text = {
+		trigger = { original_tag = SWE }
+		localization_key = SWE_additional_income_SWE_tourism_2_tt
+		}
+	text = { localization_key = "" }
+}
+defined_text = {
+	name = additional_income_SWE_tourism_3
+	text = {
+		trigger = { original_tag = SWE }
+		localization_key = SWE_additional_income_SWE_tourism_3_tt
+		}
+	text = { localization_key = "" }
+}
+defined_text = {
+	name = additional_income_SWE_tourism_4
+	text = {
+		trigger = { original_tag = SWE }
+		localization_key = SWE_additional_income_SWE_tourism_4_tt
+		}
 	text = { localization_key = "" }
 }
 defined_text = {
@@ -1545,7 +1615,6 @@ defined_text = {
 	}
 	text = { localization_key = "" }
 }
-#
 defined_text = {
 	name = additional_income_HOL_Weed_Center1
 	text = {
@@ -1554,7 +1623,6 @@ defined_text = {
 	}
 	text = { localization_key = "" }
 }
-#
 defined_text = {
 	name = additional_income_DEN_consume_tax
 	text = {
@@ -1563,7 +1631,6 @@ defined_text = {
 	}
 	text = { localization_key = "" }
 }
-#
 defined_text = {
 	name = additional_income_summary_redirecting_money_from_proxies
 	text = {
@@ -1598,6 +1665,13 @@ defined_text = {
 	text = {
 		trigger = { has_idea = SPR_idea_tourist_industry_3 }
 		localization_key = "SPR_tourist_industry_3_TT" #define this summary "$$[?whatever_gain|+3] from §Y$whatever$§!\n"
+	}
+}
+defined_text = {
+	name = additional_income_SWE_crypto
+	text = {
+		trigger = { has_country_flag = SWE_Crypto_invest }
+		localization_key = "SWE_Crypto_income_effect_TT" #define this summary "$$[?whatever_gain|+3] from §Y$whatever$§!\n"
 	}
 }
 
@@ -2106,28 +2180,17 @@ defined_text = {
 defined_text = {
 	name = additional_expense_UKR_russian_gas
 	text = {
-		trigger = { has_idea = UKR_russian_gas }
+		trigger = {
+			OR = {
+				has_idea = UKR_russian_gas
+				has_idea = UKR_russian_gas_cheap
+				has_idea = UKR_russian_gas_cheaper
+			}
+		}
 		localization_key = UKR_russian_gas_expense_loc
 	}
 	text = { localization_key = "" }
 }
-defined_text = {
-	name = additional_expense_UKR_russian_gas_cheap
-	text = {
-		trigger = { has_idea = UKR_russian_gas_cheap }
-		localization_key = UKR_russian_gas_cheap_expense_loc
-	}
-	text = { localization_key = "" }
-}
-defined_text = {
-	name = additional_expense_UKR_russian_gas_cheaper
-	text = {
-		trigger = { has_idea = UKR_russian_gas_cheaper }
-		localization_key = UKR_russian_gas_cheaper_expense_loc
-	}
-	text = { localization_key = "" }
-}
-
 
 defined_text = {
 	name = MICROSTATE_fix_scl
@@ -2419,6 +2482,7 @@ defined_text = {
 				original_tag = CYR
 				original_tag = TRP
 			}
+			NOT = { has_country_flag = libya_noc_dismantled }
 		}
 		localization_key = LBA_oil_nationalisation_additional_income_tt
 	}
@@ -2489,6 +2553,22 @@ defined_text = {
 }
 
 defined_text = {
+	name = additional_expense_CZE_monarchy_intromision
+	text = {
+		trigger = {
+			has_idea = CZE_foreign_monarchy_intromision
+		}
+		localization_key = additional_expense_CZE_monarchy_intromision_tt
+	}
+		text = {
+		trigger = {
+			NOT = { has_idea = CZE_foreign_monarchy_intromision }
+		}
+		localization_key = ""
+	}
+}
+
+defined_text = {
 	name = additional_income_temasek_dividend_income
 	text = {
 		trigger = { has_idea = SIN_temasek }
@@ -2506,5 +2586,80 @@ defined_text = {
 		}
 		localization_key = additional_income_gateway_to_asia_tt
 	}
+	text = { localization_key = "" }
+}
+
+defined_text = {
+	name = additional_income_HLS_holy_idea
+	text = {
+		trigger = {
+			has_idea = HLS_idea_holy_see
+		}
+		localization_key = HLS_holy_see_tithe_income_TT
+	}
+	text = { localization_key = "" }
+}
+
+defined_text = {
+	name = additional_income_HLS_holy_idea
+	text = {
+		trigger = {
+			has_idea = HLS_idea_holy_see
+		}
+		localization_key = HLS_holy_see_tithe_income_TT
+	}
+	text = { localization_key = "" }
+}
+
+defined_text = {
+	name = additional_income_stolen_from_hungarian_trade
+	text = {
+		trigger = {
+			OR = {
+				has_idea = CZE_HUN_receive_additional_income_from_hungary_5
+				has_idea = CZE_HUN_receive_additional_income_from_hungary_3
+				has_idea = CZE_HUN_receive_additional_income_from_hungary_2
+				has_idea = CZE_HUN_receive_additional_income_from_hungary_1
+			} }
+		localization_key = additional_income_stolen_from_hungarian_trade_tt
+	}
+
+	text = { localization_key = "" }
+}
+
+defined_text = {
+	name = additional_expense_stolen_from_hungarian_trade
+	text = {
+		trigger = {
+			original_tag = HUN
+			has_idea = CZE_HUN_manipulating_our_commerce
+		}
+		localization_key = additional_expense_stolen_from_hungarian_trade_tt
+	}
+
+	text = { localization_key = "" }
+}
+
+defined_text = {
+	name = additional_income_energy_load_sharing
+	text = {
+		trigger = {
+			NOT = { check_variable = { energy_load_sharing_nations^0 = 0 } }
+		}
+		localization_key = additional_income_energy_load_sharing_tt
+	}
+
+	text = { localization_key = "" }
+}
+
+defined_text = {
+	name = additional_expense_energy_load_sharing
+	text = {
+		trigger = {
+			has_country_flag = energy_load_sharing_recipient
+		}
+		localization_key = additional_expense_energy_load_sharing_tt
+	}
+
 	text = { localization_key = "" }
 }
