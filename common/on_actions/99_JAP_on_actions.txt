@@ -301,7 +301,7 @@ on_actions = {
 				clr_country_flag = MDMOSJAP_EVENT_THE_GREAT_REFERENDUM_MALCONCLUSION
 				build_railway = {	#Ouu Main Line (Yamagata Shinkansen): Fukushima-Yamagata-Shinjo
 					level = 2
-					path = { 1024 4153 4067 }
+					path = { 1024 4153 14867 4067 }
 					start_province = 1024 target_province = 4067
 				}
 				build_railway = {	#Uchibo Line: Chiba-Awa Kamogawa
@@ -321,12 +321,12 @@ on_actions = {
 				}
 				build_railway = {	#San'in Main Line: Kyoto-Maizuru
 					level = 2
-					path = { 11960 1136 }
+					path = { 11960 14865 1136 }
 					start_province = 11960 target_province = 1136
 				}
 				build_railway = {	#Sanyo Main Line: Kobe-Moji
 					level = 1
-					path = { 6168 12031 7212 11946 1092 10052 11985 1025 }
+					path = { 6168 12031 7212 11946 1092 10052 14888 11985 1025 }
 					start_province = 6168 target_province = 1025
 				}
 				build_railway = {	#Seto-Ohashi Line: Okayama-Takamatsu
@@ -392,40 +392,40 @@ on_actions = {
 		}
 	}
 
-	on_war = {
-		effect = {
-			#If peaceful Japan is attacked, begin the punishment kickoff
-			if = {
-				limit = {
-					FROM = {
-						original_tag = JAP
-						has_completed_focus = JAP_swiss_peace
-					}
-					ROOT = {
-						has_offensive_war_with = JAP
-						OR = { # try to limit this to people who can actually end the war if they WP
-							is_in_faction = no # isnt in faction
-							is_faction_leader = yes # is in faction and is faction leader
-							AND = { # is in faction, but faction leader wasnt called
-								is_in_faction = yes
-								NOT = {
-									faction_leader = {
-										has_war_with = JAP
-									}
-								}
-							}
-						}
-					}
-				}
-				ROOT = {
-					set_variable = { jap_compelled_peace = 0 } #Tracks how many times country has refused peace
-				}
-				activate_mission = JAP_dec_defense_compelled_peace
-				country_event = {
-					id = Japan.100009200 # warning that country needs to defeat JAP quickly or suffer debuffs
-					days = 1 #putting a delay on this so the war doesnt pop, AI immediately chooses peace, gets a white peace and peace event instantly
-				}
-			}
-		}
-	}
+	# on_war = {
+	# 	effect = {
+	# 		#If peaceful Japan is attacked, begin the punishment kickoff
+	# 		if = {
+	# 			limit = {
+	# 				FROM = {
+	# 					original_tag = JAP
+	# 					has_completed_focus = JAP_swiss_peace
+	# 				}
+	# 				ROOT = {
+	# 					has_offensive_war_with = JAP
+	# 					OR = { # try to limit this to people who can actually end the war if they WP
+	# 						is_in_faction = no # isnt in faction
+	# 						is_faction_leader = yes # is in faction and is faction leader
+	# 						AND = { # is in faction, but faction leader wasnt called
+	# 							is_in_faction = yes
+	# 							NOT = {
+	# 								faction_leader = {
+	# 									has_war_with = JAP
+	# 								}
+	# 							}
+	# 						}
+	# 					}
+	# 				}
+	# 			}
+	# 			ROOT = {
+	# 				set_variable = { jap_compelled_peace = 0 } #Tracks how many times country has refused peace
+	# 			}
+	# 			activate_mission = JAP_dec_defense_compelled_peace
+	# 			country_event = {
+	# 				id = Japan.100009200 # warning that country needs to defeat JAP quickly or suffer debuffs
+	# 				days = 1 #putting a delay on this so the war doesnt pop, AI immediately chooses peace, gets a white peace and peace event instantly
+	# 			}
+	# 		}
+	# 	}
+	# }
 }

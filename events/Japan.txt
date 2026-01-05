@@ -1810,97 +1810,6 @@ country_event = {
 #Triggered After Focuses
 #----------------------------------------------------------------
 #Defense Force Officers Host a Party
-country_event = {
-	id = Japan.200005000
-	title = Japan.200005000.t
-	desc = Japan.200005000.d
-	#picture = GFX_news_event_hearts_of_iron_4
-
-	trigger = {
-		original_tag = JAP
-		ROOT = {
-			OR = {
-				has_completed_focus = JAP_jgsdf_org
-				has_completed_focus = JAP_jmsdf_org
-				has_completed_focus = JAP_jasdf_org
-			}
-		}
-	}
-
-	mean_time_to_happen = {
-		days = 720
-		modifier = {
-			JAP = {
-				OR = {
-					has_completed_focus = JAP_distance
-					has_completed_focus = JAP_reflection
-				}
-			}
-			factor = 0.5
-		}
-		modifier = {
-			JAP = {
-				has_completed_focus = JAP_jgsdf_org
-			}
-			factor = 0.8
-		}
-		modifier = {
-			JAP = {
-				has_completed_focus = JAP_jmsdf_org
-			}
-			factor = 0.8
-		}
-		modifier = {
-			JAP = {
-				has_completed_focus = JAP_jasdf_org
-			}
-			factor = 0.8
-		}
-	}
-
-	#Make a note about integrity and peace
-	option = {
-		ai_chance = {
-			factor = 10
-		}
-		name = Japan.200005000.oA
-		log = "[GetDateText]: [Root.GetName]: Japan.200005000.oA"
-		set_temp_variable = { jap_radical_change = 3 }
-		jap_modify_radicalism_right = yes
-	}
-
-	#Make a note about patriotism and duty
-	option = {
-		ai_chance = {
-			factor = 25
-			modifier = {
-				OR = {
-					NOT = { is_in_array = { ruling_party = 2 } }
-					NOT = { is_in_array = { ruling_party = 3 } }
-					NOT = { is_in_array = { ruling_party = 4 } }
-					NOT = { is_in_array = { ruling_party = 5 } }
-					NOT = { is_in_array = { ruling_party = 18 } }
-					NOT = { is_in_array = { ruling_party = 19 } }
-				}
-				factor = 0
-			}
-			modifier = {
-				OR = {
-					NOT = { is_in_array = { ruling_party = 1 } }
-					NOT = { is_in_array = { ruling_party = 6 } }
-					NOT = { is_in_array = { ruling_party = 7 } }
-					NOT = { is_in_array = { ruling_party = 20 } }
-					NOT = { is_in_array = { ruling_party = 21 } }
-					NOT = { is_in_array = { ruling_party = 22 } }
-				}
-				factor = 4
-			}
-		}
-		name = Japan.200005000.oB
-		log = "[GetDateText]: [Root.GetName]: Japan.200005000.oB"
-		increase_mdmosjap_concon_right_2 = yes
-	}
-}
 
 #North Korea Prepares For War
 country_event = {
@@ -3071,56 +2980,6 @@ country_event = {
 }
 
 #G4 Expansion
-#CHI Endorses JAP for Permanent Security Council
-country_event = {
-	id = Japan.100011000
-	title = Japan.100011000.t
-	desc = Japan.100011000.d
-	picture = WIP #TODO: gfx
-
-	fire_only_once = yes
-	trigger = {
-		JAP = {
-			has_completed_focus = JAP_foreign_reformed
-		}
-		CHI = {
-			NOT = {
-				has_opinion_modifier = refuse_to_apologize_for_warcrimes
-			}
-			has_opinion = {
-				target = JAP
-				value > 0
-			}
-		}
-	}
-
-	mean_time_to_happen = { days = 120 }
-
-	#Reward them
-	option = {
-		ai_chance = {
-			factor = 100
-		}
-		name = Japan.100011000.oA
-		log = "[GetDateText]: [Root.GetName]: Japan.100011000.oA"
-		JAP = { country_event = Japan.100011001 } # We support your UNSC bid!
-		add_opinion_modifier = {
-			target = JAP
-			modifier = supports_g4
-		}
-		set_country_flag = CHI_SUPPORT_G4 # SEE: CHI_Favor_Multipolarity
-	}
-
-	#The status quo is preferable
-	option = {
-		ai_chance = {
-			factor = 0
-		}
-		name = Japan.100011000.oB
-		log = "[GetDateText]: [Root.GetName]: Japan.100011000.oB"
-		#TODO: blah blah some kind of selfish effect, maybe commie party opinion and something
-	}
-}
 
 #CHI Endorses Us For UNSC
 country_event = {
@@ -5112,7 +4971,7 @@ country_event = {
 
 		if = {
 			limit = {
-				is_in_tech_sharing_group = yes
+				num_tech_sharing_groups < 1
 			}
 			CHI = { add_to_tech_sharing_group = China_Japan_Tech_Share }
 		}
@@ -5200,7 +5059,7 @@ country_event = {
 		add_political_power = 50
 		if = {
 			limit = {
-				is_in_tech_sharing_group = yes
+				is_in_tech_sharing_group = China_Japan_Tech_Share
 			}
 			JAP = { add_to_tech_sharing_group = China_Japan_Tech_Share }
 		}
@@ -5319,7 +5178,7 @@ country_event = {
 
 		if = {
 			limit = {
-				is_in_tech_sharing_group = yes
+				is_in_tech_sharing_group = China_Japan_Tech_Share
 			}
 			CHI = { add_to_tech_sharing_group = China_Japan_Tech_Share }
 		}
@@ -6324,140 +6183,6 @@ country_event = {
 #----------------------------------------------------------------
 #Focus Fired Events - Defense
 #----------------------------------------------------------------
-# Defense Budget Limitations: Removed
-country_event = {
-	id = Japan.100006000
-	title = Japan.100006000.t
-	desc = Japan.100006000.d
-	picture = GFX_JAP_diet_address
-
-	is_triggered_only = yes
-	trigger = {
-		has_completed_focus = JAP_defense_spending
-	}
-
-	# It can't be helped
-	option = {
-		name = Japan.100006000.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006000.oA executed"
-		remove_dynamic_modifier = { modifier = DYNAMIC_MODIFIER_JAP_DEFENSE_LIMITATIONS }
-		add_political_power = 25
-		set_party_index_to_ruling_party = yes
-		set_temp_variable = { party_popularity_increase = -0.02 }
-		add_relative_party_popularity = yes
-	}
-
-	# Promise pensions won't change
-	option = {
-		name = Japan.100006000.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100006000.oB executed"
-		remove_dynamic_modifier = { modifier = DYNAMIC_MODIFIER_JAP_DEFENSE_LIMITATIONS }
-		set_party_index_to_ruling_party = yes
-		set_temp_variable = { party_popularity_increase = 0.03 }
-		add_relative_party_popularity = yes
-		block_social_decrease = yes
-	}
-
-	# We must hear the public's demand
-	option = {
-		name = Japan.100006000.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100006000.oC executed"
-		trigger = {
-			check_variable = { THIS.expected_military_sp > 2 }
-		}
-		add_political_power = 10
-		remove_dynamic_modifier = { modifier = DYNAMIC_MODIFIER_JAP_DEFENSE_LIMITATIONS }
-		custom_effect_tooltip = Japan.100006000.oC_TT
-	}
-
-	# At war
-	option = {
-		name = Japan.100006000.oD
-		log = "[GetDateText]: [This.GetName]: Japan.100006000.oD executed"
-		trigger = { has_war = yes }
-		add_war_support = 0.01
-		remove_dynamic_modifier = { modifier = DYNAMIC_MODIFIER_JAP_DEFENSE_LIMITATIONS }
-		custom_effect_tooltip = Japan.100006000.oD_TT
-	}
-}
-
-# Defense Budget Limitations: Benefitting
-country_event = {
-	id = Japan.100006001
-	title = Japan.100006001.t
-	desc = Japan.100006001.d
-	picture = GFX_JAP_diet_address
-
-	is_triggered_only = yes
-	trigger = {
-		has_completed_focus = JAP_defense_spending
-	}
-
-	# Great
-	option = {
-		name = Japan.100006001.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006001.oA executed"
-		add_dynamic_modifier = { modifier = DYNAMIC_MODIFIER_JAP_DEFENSE_LIMITATIONS }
-	}
-}
-
-# Defense Budget Limitations: Explanation
-country_event = {
-	id = Japan.100006002
-	title = Japan.100006002.t
-	desc = {
-		trigger = {
-			check_variable = { THIS.Military_Spending > 2 }
-		}
-		text = Japan.100006002.dA
-	}
-	desc = {
-		text = Japan.100006002.dB
-	}
-	picture = GFX_JAP_diet_address
-
-	is_triggered_only = yes
-	trigger = {
-		has_completed_focus = JAP_defense_spending
-	}
-
-	# Switch to Tiny Spending
-	option = {
-		name = Japan.100006002.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006002.oA executed"
-		trigger = {
-			check_variable = { THIS.Military_Spending > 2 }
-		}
-		#Free reduction to Tiny
-		set_temp_variable = { diff = Military_Spending }
-		subtract_from_temp_variable = { diff = 1 }
-		for_loop_effect = {
-			end = diff
-			value = v
-			decrease_military_spending = yes
-		}
-	}
-
-	# Not now
-	option = {
-		name = Japan.100006002.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100006002.oB executed"
-		trigger = {
-			check_variable = { THIS.Military_Spending > 2 }
-		}
-	}
-
-	# Got it
-	option = {
-		name = Japan.100006002.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100006002.oC executed"
-		trigger = {
-			check_variable = { THIS.Military_Spending < 3 }
-		}
-		add_dynamic_modifier = { modifier = DYNAMIC_MODIFIER_JAP_DEFENSE_LIMITATIONS }
-	}
-}
-
 # Ground Forces: Multipurpose Defense Force
 country_event = {
 	id = Japan.100006100
@@ -6577,163 +6302,163 @@ country_event = {
 }
 
 # Ground Forces: Equipment Specialization: Infantry Corps
-country_event = {
-	id = Japan.100006102
-	title = Japan.100006102.t
-	desc = Japan.100006102.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100006102
+# 	title = Japan.100006102.t
+# 	desc = Japan.100006102.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# Smart Mechanized Integration
-	option = {
-		name = Japan.100006102.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006102.oA executed"
-		set_temp_variable = { treasury_change = -40 }
-		modify_treasury_effect = yes
-		add_to_variable = { jap_nativehardware_army_personnel_cost_multiplier_modifier = 0.25 }
-		add_ideas = JAP_equipment_land_net_warrior
-		custom_effect_tooltip = Japan.100006102.oA_TT
-		force_update_dynamic_modifier = yes
-	}
+# 	# Smart Mechanized Integration
+# 	option = {
+# 		name = Japan.100006102.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006102.oA executed"
+# 		set_temp_variable = { treasury_change = -40 }
+# 		modify_treasury_effect = yes
+# 		add_to_variable = { jap_nativehardware_army_personnel_cost_multiplier_modifier = 0.25 }
+# 		add_ideas = JAP_equipment_land_net_warrior
+# 		custom_effect_tooltip = Japan.100006102.oA_TT
+# 		force_update_dynamic_modifier = yes
+# 	}
 
-	# Heavy Mechanized
-	option = {
-		name = Japan.100006102.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100006102.oB executed"
-		set_temp_variable = { treasury_change = -30 }
-		modify_treasury_effect = yes
-		add_to_variable = { jap_nativehardware_army_personnel_cost_multiplier_modifier = 0.10 }
-		add_ideas = JAP_equipment_land_heavy_ifv
-		custom_effect_tooltip = Japan.100006102.oB_TT
-		force_update_dynamic_modifier = yes
-	}
+# 	# Heavy Mechanized
+# 	option = {
+# 		name = Japan.100006102.oB
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006102.oB executed"
+# 		set_temp_variable = { treasury_change = -30 }
+# 		modify_treasury_effect = yes
+# 		add_to_variable = { jap_nativehardware_army_personnel_cost_multiplier_modifier = 0.10 }
+# 		add_ideas = JAP_equipment_land_heavy_ifv
+# 		custom_effect_tooltip = Japan.100006102.oB_TT
+# 		force_update_dynamic_modifier = yes
+# 	}
 
-	# Special Light Infantry
-	option = {
-		name = Japan.100006102.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100006102.oC executed"
-		set_temp_variable = { treasury_change = -10 }
-		modify_treasury_effect = yes
-		add_to_variable = { jap_nativehardware_army_personnel_cost_multiplier_modifier = 0.10 }
-		add_ideas = JAP_equipment_land_light_inf
-		custom_effect_tooltip = Japan.100006102.oC_TT
-		force_update_dynamic_modifier = yes
-	}
+# 	# Special Light Infantry
+# 	option = {
+# 		name = Japan.100006102.oC
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006102.oC executed"
+# 		set_temp_variable = { treasury_change = -10 }
+# 		modify_treasury_effect = yes
+# 		add_to_variable = { jap_nativehardware_army_personnel_cost_multiplier_modifier = 0.10 }
+# 		add_ideas = JAP_equipment_land_light_inf
+# 		custom_effect_tooltip = Japan.100006102.oC_TT
+# 		force_update_dynamic_modifier = yes
+# 	}
 
-	# Cancel
-	option = {
-		name = Japan.100006102.oD
-		log = "[GetDateText]: [This.GetName]: Japan.100006102.oD executed"
-		clr_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
-		custom_effect_tooltip = Japan.100006102.oD_TT
-	}
-}
+# 	# Cancel
+# 	option = {
+# 		name = Japan.100006102.oD
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006102.oD executed"
+# 		clr_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
+# 		custom_effect_tooltip = Japan.100006102.oD_TT
+# 	}
+# }
 
 # Ground Forces: Equipment Specialization: Armored Corps
 # UNUSED IN THIS VERSION
-country_event = {
-	id = Japan.100006103
-	title = Japan.100006103.t
-	desc = Japan.100006103.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100006103
+# 	title = Japan.100006103.t
+# 	desc = Japan.100006103.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# TODO: come up with options for armor
-	option = {
-		name = Japan.100006103.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006103.oA executed"
-	}
+# 	# TODO: come up with options for armor
+# 	option = {
+# 		name = Japan.100006103.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006103.oA executed"
+# 	}
 
-	# Cancel
-	option = {
-		name = Japan.100006103.oD
-		log = "[GetDateText]: [This.GetName]: Japan.100006103.oD executed"
-		clr_country_flag = JAP_GROUND_EQUIPMENT_ARMORED_CHOSEN
-	}
-}
+# 	# Cancel
+# 	option = {
+# 		name = Japan.100006103.oD
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006103.oD executed"
+# 		clr_country_flag = JAP_GROUND_EQUIPMENT_ARMORED_CHOSEN
+# 	}
+# }
 
 # Naval Forces: Foreign Ship Orders
-country_event = {
-	id = Japan.100006200
-	title = Japan.100006200.t
-	desc = Japan.100006200.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100006200
+# 	title = Japan.100006200.t
+# 	desc = Japan.100006200.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# Maintain the subsidy
-	option = {
-		name = Japan.100006200.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006200.oA executed"
-		add_political_power = 100
-	}
+# 	# Maintain the subsidy
+# 	option = {
+# 		name = Japan.100006200.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006200.oA executed"
+# 		add_political_power = 100
+# 	}
 
-	# Reduce the subsidy
-	option = {
-		name = Japan.100006200.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100006200.oB executed"
-		add_to_variable = { jap_defenselimit_industrial_capacity_dockyard = -0.20 }
-		add_to_variable = { jap_defenselimit_dockyard_productivity = 0.25 }
-		force_update_dynamic_modifier = yes
-		custom_effect_tooltip = Japan.100006200.oB_TT
-		add_political_power = -50
-	}
+# 	# Reduce the subsidy
+# 	option = {
+# 		name = Japan.100006200.oB
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006200.oB executed"
+# 		add_to_variable = { jap_defenselimit_industrial_capacity_dockyard = -0.20 }
+# 		add_to_variable = { jap_defenselimit_dockyard_productivity = 0.25 }
+# 		force_update_dynamic_modifier = yes
+# 		custom_effect_tooltip = Japan.100006200.oB_TT
+# 		add_political_power = -50
+# 	}
 
-	# Drop the subsidy
-	option = {
-		name = Japan.100006200.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100006200.oC executed"
-		add_to_variable = { jap_defenselimit_industrial_capacity_dockyard = -0.50 }
-		add_to_variable = { jap_defenselimit_dockyard_productivity = 1.00 }
-		force_update_dynamic_modifier = yes
-		custom_effect_tooltip = Japan.100006200.oC_TT
-		add_political_power = -150
-	}
-}
+# 	# Drop the subsidy
+# 	option = {
+# 		name = Japan.100006200.oC
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006200.oC executed"
+# 		add_to_variable = { jap_defenselimit_industrial_capacity_dockyard = -0.50 }
+# 		add_to_variable = { jap_defenselimit_dockyard_productivity = 1.00 }
+# 		force_update_dynamic_modifier = yes
+# 		custom_effect_tooltip = Japan.100006200.oC_TT
+# 		add_political_power = -150
+# 	}
+# }
 
 # Naval Forces: Ship Specialization: Don't Call It A Carrier?
-country_event = {
-	id = Japan.100006201
-	title = Japan.100006201.t
-	desc = Japan.100006201.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100006201
+# 	title = Japan.100006201.t
+# 	desc = Japan.100006201.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# Multi Mission Helicopter Destroyers
-	option = {
-		name = Japan.100006201.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100006201.oA executed"
-		set_temp_variable = { treasury_change = -10 }
-		modify_treasury_effect = yes
-		add_to_variable = { jap_nativehardware_repair_speed_factor = -0.10 }
-		add_ideas = JAP_equipment_naval_helidestroyers
-		force_update_dynamic_modifier = yes
-		custom_effect_tooltip = Japan.100006201.oA_TT
-	}
+# 	# Multi Mission Helicopter Destroyers
+# 	option = {
+# 		name = Japan.100006201.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006201.oA executed"
+# 		set_temp_variable = { treasury_change = -10 }
+# 		modify_treasury_effect = yes
+# 		add_to_variable = { jap_nativehardware_repair_speed_factor = -0.10 }
+# 		add_ideas = JAP_equipment_naval_helidestroyers
+# 		force_update_dynamic_modifier = yes
+# 		custom_effect_tooltip = Japan.100006201.oA_TT
+# 	}
 
-	# Megacarriers
-	option = {
-		name = Japan.100006201.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100006201.oB executed"
-		set_temp_variable = { treasury_change = -50 }
-		modify_treasury_effect = yes
-		add_to_variable = { jap_nativehardware_repair_speed_factor = -0.20 }
-		add_ideas = JAP_equipment_naval_megacarriers
-		force_update_dynamic_modifier = yes
-		custom_effect_tooltip = Japan.100006201.oB_TT
-	}
+# 	# Megacarriers
+# 	option = {
+# 		name = Japan.100006201.oB
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006201.oB executed"
+# 		set_temp_variable = { treasury_change = -50 }
+# 		modify_treasury_effect = yes
+# 		add_to_variable = { jap_nativehardware_repair_speed_factor = -0.20 }
+# 		add_ideas = JAP_equipment_naval_megacarriers
+# 		force_update_dynamic_modifier = yes
+# 		custom_effect_tooltip = Japan.100006201.oB_TT
+# 	}
 
-	# Cancel
-	option = {
-		name = Japan.100006201.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100006201.oC executed"
-		custom_effect_tooltip = Japan.100006201.oC_TT
-		clr_country_flag = JAP_NAVY_EQUIPMENT_CARRIER_CHOSEN
-	}
-}
+# 	# Cancel
+# 	option = {
+# 		name = Japan.100006201.oC
+# 		log = "[GetDateText]: [This.GetName]: Japan.100006201.oC executed"
+# 		custom_effect_tooltip = Japan.100006201.oC_TT
+# 		clr_country_flag = JAP_NAVY_EQUIPMENT_CARRIER_CHOSEN
+# 	}
+# }
 
 # Naval Forces: Ship Specialization: Heavy Ship Task
 country_event = {
@@ -7325,65 +7050,65 @@ country_event = {
 }
 
 #Unbreakable Chain: Quick Victory Slips Away!
-country_event = {
-	id = Japan.100009202
-	title = Japan.100009202.t
-	desc = Japan.100009202.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100009202
+# 	title = Japan.100009202.t
+# 	desc = Japan.100009202.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# Abandon the war
-	option = {
-		name = Japan.100009201.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100009201.oA executed"
-		white_peace = JAP
-		set_truce = {
-			target = JAP
-			days = 730
-		}
-		add_political_power = -300
-		set_party_index_to_ruling_party = yes
-		set_temp_variable = { party_popularity_increase = -0.15 }
-		set_temp_variable = { temp_outlook_increase = -0.10 }
-		add_relative_party_popularity = yes
-		hidden_effect = {
-			JAP = {
-				country_event = {
-					id = Japan.100009201
-					days = 1
-				}
-			}
-		}
-		ROOT = {
-			clear_variable = jap_compelled_peace
-		}
+# 	# Abandon the war
+# 	option = {
+# 		name = Japan.100009201.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009201.oA executed"
+# 		white_peace = JAP
+# 		set_truce = {
+# 			target = JAP
+# 			days = 730
+# 		}
+# 		add_political_power = -300
+# 		set_party_index_to_ruling_party = yes
+# 		set_temp_variable = { party_popularity_increase = -0.15 }
+# 		set_temp_variable = { temp_outlook_increase = -0.10 }
+# 		add_relative_party_popularity = yes
+# 		hidden_effect = {
+# 			JAP = {
+# 				country_event = {
+# 					id = Japan.100009201
+# 					days = 1
+# 				}
+# 			}
+# 		}
+# 		ROOT = {
+# 			clear_variable = jap_compelled_peace
+# 		}
 
-		ai_chance = {
-			base = 80
-		}
-	}
+# 		ai_chance = {
+# 			base = 80
+# 		}
+# 	}
 
-	# Victory is at hand!
-	option = {
-		name = Japan.100009201.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100009201.oB executed"
-		trigger = {
-			has_war_support > 0.3
-		}
-		add_to_variable = { ROOT.jap_compelled_peace = 1 } # war support penalty increases each time, 10%, 20%, 30%
-		set_temp_variable = { total_war_support_penalty = ROOT.jap_compelled_peace }
-		multiply_temp_variable = { total_war_support_penalty = 0.1 }
-		add_war_support = total_war_support_penalty
-		add_political_power = -50
-		activate_mission = JAP_dec_defense_compelled_peace
+# 	# Victory is at hand!
+# 	option = {
+# 		name = Japan.100009201.oB
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009201.oB executed"
+# 		trigger = {
+# 			has_war_support > 0.3
+# 		}
+# 		add_to_variable = { ROOT.jap_compelled_peace = 1 } # war support penalty increases each time, 10%, 20%, 30%
+# 		set_temp_variable = { total_war_support_penalty = ROOT.jap_compelled_peace }
+# 		multiply_temp_variable = { total_war_support_penalty = 0.1 }
+# 		add_war_support = total_war_support_penalty
+# 		add_political_power = -50
+# 		activate_mission = JAP_dec_defense_compelled_peace
 
-		ai_chance = {
-			base = 10
-		}
-	}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
 
-}
+# }
 
 #Disputed Islands Mediation
 # SCOPE OWNERSHIP
@@ -8723,345 +8448,345 @@ country_event = {
 ### 500-700
 
 # Tiebreaker: Ultimatum Choice
-country_event = {
-	id = Japan.100009800
-	title = Japan.100009800.t
-	desc = Japan.100009800.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100009800
+# 	title = Japan.100009800.t
+# 	desc = Japan.100009800.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# Send the ultimatum
-	option = {
-		name = Japan.100009800.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100009800.oA executed"
+# 	# Send the ultimatum
+# 	option = {
+# 		name = Japan.100009800.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009800.oA executed"
 
-		ai_chance = {
-			base = 10
-		}
-	}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
 
-	# Begin preparations to attack
-	option = {
-		name = Japan.100009800.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100009800.oB executed"
-		# TODO: civil war third party cases
-		add_threat = 5
-		if = {
-			limit = {
-				var:jap_aggression_tiebreaker_target = {
-					original_tag = KOR
-				}
-			}
-			NKO = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
-			activate_targeted_decision = { target = NKO decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
-		}
-		if = {
-			limit = {
-				var:jap_aggression_tiebreaker_target = {
-					original_tag = NKO
-				}
-			}
-			KOR = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
-			activate_targeted_decision = { target = KOR decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
-		}
-		if = {
-			limit = {
-				var:jap_aggression_tiebreaker_target = {
-					original_tag = CHI
-				}
-			}
-			TAI = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
-			activate_targeted_decision = { target = TAI decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
-		}
-		if = {
-			limit = {
-				var:jap_aggression_tiebreaker_target = {
-					original_tag = TAI
-				}
-			}
-			CHI = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
-			activate_targeted_decision = { target = CHI decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
-		}
+# 	# Begin preparations to attack
+# 	option = {
+# 		name = Japan.100009800.oB
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009800.oB executed"
+# 		# TODO: civil war third party cases
+# 		add_threat = 5
+# 		if = {
+# 			limit = {
+# 				var:jap_aggression_tiebreaker_target = {
+# 					original_tag = KOR
+# 				}
+# 			}
+# 			NKO = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
+# 			activate_targeted_decision = { target = NKO decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
+# 		}
+# 		if = {
+# 			limit = {
+# 				var:jap_aggression_tiebreaker_target = {
+# 					original_tag = NKO
+# 				}
+# 			}
+# 			KOR = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
+# 			activate_targeted_decision = { target = KOR decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
+# 		}
+# 		if = {
+# 			limit = {
+# 				var:jap_aggression_tiebreaker_target = {
+# 					original_tag = CHI
+# 				}
+# 			}
+# 			TAI = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
+# 			activate_targeted_decision = { target = TAI decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
+# 		}
+# 		if = {
+# 			limit = {
+# 				var:jap_aggression_tiebreaker_target = {
+# 					original_tag = TAI
+# 				}
+# 			}
+# 			CHI = { set_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
+# 			activate_targeted_decision = { target = CHI decision = JAP_dec_article9_tiebreaker_ultimatum_demand }
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
 
-	# Wave Off
-	option = {
-		name = Japan.100009800.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100009800.oC executed"
+# 	# Wave Off
+# 	option = {
+# 		name = Japan.100009800.oC
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009800.oC executed"
 
-		var:jap_aggression_tiebreaker_target = {
-			clr_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
-		}
-		every_country = { # set flag for civil war countries so player cant open multiple events
-			limit = { # maybe a better way to test who is in civil war with
-				has_war_with = jap_aggression_tiebreaker_target
-				has_civil_war = yes
-			}
-			clr_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
-		}
-		clear_variable = jap_aggression_tiebreaker_target
+# 		var:jap_aggression_tiebreaker_target = {
+# 			clr_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
+# 		}
+# 		every_country = { # set flag for civil war countries so player cant open multiple events
+# 			limit = { # maybe a better way to test who is in civil war with
+# 				has_war_with = jap_aggression_tiebreaker_target
+# 				has_civil_war = yes
+# 			}
+# 			clr_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
+# 		}
+# 		clear_variable = jap_aggression_tiebreaker_target
 
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
+# }
 
 # Tiebreaker: Ultimatum Demand
-country_event = {
-	id = Japan.100009801
-	title = Japan.100009801.t
-	desc = Japan.100009801.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100009801
+# 	title = Japan.100009801.t
+# 	desc = Japan.100009801.d
+# 	picture = GFX_JAP_diet_address
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	# How dare they!
-	option = {
-		name = Japan.100009801.oA
-		log = "[GetDateText]: [This.GetName]: Japan.100009801.oA executed"
-		add_war_support = 0.15
-		add_timed_idea = {
-			idea = jap_tiebreaker_bonus_repel
-			days = 365
-		}
-		JAP = {
-			country_event = Japan.100009802 # Ultimatum Rejected
-		}
+# 	# How dare they!
+# 	option = {
+# 		name = Japan.100009801.oA
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009801.oA executed"
+# 		add_war_support = 0.15
+# 		add_timed_idea = {
+# 			idea = jap_tiebreaker_bonus_repel
+# 			days = 365
+# 		}
+# 		JAP = {
+# 			country_event = Japan.100009802 # Ultimatum Rejected
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
 
-	# Settle the issue now!
-	option = {
-		name = Japan.100009801.oB
-		log = "[GetDateText]: [This.GetName]: Japan.100009801.oB executed"
-		if = {
-			limit = {
-				original_tag = KOR
-				NOT = {
-					has_war_with = NKO
-				}
-			}
-			declare_war_on = {
-				target = NKO
-				type = annex_everything
-			}
-			add_threat = 5.0
-			JAP = { add_threat = 5.0 }
-		}
-		if = {
-			limit = {
-				original_tag = NKO
-				NOT = {
-					has_war_with = KOR
-				}
-			}
-			declare_war_on = {
-				target = KOR
-				type = annex_everything
-			}
-			add_threat = 5.0
-			JAP = { add_threat = 5.0 }
-		}
-		if = {
-			limit = {
-				original_tag = CHI
-				NOT = {
-					has_war_with = TAI
-				}
-			}
-			declare_war_on = {
-				target = TAI
-				type = annex_everything
-			}
-			add_threat = 5.0
-			JAP = { add_threat = 5.0 }
-		}
-		if = {
-			limit = {
-				original_tag = TAI
-				NOT = {
-					has_war_with = CHI
-				}
-			}
-			declare_war_on = {
-				target = CHI
-				type = annex_everything
-			}
-			add_threat = 5.0
-			JAP = { add_threat = 5.0 }
-		}
-		add_timed_idea = {
-			idea = jap_tiebreaker_bonus_victory
-			days = 90
-		}
+# 	# Settle the issue now!
+# 	option = {
+# 		name = Japan.100009801.oB
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009801.oB executed"
+# 		if = {
+# 			limit = {
+# 				original_tag = KOR
+# 				NOT = {
+# 					has_war_with = NKO
+# 				}
+# 			}
+# 			declare_war_on = {
+# 				target = NKO
+# 				type = annex_everything
+# 			}
+# 			add_threat = 5.0
+# 			JAP = { add_threat = 5.0 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = NKO
+# 				NOT = {
+# 					has_war_with = KOR
+# 				}
+# 			}
+# 			declare_war_on = {
+# 				target = KOR
+# 				type = annex_everything
+# 			}
+# 			add_threat = 5.0
+# 			JAP = { add_threat = 5.0 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = CHI
+# 				NOT = {
+# 					has_war_with = TAI
+# 				}
+# 			}
+# 			declare_war_on = {
+# 				target = TAI
+# 				type = annex_everything
+# 			}
+# 			add_threat = 5.0
+# 			JAP = { add_threat = 5.0 }
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = TAI
+# 				NOT = {
+# 					has_war_with = CHI
+# 				}
+# 			}
+# 			declare_war_on = {
+# 				target = CHI
+# 				type = annex_everything
+# 			}
+# 			add_threat = 5.0
+# 			JAP = { add_threat = 5.0 }
+# 		}
+# 		add_timed_idea = {
+# 			idea = jap_tiebreaker_bonus_victory
+# 			days = 90
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
 
-	# Appeal to our kin!
-	option = {
-		name = Japan.100009801.oC
-		log = "[GetDateText]: [This.GetName]: Japan.100009801.oC executed"
+# 	# Appeal to our kin!
+# 	option = {
+# 		name = Japan.100009801.oC
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009801.oC executed"
 
-		add_political_power = -200
-		if = {
-			limit = {
-				original_tag = KOR
-				NOT = {
-					has_war_with = NKO
-				}
-			}
-			NKO = {
-				add_autonomy_ratio = { value = 0.5 }
-				add_political_power = 200
-			}
-			set_temp_variable = { percent_change = -15 }
-			set_temp_variable = { tag_index = JAP.id }
-			set_temp_variable = { influence_target = NKO.id }
-			change_influence_percentage = yes
-		}
-		if = {
-			limit = {
-				original_tag = NKO
-				NOT = {
-					has_war_with = KOR
-				}
-			}
-			KOR = {
-				add_autonomy_ratio = { value = 0.5 }
-				add_political_power = 200
-			}
-			set_temp_variable = { percent_change = -15 }
-			set_temp_variable = { tag_index = JAP.id }
-			set_temp_variable = { influence_target = KOR.id }
-			change_influence_percentage = yes
-		}
-		if = {
-			limit = {
-				original_tag = CHI
-				NOT = {
-					has_war_with = TAI
-				}
-			}
-			TAI = {
-				add_autonomy_ratio = { value = 0.5 }
-				add_political_power = 200
-			}
-			set_temp_variable = { percent_change = -15 }
-			set_temp_variable = { tag_index = JAP.id }
-			set_temp_variable = { influence_target = TAI.id }
-			change_influence_percentage = yes
-		}
-		if = {
-			limit = {
-				original_tag = TAI
-				NOT = {
-					has_war_with = CHI
-				}
-			}
-			CHI = {
-				add_autonomy_ratio = { value = 0.5 }
-				add_political_power = 200
-			}
-			set_temp_variable = { percent_change = -15 }
-			set_temp_variable = { tag_index = JAP.id }
-			set_temp_variable = { influence_target = CHI.id }
-			change_influence_percentage = yes
-		}
-		JAP = { country_event = Japan.100009804 } # they undermine our puppet's legitimacy!
+# 		add_political_power = -200
+# 		if = {
+# 			limit = {
+# 				original_tag = KOR
+# 				NOT = {
+# 					has_war_with = NKO
+# 				}
+# 			}
+# 			NKO = {
+# 				add_autonomy_ratio = { value = 0.5 }
+# 				add_political_power = 200
+# 			}
+# 			set_temp_variable = { percent_change = -15 }
+# 			set_temp_variable = { tag_index = JAP.id }
+# 			set_temp_variable = { influence_target = NKO.id }
+# 			change_influence_percentage = yes
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = NKO
+# 				NOT = {
+# 					has_war_with = KOR
+# 				}
+# 			}
+# 			KOR = {
+# 				add_autonomy_ratio = { value = 0.5 }
+# 				add_political_power = 200
+# 			}
+# 			set_temp_variable = { percent_change = -15 }
+# 			set_temp_variable = { tag_index = JAP.id }
+# 			set_temp_variable = { influence_target = KOR.id }
+# 			change_influence_percentage = yes
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = CHI
+# 				NOT = {
+# 					has_war_with = TAI
+# 				}
+# 			}
+# 			TAI = {
+# 				add_autonomy_ratio = { value = 0.5 }
+# 				add_political_power = 200
+# 			}
+# 			set_temp_variable = { percent_change = -15 }
+# 			set_temp_variable = { tag_index = JAP.id }
+# 			set_temp_variable = { influence_target = TAI.id }
+# 			change_influence_percentage = yes
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = TAI
+# 				NOT = {
+# 					has_war_with = CHI
+# 				}
+# 			}
+# 			CHI = {
+# 				add_autonomy_ratio = { value = 0.5 }
+# 				add_political_power = 200
+# 			}
+# 			set_temp_variable = { percent_change = -15 }
+# 			set_temp_variable = { tag_index = JAP.id }
+# 			set_temp_variable = { influence_target = CHI.id }
+# 			change_influence_percentage = yes
+# 		}
+# 		JAP = { country_event = Japan.100009804 } # they undermine our puppet's legitimacy!
 
-		ai_chance = {
-			base = 10
-		}
-	}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
 
-	# We have no choice
-	option = {
-		name = Japan.100009801.oD
-		log = "[GetDateText]: [This.GetName]: Japan.100009801.oD executed"
+# 	# We have no choice
+# 	option = {
+# 		name = Japan.100009801.oD
+# 		log = "[GetDateText]: [This.GetName]: Japan.100009801.oD executed"
 
-		if = {
-			limit = {
-				original_tag = KOR
-				NOT = {
-					has_war_with = NKO
-				}
-			}
-			NKO = {
-				set_autonomy = {
-					target = THIS
-					autonomy_state = autonomy_integrated_puppet
-					freedom_level = 0.5
-					end_civil_wars = yes
-				}
-			}
-		}
-		if = {
-			limit = {
-				original_tag = NKO
-				NOT = {
-					has_war_with = KOR
-				}
-			}
-			KOR = {
-				set_autonomy = {
-					target = THIS
-					autonomy_state = autonomy_integrated_puppet
-					freedom_level = 0.5
-					end_civil_wars = yes
-				}
-			}
-		}
-		if = {
-			limit = {
-				original_tag = CHI
-				NOT = {
-					has_war_with = TAI
-				}
-			}
-			TAI = {
-				set_autonomy = {
-					target = THIS
-					autonomy_state = autonomy_integrated_puppet
-					freedom_level = 0.5
-					end_civil_wars = yes
-				}
-			}
-		}
-		if = {
-			limit = {
-				original_tag = TAI
-				NOT = {
-					has_war_with = CHI
-				}
-			}
-			CHI = {
-				set_autonomy = {
-					target = THIS
-					autonomy_state = autonomy_integrated_puppet
-					freedom_level = 0.5
-					end_civil_wars = yes
-				}
-			}
-		}
-		JAP = { country_event = Japan.100009805 } # they capitulate!
+# 		if = {
+# 			limit = {
+# 				original_tag = KOR
+# 				NOT = {
+# 					has_war_with = NKO
+# 				}
+# 			}
+# 			NKO = {
+# 				set_autonomy = {
+# 					target = THIS
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.5
+# 					end_civil_wars = yes
+# 				}
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = NKO
+# 				NOT = {
+# 					has_war_with = KOR
+# 				}
+# 			}
+# 			KOR = {
+# 				set_autonomy = {
+# 					target = THIS
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.5
+# 					end_civil_wars = yes
+# 				}
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = CHI
+# 				NOT = {
+# 					has_war_with = TAI
+# 				}
+# 			}
+# 			TAI = {
+# 				set_autonomy = {
+# 					target = THIS
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.5
+# 					end_civil_wars = yes
+# 				}
+# 			}
+# 		}
+# 		if = {
+# 			limit = {
+# 				original_tag = TAI
+# 				NOT = {
+# 					has_war_with = CHI
+# 				}
+# 			}
+# 			CHI = {
+# 				set_autonomy = {
+# 					target = THIS
+# 					autonomy_state = autonomy_integrated_puppet
+# 					freedom_level = 0.5
+# 					end_civil_wars = yes
+# 				}
+# 			}
+# 		}
+# 		JAP = { country_event = Japan.100009805 } # they capitulate!
 
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
+# }
 # Tiebreaker: Ultimatum Rejection
 country_event = {
 	id = Japan.100009802
@@ -9624,277 +9349,277 @@ country_event = {
 }
 
 #Free Trade Area of the Asia-Pacific (China)
-country_event = {
-	id = Japan.100005010
-	title = Japan.100005010.t
-	desc = Japan.100005010.d
-	picture = GFX_JAP_diet_address
+# country_event = {
+# 	id = Japan.100005010
+# 	title = Japan.100005010.t
+# 	desc = Japan.100005010.d
+# 	picture = GFX_JAP_diet_address
 
-	fire_only_once = yes
-	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	is_triggered_only = yes
 
-	#Form (or expand) FTAAP
-	option = {
-		name = Japan.100005010.oA
-		log = "[GetDateText]: [Root.GetName]: Japan.100005010.oA"
-		if = {
-			limit = {
-				NOT = {
-					has_liberal_government = yes
-				}
-			}
-			add_political_power = -200
-		}
-		set_temp_variable = { jap_radical_change = 8 }
-		jap_modify_radicalism_right = yes
-		set_temp_variable = { jap_radical_change = 4 }
-		jap_modify_radicalism_left = yes
-		CHI = {
-			country_event = Japan.100005020 # Enter FTAAP?
-		}
-		TAI = {
-			country_event = Japan.100005020 # Enter FTAAP?
-		}
+# 	#Form (or expand) FTAAP
+# 	option = {
+# 		name = Japan.100005010.oA
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005010.oA"
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					has_liberal_government = yes
+# 				}
+# 			}
+# 			add_political_power = -200
+# 		}
+# 		set_temp_variable = { jap_radical_change = 8 }
+# 		jap_modify_radicalism_right = yes
+# 		set_temp_variable = { jap_radical_change = 4 }
+# 		jap_modify_radicalism_left = yes
+# 		CHI = {
+# 			country_event = Japan.100005020 # Enter FTAAP?
+# 		}
+# 		TAI = {
+# 			country_event = Japan.100005020 # Enter FTAAP?
+# 		}
 
-		ai_chance = {
-			base = 50
-		}
-	}
+# 		ai_chance = {
+# 			base = 50
+# 		}
+# 	}
 
-	#Rather not
-	option = {
-		name = Japan.100005010.oB
-		log = "[GetDateText]: [Root.GetName]: Japan.100005010.oB"
-		add_political_power = 150
-		if = {
-			limit = {
-				NOT = {
-					has_liberal_government = yes
-				}
-			}
-			set_party_index_to_ruling_party = yes
-			set_temp_variable = { party_popularity_increase = 0.03 }
-			add_relative_party_popularity = yes
-		}
+# 	#Rather not
+# 	option = {
+# 		name = Japan.100005010.oB
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005010.oB"
+# 		add_political_power = 150
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					has_liberal_government = yes
+# 				}
+# 			}
+# 			set_party_index_to_ruling_party = yes
+# 			set_temp_variable = { party_popularity_increase = 0.03 }
+# 			add_relative_party_popularity = yes
+# 		}
 
-		if = {
-			limit = { # all FTAAP offers finished and did not establish FTAAP
-				has_completed_focus = JAP_china_relations
-				has_completed_focus = JAP_south_korea_relations
-				has_completed_focus = JAP_usa_relations
-				has_completed_focus = JAP_sea_relations
-				NOT = {
-					has_idea = JAP_ftaap_member
-				}
-			}
-			country_event = Japan.100005090 # Japan Turns Against Globalization!
-		}
+# 		if = {
+# 			limit = { # all FTAAP offers finished and did not establish FTAAP
+# 				has_completed_focus = JAP_china_relations
+# 				has_completed_focus = JAP_south_korea_relations
+# 				has_completed_focus = JAP_usa_relations
+# 				has_completed_focus = JAP_sea_relations
+# 				NOT = {
+# 					has_idea = JAP_ftaap_member
+# 				}
+# 			}
+# 			country_event = Japan.100005090 # Japan Turns Against Globalization!
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
+# }
 
-#Free Trade Area of the Asia-Pacific (Korea)
-country_event = {
-	id = Japan.100005011
-	title = Japan.100005011.t
-	desc = Japan.100005011.d
-	picture = GFX_JAP_diet_address
+# #Free Trade Area of the Asia-Pacific (Korea)
+# country_event = {
+# 	id = Japan.100005011
+# 	title = Japan.100005011.t
+# 	desc = Japan.100005011.d
+# 	picture = GFX_JAP_diet_address
 
-	fire_only_once = yes
-	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	is_triggered_only = yes
 
-	#Form (or expand) FTAAP
-	option = {
-		name = Japan.100005011.oA
-		log = "[GetDateText]: [Root.GetName]: Japan.100005011.oA"
-		if = {
-			limit = {
-				NOT = {
-					has_liberal_government = yes
-				}
-			}
-			add_political_power = -100
-		}
-		set_temp_variable = { jap_radical_change = 6 }
-		jap_modify_radicalism_right = yes
-		set_temp_variable = { jap_radical_change = 2 }
-		jap_modify_radicalism_left = yes
-		KOR = {
-			country_event = Japan.100005020 # Enter FTAAP?
-		}
+# 	#Form (or expand) FTAAP
+# 	option = {
+# 		name = Japan.100005011.oA
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005011.oA"
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					has_liberal_government = yes
+# 				}
+# 			}
+# 			add_political_power = -100
+# 		}
+# 		set_temp_variable = { jap_radical_change = 6 }
+# 		jap_modify_radicalism_right = yes
+# 		set_temp_variable = { jap_radical_change = 2 }
+# 		jap_modify_radicalism_left = yes
+# 		KOR = {
+# 			country_event = Japan.100005020 # Enter FTAAP?
+# 		}
 
-		ai_chance = {
-			base = 50
-		}
-	}
+# 		ai_chance = {
+# 			base = 50
+# 		}
+# 	}
 
-	#Rather not
-	option = {
-		name = Japan.100005011.oB
-		log = "[GetDateText]: [Root.GetName]: Japan.100005011.oB"
-		add_political_power = 50
-		if = {
-			limit = {
-				NOT = {
-					has_liberal_government = yes
-				}
-			}
-			set_party_index_to_ruling_party = yes
-			set_temp_variable = { party_popularity_increase = 0.03 }
-			add_relative_party_popularity = yes
-		}
+# 	#Rather not
+# 	option = {
+# 		name = Japan.100005011.oB
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005011.oB"
+# 		add_political_power = 50
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					has_liberal_government = yes
+# 				}
+# 			}
+# 			set_party_index_to_ruling_party = yes
+# 			set_temp_variable = { party_popularity_increase = 0.03 }
+# 			add_relative_party_popularity = yes
+# 		}
 
-		if = {
-			limit = { # all FTAAP offers finished and did not establish FTAAP
-				has_completed_focus = JAP_china_relations
-				has_completed_focus = JAP_south_korea_relations
-				has_completed_focus = JAP_usa_relations
-				has_completed_focus = JAP_sea_relations
-				NOT = {
-					has_idea = JAP_ftaap_member
-				}
-			}
-			country_event = Japan.100005090 # Japan Turns Against Globalization!
-		}
+# 		if = {
+# 			limit = { # all FTAAP offers finished and did not establish FTAAP
+# 				has_completed_focus = JAP_china_relations
+# 				has_completed_focus = JAP_south_korea_relations
+# 				has_completed_focus = JAP_usa_relations
+# 				has_completed_focus = JAP_sea_relations
+# 				NOT = {
+# 					has_idea = JAP_ftaap_member
+# 				}
+# 			}
+# 			country_event = Japan.100005090 # Japan Turns Against Globalization!
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
+# }
 
-#Free Trade Area of the Asia-Pacific (USA)
-country_event = {
-	id = Japan.100005012
-	title = Japan.100005012.t
-	desc = Japan.100005012.d
-	picture = GFX_JAP_diet_address
+# #Free Trade Area of the Asia-Pacific (USA)
+# country_event = {
+# 	id = Japan.100005012
+# 	title = Japan.100005012.t
+# 	desc = Japan.100005012.d
+# 	picture = GFX_JAP_diet_address
 
-	fire_only_once = yes
-	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	is_triggered_only = yes
 
-	#Form (or expand) FTAAP
-	option = {
-		name = Japan.100005012.oA
-		log = "[GetDateText]: [Root.GetName]: Japan.100005012.oA"
-		set_temp_variable = { jap_radical_change = 5 }
-		jap_modify_radicalism_right = yes
-		set_temp_variable = { jap_radical_change = 2 }
-		jap_modify_radicalism_left = yes
-		USA = {
-			country_event = Japan.100005020 # Enter FTAAP?
-		}
+# 	#Form (or expand) FTAAP
+# 	option = {
+# 		name = Japan.100005012.oA
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005012.oA"
+# 		set_temp_variable = { jap_radical_change = 5 }
+# 		jap_modify_radicalism_right = yes
+# 		set_temp_variable = { jap_radical_change = 2 }
+# 		jap_modify_radicalism_left = yes
+# 		USA = {
+# 			country_event = Japan.100005020 # Enter FTAAP?
+# 		}
 
-		ai_chance = {
-			base = 50
-		}
-	}
+# 		ai_chance = {
+# 			base = 50
+# 		}
+# 	}
 
-	#Rather not
-	option = {
-		name = Japan.100005012.oB
-		log = "[GetDateText]: [Root.GetName]: Japan.100005012.oB"
-		add_political_power = 50
-		if = {
-			limit = {
-				NOT = {
-					has_liberal_government = yes
-				}
-			}
-			set_party_index_to_ruling_party = yes
-			set_temp_variable = { party_popularity_increase = 0.03 }
-			add_relative_party_popularity = yes
-		}
+# 	#Rather not
+# 	option = {
+# 		name = Japan.100005012.oB
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005012.oB"
+# 		add_political_power = 50
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					has_liberal_government = yes
+# 				}
+# 			}
+# 			set_party_index_to_ruling_party = yes
+# 			set_temp_variable = { party_popularity_increase = 0.03 }
+# 			add_relative_party_popularity = yes
+# 		}
 
-		if = {
-			limit = { # all FTAAP offers finished and did not establish FTAAP
-				has_completed_focus = JAP_china_relations
-				has_completed_focus = JAP_south_korea_relations
-				has_completed_focus = JAP_usa_relations
-				has_completed_focus = JAP_sea_relations
-				NOT = {
-					has_idea = JAP_ftaap_member
-				}
-			}
-			country_event = Japan.100005090 # Japan Turns Against Globalization!
-		}
+# 		if = {
+# 			limit = { # all FTAAP offers finished and did not establish FTAAP
+# 				has_completed_focus = JAP_china_relations
+# 				has_completed_focus = JAP_south_korea_relations
+# 				has_completed_focus = JAP_usa_relations
+# 				has_completed_focus = JAP_sea_relations
+# 				NOT = {
+# 					has_idea = JAP_ftaap_member
+# 				}
+# 			}
+# 			country_event = Japan.100005090 # Japan Turns Against Globalization!
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
+# }
 
-#Free Trade Area of the Asia-Pacific (SEA)
-country_event = {
-	id = Japan.100005013
-	title = Japan.100005013.t
-	desc = Japan.100005013.d
-	picture = GFX_JAP_diet_address
+# #Free Trade Area of the Asia-Pacific (SEA)
+# country_event = {
+# 	id = Japan.100005013
+# 	title = Japan.100005013.t
+# 	desc = Japan.100005013.d
+# 	picture = GFX_JAP_diet_address
 
-	fire_only_once = yes
-	is_triggered_only = yes
+# 	fire_only_once = yes
+# 	is_triggered_only = yes
 
-	#Form (or expand) FTAAP
-	option = {
-		name = Japan.100005013.oA
-		log = "[GetDateText]: [Root.GetName]: Japan.100005013.oA"
-		set_temp_variable = { jap_radical_change = 3 }
-		jap_modify_radicalism_right = yes
-		set_temp_variable = { jap_radical_change = 5 }
-		jap_modify_radicalism_left = yes
-		every_other_country = {
-			limit = {
-				is_asean_nation = yes
-				NOT = {
-					has_idea = non_power
-				}
-			}
-			country_event = Japan.100005020 # Enter FTAAP?
-		}
+# 	#Form (or expand) FTAAP
+# 	option = {
+# 		name = Japan.100005013.oA
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005013.oA"
+# 		set_temp_variable = { jap_radical_change = 3 }
+# 		jap_modify_radicalism_right = yes
+# 		set_temp_variable = { jap_radical_change = 5 }
+# 		jap_modify_radicalism_left = yes
+# 		every_other_country = {
+# 			limit = {
+# 				is_asean_nation = yes
+# 				NOT = {
+# 					has_idea = non_power
+# 				}
+# 			}
+# 			country_event = Japan.100005020 # Enter FTAAP?
+# 		}
 
-		ai_chance = {
-			base = 50
-		}
-	}
+# 		ai_chance = {
+# 			base = 50
+# 		}
+# 	}
 
-	#Rather not
-	option = {
-		name = Japan.100005013.oB
-		log = "[GetDateText]: [Root.GetName]: Japan.100005013.oB"
-		add_political_power = 50
-		if = {
-			limit = {
-				NOT = {
-					has_liberal_government = yes
-				}
-			}
-			set_party_index_to_ruling_party = yes
-			set_temp_variable = { party_popularity_increase = 0.03 }
-			add_relative_party_popularity = yes
-		}
+# 	#Rather not
+# 	option = {
+# 		name = Japan.100005013.oB
+# 		log = "[GetDateText]: [Root.GetName]: Japan.100005013.oB"
+# 		add_political_power = 50
+# 		if = {
+# 			limit = {
+# 				NOT = {
+# 					has_liberal_government = yes
+# 				}
+# 			}
+# 			set_party_index_to_ruling_party = yes
+# 			set_temp_variable = { party_popularity_increase = 0.03 }
+# 			add_relative_party_popularity = yes
+# 		}
 
-		if = {
-			limit = { # all FTAAP offers finished and did not establish FTAAP
-				has_completed_focus = JAP_china_relations
-				has_completed_focus = JAP_south_korea_relations
-				has_completed_focus = JAP_usa_relations
-				has_completed_focus = JAP_sea_relations
-				NOT = {
-					has_idea = JAP_ftaap_member
-				}
-			}
-			country_event = Japan.100005090 # Japan Turns Against Globalization!
-		}
+# 		if = {
+# 			limit = { # all FTAAP offers finished and did not establish FTAAP
+# 				has_completed_focus = JAP_china_relations
+# 				has_completed_focus = JAP_south_korea_relations
+# 				has_completed_focus = JAP_usa_relations
+# 				has_completed_focus = JAP_sea_relations
+# 				NOT = {
+# 					has_idea = JAP_ftaap_member
+# 				}
+# 			}
+# 			country_event = Japan.100005090 # Japan Turns Against Globalization!
+# 		}
 
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+# 		ai_chance = {
+# 			base = 10
+# 		}
+# 	}
+# }
 
 #Japan Invites Us To FTAAP
 country_event = {
@@ -12893,32 +12618,32 @@ country_event = {
 		set_country_flag = JAP_moon_base_completed
     }
 }
-country_event = {
-	id = JAP_diplomacy.32
-	title = JAP_diplomacy.32.t
-	desc = JAP_diplomacy.32.d
+# country_event = {
+# 	id = JAP_diplomacy.32
+# 	title = JAP_diplomacy.32.t
+# 	desc = JAP_diplomacy.32.d
 
-	is_triggered_only = yes
+# 	is_triggered_only = yes
 
-	option = {
-		name = JAP_diplomacy.32.a
-		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.32.a executed"
-		add_timed_idea = {
-			idea = special_project_consumer_costs_medium
-			days = 180
-		}
-	}
+# 	option = {
+# 		name = JAP_diplomacy.32.a
+# 		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.32.a executed"
+# 		add_timed_idea = {
+# 			idea = special_project_consumer_costs_medium
+# 			days = 180
+# 		}
+# 	}
 
-	option = {
-		name = JAP_diplomacy.32.b
-		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.32.b executed"
+# 	option = {
+# 		name = JAP_diplomacy.32.b
+# 		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.32.b executed"
 
-		add_days_mission_timeout = {
-			mission = JAP_mars_mission_program_mission
-			days = 100
-		}
-	}
-}
+# 		add_days_mission_timeout = {
+# 			mission = JAP_mars_mission_program_mission
+# 			days = 100
+# 		}
+# 	}
+# }
 country_event = {
 	id = JAP_diplomacy.33
 	title = JAP_diplomacy.33.t

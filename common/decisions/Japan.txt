@@ -126,1686 +126,227 @@ decision_category_energy = {
 #----------------------------------------------------------------
 #War Strategies
 #----------------------------------------------------------------
-catdec_mdmosjap_JAP_war_strategies = {
+#catdec_mdmosjap_JAP_war_strategies = {
+#
+#	JAP_dec_jsdf_ground_equipment_infantry = {
+#		allowed = { original_tag = JAP }
+#
+#		visible = {
+#			has_completed_focus = JAP_army_emphasis
+#			NOT = {
+#				has_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
+#			}
+#		}
+#		available = {
+#			NOT = {
+#				has_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
+#			}
+#		}
+#
+#		complete_effect = {
+#			set_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
+#			country_event = Japan.100006102 # Ground Equipment Specialization (Infantry)
+#		}
+#
+#		ai_will_do = { factor = 0 }
+#	}
+
+	# JAP_dec_article9_tiebreaker_ultimatum_demand = {
+	# 	allowed = { original_tag = JAP }
+
+	# 	available = {
+	# 		var:jap_aggression_tiebreaker_target = {
+	# 			NOT = { has_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
+	# 		}
+	# 		OR = {
+	# 			AND = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = KOR
+	# 				}
+	# 				OR = {
+	# 					NKO = { exists = no }
+	# 					KOR = { exists = no }
+	# 					NOT = {
+	# 						KOR = { is_subject_of = JAP }
+	# 					}
+	# 					NKO = { is_subject_of = JAP }
+	# 				}
+	# 			}
+	# 		}
+	# 		OR = {
+	# 			AND = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = NKO
+	# 				}
+	# 				OR = {
+	# 					NKO = { exists = no }
+	# 					KOR = { exists = no }
+	# 					NOT = {
+	# 						NKO = { is_subject_of = JAP }
+	# 					}
+	# 					KOR = { is_subject_of = JAP }
+	# 				}
+	# 			}
+	# 		}
+	# 		OR = {
+	# 			AND = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = CHI
+	# 				}
+	# 				OR = {
+	# 					TAI = { exists = no }
+	# 					CHI = { exists = no }
+	# 					NOT = {
+	# 						CHI = { is_subject_of = JAP }
+	# 					}
+	# 					TAI = { is_subject_of = JAP }
+	# 				}
+	# 			}
+	# 		}
+	# 		OR = {
+	# 			AND = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = TAI
+	# 				}
+	# 				OR = {
+	# 					TAI = { exists = no }
+	# 					CHI = { exists = no }
+	# 					NOT = {
+	# 						TAI = { is_subject_of = JAP }
+	# 					}
+	# 					CHI = { is_subject_of = JAP }
+	# 				}
+	# 			}
+	# 		}
+	# 	}
+	# 	activation = { always = no }
+
+	# 	days_mission_timeout = 30
+	# 	selectable_mission = no
+	# 	targets_dynamic = yes
+	# 	target_trigger = {
+	# 		has_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT
+	# 	}
+
+	# 	is_good = yes
+	# 	war_with_on_timeout = var:jap_aggression_tiebreaker_target
+
+	# 	timeout_effect = {
+	# 		add_threat = 5.0
+	# 		if = {
+	# 			limit = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = KOR
+	# 				}
+	# 			}
+	# 			declare_war_on = {
+	# 				target = NKO
+	# 				type = liberate_wargoal
+	# 			}
+	# 		}
+	# 		if = {
+	# 			limit = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = NKO
+	# 				}
+	# 			}
+	# 			declare_war_on = {
+	# 				target = KOR
+	# 				type = liberate_wargoal
+	# 			}
+	# 		}
+	# 		if = {
+	# 			limit = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = CHI
+	# 				}
+	# 			}
+	# 			declare_war_on = {
+	# 				target = TAI
+	# 				type = liberate_wargoal
+	# 			}
+	# 		}
+	# 		if = {
+	# 			limit = {
+	# 				var:jap_aggression_tiebreaker_target = {
+	# 					original_tag = TAI
+	# 				}
+	# 			}
+	# 			declare_war_on = {
+	# 				target = CHI
+	# 				type = liberate_wargoal
+	# 			}
+	# 		}
+	# 	}
+
+	# 	ai_will_do = { factor = 0 }
+	# }
 
-	JAP_dec_jsdf_ground_equipment_infantry = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_army_emphasis
-			NOT = {
-				has_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_GROUND_EQUIPMENT_INFANTRY_CHOSEN
-			country_event = Japan.100006102 # Ground Equipment Specialization (Infantry)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-
-	JAP_dec_jsdf_navy_equipment_carriers = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_navy_emphasis
-			NOT = {
-				has_country_flag = JAP_NAVY_EQUIPMENT_CARRIER_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_NAVY_EQUIPMENT_CARRIER_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_NAVY_EQUIPMENT_CARRIER_CHOSEN
-			country_event = Japan.100006201 # Naval Equipment Specialization (Carriers)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_navy_equipment_heavy = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_navy_emphasis
-			NOT = {
-				has_country_flag = JAP_NAVY_EQUIPMENT_HEAVY_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_NAVY_EQUIPMENT_HEAVY_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_NAVY_EQUIPMENT_HEAVY_CHOSEN
-			country_event = Japan.100006202 # Naval Equipment Specialization (Heavy)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_navy_equipment_light = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_navy_emphasis
-			NOT = {
-				has_country_flag = JAP_NAVY_EQUIPMENT_LIGHT_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_NAVY_EQUIPMENT_LIGHT_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_NAVY_EQUIPMENT_LIGHT_CHOSEN
-			country_event = Japan.100006203 # Naval Equipment Specialization (Light)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_naval_equipment_lsd = {
-		allowed = { original_tag = JAP }
-
-		activation = { has_completed_focus = JAP_navy_procurement }
-		available = { has_completed_focus = JAP_navy_procurement }
-
-		fire_only_once = yes
-		days_mission_timeout = 365
-		selectable_mission = yes
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = -20 }
-			modify_treasury_effect = yes
-			if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				add_equipment_production = {
-					equipment = {
-						type = helicopter_operator_hull_1
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = helicopter_operator_hull_1
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-			if = {
-				limit = { has_dlc = "Man the Guns" }
-				add_equipment_production = {
-					equipment = {
-						type = helicopter_operator_hull_2
-						version_name = "Osumi Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = helicopter_operator_hull_2
-						version_name = "Osumi Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = 10 }
-			modify_treasury_effect = yes
-			navy_experience = 10
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_naval_equipment_dd1 = {
-		allowed = { original_tag = JAP }
-
-		activation = { has_completed_focus = JAP_navy_procurement }
-		available = { has_completed_focus = JAP_navy_procurement }
-
-		fire_only_once = yes
-		days_mission_timeout = 365
-		selectable_mission = yes
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = -30 }
-			modify_treasury_effect = yes
-			if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-			if = {
-				limit = { has_dlc = "Man the Guns" }
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Takanami Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Takanami Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Takanami Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Takanami Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Takanami Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = 15 }
-			modify_treasury_effect = yes
-			navy_experience = 10
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_naval_equipment_dd2 = {
-		allowed = { original_tag = JAP }
-
-		activation = { has_completed_focus = JAP_navy_procurement }
-		available = { has_completed_focus = JAP_navy_procurement }
-
-		fire_only_once = yes
-		days_mission_timeout = 365
-		selectable_mission = yes
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = -30 }
-			modify_treasury_effect = yes
-			if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				add_equipment_production = {
-					equipment = {
-						type = frigate_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = frigate_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = frigate_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = frigate_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = frigate_hull_2
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-			if = {
-				limit = { has_dlc = "Man the Guns" }
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Murasame Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Murasame Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Murasame Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Murasame Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = destroyer_hull_2
-						version_name = "Murasame Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = 15 }
-			modify_treasury_effect = yes
-			navy_experience = 10
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_naval_equipment_pg = {
-		allowed = { original_tag = JAP }
-
-		activation = { has_completed_focus = JAP_navy_procurement }
-		available = { has_completed_focus = JAP_navy_procurement }
-
-		fire_only_once = yes
-		days_mission_timeout = 365
-		selectable_mission = yes
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = 20 }
-			modify_treasury_effect = yes
-			if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				add_equipment_production = {
-					equipment = {
-						type = missile_corvette_3
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = missile_corvette_3
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = missile_corvette_3
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = missile_corvette_3
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = missile_corvette_3
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = missile_corvette_3
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-			if = {
-				limit = { has_dlc = "Man the Guns" }
-				add_equipment_production = {
-					equipment = {
-						type = corvette_3
-						version_name = "Hayabusa Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = corvette_3
-						version_name = "Hayabusa Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = corvette_3
-						version_name = "Hayabusa Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = corvette_3
-						version_name = "Hayabusa Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = corvette_3
-						version_name = "Hayabusa Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-				add_equipment_production = {
-					equipment = {
-						type = corvette_3
-						version_name = "Hayabusa Class"
-					}
-					progress = 0.50
-					amount = 1
-				}
-			}
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = 10 }
-			modify_treasury_effect = yes
-			navy_experience = 5
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_air_equipment_ftwo1 = {
-		allowed = { original_tag = JAP }
-
-		activation = { has_completed_focus = JAP_plane_procurement }
-		available = { has_completed_focus = JAP_plane_procurement }
-
-		fire_only_once = yes
-		days_mission_timeout = 365
-		selectable_mission = yes
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = -6 } # about $120 million per unit
-			modify_treasury_effect = yes
-			if = {
-				limit = { NOT = { has_dlc = "By Blood Alone" } }
-				add_equipment_to_stockpile = {
-					type = MR_Fighter3
-					amount = 50
-				}
-
-			}
-			if = {
-				limit = { has_dlc = "By Blood Alone" }
-				add_equipment_to_stockpile = {
-					type = MR_Fighter3
-					amount = 50
-				}
-			}
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = 10 }
-			modify_treasury_effect = yes
-			air_experience = 10
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_air_equipment_ftwo2 = {
-		allowed = { original_tag = JAP }
-
-		activation = { has_completed_focus = JAP_plane_procurement }
-		available = { has_completed_focus = JAP_plane_procurement }
-
-		fire_only_once = yes
-		days_mission_timeout = 365
-		selectable_mission = yes
-
-		timeout_effect = {
-			set_temp_variable = { treasury_change = -6 } # about $120 million per unit
-			modify_treasury_effect = yes
-			if = {
-				limit = { NOT = { has_dlc = "By Blood Alone" } }
-				add_equipment_to_stockpile = {
-					type = MR_Fighter3
-					amount = 50
-				}
-
-			}
-			if = {
-				limit = { has_dlc = "By Blood Alone" }
-				add_equipment_to_stockpile = {
-					type = MR_Fighter3
-					amount = 50
-				}
-			}
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = 10 }
-			modify_treasury_effect = yes
-			air_experience = 10
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_air_equipment_light = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_air_emphasis
-			NOT = {
-				has_country_flag = JAP_AIR_EQUIPMENT_LIGHT_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_AIR_EQUIPMENT_LIGHT_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_AIR_EQUIPMENT_LIGHT_CHOSEN
-			country_event = Japan.100006301 # Air Equipment Specialization (Air Combat)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_air_equipment_attack = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_air_emphasis
-			NOT = {
-				has_country_flag = JAP_AIR_EQUIPMENT_ATTACK_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_AIR_EQUIPMENT_ATTACK_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_AIR_EQUIPMENT_ATTACK_CHOSEN
-			country_event = Japan.100006302 # Air Equipment Specialization (Attack)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_jsdf_air_equipment_heavy = { #unused
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_air_emphasis
-			NOT = {
-				has_country_flag = JAP_AIR_EQUIPMENT_HEAVY_CHOSEN
-			}
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_AIR_EQUIPMENT_HEAVY_CHOSEN
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_AIR_EQUIPMENT_HEAVY_CHOSEN
-			country_event = Japan.100006303 # Air Equipment Specialization (Heavy)
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_defense_guard_mobilize = {
-		allowed = { original_tag = JAP }
-		visible = {
-			has_completed_focus = JAP_swiss_conscription
-			NOT = {
-				has_country_flag = JAP_DEFENSE_GUARD_MOBILIZED
-			}
-		}
-
-		available = {
-			NOT = {
-				JAP = { has_country_flag = JAP_DEFENSE_GUARD_MOBILIZED }
-			}
-			OR = {
-				ROOT = {
-					has_war = yes
-					has_country_flag = JAP_DEFENSE_GUARD_DEMOBILIZED
-					enemies_strength_ratio > 0.75
-					NOT = { has_capitulated = yes }
-				}
-			}
-			has_manpower > 204000
-		}
-
-		custom_cost_trigger = {
-			ROOT = {
-				check_variable = { treasury > 0.5 }
-				command_power > 20
-			}
-		}
-		#TODO: custom cost text
-
-		complete_effect = {
-			add_stability = -0.05
-			subtract_from_variable = { treasury = 0.5 }
-			add_command_power = -20
-		}
-
-		days_remove = 14
-		remove_effect = {
-			add_ideas = JAP_article9_mobilization_econ
-			hidden_effect = {
-				617 = {
-					create_unit = {
-						division = "name =\"Hokkaido Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Doto Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hokkaido Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Doou Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				616 = {
-					create_unit = {
-						division = "name =\"Aomori Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Iwate Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Akita Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Yamagata Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Miyagi Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Fukushima Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Niigata Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Aomori Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Akita Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Yamagata Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Miyagi Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Miyagi Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Aizu Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Fukushima Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Niigata Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				615 = {
-					create_unit = {
-						division = "name =\"Gunma Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tochigi Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Ibaraki Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Chiba Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Saitama Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Metropolitan Police Department\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kanagawa Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Yamanashi Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Gunma Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Jomo Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tochigi Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tochigi Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tsukuba Butai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Saitama Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Saitama Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Chiba Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Chiba Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"23-Ku Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"San-Tama Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kigyo Senshi Butai\" division_template = \"Furusato Guards\" start_experience_factor = 0.00 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hongo Battalion\" division_template = \"Daigaku Giyuhei\" start_experience_factor = 0.00 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Chofu Battalion\" division_template = \"Daigaku Giyuhei\" start_experience_factor = 0.00 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tokyo Waterfront Butai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tokyo Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kawasaki Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Yokohama Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kanagawa Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Yamanashi Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				613 = {
-					create_unit = {
-						division = "name =\"Shizuoka-Nagano Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Toyama-Ishikawa-Fukui Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Shizuoka Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Shinano Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Toyama-Ishikawa-Fukui Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Gifu Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Aichi Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Nagoya Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Toyohashi Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				612 = {
-					create_unit = {
-						division = "name =\"Shiga Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Mie Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Wakayama Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Nara Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kyoto Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Osaka Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hyogo Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Shiga Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Mie Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Wakayama Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Nara Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kyoto Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kyoto Jikeidan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kyoto Furusato Boeitai\" division_template = \"Daigaku Giyuhei\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Osaka Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Osaka Minpeidan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Sakai Minpeidan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hannan Minpeidan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Osaka Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kobe Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hyogo Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hyogo Jikeidan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Harima Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				611 = {
-					create_unit = {
-						division = "name =\"Shimane-Tottori Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Okayama Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hiroshima-Yamaguchi Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Okayama Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Bingo Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Hiroshima Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Sanin Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Yamaguchi Furusato Boeitai\" division_template = \"Daigaku Giyuhei\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				610 = {
-					create_unit = {
-						division = "name =\"Kagawa-Tokushima Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Ehime-Kochi Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kagawa Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Tokushima Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Ehime Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kochi Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				609 = {
-					create_unit = {
-						division = "name =\"Fukuoka Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Saga-Nagasaki Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Oita-Miyazaki Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kumamoto Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kagoshima Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kitakyushu Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kitakyushu Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Fukuoka Shobodan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Fukuoka Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Chikuho Jikeidan\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Saga-Nagasaki Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Oita Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kumamoto Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Miyazaki Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Kagoshima Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-				618 = {
-					create_unit = {
-						division = "name =\"Okinawa Prefectural Police\" division_template = \"Prefectural Police Squad Guards\" start_experience_factor = 0.1 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-					create_unit = {
-						division = "name =\"Okinawa Furusato Boeitai\" division_template = \"Furusato Guards\" start_experience_factor = 0.08 start_equipment_factor = 1.00"
-						owner = JAP
-						count = 1
-					}
-				}
-			}
-			set_country_flag = JAP_DEFENSE_GUARD_MOBILIZED
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-	}
-
-	JAP_dec_defense_guard_demobilize = {
-		allowed = { original_tag = JAP }
-		visible = {
-			has_completed_focus = JAP_swiss_conscription
-			NOT = {
-				has_country_flag = JAP_DEFENSE_GUARD_MOBILIZED
-			}
-		}
-
-		available = {
-			JAP = { has_country_flag = JAP_DEFENSE_GUARD_MOBILIZED }
-		}
-
-		complete_effect = {
-			add_stability = 0.05
-			add_command_power = -20
-			set_country_flag = JAP_DEFENSE_GUARD_DEMOBILIZED
-			delete_unit_template_and_units = { division_template = "Furusato Guards" disband = yes }
-			delete_unit_template_and_units = { division_template = "Prefectural Police Squad Guards" disband = yes }
-		}
-
-		ai_will_do = {
-			factor = 100
-		}
-
-		cost = 50
-	}
-
-
-	JAP_dec_defense_rapid_mobilization = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_defense_flexibility
-		}
-		available = {
-			has_completed_focus = JAP_defense_flexibility
-		}
-
-		modifier = {
-			political_power_gain = -0.50
-			mobilization_speed = 0.20
-			training_time_factor = -0.30
-			experience_gain_army_unit_factor = 0.50
-			experience_gain_navy_unit_factor = 0.50
-			# experience_gain_air_unit_factor = 0.50
-			personnel_cost_multiplier_modifier = 0.50
-		}
-
-		complete_effect = {
-			add_timed_idea = {
-				idea = JAP_mobilization_complication
-				days = 90
-			}
-		}
-
-		days_remove = 60
-		cost = 100
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_defense_urgent_contracts = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_defense_self_sufficiency
-		}
-		available = {
-			has_completed_focus = JAP_defense_self_sufficiency
-		}
-
-		modifier = {
-			#TODO: calc 1% of GDP and feed into weekly treasury calc similar to faction subsidies, dont put it here
-			industrial_capacity_factory = 0.30
-			industrial_capacity_dockyard = 0.50
-			production_factory_efficiency_gain_factor = 0.25
-		}
-
-		complete_effect = {
-			every_owned_state = {
-				set_temp_variable = { temp_productivity_change = -0.050 }
-				flat_productivity_change_effect = yes
-			}
-		}
-
-		days_remove = 90
-		cost = 50
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_defense_fuel_constraints = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_defense_self_sufficiency
-		}
-		available = {
-			has_completed_focus = JAP_defense_self_sufficiency
-			has_war = yes
-		}
-
-		modifier = {
-			non_electric_fuel_consumption_modifier = -0.30 #TODO: verify is this clamped in energy system?
-			stability_factor = -0.15
-		}
-
-		complete_effect = {
-			add_stability = -0.02
-		}
-
-		days_remove = 90
-		cost = 50
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_article9_tiebreaker_ultimatum = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_assertive_tiebreaker
-		}
-		available = {
-			has_completed_focus = JAP_assertive_tiebreaker
-		}
-
-		targets_dynamic = yes
-		target_trigger = {
-			FROM = {
-				OR = {
-					AND = { #KOR
-						original_tag = KOR
-						NKO = { exists = yes }
-					}
-					AND = { #NKO
-						original_tag = NKO
-						KOR = { exists = yes }
-					}
-					AND = { #CHI
-						original_tag = CHI
-						TAI = { exists = yes }
-					}
-					AND = { #TAI
-						original_tag = TAI
-						CHI = { exists = yes }
-					}
-					#AND = { #TODO: support this
-					#	OR = {
-					#		is_asean_nation = yes
-					#		is_East_Asia = yes
-					#	}
-					#	has_civil_war = yes
-					#}
-				}
-				is_subject_of = JAP
-				exists = yes
-				NOT = {
-					has_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
-					tag = JAP
-				}
-			}
-		}
-
-		complete_effect = {
-			FROM = {
-				set_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
-				every_other_country = { # set flag for civil war countries so player cant open multiple events
-					limit = { # maybe a better way to test who is in civil war with
-						has_war_with = FROM
-						has_civil_war = yes
-					}
-					set_country_flag = JAP_AGGRESSION_TIEBREAKER_ONGOING
-				}
-			}
-			set_variable = { jap_aggression_tiebreaker_target = FROM }
-			country_event = Japan.100009800 # Tiebreaker Ultimatum Choice
-		}
-
-		days_remove = 0
-		cost = 0
-
-
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_article9_tiebreaker_ultimatum_demand = {
-		allowed = { original_tag = JAP }
-
-		available = {
-			var:jap_aggression_tiebreaker_target = {
-				NOT = { has_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT }
-			}
-			OR = {
-				AND = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = KOR
-					}
-					OR = {
-						NKO = { exists = no }
-						KOR = { exists = no }
-						NOT = {
-							KOR = { is_subject_of = JAP }
-						}
-						NKO = { is_subject_of = JAP }
-					}
-				}
-			}
-			OR = {
-				AND = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = NKO
-					}
-					OR = {
-						NKO = { exists = no }
-						KOR = { exists = no }
-						NOT = {
-							NKO = { is_subject_of = JAP }
-						}
-						KOR = { is_subject_of = JAP }
-					}
-				}
-			}
-			OR = {
-				AND = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = CHI
-					}
-					OR = {
-						TAI = { exists = no }
-						CHI = { exists = no }
-						NOT = {
-							CHI = { is_subject_of = JAP }
-						}
-						TAI = { is_subject_of = JAP }
-					}
-				}
-			}
-			OR = {
-				AND = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = TAI
-					}
-					OR = {
-						TAI = { exists = no }
-						CHI = { exists = no }
-						NOT = {
-							TAI = { is_subject_of = JAP }
-						}
-						CHI = { is_subject_of = JAP }
-					}
-				}
-			}
-		}
-		activation = { always = no }
-
-		days_mission_timeout = 30
-		selectable_mission = no
-		targets_dynamic = yes
-		target_trigger = {
-			has_country_flag = JAP_AGGRESSION_TIEBREAKER_IMMINENT
-		}
-
-		is_good = yes
-		war_with_on_timeout = var:jap_aggression_tiebreaker_target
-
-		timeout_effect = {
-			add_threat = 5.0
-			if = {
-				limit = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = KOR
-					}
-				}
-				declare_war_on = {
-					target = NKO
-					type = liberate_wargoal
-				}
-			}
-			if = {
-				limit = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = NKO
-					}
-				}
-				declare_war_on = {
-					target = KOR
-					type = liberate_wargoal
-				}
-			}
-			if = {
-				limit = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = CHI
-					}
-				}
-				declare_war_on = {
-					target = TAI
-					type = liberate_wargoal
-				}
-			}
-			if = {
-				limit = {
-					var:jap_aggression_tiebreaker_target = {
-						original_tag = TAI
-					}
-				}
-				declare_war_on = {
-					target = CHI
-					type = liberate_wargoal
-				}
-			}
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_dec_article9_pact_invitation = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_defense_pact
-		}
-		available = {
-			has_completed_focus = JAP_defense_pact
-			FROM = {
-				NOT = {
-					has_war = yes
-				}
-			}
-		}
-
-		targets_dynamic = yes
-		target_trigger = {
-			FROM = {
-				OR = {
-					is_asean_nation = yes
-					is_East_Asia = yes
-					is_oceania_nation = yes
-				}
-
-				NOT = {
-					is_in_faction_with = JAP
-					is_in_faction = yes
-				}
-			}
-		}
-
-		complete_effect = {
-			FROM = {
-				country_event = Japan.100009900 # EASA Invitation
-			}
-		}
-
-		days_re_enable = 180
-		days_remove = 0
-		cost = 50
-
-
-
-		ai_will_do = { factor = 0 }
-	}
 
 	# For countries declaring war on peaceful JAP
-	JAP_dec_defense_compelled_peace = {
-		activation = {
-			ROOT = {
-				has_variable = jap_compelled_peace
-			}
-			OR = {
-				NOT = {
-					has_war_with = JAP
-				}
-				JAP = {
-					has_capitulated = yes
-				}
-			}
-			OR = { # needs to satisfy one of these or theyll just get pulled back in if they WP
-				is_in_faction = no # isnt in faction
-				is_faction_leader = yes # is in faction and is faction leader
-				AND = { # is in faction, but faction leader wasnt called
-					is_in_faction = yes
-					NOT = {
-						faction_leader = {
-							has_war_with = JAP
-						}
-					}
-				}
-			}
-		}
-		available = {
-			ROOT = {
-				has_variable = jap_compelled_peace
-			}
-			OR = {
-				NOT = {
-					has_war_with = JAP
-				}
-				JAP = {
-					has_capitulated = yes
-				}
-			}
-			NOT = { # if theyll just get pulled back in if they white peace, exclude them from this and force complete
-				OR = {
-					is_in_faction = no # isnt in faction
-					is_faction_leader = yes # is in faction and is faction leader
-					AND = { # is in faction, but faction leader wasnt called
-						is_in_faction = yes
-						NOT = {
-							faction_leader = {
-								has_war_with = JAP
-							}
-						}
-					}
-				}
-			}
-		}
+# 	JAP_dec_defense_compelled_peace = {
+# 		activation = {
+# 			ROOT = {
+# 				has_variable = jap_compelled_peace
+# 			}
+# 			OR = {
+# 				NOT = {
+# 					has_war_with = JAP
+# 				}
+# 				JAP = {
+# 					has_capitulated = yes
+# 				}
+# 			}
+# 			OR = { # needs to satisfy one of these or theyll just get pulled back in if they WP
+# 				is_in_faction = no # isnt in faction
+# 				is_faction_leader = yes # is in faction and is faction leader
+# 				AND = { # is in faction, but faction leader wasnt called
+# 					is_in_faction = yes
+# 					NOT = {
+# 						faction_leader = {
+# 							has_war_with = JAP
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
+# 		available = {
+# 			ROOT = {
+# 				has_variable = jap_compelled_peace
+# 			}
+# 			OR = {
+# 				NOT = {
+# 					has_war_with = JAP
+# 				}
+# 				JAP = {
+# 					has_capitulated = yes
+# 				}
+# 			}
+# 			NOT = { # if theyll just get pulled back in if they white peace, exclude them from this and force complete
+# 				OR = {
+# 					is_in_faction = no # isnt in faction
+# 					is_faction_leader = yes # is in faction and is faction leader
+# 					AND = { # is in faction, but faction leader wasnt called
+# 						is_in_faction = yes
+# 						NOT = {
+# 							faction_leader = {
+# 								has_war_with = JAP
+# 							}
+# 						}
+# 					}
+# 				}
+# 			}
+# 		}
 
-		days_mission_timeout = 365
+# 		days_mission_timeout = 365
 
-		timeout_effect = {
-			country_event = Japan.100009202 # Quick Victory Slips Away
-		}
+# 		timeout_effect = {
+# 			country_event = Japan.100009202 # Quick Victory Slips Away
+# 		}
 
-		ai_will_do = { factor = 0 }
-	}
-}
+# 		ai_will_do = { factor = 0 }
+# 	}
+# }
 
 JAP_depopulation_reform = {
 
@@ -1896,69 +437,6 @@ JAP_depopulation_reform = {
 			}
 		}
 	}
-}
-
-#----------------------------------------------------------------
-#National Consciousness and Radicalism
-#----------------------------------------------------------------
-catdec_JAP_international_policy = {
-
-	JAP_foip_pause_guarantees = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_regional_guarantee
-		}
-		available = {
-			has_country_flag = JAP_REFRESHING_GUARANTEE
-		}
-
-		complete_effect = {
-			clr_country_flag = JAP_REFRESHING_GUARANTEE
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
-	JAP_foip_update_guarantees = {
-		allowed = { original_tag = JAP }
-
-		visible = {
-			has_completed_focus = JAP_regional_guarantee
-		}
-		available = {
-			NOT = {
-				has_country_flag = JAP_REFRESHING_GUARANTEE
-			}
-		}
-
-		complete_effect = {
-			set_country_flag = JAP_REFRESHING_GUARANTEE
-			every_other_country = {
-				limit = {
-					jap_is_foip_partner = yes
-				}
-				add_opinion_modifier = {
-					target = JAP
-					modifier = military_cooperation
-				}
-				reverse_add_opinion_modifier = {
-					target = JAP
-					modifier = military_cooperation
-				}
-				JAP = {
-					diplomatic_relation = {
-						country = PREV
-						relation = guarantee
-						active = yes
-					}
-				}
-			}
-		}
-
-		ai_will_do = { factor = 0 }
-	}
-
 }
 
 #----------------------------------------------------------------
