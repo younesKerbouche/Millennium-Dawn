@@ -1,4 +1,4 @@
-capital = 1177
+﻿capital = 1177
 2000.1.1 = {
 	set_cosmetic_tag = MOR
 
@@ -19,8 +19,6 @@ capital = 1177
 	if = {
 		limit = { has_dlc = "By Blood Alone" }
 		set_air_oob = "MOR_2000_bba"
-
-		send_embargo = ISR
 		else = {
 			set_air_oob = "MOR_2000_nonbba"
 		}
@@ -50,15 +48,16 @@ capital = 1177
 		export_economy
 		officer_basic_training
 		intervention_limited_interventionism
-
-		# Custom Content
-		MOR_extremely_poor_credit_rating_idea
 		econ_isr_boycotte
 	}
 
 	add_opinion_modifier = {
 		target = ISR
 		modifier = part_blockades_isr
+	}
+	if = {
+		limit = { has_dlc = "By Blood Alone" }
+		send_embargo = ISR
 	}
 
 	set_variable = { oligarchs_opinion = 60 }
@@ -299,7 +298,6 @@ capital = 1177
 		ideology = socialism
 		traits = {
 			western_socialism
-			career_politician
 		}
 	}
 
@@ -317,11 +315,4 @@ capital = 1177
 		set_variable = { productivity_state_var = 598 }
 	}
 	set_variable = { overall_productivity = 598 }
-
-	set_power_balance = {
-		id = MOR_the_moroccan_role_of_the_king_category
-		left_side = MOR_reformist_monarch_left_side
-		right_side = MOR_absolutist_monarch_right_side
-		set_value = -0.1
-	}
 }
