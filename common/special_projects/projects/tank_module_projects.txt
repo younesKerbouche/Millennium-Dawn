@@ -1653,7 +1653,7 @@ sp_tank_stealth_armor_early = {
 sp_exoskeletal_engine_tank = {
 	allowed = { has_dlc = "No Step Back" }
 	specialization = specialization_land
-	icon = x
+	icon = GFX_sp_land_exoskeletal_engine
 
 	project_tags = sp_tag_armored_vehicles
 
@@ -1673,7 +1673,7 @@ sp_exoskeletal_engine_tank = {
 
 	project_output = {
 		enable_equipment_modules = {
-			rtank_module_exoskeletal_engine
+			tank_module_exoskeletal_engine
 		}
 		country_effects = {
 			custom_effect_tooltip = {
@@ -1710,7 +1710,7 @@ sp_exoskeletal_engine_tank = {
 sp_nuclear_engine_tank = {
 	allowed = { has_dlc = "No Step Back" }
 	specialization = specialization_land
-	icon = x
+	icon = GFX_sp_land_nuclear_engine
 
 	project_tags = sp_tag_armored_vehicles
 
@@ -1769,7 +1769,7 @@ sp_nuclear_engine_tank = {
 sp_walker_tank_chassis = {
 	allowed = { has_dlc = "No Step Back" }
 	specialization = specialization_land
-	icon = x
+	icon = GFX_sp_medium_walker_tank
 
 	project_tags = sp_tag_armored_vehicles
 
@@ -1791,7 +1791,7 @@ sp_walker_tank_chassis = {
 				name = sp_walker_tank_chassis
 				uses = 1
 				cost_factor = 1
-				equipment = walker_tank_chassis
+				equipment = super_heavy_tank_chassis
 			}
 
 			custom_effect_tooltip = {
@@ -1840,7 +1840,7 @@ sp_walker_tank_chassis = {
 sp_heavy_walker_tank_chassis = {
 	allowed = { has_dlc = "No Step Back" }
 	specialization = specialization_land
-	icon = x
+	icon = GFX_sp_heavy_walker_tank
 
 	project_tags = sp_tag_armored_vehicles
 
@@ -1862,7 +1862,7 @@ sp_heavy_walker_tank_chassis = {
 				name = sp_heavy_walker_tank_chassis
 				uses = 1
 				cost_factor = 1
-				equipment = heavy_walker_tank_chassis
+				equipment = super_heavy_tank_artillery_chassis
 			}
 
 			custom_effect_tooltip = {
@@ -1904,10 +1904,77 @@ sp_heavy_walker_tank_chassis = {
 		sp_land_generic_reward_critical_failure
 	}
 }
+sp_light_walker_tank_chassis = {
+	allowed = { has_dlc = "No Step Back" }
+	specialization = specialization_land
+	icon = GFX_sp_light_walker_tank
+
+	project_tags = sp_tag_armored_vehicles
+
+	ai_will_do = {
+		base = 1
+	}
+
+	special_project_parent = {
+		sp_walker_tank_chassis
+	}
+
+	breakthrough_cost = {
+		specialization_land = 4
+	}
+
+	project_output = {
+		country_effects = {
+			add_design_template_bonus = {
+				name = sp_light_walker_tank_chassis
+				uses = 1
+				cost_factor = 1
+				equipment = super_heavy_tank_destroyer_chassis
+			}
+
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_TECH
+				TECH = x
+			}
+		}
+
+		enable_subunits = {
+			light_walker_tank
+		}
+
+		enable_equipments = {
+			light_walker_tank_chassis
+		}
+	}
+
+	prototype_time = sp_time.prototype.medium
+
+	complexity = sp_complexity.insane
+
+	generic_prototype_rewards = {
+		sp_land_generic_reward_scientist_xp_1
+		sp_land_generic_reward_scientist_xp_2
+		sp_land_generic_reward_scientist_xp_3
+		sp_land_generic_reward_army_xp_1
+		sp_land_generic_reward_army_xp_2
+		sp_land_generic_reward_army_xp_3
+		sp_land_generic_reward_major_progress_1
+		sp_land_generic_reward_major_progress_2
+		sp_land_generic_reward_major_progress_3
+		sp_land_generic_reward_test_failure_1
+		sp_land_generic_reward_test_failure_2
+		sp_land_generic_reward_test_failure_3
+		sp_land_generic_reward_armor_tech_1
+		sp_land_generic_reward_armor_tech_2
+		sp_land_generic_reward_armor_tech_3
+		sp_land_generic_reward_resource_scarcity
+		sp_land_generic_reward_critical_failure
+	}
+}
 sp_hover_suspension = { #APC Only
 	allowed = { has_dlc = "No Step Back" }
 	specialization = specialization_land
-	icon = x
+	icon = GFX_sp_hover_engine
 
 	project_tags = sp_tag_armored_vehicles
 
