@@ -1413,9 +1413,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_mil_industry_expansion"
-				add_ideas = SWI_mil_industry_1
-				set_temp_variable = { SWI_production_speed_arms_factory_factor_change = 0.2 }
-				update_SWI_production_speed_arms_factory_factor = yes
+			one_random_arms_factory = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1434,14 +1432,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_sig_neuhausen_factory"
-				72 = {
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = military_factory
-						level = 1
-						instant_build = yes
-					}
-				}
+				one_random_arms_factory = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1460,14 +1451,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_sig_graubunden_factory"
-				72 = {
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = military_factory
-						level = 1
-						instant_build = yes
-					}
-				}
+			one_random_arms_factory = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1509,20 +1493,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_infrastructural_advancement"
-				72 = {
-					add_building_construction = {
-						type = infrastructure
-						level = 1
-						instant_build = yes
-					}
-				}
-				74 = {
-					add_building_construction = {
-						type = infrastructure
-						level = 1
-						instant_build = yes
-					}
-				}
+			two_random_infrastructure = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -1970,10 +1941,10 @@
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_armored_vehicles_study"
 				add_tech_bonus = {
-					name = CAT_armor
+					name = CAT_aa
 					bonus = 0.5
 					uses = 2
-					category = CAT_armor
+					category = CAT_aa
 				}
 		}
 		ai_will_do = {
@@ -2106,7 +2077,12 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_mbt_concept"
-				add_ideas = SWI_ruag_ag
+			add_tech_bonus = {
+				name = CAT_armor
+				bonus = 0.25
+				uses = 2
+				category = CAT_armor
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -2125,7 +2101,12 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_spart_systems"
-				add_ideas = SWI_mowag_ag
+			add_tech_bonus = {
+				name = CAT_artillery
+				bonus = 0.25
+				uses = 2
+				category = CAT_artillery
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -2147,9 +2128,11 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_spaa_systems"
-				swap_ideas = {
-				remove_idea = SWI_mowag_ag
-				add_idea = SWI_mowag_ag_2
+			add_tech_bonus = {
+				name = CAT_l_aa
+				bonus = 0.25
+				uses = 2
+				category = CAT_l_aa
 			}
 		}
 		ai_will_do = {
@@ -2169,10 +2152,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_production_line_innovations"
-				swap_ideas = {
-				remove_idea = SWI_ruag_ag
-				add_idea = SWI_ruag_ag_2
-			}
+			two_random_arms_factory = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -2268,33 +2248,6 @@
 		}
 	}
 
-	focus = {
-		id = SWI_generational_leap
-		icon = old_new_doctrine
-		x = 4
-		y = 17
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_mass_produced_firearms
-		}
-		prerequisite = {
-			focus = SWI_production_line_innovations
-		}
-		prerequisite = {
-			focus = SWI_gunship_development
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_production_line_innovations"
-				swap_ideas = {
-				remove_idea = SWI_ruag_ag_2
-				add_idea = SWI_ruag_ag_3
-			}
-		}
-		ai_will_do = {
-			base = 1
-		}
-	}
 
 	focus = {
 		id = SWI_airforce_modernization
@@ -2655,8 +2608,15 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_domestic_res_output"
-				set_temp_variable = { SWI_local_resources_factor_change = 0.20 }
-				update_SWI_local_resources_factor = yes
+				74 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			set_temp_variable = { treasury_change = -3.5 }
+			modify_treasury_effect = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -2675,21 +2635,23 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_strat_supply_reserves"
-				any_owned_state= {
+				72 = {
 					add_extra_state_shared_building_slots = 1
 					add_building_construction = {
-						type = var:fuel_silos
+						type = fuel_silo
 						level = 1
 						instant_build = yes
 					}
 				}
 				72 = {
 					add_building_construction = {
-						type = supply_hub
+						type = supply_node
 						level = 1
 						instant_build = yes
 					}
 				}
+			set_temp_variable = { treasury_change = -6.5 }
+			modify_treasury_effect = yes
 			}
 		ai_will_do = {
 			base = 1
@@ -2711,8 +2673,7 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_environmental_adaptation"
-				set_temp_variable = { SWI_army_core_defence_factor_change = 0.15 }
-				update_SWI_army_core_defence_factor = yes
+				add_ideas = SWI_defensive_strategy
 			}
 		ai_will_do = {
 			base = 1
@@ -2722,7 +2683,7 @@
 	focus = {
 		id = SWI_repair_decaying_forts
 		icon = focus_SWI_complete_siegfried_line
-		x = 10
+		x = 11
 		y = 16
 		cost = 7.2
 		prerequisite = {
@@ -2731,23 +2692,23 @@
 		search_filters = { FOCUS_FILTER_ARMY }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus SWI_repair_decaying_forts"
-				6683 = {
+				636 = {
 					add_building_construction = {
-						type = land_fort
+						type = bunker
 						level = 2
 						instant_build = yes
 					}
 				}
-				9638 = {
+				318 = {
 					add_building_construction = {
-						type = land_fort
+						type = bunker
 						level = 2
 						instant_build = yes
 					}
 				}
-				11623 = {
+				1159 = {
 					add_building_construction = {
-						type = land_fort
+						type = bunker
 						level = 2
 						instant_build = yes
 					}
@@ -2758,25 +2719,25 @@
 		}
 	}
 
-	focus = {
-		id = SWI_piece_of_our_past
-		icon = focus_SWI_helvetic_junta
-		x = 12
-		y = 16
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_environmental_adaptation
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_piece_of_our_past"
-				set_temp_variable = { civilian_industry_tax_modifier_change = 0.05 }
-				update_civilian_industry_tax_modifier = yes
-			}
-		ai_will_do = {
-			base = 1
-		}
-	}
+	# focus = {
+	# 	id = SWI_piece_of_our_past
+	# 	icon = focus_SWI_helvetic_junta
+	# 	x = 12
+	# 	y = 16
+	# 	cost = 7.2
+	# 	prerequisite = {
+	# 		focus = SWI_environmental_adaptation
+	# 	}
+	# 	search_filters = { FOCUS_FILTER_ARMY }
+	# 	completion_reward = {
+	# 		log = "[GetDateText]: [Root.GetName]: Focus SWI_piece_of_our_past"
+	# 			set_temp_variable = { civilian_industry_tax_modifier_change = 0.05 }
+	# 			update_civilian_industry_tax_modifier = yes
+	# 		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
+	# }
 
 	focus = {
 		id = SWI_graubunden_gold_silver
@@ -2796,34 +2757,35 @@
 						amount = 12
 					}
 				}
+			set_temp_variable = { treasury_change = -6 }
+			modify_treasury_effect = yes
 			}
 		ai_will_do = {
 			base = 1
 		}
 	}
 
-	focus = {
-		id = SWI_natural_deterrence
-		icon = static_defense
-		x = 11
-		y = 17
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_repair_decaying_forts
-		}
-		prerequisite = {
-			focus = SWI_piece_of_our_past
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_natural_deterrence"
-				set_temp_variable = { SWI_cas_damage_reduction_change = 0.10 }
-				update_SWI_cas_damage_reduction = yes
-			}
-		ai_will_do = {
-			base = 1
-		}
-	}
+	# focus = {
+	# 	id = SWI_natural_deterrence
+	# 	icon = static_defense
+	# 	x = 11
+	# 	y = 17
+	# 	cost = 7.2
+	# 	prerequisite = {
+	# 		focus = SWI_repair_decaying_forts
+	# 	}
+	# 	prerequisite = {
+	# 		focus = SWI_piece_of_our_past
+	# 	}
+	# 	search_filters = { FOCUS_FILTER_ARMY }
+	# 	completion_reward = {
+	# 		log = "[GetDateText]: [Root.GetName]: Focus SWI_natural_deterrence"
+
+	# 		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
+	# }
 
 	focus = {
 		id = SWI_graubunden_iron_mines
@@ -2843,98 +2805,100 @@
 						amount = 18
 					}
 				}
+			set_temp_variable = { treasury_change = -9 }
+			modify_treasury_effect = yes
 			}
 		ai_will_do = {
 			base = 1
 		}
 	}
 
-	focus = {
-		id = SWI_defensive_fortifications
-		icon = focus_SWI_the_national_redoubt
-		x = 11
-		y = 18
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_piece_of_our_past
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_defensive_fortifications"
-				set_temp_variable = { SWI_land_bunker_effectiveness_factor_change = 0.15 }
-				update_SWI_land_bunker_effectiveness_factor = yes
-			}
-		ai_will_do = {
-			base = 1
-		}
-	}
+	# focus = {
+	# 	id = SWI_defensive_fortifications
+	# 	icon = focus_SWI_the_national_redoubt
+	# 	x = 11
+	# 	y = 18
+	# 	cost = 7.2
+	# 	prerequisite = {
+	# 		focus = SWI_piece_of_our_past
+	# 	}
+	# 	search_filters = { FOCUS_FILTER_ARMY }
+	# 	completion_reward = {
+	# 		log = "[GetDateText]: [Root.GetName]: Focus SWI_defensive_fortifications"
+	# 			set_temp_variable = { SWI_land_bunker_effectiveness_factor_change = 0.15 }
+	# 			update_SWI_land_bunker_effectiveness_factor = yes
+	# 		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
+	# }
 
-	focus = {
-		id = SWI_fourth_generation_warfare
-		icon = army_cyberwar
-		x = 16
-		y = 19
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_defensive_fortifications
-		}
-		prerequisite = {
-			focus = SWI_cooperation_with_lufthansa
-		}
-		prerequisite = {
-			focus = SWI_kommando_specialkrafte
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_fourth_generation_warfare"
-				add_ideas = SWI_fourth_generation_warfare
-			}
-		ai_will_do = {
-			base = 1
-		}
-	}
+	# focus = {
+	# 	id = SWI_fourth_generation_warfare
+	# 	icon = army_cyberwar
+	# 	x = 16
+	# 	y = 19
+	# 	cost = 7.2
+	# 	prerequisite = {
+	# 		focus = SWI_defensive_fortifications
+	# 	}
+	# 	prerequisite = {
+	# 		focus = SWI_cooperation_with_lufthansa
+	# 	}
+	# 	prerequisite = {
+	# 		focus = SWI_kommando_specialkrafte
+	# 	}
+	# 	search_filters = { FOCUS_FILTER_ARMY }
+	# 	completion_reward = {
+	# 		log = "[GetDateText]: [Root.GetName]: Focus SWI_fourth_generation_warfare"
+	# 			add_ideas = SWI_fourth_generation_warfare
+	# 		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
+	# }
 
-	focus = {
-		id = SWI_nationale_csz
-		icon = cryptography
-		x = 16
-		y = 20
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_fourth_generation_warfare
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_nationale_csz"
-				set_temp_variable = { SWI_agency_upgrade_time_change = 0.15 }
-				update_SWI_agency_upgrade_time = yes
-				set_temp_variable = { SWI_foreign_subversive_activites_change = -0.10 }
-				update_SWI_foreign_subversive_activites = yes
-			}
-		ai_will_do = {
-			base = 1
-		}
-	}
+	# focus = {
+	# 	id = SWI_nationale_csz
+	# 	icon = cryptography
+	# 	x = 16
+	# 	y = 20
+	# 	cost = 7.2
+	# 	prerequisite = {
+	# 		focus = SWI_fourth_generation_warfare
+	# 	}
+	# 	search_filters = { FOCUS_FILTER_ARMY }
+	# 	completion_reward = {
+	# 		log = "[GetDateText]: [Root.GetName]: Focus SWI_nationale_csz"
+	# 			set_temp_variable = { SWI_agency_upgrade_time_change = 0.15 }
+	# 			update_SWI_agency_upgrade_time = yes
+	# 			set_temp_variable = { SWI_foreign_subversive_activites_change = -0.10 }
+	# 			update_SWI_foreign_subversive_activites = yes
+	# 		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
+	# }
 
-	focus = {
-		id = SWI_offensive_ambitions
-		icon = focus_SWI_expand_the_federation
-		x = 16
-		y = 21
-		cost = 7.2
-		prerequisite = {
-			focus = SWI_nationale_csz
-		}
-		search_filters = { FOCUS_FILTER_ARMY }
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus SWI_offensive_ambitions"
-				set_temp_variable = { SWI_breakthrough_factor_change = 0.1 }
-				update_SWI_breakthrough_factor = yes
-			}
-		ai_will_do = {
-			base = 1
-		}
-	}
+	# focus = {
+	# 	id = SWI_offensive_ambitions
+	# 	icon = focus_SWI_expand_the_federation
+	# 	x = 16
+	# 	y = 21
+	# 	cost = 7.2
+	# 	prerequisite = {
+	# 		focus = SWI_nationale_csz
+	# 	}
+	# 	search_filters = { FOCUS_FILTER_ARMY }
+	# 	completion_reward = {
+	# 		log = "[GetDateText]: [Root.GetName]: Focus SWI_offensive_ambitions"
+	# 			set_temp_variable = { SWI_breakthrough_factor_change = 0.1 }
+	# 			update_SWI_breakthrough_factor = yes
+	# 		}
+	# 	ai_will_do = {
+	# 		base = 1
+	# 	}
+	# }
 
 
 	#CERN Project Tree
