@@ -233,8 +233,10 @@ MOR.conservatism_desc: "(Classic Liberalism) - National Rally of Independents (A
 ## Military-Industrial Organisations (MIO)
 
 ### Guidelines on Companies
-- Use one company for multiple categories.
-- Add per category `5 OR 3 Task Capacity` if the company is not a national company but has factories in the country
+- Use one company for multiple categories (Air, Naval, Armor (Including Helicopters and Utility Vehicles), Equipment)
+- If its a national company, add `5 task capacity` per category. If its a factory of a international company, add `3 task capacity` per category.
+ `Example: (Rheinmetall in Germany gets 5 Task Capacity. Rheinmetall in Australia 3)`
+- Assign the Research Bonus into the initital trait, so its visible for the player
 
 ### Example MIO Company Structure
 ```python
@@ -296,6 +298,8 @@ CHI_norinco_manufacturer = {
 
 ### Guidelines on Traits
 - The maximum grid is `y = 0 - 9` Don't forget this when you are using relative position.
+- Use a equipment specific icon if you have multiple equipment types in your company. If its more then two, use modifier specific icon
+- Only use `limit_to_equipment_type` if your MIO effects multiple equipment types and your trait doesn't effect all of them
 
 ### Example MIO Trait Structure
 ```python
