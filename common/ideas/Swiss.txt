@@ -42,28 +42,28 @@ ideas = {
 				political_power_factor = -0.20
 			}
 		}
-		swiss_political_system3 = {
+		# swiss_political_system3 = {
 
-			picture = idea_swiss_political_system
-			allowed = {
-				original_tag = SWI
-			}
-			cancel = {
-				OR = {
-					is_subject = yes
-					AND = {
-						NOT = { has_government = democratic }
-						NOT = { has_government = neutrality }
-					}
-				}
-			}
-			modifier = {
-				stability_factor = 0.07
-				war_support_factor = 0.12
-				political_power_factor = -0.17
-				bureaucracy_cost_factor = -0.10
-			}
-		}
+		# 	picture = idea_swiss_political_system
+		# 	allowed = {
+		# 		original_tag = SWI
+		# 	}
+		# 	cancel = {
+		# 		OR = {
+		# 			is_subject = yes
+		# 			AND = {
+		# 				NOT = { has_government = democratic }
+		# 				NOT = { has_government = neutrality }
+		# 			}
+		# 		}
+		# 	}
+		# 	modifier = {
+		# 		stability_factor = 0.07
+		# 		war_support_factor = 0.12
+		# 		political_power_factor = -0.17
+		# 		bureaucracy_cost_factor = -0.10
+		# 	}
+		# }
 		SWI_european_tanks = {
 
 			picture = european_tank_license
@@ -296,7 +296,7 @@ ideas = {
 		}
 		SWI_completely_green = {
 			name = SWI_completely_green
-			icon = eco_democracy
+			picture = eco_democracy
 			modifier = {
 				production_speed_fossil_powerplant_factor = -1000
 				fossil_pp_energy_generation_modifier = -1
@@ -306,7 +306,7 @@ ideas = {
 		}
 		SWI_fdu = {
 			name = SWI_fdu
-			icon = GFX_goal_unknown
+			picture = GFX_goal_unknown
 			modifier = {
 				democratic_drift = 0.1
 				democratic_acceptance = 25
@@ -314,13 +314,12 @@ ideas = {
 		}
 		SWI_christian_values = {
 			name = SWI_christian_values
-			icon = christian_faiths
+			picture = christian_faiths
 			modifier = {
 				research_speed_factor = -0.02
 			}
 		}
 		swiss_political_system3 = {
-			picture = swiss_political_system
 			picture = swiss_political_system
 			allowed = {
 				original_tag = SWI
@@ -343,7 +342,6 @@ ideas = {
 			}
 		}
 		swiss_political_system4 = {
-			picture = swiss_political_system
 			picture = swiss_political_system
 			allowed = {
 				original_tag = SWI
@@ -386,8 +384,6 @@ ideas = {
 			modifier = {
 				nationalist_drift = 0.1
 				nationalist_acceptance = 25
-				add_stability = 0.05
-				add_war_support = 0.05
 			}
 		}
 		SWI_svp = {
@@ -532,11 +528,10 @@ ideas = {
 		SWI_pda = {
 			name = SWI_pda
 			modifier = {
-				neutrality = 0.04
 				neutrality_acceptance = 25
 			}
 		}
-		SWI_nationalize_industries {
+		SWI_nationalize_industries = {
 			name = SWI_nationalize_industries
 			picture = economic_nationalisation
 			modifier = {
@@ -668,7 +663,7 @@ ideas = {
 			picture = revolutionary_government
 			modifier = {
 				communism_drift = 0.04
-				communism_acceptance = 25
+				#communism_acceptance = 25
 			}
 		}
 		SWI_workers_councils = {
@@ -676,7 +671,7 @@ ideas = {
 			picture = blr_support_of_the_worker
 			modifier = {
 				communism_drift = 0.03
-				communism_acceptance = 25
+				#communism_acceptance = 25
 			}
 		}
 		SWI_agricultural_collectivization_idea = {
@@ -827,10 +822,10 @@ ideas = {
 			}
 			modifier = {
 				research_speed_factor = 0.05
-				equipment_bonus = {
-					Inf_equipment = {
-					soft_attack = 0.10
-					}
+			}
+			equipment_bonus = {
+				Inf_equipment = {
+				soft_attack = 0.10
 				}
 			}
 		}
@@ -845,13 +840,14 @@ ideas = {
 			}
 			modifier = {
 				research_speed_factor = 0.05
-				research_bonus = {
-					CAT_inf = 0.25
-				}
-				equipment_bonus = {
-					Inf_equipment = {
-					soft_attack = 0.10
-					}
+
+			}
+			research_bonus = {
+				CAT_inf = 0.25
+			}
+			equipment_bonus = {
+				Inf_equipment = {
+				soft_attack = 0.10
 				}
 			}
 		}
@@ -864,16 +860,16 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_sig_sauer_ag_3"
 			}
+			research_bonus = {
+					CAT_inf = 0.25
+			}
 			modifier = {
 				research_speed_factor = 0.05
-				research_bonus = {
-					CAT_inf = 0.25
-				}
-				equipment_bonus = {
-					Inf_equipment = {
-					soft_attack = 0.10
-					build_cost_ic = -0.10
-					}
+			}
+			equipment_bonus = {
+				Inf_equipment = {
+				soft_attack = 0.10
+				build_cost_ic = -0.10
 				}
 			}
 		}
@@ -886,7 +882,6 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_precision_launch_platforms"
 			}
-			modifier = {
 				equipment_bonus = {
 					L_AT_Equipment = {
 						hard_attack = 0.10
@@ -897,7 +892,6 @@ ideas = {
 						air_attack = 0.10
 					}
 				}
-			}
 		}
 
 		SWI_ruag_ag = {
@@ -908,11 +902,9 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_ruag_ag"
 			}
-			modifier = {
 				research_bonus = {
 					CAT_armor = 0.20
 				}
-			}
 		}
 
 		SWI_ruag_ag_2 = {
@@ -923,19 +915,17 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_ruag_ag_"
 			}
-			modifier = {
-				research_bonus = {
-					CAT_armor = 0.20
+			research_bonus = {
+				CAT_armor = 0.20
+			}
+			equipment_bonus = {
+				medium_tank_chassis = {
+					build_cost_ic = -0.12
 				}
-				equipment_bonus = {
-					medium_tank_chassis = {
-						build_cost_ic = -0.12
-					}
-				}
-				equipment_bonus = {
-					medium_tank_destroyer_chassis = {
-						build_cost_ic = -0.12
-					}
+			}
+			equipment_bonus = {
+				medium_tank_destroyer_chassis = {
+					build_cost_ic = -0.12
 				}
 			}
 		}
@@ -948,47 +938,45 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_ruag_ag_3"
 			}
-			modifier = {
-				research_bonus = {
-					CAT_armor = 0.20
+			research_bonus = {
+				CAT_armor = 0.20
+			}
+			equipment_bonus = {
+				medium_tank_chassis = {
+					build_cost_ic = -0.12
+					breakthrough = 0.10
+					defense = 0.10
 				}
-				equipment_bonus = {
-					medium_tank_chassis = {
-						build_cost_ic = -0.12
-						breakthrough = 0.10
-						defense = 0.10
-					}
+			}
+			equipment_bonus = {
+				medium_tank_destroyer_chassis = {
+					build_cost_ic = -0.12
+					breakthrough = 0.10
+					defense = 0.10
 				}
-				equipment_bonus = {
-					medium_tank_destroyer_chassis = {
-						build_cost_ic = -0.12
-						breakthrough = 0.10
-						defense = 0.10
-					}
+			}
+			equipment_bonus = {
+				medium_tank_amphibious_chassis = {
+					breakthrough = 0.10
+					defense = 0.10
 				}
-				equipment_bonus = {
-					medium_tank_amphibious_chassis = {
-						breakthrough = 0.10
-						defense = 0.10
-					}
+			}
+			equipment_bonus = {
+				medium_tank_flame_chassis = {
+					breakthrough = 0.10
+					defense = 0.10
 				}
-				equipment_bonus = {
-					medium_tank_flame_chassis = {
-						breakthrough = 0.10
-						defense = 0.10
-					}
+			}
+			equipment_bonus = {
+				medium_tank_artillery_chassis = {
+					breakthrough = 0.10
+					defense = 0.10
 				}
-				equipment_bonus = {
-					medium_tank_artillery_chassis = {
-						breakthrough = 0.10
-						defense = 0.10
-					}
-				}
-				equipment_bonus = {
-					medium_tank_rocket_chassis = {
-						breakthrough = 0.10
-						defense = 0.10
-					}
+			}
+			equipment_bonus = {
+				medium_tank_rocket_chassis = {
+					breakthrough = 0.10
+					defense = 0.10
 				}
 			}
 		}
@@ -1001,16 +989,14 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_mowag_ag"
 			}
-			modifier = {
-				equipment_bonus = {
-					medium_tank_artillery_chassis = {
-						soft_attack = 0.10
-						defense = 0.10
-					}
-					medium_tank_rocket_chassis = {
-						soft_attack = 0.10
-						defense = 0.10
-					}
+			equipment_bonus = {
+				medium_tank_artillery_chassis = {
+					soft_attack = 0.10
+					defense = 0.10
+				}
+				medium_tank_rocket_chassis = {
+					soft_attack = 0.10
+					defense = 0.10
 				}
 			}
 		}
@@ -1023,20 +1009,18 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_mowag_ag_2"
 			}
-			modifier = {
-				equipment_bonus = {
-					medium_tank_artillery_chassis = {
-						soft_attack = 0.10
-						defense = 0.10
-					}
-					medium_tank_rocket_chassis = {
-						soft_attack = 0.10
-						defense = 0.10
-					}
-					medium_tank_aa_chassis = {
-						air_attack = 0.10
-						defense = 0.10
-					}
+			equipment_bonus = {
+				medium_tank_artillery_chassis = {
+					soft_attack = 0.10
+					defense = 0.10
+				}
+				medium_tank_rocket_chassis = {
+					soft_attack = 0.10
+					defense = 0.10
+				}
+				medium_tank_aa_chassis = {
+					air_attack = 0.10
+					defense = 0.10
 				}
 			}
 		}
@@ -1124,37 +1108,36 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_rheinmetall_cooperation"
 			}
-			modifier = {
-				equipment_bonus = {
-					medium_tank_chassis = {
-						build_cost_ic = -0.05
-					}
+			equipment_bonus = {
+				medium_tank_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_destroyer_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_destroyer_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_amphibious_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_amphibious_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_flame_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_flame_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_artillery_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_artillery_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_rocket_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_rocket_chassis = {
+					build_cost_ic = -0.05
 				}
+			}
 		}
 
 		SWI_thales_cooperation = {
@@ -1165,40 +1148,36 @@ ideas = {
 			on_add = {
 				log = "[GetDateText]: [Root.GetName]: add idea SWI_thales_cooperation"
 			}
-			modifier = {
-				equipment_bonus = {
-					medium_tank_chassis = {
-						build_cost_ic = -0.06
-					}
+			equipment_bonus = {
+				medium_tank_chassis = {
+					build_cost_ic = -0.06
 				}
-				equipment_bonus = {
-					medium_tank_destroyer_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_destroyer_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_amphibious_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_amphibious_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_flame_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_flame_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_artillery_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_artillery_chassis = {
+					build_cost_ic = -0.05
 				}
-				equipment_bonus = {
-					medium_tank_rocket_chassis = {
-						build_cost_ic = -0.05
-					}
+			}
+			equipment_bonus = {
+				medium_tank_rocket_chassis = {
+					build_cost_ic = -0.05
 				}
 			}
 		}
-	}
-}
 	}
 }
