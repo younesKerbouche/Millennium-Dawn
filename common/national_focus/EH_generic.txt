@@ -927,6 +927,23 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			land_doctrine_level > 9
+			has_dynamic_modifier = {
+				modifier = EH_battlefield_adaptation_idea
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				has_tech = era_tech_2
+				has_tech = tank_components_tech_3
+			}
+			else = {
+				has_tech = MBT_4
+			}
+		}
+
 		prerequisite = {
 			focus = EH_a_fine_addition_to_my_collection
 		}
@@ -935,7 +952,25 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_first_hacs_prototype"
-
+			if = {
+				limit = {
+					is_considered_western_country = yes
+				}
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_bf_38_atlas_project
+				}
+			}
+			else = {
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_gsk_41_bogatyr_project
+				}
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
 		}
 
 		ai_will_do = {
@@ -984,6 +1019,11 @@ focus_tree = {
 		relative_position_id = EH_new_enemy_new_strategy
 
 		cost = 8.6
+
+		available = {
+			set_temp_variable = { check_randallite = 2 }
+			EH_check_randallite_trigger = yes
+		}
 
 		prerequisite = {
 			focus = EH_new_enemy_new_strategy
@@ -1045,6 +1085,12 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			has_equipment = {
+				HACS_equipment > 9
+			}
+		}
+
 		prerequisite = {
 			focus = EH_first_hacs_prototype
 		}
@@ -1053,7 +1099,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_iron_man"
-
+			add_ideas = EH_civilian_blueprints_idea
+			add_command_power = 25
+			add_political_power = 50
+			army_experience = 50
 		}
 
 		ai_will_do = {
@@ -1071,6 +1120,19 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			land_doctrine_level > 19
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				has_tech = era_tech_4
+			}
+			else = {
+				has_tech = MBT_5
+			}
+		}
+
 		prerequisite = {
 			focus = EH_iron_man
 		}
@@ -1079,7 +1141,25 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_second_generation_hacs"
-
+			if = {
+				limit = {
+					is_considered_western_country = yes
+				}
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_bf_52_hermes_project
+				}
+			}
+			else = {
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_gsk_49_yarilo_project
+				}
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 1
+			}
 		}
 
 		ai_will_do = {
