@@ -3631,6 +3631,14 @@ calculate_additional_expense_rate = {
 		set_variable = { energy_load_sharing_payment_var = payment_from_gw_bought }
 		add_to_variable = { additional_expenses_rate = energy_load_sharing_payment_var }
 	}
+
+	# Event Horizon
+	if = {
+		limit = { has_idea = EH_intensive_research_effort_idea }
+		set_variable = { EH_intensive_research_effort_expenditure = gdp_total }
+		multiply_variable = { EH_intensive_research_effort_expenditure = EH_intensive_research_effort_expenditure_multiplier_var }
+		add_to_variable = { additional_expenses_rate = EH_intensive_research_effort_expenditure }
+	}
 }
 
 #Income Related Stuff --- International Investments and Calculated Resource Sale Rate

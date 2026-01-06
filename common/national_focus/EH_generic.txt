@@ -1067,7 +1067,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_more_weapons_less_mechs"
-
+			add_ideas = EH_equipment_is_priority_idea
 		}
 
 		ai_will_do = {
@@ -1177,6 +1177,22 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			set_temp_variable = { check_randallite = 0 }
+			EH_check_randallite_trigger = yes
+			has_tech = excavation5
+			if = {
+				limit = {
+					date > 2010.1.1
+				}
+				has_tech = computing5
+			}
+			else = {
+				has_tech = computing4
+			}
+			has_completed_focus = EH_find_new_veins
+		}
+
 		prerequisite = {
 			focus = EH_second_generation_hacs
 		}
@@ -1185,7 +1201,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_highly_purified_randallite"
-
+			set_temp_variable = { add_randallite = 3 }
+			EH_add_randallite_effect = yes
+			add_ideas = EH_cleansed_randallite_idea
 		}
 
 		ai_will_do = {
@@ -1203,6 +1221,13 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = EH_increase_research_budget_TT
+				gdp_total > 1499
+			}
+		}
+
 		prerequisite = {
 			focus = EH_second_generation_hacs
 		}
@@ -1211,7 +1236,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_increase_research_budget"
-
+			add_ideas = EH_intensive_research_effort_idea
+			set_variable = { EH_intensive_research_effort_expenditure_multiplier_var = 0.003 }
+			custom_effect_tooltip = EH_increase_research_budget2_TT
 		}
 
 		ai_will_do = {
@@ -1229,6 +1256,19 @@ focus_tree = {
 
 		cost = 8.6
 
+		available = {
+			land_doctrine_level > 29
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				has_tech = era_tech_5
+			}
+			else = {
+				has_tech = MBT_6
+			}
+		}
+
 		prerequisite = {
 			focus = EH_increase_research_budget
 		}
@@ -1237,7 +1277,25 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus EH_third_generation_hacs"
-
+			if = {
+				limit = {
+					is_considered_western_country = yes
+				}
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_f_5_freedom_fighter_project # SAS32
+				}
+			}
+			else = {
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_j_10x_project # SAS32M
+				}
+			}
+			add_breakthrough_points = {
+				specialization = specialization_land
+				value = 2
+			}
 		}
 
 		ai_will_do = {
