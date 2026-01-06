@@ -1,176 +1,160 @@
 resource_storage_steel_calc_effect = {
+	set_variable = { rubber_from_storage = 0 }
+	set_variable = { aluminium_from_storage = 0 }
+	set_variable = { chromium_from_storage = 0 }
+	set_variable = { tungsten_from_storage = 0 }
+	set_variable = { steel_from_storage = 0 }
 
-		set_variable = { rubber_from_storage = 0 }
-		set_variable = { aluminium_from_storage = 0 }
-		set_variable = { chromium_from_storage = 0 }
-		set_variable = { tungsten_from_storage = 0 }
-		set_variable = { steel_from_storage = 0 }
+	set_temp_variable = { steel_check = resource@steel }
+	multiply_temp_variable = { steel_check = -1 }
+	set_temp_variable = { rubber_check = resource@rubber }
+	multiply_temp_variable = { rubber_check = -1 }
+	set_temp_variable = { chromium_check = resource@chromium }
+	multiply_temp_variable = { chromium_check = -1 }
+	set_temp_variable = { aluminium_check = resource@aluminium }
+	multiply_temp_variable = { aluminium_check = -1 }
+	set_temp_variable = { tungsten_check = resource@tungsten }
+	multiply_temp_variable = { tungsten_check = -1 }
 
-        set_temp_variable = { steel_check = resource@steel }
-        multiply_temp_variable = { steel_check = -1}
-        set_temp_variable = { rubber_check = resource@rubber }
-        multiply_temp_variable = { rubber_check = -1}
-        set_temp_variable = { chromium_check = resource@chromium }
-        multiply_temp_variable = { chromium_check = -1}
-        set_temp_variable = { aluminium_check = resource@aluminium}
-        multiply_temp_variable = { aluminium_check = -1}
-        set_temp_variable = { tungsten_check = resource@tungsten }
-        multiply_temp_variable = { tungsten_check = -1}
 
+	if = {
+		limit = {
+			has_country_flag = allowed_to_take
+			check_variable = { rubber_check > 0 }
+		}
 		if = {
-            limit = {
-                has_country_flag = allowed_to_take
-                check_variable = { rubber_check > 0}
-            }
-            if = {
-                limit = {
-                    check_variable = { rubber_check > rubber_in_storage}
-                }
-                set_variable = {rubber_from_storage = rubber_in_storage}
-                subtract_from_variable = { rubber_in_storage = rubber_from_storage}
-            }
-            else = {
-                set_variable = {rubber_from_storage = rubber_check}
-                subtract_from_variable = { rubber_in_storage = rubber_from_storage}
-            }
-        }
-        if = {
-            limit = {
-                has_country_flag = allowed_to_take
-                check_variable = { aluminium_check > 0}
-            }
-            if = {
-                limit = {
-                    check_variable = { aluminium_check > aluminium_in_storage}
-                }
-                set_variable = {aluminium_from_storage = aluminium_in_storage}
-                subtract_from_variable = { aluminium_in_storage = aluminium_from_storage}
-            }
-            else = {
-                set_variable = {aluminium_from_storage = aluminium_check}
-                subtract_from_variable = { aluminium_in_storage = aluminium_from_storage}
-            }
-        }
-        if = {
-            limit = {
-                has_country_flag = allowed_to_take
-                check_variable = { chromium_check > 0}
-            }
-            if = {
-                limit = {
-                    check_variable = { chromium_check > chromium_in_storage}
-                }
-                set_variable = {chromium_from_storage = chromiun_in_storage}
-                subtract_from_variable = { chromium_in_storage = chromium_from_storage}
-            }
-            else = {
-                set_variable = {chromium_from_storage = chromium_check}
-                subtract_from_variable = { chromium_in_storage = chromium_from_storage}
-            }
-        }
-        if = {
-            limit = {
-                has_country_flag = allowed_to_take
-                check_variable = { tungsten_check > 0}
-            }
-            if = {
-                limit = {
-                    check_variable = { tungsten_check > tungsten_in_storage}
-                }
-                set_variable = {tungsten_from_storage = tungsten_in_storage}
-                subtract_from_variable = { tungsten_in_storage = tungsten_from_storage}
-            }
-            else = {
-                set_variable = {tungsten_from_storage = tungsten_check}
-                subtract_from_variable = { tungsten_in_storage = tungsten_from_storage}
-            }
-        }
-        if = {
-            limit = {
-                has_country_flag = allowed_to_take
-                check_variable = { steel_check > 0}
-            }
-            if = {
-                limit = {
-                    check_variable = { steel_check > steel_in_storage}
-                }
-                set_variable = {steel_from_storage = steel_in_storage}
-                subtract_from_variable = { steel_in_storage = steel_from_storage}
-            }
-            else = {
-                set_variable = {steel_from_storage = steel_check}
-                subtract_from_variable = { steel_in_storage = steel_from_storage}
-            }
-        }
+			limit = {
+				check_variable = { rubber_check > rubber_in_storage}
+			}
+			set_variable = {rubber_from_storage = rubber_in_storage}
+			subtract_from_variable = { rubber_in_storage = rubber_from_storage}
+		}
+		else = {
+			set_variable = {rubber_from_storage = rubber_check}
+			subtract_from_variable = { rubber_in_storage = rubber_from_storage}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = allowed_to_take
+			check_variable = { aluminium_check > 0}
+		}
+		if = {
+			limit = {
+				check_variable = { aluminium_check > aluminium_in_storage}
+			}
+			set_variable = {aluminium_from_storage = aluminium_in_storage}
+			subtract_from_variable = { aluminium_in_storage = aluminium_from_storage}
+		}
+		else = {
+			set_variable = {aluminium_from_storage = aluminium_check}
+			subtract_from_variable = { aluminium_in_storage = aluminium_from_storage}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = allowed_to_take
+			check_variable = { chromium_check > 0}
+		}
+		if = {
+			limit = {
+				check_variable = { chromium_check > chromium_in_storage}
+			}
+			set_variable = {chromium_from_storage = chromiun_in_storage}
+			subtract_from_variable = { chromium_in_storage = chromium_from_storage}
+		}
+		else = {
+			set_variable = {chromium_from_storage = chromium_check}
+			subtract_from_variable = { chromium_in_storage = chromium_from_storage}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = allowed_to_take
+			check_variable = { tungsten_check > 0}
+		}
+		if = {
+			limit = {
+				check_variable = { tungsten_check > tungsten_in_storage}
+			}
+			set_variable = {tungsten_from_storage = tungsten_in_storage}
+			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage}
+		}
+		else = {
+			set_variable = {tungsten_from_storage = tungsten_check}
+			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage}
+		}
+	}
+	if = {
+		limit = {
+			has_country_flag = allowed_to_take
+			check_variable = { steel_check > 0}
+		}
+		if = {
+			limit = {
+				check_variable = { steel_check > steel_in_storage}
+			}
+			set_variable = {steel_from_storage = steel_in_storage}
+			subtract_from_variable = { steel_in_storage = steel_from_storage}
+		}
+		else = {
+			set_variable = {steel_from_storage = steel_check}
+			subtract_from_variable = { steel_in_storage = steel_from_storage}
+		}
+	}
 
-        if = {
-            limit = {
-                check_variable = { rubber_check < 0}
-            }
-            multiply_temp_variable = { rubber_check = -1}
-            add_to_variable = {rubber_in_storage = rubber_check}
-            set_variable = { rubber_from_storage = 0 }
-        }
-        if = {
-            limit = {
-                check_variable = { steel_check < 0}
-            }
-            multiply_temp_variable = { steel_check = -1}
-            add_to_variable = {steel_in_storage = steel_check}
-            set_variable = { steel_from_storage = 0 }
-        }
-        if = {
-            limit = {
-                check_variable = { chromium_check < 0}
-            }
-            multiply_temp_variable = { chromium_check = -1}
-            add_to_variable = {chromium_in_storage = chromium_check}
-            set_variable = { chromium_from_storage = 0 }
-        }
-        if = {
-            limit = {
-                check_variable = { tungsten_check < 0}
-            }
-            multiply_temp_variable = { tungsten_check = -1}
-            add_to_variable = {tungsten_in_storage = tungsten_check}
-            set_variable = { tungsten_from_storage = 0 }
-        }
-        if = {
-            limit = {
-                check_variable = { aluminium_check < 0}
-            }
-            multiply_temp_variable = { aluminium_check = -1}
-            add_to_variable = {aluminium_in_storage = aluminium_check}
-            set_variable = { aluminium_from_storage = 0 }
-        }
+	if = {
+		limit = {
+			check_variable = { rubber_check < 0}
+		}
+		multiply_temp_variable = { rubber_check = -1}
+		add_to_variable = {rubber_in_storage = rubber_check}
+		set_variable = { rubber_from_storage = 0 }
+	}
+	if = {
+		limit = {
+			check_variable = { steel_check < 0}
+		}
+		multiply_temp_variable = { steel_check = -1}
+		add_to_variable = {steel_in_storage = steel_check}
+		set_variable = { steel_from_storage = 0 }
+	}
+	if = {
+		limit = {
+			check_variable = { chromium_check < 0}
+		}
+		multiply_temp_variable = { chromium_check = -1}
+		add_to_variable = {chromium_in_storage = chromium_check}
+		set_variable = { chromium_from_storage = 0 }
+	}
+	if = {
+		limit = {
+			check_variable = { tungsten_check < 0}
+		}
+		multiply_temp_variable = { tungsten_check = -1}
+		add_to_variable = {tungsten_in_storage = tungsten_check}
+		set_variable = { tungsten_from_storage = 0 }
+	}
+	if = {
+		limit = {
+			check_variable = { aluminium_check < 0}
+		}
+		multiply_temp_variable = { aluminium_check = -1}
+		add_to_variable = {aluminium_in_storage = aluminium_check}
+		set_variable = { aluminium_from_storage = 0 }
+	}
 
-		clamp_variable = {
-			var = rubber_in_storage
-			min = 0
-			max = rubber_capacity
-		}
-		clamp_variable = {
-			var = aluminium_in_storage
-			min = 0
-			max = aluminium_capacity
-		}
-		clamp_variable = {
-			var = chromium_in_storage
-			min = 0
-			max = chromium_capacity
-		}
-		clamp_variable = {
-			var = tungsten_in_storage
-			min = 0
-			max = tungsten_capacity
-		}
-		clamp_variable = {
-			var = steel_in_storage
-			min = 0
-			max = steel_capacity
-		}
+	set_temp_variable = { total_steel_balance = resource_produced@steel }
+	add_to_temp_variable = { total_steel_balance = resource_imported@steel }
+	subtract_from_temp_variable = { total_steel_balance = resource_exported@steel }
+	subtract_from_temp_variable = { total_steel_balance = resource_consumed@steel }
+	if = { limit = { check_variable = { total_steel_balance < 0 } check_variable = { resource_in_storage > 0 } }
+		set_variable = { resource_from_storage = total_steel_balance }
+	}
 
+	clamp_variable = { var = rubber_in_storage min = 0 max = rubber_capacity }
+	clamp_variable = { var = aluminium_in_storage min = 0 max = aluminium_capacity }
+	clamp_variable = { var = chromium_in_storage min = 0 max = chromium_capacity }
+	clamp_variable = { var = tungsten_in_storage min = 0 max = tungsten_capacity }
+	clamp_variable = { var = steel_in_storage min = 0 max = steel_capacity }
 }
-
-
-
