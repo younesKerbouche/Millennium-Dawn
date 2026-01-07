@@ -1659,6 +1659,56 @@ country_event = {
 	}
 }
 
+# Third Labor Branch
+country_event = {
+	id = britain_md.7
+	title = britain_md.7.t
+	desc = britain_md.7.d
+	is_triggered_only = yes
+	picture = GFX_2010_labour_victory
+	option = {
+		name = britain_md.7.a
+		log = "[GetDateText]: [This.GetName]: britain_md.7.a executed"
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = britain_md.8
+	title = britain_md.8.t
+	desc = britain_md.8.d
+	is_triggered_only = yes
+
+	option = {
+		name = britain_md.8.a
+		log = "[GetDateText]: [This.GetName]: britain_md.8.a executed"
+		set_temp_variable = { ENG_migration_rate_value_factor_change = 0.10 }
+		update_ENG_migration_rate_value_factor = yes
+		newline = yes
+		set_temp_variable = { ENG_police_cost_multiplier_modifier_change = 0.025 }
+		update_ENG_police_cost_multiplier_modifier = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = {
+		name = britain_md.8.b
+		log = "[GetDateText]: [This.GetName]: britain_md.8.b executed"
+		set_temp_variable = { ENG_migration_rate_value_factor_change = -0.10 }
+		update_ENG_migration_rate_value_factor = yes
+		newline = yes
+		set_temp_variable = { ENG_police_cost_multiplier_modifier_change = -0.025 }
+		update_ENG_police_cost_multiplier_modifier = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 
 # # # # # # # # # # # # DEVOLUTION DO NOT TOUCH # # # # # # # # # # # #
 # # # # # # # # ## # # # TOUCH ME PLEASE # # # # # # # # # # # #
