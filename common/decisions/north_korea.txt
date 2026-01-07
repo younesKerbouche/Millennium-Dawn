@@ -39,7 +39,6 @@ NKO_united_front_department = {
 			factor = 0
 		}
 	}
-
 	NKO_reopen_kaesong_industrial_park = {
 		icon = GFX_decision_nko_unite_korea_button
 		cost = 200
@@ -199,6 +198,46 @@ NKO_united_front_department = {
 	}
 
 }
+
+###########NKO NAVAL PROJECTS#########################
+NKO_Navy_projects = {
+	NKO_start_the_projects = {
+		icon = GFX_navy
+		cost = 25
+		days_remove = 100
+		days_re_enable = 45
+		visible = {
+			has_completed_focus = NKO_Domestic_Naval_Strategy
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision add NKO_medicine_relief_active"
+			random_owned_state = {
+				add_manpower = 2000
+			}
+			set_country_flag = NKO_medicine_relief_active
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove NKO_medicine_relief_active"
+			clr_country_flag = NKO_medicine_relief_active
+		}
+		modifier = {
+			research_speed_factor = 0.1
+			political_power_factor = 0.05
+		}
+		ai_will_do = {
+			factor = 300
+			modifier = {
+				check_variable = {
+					var = treasury
+					value = 6
+					compare = greater_than_or_equals
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
 ###########ARDUOUS MARCH MECHANIC DECISIONS###########
 NKO_Arduous_March = {
 	#Send Citizens to Countryside
