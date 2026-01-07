@@ -831,6 +831,10 @@ focus_tree = {
 		y = 0
 		cost = 5	
 		
+		available = {
+		NOT = { has_country_flag = TAI_sar_exec }
+		}
+		
 		search_filters = { FOCUS_FILTER_POLITICAL }		
 		
 		completion_reward = {
@@ -1071,6 +1075,9 @@ focus_tree = {
 		x = 9
 		y = 0
 		cost = 7
+		available = {
+		NOT = { has_country_flag = TAI_sar_exec }
+		}
 		
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		
@@ -1090,6 +1097,10 @@ focus_tree = {
 		y = 1
 		relative_position_id = TAI_southern_policy
 		cost = 5
+		
+		available = {
+		NOT = { has_country_flag = TAI_sar_exec }
+		}
 		
 		prerequisite = {
 			focus = TAI_southern_policy
@@ -1338,10 +1349,12 @@ focus_tree = {
 		y = 1
 		relative_position_id = TAI_southern_policy
 		cost = 5
+		available = {
+		NOT = { has_country_flag = TAI_sar_exec }
+		}
 		prerequisite = {
 			focus = TAI_southern_policy
 		}
-		available = { NOT = { has_country_flag = TAI_sar_exec } }
 		mutually_exclusive = {
 			focus = TAI_in_peaceful_way
 		}
@@ -1702,9 +1715,6 @@ focus_tree = {
 		
 		completion_reward = {
 		add_ideas = TAI_old_kmt_rise_up
-		if = { 
-		limit = { has_idea = TAI_us_land_mil_help }
-		remove_ideas = TAI_us_land_mil_help }
 		add_political_power = 150
 		add_stability = -0.1
 		add_war_support = 0.05
