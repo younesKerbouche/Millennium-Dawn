@@ -124,9 +124,6 @@ country_event = {
 		}
 		PER = {
 			puppet = PAL
-			hidden_effect = {
-				remove_ideas = israeli_settlements
-			}
 		}
 		hidden_effect = {
 			ISR = {
@@ -6411,6 +6408,7 @@ country_event = {
 		}
 		else_if = {
 			limit = {
+				country_exists = SYR
 				NOT = {
 					has_country_flag = PER_did_principalists_3
 					SYR = {
@@ -6452,6 +6450,7 @@ country_event = {
 		}
 		else_if = {
 			limit = {
+				country_exists = IRQ
 				NOT = {
 					has_country_flag = PER_did_principalists_6
 					OR = {
@@ -6503,7 +6502,7 @@ country_event = {
 				NOT = {
 					has_country_flag = PER_did_principalists_9
 					has_equipment = {
-						Kamikaze_drone_equipment > 4999
+						medium_plane_suicide_airframe > 4999
 					}
 				}
 			}
@@ -9742,7 +9741,7 @@ country_event = {
 	option = {
 		name = iranian_focus.5.a
 		log = "[GetDateText]: [This.GetName]: iranian_focus.5.a executed"
-		set_temp_variable = { PER_corporate_tax_cost_change = 0.10 }
+		set_temp_variable = { PER_corporate_tax_cost_change = 0.05 }
 		update_PER_corporate_tax_cost = yes
 		newline = yes
 		set_temp_variable = { PER_corruption_cost_change = 0.05 }
@@ -9804,7 +9803,7 @@ country_event = {
 	option = {
 		name = iranian_focus.6.b
 		log = "[GetDateText]: [This.GetName]: iranian_focus.6.b executed"
-		set_temp_variable = { PER_population_tax_income_multiplier_modifier_change = 0.05 }
+		set_temp_variable = { PER_population_tax_income_multiplier_modifier_change = 0.025 }
 		update_PER_population_tax_income_multiplier_modifier = yes
 		newline = yes
 		set_temp_variable = { temp_opinion = -10 }
@@ -9874,7 +9873,7 @@ country_event = {
 		set_temp_variable = { PER_drift_defence_factor_change = -0.05 }
 		update_PER_drift_defence_factor = yes
 		newline = yes
-		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.05 }
+		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.02 }
 		update_PER_police_cost_multiplier_modifier = yes
 		newline = yes
 		add_power_balance_value = {
@@ -9918,10 +9917,10 @@ country_event = {
 	option = {
 		name = iranian_focus.9.b
 		log = "[GetDateText]: [This.GetName]: iranian_focus.9.b executed"
-		set_temp_variable = { PER_centralization_cost_change = -0.05 }
+		set_temp_variable = { PER_centralization_cost_change = -0.015 }
 		update_PER_centralization_cost = yes
 		newline = yes
-		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.1 }
+		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.05 }
 		update_PER_police_cost_multiplier_modifier = yes
 		newline = yes
 		add_power_balance_value = {
@@ -9971,7 +9970,7 @@ country_event = {
 			}
 		}
 		newline = yes
-		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.05 }
+		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.02 }
 		update_PER_police_cost_multiplier_modifier = yes
 		ai_chance = {
 			base = 1
@@ -10420,7 +10419,7 @@ country_event = {
 		}
 		effect_tooltip = {
 			send_equipment = {
-				equipment = Kamikaze_drone_equipment
+				equipment = medium_plane_suicide_airframe
 				amount = 3000
 				target = SOV
 			}
@@ -10478,7 +10477,7 @@ country_event = {
 		name = iranian_focus.23.a
 		log = "[GetDateText]: [This.GetName]: iranian_focus.23.a executed"
 		send_equipment = {
-			equipment = Kamikaze_drone_equipment
+			equipment = medium_plane_suicide_airframe
 			amount = 3000
 			target = SOV
 		}
@@ -11121,10 +11120,10 @@ country_event = {
 	option = {
 		name = iranian_focus.38.a
 		log = "[GetDateText]: [This.GetName]: iranian_focus.38.a executed"
-		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.05 }
+		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.02 }
 		update_PER_police_cost_multiplier_modifier = yes
 		newline = yes
-		set_temp_variable = { PER_education_cost_multiplier_modifier_change = -0.05 }
+		set_temp_variable = { PER_education_cost_multiplier_modifier_change = -0.02 }
 		update_PER_education_cost_multiplier_modifier = yes
 		newline = yes
 		add_popularity = {
@@ -11850,6 +11849,9 @@ country_event = {
 			target = SAZ
 			modifier = generic_increased_military_support
 		}
+		hidden_effect = {
+			increase_intervention_law_effect = yes
+		}
 		ai_chance = {
 			base = 0
 			modifier = {
@@ -12384,11 +12386,7 @@ country_event = {
 			target = FSA
 			modifier = generic_increased_military_support
 		}
-		add_ai_strategy = {
-			type = send_volunteers_desire
-			id = FSA
-			value = 200
-		}
+		set_country_flag = CENTO_intervention_in_syria
 		ai_chance = {
 			base = 5
 		}
@@ -13326,7 +13324,7 @@ country_event = {
 		set_temp_variable = { PER_political_power_factor_change = 0.05 }
 		update_PER_political_power_factor = yes
 		newline = yes
-		set_temp_variable = { PER_centralization_cost_change = -0.05 }
+		set_temp_variable = { PER_centralization_cost_change = -0.015 }
 		update_PER_centralization_cost = yes
 		ai_chance = {
 			base = 5
@@ -13787,7 +13785,7 @@ country_event = {
 	option = {
 		name = iranian_focus.108.a
 		log = "[GetDateText]: [This.GetName]:iranian_focus.108.a executed"
-		set_temp_variable = { PER_centralization_cost_change = -0.10 }
+		set_temp_variable = { PER_centralization_cost_change = -0.025 }
 		update_PER_centralization_cost = yes
 		newline = yes
 		set_temp_variable = { temp_opinion = 10 }
@@ -14657,10 +14655,10 @@ country_event = {
 	option = {
 		name = iranian_focus.129.a
 		log = "[GetDateText]: [This.GetName]:iranian_focus.129.a executed"
-		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.1 }
+		set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.05 }
 		update_PER_police_cost_multiplier_modifier = yes
 		newline = yes
-		set_temp_variable = { PER_centralization_cost_change = -0.1 }
+		set_temp_variable = { PER_centralization_cost_change = -0.025 }
 		update_PER_centralization_cost = yes
 		ai_chance = {
 			base = 10
@@ -14829,7 +14827,7 @@ country_event = {
 	option = {
 		name = iranian_focus.135.b
 		log = "[GetDateText]: [This.GetName]:iranian_focus.135.b executed"
-		set_temp_variable = { PER_education_cost_multiplier_modifier_change = -0.1 }
+		set_temp_variable = { PER_education_cost_multiplier_modifier_change = -0.05 }
 		update_PER_education_cost_multiplier_modifier = yes
 		newline = yes
 		set_temp_variable = { PER_political_power_factor_change = -0.05 }
@@ -14889,7 +14887,7 @@ country_event = {
 		set_temp_variable = { PER_offices_productivity_change = 0.1 }
 		update_PER_offices_productivity = yes
 		newline = yes
-		set_temp_variable = { PER_corporate_tax_cost_change = -0.1 }
+		set_temp_variable = { PER_corporate_tax_cost_change = -0.05 }
 		update_PER_corporate_tax_cost = yes
 		ai_chance = {
 			base = 10
@@ -15039,7 +15037,7 @@ country_event = {
 	option = {
 		name = iranian_focus.141.b
 		log = "[GetDateText]: [This.GetName]:iranian_focus.141.b executed"
-		set_temp_variable = { PER_centralization_cost_change = -0.1 }
+		set_temp_variable = { PER_centralization_cost_change = -0.025 }
 		update_PER_centralization_cost = yes
 		ai_chance = {
 			base = 10
@@ -15056,10 +15054,10 @@ country_event = {
 	option = {
 		name = iranian_focus.142.a
 		log = "[GetDateText]: [This.GetName]:iranian_focus.142.a executed"
-		set_temp_variable = { PER_centralization_cost_change = -0.1 }
+		set_temp_variable = { PER_centralization_cost_change = -0.025 }
 		update_PER_centralization_cost = yes
 		newline = yes
-		set_temp_variable = { PER_population_tax_income_multiplier_modifier_change = 0.1 }
+		set_temp_variable = { PER_population_tax_income_multiplier_modifier_change = 0.025 }
 		update_PER_population_tax_income_multiplier_modifier = yes
 		ai_chance = {
 			base = 10
@@ -15179,8 +15177,8 @@ country_event = {
 		name = iranian_focus.147.a
 		log = "[GetDateText]: [This.GetName]:iranian_focus.147.a executed"
 		create_country_leader = {
-			name = "Nader Najafi"
-			picture = "Army_Gen_Nader_Najafi.dds"
+			name = "Amir Hatami "
+			picture = "amir_hatami_pol.dds"
 			ideology = Nat_Autocracy
 			traits = {
 				nationalist_Nat_Autocracy
@@ -15846,7 +15844,7 @@ country_event = { # Bazaars in Trouble
 	option = { # They can deal with it themselves
 		name = iranian_focus.166.b
 		log = "[GetDateText]: [This.GetName]:iranian_focus.166.b executed"
-		set_temp_variable = { PER_interest_rate_multiplier_modifier_change = -0.25 }
+		set_temp_variable = { PER_interest_rate_multiplier_modifier_change = -0.15 }
 		update_PER_interest_rate_multiplier_modifier = yes
 		newline = yes
 		set_temp_variable = { temp_opinion = -10 }
@@ -16114,7 +16112,10 @@ country_event = {
 			type = liberate_wargoal
 		}
 		hidden_effect = {
-			news_event = iranian_focus.177
+			news_event = {
+				id = iranian_focus.177
+				days = 1
+			}
 		}
 		ai_chance = {
 			base = 5
@@ -16288,7 +16289,7 @@ country_event = {
 	option = {
 		name = iranian_focus.180.b
 		log = "[GetDateText]: [This.GetName]:iranian_focus.180.b executed"
-		set_temp_variable = { PER_population_tax_income_multiplier_modifier_change = 0.1 }
+		set_temp_variable = { PER_population_tax_income_multiplier_modifier_change = 0.025 }
 		update_PER_population_tax_income_multiplier_modifier = yes
 		if = {
 			limit = {
@@ -16390,7 +16391,7 @@ country_event = {
 	option = {
 		name = iranian_focus.183.b
 		log = "[GetDateText]: [This.GetName]:iranian_focus.183.b executed"
-		set_temp_variable = { PER_corporate_tax_cost_change = 0.10 }
+		set_temp_variable = { PER_corporate_tax_cost_change = 0.025 }
 		update_PER_corporate_tax_cost = yes
 		ai_chance = {
 			base = 1
@@ -18944,6 +18945,12 @@ country_event = {
 					type = civil_war
 				}
 			}
+			TUR = {
+				country_event = {
+					id = iranian_events.2281
+					days = 12
+				}
+			}
 		}
 	}
 
@@ -19975,6 +19982,58 @@ country_event = {
 }
 
 country_event = {
+	id = iranian_events.2281 # Instability in Azerbaijan Province!
+	title = iranian_events.2281.t
+	desc = iranian_events.2281.d
+	picture = GFX_iranian_civ_war_country
+	is_triggered_only = yes
+	# We will fund the uprising
+	option = {
+		name = iranian_events.2281.a
+		log = "[GetDateText]: [This.GetName]:iranian_events.2281.a executed"
+		PER_SAZ_independence = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+	# We will do no such thing! We have more pressing matters at hand
+	option = {
+		name = iranian_events.2281.b
+		log = "[GetDateText]: [This.GetName]:iranian_events.2281.b executed"
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = iranian_events.2282 # Instability in Azerbaijan Province!
+	title = iranian_events.2282.t
+	desc = iranian_events.2282.d
+	is_triggered_only = yes
+	# We will fund the uprising
+	option = {
+		name = iranian_events.2282.a
+		log = "[GetDateText]: [This.GetName]:iranian_events.2282.a executed"
+		give_guarantee = SAZ
+		SAZ = {
+			give_guarantee = ROOT
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	# We will do no such thing! We have more pressing matters at hand
+	option = {
+		name = iranian_events.2282.b
+		log = "[GetDateText]: [This.GetName]:iranian_events.2282.b executed"
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
 	id = iranian_events.300 # Commemorative Protests for 1999 Student Uprising
 	title = iranian_events.300.t
 	desc = iranian_events.300.d
@@ -20205,15 +20264,6 @@ country_event = {
 			set_temp_variable = { party_popularity_increase = 0.15 }
 			set_temp_variable = { temp_outlook_increase = 0.25 }
 			add_relative_party_popularity = yes
-			create_country_leader = {
-				name = "Artesh Directorate"
-				picture = "PER_joint_chief_staff.dds"
-				ideology = Autocracy
-				traits = {
-					nationalist_Nat_Autocracy
-					likeable
-				}
-			}
 		}
 		ai_chance = {
 			base = 1
@@ -20238,6 +20288,15 @@ country_event = {
 			set_temp_variable = { party_popularity_increase = 0.15 }
 			set_temp_variable = { temp_outlook_increase = 0.25 }
 			add_relative_party_popularity = yes
+			create_country_leader = {
+				name = "Artesh Directorate"
+				picture = "PER_joint_chief_staff.dds"
+				ideology = Nat_Autocracy
+				traits = {
+					nationalist_Nat_Autocracy
+					likeable
+				}
+			}
 		}
 		ai_chance = {
 			base = 1
@@ -20419,7 +20478,7 @@ country_event = {
 		set_temp_variable = { PER_political_power_factor_change = 0.05 }
 		update_PER_political_power_factor = yes
 		newline = yes
-		set_temp_variable = { PER_centralization_cost_change = -0.05 }
+		set_temp_variable = { PER_centralization_cost_change = -0.015 }
 		update_PER_centralization_cost = yes
 		newline = yes
 		custom_effect_tooltip = PER_chance_of_corruption_TT
@@ -20721,7 +20780,7 @@ country_event = {
 				update_PER_police_cost_multiplier_modifier = yes
 			}
 			25 = {
-				set_temp_variable = { PER_education_cost_multiplier_modifier_change = -0.04 }
+				set_temp_variable = { PER_education_cost_multiplier_modifier_change = -0.02 }
 				update_PER_education_cost_multiplier_modifier = yes
 			}
 		}

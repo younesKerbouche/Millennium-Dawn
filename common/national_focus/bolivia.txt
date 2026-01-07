@@ -6650,13 +6650,26 @@ focus_tree = {
 				remove_idea = BOL_army_reform_specops
 				add_idea = BOL_army_reform_specops2
 			}
+			if = {
+				limit = { NOT = { has_template = "Brigada de Fuerzas Especiales" } }
+				hidden_effect = {
+					division_template = {
+						name = "Brigada de Fuerzas Especiales"
+
+						regiments = {
+							Special_Forces = { x = 0 y = 0 }
+							Special_Forces = { x = 0 y = 1 }
+						}
+					}
+				}
+			}
 			899 = {
 				create_unit = {
-					division = "name = \"Brigada de Fuerzas Especiales\" division_template = \"Brigada de Fuerzas Especiales\" start_experience_base = 0.5"
+					division = "name = \"Brigada de Fuerzas Especiales\" division_template = \"Brigada de Fuerzas Especiales\" start_experience_factor = 0.5"
 					owner = BOL
 				}
 				create_unit = {
-					division = "name = \"Brigada de Fuerzas Especiales\" division_template = \"Brigada de Fuerzas Especiales\" start_experience_base = 0.5"
+					division = "name = \"Brigada de Fuerzas Especiales\" division_template = \"Brigada de Fuerzas Especiales\" start_experience_factor = 0.5"
 					owner = BOL
 				}
 			}
@@ -7159,9 +7172,9 @@ focus_tree = {
 			if = {
 				limit = { has_dlc = "By Blood Alone" }
 				add_equipment_to_stockpile = {
-					type = large_plane_airframe_2
+					type = small_plane_airframe_2
 					amount = 60
-					variant_name = "Tu-160"
+					variant_name = "MiG-29 Fulcrum"
 					producer = SOV
 				}
 			}

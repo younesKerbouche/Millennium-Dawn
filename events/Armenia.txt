@@ -4353,9 +4353,18 @@ country_event = {
 		}
 		set_temp_variable = { treasury_change = 10 }
 		modify_treasury_effect = yes
-		add_equipment_to_stockpile = {
-			type = Air_UAV1
-			amount = -500
+		if = {
+			limit = { has_dlc = "By Blood Alone" }
+			add_equipment_to_stockpile = {
+				type = small_plane_suicide_airframe_2
+				amount = -500
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = Air_UAV1
+				amount = -500
+			}
 		}
 		ai_chance = {
 			base = 10
@@ -4439,10 +4448,20 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: arme.98.a executed"
 		set_temp_variable = { treasury_change = -10 }
 		modify_treasury_effect = yes
-		add_equipment_to_stockpile = {
-			type = Air_UAV1
-			amount = 500
-			producer = PER
+		if = {
+			limit = { has_dlc = "By Blood Alone" }
+			add_equipment_to_stockpile = {
+				type = small_plane_suicide_airframe_2
+				amount = 500
+				producer = PER
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = Air_UAV1
+				amount = 500
+				producer = PER
+			}
 		}
 		ai_chance = {
 			base = 1
@@ -9113,18 +9132,16 @@ country_event = {
 			target = ARM
 			modifier = new_diplomatic_missions
 		}
+		set_country_flag = SOV_pashinyan_agreed_to_diplo
 		ARM = {
 			country_event = arm_pashinyan.2
-			add_ai_strategy = {
-				type = alliance
-				id = SOV
-				value = 200
-			}
 		}
+
 		ai_chance = {
 			base = 2
 		}
 	}
+
 	option = {
 		name = arm_pashinyan.1.b
 		log = "[GetDateText]: [This.GetName]: arm_pashinyan.1.b executed"
@@ -9140,6 +9157,7 @@ country_event = {
 		ARM = {
 			country_event = arm_pashinyan.3
 		}
+
 		ai_chance = {
 			base = 1
 		}
@@ -14351,13 +14369,13 @@ country_event = {
 					officer_military_school
 					nuclear_energy
 					Lacks_International_Recognition
-			
+
 					# Armenian Unique
 					armenian_perseverance
 					ARM_diaspora_links
 					ARM_broken_economy
 				}
-				
+
 				#Influence system
 				init_influence = yes
 				set_variable = { domestic_influence_amount = 10 }

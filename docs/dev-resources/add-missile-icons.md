@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Add Missile Icons"
+description: "How-to Guide on how to add Missile Icons into Millennium Dawn"
+---
+
 This page is now deprecated as of MD v1.11.0.
 
 ## How to Add Missile Icons
@@ -14,7 +20,8 @@ spriteType = {
 }
 ```
 
-3. Create the sprite entries in ``interface/mdult_missiles.gfx``
+{:start="3"}
+3. Create the sprite entries in ``interface/mdult_missiles.gfx`` 
    - The following convention is the standard and the file is structured as countries -> missile types
 
 ```

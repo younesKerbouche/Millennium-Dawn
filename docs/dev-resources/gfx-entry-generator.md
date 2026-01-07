@@ -1,5 +1,11 @@
+---
+layout: default
+title: "GFX Entry Generator"
+description: "How to use gfx_entry_generator.py for goals"
+---
+
 <h1>How to use gfx_entry_generator.py for goals</h1>
-<h5>For whoever on gfx-input branch using this script:</h5>
+<h2>For whoever on gfx-input branch using this script:</h2>
 
 1) Open powershell/cmd
 
@@ -18,7 +24,7 @@ With this in mind, the path you give should look like this:'..\ ..\Millennium_Da
 
 8) New goals.gfx and goals_shine.gfx should now be generated
 
-<h6>Extra:</h6>
+<h2>Extra:</h2>
 
 9) To view if the files changed run git command: git status
 
@@ -26,7 +32,7 @@ With this in mind, the path you give should look like this:'..\ ..\Millennium_Da
 
 11) Everything looks good? Now commit and push :)
 
-<h6>QoA:</h6>
+<h2>QoA:</h2>
 
 "What is Python?"<br>
 
