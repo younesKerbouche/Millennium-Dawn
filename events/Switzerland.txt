@@ -501,3 +501,65 @@ country_event = {
 		complete_national_focus = SWI_neutral_foreign_policy
 	}
 }
+country_event = {
+	id = switzerland.18
+	title = switzerland.18.t
+	desc = switzerland.18.desc
+	is_triggered_only = yes
+	option = {
+		name = switzerland.18.a
+		set_variable = {SWI_nato_counter = 0}
+
+		every_country = {
+			limit = {has_idea = nato_member}
+			country_event = switzerland.19
+		}
+	}
+	option = {
+		name = switzerland.18.b
+		complete_national_focus = SWI_alone_is_safer
+	}
+}
+country_event = {
+	id = switzerland.19
+	title = switzerland.19.t
+	desc = switzerland.19.desc
+	is_triggered_only = yes
+	option = {
+		name = switzerland.19.a
+		add_to_variable = {SWI_nato_counter = 1}
+	}
+	option = {
+		name = switzerland.19.b
+		subtract_from_variable = {SWI_nato_counter = 1}
+	}
+}
+country_event = {
+	id = switzerland.20
+	title = switzerland.20.t
+	desc = switzerland.20.desc
+	trigger = {
+		tag = SWI
+		has_variable = SWI_nato_counter
+	}
+	mean_time_to_happen = {
+    	days = 30
+	}
+	option = {
+		name = switzerland.20.a
+		trigger = {
+			check_variable = { SWI_nato_counter > 0 }
+		}
+
+		add_ideas = nato_member
+		complete_national_focus = SWI_integration_to_nato
+	}
+	option = {
+		name = switzerland.20.a
+		trigger = {
+			check_variable = { SWI_nato_counter < 1 }
+		}
+
+		complete_national_focus = SWI_alone_is_safer
+	}
+}
