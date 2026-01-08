@@ -6,40 +6,46 @@ resource_storage_steel_calc_effect = {
 	set_variable = { steel_from_storage = 0 }
 
 	set_temp_variable = { steel_check = resource@steel }
+	log = "[?steel_check] full steel number"
 	set_temp_variable = { rubber_check = resource@rubber }
 	set_temp_variable = { chromium_check = resource@chromium }
-	set_temp_variable = { aluminum_check = resource@aluminum }
+	set_temp_variable = { aluminum_check = resource@aluminium }
 	set_temp_variable = { tungsten_check = resource@tungsten }
 
 	set_temp_variable = { total_steel_balance = resource_produced@steel }
+	log = "[?total_steel_balance] on production"
 	add_to_temp_variable = { total_steel_balance = resource_imported@steel }
+	log = "[?total_steel_balance] after imports"
 	subtract_from_temp_variable = { total_steel_balance = resource_exported@steel }
+	log = "[?total_steel_balance] after exports"
 	subtract_from_temp_variable = { total_steel_balance = resource_consumed@steel }
-	multiply_temp_variable = {total_steel_balance = -1 }
+	log = "[?total_steel_balance] after consumption"
+	multiply_temp_variable = { total_steel_balance = -1 }
+	log = "[?total_steel_balance] after inversion"
 
 	set_temp_variable = { total_tungsten_balance = resource_produced@tungsten }
 	add_to_temp_variable = { total_tungsten_balance = resource_imported@tungsten }
 	subtract_from_temp_variable = { total_tungsten_balance = resource_exported@tungsten }
 	subtract_from_temp_variable = { total_tungsten_balance = resource_consumed@tungsten }
-	multiply_temp_variable = {total_tungsten_balance = -1 }
+	multiply_temp_variable = { total_tungsten_balance = -1 }
 
 	set_temp_variable = { total_rubber_balance = resource_produced@rubber }
 	add_to_temp_variable = { total_rubber_balance = resource_imported@rubber }
 	subtract_from_temp_variable = { total_rubber_balance = resource_exported@rubber }
 	subtract_from_temp_variable = { total_rubber_balance = resource_consumed@rubber }
-	multiply_temp_variable = {total_rubber_balance = -1 }
+	multiply_temp_variable = { total_rubber_balance = -1 }
 
 	set_temp_variable = { total_chromium_balance = resource_produced@chromium }
 	add_to_temp_variable = { total_chromium_balance = resource_imported@chromium }
 	subtract_from_temp_variable = { total_chromium_balance = resource_exported@chromium }
 	subtract_from_temp_variable = { total_chromium_balance = resource_consumed@chromium }
-	multiply_temp_variable = {total_chromium_balance = -1 }
+	multiply_temp_variable = { total_chromium_balance = -1 }
 
-	set_temp_variable = { total_aluminum_balance = resource_produced@aluminum }
-	add_to_temp_variable = { total_aluminum_balance = resource_imported@aluminum }
-	subtract_from_temp_variable = { total_aluminum_balance = resource_exported@aluminum }
-	subtract_from_temp_variable = { total_aluminum_balance = resource_consumed@aluminum }
-	multiply_temp_variable = {total_aluminum_balance = -1 }
+	set_temp_variable = { total_aluminum_balance = resource_produced@aluminium }
+	add_to_temp_variable = { total_aluminum_balance = resource_imported@aluminium }
+	subtract_from_temp_variable = { total_aluminum_balance = resource_exported@aluminium }
+	subtract_from_temp_variable = { total_aluminum_balance = resource_consumed@aluminium }
+	multiply_temp_variable = { total_aluminum_balance = -1 }
 
 	if = {
 		limit = {
@@ -48,123 +54,126 @@ resource_storage_steel_calc_effect = {
 		}
 		if = {
 			limit = {
-				check_variable = { total_rubber_balance > rubber_in_storage}
+				check_variable = { total_rubber_balance > rubber_in_storage }
 			}
-			set_variable = {rubber_from_storage = rubber_in_storage}
-			subtract_from_variable = { rubber_in_storage = rubber_from_storage}
+			set_variable = { rubber_from_storage = rubber_in_storage }
+			subtract_from_variable = { rubber_in_storage = rubber_from_storage }
 		}
 		else = {
-			set_variable = {rubber_from_storage = total_rubber_balance}
-			subtract_from_variable = { rubber_in_storage = rubber_from_storage}
+			set_variable = { rubber_from_storage = total_rubber_balance }
+			subtract_from_variable = { rubber_in_storage = rubber_from_storage }
 		}
 	}
 	if = {
 		limit = {
 			has_country_flag = allowed_to_take
-			check_variable = { aluminum_check < 0}
+			check_variable = { aluminum_check < 0 }
 		}
 		if = {
 			limit = {
-				check_variable = { total_aluminum_balance > aluminum_storage}
+				check_variable = { total_aluminum_balance > aluminum_in_storage }
 			}
-			set_variable = {aluminum_from_storage = aluminum_in_storage}
-			subtract_from_variable = { aluminum_in_storage = aluminum_from_storage}
+			set_variable = { aluminum_from_storage = aluminum_in_storage }
+			subtract_from_variable = { aluminum_in_storage = aluminum_from_storage }
 		}
 		else = {
-			set_variable = {aluminum_from_storage = total_aluminum_balance}
-			subtract_from_variable = { aluminum_in_storage = aluminum_from_storage}
+			set_variable = { aluminum_from_storage = total_aluminum_balance }
+			subtract_from_variable = { aluminum_in_storage = aluminum_from_storage }
 		}
 	}
 	if = {
 		limit = {
 			has_country_flag = allowed_to_take
-			check_variable = { chromium_check < 0}
+			check_variable = { chromium_check < 0 }
 		}
 		if = {
 			limit = {
-				check_variable = { total_chromium_balance > chromium_in_storage}
+				check_variable = { total_chromium_balance > chromium_in_storage }
 			}
-			set_variable = {chromium_from_storage = chromium_in_storage}
-			subtract_from_variable = { chromium_in_storage = chromium_from_storage}
+			set_variable = { chromium_from_storage = chromium_in_storage }
+			subtract_from_variable = { chromium_in_storage = chromium_from_storage }
 		}
 		else = {
-			set_variable = {chromium_from_storage = total_chromium_balance}
-			subtract_from_variable = { chromium_in_storage = chromium_from_storage}
+			set_variable = { chromium_from_storage = total_chromium_balance }
+			subtract_from_variable = { chromium_in_storage = chromium_from_storage }
 		}
 	}
 	if = {
 		limit = {
 			has_country_flag = allowed_to_take
-			check_variable = { tungsten_check < 0}
+			check_variable = { tungsten_check < 0 }
 		}
 		if = {
 			limit = {
-				check_variable = { total_tungsten_balance > tungsten_in_storage}
+				check_variable = { total_tungsten_balance > tungsten_in_storage }
 			}
-			set_variable = {tungsten_from_storage = tungsten_in_storage}
-			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage}
+			set_variable = { tungsten_from_storage = tungsten_in_storage }
+			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage }
 		}
 		else = {
-			set_variable = {tungsten_from_storage = total_tungsten_balance}
-			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage}
+			set_variable = { tungsten_from_storage = total_tungsten_balance }
+			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage }
 		}
 	}
 	if = {
 		limit = {
 			has_country_flag = allowed_to_take
-			check_variable = { steel_check < 0}
+			check_variable = { steel_check < 0 }
 		}
+		log = "USA HAS STEEL DEFICIT HEEEELLLPPPP"
 		if = {
 			limit = {
-				check_variable = { total_steel_balance > steel_in_storage}
+				check_variable = { total_steel_balance > steel_in_storage }
 			}
-			set_variable = {steel_from_storage = steel_in_storage}
-			subtract_from_variable = { steel_in_storage = steel_from_storage}
+			set_variable = { steel_from_storage = steel_in_storage }
+			subtract_from_variable = { steel_in_storage = steel_from_storage }
+			log = "Steel balance is greater than steel in storage - [?total_steel_balance] - [?THIS.steel_from_storage]"
 		}
 		else = {
-			set_variable = {steel_from_storage = total_steel_balance}
-			subtract_from_variable = { steel_in_storage = steel_from_storage}
+			set_variable = { steel_from_storage = total_steel_balance }
+			subtract_from_variable = { steel_in_storage = steel_from_storage }
+			log = "Steel balance is less than steel in storage - [?total_steel_balance] - [?THIS.steel_from_storage]"
 		}
 	}
 
 	if = {
 		limit = {
-			check_variable = { total_rubber_balance < 0}
+			check_variable = { total_rubber_balance < 0 }
 		}
-		multiply_temp_variable = {total_rubber_balance = -1}
-		add_to_variable = {rubber_in_storage = total_rubber_balance}
+		multiply_temp_variable = { total_rubber_balance = -1 }
+		add_to_variable = { rubber_in_storage = total_rubber_balance }
 		set_variable = { rubber_from_storage = 0 }
 	}
 	if = {
 		limit = {
-			check_variable = { total_steel_balance < 0}
+			check_variable = { total_steel_balance < 0 }
 		}
-		multiply_temp_variable = {total_steel_balance = -1}
-		add_to_variable = {steel_in_storage = total_steel_balance}
+		multiply_temp_variable = { total_steel_balance = -1 }
+		add_to_variable = { steel_in_storage = total_steel_balance }
 		set_variable = { steel_from_storage = 0 }
 	}
 	if = {
 		limit = {
-			check_variable = { total_chromium_balance < 0}
+			check_variable = { total_chromium_balance < 0 }
 		}
 		multiply_temp_variable = { total_chromium_balance = -1}
-		add_to_variable = {chromium_in_storage = total_chromium_balance}
+		add_to_variable = { chromium_in_storage = total_chromium_balance }
 		set_variable = { chromium_from_storage = 0 }
 	}
 	if = {
 		limit = {
-			check_variable = { total_tungsten_balance < 0}
+			check_variable = { total_tungsten_balance < 0 }
 		}
 		multiply_temp_variable = { total_tungsten_balance = -1}
-		add_to_variable = {tungsten_in_storage = total_tungsten_balance}
+		add_to_variable = { tungsten_in_storage = total_tungsten_balance }
 		set_variable = { tungsten_from_storage = 0 }
 	}
 	if = {
 		limit = {
-			check_variable = { total_aluminum_balance < 0}
+			check_variable = { total_aluminum_balance < 0 }
 		}
 		multiply_temp_variable = { total_aluminum_balance = -1}
-		add_to_variable = { aluminum_in_storage = total_aluminum_balance}
+		add_to_variable = { aluminum_in_storage = total_aluminum_balance }
 		set_variable = { aluminum_from_storage = 0 }
 	}
 
@@ -174,4 +183,12 @@ resource_storage_steel_calc_effect = {
 	clamp_variable = { var = chromium_in_storage min = 0 max = chromium_capacity }
 	clamp_variable = { var = tungsten_in_storage min = 0 max = tungsten_capacity }
 	clamp_variable = { var = steel_in_storage min = 0 max = steel_capacity }
+}
+
+get_total_storage = {
+	log = "Rubber Storage: [?THIS.rubber_in_storage] - Rubber From Storage: [?THIS.rubber_from_storage] - Rubber Total: [?THIS.resource@rubber]"
+	log = "Aluminium Storage: [?THIS.aluminum_in_storage] - Aluminium From Storage: [?THIS.aluminum_from_storage] - Aluminium Total: [?THIS.resource@aluminium]"
+	log = "Precious Metals Storage: [?THIS.chromium_in_storage] - Precious Metals From Storage: [?THIS.chromium_from_storage] - Precious Metals Total: [?THIS.resource@chromium]"
+	log = "Tech Metals Storage: [?THIS.tungsten_in_storage] - Tech Metals From Storage: [?THIS.tungsten_from_storage] - Tech Metals Total: [?THIS.resource@tungsten]"
+	log = "Steel Storage: [?THIS.steel_in_storage] - Steel From Storage: [?THIS.steel_from_storage] - Steel Total: [?THIS.resource@steel]"
 }
