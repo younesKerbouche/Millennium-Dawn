@@ -1,188 +1,74 @@
 resource_storage_steel_calc_effect = {
-	set_variable = { rubber_from_storage = 0 }
-	set_variable = { aluminum_from_storage = 0 }
-	set_variable = { chromium_from_storage = 0 }
-	set_variable = { tungsten_from_storage = 0 }
+	#Grab the base resource level here
+	set_temp_variable = { pre_check_number = resource@steel }
+	log = "[?pre_check_number] Steel starting resource with support pre_check_number"
 	set_variable = { steel_from_storage = 0 }
-
 	set_temp_variable = { steel_check = resource@steel }
-	log = "[?steel_check] full steel number"
-	set_temp_variable = { rubber_check = resource@rubber }
-	set_temp_variable = { chromium_check = resource@chromium }
-	set_temp_variable = { aluminum_check = resource@aluminium }
-	set_temp_variable = { tungsten_check = resource@tungsten }
 
-	set_temp_variable = { total_steel_balance = resource_produced@steel }
-	log = "[?total_steel_balance] on production"
-	add_to_temp_variable = { total_steel_balance = resource_imported@steel }
-	log = "[?total_steel_balance] after imports"
-	subtract_from_temp_variable = { total_steel_balance = resource_exported@steel }
-	log = "[?total_steel_balance] after exports"
-	subtract_from_temp_variable = { total_steel_balance = resource_consumed@steel }
-	log = "[?total_steel_balance] after consumption"
-	multiply_temp_variable = { total_steel_balance = -1 }
-	log = "[?total_steel_balance] after inversion"
+	create_import = {
+		resource = steel
+		amount = 8
+		exporter = CHI
+	}
 
-	set_temp_variable = { total_tungsten_balance = resource_produced@tungsten }
-	add_to_temp_variable = { total_tungsten_balance = resource_imported@tungsten }
-	subtract_from_temp_variable = { total_tungsten_balance = resource_exported@tungsten }
-	subtract_from_temp_variable = { total_tungsten_balance = resource_consumed@tungsten }
-	multiply_temp_variable = { total_tungsten_balance = -1 }
+	set_variable = { export_mod_test = -0.1 }
 
-	set_temp_variable = { total_rubber_balance = resource_produced@rubber }
-	add_to_temp_variable = { total_rubber_balance = resource_imported@rubber }
-	subtract_from_temp_variable = { total_rubber_balance = resource_exported@rubber }
-	subtract_from_temp_variable = { total_rubber_balance = resource_consumed@rubber }
-	multiply_temp_variable = { total_rubber_balance = -1 }
+	#Now, remove the currently added deficit from this number
+	#If this doesnt change, we either have no steel being added, or none left to add
+	subtract_from_temp_variable = { steel_check = steel_from_storage }
+	log = "[?steel_check] Steel resource AFTER storage removal"
 
-	set_temp_variable = { total_chromium_balance = resource_produced@chromium }
-	add_to_temp_variable = { total_chromium_balance = resource_imported@chromium }
-	subtract_from_temp_variable = { total_chromium_balance = resource_exported@chromium }
-	subtract_from_temp_variable = { total_chromium_balance = resource_consumed@chromium }
-	multiply_temp_variable = { total_chromium_balance = -1 }
 
-	set_temp_variable = { total_aluminum_balance = resource_produced@aluminium }
-	add_to_temp_variable = { total_aluminum_balance = resource_imported@aluminium }
-	subtract_from_temp_variable = { total_aluminum_balance = resource_exported@aluminium }
-	subtract_from_temp_variable = { total_aluminum_balance = resource_consumed@aluminium }
-	multiply_temp_variable = { total_aluminum_balance = -1 }
-
+	#Do the fastest check first; add to the stockpile, if we have a surplus after this check
+	#Then zero out the storage if it was greater than 0
 	if = {
 		limit = {
-			has_country_flag = allowed_to_take
-			check_variable = { rubber_check < 0 }
+			check_variable = { steel_check > 0 }
 		}
+		add_to_variable = { steel_in_storage = steel_check }
 		if = {
-			limit = {
-				check_variable = { total_rubber_balance > rubber_in_storage }
-			}
-			set_variable = { rubber_from_storage = rubber_in_storage }
-			subtract_from_variable = { rubber_in_storage = rubber_from_storage }
+			limit = { check_variable = { steel_from_storage > 0 } }
+			set_variable = { steel_from_storage = 0 }
 		}
-		else = {
-			set_variable = { rubber_from_storage = total_rubber_balance }
-			subtract_from_variable = { rubber_in_storage = rubber_from_storage }
+		log = "ADDED [?steel_check] to Storage - TOTAL NOW [?THIS.steel_in_storage]"
+		create_import = {
+			resource = steel
+			amount = 0
+			exporter = CHI
 		}
-	}
-	if = {
-		limit = {
-			has_country_flag = allowed_to_take
-			check_variable = { aluminum_check < 0 }
-		}
+	} else = {
+		#If the steel check was NOT greater than 0, then we know we have a deficit
+		#Run the checks for the deficit here
 		if = {
+			#Only take if the limiter says you can, AND if the storage has surplus
 			limit = {
-				check_variable = { total_aluminum_balance > aluminum_in_storage }
+				has_country_flag = allowed_to_take
+				check_variable = { steel_in_storage > 0 }
 			}
-			set_variable = { aluminum_from_storage = aluminum_in_storage }
-			subtract_from_variable = { aluminum_in_storage = aluminum_from_storage }
-		}
-		else = {
-			set_variable = { aluminum_from_storage = total_aluminum_balance }
-			subtract_from_variable = { aluminum_in_storage = aluminum_from_storage }
-		}
-	}
-	if = {
-		limit = {
-			has_country_flag = allowed_to_take
-			check_variable = { chromium_check < 0 }
-		}
-		if = {
-			limit = {
-				check_variable = { total_chromium_balance > chromium_in_storage }
+			log = "Removing Steel from Storage"
+			#Minus a negative means number go up, so we set the steel from storage to the deficit number
+			#Then, we add the negative to the steel in storage, to remove the amount from storage
+			add_to_variable = { steel_from_storage = steel_check }
+			add_to_variable = { steel_in_storage = steel_check }
+			#check if storage is negative now. If it is, add that negative to the amount from storage
+			#that will prevent magic resources from occuring. We can clamp the from storage at the end, to a min 0
+			if = {
+				limit = { check_variable = { steel_in_storage < 0 } }
+				subtract_from_variable = { steel_from_storage = steel_in_storage }
 			}
-			set_variable = { chromium_from_storage = chromium_in_storage }
-			subtract_from_variable = { chromium_in_storage = chromium_from_storage }
-		}
-		else = {
-			set_variable = { chromium_from_storage = total_chromium_balance }
-			subtract_from_variable = { chromium_in_storage = chromium_from_storage }
+			log = "REMOVING [?THIS.steel_from_storage] From storage, New storage total is [?THIS.steel_in_storage]"
+		} else = {
+			#Zero out the take from storage here. Either we can't take it anymore, or we ran out
+			set_variable = { steel_from_storage = 0 }
 		}
 	}
-	if = {
-		limit = {
-			has_country_flag = allowed_to_take
-			check_variable = { tungsten_check < 0 }
-		}
-		if = {
-			limit = {
-				check_variable = { total_tungsten_balance > tungsten_in_storage }
-			}
-			set_variable = { tungsten_from_storage = tungsten_in_storage }
-			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage }
-		}
-		else = {
-			set_variable = { tungsten_from_storage = total_tungsten_balance }
-			subtract_from_variable = { tungsten_in_storage = tungsten_from_storage }
-		}
-	}
-	if = {
-		limit = {
-			has_country_flag = allowed_to_take
-			check_variable = { steel_check < 0 }
-		}
-		log = "USA HAS STEEL DEFICIT HEEEELLLPPPP"
-		if = {
-			limit = {
-				check_variable = { total_steel_balance > steel_in_storage }
-			}
-			set_variable = { steel_from_storage = steel_in_storage }
-			subtract_from_variable = { steel_in_storage = steel_from_storage }
-			log = "Steel balance is greater than steel in storage - [?total_steel_balance] - [?THIS.steel_from_storage]"
-		}
-		else = {
-			set_variable = { steel_from_storage = total_steel_balance }
-			subtract_from_variable = { steel_in_storage = steel_from_storage }
-			log = "Steel balance is less than steel in storage - [?total_steel_balance] - [?THIS.steel_from_storage]"
-		}
-	}
-
-	if = {
-		limit = {
-			check_variable = { total_rubber_balance < 0 }
-		}
-		multiply_temp_variable = { total_rubber_balance = -1 }
-		add_to_variable = { rubber_in_storage = total_rubber_balance }
-		set_variable = { rubber_from_storage = 0 }
-	}
-	if = {
-		limit = {
-			check_variable = { total_steel_balance < 0 }
-		}
-		multiply_temp_variable = { total_steel_balance = -1 }
-		add_to_variable = { steel_in_storage = total_steel_balance }
-		set_variable = { steel_from_storage = 0 }
-	}
-	if = {
-		limit = {
-			check_variable = { total_chromium_balance < 0 }
-		}
-		multiply_temp_variable = { total_chromium_balance = -1}
-		add_to_variable = { chromium_in_storage = total_chromium_balance }
-		set_variable = { chromium_from_storage = 0 }
-	}
-	if = {
-		limit = {
-			check_variable = { total_tungsten_balance < 0 }
-		}
-		multiply_temp_variable = { total_tungsten_balance = -1}
-		add_to_variable = { tungsten_in_storage = total_tungsten_balance }
-		set_variable = { tungsten_from_storage = 0 }
-	}
-	if = {
-		limit = {
-			check_variable = { total_aluminum_balance < 0 }
-		}
-		multiply_temp_variable = { total_aluminum_balance = -1}
-		add_to_variable = { aluminum_in_storage = total_aluminum_balance }
-		set_variable = { aluminum_from_storage = 0 }
-	}
-
 
 	clamp_variable = { var = rubber_in_storage min = 0 max = rubber_capacity }
 	clamp_variable = { var = aluminum_in_storage min = 0 max = aluminum_capacity }
 	clamp_variable = { var = chromium_in_storage min = 0 max = chromium_capacity }
 	clamp_variable = { var = tungsten_in_storage min = 0 max = tungsten_capacity }
 	clamp_variable = { var = steel_in_storage min = 0 max = steel_capacity }
+	log = "Storage after clamp is [?THIS.steel_in_storage]"
 }
 
 get_total_storage = {
