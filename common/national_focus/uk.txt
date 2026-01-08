@@ -6725,7 +6725,7 @@ focus_tree = {
 			set_temp_variable = { ENG_production_factory_efficiency_gain_factor_change = 0.05 }
 			update_ENG_production_factory_efficiency_gain_factor = yes
 			newline = yes
-			set_temp_variable = { ENG_recruitable_population_change = 0.50 }
+			set_temp_variable = { ENG_recruitable_population_change = 0.25 }
 			update_ENG_recruitable_population = yes
 			newline = yes
 			set_temp_variable = { ENG_production_factory_start_efficiency_factor_change = 0.05 }
@@ -8701,7 +8701,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_copyright_in_a_digital_age"
-			set_temp_variable = { ENG_production_speed_internet_station_factor_change = 0.15 }
+			set_temp_variable = { ENG_production_speed_internet_station_factor_change = 0.10 }
 			update_ENG_production_speed_internet_station_factor = yes
 			newline = yes
 			if = {
@@ -9144,6 +9144,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_neighbourhood_police_teams"
+			set_temp_variable = { ENG_police_cost_multiplier_modifier_change = -0.05 }
+			update_ENG_police_cost_multiplier_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_corruption_cost_change = -0.10 }
+			update_ENG_corruption_cost = yes
+			newline = yes
+			set_temp_variable = { ENG_recruitable_population_change = 0.25 }
+			update_ENG_recruitable_population = yes
 		}
 
 		ai_will_do = {
@@ -9172,6 +9180,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_cctv_reduce_fear"
+			set_temp_variable = { ENG_production_speed_internet_station_factor_change = 0.10 }
+			update_ENG_production_speed_internet_station_factor = yes
+			newline = yes
+			add_stability = 0.03
+			newline = yes
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.025 }
+			add_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
@@ -9278,13 +9295,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_renewed_police_budget"
-			set_temp_variable = { PER_police_cost_multiplier_modifier_change = -0.05 }
-			update_PER_police_cost_multiplier_modifier = yes
 			if = {
 				limit = {
 					has_dlc = "La Resistance"
 				}
-				newline = yes
 				upgrade_intelligence_agency = upgrade_economy_civilian
 				newline = yes
 			}
@@ -9318,7 +9332,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_britain_can_be_better"
-
+			country_event = britain_md.9
 		}
 
 		ai_will_do = {
@@ -9328,7 +9342,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_more_power_to_people
-		icon = god_save_the_king
+		icon = election2
 
 		x = -1
 		y = 1
@@ -9360,7 +9374,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_westminster_reinforced
-		icon = god_save_the_king
+		icon = government_beu
 
 		x = 1
 		y = 1
