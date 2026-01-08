@@ -1725,6 +1725,44 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = britain_md.10
+	title = britain_md.10.t
+	desc = britain_md.10.d
+	is_triggered_only = yes
+	option = {
+		name = britain_md.10.a
+		log = "[GetDateText]: [This.GetName]: britain_md.10.a executed"
+		random_list = {
+			25 = {
+
+			}
+			75 = {
+				increase_corruption = yes
+			}
+		}
+		newline = yes
+		set_party_index_to_ruling_party = yes
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.10 }
+		add_relative_party_popularity = yes
+		newline = yes
+		set_temp_variable = { ENG_popularity_attack_modifier_change = 2.00 }
+		update_ENG_popularity_attack_modifier = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = britain_md.10.b
+		log = "[GetDateText]: [This.GetName]: britain_md.10.b executed"
+		add_stability = 0.05
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 # # # # # # # # # # # # DEVOLUTION DO NOT TOUCH # # # # # # # # # # # #
 # # # # # # # # ## # # # TOUCH ME PLEASE # # # # # # # # # # # #
 # The Constituents Want to Further Devolve Matters

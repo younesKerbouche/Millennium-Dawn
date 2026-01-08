@@ -5368,10 +5368,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus ENG_critical_minerals_strategy"
-			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
-			update_ENG_local_resources_factor = yes
-			newline = yes
+			log = "[GetDateText]: [Root.GetName]: Focus ENG_critical_minerals_strategy"s
 			unlock_decision_tooltip = ENG_clydach_nickel_decision
 			unlock_decision_tooltip = ENG_ellesmere_port_decision
 			unlock_decision_tooltip = ENG_shetland_hydrocarbon_decision
@@ -5771,9 +5768,6 @@ focus_tree = {
 				}
 			}
 			newline = yes
-			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
-			update_ENG_local_resources_factor = yes
-			newline = yes
 			set_temp_variable = { treasury_change = -5.63 }
 			modify_treasury_effect = yes
 		}
@@ -5803,9 +5797,6 @@ focus_tree = {
 					amount = 6
 				}
 			}
-			newline = yes
-			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
-			update_ENG_local_resources_factor = yes
 			newline = yes
 			set_temp_variable = { treasury_change = -5.63 }
 			modify_treasury_effect = yes
@@ -5871,9 +5862,6 @@ focus_tree = {
 				}
 			}
 			newline = yes
-			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
-			update_ENG_local_resources_factor = yes
-			newline = yes
 			set_temp_variable = { treasury_change = -7.50 }
 			modify_treasury_effect = yes
 		}
@@ -5908,9 +5896,6 @@ focus_tree = {
 					modifier = ENG_coal_opencast_mining
 				}
 			}
-			newline = yes
-			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
-			update_ENG_local_resources_factor = yes
 			newline = yes
 			set_temp_variable = { treasury_change = -5.63 }
 			modify_treasury_effect = yes
@@ -7372,24 +7357,23 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_foster_the_tech_revolution"
-			add_tech_bonus = {
-				name = nuclear_reactors_research_bonus
-				bonus = 1
-				uses = 1
-				category = CAT_internet_tech
-				category = CAT_computing_tech
-				category = CAT_ai
-			}
-			newline = yes
 			13 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = offices
+					type = microchip_plant
 					level = 1
 				}
 			}
 			newline = yes
-			set_temp_variable = { treasury_change = -11.50 }
+			12 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = microchip_plant
+					level = 1
+				}
+			}
+			newline = yes
+			set_temp_variable = { treasury_change = -21.00 }
 			modify_treasury_effect = yes
 		}
 
@@ -9342,7 +9326,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_more_power_to_people
-		icon = election2
+		icon = national_unity_red
 
 		x = -1
 		y = 1
@@ -9365,6 +9349,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_more_power_to_people"
+			remove_ideas = ENG_two_party_system_idea
+			newline = yes
+			custom_effect_tooltip = ENG_shatter_two_party_system_TT
 		}
 
 		ai_will_do = {
@@ -9396,7 +9383,18 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_more_power_to_people"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_westminster_reinforced"
+			set_temp_variable = { ENG_political_power_factor_change = 0.02 }
+			update_ENG_political_power_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_drift_defence_factor_change = 0.05 }
+			update_ENG_drift_defence_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_root_out_resistance_effectiveness_factor_change = 0.15 }
+			update_ENG_root_out_resistance_effectiveness_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_resistance_growth_change = -0.10 }
+			update_ENG_resistance_growth = yes
 		}
 
 		ai_will_do = {
@@ -9406,7 +9404,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_further_digital_governance
-		icon = god_save_the_king
+		icon = aristocratic_funding
 
 		x = -2
 		y = 2
@@ -9425,6 +9423,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_further_digital_governance"
+			add_tech_bonus = {
+				name = nuclear_reactors_research_bonus
+				bonus = 1
+				uses = 1
+				category = CAT_internet_tech
+				category = CAT_computing_tech
+				category = CAT_ai
+			}
+			newline = yes
+			random_list = {
+				50 = {
+					increase_economic_growth = yes
+				}
+				50 = {}
+			}
 		}
 
 		ai_will_do = {
@@ -9434,7 +9447,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_a_union_of_nations
-		icon = god_save_the_king
+		icon = Generic_Factionalism
 
 		x = 0
 		y = 2
@@ -9453,6 +9466,34 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_union_of_nations"
+			9 = {
+				add_resource = {
+					type = oil
+					amount = 6
+				}
+			}
+			newline = yes
+			set_temp_variable = { temp_productivity_change = 50 }
+			17 = {
+				state_flat_productivity_change_effect = yes
+			}
+			newline = yes
+			1192 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+				}
+			}
+			newline = yes
+			16 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+				}
+			}
+			newline = yes
+			set_temp_variable = { treasury_change = -27 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -9462,7 +9503,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_reconsider_the_lobbying_act
-		icon = god_save_the_king
+		icon = cash_grap
 
 		x = 2
 		y = 2
@@ -9481,6 +9522,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_reconsider_the_lobbying_act"
+			country_event = britain_md.10
 		}
 
 		ai_will_do = {
@@ -9490,7 +9532,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_people_led_constitutional_convention
-		icon = god_save_the_king
+		icon = election2
 
 		x = -1
 		y = 3
@@ -9501,7 +9543,6 @@ focus_tree = {
 
 		prerequisite = { focus = ENG_a_union_of_nations }
 		prerequisite = { focus = ENG_further_digital_governance }
-		prerequisite = { focus = ENG_reconsider_the_lobbying_act }
 
 		mutually_exclusive = {
 			focus = ENG_corporaet_led_constitutional_convention
@@ -9515,6 +9556,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_people_led_constitutional_convention"
+			set_temp_variable = { temp_opinion = 10 }
+			change_labour_unions_opinion = yes
+			newline = yes
+			set_temp_variable = { ENG_base_fuel_gain_factor_change = 0.1 }
+			update_ENG_base_fuel_gain_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_max_fuel_factor_change = 0.1 }
+			update_ENG_max_fuel_factor = yes
 		}
 
 		ai_will_do = {
@@ -9524,7 +9573,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_revised_town_laws
-		icon = god_save_the_king
+		icon = treaty2
 
 		x = -2
 		y = 4
@@ -9542,7 +9591,12 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_further_digital_governance"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_revised_town_laws"
+			set_temp_variable = { ENG_agriculture_tax_modifier_change = 0.05 }
+			update_ENG_agriculture_tax_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_foreign_influence_defense_modifier_change = 0.05 }
+			update_ENG_foreign_influence_defense_modifier = yes
 		}
 
 		ai_will_do = {
@@ -9552,7 +9606,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_corporaet_led_constitutional_convention
-		icon = god_save_the_king
+		icon = central_planned_economy2
 
 		x = 1
 		y = 3
@@ -9563,7 +9617,6 @@ focus_tree = {
 
 		prerequisite = { focus = ENG_a_union_of_nations }
 		prerequisite = { focus = ENG_further_digital_governance }
-		prerequisite = { focus = ENG_reconsider_the_lobbying_act }
 
 		mutually_exclusive = {
 			focus = ENG_people_led_constitutional_convention
@@ -9576,7 +9629,17 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_people_led_constitutional_convention"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_corporaet_led_constitutional_convention"
+			set_temp_variable = { temp_opinion = 10 }
+			change_fossil_fuel_industry_opinion = yes
+			newline = yes
+			set_temp_variable = { ENG_receiving_investment_cost_modifier_change = -0.1 }
+			update_ENG_receiving_investment_cost_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_resource_export_multiplier_modifier_change = 0.10 }
+			update_ENG_resource_export_multiplier_modifier = yes
+			newline = yes
+			increase_corruption = yes
 		}
 
 		ai_will_do = {
@@ -9586,7 +9649,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_labour_for_workers_and_ceos_alike
-		icon = god_save_the_king
+		icon = rally_the_industrialists
 
 		x = 2
 		y = 4
@@ -9604,7 +9667,15 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_people_led_constitutional_convention"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_labour_for_workers_and_ceos_alike"
+			set_temp_variable = { ENG_projects_cost_modifier_change = -0.10 }
+			update_ENG_projects_cost_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
+			update_ENG_local_resources_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_dockyard_income_tax_modifier_change = 0.05 }
+			update_ENG_dockyard_income_tax_modifier = yes
 		}
 
 		ai_will_do = {
@@ -9614,7 +9685,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_ulift_peerages
-		icon = god_save_the_king
+		icon = authoritarian_democracy
 
 		x = 1
 		y = 5
@@ -9637,6 +9708,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_ulift_peerages"
+			increase_corruption = yes
+			newline = yes
+			set_temp_variable = { ENG_population_tax_income_multiplier_modifier_change = 0.05 }
+			update_ENG_population_tax_income_multiplier_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_corporate_tax_cost_change = 0.05 }
+			update_ENG_corporate_tax_cost = yes
 		}
 
 		ai_will_do = {
@@ -9646,7 +9724,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_replacing_the_house_of_lords
-		icon = god_save_the_king
+		icon = renounce_treaty
 
 		x = 0
 		y = 4
@@ -9665,6 +9743,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_replacing_the_house_of_lords"
+			set_temp_variable = { ENG_political_power_factor_change = 0.05 }
+			update_ENG_political_power_factor = yes
+			newline = yes
+			add_stability = -0.10
 		}
 
 		ai_will_do = {
@@ -9674,7 +9756,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_abolish_life_peerages
-		icon = god_save_the_king
+		icon = armoured_fist
 
 		x = -1
 		y = 5
@@ -9697,6 +9779,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_abolish_life_peerages"
+			custom_effect_tooltip = ENG_abolished_house_of_lords_TT
 		}
 
 		ai_will_do = {
@@ -9706,7 +9789,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_common_expertise
-		icon = god_save_the_king
+		icon = torchbearers_of_tomorrow
 
 		x = -2
 		y = 6
@@ -9715,7 +9798,7 @@ focus_tree = {
 
 		cost = 5.72
 
-		prerequisite = { focus = ENG_abolish_life_peerages }
+		prerequisite = { focus = ENG_abolish_life_peerages focus = ENG_ulift_peerages }
 
 		mutually_exclusive = {
 			focus = ENG_technocratic_expertise
@@ -9729,6 +9812,23 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_common_expertise"
+			set_temp_variable = { ENG_fuel_gain_factor_from_states_change = 0.1 }
+			update_ENG_fuel_gain_factor_from_states = yes
+			newline = yes
+			set_temp_variable = { ENG_production_factory_max_efficiency_factor_change = 0.10 }
+			update_ENG_production_factory_max_efficiency_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_economic_cycles_cost_factor_change = -0.1 }
+			update_ENG_economic_cycles_cost_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_line_change_production_efficiency_factor_change = 0.05 }
+			update_ENG_line_change_production_efficiency_factor = yes
+			newline = yes
+			set_temp_variable = { temp_opinion = 10 }
+			change_labour_unions_opinion = yes
+			newline = yes
+			two_random_industrial_complex = yes
+
 		}
 
 		ai_will_do = {
@@ -9738,7 +9838,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_technocratic_expertise
-		icon = god_save_the_king
+		icon = central_planned_economy3
 
 		x = 0
 		y = 6
@@ -9747,7 +9847,7 @@ focus_tree = {
 
 		cost = 5.72
 
-		prerequisite = { focus = ENG_abolish_life_peerages }
+		prerequisite = { focus = ENG_abolish_life_peerages focus = ENG_ulift_peerages }
 
 		mutually_exclusive = {
 			focus = ENG_common_expertise
@@ -9761,6 +9861,20 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_common_expertise"
+			set_temp_variable = { ENG_military_factories_productivity_change = 0.05 }
+			update_ENG_military_factories_productivity = yes
+			newline = yes
+			set_temp_variable = { ENG_production_lack_of_resource_penalty_factor_change = -0.10 }
+			update_ENG_production_lack_of_resource_penalty_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_military_industry_tax_modifier_change = 0.10 }
+			update_ENG_military_industry_tax_modifier = yes
+			newline = yes
+			set_temp_variable = { temp_opinion = 15 }
+			change_defense_industry_opinion = yes
+			newline = yes
+			set_temp_variable = { ENG_scientist_xp_gain_factor_modifier_change = 0.05 }
+			update_ENG_scientist_xp_gain_factor_modifier = yes
 		}
 
 		ai_will_do = {
@@ -9771,7 +9885,7 @@ focus_tree = {
 	# Common Sense - Agenda
 	focus = {
 		id = ENG_time_for_common_sense
-		icon = winston_churchill
+		icon = ENG_conservative
 
 		x = 63
 		y = 8
