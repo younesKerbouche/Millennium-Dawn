@@ -9900,7 +9900,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_time_for_common_sense"
-
+			country_event = britain_md.11
 		}
 
 		ai_will_do = {
@@ -9910,7 +9910,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_knowing_who_we_are
-		icon = winston_churchill
+		icon = british_nationalism
 
 		x = -1
 		y = 1
@@ -9929,6 +9929,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_knowing_who_we_are"
+			set_temp_variable = { ENG_surrender_limit_change = 0.10 }
+			update_ENG_surrender_limit = yes
+			newline = yes
+			set_temp_variable = { ENG_land_reinforce_rate_change = 0.10 }
+			update_ENG_land_reinforce_rate = yes
+			newline = yes
+			set_temp_variable = { ENG_foreign_influence_defense_modifier_change = 0.05 }
+			update_ENG_foreign_influence_defense_modifier = yes
 		}
 
 		ai_will_do = {
@@ -9938,7 +9946,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_a_world_leader
-		icon = winston_churchill
+		icon = global_community
 
 		x = 1
 		y = 1
@@ -9957,6 +9965,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_world_leader"
+			every_country = {
+				limit = {
+					has_idea = commonwealth_of_nations_member
+					NOT = {
+						original_tag = ENG
+					}
+				}
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = ENG }
+				set_temp_variable = { influence_target = THIS }
+				change_influence_percentage = yes
+			}
+			newline = yes
+			set_temp_variable = { ENG_personnel_cost_multiplier_modifier_change = -0.10 }
+			update_ENG_personnel_cost_multiplier_modifier = yes
 		}
 
 		ai_will_do = {
@@ -10042,6 +10065,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_fighting_the_power_of_brussels"
+			set_temp_variable = { percent_change = 5 }
+			change_domestic_influence_percentage = yes
+			newline = yes
+			set_temp_variable = { modify_eurosceptic = 0.05 }
+			set_temp_variable = { modify_eurosceptic_target = ROOT }
+			eurosceptic_change = yes
+			newline = yes
+			every_country = {
+				limit = {
+					has_idea = EU_member
+				}
+				add_opinion_modifier = { target = ENG modifier = recent_actions_negative }
+			}
 		}
 
 		ai_will_do = {
