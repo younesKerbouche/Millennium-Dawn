@@ -1,74 +1,39 @@
+#Written by Doolittle & Marvin
+#IF YOU ARE NOT BIRD AND YOU TOUCH THIS
+#I WILL KILL YOU. DO. NOT. FUCK. WITH. THE. MATH.
 resource_storage_steel_calc_effect = {
-	#Grab the base resource level here
-	set_temp_variable = { pre_check_number = resource@steel }
-	log = "[?pre_check_number] Steel starting resource with support pre_check_number"
-	set_variable = { steel_from_storage = 0 }
-	set_temp_variable = { steel_check = resource@steel }
+	#This should include all the steel that the nation has left, *including* the buff
+	set_temp_variable = { steel_base_value = resource@steel }
+	set_temp_variable = { steel_base_produced_value = resource_produced@steel }
+	set_temp_variable = { steel_base_consumed_value = resource_consumed@steel }
+	set_temp_variable = { old_steel_draw_value = steel_from_storage }
+	subtract_from_temp_variable = { steel_base_value = old_steel_draw_value }
 
-	create_import = {
-		resource = steel
-		amount = 8
-		exporter = CHI
-	}
-
-	set_variable = { export_mod_test = -0.1 }
-
-	#Now, remove the currently added deficit from this number
-	#If this doesnt change, we either have no steel being added, or none left to add
-	subtract_from_temp_variable = { steel_check = steel_from_storage }
-	log = "[?steel_check] Steel resource AFTER storage removal"
-
-
-	#Do the fastest check first; add to the stockpile, if we have a surplus after this check
-	#Then zero out the storage if it was greater than 0
 	if = {
-		limit = {
-			check_variable = { steel_check > 0 }
-		}
-		add_to_variable = { steel_in_storage = steel_check }
-		if = {
-			limit = { check_variable = { steel_from_storage > 0 } }
-			set_variable = { steel_from_storage = 0 }
-		}
-		log = "ADDED [?steel_check] to Storage - TOTAL NOW [?THIS.steel_in_storage]"
-		create_import = {
-			resource = steel
-			amount = 0
-			exporter = CHI
-		}
+		#Only add resources in if we have a deficit
+		limit = { check_variable = { steel_base_value < 1 } }
+		#This is where the math begins
+		#How much total we need is the consumed amount + deficit
+		set_temp_variable = { ideal_steel_number = steel_base_consumed_value }
+		subtract_from_temp_variable = { ideal_steel_number = steel_base_value }
+
+		log = "Current Steel base value is [?steel_base_value]"
+		log = "Current consumed is [?steel_base_consumed_value] - Ideal is [?ideal_steel_number]"
+
+		multiply_temp_variable = { steel_base_value = -1 }
+		set_variable = { steel_from_storage = steel_base_value }
 	} else = {
-		#If the steel check was NOT greater than 0, then we know we have a deficit
-		#Run the checks for the deficit here
-		if = {
-			#Only take if the limiter says you can, AND if the storage has surplus
-			limit = {
-				has_country_flag = allowed_to_take
-				check_variable = { steel_in_storage > 0 }
-			}
-			log = "Removing Steel from Storage"
-			#Minus a negative means number go up, so we set the steel from storage to the deficit number
-			#Then, we add the negative to the steel in storage, to remove the amount from storage
-			add_to_variable = { steel_from_storage = steel_check }
-			add_to_variable = { steel_in_storage = steel_check }
-			#check if storage is negative now. If it is, add that negative to the amount from storage
-			#that will prevent magic resources from occuring. We can clamp the from storage at the end, to a min 0
-			if = {
-				limit = { check_variable = { steel_in_storage < 0 } }
-				subtract_from_variable = { steel_from_storage = steel_in_storage }
-			}
-			log = "REMOVING [?THIS.steel_from_storage] From storage, New storage total is [?THIS.steel_in_storage]"
-		} else = {
-			#Zero out the take from storage here. Either we can't take it anymore, or we ran out
-			set_variable = { steel_from_storage = 0 }
-		}
+		#Put the excess into storage, and then zero out the (potential) pull from storage
+		add_to_variable = { steel_in_storage = steel_base_value }
+		set_variable = { steel_from_storage = 0 }
 	}
+
 
 	clamp_variable = { var = rubber_in_storage min = 0 max = rubber_capacity }
 	clamp_variable = { var = aluminum_in_storage min = 0 max = aluminum_capacity }
 	clamp_variable = { var = chromium_in_storage min = 0 max = chromium_capacity }
 	clamp_variable = { var = tungsten_in_storage min = 0 max = tungsten_capacity }
 	clamp_variable = { var = steel_in_storage min = 0 max = steel_capacity }
-	log = "Storage after clamp is [?THIS.steel_in_storage]"
 }
 
 get_total_storage = {
