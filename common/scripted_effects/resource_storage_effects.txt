@@ -29,6 +29,7 @@ resource_storage_steel_calc_effect = {
 			check_variable = { steel_in_storage > 0 }
 			has_country_flag = allowed_to_take
 		}
+		log = "[THIS.GetTag] has steel deficit"
 		#How much total we need is the consumed amount + deficit
 		set_temp_variable = { ideal_resource_number = resource_base_consumed_value }
 		subtract_from_temp_variable = { ideal_resource_number = resource_base_value }
@@ -38,13 +39,22 @@ resource_storage_steel_calc_effect = {
 
 		if = { limit = { check_variable = { steel_in_storage < 0 } }
 			#We overdrew and don't have enough in storage anymore, so reduce the amount taken
+			add_to_temp_variable = { resource_base_value = steel_in_storage }
 		}
 		set_variable = { steel_from_storage = resource_base_value }
+		set_temp_variable = { resource_base_value = 0 }
+	} else = {
+		if = {
+			#check if we ran out. if we ran out, stop pulling
+			limit = { steel_in_storage = 0 }
+			set_variable = { steel_from_storage = 0 }
+		}
 	}
 	if = {
 		limit = { check_variable = { resource_base_value > 0 } }
 		add_to_variable = { steel_in_storage = resource_base_value }
 		set_variable = { steel_from_storage = 0 }
+		log = "[THIS.GetTag] does not have steel deficit"
 	}
 }
 
@@ -62,6 +72,7 @@ resource_storage_aluminium_calc_effect = {
 			check_variable = { aluminium_in_storage > 0 }
 			has_country_flag = allowed_to_take
 		}
+		log = "[THIS.GetTag] has alum deficit"
 		#How much total we need is the consumed amount + deficit
 		set_temp_variable = { ideal_resource_number = resource_base_consumed_value }
 		subtract_from_temp_variable = { ideal_resource_number = resource_base_value }
@@ -71,8 +82,16 @@ resource_storage_aluminium_calc_effect = {
 
 		if = { limit = { check_variable = { aluminium_in_storage < 0 } }
 			#We overdrew and don't have enough in storage anymore, so reduce the amount taken
+			add_to_temp_variable = { resource_base_value = aluminium_in_storage }
 		}
 		set_variable = { aluminium_from_storage = resource_base_value }
+		set_temp_variable = { resource_base_value = 0 }
+	} else = {
+		if = {
+			#check if we ran out. if we ran out, stop pulling
+			limit = { aluminium_in_storage = 0 }
+			set_variable = { aluminium_from_storage = 0 }
+		}
 	}
 	if = {
 		limit = { check_variable = { resource_base_value > 0 } }
@@ -95,6 +114,7 @@ resource_storage_rubber_calc_effect = {
 			check_variable = { rubber_in_storage > 0 }
 			has_country_flag = allowed_to_take
 		}
+		log = "[THIS.GetTag] has rubber deficit"
 		#How much total we need is the consumed amount + deficit
 		set_temp_variable = { ideal_resource_number = resource_base_consumed_value }
 		subtract_from_temp_variable = { ideal_resource_number = resource_base_value }
@@ -104,8 +124,16 @@ resource_storage_rubber_calc_effect = {
 
 		if = { limit = { check_variable = { rubber_in_storage < 0 } }
 			#We overdrew and don't have enough in storage anymore, so reduce the amount taken
+			add_to_temp_variable = { resource_base_value = rubber_in_storage }
 		}
 		set_variable = { rubber_from_storage = resource_base_value }
+		set_temp_variable = { resource_base_value = 0 }
+	} else = {
+		if = {
+			#check if we ran out. if we ran out, stop pulling
+			limit = { rubber_in_storage = 0 }
+			set_variable = { rubber_from_storage = 0 }
+		}
 	}
 	if = {
 		limit = { check_variable = { resource_base_value > 0 } }
@@ -127,6 +155,7 @@ resource_storage_tech_calc_effect = {
 			check_variable = { tech_in_storage > 0 }
 			has_country_flag = allowed_to_take
 		}
+		log = "[THIS.GetTag] has tech deficit"
 		#How much total we need is the consumed amount + deficit
 		set_temp_variable = { ideal_resource_number = resource_base_consumed_value }
 		subtract_from_temp_variable = { ideal_resource_number = resource_base_value }
@@ -136,8 +165,16 @@ resource_storage_tech_calc_effect = {
 
 		if = { limit = { check_variable = { tech_in_storage < 0 } }
 			#We overdrew and don't have enough in storage anymore, so reduce the amount taken
+			add_to_temp_variable = { resource_base_value = tech_in_storage }
 		}
 		set_variable = { tech_from_storage = resource_base_value }
+		set_temp_variable = { resource_base_value = 0 }
+	} else = {
+		if = {
+			#check if we ran out. if we ran out, stop pulling
+			limit = { tech_in_storage = 0 }
+			set_variable = { tech_from_storage = 0 }
+		}
 	}
 	if = {
 		limit = { check_variable = { resource_base_value > 0 } }
@@ -159,6 +196,8 @@ resource_storage_precious_calc_effect = {
 			check_variable = { precious_in_storage > 0 }
 			has_country_flag = allowed_to_take
 		}
+
+		log = "[THIS.GetTag] has precious deficit"
 		#How much total we need is the consumed amount + deficit
 		set_temp_variable = { ideal_resource_number = resource_base_consumed_value }
 		subtract_from_temp_variable = { ideal_resource_number = resource_base_value }
@@ -168,8 +207,16 @@ resource_storage_precious_calc_effect = {
 
 		if = { limit = { check_variable = { precious_in_storage < 0 } }
 			#We overdrew and don't have enough in storage anymore, so reduce the amount taken
+			add_to_temp_variable = { resource_base_value = precious_in_storage }
 		}
 		set_variable = { precious_from_storage = resource_base_value }
+		set_temp_variable = { resource_base_value = 0 }
+	} else = {
+		if = {
+			#check if we ran out. if we ran out, stop pulling
+			limit = { precious_in_storage = 0 }
+			set_variable = { precious_from_storage = 0 }
+		}
 	}
 	if = {
 		limit = { check_variable = { resource_base_value > 0 } }
