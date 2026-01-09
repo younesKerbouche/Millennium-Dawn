@@ -9,7 +9,7 @@ resource_storage_system = {
 	resource_storage_precious_calc_effect = yes
 
 	clamp_variable = { var = rubber_in_storage min = 0 max = rubber_capacity }
-	clamp_variable = { var = aluminum_in_storage min = 0 max = aluminum_capacity }
+	clamp_variable = { var = aluminium_in_storage min = 0 max = aluminum_capacity }
 	clamp_variable = { var = precious_in_storage min = 0 max = precious_capacity }
 	clamp_variable = { var = tech_in_storage min = 0 max = tech_capacity }
 	clamp_variable = { var = steel_in_storage min = 0 max = steel_capacity }
@@ -179,11 +179,17 @@ resource_storage_precious_calc_effect = {
 }
 
 get_total_storage = {
-	every_country = {
-		log = "Rubber Storage: [?THIS.rubber_in_storage] - Rubber From Storage: [?THIS.rubber_from_storage] - Rubber Total: [?THIS.resource@rubber]"
-		log = "Aluminium Storage: [?THIS.aluminum_in_storage] - Aluminium From Storage: [?THIS.aluminum_from_storage] - Aluminium Total: [?THIS.resource@aluminium]"
-		log = "Precious Metals Storage: [?THIS.chromium_in_storage] - Precious Metals From Storage: [?THIS.chromium_from_storage] - Precious Metals Total: [?THIS.resource@chromium]"
-		log = "Tech Metals Storage: [?THIS.tungsten_in_storage] - Tech Metals From Storage: [?THIS.tungsten_from_storage] - Tech Metals Total: [?THIS.resource@tungsten]"
-		log = "Steel Storage: [?THIS.steel_in_storage] - Steel From Storage: [?THIS.steel_from_storage] - Steel Total: [?THIS.resource@steel]"
-	}
+	log = "Rubber Storage: [?THIS.rubber_in_storage] - Rubber From Storage: [?THIS.rubber_from_storage] - Rubber Total: [?THIS.resource@rubber]"
+	log = "Aluminium Storage: [?THIS.aluminium_in_storage] - Aluminium From Storage: [?THIS.aluminium_from_storage] - Aluminium Total: [?THIS.resource@aluminium]"
+	log = "Precious Metals Storage: [?THIS.precious_in_storage] - Precious Metals From Storage: [?THIS.precious_from_storage] - Precious Metals Total: [?THIS.resource@chromium]"
+	log = "Tech Metals Storage: [?THIS.tech_in_storage] - Tech Metals From Storage: [?THIS.tech_from_storage] - Tech Metals Total: [?THIS.resource@tungsten]"
+	log = "Steel Storage: [?THIS.steel_in_storage] - Steel From Storage: [?THIS.steel_from_storage] - Steel Total: [?THIS.resource@steel]"
+}
+
+set_max_storage = {
+	set_variable = { rubber_in_storage = rubber_capacity }
+	set_variable = { aluminium_in_storage = aluminum_capacity }
+	set_variable = { precious_in_storage = precious_capacity }
+	set_variable = { tech_in_storage = tech_capacity }
+	set_variable = { steel_in_storage = steel_capacity }
 }
