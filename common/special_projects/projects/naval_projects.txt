@@ -1,5 +1,5 @@
 # Author(s): AngriestBird, Doolittle, DROID, TheGeneral
-#This is required to research any armoured vehicle hull
+#This is required to research any ship hull
 sp_naval_vessel_project = {
 	specialization = specialization_naval
 	icon = GFX_sp_naval_vessel_experimentation
@@ -418,6 +418,13 @@ sp_rail_gun_naval_battery = {
 	specialization = specialization_naval
 	icon = GFX_sp_railgun_battery
 
+	visible = {
+		has_game_rule = {
+			rule = rule_futuristic_special_projects
+			option = ALLOWED
+		}
+	}
+
 	prototype_time = sp_time.prototype.long
 
 	complexity = sp_complexity.large
@@ -611,7 +618,8 @@ sp_anti_drone_laser_modules = {
 	resource_cost = {
 		resources = {
 			chromium = 26
-			oil = 4
+			microchips = 4
+			aluminium = 12
 		}
 	}
 
@@ -665,7 +673,8 @@ sp_mineclearing_drone = {
 	resource_cost = {
 		resources = {
 			aluminium = 12
-			chromium = 4
+			microchips = 4
+			composites = 4
 		}
 	}
 
@@ -720,7 +729,8 @@ sp_naval_recon_drone = {
 	resource_cost = {
 		resources = {
 			aluminium = 12
-			chromium = 4
+			microchips = 4
+			rubber = 8
 		}
 	}
 
@@ -782,7 +792,7 @@ sp_drone_submarine = {
 	resource_cost = {
 		resources = {
 			chromium = 26
-			oil = 4
+			microchips = 4
 		}
 	}
 
@@ -885,13 +895,13 @@ sp_drone_patrol_boat = {
 	resource_cost = {
 		resources = {
 			chromium = 26
-			oil = 4
+			microchips = 4
 		}
 	}
 
 	project_output = {
 		enable_equipment_modules = {
-			module_patrolboat_drone_control
+			naval_module_patrolboat_drone_control
 		}
 	}
 
@@ -939,13 +949,13 @@ sp_drone_corvette = {
 	resource_cost = {
 		resources = {
 			chromium = 26
-			oil = 4
+			microchips = 4
 		}
 	}
 
 	project_output = {
 		enable_equipment_modules = {
-			module_corvette_drone_control
+			naval_module_corvette_drone_control
 		}
 	}
 
@@ -996,11 +1006,17 @@ sp_fusion_reactor_engine = {
 
 	resource_cost = {
 		resources = {
-			oil = 36
+			composites = 12
+			microchips = 6
+			chromium = 18
 		}
 	}
 
 	project_output = {
+		enable_equipment_modules = {
+			naval_module_fusion_reactor
+		}
+
 		country_effects = {
 			custom_effect_tooltip = {
 				localization_key = SP_UNLOCK_TECH
@@ -1024,5 +1040,87 @@ sp_fusion_reactor_engine = {
 		sp_naval_generic_reward_test_failure_3
 		sp_naval_generic_reward_resource_scarcity
 		sp_naval_generic_reward_critical_failure
+	}
+}
+sp_naval_swarm_module = {
+	specialization = specialization_naval
+	icon = GFX_sp_naval_swarm_drones
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_naval = 2
+	}
+
+	special_project_parent = {
+		sp_anti_ship_drone_missile
+	}
+
+	project_output = {
+		enable_equipment_modules = {
+			naval_module_drone_swarm
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_naval_generic_reward_scientist_xp_1
+		sp_naval_generic_reward_scientist_xp_2
+		sp_naval_generic_reward_scientist_xp_3
+		sp_naval_generic_reward_army_xp_1
+		sp_naval_generic_reward_army_xp_2
+		sp_naval_generic_reward_army_xp_3
+		sp_naval_generic_reward_major_progress_1
+		sp_naval_generic_reward_major_progress_2
+		sp_naval_generic_reward_major_progress_3
+		sp_naval_generic_reward_test_failure_1
+		sp_naval_generic_reward_test_failure_2
+		sp_naval_generic_reward_test_failure_3
+		sp_naval_generic_reward_resource_scarcity
+		sp_naval_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_radar_jamming_module = {
+	specialization = specialization_naval
+	icon = GFX_sp_naval_radar_jamming
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_naval = 2
+	}
+
+	project_output = {
+		enable_equipment_modules = {
+			naval_module_radar_jammer
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_naval_generic_reward_scientist_xp_1
+		sp_naval_generic_reward_scientist_xp_2
+		sp_naval_generic_reward_scientist_xp_3
+		sp_naval_generic_reward_army_xp_1
+		sp_naval_generic_reward_army_xp_2
+		sp_naval_generic_reward_army_xp_3
+		sp_naval_generic_reward_major_progress_1
+		sp_naval_generic_reward_major_progress_2
+		sp_naval_generic_reward_major_progress_3
+		sp_naval_generic_reward_test_failure_1
+		sp_naval_generic_reward_test_failure_2
+		sp_naval_generic_reward_test_failure_3
+		sp_naval_generic_reward_resource_scarcity
+		sp_naval_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
 	}
 }

@@ -1079,3 +1079,323 @@ sp_hover_helicopter_engine = {
 		base = 1
 	}
 }
+sp_awacs_project = {
+	specialization = specialization_air
+	icon = GFX_sp_awacs
+	project_tags = sp_tag_avionics_aeronautics
+
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+	available = {
+		FROM = {
+			has_tech = avionics_1
+		}
+	}
+
+	project_output = {
+		country_effects = {
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_TECH
+					TECH = awacs_1
+				}
+			}
+			else = {
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_TECH
+					TECH = awacs_plane1
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_air_generic_reward_scientist_xp_1
+		sp_air_generic_reward_scientist_xp_2
+		sp_air_generic_reward_scientist_xp_3
+		sp_air_generic_reward_army_xp_1
+		sp_air_generic_reward_army_xp_2
+		sp_air_generic_reward_army_xp_3
+		sp_air_generic_reward_major_progress_1
+		sp_air_generic_reward_major_progress_2
+		sp_air_generic_reward_major_progress_3
+		sp_air_generic_reward_test_failure_1
+		sp_air_generic_reward_test_failure_2
+		sp_air_generic_reward_test_failure_3
+		sp_air_generic_reward_resource_scarcity
+		sp_air_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_fiber_drones = {
+	specialization = specialization_air
+	icon = GFX_sp_fiber_drones
+	project_tags = sp_tag_avionics_aeronautics
+
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+	special_project_parent = {
+		sp_agriculture_drone
+		sp_recon_land_drone
+		sp_naval_recon_drone
+	}
+
+	project_output = { #idea improving all drones. Can be done when all drone stuff is done
+		country_effects = {
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_air_generic_reward_scientist_xp_1
+		sp_air_generic_reward_scientist_xp_2
+		sp_air_generic_reward_scientist_xp_3
+		sp_air_generic_reward_army_xp_1
+		sp_air_generic_reward_army_xp_2
+		sp_air_generic_reward_army_xp_3
+		sp_air_generic_reward_major_progress_1
+		sp_air_generic_reward_major_progress_2
+		sp_air_generic_reward_major_progress_3
+		sp_air_generic_reward_test_failure_1
+		sp_air_generic_reward_test_failure_2
+		sp_air_generic_reward_test_failure_3
+		sp_air_generic_reward_resource_scarcity
+		sp_air_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_space_artillery = {
+	specialization = specialization_air
+	icon = GFX_sp_space_artillery
+	project_tags = sp_tag_space_equipment
+
+	visible = {
+		has_game_rule = {
+			rule = rule_futuristic_special_projects
+			option = ALLOWED
+		}
+	}
+
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+
+	available = {
+		FROM = {
+			has_tech = KILLSAT3
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				has_tech = nsb_artillery_4
+			}
+			else = {
+				has_tech = artillery_4
+			}
+		}
+	}
+
+	project_output = {
+		enable_subunits = {
+			space_artillery_support_battalion
+		}
+		enable_equipments = {
+			space_artillery_equipment
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_air_generic_reward_scientist_xp_1
+		sp_air_generic_reward_scientist_xp_2
+		sp_air_generic_reward_scientist_xp_3
+		sp_air_generic_reward_army_xp_1
+		sp_air_generic_reward_army_xp_2
+		sp_air_generic_reward_army_xp_3
+		sp_air_generic_reward_major_progress_1
+		sp_air_generic_reward_major_progress_2
+		sp_air_generic_reward_major_progress_3
+		sp_air_generic_reward_test_failure_1
+		sp_air_generic_reward_test_failure_2
+		sp_air_generic_reward_test_failure_3
+		sp_air_generic_reward_resource_scarcity
+		sp_air_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_air_railguns = {
+	allowed = { has_dlc = "By Blood Alone" }
+	specialization = specialization_air
+	icon = GFX_sp_air_railguns
+	project_tags = sp_tag_avionics_aeronautics
+
+	visible = {
+		has_game_rule = {
+			rule = rule_futuristic_special_projects
+			option = ALLOWED
+		}
+	}
+
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+
+	special_project_parent = {
+		sp_railgun_cannon
+	}
+
+	available = {
+		FROM = {
+			has_tech = air_weapons_4
+		}
+	}
+
+	project_output = {
+		enable_equipment_modules = {
+			air_module_railgun
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_air_generic_reward_scientist_xp_1
+		sp_air_generic_reward_scientist_xp_2
+		sp_air_generic_reward_scientist_xp_3
+		sp_air_generic_reward_army_xp_1
+		sp_air_generic_reward_army_xp_2
+		sp_air_generic_reward_army_xp_3
+		sp_air_generic_reward_major_progress_1
+		sp_air_generic_reward_major_progress_2
+		sp_air_generic_reward_major_progress_3
+		sp_air_generic_reward_test_failure_1
+		sp_air_generic_reward_test_failure_2
+		sp_air_generic_reward_test_failure_3
+		sp_air_generic_reward_resource_scarcity
+		sp_air_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_air_pdl = {
+	allowed = { has_dlc = "By Blood Alone" }
+	specialization = specialization_air
+	icon = GFX_sp_air_railguns
+	project_tags = sp_tag_avionics_aeronautics
+
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+
+	special_project_parent = {
+		sp_railgun_cannon
+	}
+
+	available = {
+		FROM = {
+			has_tech = air_weapons_4
+		}
+	}
+
+	project_output = {
+		enable_equipment_modules = {
+			air_module_pdl
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_air_generic_reward_scientist_xp_1
+		sp_air_generic_reward_scientist_xp_2
+		sp_air_generic_reward_scientist_xp_3
+		sp_air_generic_reward_army_xp_1
+		sp_air_generic_reward_army_xp_2
+		sp_air_generic_reward_army_xp_3
+		sp_air_generic_reward_major_progress_1
+		sp_air_generic_reward_major_progress_2
+		sp_air_generic_reward_major_progress_3
+		sp_air_generic_reward_test_failure_1
+		sp_air_generic_reward_test_failure_2
+		sp_air_generic_reward_test_failure_3
+		sp_air_generic_reward_resource_scarcity
+		sp_air_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_air_fuelairbomb = {
+	allowed = { has_dlc = "By Blood Alone" }
+	specialization = specialization_air
+	icon = GFX_sp_fuel_airbomb
+	project_tags = sp_tag_avionics_aeronautics
+
+	prototype_time = sp_time.prototype.very_long
+
+	complexity = sp_complexity.large
+
+	breakthrough_cost = {
+		specialization_air = 2
+	}
+
+	available = {
+		FROM = {
+			has_tech = ag_weapons_3
+		}
+	}
+
+	project_output = {
+		enable_equipment_modules = {
+			air_module_fuel_air_bomb
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_air_generic_reward_scientist_xp_1
+		sp_air_generic_reward_scientist_xp_2
+		sp_air_generic_reward_scientist_xp_3
+		sp_air_generic_reward_army_xp_1
+		sp_air_generic_reward_army_xp_2
+		sp_air_generic_reward_army_xp_3
+		sp_air_generic_reward_major_progress_1
+		sp_air_generic_reward_major_progress_2
+		sp_air_generic_reward_major_progress_3
+		sp_air_generic_reward_test_failure_1
+		sp_air_generic_reward_test_failure_2
+		sp_air_generic_reward_test_failure_3
+		sp_air_generic_reward_resource_scarcity
+		sp_air_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}

@@ -89,6 +89,7 @@ sp_caseless_ammunition = {
 }
 sp_smart_bullets = {
 	specialization = specialization_land
+	icon = GFX_sp_smart_bullets
 
 	project_tags = sp_tag_infantry_equipment
 
@@ -102,6 +103,14 @@ sp_smart_bullets = {
 
 	breakthrough_cost = {
 		specialization_land = 2
+	}
+
+	resource_cost = {
+		resources = {
+			composites = 4
+			microchips = 6
+			aluminium = 8
+		}
 	}
 
 	prototype_time = sp_time.prototype.long
@@ -174,6 +183,7 @@ sp_smart_bullets = {
 }
 sp_recon_land_drone = {
 	specialization = specialization_land
+	icon = GFX_sp_land_recondrone
 
 	project_tags = sp_tag_infantry_equipment
 
@@ -223,6 +233,7 @@ sp_recon_land_drone = {
 }
 sp_fire_support_land_drone = {
 	specialization = specialization_land
+	icon = GFX_sp_fire_support_land_drone
 
 	project_tags = sp_tag_infantry_equipment
 
@@ -1087,8 +1098,15 @@ sp_utility_vehicle_electric_engines = {
 
 sp_coilgun_memes = {
 	specialization = specialization_land
-	icon = GFX_sp_coilgun
+	icon = GFX_sp_railgun_rifles
 	project_tags = sp_tag_infantry_equipment
+
+	visible = {
+		has_game_rule = {
+			rule = rule_futuristic_special_projects
+			option = ALLOWED
+		}
+	}
 
 	ai_will_do = {
 		base = 1
@@ -1096,8 +1114,12 @@ sp_coilgun_memes = {
 
 	available = {
 		FROM = {
-			is_special_project_completed = sp:sp_railgun_cannon_2
+			has_tech = infantry_weapons7
 		}
+	}
+
+	special_project_parent = {
+		sp_railgun_cannon
 	}
 
 	breakthrough_cost = {
@@ -1210,12 +1232,8 @@ sp_airless_tires = {
 			util_vehicle_equipment = {
 				build_cost_ic = 0.10
 				reliability = 0.25
-				instant = yes
-			}
-		}
-		sub_unit_bonus = {
-			motorized = {
 				maximum_speed = 0.10
+				instant = yes
 			}
 		}
 	}

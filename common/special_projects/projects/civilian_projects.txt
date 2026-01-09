@@ -1,82 +1,4 @@
 # Author(s): AngriestBird, Doolittle, TheGeneral
-sp_fusion_reactors = {
-
-	specialization = specialization_nuclear
-
-	project_tags = sp_tag_energy
-
-	available = {
-		FROM = {
-			has_tech = reactor9
-			has_nuclear_reactors = yes
-		}
-	}
-
-	prototype_time = sp_time.prototype.very_long
-
-	complexity = sp_complexity.large
-
-	project_output = {
-		country_effects = {
-			add_ideas = sp_fusion_reactors_special_project_idea
-		}
-	}
-
-	generic_prototype_rewards = {
-		sp_civilian_generic_reward_scientist_xp_1
-		sp_civilian_generic_reward_scientist_xp_2
-		sp_civilian_generic_reward_scientist_xp_3
-		sp_civilian_generic_reward_major_progress_1
-		sp_civilian_generic_reward_major_progress_2
-		sp_civilian_generic_reward_major_progress_3
-		sp_civilian_generic_reward_test_failure_1
-		sp_civilian_generic_reward_test_failure_2
-		sp_civilian_generic_reward_test_failure_3
-		sp_civilian_generic_reward_resource_scarcity
-		sp_civilian_generic_reward_critical_failure
-	}
-
-	unique_prototype_rewards = {
-		sp_improved_nuclear_reactor_centrifuge_technology = {
-			fire_only_once = yes
-
-			threshold = {
-				min = 0
-				max = 100
-			}
-
-			weight = {
-				base = 1
-			}
-
-			option = {
-				token = sp_improved_nuclear_reactor_centrifuge_technology_option
-
-				iteration_output = {
-					country_effects = {
-						add_ideas = sp_improved_nuclear_reactor_centrifuge_technology_idea
-						FROM = {
-							add_project_progress_ratio = constant:sp_progress.gain.low
-						}
-					}
-				}
-			}
-		}
-	}
-
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 10
-			has_nuclear_reactors = yes
-		}
-		modifier = {
-			factor = 0
-			has_nuclear_reactors = no
-		}
-	}
-}
-
 sp_space_based_solar_farms = {
 	specialization = specialization_nuclear
 
@@ -294,62 +216,6 @@ sp_construction_exoskeletons = {
 
 	ai_will_do = {
 		base = 1
-	}
-}
-
-sp_thorium_nuclear_fuel = {
-	icon = GFX_sp_thorium_fuel
-	specialization = specialization_nuclear
-
-	project_tags = sp_tag_energy
-
-	prototype_time = sp_time.prototype.very_long
-
-	complexity = sp_complexity.insane
-
-	breakthrough_cost = {
-		specialization_nuclear = 3
-	}
-
-	available = {
-		FROM = {
-			has_tech = reactor3
-			has_nuclear_reactors = yes
-		}
-	}
-
-	resource_cost = {
-		resources = { tungsten = 3 chromium = 2 }
-	}
-
-	project_output = {
-		country_effects = {
-			add_ideas = sp_thorium_nuclear_fuel_idea
-		}
-	}
-
-	generic_prototype_rewards = {
-		sp_civilian_generic_reward_scientist_xp_1
-		sp_civilian_generic_reward_scientist_xp_2
-		sp_civilian_generic_reward_scientist_xp_3
-		sp_civilian_generic_reward_major_progress_1
-		sp_civilian_generic_reward_major_progress_2
-		sp_civilian_generic_reward_major_progress_3
-		sp_civilian_generic_reward_test_failure_1
-		sp_civilian_generic_reward_test_failure_2
-		sp_civilian_generic_reward_test_failure_3
-		sp_civilian_generic_reward_resource_scarcity
-		sp_civilian_generic_reward_critical_failure
-	}
-
-	ai_will_do = {
-		base = 1
-		modifier = {
-			add = 10
-			FROM = {
-				has_nuclear_reactors = yes
-			}
-		}
 	}
 }
 
@@ -858,9 +724,6 @@ sp_microchip_production = {
 		sp_civilian_generic_reward_critical_failure
 	}
 
-	unique_prototype_rewards = {
-	}
-
 	ai_will_do = {
 		base = 1
 	}
@@ -888,8 +751,6 @@ sp_composite_production = {
 		specialization_nuclear = 1
 	}
 
-	available = {
-	}
 
 	project_output = {
 		country_effects = {
@@ -922,9 +783,6 @@ sp_composite_production = {
 		sp_civilian_generic_reward_test_failure_3
 		sp_civilian_generic_reward_resource_scarcity
 		sp_civilian_generic_reward_critical_failure
-	}
-
-	unique_prototype_rewards = {
 	}
 
 	ai_will_do = {
@@ -1002,6 +860,13 @@ sp_agriculture_drone = {
 
 	breakthrough_cost = {
 		specialization_nuclear = 1
+	}
+
+	resource_cost = {
+		resources = {
+			microchips = 6
+			chromium = 12
+		}
 	}
 
 	project_output = {
@@ -1100,6 +965,13 @@ sp_robotic_humanoid = {
 		specialization_nuclear = 3
 	}
 
+	resource_cost = {
+		resources = {
+			microchips = 6
+			chromium = 12
+		}
+	}
+
 	project_output = {
 		country_effects = {
 			add_ideas = sp_robotic_humanoid_idea
@@ -1145,6 +1017,13 @@ sp_robotic_surgery = {
 
 	breakthrough_cost = {
 		specialization_nuclear = 3
+	}
+
+	resource_cost = {
+		resources = {
+			microchips = 6
+			chromium = 12
+		}
 	}
 
 	project_output = {
@@ -1199,7 +1078,117 @@ sp_smart_grid = {
 
 	project_output = {
 		country_effects = {
-			 #Want to increase infrastructure state level
+			effect_tooltip = {
+				enable_building = {
+					building = infrastructure
+					level = 1
+				}
+			}
+			hidden_effect = {
+				set_technology = {
+					special_project_tech_smart_grid = 1
+					popup = no
+				}
+			}
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_equipment_recycling = {
+
+	icon = GFX_sp_recycling
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = construction7
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 2
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_equipment_recycling_idea
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_1
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_scientist_xp_3
+		sp_civilian_generic_reward_major_progress_1
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_major_progress_3
+		sp_civilian_generic_reward_test_failure_1
+		sp_civilian_generic_reward_test_failure_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	ai_will_do = {
+		base = 1
+	}
+}
+sp_epigenetic_reprogramming = {
+
+	visible = {
+		has_game_rule = {
+			rule = rule_futuristic_special_projects
+			option = ALLOWED
+		}
+	}
+
+	icon = GFX_sp_epigenetic_thing
+
+	specialization = specialization_nuclear
+
+	project_tags = sp_tag_civilian
+
+	prototype_time = sp_time.prototype.long
+
+	complexity = sp_complexity.large
+
+	available = {
+		FROM = {
+			has_tech = construction7
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_nuclear = 2
+	}
+
+	project_output = {
+		country_effects = {
+			add_ideas = sp_equipment_recycling_idea
 		}
 	}
 
