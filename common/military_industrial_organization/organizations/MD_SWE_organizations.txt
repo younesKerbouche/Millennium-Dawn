@@ -33,7 +33,1147 @@ SWE_Bofors_DefenceAB_manufacturer = {
 	allowed = { original_tag = SWE }
 	icon = GFX_idea_SWE_Bofors
 	name = SWE_BoforsDefenceAB_manufacturer
-	include = generic_AT_equipment_organization
+	ai_will_do = {
+		base = 10
+	}
+
+	equipment_type = {
+		AA_Equipment
+		medium_tank_aa_chassis
+		artillery_equipment
+		medium_tank_artillery_chassis
+	}
+
+	research_categories = { CAT_aa CAT_sp_aa CAT_arty CAT_artillery medium_tank_artillery_chassis }
+
+	research_bonus = 0.05
+
+	tree_header_text = {
+		text = SWE_Bofors_DefenceAB_header_BoforsGun
+		x = 0
+	}
+
+	tree_header_text = {
+		text = SWE_Bofors_DefenceAB_Howitzers
+		x = 3
+	}
+
+	tree_header_text = {
+		text = SWE_Bofors_DefenceAB_Buildings
+		x = 7
+	}
+
+	initial_trait = {
+		name = SWE_Bofors_DefenceAB_manufacturer
+
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.05
+		}
+
+		production_bonus = {
+			production_efficiency_cap_factor = 0.03
+			production_efficiency_gain_factor = 0.03
+		}
+
+		equipment_bonus = {
+			air_attack = 0.03
+			soft_attack = 0.03
+			hard_attack = 0.03
+			reliability = 0.05
+			build_cost_ic = -0.03
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_3P_ammo
+		name = SWE_Bofors_DefenceAB_3P_ammo
+		icon = GFX_generic_mio_trait_icon_anti_air_attack
+
+		position = { x = 0 y = 0 }
+
+		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
+
+		equipment_bonus = {
+			air_attack = 0.03
+			soft_attack = 0.01
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_BoforsREMO
+		name = SWE_Bofors_DefenceAB_BoforsREMO
+		icon = GFX_generic_mio_trait_icon_aa_reliability
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_3P_ammo
+
+		all_parents = { SWE_Bofors_DefenceAB_3P_ammo }
+
+		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
+
+		equipment_bonus = {
+			air_attack = 0.01
+			soft_attack = 0.01
+			reliability = 0.01
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_Bofors40_mk4
+		name = SWE_Bofors_DefenceAB_Bofors40_mk4
+		icon = GFX_generic_mio_trait_icon_lg_attack
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_BoforsREMO
+
+		all_parents = { SWE_Bofors_DefenceAB_BoforsREMO }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis }
+
+		equipment_bonus = {
+			air_attack = 0.02
+			soft_attack = 0.02
+			hard_attack = 0.02
+			armor_value = 0.05
+			reliability = 0.02
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_TridonMk2
+		name = SWE_Bofors_DefenceAB_TridonMk2
+		icon = GFX_generic_mio_trait_icon_lg_attack
+		special_trait_background = yes
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_Bofors40_mk4
+
+		all_parents = { SWE_Bofors_DefenceAB_Bofors40_mk4 }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis }
+
+		equipment_bonus = {
+			air_attack = 0.03
+			soft_attack = 0.03
+			hard_attack = 0.03
+			armor_value = 0.05
+			reliability = 0.03
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_AdvancedMultiPurposesubmunition
+		name = SWE_Bofors_DefenceAB_AdvancedMultiPurposesubmunition
+		icon = GFX_generic_mio_department_icon_tank_general_weapons
+		special_trait_background = yes
+
+		position = { x = 1 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_TridonMk2
+
+		all_parents = { SWE_Bofors_DefenceAB_TridonMk2 SWE_Bofors_DefenceAB_EXCALIBURsubmunition }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis medium_tank_artillery_chassis artillery_equipment }
+
+		equipment_bonus = {
+			air_attack = 0.03
+			soft_attack = 0.03
+			hard_attack = 0.03
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_MobilityFocus
+		name = SWE_Bofors_DefenceAB_MobilityFocus
+		icon = GFX_generic_mio_trait_icon_artillery_speed
+
+		position = { x = 2 y = 0 }
+
+		limit_to_equipment_type = { medium_tank_artillery_chassis artillery_equipment }
+
+		equipment_bonus = {
+			maximum_speed = 0.02
+			defense = 0.01
+			breakthrough = 0.01
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_HighRoF
+		name = SWE_Bofors_DefenceAB_HighRoF
+		icon = GFX_generic_mio_trait_icon_artillery_breaktrough
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_MobilityFocus
+
+		all_parents = { SWE_Bofors_DefenceAB_MobilityFocus }
+
+		limit_to_equipment_type = { medium_tank_artillery_chassis artillery_equipment }
+
+		equipment_bonus = {
+			hard_attack = 0.01
+			soft_attack = 0.01
+			defense = 0.01
+			breakthrough = 0.01
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_BarrelLife
+		name = SWE_Bofors_DefenceAB_BarrelLife
+		icon = GFX_generic_mio_trait_icon_tank_gun
+
+		position = { x = -1 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_HighRoF
+
+		any_parent = { SWE_Bofors_DefenceAB_HighRoF SWE_Bofors_DefenceAB_BoforsREMO }
+
+		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis medium_tank_artillery_chassis artillery_equipment }
+
+		equipment_bonus = {
+			reliability = 0.05
+			build_cost_ic = -0.05
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_BONUSsubmunition
+		name = SWE_Bofors_DefenceAB_BONUSsubmunition
+		icon = GFX_generic_mio_trait_icon_hard_attack
+		special_trait_background = yes
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_HighRoF
+
+		all_parents = { SWE_Bofors_DefenceAB_HighRoF SWE_Bofors_DefenceAB_MANHX2 }
+
+		limit_to_equipment_type = { medium_tank_artillery_chassis artillery_equipment }
+
+		equipment_bonus = {
+			hard_attack = 0.03
+			soft_attack = 0.01
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_MultiPurposePlatforms
+		name = SWE_Bofors_DefenceAB_MultiPurposePlatforms
+		icon = GFX_generic_mio_trait_icon_util_efficiency_gain
+
+		position = { x = 1 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_HighRoF
+
+		all_parents = { SWE_Bofors_DefenceAB_HighRoF SWE_Bofors_DefenceAB_MANHX2 }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis medium_tank_artillery_chassis }
+
+		equipment_bonus = {
+			build_cost_ic = -0.02
+		}
+
+		production_bonus = {
+			production_conversion_speed_factor = 0.05
+			production_resource_need_factor = -0.05
+			production_resource_penalty_factor = -0.05
+			production_efficiency_cap_factor = 0.02
+			production_efficiency_gain_factor = 0.02
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_StandarizedArmorPackages
+		name = SWE_Bofors_DefenceAB_StandarizedArmorPackages
+		icon = GFX_generic_mio_trait_icon_util_armor
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_MultiPurposePlatforms
+
+		all_parents = { SWE_Bofors_DefenceAB_MultiPurposePlatforms }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis medium_tank_artillery_chassis }
+
+		equipment_bonus = {
+			breakthrough = 0.02
+			defense = 0.02
+			armor_value = 0.02
+		}
+
+		production_bonus = {
+			production_efficiency_cap_factor = 0.02
+			production_efficiency_gain_factor = 0.02
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_EXCALIBURsubmunition
+		name = SWE_Bofors_DefenceAB_EXCALIBURsubmunition
+		icon = GFX_generic_mio_trait_icon_hard_attack
+		special_trait_background = yes
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_BONUSsubmunition
+
+		all_parents = { SWE_Bofors_DefenceAB_BONUSsubmunition }
+
+		limit_to_equipment_type = { medium_tank_artillery_chassis artillery_equipment }
+
+		equipment_bonus = {
+			hard_attack = 0.03
+			soft_attack = 0.03
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_VolvoA30D
+		name = SWE_Bofors_DefenceAB_VolvoA30D
+		icon = GFX_generic_mio_trait_icon_util_reliability
+
+		position = { x = 4 y = 0 }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis medium_tank_artillery_chassis }
+
+		equipment_bonus = {
+			maximum_speed = 0.02
+			defense = 0.02
+			breakthrough = 0.02
+			reliability = 0.02
+		}
+
+		production_bonus = {
+			production_efficiency_cap_factor = 0.02
+			production_efficiency_gain_factor = 0.02
+		}
+
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_MANHX2
+		name = SWE_Bofors_DefenceAB_MANHX2
+		icon = GFX_generic_mio_trait_icon_util_reliability
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_VolvoA30D
+
+		all_parents = { SWE_Bofors_DefenceAB_VolvoA30D }
+
+		limit_to_equipment_type = { medium_tank_aa_chassis medium_tank_artillery_chassis }
+
+		equipment_bonus = {
+			maximum_speed = 0.02
+			defense = 0.02
+			breakthrough = 0.02
+			reliability = 0.02
+		}
+
+		production_bonus = {
+			production_conversion_speed_factor = 0.03
+			production_efficiency_cap_factor = 0.02
+			production_efficiency_gain_factor = 0.02
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_MANHX3
+		name = SWE_Bofors_DefenceAB_MANHX3
+		icon = GFX_generic_mio_trait_icon_util_defense
+		special_trait_background = yes
+
+		position = { x = 0 y = 4 }
+		relative_position_id = SWE_Bofors_DefenceAB_VolvoA30D
+
+		parent = {
+				traits = { SWE_Bofors_DefenceAB_MANHX2 SWE_Bofors_DefenceAB_StandarizedArmorPackages SWE_Bofors_DefenceAB_VehicleTestingEnviorment }
+				num_parents_needed = 2
+		}
+
+		limit_to_equipment_type = { medium_tank_aa_chassis medium_tank_artillery_chassis }
+
+		equipment_bonus = {
+			maximum_speed = 0.03
+			armor_value = 0.03
+			defense = 0.03
+			breakthrough = 0.03
+			reliability = 0.03
+		}
+
+		production_bonus = {
+			production_conversion_speed_factor = 0.03
+			production_efficiency_cap_factor = 0.03
+			production_efficiency_gain_factor = 0.03
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_BoforsTestCenter
+		name = SWE_Bofors_DefenceAB_BoforsTestCenter
+		icon = GFX_generic_mio_trait_icon_task
+		special_trait_background = yes
+
+		position = { x = 7 y = 0 }
+
+		organization_modifier = {
+			military_industrial_organization_task_capacity = 1
+			military_industrial_organization_funds_gain = 0.05
+			military_industrial_organization_design_team_assign_cost = -0.05
+			military_industrial_organization_design_team_change_cost = -0.05
+			military_industrial_organization_industrial_manufacturer_assign_cost = -0.05
+			military_industrial_organization_research_bonus = 0.05
+		}
+
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_KarlskogaHQ
+		name = SWE_Bofors_DefenceAB_KarlskogaHQ
+		icon = GFX_generic_mio_trait_icon_task
+		special_trait_background = yes
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_BoforsTestCenter
+
+		all_parents = { SWE_Bofors_DefenceAB_BoforsTestCenter }
+
+		organization_modifier = {
+			military_industrial_organization_task_capacity = 1
+		}
+
+		production_bonus = {
+			production_resource_penalty_factor = -0.1
+			production_conversion_speed_factor = 0.1
+			production_efficiency_cap_factor = 0.03
+			production_efficiency_gain_factor = 0.03
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_KarlskogaHQ
+		name = SWE_Bofors_DefenceAB_KarlskogaHQ
+		icon = GFX_generic_mio_trait_icon_task
+		special_trait_background = yes
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_BoforsTestCenter
+
+		all_parents = { SWE_Bofors_DefenceAB_BoforsTestCenter }
+
+		organization_modifier = {
+			military_industrial_organization_task_capacity = 1
+			military_industrial_organization_funds_gain = 0.05
+			military_industrial_organization_design_team_assign_cost = -0.05
+			military_industrial_organization_design_team_change_cost = -0.05
+			military_industrial_organization_industrial_manufacturer_assign_cost = -0.05
+		}
+
+		production_bonus = {
+			production_resource_penalty_factor = -0.05
+			production_efficiency_cap_factor = 0.05
+			production_efficiency_gain_factor = 0.05
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_VehicleTestingEnviorment
+		name = SWE_Bofors_DefenceAB_VehicleTestingEnviorment
+		icon = GFX_generic_mio_trait_icon_task
+
+		position = { x = -2 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_KarlskogaHQ
+
+		all_parents = { SWE_Bofors_DefenceAB_KarlskogaHQ SWE_Bofors_DefenceAB_MANHX2 }
+
+		limit_to_equipment_type = { medium_tank_artillery_chassis medium_tank_aa_chassis }
+		equipment_bonus = {
+			maximum_speed = 0.02
+			reliability = 0.02
+			breakthrough = 0.02
+			defense = 0.02
+		}
+		organization_modifier = {
+			military_industrial_organization_task_capacity = 1
+			military_industrial_organization_funds_gain = 0.05
+			military_industrial_organization_research_bonus = 0.05
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_AmmunitionTestingSPG
+		name = SWE_Bofors_DefenceAB_AmmunitionTestingSPG
+		icon = GFX_generic_mio_trait_icon_task
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_VehicleTestingEnviorment
+
+		all_parents = { SWE_Bofors_DefenceAB_KarlskogaHQ }
+
+		equipment_bonus = {
+			reliability = 0.02
+			breakthrough = 0.02
+			defense = 0.02
+			soft_attack = 0.02
+			hard_attack = 0.02
+		}
+		organization_modifier = {
+			military_industrial_organization_task_capacity = 1
+			military_industrial_organization_funds_gain = 0.05
+			military_industrial_organization_research_bonus = 0.05
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_FundingDevelopment
+		name = SWE_Bofors_DefenceAB_FundingDevelopment
+		icon = GFX_generic_mio_trait_icon_funds
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_KarlskogaHQ
+
+		all_parents = { SWE_Bofors_DefenceAB_KarlskogaHQ }
+
+		organization_modifier = {
+			military_industrial_organization_task_capacity = 1
+			military_industrial_organization_research_bonus = 0.05
+			military_industrial_organization_funds_gain = 0.15
+			military_industrial_organization_design_team_assign_cost = -0.05
+			military_industrial_organization_design_team_change_cost = -0.05
+			military_industrial_organization_industrial_manufacturer_assign_cost = -0.05
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+	trait = {
+		token = SWE_Bofors_DefenceAB_InstituteBDAB
+		name = SWE_Bofors_DefenceAB_InstituteBDAB
+		icon = GFX_generic_mio_trait_icon_research
+
+		position = { x = 0 y = 1 }
+		relative_position_id = SWE_Bofors_DefenceAB_FundingDevelopment
+
+		all_parents = { SWE_Bofors_DefenceAB_FundingDevelopment }
+
+		organization_modifier = {
+			military_industrial_organization_research_bonus = 0.05
+			military_industrial_organization_funds_gain = 0.05
+			military_industrial_organization_design_team_assign_cost = -0.05
+			military_industrial_organization_design_team_change_cost = -0.05
+			military_industrial_organization_industrial_manufacturer_assign_cost = -0.05
+		}
+
+		on_complete = {
+			if = {
+				limit = {
+					check_variable = { free_trait_picks > 0 }
+				}
+				add_to_variable = { free_trait_picks = -1 }
+			}
+			else = {
+				FROM = {
+					small_expenditure = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 0
+				check_variable = { FROM.interest_rate > 8 }
+			}
+			modifier = {
+				factor = 0.1
+				FROM = {
+					num_of_military_factories < 10
+				}
+			}
+		}
+	}
+
+
 }
 
 SWE_Saab_Bofors_Dynamics_manufacturer = {
@@ -46,9 +1186,11 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	equipment_type = {
 		AA_Equipment
 		medium_tank_aa_chassis
+		L_AT_Equipment
+		H_AT_Equipment
 		guided_missile_equipment
 	}
-	research_categories = { CAT_aa medium_tank_aa_chassis guided_missile_equipment }
+	research_categories = { CAT_aa medium_tank_aa_chassis CAT_at guided_missile_equipment }
 
 		organization_modifier = {
 			military_industrial_organization_research_bonus = 0.05
@@ -67,39 +1209,36 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	}
 
 	tree_header_text = {
-		text = SWE_mio_header_Saab_Bofors_Dynamics_Bofors_Guns
-		x = 0
+		text = SWE_mio_header_Saab_Bofors_Dynamics_MANPAD_SAM
+		x = 1
 	}
 
 	tree_header_text = {
-		text = SWE_mio_header_Saab_Bofors_Dynamics_MANPAD_SAM
-		x = 3
+		text = SWE_mio_header_Saab_Bofors_Dynamics_AT_Missiles
+		x = 4
 	}
 
 	tree_header_text = {
 		text = SWE_mio_header_Saab_Bofors_Dynamics_CruiseMissiles
-		x = 5
+		x = 6
 	}
 
-	
 	tree_header_text = {
 		text = SWE_mio_header_Saab_Bofors_Dynamics_Facilities
-		x = 5
+		x = 9
 	}
-
-
 	trait = {
-		token = SWE_Saab_Bofors_Dynamics_3P_ammo
-		name = SWE_Saab_Bofors_Dynamics_3P_ammo
-		icon = GFX_generic_mio_department_icon_tank_general_weapons
+		token = SWE_Saab_Bofors_Dynamics_RB98
+		name = SWE_Saab_Bofors_Dynamics_RB98
+		icon = GFX_generic_mio_trait_icon_sam
 
 		position = { x = 0 y = 0 }
 
 		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
 
 		equipment_bonus = {
-			air_attack = 0.01
-			soft_attack = 0.01
+			air_attack = 0.02
+			reliability = 0.02
 		}
 
 		on_complete = {
@@ -132,70 +1271,20 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	}
 
 	trait = {
-		token = SWE_Saab_Bofors_Dynamics_BoforsREMO
-		name = SWE_Saab_Bofors_Dynamics_BoforsREMO
-		icon = GFX_generic_mio_trait_icon_reliability
+		token = SWE_Saab_Bofors_Dynamics_RB98Blk2
+		name = SWE_Saab_Bofors_Dynamics_RB98Blk2
+		icon = GFX_generic_mio_trait_icon_sam_range
 
-		position = { x = 0 y = 1 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_3P_ammo
+		position = { x = 0 y = 2 }
+		relative_position_id = SWE_Saab_Bofors_Dynamics_RB98
 
-		all_parents = { SWE_Saab_Bofors_Dynamics_3P_ammo }
+		all_parents = { SWE_Saab_Bofors_Dynamics_RB98 }
 
-		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }		
-
-		equipment_bonus = {
-			air_attack = 0.01
-			soft_attack = 0.01
-			reliability = 0.01
-		}
-
-		on_complete = {
-			if = {
-				limit = {
-					check_variable = { free_trait_picks > 0 }
-				}
-				add_to_variable = { free_trait_picks = -1 }
-			}
-			else = {
-				FROM = {
-					small_expenditure = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-			modifier = {
-				factor = 0
-				check_variable = { FROM.interest_rate > 8 }
-			}
-			modifier = {
-				factor = 0.1
-				FROM = {
-					num_of_military_factories < 10
-				}
-			}
-		}
-	}
-
-	trait = {
-		token = SWE_Saab_Bofors_Dynamics_Bofors40_mk4
-		name = SWE_Saab_Bofors_Dynamics_Bofors40_mk4
-		icon = GFX_generic_mio_trait_icon_lg_attack
-
-		position = { x = 0 y = 1 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_BoforsREMO
-
-		all_parents = { SWE_Saab_Bofors_Dynamics_BoforsREMO }
-
-		limit_to_equipment_type = { medium_tank_aa_chassis }
+		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
 
 		equipment_bonus = {
 			air_attack = 0.02
-			reliability = 0.01
-			soft_attack = 0.02
-			hard_attack = 0.02
-			armor_value = 0.02
+			reliability = 0.02
 		}
 
 		on_complete = {
@@ -228,64 +1317,15 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	}
 
 	trait = {
-		token = SWE_Saab_Bofors_Dynamics_TridonMk2
-		name = SWE_Saab_Bofors_Dynamics_TridonMk2
-		icon = GFX_generic_mio_trait_icon_lg_attack
+		token = SWE_Saab_Bofors_Dynamics_FCAAM
+		name = SWE_Saab_Bofors_Dynamics_FCAAM
+		icon = GFX_generic_mio_trait_icon_sam_agility
 		special_trait_background = yes
 
-		position = { x = 0 y = 2 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_Bofors40_mk4
+		position = { x = 1 y = 2 }
+		relative_position_id = SWE_Saab_Bofors_Dynamics_RB98Blk2
 
-		all_parents = { SWE_Saab_Bofors_Dynamics_Bofors40_mk4 SWE_Saab_Bofors_Dynamics_TEWA_system }
-
-		limit_to_equipment_type = { medium_tank_aa_chassis }
-
-		equipment_bonus = {
-			air_attack = 0.03
-			reliability = 0.03
-			soft_attack = 0.03
-			hard_attack = 0.03
-			armor_value = 0.03
-		}
-
-		on_complete = {
-			if = {
-				limit = {
-					check_variable = { free_trait_picks > 0 }
-				}
-				add_to_variable = { free_trait_picks = -1 }
-			}
-			else = {
-				FROM = {
-					small_expenditure = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-			modifier = {
-				factor = 0
-				check_variable = { FROM.interest_rate > 8 }
-			}
-			modifier = {
-				factor = 0.1
-				FROM = {
-					num_of_military_factories < 10
-				}
-			}
-		}
-	}
-
-	trait = {
-		token = SWE_Saab_Bofors_Dynamics_BOLIDE
-		name = SWE_Saab_Bofors_Dynamics_BOLIDE
-		icon = GFX_generic_mio_trait_icon_air_attack
-
-		position = { x = 2 y = 1 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_Giraffe40_radar
-
-		all_parents = { SWE_Saab_Bofors_Dynamics_Giraffe40_radar }
+		all_parents = { SWE_Saab_Bofors_Dynamics_RB98Blk2 SWE_Saab_Bofors_Dynamics_MSHORAD }
 
 		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
 
@@ -326,12 +1366,9 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_BOLIDE_NG
 		name = SWE_Saab_Bofors_Dynamics_BOLIDE_NG
-		icon = GFX_generic_mio_trait_icon_air_attack
+		icon = GFX_generic_mio_trait_icon_spaa
 
-		position = { x = 0 y = 1 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_BOLIDE
-
-		all_parents = { SWE_Saab_Bofors_Dynamics_BOLIDE SWE_Saab_Bofors_Dynamics_Giraffe1X_radar }
+		position = { x = 2 y = 0 }
 
 		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
 
@@ -372,13 +1409,13 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_MSHORAD
 		name = SWE_Saab_Bofors_Dynamics_MSHORAD
-		icon = GFX_generic_mio_trait_icon_air_attack
+		icon = GFX_generic_mio_trait_icon_spaa_speed
 		special_trait_background = yes
 
 		position = { x = 0 y = 2 }
 		relative_position_id = SWE_Saab_Bofors_Dynamics_BOLIDE_NG
 
-		all_parents = { SWE_Saab_Bofors_Dynamics_BOLIDE_NG SWE_Saab_Bofors_Dynamics_TEWA_system }
+		all_parents = { SWE_Saab_Bofors_Dynamics_BOLIDE_NG }
 
 		limit_to_equipment_type = { medium_tank_aa_chassis }
 
@@ -418,144 +1455,11 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	}
 
 	trait = {
-		token = SWE_Saab_Bofors_Dynamics_Giraffe40_radar
-		name = SWE_Saab_Bofors_Dynamics_Giraffe40_radar
-		icon = GFX_generic_mio_trait_icon_detection
-
-		position = { x = 2 y = 0 }
-
-		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
-
-		equipment_bonus = {
-			air_attack = 0.02
-		}
-
-		on_complete = {
-			if = {
-				limit = {
-					check_variable = { free_trait_picks > 0 }
-				}
-				add_to_variable = { free_trait_picks = -1 }
-			}
-			else = {
-				FROM = {
-					small_expenditure = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-			modifier = {
-				factor = 0
-				check_variable = { FROM.interest_rate > 8 }
-			}
-			modifier = {
-				factor = 0.1
-				FROM = {
-					num_of_military_factories < 10
-				}
-			}
-		}
-	}
-
-	trait = {
-		token = SWE_Saab_Bofors_Dynamics_Giraffe1X_radar
-		name = SWE_Saab_Bofors_Dynamics_Giraffe1X_radar
-		icon = GFX_generic_mio_trait_icon_detection
-
-		position = { x = -0 y = 1 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_Giraffe40_radar
-
-		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
-
-		all_parents = { SWE_Saab_Bofors_Dynamics_Giraffe40_radar }
-
-		equipment_bonus = {
-			air_attack = 0.02
-			reliability = 0.01
-		}
-
-		on_complete = {
-			if = {
-				limit = {
-					check_variable = { free_trait_picks > 0 }
-				}
-				add_to_variable = { free_trait_picks = -1 }
-			}
-			else = {
-				FROM = {
-					small_expenditure = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-			modifier = {
-				factor = 0
-				check_variable = { FROM.interest_rate > 8 }
-			}
-			modifier = {
-				factor = 0.1
-				FROM = {
-					num_of_military_factories < 10
-				}
-			}
-		}
-	}
-
-	trait = {
-		token = SWE_Saab_Bofors_Dynamics_TEWA_system
-		name = SWE_Saab_Bofors_Dynamics_TEWA_system
-		icon = GFX_generic_mio_trait_icon_detection
-		position = { x = 0 y = 2 }
-		relative_position_id = SWE_Saab_Bofors_Dynamics_Giraffe1X_radar
-
-		all_parents = { SWE_Saab_Bofors_Dynamics_Giraffe1X_radar SWE_Saab_Bofors_Dynamics_Bofors40_mk4 SWE_Saab_Bofors_Dynamics_BOLIDE_NG }
-
-		limit_to_equipment_type = { AA_Equipment medium_tank_aa_chassis }
-
-		equipment_bonus = {
-			air_attack = 0.02
-			reliability = 0.02
-		}
-
-		on_complete = {
-			if = {
-				limit = {
-					check_variable = { free_trait_picks > 0 }
-				}
-				add_to_variable = { free_trait_picks = -1 }
-			}
-			else = {
-				FROM = {
-					small_expenditure = yes
-				}
-			}
-		}
-
-		ai_will_do = {
-			base = 10
-			modifier = {
-				factor = 0
-				check_variable = { FROM.interest_rate > 8 }
-			}
-			modifier = {
-				factor = 0.1
-				FROM = {
-					num_of_military_factories < 10
-				}
-			}
-		}
-	}
-
-	trait = {
 		token = SWE_Saab_Bofors_Dynamics_RBS15_GLCM
 		name = SWE_Saab_Bofors_Dynamics_RBS15_GLCM
-		icon = GFX_generic_mio_trait_icon_hg_attack
+		icon = GFX_generic_mio_trait_icon_guided_missile
 
-		position = { x = 5 y = 0 }
+		position = { x = 6 y = 0 }
 
 		limit_to_equipment_type = { guided_missile_equipment }
 
@@ -598,7 +1502,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_ScaniaPlatforms
 		name = SWE_Saab_Bofors_Dynamics_ScaniaPlatforms
-		icon = GFX_generic_mio_trait_icon_conversion_speed
+		icon = GFX_generic_mio_trait_icon_util
 
 		position = { x = 0 y = 1 }
 		relative_position_id = SWE_Saab_Bofors_Dynamics_RBS15_GLCM
@@ -645,7 +1549,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_KickstartGungnir
 		name = SWE_Saab_Bofors_Dynamics_KickstartGungnir
-		icon = GFX_generic_mio_trait_icon_hg_attack
+		icon = GFX_generic_mio_trait_icon_guided_missile
 
 		position = { x = 0 y = 1 }
 		relative_position_id = SWE_Saab_Bofors_Dynamics_ScaniaPlatforms
@@ -699,7 +1603,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_TaurusProgramme
 		name = SWE_Saab_Bofors_Dynamics_TaurusProgramme
-		icon = GFX_generic_mio_trait_icon_hg_attack
+		icon = GFX_generic_mio_trait_icon_guided_missile
 		special_trait_background=yes
 
 		position = { x = 0 y = 2 }
@@ -749,9 +1653,9 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_StealthExperiments
 		name = SWE_Saab_Bofors_Dynamics_StealthExperiments
-		icon = GFX_generic_mio_trait_icon_unique
+		icon = GFX_generic_mio_trait_icon_guided_missile
 
-		position = { x = 2 y = 1 }
+		position = { x = 1 y = 1 }
 		relative_position_id = SWE_Saab_Bofors_Dynamics_ScaniaPlatforms
 
 		all_parents = { SWE_Saab_Bofors_Dynamics_ScaniaPlatforms SWE_Saab_Bofors_Dynamics_MissileDevelopmentInstitute }
@@ -769,7 +1673,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 			military_industrial_organization_task_capacity = 1
 			military_industrial_organization_research_bonus = 0.05
 		}
-		
+
 		on_complete = {
 			if = {
 				limit = {
@@ -802,7 +1706,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 	trait = {
 		token = SWE_Saab_Bofors_Dynamics_MEPHISTOWarhead
 		name = SWE_Saab_Bofors_Dynamics_MEPHISTOWarhead
-		icon = GFX_generic_mio_trait_icon_unique
+		icon = GFX_generic_mio_trait_icon_guided_missile_strategic_attack
 
 		position = { x = 0 y = 1 }
 		relative_position_id = SWE_Saab_Bofors_Dynamics_StealthExperiments
@@ -896,7 +1800,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 			military_industrial_organization_industrial_manufacturer_assign_cost = -0.05
 			military_industrial_organization_research_bonus = 0.05
 		}
-		
+
 
 		on_complete = {
 			if = {
@@ -939,7 +1843,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 			military_industrial_organization_industrial_manufacturer_assign_cost = -0.05
 			military_industrial_organization_research_bonus = 0.05
 		}
-		
+
 		on_complete = {
 			if = {
 				limit = {
@@ -979,7 +1883,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 			military_industrial_organization_industrial_manufacturer_assign_cost = -0.1
 			military_industrial_organization_research_bonus = 0.05
 		}
-		
+
 
 		on_complete = {
 			if = {
@@ -1024,7 +1928,7 @@ SWE_Saab_Bofors_Dynamics_manufacturer = {
 			military_industrial_organization_industrial_manufacturer_assign_cost = -0.1
 			military_industrial_organization_research_bonus = 0.1
 		}
-		
+
 
 		on_complete = {
 			if = {
@@ -1982,7 +2886,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_fuselage_pylons
 		name = SWE_saab_ab_fuselage_pylons
-		icon = GFX_generic_mio_trait_icon_air_ground_attack
+		icon = GFX_generic_mio_trait_icon_strategic_attack
 
 		position = { x = 6 y = 0 }
 
@@ -2025,7 +2929,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_short_takeoff_landing
 		name = SWE_saab_ab_short_takeoff_landing
-		icon = GFX_generic_mio_trait_icon_air_range
+		icon = GFX_generic_mio_trait_icon_air_superiority
 
 		position = { x = 0 y = 1 }
 		relative_position_id = SWE_saab_ab_fuselage_pylons
@@ -2069,7 +2973,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_cranked_arrows
 		name = SWE_saab_ab_cranked_arrows
-		icon = GFX_generic_mio_trait_icon_air_agility
+		icon = GFX_generic_mio_trait_icon_light_aircraft_agility
 
 		position = { x = 4 y = 0 }
 
@@ -2111,7 +3015,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_air_ground_radar
 		name = SWE_saab_ab_air_ground_radar
-		icon = GFX_generic_mio_trait_icon_hard_attack
+		icon = GFX_generic_mio_trait_icon_light_aircraft_air_ground_attack
 
 		position = { x = 2 y = 0 }
 
@@ -2154,7 +3058,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_double_delta
 		name = SWE_saab_ab_double_delta
-		icon = GFX_generic_mio_trait_icon_air_agility
+		icon = GFX_generic_mio_trait_icon_light_aircraft_agility
 
 		position = { x = 0 y = 1 }
 		relative_position_id = SWE_saab_ab_cranked_arrows
@@ -2199,7 +3103,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_lightweight_materials
 		name = SWE_saab_ab_lightweight_materials
-		icon = GFX_generic_mio_trait_icon_hardness
+		icon = GFX_generic_mio_trait_icon_light_aircraft_resources
 		special_trait_background = yes
 
 		position = { x = 1 y = 1 }
@@ -2247,7 +3151,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_longrange_improvements
 		name = SWE_saab_ab_longrange_improvements
-		icon = GFX_generic_mio_trait_icon_fuel_consumption
+		icon = GFX_generic_mio_trait_icon_light_aircraft_range
 
 		position = { x = 1 y = 1 }
 		relative_position_id = SWE_saab_ab_lightweight_materials
@@ -2291,7 +3195,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_modern_engines
 		name = SWE_saab_ab_modern_engines
-		icon = GFX_generic_mio_trait_icon_maximum_speed
+		icon = GFX_generic_mio_trait_icon_light_aircraft_speed
 		special_trait_background=yes
 
 		position = { x = 1 y = 1 }
@@ -2303,7 +3207,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 			air_range = 0.03
 			fuel_consumption = -0.03
 			maximum_speed = 0.03
-			
+
 		}
 
 		on_complete = {
@@ -2338,7 +3242,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_expanded_pylons
 		name = SWE_saab_ab_expanded_pylons
-		icon = GFX_generic_mio_trait_icon_air_ground_attack
+		icon = GFX_generic_mio_trait_icon_strategic_attack
 
 		position = { x = -1 y = 1 }
 		relative_position_id = SWE_saab_ab_lightweight_materials
@@ -2391,6 +3295,12 @@ SWE_saab_ab_aircraft_manufacturer = {
 		relative_position_id = SWE_saab_ab_expanded_pylons
 
 		all_parents = { SWE_saab_ab_expanded_pylons }
+
+		available ={
+		FROM= {
+			mio:SWE_Saab_Bofors_Dynamics_manufacturer { is_mio_trait_completed = SWE_Saab_Bofors_Dynamics_TaurusProgramme }
+			}
+		}
 
 		equipment_bonus = {
 			air_ground_attack = 0.05
@@ -2524,7 +3434,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_drone_integration
 		name = SWE_saab_ab_drone_integration
-		icon = GFX_generic_mio_trait_icon_detection
+		icon = GFX_generic_mio_trait_icon_light_aircraft_defense
 
 		position = { x = -1 y = 1 }
 		relative_position_id = SWE_saab_ab_advanced_avionics
@@ -2569,7 +3479,7 @@ SWE_saab_ab_aircraft_manufacturer = {
 	trait = {
 		token = SWE_saab_ab_CENTAUR_AI
 		name = SWE_saab_ab_CENTAUR_AI
-		icon = GFX_generic_mio_trait_icon_air_superiority
+		icon = GFX_generic_mio_trait_icon_light_aircraft_anti_air
 		special_trait_background = yes
 
 		position = { x = 0 y = 1 }
@@ -2659,11 +3569,11 @@ SWE_saab_ab_aircraft_manufacturer = {
 			}
 		}
 	}
-	
+
 	trait = {
 		token = SWE_saab_ab_smart_strike_munitions
 		name = SWE_saab_ab_smart_strike_munitions
-		icon = GFX_generic_mio_trait_icon_air_ground_attack
+		icon = GFX_generic_mio_trait_icon_light_aircraft_air_ground_attack
 
 		position = { x = 0 y = 0 }
 
@@ -2702,11 +3612,11 @@ SWE_saab_ab_aircraft_manufacturer = {
 			}
 		}
 	}
-	
+
 	trait = {
 		token = SWE_saab_ab_Xband_radar
 		name = SWE_saab_ab_Xband_radar
-		icon = GFX_generic_mio_trait_icon_air_attack
+		icon = GFX_generic_mio_trait_icon_surface_detection
 
 		position = { x = 0 y = 1 }
 		relative_position_id = SWE_saab_ab_air_ground_radar
@@ -2750,11 +3660,11 @@ SWE_saab_ab_aircraft_manufacturer = {
 			}
 		}
 	}
-	
+
 	trait = {
 		token = SWE_saab_ab_AESA_radar
 		name = SWE_saab_ab_AESA_radar
-		icon = GFX_generic_mio_trait_icon_air_attack
+		icon = GFX_generic_mio_trait_icon_light_aircraft_anti_air
 
 		position = { x = 1 y = 1 }
 		relative_position_id = SWE_saab_ab_advanced_avionics
