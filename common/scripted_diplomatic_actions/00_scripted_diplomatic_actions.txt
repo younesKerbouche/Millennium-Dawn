@@ -891,7 +891,7 @@ scripted_diplomatic_actions = {
 		cost = 75
 		requires_acceptance = yes
 		show_acceptance_on_action_button = yes
-		icon = 21 # TODO: Add a new icon for this
+		icon = 25
 		send_description = DIPLO_ACTION_PROPOSE_MUTUAL_INVESTMENT_TREATY
 
 		on_sent_effect = {
@@ -1549,7 +1549,7 @@ scripted_diplomatic_actions = {
 		}
 
 		cost = 50
-		icon = 21 # TODO: Add a new icon for this
+		icon = 26
 
 		requires_acceptance = yes
 		show_acceptance_on_action_button = yes
@@ -1705,7 +1705,7 @@ scripted_diplomatic_actions = {
 		}
 
 		cost = 50
-		icon = 21 # TODO: Add a new icon for this
+		icon = 27
 
 		requires_acceptance = yes
 		show_acceptance_on_action_button = yes
@@ -1844,14 +1844,17 @@ scripted_diplomatic_actions = {
 
 	# Energy Load Sharing
 	propose_energy_load_sharing = {
-		allowed = { NOT = { has_global_flag = GAME_RULE_disable_energy_load_sharing } }
+		allowed = {
+			NOT = { has_global_flag = GAME_RULE_disable_energy_load_sharing }
+			is_ai = no
+		}
 
 		visible = {
 			NOT = { is_in_array = { ROOT.energy_load_sharing_nations = THIS.id } }
 			NOT = { is_in_array = { THIS.energy_load_sharing_nations = ROOT.id } }
 		}
 		selectable = {
-			has_state_in_range_of_one_of_our_owned_states = yes
+			is_neighbor_of = ROOT
 			NOT = { has_country_flag = energy_load_sharing_recipient }
 			has_war_with_or_allies_have_war_with_ROOT = no
 			THIS = {
@@ -1922,17 +1925,24 @@ scripted_diplomatic_actions = {
 				}
 			}
 		}
+
+		ai_desire = {
+			base = 0
+		}
 	}
 
 	request_energy_load_sharing = {
-		allowed = { NOT = { has_global_flag = GAME_RULE_disable_energy_load_sharing } }
+		allowed = {
+			NOT = { has_global_flag = GAME_RULE_disable_energy_load_sharing }
+			is_ai = no
+		}
 
 		visible = {
 			NOT = { is_in_array = { ROOT.energy_load_sharing_nations = THIS.id } }
 			NOT = { is_in_array = { THIS.energy_load_sharing_nations = ROOT.id } }
 		}
 		selectable = {
-			has_state_in_range_of_one_of_our_owned_states = yes
+			is_neighbor_of = ROOT
 			NOT = { has_country_flag = energy_load_sharing_recipient }
 			has_war_with_or_allies_have_war_with_ROOT = no
 			ROOT = {
@@ -2004,10 +2014,17 @@ scripted_diplomatic_actions = {
 				}
 			}
 		}
+
+		ai_desire = {
+			base = 0
+		}
 	}
 
 	cancel_energy_load_sharing = {
-		allowed = { NOT = { has_global_flag = GAME_RULE_disable_energy_load_sharing } }
+		allowed = {
+			NOT = { has_global_flag = GAME_RULE_disable_energy_load_sharing }
+			is_ai = no
+		}
 
 		visible = {
 			OR = {
@@ -2016,9 +2033,9 @@ scripted_diplomatic_actions = {
 			}
 		}
 		selectable = {
+			is_currently_in_an_energy_load_sharing_agreement = yes
 			ERI_is_not_transitional_government = yes
 		}
-		cost = 75
 		can_be_sent = { always = yes }
 		show_acceptance_on_action_button = no
 		requires_acceptance = no
