@@ -1,4 +1,4 @@
-capital = 46
+﻿capital = 46
 2000.1.1 = {
 	set_cosmetic_tag = HOL
 	set_country_flag = dynamic_flag
@@ -17,6 +17,7 @@ capital = 46
 	set_variable = { HOL_polder_model_production_speed_buildings_factor = -0.10 }
 	set_variable = { HOL_polder_model_political_power_factor = -0.15 }
 
+	complete_special_project = sp:sp_composite_production
 	complete_special_project = sp:sp_aircraft_project
 
 	if = {
@@ -163,8 +164,7 @@ capital = 46
 			}
 		}
 	}
-	if = { limit = { has_dlc = "Man the Guns" }
-		set_naval_oob = "HOL_2000_naval_mtg"
+	set_naval_oob = "HOL_2000_naval_mtg"
 
 		set_technology = {
 			corvette_hull_1 = 1
@@ -233,7 +233,7 @@ capital = 46
 			tech_torpedoes = 1
 			tech_torpedoes_1 = 1
 
-			tech_mtg_landing_craft = 1
+			tech_landing_craft = 1
 		}
 
 		#Rotterdam Class
@@ -409,61 +409,6 @@ capital = 46
 		}
 
 		complete_special_project = sp:sp_naval_vessel_project
-
-		else = {
-			set_naval_oob = "HOL_2000_naval_legacy"
-
-			set_technology = {
-				#Sigma 9113
-				corvette_1 = 1
-				corvette_2 = 1
-				#To stop crashing
-				missile_corvette_1 = 1
-				missile_corvette_2 = 1
-				missile_corvette_3 = 1
-				#De Zeven Provincien Class
-				frigate_1 = 1
-				frigate_2 = 1
-				missile_frigate_1 = 1
-				missile_frigate_2 = 1
-				missile_frigate_3 = 1
-				missile_frigate_4 = 1
-				#De Zeven Provincien class
-				cruiser_1 = 1
-				#Walru-Class
-				submarine_1 = 1
-				diesel_attack_submarine_1 = 1
-				diesel_attack_submarine_2 = 1
-				diesel_attack_submarine_3 = 1
-
-				landing_craft = 1
-				LPD_0 = 1
-				LPD_1 = 1
-			}
-
-			create_equipment_variant = {
-				name = "Hai Lung-class"
-				type = diesel_attack_submarine_2
-				upgrades = {
-				}
-				obsolete = yes
-			}
-			create_equipment_variant = {
-				name = "Jacob van Heemskerck-Class"
-				type = frigate_2
-				upgrades = {
-				}
-				obsolete = yes
-			}
-			create_equipment_variant = {
-				name = "De Zeven Provincien-Class"
-				type = cruiser_1
-				upgrades = {
-				}
-				obsolete = yes
-			}
-		}
-	}
 	if = {
 		limit = { has_dlc = "By Blood Alone" }
 		set_air_oob = "HOL_2000_bba"
@@ -551,12 +496,17 @@ capital = 46
 		}
 	}
 
+	complete_special_project = sp:sp_microchip_production
+
 	set_technology = {
+		microchip_production_two = 1
+		microchip_production_three = 1
+
 		integrated_transportation_system = 1
 		post_conventional_rail = 1
 		early_freight_locomotive = 1
 
-		legacy_doctrines = 1
+
 		combined_arms = 1
 
 		infantry_weapons = 1
@@ -614,8 +564,8 @@ capital = 46
 		farming_data_analytic_softwares = 1
 
 		radar = 1
-		internet1 = 1 	#1G
-		internet2 = 1 	#2G
+		internet1 = 1
+		internet2 = 1
 		gprs = 1
 		fuel_silos = 1
 
@@ -641,6 +591,9 @@ capital = 46
 		construction2 = 1
 		nuclear_technology = 1
 		reactor1 = 1
+
+		SAM = 1
+		SAM0 = 1
 	}
 
 		complete_special_project = sp:sp_helicopter_project
@@ -854,7 +807,7 @@ capital = 46
 	set_variable = { party_pop_array^23 = 0 } #Monarchist
 	add_to_array = { ruling_party = 3 } #PvdA
 	add_to_array = { gov_coalition_array = 2 } #VVD
-	add_to_array = { gov_coalition_array =18 } #D66
+	add_to_array = { gov_coalition_array = 18 } #D66
 
 	startup_politics = yes
 
@@ -904,4 +857,5 @@ capital = 46
 	recruit_character = HOL_rene_tas
 	recruit_character = HOL_rob_kramer
 	recruit_character = HOL_rob_verkerk
+
 }

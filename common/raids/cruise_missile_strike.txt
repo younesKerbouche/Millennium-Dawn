@@ -11,9 +11,6 @@ types = {
 		arrow = {
 			type = air
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		# Specific Target is visible
 		show_target = {
@@ -77,14 +74,8 @@ types = {
 		}
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -943,6 +934,15 @@ types = {
 				NOT = { has_war_with = FROM }
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 			 	# Don't target anyone who is not a potential enemy
 			 	factor = 0
 			 	NOT = {
@@ -988,9 +988,6 @@ types = {
 
 		arrow = {
 			type = air
-		}
-		unit_model = {
-			type = equipment
 		}
 		visible = {
 		}
@@ -1059,14 +1056,8 @@ types = {
 		}
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -1734,6 +1725,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				var:target_state = {
 					rocket_site < 4
@@ -1812,9 +1812,6 @@ types = {
 		arrow = {
 			type = air
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		available = {
 			FROM = {
@@ -1872,19 +1869,19 @@ types = {
 			}
 		}
 
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
-			}
-		}
-
 		launch_sound = raid_launch_marine
 		target_icon = GFX_other_target_icon
 
 		target_type = {
 			state = {
 				always = yes
+			}
+		}
+
+		unit_requirements = {
+			equipment = {
+				type = { guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
+				amount = { min = 10 }
 			}
 		}
 
@@ -2352,6 +2349,15 @@ types = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
+			}
+			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
 			}
 			modifier = {
 				NOT = {

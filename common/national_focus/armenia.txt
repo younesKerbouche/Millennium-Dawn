@@ -1921,7 +1921,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 16 } } }
 					set_temp_variable = { rul_party_temp = 16 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 16 }
@@ -2573,7 +2573,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 19 } } }
 					set_temp_variable = { rul_party_temp = 19 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 19 }
@@ -2589,7 +2589,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 19 } } }
 							set_temp_variable = { rul_party_temp = 19 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 19 }
@@ -3110,7 +3110,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 16 } } }
 					set_temp_variable = { rul_party_temp = 16 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 16 }
@@ -3126,7 +3126,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 16 } } }
 							set_temp_variable = { rul_party_temp = 16 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 16 }
@@ -3947,7 +3947,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 5 } } }
 					set_temp_variable = { rul_party_temp = 5 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 5 }
@@ -3963,7 +3963,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 5 } } }
 							set_temp_variable = { rul_party_temp = 5 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 5 }
@@ -4011,7 +4011,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 21 } } }
 					set_temp_variable = { rul_party_temp = 21 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 21 }
@@ -4027,7 +4027,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 21 } } }
 							set_temp_variable = { rul_party_temp = 21 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 21 }
@@ -4256,9 +4256,23 @@ focus_tree = {
 					inexperienced
 				}
 			}
-			swap_ideas = {
-				remove_idea = oligarchs
-				add_idea = labour_unions
+			if = {
+				limit = {
+					has_idea = oligarchs
+				}
+				swap_ideas = {
+					remove_idea = oligarchs
+					add_idea = labour_unions
+				}
+			}
+			if = {
+				limit = {
+					has_idea = small_medium_business_owners
+				}
+				swap_ideas = {
+					remove_idea = small_medium_business_owners
+					add_idea = labour_unions
+				}
 			}
 		}
 		ai_will_do = {
@@ -5030,7 +5044,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 0 } } }
 					set_temp_variable = { rul_party_temp = 0 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 0 }
@@ -5046,7 +5060,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 0 } } }
 							set_temp_variable = { rul_party_temp = 0 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 0 }
@@ -5870,7 +5884,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 15 } } }
 					set_temp_variable = { rul_party_temp = 15 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 15 }
@@ -5886,7 +5900,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 15 } } }
 							set_temp_variable = { rul_party_temp = 15 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 15 }
@@ -6576,7 +6590,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 1 } } }
 					set_temp_variable = { rul_party_temp = 1 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 1 }
@@ -6592,7 +6606,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 1 } } }
 							set_temp_variable = { rul_party_temp = 1 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 1 }
@@ -7323,7 +7337,7 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 23 } } }
 					set_temp_variable = { rul_party_temp = 23 }
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 					change_ruling_party_effect = yes
 				}
 				set_temp_variable = { party_index = 23 }
@@ -7339,7 +7353,7 @@ focus_tree = {
 						if = {
 							limit = { NOT = { is_in_array = { ruling_party = 23 } } }
 							set_temp_variable = { rul_party_temp = 23 }
-							set_temp_variable = { enable_elections = 0 }
+							set_temp_variable = { disable_elections = 0 }
 							change_ruling_party_effect = yes
 						}
 						set_temp_variable = { party_index = 23 }
@@ -10970,7 +10984,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_ARMENIA_ECONOMY }
 
 		available = {
-			has_tech = excavation7
+			has_tech = excavation5
 			owns_state = 709
 		}
 
@@ -10979,16 +10993,14 @@ focus_tree = {
 			709 = {
 				add_resource = {
 					type = oil
-					amount = 2
+					amount = 6
 				}
-			}
-			709 = {
 				add_resource = {
 					type = steel
-					amount = 2
+					amount = 6
 				}
 			}
-			set_temp_variable = { treasury_change = -3.750 }
+			set_temp_variable = { treasury_change = -5.750 }
 			modify_treasury_effect = yes
 		}
 
@@ -12110,7 +12122,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus ARM_economy_green_armenia executed"
-			two_random_synthetic_refinery = yes
+			two_random_renewable_energy_infra = yes
 			add_tech_bonus = {
 				name = BOT_the_energy_debate
 				bonus = 0.5
@@ -15586,8 +15598,15 @@ focus_tree = {
 						}
 					}
 				}
-				PER = {
-					has_tech = Air_UAV1
+				if = {
+					limit = {
+						has_dlc = "By Blood Alone"
+					}
+					PER = { has_tech = gen_4_light }
+
+					else = {
+						PER = { has_tech = Air_UAV1 }
+					}
 				}
 			}
 
@@ -15600,10 +15619,20 @@ focus_tree = {
 				effect_tooltip = {
 					set_temp_variable = { treasury_change = -10 }
 					modify_treasury_effect = yes
-					add_equipment_to_stockpile = {
-						type = Air_UAV1
-						amount = 500
-						producer = PER
+					if = {
+						limit = { has_dlc = "By Blood Alone" }
+						add_equipment_to_stockpile = {
+							type = small_plane_suicide_airframe_2
+							amount = 500
+							producer = PER
+						}
+					}
+					else = {
+						add_equipment_to_stockpile = {
+							type = Air_UAV1
+							amount = 500
+							producer = PER
+						}
 					}
 				}
 			}
@@ -18210,19 +18239,20 @@ focus_tree = {
 				OR = {
 					has_idea = intervention_regional_interventionism
 					has_idea = intervention_global_interventionism
+					has_idea = intervention_neo_imperialism
 					has_government = nationalist
 				}
 				is_subject = no
 			}
 
 			bypass = {
-				is_in_faction = yes
+				is_faction_leader = yes
 			}
 
 			completion_reward = {
 				log = "[GetDateText]: [This.GetName]: focus ARM_active_diplomacy executed"
 				add_threat = 5
-				create_faction = Anti_Turanic_Coalition
+				create_faction_from_template = faction_template_anti_turanic_coalition
 			}
 
 			ai_will_do = {

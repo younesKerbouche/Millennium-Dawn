@@ -4,6 +4,8 @@
 	set_country_flag = dynamic_rebel_flag
 	set_variable = { gdp_per_capita = 9.138 }
 
+	complete_special_project = sp:sp_composite_production
+
 	add_ideas = {
 		#Economic Cycle
 		stable_growth
@@ -50,15 +52,7 @@
 
 	oob = "COL_2000"
 	set_cosmetic_tag = COL
-	if = {
-		limit = {
-			has_dlc = "Man the Guns"
-		}
-		set_naval_oob = "COL_2000_naval_mtg"
-		else = {
-			set_naval_oob = "COL_2000_naval_legacy"
-		}
-	}
+	set_naval_oob = "COL_2000_naval_mtg"
 
 	if = {
 		limit = { has_dlc = "By Blood Alone" }
@@ -129,7 +123,7 @@
 		post_conventional_rail = 1
 		early_freight_locomotive = 1
 
-		legacy_doctrines = 1
+
 		infantry_mass_assault = 1
 		infantry_weapons = 1
 		infantry_weapons1 = 1
@@ -201,11 +195,7 @@
 	}
 
 	# Naval Technology
-	if = {
-		limit = {
-			has_dlc = "Man the Guns"
-		}
-		set_technology = {
+	set_technology = {
 			corvette_hull_1 = 1
 
 			frigate_hull_1 = 1
@@ -241,16 +231,8 @@
 
 			tech_torpedoes = 1
 
-			tech_mtg_landing_craft = 1
+			tech_landing_craft = 1
 		}
-		else = {
-			set_technology = {
-				corvette_1 = 1
-				submarine_1 = 1
-				attack_submarine_1 = 1
-			}
-		}
-	}
 
 	set_popularities = {
 		democratic = 100
@@ -326,4 +308,5 @@
 	recruit_character = COL_javier_enrique_rey_navas
 	recruit_character = COL_luis_gomez_vasquez
 	recruit_character = COL_juan_carlos_oti_paituvi
+
 }
