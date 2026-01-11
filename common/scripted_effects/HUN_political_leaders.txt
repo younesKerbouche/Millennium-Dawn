@@ -1,13 +1,96 @@
 set_leader_HUN = {
 
-	if = { limit = { has_country_flag = set_liberalism }
+	if = { limit = { has_country_flag = set_conservatism }
+
+		if = { limit = { check_variable = { conservatism_leader = 0 } }
+			add_to_variable = { conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Sándor Lezsák"
+				picture = "sandor_lezsak.dds"
+				ideology = conservatism
+				traits = {
+					western_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { conservatism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Ibolya Dávid"
+				picture = "ibolya_david.dds"
+				ideology = conservatism
+				traits = {
+					western_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { conservatism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Zoltán Bíró"
+				picture = "zoltan_biro.dds"
+				ideology = conservatism
+				traits = {
+					western_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { conservatism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Lajos Für"
+				picture = "lajos_fur.dds"
+				ideology = conservatism
+				traits = {
+					western_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+	}
+	else_if = { limit = { has_country_flag = set_liberalism }
 
 		if = { limit = { check_variable = { liberalism_leader = 0 } }
 			add_to_variable = { liberalism_leader = 1 }
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Gabor Kuncze"
+				name = "Bálint Magyar"
+				picture = "balint_magyar.dds"
+				ideology = liberalism
+				traits = {
+					western_liberalism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { liberalism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { liberalism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Gábor Kuncze"
 				picture = "gabor_kuncze.dds"
 				ideology = liberalism
 				traits = {
@@ -16,7 +99,55 @@ set_leader_HUN = {
 			}
 
 			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { liberalism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { liberalism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Gábor Demszky"
+				picture = "gabor_demszky.dds"
+				ideology = liberalism
+				traits = {
+					western_liberalism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { liberalism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { liberalism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "János Kóka"
+				picture = "janos_koka.dds"
+				ideology = liberalism
+				traits = {
+					western_liberalism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { liberalism_leader = 4 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { liberalism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Gábor Fodor"
+				picture = "gabor_fodor.dds"
+				ideology = liberalism
+				traits = {
+					western_liberalism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { liberalism_leader = 1 } }
+			set_temp_variable = { b = 1 }
 		}
 	}
 	else_if = { limit = { has_country_flag = set_socialism }
@@ -25,8 +156,8 @@ set_leader_HUN = {
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Gyula Horn"
-				picture = "gyula_horn.dds"
+				name = "László Kovács"
+				picture = "laszlo_kovacs.dds"
 				ideology = socialism
 				traits = {
 					western_socialism
@@ -34,15 +165,15 @@ set_leader_HUN = {
 			}
 
 			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
+			set_temp_variable = { b = 1 }
 		}
 		if = { limit = { check_variable = { socialism_leader = 1 } NOT = { check_variable = { b = 1 } } }
 			add_to_variable = { socialism_leader = 1 }
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Attila Mesterhazy"
-				picture = "attila_mesterhazy.dds"
+				name = "Gyula Horn"
+				picture = "gyula_horn.dds"
 				ideology = socialism
 				traits = {
 					western_socialism
@@ -57,7 +188,87 @@ set_leader_HUN = {
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Gyula Molnar"
+				name = "István Hiller"
+				picture = "istvan_hiller.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Ferenc Gyurcsány"
+				picture = "ferenc_gyurcsany.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 4 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Ildikó Lendvai"
+				picture = "ildiko_lendvai.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 5 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Attila Mesterházy"
+				picture = "attila_mesterhazy.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 6 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "József Tóbiás"
+				picture = "jozsef_tobias.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 7 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Gyula Molnár"
 				picture = "gyula_molnar.dds"
 				ideology = socialism
 				traits = {
@@ -66,6 +277,106 @@ set_leader_HUN = {
 			}
 
 			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 8 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Bertalan Tóth"
+				picture = "bertalan_toth.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { socialism_leader = 9 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { socialism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Ágnes Kunhalmi"
+				picture = "agnes_kunhalmi.dds"
+				ideology = socialism
+				traits = {
+					western_socialism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { socialism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+	}
+	else_if = { limit = { has_country_flag = set_Communist-State }
+		if = { limit = { check_variable = { Communist-State_leader = 0 } }
+			add_to_variable = { Communist-State_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Gyula Thürmer"
+				picture = "gyula_thurmer.dds"
+				ideology = Communist-State
+				traits = {
+					emerging_Communist-State
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Communist-State_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+	}
+	else_if = { limit = { has_country_flag = set_anarchist_communism }
+		if = { limit = { check_variable = { anarchist_communism_leader = 0 } }
+			add_to_variable = { anarchist_communism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Erzsébet Pusztai"
+				picture = "erzsebet_pusztai.dds"
+				ideology = anarchist_communism
+				traits = {
+					emerging_anarchist_communism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { anarchist_communism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { anarchist_communism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { anarchist_communism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Iván Szabó"
+				picture = "ivan_szabo.dds"
+				ideology = anarchist_communism
+				traits = {
+					emerging_anarchist_communism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { anarchist_communism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { anarchist_communism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { anarchist_communism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "József Szabó"
+				picture = "jozsef_szabo.dds"
+				ideology = anarchist_communism
+				traits = {
+					emerging_anarchist_communism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { anarchist_communism_leader = 1 } }
 			set_temp_variable = { b = 1 }
 		}
 	}
@@ -84,7 +395,89 @@ set_leader_HUN = {
 			}
 
 			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Neutral_conservatism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Neutral_conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "László Kövér"
+				picture = "laszlo_kover.dds"
+				ideology = Neutral_conservatism
+				traits = {
+					neutrality_Neutral_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Neutral_conservatism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Neutral_conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Zoltán Pokorni"
+				picture = "zoltan_pokorni.dds"
+				ideology = Neutral_conservatism
+				traits = {
+					neutrality_Neutral_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Neutral_conservatism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Neutral_conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "János Áder"
+				picture = "janos_ader.dds"
+				ideology = Neutral_conservatism
+				traits = {
+					neutrality_Neutral_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Neutral_conservatism_leader = 3 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Neutral_conservatism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Viktor Orbán"
+				picture = "viktor_orban.dds"
+				ideology = Neutral_conservatism
+				traits = {
+					neutrality_Neutral_conservatism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_conservatism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+	}
+	else_if = { limit = { has_country_flag = set_Neutral_green }
+		if = { limit = { check_variable = { Neutral_green_leader = 0 } }
+			add_to_variable = { Neutral_green_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Ottó Stekler"
+				picture = "otto_stekler.dds"
+				ideology = Neutral_green
+				traits = {
+					neutrality_Neutral_green
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_green_leader = 1 } }
+			set_temp_variable = { b = 1 }
 		}
 	}
 	else_if = { limit = { has_country_flag = set_Nat_Autocracy }
@@ -102,15 +495,15 @@ set_leader_HUN = {
 			}
 
 			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Autocracy_leader = 1 } }
-			if = { limit = { date < 2016.1.2 } set_temp_variable = { b = 1 } } #skip if 2017
+			set_temp_variable = { b = 1 }
 		}
 		if = { limit = { check_variable = { Nat_Autocracy_leader = 1 } NOT = { check_variable = { b = 1 } } }
 			add_to_variable = { Nat_Autocracy_leader = 1 }
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Col. Gen. Tibor Benko"
-				picture = "tibor_benko.dds"
+				name = "Col. Gen. Attila Takács"
+				picture = "Portrait_Attila_Takacs.dds"
 				ideology = Nat_Autocracy
 				traits = {
 					nationalist_Nat_Autocracy
@@ -121,14 +514,96 @@ set_leader_HUN = {
 			set_temp_variable = { b = 1 }
 		}
 	}
+	else_if = { limit = { has_country_flag = set_Nat_Fascism }
+		if = { limit = { check_variable = { Nat_Fascism_leader = 0 } }
+			add_to_variable = { Nat_Fascism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "István Csurka"
+				picture = "istvan_csurka.dds"
+				ideology = Nat_Fascism
+				traits = {
+					nationalist_Nat_Fascism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Fascism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Nat_Fascism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Nat_Fascism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Fenyvessy Zoltán"
+				picture = "fenyvessy_zoltan.dds"
+				ideology = Nat_Fascism
+				traits = {
+					nationalist_Nat_Fascism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Fascism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Nat_Fascism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Nat_Fascism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Fenyvessy Zoltán"
+				picture = "fenyvessy_zoltan.dds"
+				ideology = Nat_Fascism
+				traits = {
+					nationalist_Nat_Fascism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Fascism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+	}
 	else_if = { limit = { has_country_flag = set_Nat_Populism }
 		if = { limit = { check_variable = { Nat_Populism_leader = 0 } }
 			add_to_variable = { Nat_Populism_leader = 1 }
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Jozsef Torgyan"
+				name = "József Torgyán"
 				picture = "jozsef_torgyan.dds"
+				ideology = Nat_Populism
+				traits = {
+					nationalist_Nat_Populism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Populism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Nat_Populism_leader = 1 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Nat_Populism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Péter Hegedűs"
+				picture = "peter_hegedus.dds"
+				ideology = Nat_Populism
+				traits = {
+					nationalist_Nat_Populism
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Populism_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+		if = { limit = { check_variable = { Nat_Populism_leader = 2 } NOT = { check_variable = { b = 1 } } }
+			add_to_variable = { Nat_Populism_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Károly Balogh"
+				picture = "karoly_balogh.dds"
 				ideology = Nat_Populism
 				traits = {
 					nationalist_Nat_Populism
@@ -157,24 +632,6 @@ set_leader_HUN = {
 			set_temp_variable = { b = 1 }
 		}
 	}
-	else_if = { limit = { has_country_flag = set_Neutral_green }
-		if = { limit = { check_variable = { Neutral_green_leader = 0 } }
-			add_to_variable = { Neutral_green_leader = 1 }
-			hidden_effect = { kill_country_leader = yes }
-
-			create_country_leader = {
-				name = "Andras Schiffer"
-				picture = "andras_schiffer.dds"
-				ideology = Neutral_green
-				traits = {
-					neutrality_Neutral_green
-				}
-			}
-
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Neutral_green_leader = 1 } }
-			set_temp_variable = { b = 1 }
-		}
-	}
 	else_if = { limit = { has_country_flag = set_Neutral_social }
 		if = { limit = { check_variable = { Neutral_social_leader = 0 } }
 			add_to_variable = { Neutral_social_leader = 1 }
@@ -193,21 +650,21 @@ set_leader_HUN = {
 			set_temp_variable = { b = 1 }
 		}
 	}
-	else_if = { limit = { has_country_flag = set_Anarchist_communism }
-		if = { limit = { check_variable = { Anarchist_communism_leader = 0 } }
-			add_to_variable = { Anarchist_communism_leader = 1 }
+	else_if = { limit = { has_country_flag = set_Monarchist }
+		if = { limit = { check_variable = { Monarchist_leader = 0 } }
+			add_to_variable = { Monarchist_leader = 1 }
 			hidden_effect = { kill_country_leader = yes }
 
 			create_country_leader = {
-				name = "Tibor Varady"
-				picture = "tibor_varady.dds"
-				ideology = Anarchist_communism
+				name = "Otto von Habsburg"
+				picture = "otto_von_habsburg.dds"
+				ideology = Monarchist
 				traits = {
-					emerging_anarchist_communism
+					nationalist_Monarchist
 				}
 			}
 
-			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Anarchist_communism_leader = 1 } }
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Monarchist_leader = 1 } }
 			set_temp_variable = { b = 1 }
 		}
 	}
