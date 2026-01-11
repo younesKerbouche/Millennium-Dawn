@@ -3592,7 +3592,7 @@ focus_tree = {
 
 	focus = {
 		id = LKT_focus_FPP_political_plan
-		icon = social_democracy_2
+		icon = sheep_party_victory_logo
 		x = -8
 		y = 1
 		cost = 8.6
@@ -4361,6 +4361,356 @@ focus_tree = {
 		ai_will_do = { base = 100 }
 	}
 
+	focus = {
+		id = LKT_focus_building_tall_not_wide
+		icon = construction_engineering
+		x = -1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_PNP_political_plan
+		prerequisite = { focus = LKT_focus_PNP_political_plan }
+		available = { neutrality_neutral_green_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_building_tall_not_wide"
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_budget_education_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_domestic_research_speed_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_industrial_consumer_goods_change = yes
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_production_efficiency_cap_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			set_temp_variable = { temp_change = -0.02 }
+			LKT_change_resource_management_office_workforce_change = yes
+			LKT_change_resource_management_civ_factory_workforce_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_stable_economics
+		icon = sustainable_development
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_PNP_political_plan
+		prerequisite = { focus = LKT_focus_PNP_political_plan }
+		available = { neutrality_neutral_green_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_stable_economics"
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_budget_healthcare_cost_change = yes
+			LKT_change_budget_welfare_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.08 }
+			LKT_change_domestic_monthly_pop_change = yes
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_unemployment_tolerance_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = -0.04 }
+			LKT_change_industrial_factory_output_change = yes
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_production_efficiency_cap_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			set_temp_variable = { temp_change = -0.02 }
+			LKT_change_resource_management_office_workforce_change = yes
+			LKT_change_resource_management_civ_factory_workforce_change = yes
+			LKT_change_resource_management_mil_factory_workforce_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_local_food_producers
+		icon = generic_vanilla_sprouts
+		x = -1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_building_tall_not_wide
+		prerequisite = { focus = LKT_focus_building_tall_not_wide }
+		prerequisite = { focus = LKT_focus_stable_economics }
+		available = { neutrality_neutral_green_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_local_food_producers"
+			set_temp_variable = { treasury_change = -11.25 }
+			modify_treasury_effect = yes
+
+			785 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agriculture_district
+					level = 1
+				}
+			}
+			787 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agriculture_district
+					level = 1
+				}
+			}
+			789 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agriculture_district
+					level = 1
+				}
+			}
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_domestic_monthly_pop_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_production_efficiency_cap_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_sufficient_tech_investments
+		icon = generic_office_construct
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_building_tall_not_wide
+		prerequisite = { focus = LKT_focus_building_tall_not_wide }
+		prerequisite = { focus = LKT_focus_stable_economics }
+		available = { neutrality_neutral_green_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_sufficient_tech_investments"
+			set_temp_variable = { treasury_change = -30.00 }
+			modify_treasury_effect = yes
+
+			784 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = offices
+					level = 1
+				}
+			}
+			786 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = composite_plant
+					level = 1
+				}
+			}
+			788 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = microchip_plant
+					level = 1
+				}
+			}
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			LKT_change_budget_education_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_domestic_research_speed_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_industrial_consumer_goods_change = yes
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_production_efficiency_cap_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_domestic_arms_production_efforts
+		icon = generic_factory
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_stable_economics
+		prerequisite = { focus = LKT_focus_building_tall_not_wide }
+		prerequisite = { focus = LKT_focus_stable_economics }
+		available = { neutrality_neutral_green_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_domestic_arms_production_efforts"
+			set_temp_variable = { treasury_change = -15.00 }
+			modify_treasury_effect = yes
+
+			786 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			787 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = -0.03 }
+			LKT_change_domestic_political_power_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_production_efficiency_cap_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_eco_extraction_efforts
+		icon = mining_truck
+		x = 0
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_sufficient_tech_investments
+		prerequisite = { focus = LKT_focus_local_food_producers }
+		prerequisite = { focus = LKT_focus_sufficient_tech_investments }
+		prerequisite = { focus = LKT_focus_domestic_arms_production_efforts }
+		available = { neutrality_neutral_green_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_RESOURCE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_eco_extraction_efforts"
+			set_temp_variable = { treasury_change = -12.00 }
+			modify_treasury_effect = yes
+
+			784 = {
+				add_resource = {
+					type = steel
+					amount = 1
+				}
+			}
+			785 = {
+				add_resource = {
+					type = chromium
+					amount = 1
+				}
+			}
+			786 = {
+				add_resource = {
+					type = aluminium
+					amount = 1
+				}
+			}
+			787 = {
+				add_resource = {
+					type = rubber
+					amount = 1
+				}
+				add_resource = {
+					type = oil
+					amount = -2
+				}
+			}
+			788 = {
+				add_resource = {
+					type = tungsten
+					amount = 1
+				}
+			}
+			789 = {
+				add_resource = {
+					type = chromium
+					amount = 1
+				}
+			}
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_budget_education_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = -0.03 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_research_speed_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_production_efficiency_cap_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_resource_management_resource_extraction_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
 
 
 	#############
@@ -4368,7 +4718,7 @@ focus_tree = {
 
 	focus = {
 		id = LKT_focus_RBP_political_plan
-		icon = Generic_Market_Socialism
+		icon = social_democracy_2
 		x = 8
 		y = 1
 		cost = 8.6
@@ -4426,7 +4776,9 @@ focus_tree = {
 			has_country_flag = LKT_country_flag_elections 
 			OR = {
 				neutrality_neutral_autocracy_are_in_power = yes
-				
+				nationalist_right_wing_populists_are_in_power = yes
+				nationalist_fascist_are_in_power = yes
+				nationalist_monarchists_are_in_power = yes
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -4482,6 +4834,92 @@ focus_tree = {
 			set_temp_variable = { temp_change = 0.07 }
 			LKT_change_industrial_construction_speed_change = yes
 			LKT_change_industrial_factory_output_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_resource_management_resource_extraction_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+
+	#############
+	#### CDS Tree
+
+	focus = {
+		id = LKT_focus_CDS_political_plan
+		icon = fascism3
+		x = -3
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_new_lakotan_nationals_parties
+		prerequisite = { focus = LKT_focus_new_lakotan_nationals_parties }
+		available = { nationalist_right_wing_populists_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_CDS_political_plan"
+			add_political_power = -75
+			add_stability = -0.02
+			add_war_support = 0.05
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_domestic_drift_defense_change = yes
+			set_temp_variable = { temp_change = -0.03 }
+			LKT_change_domestic_democratic_drift_change = yes
+			LKT_change_domestic_communist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_construction_speed_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_resource_management_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_resource_management_resource_extraction_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+
+	#############
+	#### LGF Tree
+
+	focus = {
+		id = LKT_focus_LGF_political_plan
+		icon = focus_generic_fascist_uprising
+		x = 3
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_new_lakotan_nationals_parties
+		prerequisite = { focus = LKT_focus_new_lakotan_nationals_parties }
+		available = { nationalist_fascist_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_LGF_political_plan"
+			add_political_power = -100
+			add_stability = -0.02
+			add_war_support = 0.10
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.15 }
+			LKT_change_domestic_drift_defense_change = yes
+			set_temp_variable = { temp_change = -0.05 }
+			LKT_change_domestic_democratic_drift_change = yes
+			LKT_change_domestic_communist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_construction_speed_change = yes
 
 			custom_effect_tooltip = LKT_blank_space_tooltip
 			custom_effect_tooltip = LKT_resource_management_policies_tooltip
