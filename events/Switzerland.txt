@@ -555,11 +555,65 @@ country_event = {
 		complete_national_focus = SWI_integration_to_nato
 	}
 	option = {
-		name = switzerland.20.a
+		name = switzerland.20.b
 		trigger = {
 			check_variable = { SWI_nato_counter < 1 }
 		}
 
 		complete_national_focus = SWI_alone_is_safer
+	}
+}
+country_event = {
+	id = switzerland.21
+	title = switzerland.21.t
+	desc = switzerland.21.desc 
+
+	option = {
+		name = switzerland.21.a
+		
+		SWI = {
+			add_equipment_to_stockpile ={
+				type = infantry_weapons
+				ammount = 1000
+				producer = ROOT
+			}
+
+			set_temp_variable = { treasury_change = -0.50 }
+			modify_treasury_effect = yes
+
+		}
+
+		ROOT = {
+			add_equipment_to_stockpile = {
+				type = infantry_weapons
+				ammount = -1000
+				producer = ROOT
+			}
+			set_temp_variable = { treasury_change = 0.50 }
+			modify_treasury_effect = yes
+		}
+
+
+
+	}
+	option = {
+		name = switzerland.21.b
+
+
+	}
+}
+country_event = {
+	id = switzerland.22
+	title = switzerland.22.t
+	desc = switzerland.22.desc
+	option = {
+		name = switzerland.22.a
+
+		complete_national_focus = SWI_expanded_trade
+	}
+	option = {
+		name = switzerland.22.b
+
+		complete_national_focus = SWI_partner_like_everyone
 	}
 }
