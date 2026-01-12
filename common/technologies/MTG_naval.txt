@@ -5954,6 +5954,13 @@ technologies = {
 	}
 
 	tech_torpedoes_3 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_drone_torpedoes
+			}
+		}
+
 		enable_equipment_modules = {
 			module_torpedoes_4
 			module_anti_ship_torpedoes_4
@@ -5961,6 +5968,11 @@ technologies = {
 
 		path = {
 			leads_to_tech = tech_torpedoes_4
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = tech_drone_torpedoes_1
 			research_cost_coeff = 1
 		}
 
@@ -6078,9 +6090,12 @@ technologies = {
 	}
 
 	tech_drone_torpedoes_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_drone_torpedoes
+		}
+
 		enable_equipment_modules = {
-			module_drone_torpedoes_1
-			module_anti_ship_drone_torpedoes_1
+			naval_module_anti_ship_drone_torpedoes_2
 		}
 
 		path = {
@@ -6123,8 +6138,7 @@ technologies = {
 	}
 	tech_drone_torpedoes_2 = {
 		enable_equipment_modules = {
-			module_drone_torpedoes_2
-			module_anti_ship_drone_torpedoes_2
+			naval_module_anti_ship_drone_torpedoes_3
 		}
 
 		path = {
@@ -6166,8 +6180,7 @@ technologies = {
 	}
 	tech_drone_torpedoes_3 = {
 		enable_equipment_modules = {
-			module_drone_torpedoes_3
-			module_anti_ship_drone_torpedoes_3
+			naval_module_anti_ship_drone_torpedoes_4
 		}
 
 		path = {
