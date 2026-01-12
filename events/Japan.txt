@@ -1448,10 +1448,13 @@ country_event = {
 		newline = yes
 		add_manpower = -18420
 		newline = yes
-		every_country = { news_event = JAP_news.02 }
-		newline = yes
 		custom_effect_tooltip = JAP_great_east_japan_earthquake_tree_tt
 		set_country_flag = JAP_great_east_japan_earthquake_flag
+
+		hidden_effect = {
+			every_country = { news_event = JAP_news.02 }
+			country_event = { id = Japan.2011031150 days = 1 }
+		}
 		
 
 		ai_chance = {
@@ -1802,6 +1805,101 @@ country_event = {
 
         ai_chance = {
             base = 1
+        }
+    }
+}
+
+country_event = {
+    id = Japan.2011031150
+    title = Japan.2011031150.t
+    desc = Japan.2011031150.d
+    #picture
+    is_triggered_only = yes
+
+    option = {
+        name = Japan.2011031150.a
+        log = "[GetDateText]: [This.GetName]: Japan.2011031150.a executed"
+		add_stability = -0.15
+		newline = yes
+		add_ideas = JAP_anxiety_nuclear_power
+		hidden_effect = {
+			country_event = { id = Japan.2011031151 days = 30 }
+			every_country = { news_event = JAP_news.03 }
+		}
+
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+news_event = {
+    id = JAP_news.03
+    title = JAP_news.03.t
+    desc = JAP_news.03.d
+    #picture
+
+    is_triggered_only = yes
+
+    option = {
+        name = JAP_news.03.a
+        log = "[GetDateText]: [This.GetName]: JAP_news.03.a executed"
+
+        ai_chance = {
+            base = 1
+        }
+    }
+}
+
+country_event = {
+    id = Japan.2011031151
+    title = Japan.2011031151.t
+    desc = Japan.2011031151.d
+    #picture
+    is_triggered_only = yes
+
+    option = {
+        name = Japan.2011031151.a
+        log = "[GetDateText]: [This.GetName]: Japan.2011031151.a executed"
+		set_country_flag = disable_nuclear_power_plant_flag
+		custom_effect_tooltip = toggle_nuclear_power_plant_generation_two_tt
+		newline = yes
+		remove_ideas = JAP_anxiety_nuclear_power
+		newline = yes
+		add_ideas = JAP_shut_down_nuclear_plants
+
+        ai_chance = {
+            base = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+        }
+    }
+	option = {
+        name = Japan.2011031151.b
+        log = "[GetDateText]: [This.GetName]: Japan.2011031151.b executed"
+		remove_ideas = JAP_anxiety_nuclear_power
+		newline = yes
+		add_ideas = JAP_nuclear_strict_examination
+
+        ai_chance = {
+            base = 1
+        }
+    }
+	option = {
+        name = Japan.2011031151.c
+        log = "[GetDateText]: [This.GetName]: Japan.2011031151.c executed"
+		remove_ideas= JAP_anxiety_nuclear_power
+		newline = yes
+		add_ideas = JAP_continue_nuclear_plants 
+
+        ai_chance = {
+            base = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
         }
     }
 }
