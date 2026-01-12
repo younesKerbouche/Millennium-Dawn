@@ -4567,6 +4567,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = tech_rail_battery_1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 1.25
 		start_year = 2025
 
@@ -4654,6 +4659,42 @@ technologies = {
 		folder = {
 			name = naval_folder
 			position = { x = @row20 y = @2045 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_armament
+			CAT_naval_cannons
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+	}
+
+	tech_rail_battery_1 = {
+
+		is_special_project_tech = yes
+
+		enable_equipment_modules = {
+			module_naval_railgun_battery_2
+		}
+
+		research_cost = 1.25
+		start_year = 2025
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = 25 y = @2030 }
 		}
 		ai_will_do = {
 			factor = 1
