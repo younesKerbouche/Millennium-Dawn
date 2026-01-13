@@ -4,3 +4,30 @@ add_namespace = hungary_news
 # Focus tree events
 
 # Real life historical events
+country_event = {
+	id = hungary_historical.1
+	title = hungary_historical.1.t
+	desc = hungary_historical.1.d
+	picture = GFX_HUN_zoltan_pokorni_event_picture
+
+	is_triggered_only = yes
+
+	option = {
+		name = hungary_historical.1.a
+		add_stability = -0.02
+		add_political_power = -20
+
+		set_temp_variable = { party_index = 14 }
+		set_temp_variable = { party_popularity_increase = 0.04 }
+		set_temp_variable = { temp_outlook_increase = 0.02 }
+		add_relative_party_popularity = yes
+		set_temp_variable = { party_index = 17 }
+		set_temp_variable = { party_popularity_increase = -0.04 }
+		set_temp_variable = { temp_outlook_increase = -0.02 }
+		add_relative_party_popularity = yes
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}
