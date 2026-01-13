@@ -54,3 +54,49 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = hungary_historical.3
+	title = hungary_historical.3.t
+	desc = hungary_historical.3.d
+	picture = GFX_HUN_malev_bankruptcy_event_picture
+
+	is_triggered_only = yes
+
+	option = {
+		name = hungary_historical.3.a
+		set_temp_variable = { debt_change = 0.6 }
+		modify_debt_effect = yes
+		add_stability = -0.02
+
+		hidden_effect = {
+			 country_event = { id = hungary_historical.4 hours = 2 random_hours = 2 }
+		}
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = hungary_historical.4
+	title = hungary_historical.4.t
+	desc = hungary_historical.4.d
+	picture = GFX_HUN_ryanair_wizz_air_saves_tourism_event_picture
+
+	is_triggered_only = yes
+
+	option = {
+		name = hungary_historical.4.a
+		add_stability = 0.03
+
+		hidden_effect = {
+			 country_event = { id = hungary_historical.4 hours = 2 random_hours = 6 }
+		}
+
+		ai_chance = {
+			base = 100
+		}
+	}
+}
