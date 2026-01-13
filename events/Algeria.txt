@@ -167,33 +167,37 @@ country_event = {
 	desc = FIS_faction.3.d
 	picture = GFX_retake_quds
 	is_triggered_only = yes
-	
+
 	option = { #Yes
 		name = FIS_faction.3.a
 		log = "[GetDateText]: [This.GetName]: FIS_faction.3.a executed"
-		
+
 		ai_chance = {
 			factor = 90
 		}
 		every_country = {
-			limit = {is_asian_nation = yes}
-			limit = {has_idea = sunni }
+			limit = {
+				is_asian_nation = yes
+				has_idea = sunni
+			}
 			ALG = { add_to_faction = PREV }
 		}
 	}
 	option = {
 		name = FIS_faction.3.b
 		log = "[GetDateText]: [This.GetName]: FIS_faction.3.b executed"
-		
+
 		every_country = {
-			limit = {is_asian_nation = yes}
-			limit = {has_idea = sunni }
+			limit = {
+					is_asian_nation = yes
+					has_idea = sunni
+				}
 			add_opinion_modifier = {
 				target = PREV
 				modifier = declined_faction_request
 			}
 		}
-		
+
 		ai_chance = {
 			factor = 10
 		}
@@ -5077,7 +5081,7 @@ country_event = {
     picture = GFX_GER_hostage1
 	fire_only_once = yes
 
-    trigger = { 
+    trigger = {
 		tag = ALG
 		date > 2013.01.16
 		has_idea = youth_radicalization
@@ -5093,8 +5097,10 @@ country_event = {
 			custom_effect_tooltip = ALG_terror_2013_low_tt
         }
         else_if = {
-            limit = { fascism > 5 }
-            limit = { fascism < 36 }
+            limit = { 
+					fascism > 5
+			 		fascism < 36
+				}
             set_temp_variable = { rad_change = 6 }
             modify_radicalization_effect = yes
             add_stability = -0.03
@@ -5789,7 +5795,7 @@ country_event = {
 	option = {
 		name = nuclear_algeria.13.a
 		log = "[GetDateText]: [This.GetName]: nuclear_algeria.13.a executed"
-		activate_mission = ALG_nuclear_disarming
+		#activate_mission = ALG_nuclear_disarming
 		387 = {
 			add_building_construction = {
 				type = offices
@@ -5832,7 +5838,7 @@ country_event = {
 	option = {
 		name = nuclear_algeria.13.b
 		log = "[GetDateText]: [This.GetName]: nuclear_algeria.13.b executed"
-		activate_mission = ALG_nuclear_disarming
+		#activate_mission = ALG_nuclear_disarming
 		387 = {
 			add_building_construction = {
 				type = industrial_complex
@@ -5868,7 +5874,7 @@ country_event = {
 	option = {
 		name = nuclear_algeria.13.c
 		log = "[GetDateText]: [This.GetName]: nuclear_algeria.13.c executed"
-		activate_mission = ALG_nuclear_disarming
+		#activate_mission = ALG_nuclear_disarming
 		387 = {
 			add_building_construction = {
 				type = nuclear_reactor
@@ -5977,7 +5983,7 @@ country_event = {
 	option = {
 		name = nuclear_algeria.15.a
 		log = "[GetDateText]: [This.GetName]: nuclear_algeria.15.a executed"
-		activate_mission = ALG_nuclear_disarming
+		#activate_mission = ALG_nuclear_disarming
 		USA = {
 			country_event = {
 				id = nuclear_algeria.16

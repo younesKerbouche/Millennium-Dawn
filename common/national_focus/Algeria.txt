@@ -2161,7 +2161,7 @@ focus = {
 			update_ALG_population_energy_consumption = yes
 			newline = yes
 			379 = {
-				one_state_synthetic_refinery = yes
+				one_state_fossil_fuel_powerplant = yes
 			}
 		}
 	}
@@ -2182,7 +2182,7 @@ focus = {
 			update_ALG_research_speed_factor = yes
 			newline = yes
 			381 = {
-				one_state_synthetic_refinery = yes
+				one_state_fossil_fuel_powerplant = yes
 				one_state_radar_station = yes
 			}
 		}
@@ -2201,7 +2201,7 @@ focus = {
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_develop_atlas"
 			383 = {
-				one_state_synthetic_refinery = yes
+				one_state_fossil_fuel_powerplant = yes
 				one_state_arms_factory = yes
 			}
 		}
@@ -11046,9 +11046,7 @@ focus = {
 		relative_position_id = ALG_industry
 
 		cost = 5
-		available = {
-			has_mio_size > 2
-		}
+		#available = { has_mio_size > 2 }
 
 		prerequisite = { focus = ALG_industry }
 		search_filters = { FOCUS_FILTER_ECONOMY }
@@ -18383,17 +18381,16 @@ focus = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus ALG_exchange_research_with_nato "
 			if = {
-				every_country = {
-					limit = { has_idea = NATO_member}
-					set_temp_variable = { target_nation = THIS.id }
-					set_temp_variable = { adding_nation = ROOT.id }
-					change_permanent_investment_target = yes
+					every_country = {
+						limit = { has_idea = NATO_member}
+						set_temp_variable = { target_nation = THIS.id }
+						set_temp_variable = { adding_nation = ROOT.id }
+						change_permanent_investment_target = yes
+					}
 				}
 			}
-
 			ai_will_do = {
-				factor = 1
-			}
+			factor = 1
 		}
 	}
 
@@ -18715,7 +18712,6 @@ focus = {
 			focus = ALG_align_with_india
 		}
 		available = {
-			NOT = { has_completed_focus = ALG_join_NATO }
 			country_exists = RAJ
 			RAJ = {
 				has_idea = RAJ_BRICS
@@ -21608,7 +21604,7 @@ focus = {
 		prerequisite = { focus = ALG_madrasa_reforms }
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_scholastic_centers"
-			add_idaes = scientific_advances
+			add_ideas = scientific_advances
 		}
 	}
 
@@ -22635,7 +22631,7 @@ focus = {
 		relative_position_id = FIS_unrestricted_research
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus FIS_ai_military_integration"
-			add_idea = SOV_army_of_the_future_idea
+			add_ideas = SOV_army_of_the_future_idea
 		}
 	}
 
@@ -22752,11 +22748,11 @@ focus = {
 			log = "[GetDateText]: [THIS.GetName]: Focus FIS_tharir_al_aqsa"
 			reverse_add_opinion_modifier = { target = ISR modifier = imminent_danger_to_national_security }
 			newline = yes
-			every_country = {
-				limit = { is_arabic_nation = yes }
-				limit = { is_middle_eastern_nation = yes }
+			every_other_country = {
 				limit = {
-					OR = {
+					is_arabic_nation = yes
+					is_middle_eastern_nation = yes
+				OR = {
 						has_idea = sunni
 						has_idea = shia
 						has_idea = sufi_islam
@@ -22793,14 +22789,17 @@ focus = {
 		x = -2
 		y = 1
 		available = {
-			every_country = {
-				limit = {is_middle_eastern_nation = yes}
-				limit = {has_idea = sunni}
-				has_opinion = { target = ALG value > 70 }
-				OR = {
-					has_idea = intervention_regional_interventionism
-					has_idea = intervention_global_interventionism
-					has_idea = intervention_neo_imperialism
+				every_other_country = {
+					limit = {
+						is_middle_eastern_nation = yes
+						has_idea = sunni
+
+					has_opinion = { target = ALG value > 70 }
+					OR = {
+						has_idea = intervention_regional_interventionism
+						has_idea = intervention_global_interventionism
+						has_idea = intervention_neo_imperialism
+					}
 				}
 			}
 		}
@@ -22814,9 +22813,11 @@ focus = {
 		search_filters = { FOCUS_FILTER_INFLUENCE }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus FIS_faction_with_middle_east"
-			every_country = {
-				limit = {is_middle_eastern_nation = yes}
-				limit ={has_idea = sunni}
+			every_other_country = {
+				limit = {
+				is_middle_eastern_nation = yes
+				has_idea = sunni
+			}
 				country_event = {id = FIS_faction.1 days = 2}
 			}
 		}
@@ -22861,9 +22862,9 @@ focus = {
 					country_exists = TUN
 					country_exists = LBA
 					country_exists = EGY
-					limit ={ has_idea = sunni }
-					country_event = {id = FIS_faction.2 days = 2}
+					has_idea = sunni
 				}
+				country_event = {id = FIS_faction.2 days = 2}
 			}
 		}
 
@@ -22876,14 +22877,16 @@ focus = {
 		x = 2
 		y = 1
 		available = {
-			every_country = {
-				limit = {is_asian_nation = yes}
-				limit = {has_idea = sunni }
-				has_opinion = { target = ALG value > 70 }
-				OR = {
-					has_idea = intervention_regional_interventionism
-					has_idea = intervention_global_interventionism
-					has_idea = intervention_neo_imperialism
+				every_other_country = {
+				limit = {
+					is_asian_nation = yes
+					has_idea = sunni
+					has_opinion = { target = ALG value > 70 }
+					OR = {
+						has_idea = intervention_regional_interventionism
+						has_idea = intervention_global_interventionism
+						has_idea = intervention_neo_imperialism
+					}
 				}
 			}
 		}
@@ -22897,9 +22900,11 @@ focus = {
 		search_filters = { FOCUS_FILTER_INFLUENCE }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus FIS_faction_with_asia"
-			every_country = {
-				limit = {is_asian_nation = yes}
-				limit = {has_idea = sunni }
+			every_other_country = {
+				limit = {
+				is_asian_nation = yes
+				has_idea = sunni
+			}
 				country_event = {id = FIS_faction.3 days = 2}
 			}
 		}
