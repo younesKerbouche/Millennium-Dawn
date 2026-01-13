@@ -1229,7 +1229,6 @@ sub_units = {
 			L_AT_Equipment = 4
 			AA_Equipment = 2
 			command_control_equipment = 10
-			##land_Drone_equipment = 2
 		}
 
 		mountain = {
@@ -2412,7 +2411,6 @@ sub_units = {
 			L_AT_Equipment = 4
 			AA_Equipment = 2
 			command_control_equipment = 10
-			##land_Drone_equipment = 2
 		}
 
 		plains = {
@@ -2495,7 +2493,6 @@ sub_units = {
 			H_AT_Equipment = 2
 			AA_Equipment = 3
 			command_control_equipment = 10
-			##land_Drone_equipment = 2
 			util_vehicle_equipment = 20
 		}
 
@@ -2750,6 +2747,7 @@ sub_units = {
 			AA_Equipment = 3
 			medium_tank_flame_chassis = 20
 			command_control_equipment = 14
+			land_drone_equipment = 3
 		}
 
 		plains = {
@@ -3733,7 +3731,8 @@ sub_units = {
 		}
 		need = {
 			command_control_equipment = 30
-			util_vehicle_equipment = 20
+			util_vehicle_equipment = 5
+			land_drone_equipment = 20
 		}
 
 		manpower = 80
@@ -3743,7 +3742,7 @@ sub_units = {
 		max_strength = 0.7
 		weight = 0.1
 
-		supply_consumption = 0.03.
+		supply_consumption = 0.03
 
 		# Support nerfs to combat abilities
 		defense = -0.66
@@ -3827,7 +3826,7 @@ sub_units = {
 		max_strength = 0.7
 		weight = 0.1
 
-		supply_consumption = 0.03.
+		supply_consumption = 0.03
 
 		# Support nerfs to combat abilities
 		defense = -0.66
@@ -4788,5 +4787,98 @@ sub_units = {
 
 
 		transport = medium_tank_aa_chassis
+	}
+	medium_walker_battalion = {
+		sprite = MD4_medium_armor
+		map_icon_category = armored
+		priority = 30
+		active = no
+		ai_priority = 3
+		type = {
+			armor
+		}
+
+		group = armor
+
+		categories = {
+			category_tanks
+			category_front_line
+			category_real_tanks
+			category_all_armor
+			category_army
+			category_non_militia
+			category_walker_tanks
+		}
+
+		combat_width = 4
+
+		essential = {
+			medium_tank_chassis
+		}
+
+		need = {
+			medium_tank_chassis = 42
+			command_control_equipment = 15
+		}
+
+		manpower = 240
+		max_organisation = 15
+		max_strength = 20
+		default_morale = 0.05
+		training_time = 180
+		weight = 1.5
+		entrenchment = -0.15
+
+		defense = -0.66
+		breakthrough = -0.66
+		soft_attack = -0.66
+		hard_attack = -0.66
+		armor_value = -0.66
+		ap_attack = -0.66
+
+		supply_consumption = 0.08 #0.25
+		transport = medium_tank_chassis
+
+		plains = {
+			attack = 0.25
+			defence = 0.15
+		}
+		desert = {
+			attack = 0.25
+			defence = 0.15
+		}
+		forest = {
+			attack = -0.3
+			defence = -0.1
+		}
+		hills = {
+			attack = -0.15
+		}
+		mountain = {
+			attack = -0.6
+			defence = -0.3
+		}
+		jungle = {
+			attack = -0.45
+			defence = -0.2
+		}
+		marsh = {
+			attack = -0.45
+			defence = -0.2
+		}
+		urban = {
+			attack = -0.4
+			defence = -0.2
+		}
+		supercity = {
+			attack = -0.7
+			defence = -0.5
+		}
+		river = {
+			attack = -0.6
+		}
+		amphibious = {
+			attack = -0.4 #was 0.4
+		}
 	}
 }

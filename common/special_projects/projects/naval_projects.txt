@@ -578,6 +578,71 @@ sp_nuclear_torpedoes = {
 				TECH = tech_drone_torpedoes_1
 			}
 		}
+		enable_equipment_modules = {
+			module_naval_anti_ship_nuclear_torpedo_1
+			module_naval_asw_nuclear_torpedoes_1
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_naval_generic_reward_scientist_xp_1
+		sp_naval_generic_reward_scientist_xp_2
+		sp_naval_generic_reward_scientist_xp_3
+		sp_naval_generic_reward_army_xp_1
+		sp_naval_generic_reward_army_xp_2
+		sp_naval_generic_reward_army_xp_3
+		sp_naval_generic_reward_major_progress_1
+		sp_naval_generic_reward_major_progress_2
+		sp_naval_generic_reward_major_progress_3
+		sp_naval_generic_reward_test_failure_1
+		sp_naval_generic_reward_test_failure_2
+		sp_naval_generic_reward_test_failure_3
+		sp_naval_generic_reward_resource_scarcity
+		sp_naval_generic_reward_critical_failure
+	}
+}
+sp_anti_torpedo_module = {
+	specialization = specialization_naval
+	icon = x
+	project_tags = sp_tag_naval_vehicles
+
+	ai_will_do = {
+		base = 1
+		modifier = {
+			FROM = { num_of_naval_factories < 1 }
+			factor = 0
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_naval = 1
+	}
+
+	available = {
+		FROM = { has_tech = tech_torpedoes_2 }
+	}
+
+	prototype_time = sp_time.prototype.medium
+
+	complexity = sp_complexity.medium
+
+	resource_cost = {
+		resources = {
+			aluminium = 12
+			chromium = 4
+		}
+	}
+
+	project_output = {
+		country_effects = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_TECH
+				TECH = x
+			}
+		}
+		enable_equipment_modules = {
+			module_naval_anti_torpedo_1
+		}
 	}
 
 	generic_prototype_rewards = {
