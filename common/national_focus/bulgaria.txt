@@ -913,10 +913,10 @@ focus_tree = {
 				set_temp_variable = { rul_party_temp = 23 }
 				if = {
 					limit = { has_elections = no }
-					set_temp_variable = { enable_elections = 1 }
+					set_temp_variable = { disable_elections = 1 }
 				}
 				else = {
-					set_temp_variable = { enable_elections = 0 }
+					set_temp_variable = { disable_elections = 0 }
 				}
 				change_ruling_party_effect = yes
 			}
@@ -2775,6 +2775,7 @@ focus_tree = {
 			set_temp_variable = { temp_opinion = 10 }
 			change_the_priesthood_opinion = yes
 			add_ideas = BUL_orthodox_national_values
+			add_ideas = BUL_anti_lgbtqa_stance_idea
 		}
 	}
 	focus = {
@@ -4404,9 +4405,8 @@ focus_tree = {
 		prerequisite = { focus = BUL_new_army }
 
 		available = {
-			any_state = {
+			any_controlled_state = {
 				is_coastal = yes
-				is_controlled_by = ROOT
 			}
 		}
 
