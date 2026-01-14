@@ -40,8 +40,15 @@ v1.12.4
  Balance:
   - Reworked Productivity to be balanced around the global average (Issue #271)
     - Productivity effects on taxes, GDP, and factory output are now relative to global average instead of absolute
-    - Countries above global average get economic bonuses, countries below get penalties
-    - Creates incentive to maintain productivity growth to keep expanding economy
+    - Added 0.65x scaling factor to preserve game start economic balance
+    - Added temporary transition ideas with auto-removal:
+      - Developed nations: slight penalty (-15% construction, -10% productivity growth) until global avg > 850
+      - Emerging economies: growth bonus (+15% productivity growth, +5% construction) until catching up to avg
+      - Developing nations: strong catch-up bonus (+25% productivity growth, +10% construction) until GDP/C > $15k
+    - Russia and Eastern Europe correctly classified as emerging economies (not developed)
+    - Transition ideas properly assigned to released nations and civil war spawns
+    - Added safeguards against extreme productivity values (0.1x to 3.0x limits)
+    - Added global average collapse protection (min 100, max 2000)
   - Adjusted some ideas in Germany which was giving a pointless < 0.01 democratic drift causing no actual impact or change
   - Reduced the penalties from the starting spirit "American Militarism"
   - Fixed an influence exploit by proposing, the AI accepting, then canceling the trade agreement giving you near infinite influence

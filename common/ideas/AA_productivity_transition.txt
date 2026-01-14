@@ -1,0 +1,71 @@
+ideas = {
+	country = {
+		# For developed nations (Western Europe, North America, Australia/NZ, Japan, South Korea)
+		# Applies slight penalty to reflect diminishing returns at productivity frontier
+		# Removes gradually as global average rises (no hard date cutoff)
+		developed_economy_transition = {
+			name = developed_economy_transition
+			allowed_civil_war = { always = yes }
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea developed_economy_transition" }
+
+			picture = generic_economy
+
+			modifier = {
+				production_speed_buildings_factor = -0.15
+				productivity_growth_modifier = -0.10
+			}
+
+			# Removes when global average rises enough (world catches up)
+			# No hard date cutoff - purely economic-driven
+			cancel = {
+				check_variable = { global.average_world_productivity > 850 }
+			}
+		}
+
+		# For emerging economies (BRICS, Mexico, Turkey, Eastern Europe, etc.)
+		# Provides growth bonus to help catch up to developed nations
+		emerging_economy_transition = {
+			name = emerging_economy_transition
+			allowed_civil_war = { always = yes }
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea emerging_economy_transition" }
+
+			picture = generic_economy
+
+			modifier = {
+				productivity_growth_modifier = 0.15
+				production_speed_buildings_factor = 0.05
+			}
+
+			# Removes when country catches up to global average or becomes developed
+			cancel = {
+				OR = {
+					check_variable = { overall_productivity > global.average_world_productivity }
+					check_variable = { gdp_per_capita > 30 }
+				}
+			}
+		}
+
+		# For least developed nations (Sub-Saharan Africa, etc.)
+		# Provides strong catch-up bonus to help developing nations grow
+		developing_economy_catch_up = {
+			name = developing_economy_catch_up
+			allowed_civil_war = { always = yes }
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea developing_economy_catch_up" }
+
+			picture = generic_economy
+
+			modifier = {
+				productivity_growth_modifier = 0.25
+				production_speed_buildings_factor = 0.10
+			}
+
+			# Removes when country reaches emerging economy status
+			cancel = {
+				OR = {
+					check_variable = { gdp_per_capita > 15 }
+					check_variable = { overall_productivity > 600 }
+				}
+			}
+		}
+	}
+}
