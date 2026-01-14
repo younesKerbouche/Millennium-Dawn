@@ -1,5 +1,12 @@
 # Rework Author(s): DROID & The General
 # Original Author(s): Jumaron & Angriest Bird
+
+# CONSTANT FOR INNER CIRCLE TIMES (This is Focus cost so x7 to get the days) - THE CONSTANTS USED IN THE EVENT FILE need to be these values x7
+@inner_circle_time_tier_1 = 20
+@inner_circle_time_tier_2 = 40
+@inner_circle_time_tier_3 = 80
+@inner_circle_time_tier_4 = 100
+
 focus_tree = {
 	id = united_kingdom_focus
 
@@ -13,8 +20,12 @@ focus_tree = {
 	}
 	# Continuous Focus Position
 	continuous_focus_position = { x = 400 y = 11900 }
-	# military Branch
 
+	inlay_window = {
+		id = eng_inner_circle_inlay_window
+		position = { x = 10500 y = 200 }
+	}
+	# Military
 	focus = {
 		id = ENG_strategic_defence_review
 		icon = iwo_britannia
@@ -11925,6 +11936,3431 @@ focus_tree = {
 
 		ai_will_do = {
 			base = 1
+		}
+	}
+
+	# Monarchism
+	focus = {
+		id = ENG_triumph_of_the_crown
+		icon = god_save_the_king
+
+		x = 112
+		y = 0
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_triumph_of_the_crown"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_the_queens_speech
+		icon = god_save_the_king
+
+		x = -3
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+
+		prerequisite = {
+			focus = ENG_triumph_of_the_crown
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_the_queens_speech"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_restore_civil_liberties
+		icon = god_save_the_king
+
+		x = -1
+		y = 1
+		relative_position_id = ENG_the_queens_speech
+
+		prerequisite = {
+			focus = ENG_the_queens_speech
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_restore_civil_liberties"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_rule_sword_sceptre
+		icon = god_save_the_king
+
+		x = 1
+		y = 1
+		relative_position_id = ENG_the_queens_speech
+
+		prerequisite = {
+			focus = ENG_the_queens_speech
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_royal_prerogative_activation
+		icon = god_save_the_king
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+
+		prerequisite = {
+			focus = ENG_triumph_of_the_crown
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_royal_prerogative_activation"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_a_bid_soft_power
+		icon = god_save_the_king
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_the_queens_speech
+
+		prerequisite = {
+			focus = ENG_restore_civil_liberties
+			focus = ENG_rule_sword_sceptre
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_commonwealth_summit
+		icon = god_save_the_king
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_a_bid_soft_power
+
+		prerequisite = {
+			focus = ENG_a_bid_soft_power
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_crown_procurement_program
+		icon = god_save_the_king
+
+		x = 2
+		y = 1
+		relative_position_id = ENG_a_bid_soft_power
+
+		prerequisite = { focus = ENG_a_bid_soft_power }
+		prerequisite = { focus = ENG_royal_charitable_initiative }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_modernize_royal_navy
+		icon = god_save_the_king
+
+		x = -1
+		y = 1
+		relative_position_id = ENG_crown_procurement_program
+
+		prerequisite = { focus = ENG_crown_procurement_program }
+		mutually_exclusive = { focus = ENG_raf_army_overhaul }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_raf_army_overhaul
+		icon = god_save_the_king
+
+		x = 1
+		y = 1
+		relative_position_id = ENG_crown_procurement_program
+
+		prerequisite = { focus = ENG_crown_procurement_program }
+		mutually_exclusive = { focus = ENG_modernize_royal_navy }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_leverage_crown_estate
+		icon = god_save_the_king
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_crown_procurement_program
+
+		prerequisite = {
+			focus = ENG_modernize_royal_navy
+			focus = ENG_raf_army_overhaul
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_leverage_crown_estate"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_national_service_act
+		icon = god_save_the_king
+
+		x = 1
+		y = 3
+		relative_position_id = ENG_crown_procurement_program
+
+		prerequisite = {
+			focus = ENG_raf_army_overhaul
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_national_service_act"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_new_constitutional_charter
+		icon = god_save_the_king
+
+		x = 3
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+
+		prerequisite = {
+			focus = ENG_triumph_of_the_crown
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_new_constitutional_charter"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_secure_succession
+		icon = god_save_the_king
+
+		x = -1
+		y = 1
+		relative_position_id = ENG_new_constitutional_charter
+
+		prerequisite = {
+			focus = ENG_new_constitutional_charter
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_rule_councillorship
+		icon = god_save_the_king
+
+		x = 1
+		y = 1
+		relative_position_id = ENG_new_constitutional_charter
+
+		prerequisite = {
+			focus = ENG_new_constitutional_charter
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_councillorship"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_convene_foreign_secretary_cabinet
+		icon = god_save_the_king
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_new_constitutional_charter
+
+		prerequisite = {
+			focus = ENG_secure_succession
+			focus = ENG_rule_councillorship
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_champion_liberal_values
+		icon = god_save_the_king
+
+		x = 1
+		y = 1
+		relative_position_id = ENG_convene_foreign_secretary_cabinet
+
+		prerequisite = {
+			focus = ENG_convene_foreign_secretary_cabinet
+		}
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_european_outreach
+		icon = god_save_the_king
+
+		x = -1
+		y = 1
+		relative_position_id = ENG_convene_foreign_secretary_cabinet
+
+		prerequisite = { focus = ENG_convene_foreign_secretary_cabinet }
+		prerequisite = { focus = ENG_royal_charitable_initiative }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_close_proximity_nato
+		icon = god_save_the_king
+
+		allow_branch = {
+			has_game_rule = {
+				rule = rule_disable_nato
+				option = no
+			}
+		}
+
+		x = 2
+		y = 1
+		relative_position_id = ENG_european_outreach
+
+		prerequisite = { focus = ENG_european_outreach }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_joint_operational_command
+		icon = god_save_the_king
+
+		x = 2
+		y = 3
+		relative_position_id = ENG_european_outreach
+
+		prerequisite = { focus = ENG_close_proximity_nato }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_reaffirm_special_relationship
+		icon = god_save_the_king
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_european_outreach
+
+		prerequisite = { focus = ENG_european_outreach }
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = ENG_royal_charitable_initiative
+		icon = god_save_the_king
+
+		x = 0
+		y = 3
+		relative_position_id = ENG_triumph_of_the_crown
+
+		cost = 1
+
+		prerequisite = {
+			focus = ENG_restore_civil_liberties
+			focus = ENG_rule_sword_sceptre
+		}
+
+		prerequisite = {
+			focus = ENG_secure_succession
+			focus = ENG_rule_councillorship
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_royal_prerogative_activation"
+			country_event = britain_md.1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_the_prince_trust
+		icon = god_save_the_king
+
+		x = -26
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+		cost = 2
+
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+				}
+			}
+
+			has_country_flag = ENG_elisabeth_ruling_monarch
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			}
+
+			GER_inner_circle_is_ascension_cd_over = yes
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_cd_flag
+				}
+				custom_trigger_tooltip = {
+					tooltip = GER_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+				}
+			}
+		}
+
+		#Focus will need to pause while events are pending
+		cancel_if_invalid = no
+
+		search_filters = { }
+
+		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
+			set_country_flag = GER_todt_ascension_flag
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_tt
+				CHARACTER = GER_fritz_todt
+			}
+			show_ideas_tooltip = GER_todt_reich_engineer
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_focus_tt
+				CHARACTER = GER_fritz_todt
+			}
+
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { GER_ascending_advisor = 1 }
+					country_event = GER_inner_circle.01
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = {
+					localization_key = GER_event_to_replace_ascended_advisor_tt
+					EVENT = GER_inner_circle.01.t
+					CHARACTER = GER_fritz_todt
+				}
+			}
+			else = {
+				hidden_effect = {
+					add_ideas = GER_todt_reich_engineer
+				}
+				if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_1 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_2 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_3 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+			}
+
+			hidden_effect = {
+				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+				clr_country_flag = GER_todt_ascension_flag
+
+				GER_inner_circle_set_ascension_cd = yes
+
+				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
+					limit = {
+						GER_is_historical_ai = yes
+					}
+					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+				}
+				else = {
+					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+						flag = GER_todt_was_ascended_flag
+						days = 1500 # Clear after ~4 years
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_harmony_doctrine
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_the_prince_trust }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_the_prince_trust
+		cost = @inner_circle_time_tier_1
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_form_organization_todt_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_fritz_todt
+						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_fritz_todt
+						FOCUS = GER_ascension_of_todt
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 3
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_organization_todt
+				}
+			}
+			else = {
+				effect_tooltip = {
+					custom_effect_tooltip = available_designer
+					show_ideas_tooltip = GER_organization_todt
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_climate_alarm_bell
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_harmony_doctrine }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_the_prince_trust
+		cost = @inner_circle_time_tier_2
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_form_organization_todt_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_fritz_todt
+						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_fritz_todt
+						FOCUS = GER_ascension_of_todt
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 3
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_organization_todt
+				}
+			}
+			else = {
+				effect_tooltip = {
+					custom_effect_tooltip = available_designer
+					show_ideas_tooltip = GER_organization_todt
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_duchy_originals
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_climate_alarm_bell }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 3
+		relative_position_id = ENG_the_prince_trust
+		cost = @inner_circle_time_tier_3
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_form_organization_todt_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_fritz_todt
+						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_fritz_todt
+						FOCUS = GER_ascension_of_todt
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 3
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_organization_todt
+				}
+			}
+			else = {
+				effect_tooltip = {
+					custom_effect_tooltip = available_designer
+					show_ideas_tooltip = GER_organization_todt
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_heir_of_the_realm
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_duchy_originals }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 4
+		relative_position_id = ENG_the_prince_trust
+		cost = @inner_circle_time_tier_4
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_form_organization_todt_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_fritz_todt
+						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_fritz_todt
+						FOCUS = GER_ascension_of_todt
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 3
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_organization_todt
+				}
+			}
+			else = {
+				effect_tooltip = {
+					custom_effect_tooltip = available_designer
+					show_ideas_tooltip = GER_organization_todt
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_naval_prince
+		icon = god_save_the_king
+
+		x = -24
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+		cost = 2
+
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+				}
+			}
+
+			has_country_flag = ENG_elisabeth_ruling_monarch
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			}
+
+			GER_inner_circle_is_ascension_cd_over = yes
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_cd_flag
+				}
+				custom_trigger_tooltip = {
+					tooltip = GER_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+				}
+			}
+		}
+
+		#Focus will need to pause while events are pending
+		cancel_if_invalid = no
+
+		search_filters = { }
+
+		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
+			set_country_flag = GER_todt_ascension_flag
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_tt
+				CHARACTER = GER_fritz_todt
+			}
+			show_ideas_tooltip = GER_todt_reich_engineer
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_focus_tt
+				CHARACTER = GER_fritz_todt
+			}
+
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { GER_ascending_advisor = 1 }
+					country_event = GER_inner_circle.01
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = {
+					localization_key = GER_event_to_replace_ascended_advisor_tt
+					EVENT = GER_inner_circle.01.t
+					CHARACTER = GER_fritz_todt
+				}
+			}
+			else = {
+				hidden_effect = {
+					add_ideas = GER_todt_reich_engineer
+				}
+				if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_1 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_2 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_3 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+			}
+
+			hidden_effect = {
+				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+				clr_country_flag = GER_todt_ascension_flag
+
+				GER_inner_circle_set_ascension_cd = yes
+
+				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
+					limit = {
+						GER_is_historical_ai = yes
+					}
+					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+				}
+				else = {
+					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+						flag = GER_todt_was_ascended_flag
+						days = 1500 # Clear after ~4 years
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_appoint_trade_representative
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_naval_prince }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_naval_prince
+		cost = @inner_circle_time_tier_1
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_emerging_markets_circuit
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_appoint_trade_representative }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_naval_prince
+		cost = @inner_circle_time_tier_2
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_digital_enterprise_patronage
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_emerging_markets_circuit }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 3
+		relative_position_id = ENG_naval_prince
+		cost = @inner_circle_time_tier_3
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_duty_of_the_crown
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_digital_enterprise_patronage }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 4
+		relative_position_id = ENG_naval_prince
+		cost = @inner_circle_time_tier_4
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_workhorse_of_the_crown
+		icon = god_save_the_king
+
+		x = -21
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+		cost = 2
+
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+				}
+			}
+
+			has_country_flag = ENG_elisabeth_ruling_monarch
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			}
+
+			GER_inner_circle_is_ascension_cd_over = yes
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_cd_flag
+				}
+				custom_trigger_tooltip = {
+					tooltip = GER_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+				}
+			}
+		}
+
+		#Focus will need to pause while events are pending
+		cancel_if_invalid = no
+
+		search_filters = { }
+
+		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
+			set_country_flag = GER_todt_ascension_flag
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_tt
+				CHARACTER = GER_fritz_todt
+			}
+			show_ideas_tooltip = GER_todt_reich_engineer
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_focus_tt
+				CHARACTER = GER_fritz_todt
+			}
+
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { GER_ascending_advisor = 1 }
+					country_event = GER_inner_circle.01
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = {
+					localization_key = GER_event_to_replace_ascended_advisor_tt
+					EVENT = GER_inner_circle.01.t
+					CHARACTER = GER_fritz_todt
+				}
+			}
+			else = {
+				hidden_effect = {
+					add_ideas = GER_todt_reich_engineer
+				}
+				if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_1 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_2 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_3 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+			}
+
+			hidden_effect = {
+				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+				clr_country_flag = GER_todt_ascension_flag
+
+				GER_inner_circle_set_ascension_cd = yes
+
+				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
+					limit = {
+						GER_is_historical_ai = yes
+					}
+					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+				}
+				else = {
+					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+						flag = GER_todt_was_ascended_flag
+						days = 1500 # Clear after ~4 years
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_carers_recognition_campaign
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_workhorse_of_the_crown }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_workhorse_of_the_crown
+		cost = @inner_circle_time_tier_1
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_discipline_service
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_carers_recognition_campaign }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_workhorse_of_the_crown
+		cost = @inner_circle_time_tier_2
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_princess_admiral_royal_navy
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_discipline_service }
+		mutually_exclusive = { focus = ENG_colonel_of_horse_logistics }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = -1
+		y = 1
+		relative_position_id = ENG_discipline_service
+		cost = @inner_circle_time_tier_3
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_expand_gestapo_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_heinrich_himmler
+						FLAG_DAYS = [?GER_expand_gestapo_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_heinrich_himmler
+						FOCUS = GER_ascension_of_himmler
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			GER_add_or_modify_military_intelligence_service = yes
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_to_variable = { 
+					GER_military_intelligence_service_intelligence_agency_defense = 0.15
+					tooltip = intelligence_agency_defense_tt
+				}
+				add_to_variable = { 
+					GER_military_intelligence_service_agency_upgrade_time = -0.2
+					tooltip = agency_upgrade_time_tt
+				}
+				add_to_variable = { 
+					GER_military_intelligence_root_out_resistance_effectiveness_factor = 0.2
+					tooltip = root_out_resistance_effectiveness_factor_tt
+				}
+			}
+			else = {
+				add_to_variable = { 
+					GER_military_intelligence_service_encryption_factor = 0.1
+					tooltip = encryption_factor_tt
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_colonel_of_horse_logistics
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_discipline_service }
+		mutually_exclusive = { focus = ENG_princess_admiral_royal_navy }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 1
+		y = 1
+		relative_position_id = ENG_discipline_service
+		cost = @inner_circle_time_tier_3
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_expand_ss_security_duties_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_heinrich_himmler
+						FLAG_DAYS = [?GER_expand_ss_security_duties_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_heinrich_himmler
+						FOCUS = GER_ascension_of_himmler
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascended_character_trait_swap_tt
+				CHARACTER = GER_heinrich_himmler
+			}
+			swap_ideas = {
+				remove_idea = GER_himmler_chief_of_german_police
+				add_idea = GER_himmler_director_reich_security
+			}
+
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				GER_create_operative_eleysa_bazna = yes
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			add_tech_bonus = {
+				name = GER_expand_ss_security_duties
+				bonus = 0.5
+				uses = 1
+				category = military_police_tech
+			}
+		}
+	}
+	focus = {
+		id = ENG_quiet_professionalism
+		icon = god_save_the_king
+
+		prerequisite = {
+			focus = ENG_princess_admiral_royal_navy
+			focus = ENG_colonel_of_horse_logistics
+		}
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 4
+		relative_position_id = ENG_workhorse_of_the_crown
+		cost = @inner_circle_time_tier_4
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_chairman_international_award
+		icon = god_save_the_king
+
+		x = -18
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+		cost = 2
+
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+				}
+			}
+
+			has_country_flag = ENG_elisabeth_ruling_monarch
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			}
+
+			GER_inner_circle_is_ascension_cd_over = yes
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_cd_flag
+				}
+				custom_trigger_tooltip = {
+					tooltip = GER_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+				}
+			}
+		}
+
+		#Focus will need to pause while events are pending
+		cancel_if_invalid = no
+
+		search_filters = { }
+
+		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
+			set_country_flag = GER_todt_ascension_flag
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_tt
+				CHARACTER = GER_fritz_todt
+			}
+			show_ideas_tooltip = GER_todt_reich_engineer
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_focus_tt
+				CHARACTER = GER_fritz_todt
+			}
+
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { GER_ascending_advisor = 1 }
+					country_event = GER_inner_circle.01
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = {
+					localization_key = GER_event_to_replace_ascended_advisor_tt
+					EVENT = GER_inner_circle.01.t
+					CHARACTER = GER_fritz_todt
+				}
+			}
+			else = {
+				hidden_effect = {
+					add_ideas = GER_todt_reich_engineer
+				}
+				if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_1 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_2 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_3 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+			}
+
+			hidden_effect = {
+				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+				clr_country_flag = GER_todt_ascension_flag
+
+				GER_inner_circle_set_ascension_cd = yes
+
+				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
+					limit = {
+						GER_is_historical_ai = yes
+					}
+					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+				}
+				else = {
+					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+						flag = GER_todt_was_ascended_flag
+						days = 1500 # Clear after ~4 years
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_trustee_network
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_chairman_international_award }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_chairman_international_award
+		cost = @inner_circle_time_tier_1
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_commonwealth_youth_outreach
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_trustee_network }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_chairman_international_award
+		cost = @inner_circle_time_tier_2
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_production_guild_patronage
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_commonwealth_youth_outreach }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 3
+		relative_position_id = ENG_chairman_international_award
+		cost = @inner_circle_time_tier_3
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_steady_hand
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_production_guild_patronage }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 4
+		relative_position_id = ENG_chairman_international_award
+		cost = @inner_circle_time_tier_4
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_duke_charities
+		icon = god_save_the_king
+
+		x = -16
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+		cost = 2
+
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+				}
+			}
+
+			has_country_flag = ENG_elisabeth_ruling_monarch
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			}
+
+			GER_inner_circle_is_ascension_cd_over = yes
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_cd_flag
+				}
+				custom_trigger_tooltip = {
+					tooltip = GER_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+				}
+			}
+		}
+
+		#Focus will need to pause while events are pending
+		cancel_if_invalid = no
+
+		search_filters = { }
+
+		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
+			set_country_flag = GER_todt_ascension_flag
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_tt
+				CHARACTER = GER_fritz_todt
+			}
+			show_ideas_tooltip = GER_todt_reich_engineer
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_focus_tt
+				CHARACTER = GER_fritz_todt
+			}
+
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { GER_ascending_advisor = 1 }
+					country_event = GER_inner_circle.01
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = {
+					localization_key = GER_event_to_replace_ascended_advisor_tt
+					EVENT = GER_inner_circle.01.t
+					CHARACTER = GER_fritz_todt
+				}
+			}
+			else = {
+				hidden_effect = {
+					add_ideas = GER_todt_reich_engineer
+				}
+				if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_1 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_2 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_3 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+			}
+
+			hidden_effect = {
+				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+				clr_country_flag = GER_todt_ascension_flag
+
+				GER_inner_circle_set_ascension_cd = yes
+
+				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
+					limit = {
+						GER_is_historical_ai = yes
+					}
+					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+				}
+				else = {
+					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+						flag = GER_todt_was_ascended_flag
+						days = 1500 # Clear after ~4 years
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_international_award_conference
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_duke_charities }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_duke_charities
+		cost = @inner_circle_time_tier_1
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_wwf_president_emeritus
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_international_award_conference }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_duke_charities
+		cost = @inner_circle_time_tier_2
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_prince_phillip_medal
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_wwf_president_emeritus }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 3
+		relative_position_id = ENG_duke_charities
+		cost = @inner_circle_time_tier_3
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_strength_and_stay
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_prince_phillip_medal }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 4
+		relative_position_id = ENG_duke_charities
+		cost = @inner_circle_time_tier_4
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_from_sandhurst_to_service
+		icon = god_save_the_king
+
+		x = -14
+		y = 1
+		relative_position_id = ENG_triumph_of_the_crown
+		cost = 2
+
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+				}
+			}
+
+			has_country_flag = ENG_elisabeth_ruling_monarch
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+			}
+
+			GER_inner_circle_is_ascension_cd_over = yes
+			if = {
+				limit = {
+					has_country_flag = GER_inner_circle_cd_flag
+				}
+				custom_trigger_tooltip = {
+					tooltip = GER_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+				}
+			}
+		}
+
+		#Focus will need to pause while events are pending
+		cancel_if_invalid = no
+
+		search_filters = { }
+
+		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
+			set_country_flag = GER_todt_ascension_flag
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_tt
+				CHARACTER = GER_fritz_todt
+			}
+			show_ideas_tooltip = GER_todt_reich_engineer
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+
+			custom_effect_tooltip = {
+				localization_key = GER_ascension_of_character_focus_tt
+				CHARACTER = GER_fritz_todt
+			}
+
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { GER_ascended_advisor_1 = 1 }
+						check_variable = { GER_ascended_advisor_2 = 1 }
+						check_variable = { GER_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { GER_ascending_advisor = 1 }
+					country_event = GER_inner_circle.01
+				}
+
+				custom_effect_tooltip = generic_skip_one_line_tt
+				custom_effect_tooltip = {
+					localization_key = GER_event_to_replace_ascended_advisor_tt
+					EVENT = GER_inner_circle.01.t
+					CHARACTER = GER_fritz_todt
+				}
+			}
+			else = {
+				hidden_effect = {
+					add_ideas = GER_todt_reich_engineer
+				}
+				if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_1 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_2 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { GER_ascended_advisor_3 = 0 }
+					}
+					set_variable = { GER_ascended_advisor_3 = 1 }
+				}
+			}
+
+			hidden_effect = {
+				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+
+				clr_country_flag = GER_todt_ascension_flag
+
+				GER_inner_circle_set_ascension_cd = yes
+
+				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
+					limit = {
+						GER_is_historical_ai = yes
+					}
+					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+				}
+				else = {
+					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+						flag = GER_todt_was_ascended_flag
+						days = 1500 # Clear after ~4 years
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_royal_foundation
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_from_sandhurst_to_service }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = ENG_from_sandhurst_to_service
+		cost = @inner_circle_time_tier_1
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_albert_speer
+						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_albert_speer
+						FOCUS = GER_ascension_of_speer
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			every_core_state = {
+				limit = {
+					is_fully_controlled_by = ROOT
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				random_select_amount = 2
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			if = {
+				limit = {
+					has_idea = GER_philipp_holzmann
+				}
+				swap_ideas = {
+					remove_idea = GER_philipp_holzmann
+					add_idea = GER_philipp_holzmann_improved
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = GER_philipp_holzmann
+						add_idea = GER_philipp_holzmann_improved
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = ENG_heads_together
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_royal_foundation }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = ENG_from_sandhurst_to_service
+		cost = @inner_circle_time_tier_2
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_fund_the_film_department_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_2 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_joseph_goebbels
+						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_joseph_goebbels
+						FOCUS = GER_ascension_of_goebbels
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+
+			add_war_support = 0.05
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			swap_ideas = {
+				remove_idea = GER_goebbels_reich_minister_of_propaganda_ministry
+				add_idea = GER_goebbels_reich_minister_of_propaganda_film
+			}
+
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = GER_leni_riefenstahl
+		}
+	}
+	focus = {
+		id = ENG_veteran_armed_forces_support
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_heads_together }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 3
+		relative_position_id = ENG_from_sandhurst_to_service
+		cost = @inner_circle_time_tier_3
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_fund_the_film_department_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_2 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_joseph_goebbels
+						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_joseph_goebbels
+						FOCUS = GER_ascension_of_goebbels
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+
+			add_war_support = 0.05
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			swap_ideas = {
+				remove_idea = GER_goebbels_reich_minister_of_propaganda_ministry
+				add_idea = GER_goebbels_reich_minister_of_propaganda_film
+			}
+
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = GER_leni_riefenstahl
+		}
+	}
+	focus = {
+		id = ENG_bridge_to_the_future
+		icon = god_save_the_king
+
+		prerequisite = { focus = ENG_veteran_armed_forces_support }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 4
+		relative_position_id = ENG_from_sandhurst_to_service
+		cost = @inner_circle_time_tier_4
+
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = GER_fund_the_film_department_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_2 } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = GER_joseph_goebbels
+						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
+					}
+					always = no
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = GER_joseph_goebbels
+						FOCUS = GER_ascension_of_goebbels
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+
+			add_war_support = 0.05
+
+			custom_effect_tooltip = generic_skip_one_line_tt
+			swap_ideas = {
+				remove_idea = GER_goebbels_reich_minister_of_propaganda_ministry
+				add_idea = GER_goebbels_reich_minister_of_propaganda_film
+			}
+
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = GER_leni_riefenstahl
 		}
 	}
 
