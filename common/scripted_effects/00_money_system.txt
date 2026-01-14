@@ -353,8 +353,11 @@ calculate_tax_gain = {
 	multiply_variable = { composite_plant_tax = corporate_tax_gain_multiplier }
 	multiply_variable = { synthetic_refinery_tax = corporate_tax_gain_multiplier }
 
+	# Productivity is now relative to global average - countries above average get bonus, below get penalty
 	set_temp_variable = { productivity_calculations_var = overall_productivity }
-	multiply_temp_variable = { productivity_calculations_var = 0.001 }
+	set_temp_variable = { temp_global_avg_productivity = global.average_world_productivity }
+	clamp_temp_variable = { var = temp_global_avg_productivity min = 100 } # Safety check for division
+	divide_temp_variable = { productivity_calculations_var = temp_global_avg_productivity }
 
 	multiply_variable = { civil_fac_tax = productivity_calculations_var }
 	multiply_variable = { military_fac_tax = productivity_calculations_var }
@@ -4733,8 +4736,11 @@ calculate_gdp = {
 	clamp_variable = { var = synthetic_refinery_percent min = 0 max = 1 }
 
 	# Overall productivity grows over time (on_monthly) and with techs and its the main source of economic growth for developed countries
+	# Productivity is now relative to global average - countries above average get bonus, below get penalty
 	set_temp_variable = { productivity_calculations_var = overall_productivity }
-	multiply_temp_variable = { productivity_calculations_var = 0.001 }
+	set_temp_variable = { temp_global_avg_productivity = global.average_world_productivity }
+	clamp_temp_variable = { var = temp_global_avg_productivity min = 100 } # Safety check for division
+	divide_temp_variable = { productivity_calculations_var = temp_global_avg_productivity }
 	multiply_variable = { gdp_total = productivity_calculations_var }
 
 	#sets a minimum gdp
@@ -5105,8 +5111,11 @@ update_employment_productivity_output_dynamic_modifier = {
 	set_temp_variable = { preexisting_dockyards_output_var = dockyards_output_var }
 	set_temp_variable = { preexisting_agriculture_district_output_var = agriculture_district_output_var }
 
+	# Productivity is now relative to global average - countries above average get bonus, below get penalty
 	set_temp_variable = { productivity_calculations_var = overall_productivity }
-	multiply_temp_variable = { productivity_calculations_var = 0.001 }
+	set_temp_variable = { temp_global_avg_productivity = global.average_world_productivity }
+	clamp_temp_variable = { var = temp_global_avg_productivity min = 100 } # Safety check for division
+	divide_temp_variable = { productivity_calculations_var = temp_global_avg_productivity }
 
 	set_temp_variable = { civilian_factories_manpower_fulfillment_dyn_mod_var = civilian_factories_manpower_fulfillment }
 	#this section calculates the employment level assuming that all factories you receive from trade, leasing and other sources are at 100% employment
