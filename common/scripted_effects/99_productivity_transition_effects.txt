@@ -41,7 +41,7 @@ assign_productivity_transition_idea = {
 					NOT = { original_tag = MLD } # Moldova → developing
 					NOT = { original_tag = ALB } # Albania → emerging
 					NOT = { original_tag = MNT } # Montenegro → emerging
-					NOT = { original_tag = MAC } # North Macedonia → emerging
+					NOT = { original_tag = MCD } # North Macedonia → emerging (MCD not MAC)
 					NOT = { original_tag = BOS } # Bosnia → emerging
 					NOT = { original_tag = KOS } # Kosovo → emerging
 				}
@@ -55,10 +55,20 @@ assign_productivity_transition_idea = {
 				original_tag = SGP
 				original_tag = ISR
 				original_tag = HKG
-				original_tag = MAC
+				original_tag = MAC # Macao (100 GDP/C)
 				original_tag = TAI
+				# Additional Western/Southern European developed nations
+				original_tag = LUX # Luxembourg (99 GDP/C)
+				original_tag = IRE # Ireland (48 GDP/C)
+				original_tag = ITA # Italy (43 GDP/C)
+				original_tag = ICE # Iceland (41 GDP/C)
+				original_tag = FIN # Finland (40 GDP/C)
+				original_tag = CYP # Cyprus (33 GDP/C)
+				original_tag = POR # Portugal (30 GDP/C)
+				original_tag = MLT # Malta (27 GDP/C)
 			}
 		}
+		log = "[GetDateText]: [Root.GetName]: Assigned developed_economy_transition (GDP/C: [?gdp_per_capita])"
 		add_ideas = developed_economy_transition
 	}
 	# Emerging economies - BRICS, major regional powers, Eastern Europe
@@ -125,6 +135,7 @@ assign_productivity_transition_idea = {
 			# Exclude if already developed
 			NOT = { has_idea = developed_economy_transition }
 		}
+		log = "[GetDateText]: [Root.GetName]: Assigned emerging_economy_transition (GDP/C: [?gdp_per_capita])"
 		add_ideas = emerging_economy_transition
 	}
 	# Least developed nations - low GDP/C countries
@@ -134,6 +145,7 @@ assign_productivity_transition_idea = {
 			NOT = { has_idea = developed_economy_transition }
 			NOT = { has_idea = emerging_economy_transition }
 		}
+		log = "[GetDateText]: [Root.GetName]: Assigned developing_economy_catch_up (GDP/C: [?gdp_per_capita])"
 		add_ideas = developing_economy_catch_up
 	}
 }

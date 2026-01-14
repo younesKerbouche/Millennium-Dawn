@@ -2,11 +2,12 @@ ideas = {
 	country = {
 		# For developed nations (Western Europe, North America, Australia/NZ, Japan, South Korea)
 		# Applies slight penalty to reflect diminishing returns at productivity frontier
-		# Removes gradually as global average rises (no hard date cutoff)
+		# Removes when global average rises OR individual nation significantly outperforms
 		developed_economy_transition = {
 			name = developed_economy_transition
 			allowed_civil_war = { always = yes }
 			on_add = { log = "[GetDateText]: [Root.GetName]: add idea developed_economy_transition" }
+			on_remove = { log = "[GetDateText]: [Root.GetName]: removed developed_economy_transition (global avg: [?global.average_world_productivity], own productivity: [?overall_productivity])" }
 
 			picture = generic_economy
 
@@ -15,10 +16,12 @@ ideas = {
 				productivity_growth_modifier = -0.10
 			}
 
-			# Removes when global average rises enough (world catches up)
-			# No hard date cutoff - purely economic-driven
+			# Removes when global average rises OR nation significantly outperforms
 			cancel = {
-				check_variable = { global.average_world_productivity > 850 }
+				OR = {
+					check_variable = { global.average_world_productivity > 850 }
+					check_variable = { overall_productivity > 1200 } # Individual escape: 50% above Europe start
+				}
 			}
 		}
 
@@ -28,6 +31,7 @@ ideas = {
 			name = emerging_economy_transition
 			allowed_civil_war = { always = yes }
 			on_add = { log = "[GetDateText]: [Root.GetName]: add idea emerging_economy_transition" }
+			on_remove = { log = "[GetDateText]: [Root.GetName]: removed emerging_economy_transition (GDP/C: [?gdp_per_capita], productivity: [?overall_productivity])" }
 
 			picture = generic_economy
 
@@ -40,7 +44,7 @@ ideas = {
 			cancel = {
 				OR = {
 					check_variable = { overall_productivity > global.average_world_productivity }
-					check_variable = { gdp_per_capita > 30 }
+					check_variable = { gdp_per_capita > 25 } # Matches assignment threshold
 				}
 			}
 		}
@@ -51,6 +55,7 @@ ideas = {
 			name = developing_economy_catch_up
 			allowed_civil_war = { always = yes }
 			on_add = { log = "[GetDateText]: [Root.GetName]: add idea developing_economy_catch_up" }
+			on_remove = { log = "[GetDateText]: [Root.GetName]: removed developing_economy_catch_up (GDP/C: [?gdp_per_capita], productivity: [?overall_productivity])" }
 
 			picture = generic_economy
 
@@ -63,7 +68,7 @@ ideas = {
 			cancel = {
 				OR = {
 					check_variable = { gdp_per_capita > 15 }
-					check_variable = { overall_productivity > 600 }
+					check_variable = { overall_productivity > 700 } # Raised from 600 to avoid premature triggers
 				}
 			}
 		}
