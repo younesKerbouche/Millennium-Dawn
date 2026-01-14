@@ -53,11 +53,13 @@ assign_productivity_transition_idea = {
 				original_tag = NZL
 				original_tag = JAP
 				original_tag = KOR
-				original_tag = SGP
+				original_tag = SIN # Singapore (56 GDP/C) - tag is SIN not SGP
 				original_tag = ISR
 				original_tag = HKG
 				original_tag = MAC # Macao (100 GDP/C)
 				original_tag = TAI
+				original_tag = BRU # Brunei (69 GDP/C)
+				original_tag = BHR # Bahrain (46 GDP/C)
 				# Additional Western/Southern European developed nations
 				original_tag = LUX # Luxembourg (99 GDP/C)
 				original_tag = IRE # Ireland (48 GDP/C)
@@ -148,5 +150,27 @@ assign_productivity_transition_idea = {
 		}
 		log = "[GetDateText]: [Root.GetName]: Assigned developing_economy_catch_up (GDP/C: [?gdp_per_capita])"
 		add_ideas = developing_economy_catch_up
+	}
+	# Fallback for high-GDP countries not explicitly listed (safety net)
+	else_if = {
+		limit = {
+			check_variable = { gdp_per_capita > 24.999 }
+			NOT = { has_idea = developed_economy_transition }
+			NOT = { has_idea = emerging_economy_transition }
+			NOT = { has_idea = developing_economy_catch_up }
+		}
+		log = "[GetDateText]: [Root.GetName]: Assigned developed_economy_transition via FALLBACK (GDP/C: [?gdp_per_capita])"
+		add_ideas = developed_economy_transition
+	}
+	# Fallback for medium-GDP countries not explicitly listed
+	else_if = {
+		limit = {
+			check_variable = { gdp_per_capita > 3 }
+			NOT = { has_idea = developed_economy_transition }
+			NOT = { has_idea = emerging_economy_transition }
+			NOT = { has_idea = developing_economy_catch_up }
+		}
+		log = "[GetDateText]: [Root.GetName]: Assigned emerging_economy_transition via FALLBACK (GDP/C: [?gdp_per_capita])"
+		add_ideas = emerging_economy_transition
 	}
 }
