@@ -14,11 +14,11 @@ assign_productivity_transition_idea = {
 		}
 		# Already has transition idea, skip
 	}
-	# Developed nations - HIGH GDP/C (>25k) in developed regions
+	# Developed nations - HIGH GDP/C (>=25k) in developed regions
 	# Excludes Russia and Eastern Europe which are handled separately
 	else_if = {
 		limit = {
-			check_variable = { gdp_per_capita > 25 }
+			check_variable = { gdp_per_capita > 24.999 } # gdp >= 25
 			OR = {
 				# Western Europe (high GDP/C countries only)
 				AND = {
@@ -44,6 +44,7 @@ assign_productivity_transition_idea = {
 					NOT = { original_tag = MCD } # North Macedonia → emerging (MCD not MAC)
 					NOT = { original_tag = BOS } # Bosnia → emerging
 					NOT = { original_tag = KOS } # Kosovo → emerging
+					NOT = { original_tag = GRE } # Greece → emerging (debt crisis)
 				}
 				# North America, Oceania, East Asian developed
 				original_tag = USA
