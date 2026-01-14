@@ -33,11 +33,15 @@ v1.12.4
   - The USA should no longer deploy the the Enhanced Forward Brigade and the S Brigade to Turkey well before the Russians have caused any tension
   - The USA should be more likely to guarantee South Korea assuming they are democratic
   - If the GFC has reached the USA the European Union AI will start working more actively towards economic reforms to better support all EU member states
+  - Added designed naval taskforce AI. This should get the AI to design better task forces, and deploy them in ways that make more sense, and avoid deathstacking
+  - Added new naval AI strategies for the AI, based around establishing naval dominance and performing more convoy raiding
+  - Adjust microchip production strategies
 
  Balance:
   - Adjusted some ideas in Germany which was giving a pointless < 0.01 democratic drift causing no actual impact or change
   - Reduced the penalties from the starting spirit "American Militarism"
   - Fixed an influence exploit by proposing, the AI accepting, then canceling the trade agreement giving you near infinite influence
+  - Fixed F-35 program still requiring NATO/MNNA status when opened to the world (Issue #286)
   - Fixed coalition party removal exploit that allowed gaining infinite political power by spamming remove decisions (Issue #285)
   - Significantly reduced the "The Green Card Program" productivity growth factor from 50% to 15%
   - North korea Land Facility Was Swapped for a Nuclear facility
@@ -66,11 +70,15 @@ v1.12.4
   - Adjusted IC cost of electrical infrastructure and industrial complexes
   - Slightly reduced the lower bound and increased upper bound of political power to -300 and 2500 respectively
   - Increased the political power cost for putting supportive scientists in place to 50 from 25
+  - Significantly buffed naval dominance across all ship hulls. It should be far easier to obtain naval dominance with smaller fleets now, and as a bonus, they AI should play smarter now
   - Gave the "Rubber Baron of Africa" idea for the Ivory Coast additional rubber generation
   - Provided additional Militias to the Syrian side of the conflict in the Arab Spring Civil War to slow the conflict
   - Gave the Civil War debuff to the Arab Spring Civil War to help slow the conflict
   - Increased MIO fund size requirement from 500 to 800 and increased the factor from 50 to 75 to make it slower (this is also topair with the QOL implementation of Vanilla's update automagically)
   - Increased the build time of infrastructure to make it harder to get to level 5
+  - Adjusted application of stats from naval modules. Majority of stats will now come off add_average, with lower amounts coming off add
+	NOTE: This will result in ships needing to upgrade weapons generationally for the best effects, while also allowing single module upgrades to still have a decent effect
+  - Tweaked naval combat defines further for balance (Bird is a nerd for making me do this, <3 bird!)
 
  Bugfix:
   - [BLR] Fixed factory locations in Belarus focuses - factories now build in correct provinces (Issue #236):
@@ -87,6 +95,9 @@ v1.12.4
   - Added missing intelligence agency advisors for spymaster role (Issue #110)
   - Fixed SAM missile icons not matching their equipment variants in deployment UI (Issue #218)
   - Fixed Linux runtime crashes caused by parsing errors (Issue #176)
+  - Fixed configurable display showing 0 for all resources and added microchips/composites support (Issue #288)
+    - Net resource calculation now properly uses produced + imported - exported - consumed
+    - Added microchips and advanced composites as new resource options in the topbar counter
   - [ARM] Fixed Active Diplomacy focus auto-bypassing when in any faction instead of only when faction leader (Issue #203)
   - [ARM] Fixed Embrace Left-Wing Origins focus not adding labour_unions if Bosses Elimination was completed first (Issue #203)
   - Renamed "special forces" subdoctrine directory to "special_forces" to fix Linux path parsing
@@ -152,6 +163,11 @@ v1.12.4
   - Fixed being able to do the Internal Investments for Local Conservation Efforts in any state as Brazil even though it should've been limited to the Amazon states
 
  Content:
+  - [SOV] Added decision for Russia to transform CSTO into offensive alliance (Issue #269)
+    - Allows Russia to call CSTO members (including puppets) into offensive wars
+    - New decision category "CSTO Management" for Russia when leading CSTO
+    - News event notifies all countries of the alliance restructuring
+  - [GENERIC] Renamed North American formable from "United States of North America" to "North American Federation" (Issue #268)
   - [BUL] Enhanced "Embracing Orthodoxy" focus to add Anti-LGBTQ Stance national spirit (Issue #284)
   - [BUL] Added nationalist drift bonus to Orthodox National Values national spirit
   - [BUL] Added Dobruja (state 284) to The Fourth Bulgarian Kingdom integration decisions
@@ -175,14 +191,13 @@ v1.12.4
   - Refactored the Global Financial Crisis and added additional content to the War on Terror
   - Added additional economic events to the United States
   - Added 2 new internal investments options in "Local Coastal Infrastructure" and "Local Fortification Efforts"
+  - Add Civilian Population & Offices consumption of microchips
 
  Database:
   - Land drone technologies now properly give the Ranger Light Recce company recon bonuses like all other recon units
   - Added 160 Scud GLCMs to Ukraine
   - China now starts with the "Microprocessor" tech
-  - [UZB] Rebalanced the starting economy of Uzbekistan
-    - Reduced starting productivity to 626
-	- Gave Uzbekistan an additional civilian industry as compensation for the nerf of productivity
+  - Adjusted productivity for nations to be more accurate to the development of regions and GDP as a percentage of their national GDP
 
  Factions:
   - Added a new faction goal "Establish an Airborne Corps"
