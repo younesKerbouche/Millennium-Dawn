@@ -9279,4 +9279,445 @@ focus = {
 			base = 1
 		}
 	}
+	focus = {
+		id = JAP_restore_imperial_household
+		icon = focus_JAP_empower_the_emperor
+
+		x = 64
+		y = 0
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_restore_imperial_household"
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	focus = {
+		id = JAP_reinstate_former_imperial_houses
+		icon = focus_JAP_empower_the_emperor
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_restore_imperial_household }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_reinstate_former_imperial_houses"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_male_line_succession_act
+		icon = focus_JAP_empower_the_emperor
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_restore_imperial_household }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_male_line_succession_act"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_imperial_rites_restored
+		icon = focus_JAP_empower_the_emperor
+
+		x = 0
+		y = 2
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_male_line_succession_act }
+		prerequisite = { focus = JAP_reinstate_former_imperial_houses }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_rites_restored"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_recall_privy_council
+		icon = focus_JAP_empower_the_emperor
+
+		x = 0
+		y = 3
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_rites_restored }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_recall_privy_council"
+			set_country_flag = JAP_reinstated_emperor
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_imperial_reform_commission
+		icon = focus_JAP_empower_the_emperor
+
+		x = 0
+		y = 5
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_recall_privy_council }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_reform_commission"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_imperial_audience
+		icon = focus_JAP_empower_the_emperor
+
+		x = -2
+		y = 4
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_recall_privy_council }
+		mutually_exclusive = { focus = JAP_imperial_civic_oath }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_audience"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_imperial_civic_oath
+		icon = focus_JAP_empower_the_emperor
+
+		x = 2
+		y = 4
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_recall_privy_council }
+		mutually_exclusive = { focus = JAP_imperial_audience }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_audience"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_unified_intelligence_secretariat
+		icon = focus_JAP_empower_the_emperor
+
+		x = 0
+		y = 6
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_reform_commission }
+		prerequisite = {
+			focus = JAP_imperial_audience
+			focus = JAP_imperial_civic_oath
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_unified_intelligence_secretariat"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_blue_water_navy
+		icon = focus_JAP_empower_the_emperor
+
+		x = -2
+		y = 6
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_reform_commission }
+		prerequisite = {
+			focus = JAP_imperial_audience
+			focus = JAP_imperial_civic_oath
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_blue_water_navy"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_imperial_defense_council
+		icon = focus_JAP_empower_the_emperor
+
+		x = 2
+		y = 6
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_reform_commission }
+		prerequisite = {
+			focus = JAP_imperial_audience
+			focus = JAP_imperial_civic_oath
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_defense_council"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_rare_earth_resilience
+		icon = focus_JAP_empower_the_emperor
+
+		x = 1
+		y = 7
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_defense_council }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_rare_earth_resilience"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_national_shipbuilding_plan
+		icon = focus_JAP_empower_the_emperor
+
+		x = -1
+		y = 7
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_unified_intelligence_secretariat }
+		prerequisite = { focus = JAP_blue_water_navy }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_national_shipbuilding_plan"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_imperial_war_cabinet
+		icon = focus_JAP_empower_the_emperor
+
+		x = 0
+		y = 8
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_national_shipbuilding_plan }
+		prerequisite = { focus = JAP_rare_earth_resilience }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_war_cabinet"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_russian_lost_territories
+		icon = focus_JAP_empower_the_emperor
+
+		x = -2
+		y = 9
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_war_cabinet }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_russian_lost_territories"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_reclaim_pacific_rim
+		icon = focus_JAP_empower_the_emperor
+
+		x = 0
+		y = 9
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_war_cabinet }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_reclaim_pacific_rim"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = JAP_office_for_colonialism
+		icon = focus_JAP_empower_the_emperor
+
+		x = 2
+		y = 9
+		relative_position_id = JAP_restore_imperial_household
+
+		cost = 5
+
+		prerequisite = { focus = JAP_imperial_war_cabinet }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			nationalist_monarchists_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_office_for_colonialism"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
 }
