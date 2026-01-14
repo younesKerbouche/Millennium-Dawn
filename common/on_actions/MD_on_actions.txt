@@ -81,9 +81,6 @@ on_actions = {
 			recalculate_influence = yes
 			force_update_map_mode = { mapmode = influence_map_mode }
 
-			# Set the Ideological Power Ideas
-			IP_idea_weekly_configuration = yes
-
 			if = { limit = { is_ai = yes }
 				# Initialize the Investment Pulse for this Week
 				if = {
@@ -113,6 +110,63 @@ on_actions = {
 						has_intelligence_agency = yes
 					}
 					update_operation_ai = yes
+				}
+			}
+
+			# GCC Dominant Member
+			if = { limit = { has_country_flag = gcc_dominant_member }
+
+				if = {
+					limit = {
+						has_idea = idea_gcc_member_state
+						has_completed_focus = GCC_limited_unified_command
+						NOT = { has_completed_focus = GCC_a_robust_alliance }
+						is_in_faction = no
+						has_defensive_war = yes
+						all_enemy_country = {
+							NOT = { has_idea = idea_gcc_member_state }
+						}
+					}
+					create_faction_from_template = faction_template_gcc
+					# Add to Faction
+					for_each_scope_loop = {
+						array = global.gcc_members
+						PREV = { add_to_faction = PREV }
+					}
+					set_country_flag = gcc_formed
+				}
+				else_if = {
+					limit = {
+						NOT = {
+							any_of_scopes = {
+								array = global.gcc_member_state
+								OR = {
+									has_war = yes
+									has_completed_focus = GCC_a_robust_alliance
+								}
+							}
+						}
+						any_of_scopes = {
+							array = global.gcc_member_state
+							has_war = no
+							has_country_flag = gcc_formed
+						}
+					}
+					if = { limit = { is_faction_leader = yes }
+						dismantle_faction = yes
+					}
+					# Add to Faction
+					for_each_scope_loop = {
+						array = global.gcc_members
+						if = { limit = { has_completed_focus = GCC_joint_defense_agreement }
+							for_each_scope_loop = {
+								array = global.gcc_members
+								if = { limit = { NOT = { tag = PREV } }
+									give_guarantee = PREV
+								}
+							}
+						}
+					}
 				}
 			}
 
@@ -790,7 +844,6 @@ on_actions = {
 					}
 				}
 
-
 				random_renewable_variable_calculation = yes
 
 				# Monthly Single Fire Check
@@ -810,6 +863,11 @@ on_actions = {
 					EDU_annual_pulse_for_learning_stuff = yes
 					# Tick Internal Factions
 					monthly_tick_internal_factions_opinion = yes
+
+					# Space
+					# INFO: This was readded back to the monthly tick due to the nature of the content.
+					# tick speeds and otherwise should not be harmed.
+					update_space_system_values = yes
 
 					# Months at War Calculation
 					if = {
@@ -1402,6 +1460,35 @@ on_actions = {
 							resize_array = { array = auto_influence_array value = 0 size = 10 } # ONLY 4 MORE SLOTS ARE AVAILABLE
 							update_auto_influence_array = yes
 							update_dirty_influence_var = yes
+						}
+
+						if = { limit = { NOT = { has_global_flag = GAME_RULE_gdp_graph_enabled } }
+							gdp_graph_on_monthly = yes
+							# its a bit bad thing to do it here, but we need to smooth out "bumps" in gdp graph
+							# if gdp increases/drops by more then 5% in 1 month, take gdp value from 3 months back
+							# and use it to "smoothe out" the values between current and 3 months old gdp
+							if = {
+								# atleast couple of months in the game
+								limit = {
+									check_variable = { current_gdp_graph_end > 2 }
+								}
+
+								set_temp_variable = { temp_index = current_gdp_graph_end }
+								subtract_from_temp_variable = { temp_index = 1 }
+								set_temp_variable = { old_gdp = gdp_array^temp_index }
+
+								divide_temp_variable = { old_gdp = gdp_total }
+								if = {
+									limit = {
+										OR = {
+											check_variable = { old_gdp < 0.95 }
+											check_variable = { old_gdp > 1.05 }
+										}
+									}
+
+									correct_gdp_graph = yes
+								}
+							}
 						}
 					}
 
