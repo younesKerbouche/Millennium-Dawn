@@ -1,0 +1,83 @@
+MD_protests_forming = {
+	MD_incoming_protest_movement = {
+		activation = {
+			always = no
+		}
+		available = {
+
+			if = {
+				limit = {
+					OR = {
+						check_variable = { government_coalition_strength < 0.3 }
+						check_variable = { interest_rate > 8.9 }
+						has_idea = stagnation
+						has_idea = recession
+						has_idea = depression
+						OR = {
+							has_idea = paralyzing_corruption
+							has_idea = crippling_corruption
+							has_idea = rampant_corruption
+							has_idea = unrestrained_corruption
+							has_idea = systematic_corruption
+							has_idea = widespread_corruption
+						}
+					}
+				}
+				MD_has_fixed_econ = yes
+			}
+
+			if = {
+				limit = {
+					OR = {
+						has_elections = no
+						check_variable = { months_at_war > 36 }
+						check_variable = { government_coalition_strength < 0.3 }
+						OR = {
+							has_idea = paralyzing_corruption
+							has_idea = crippling_corruption
+							has_idea = rampant_corruption
+							has_idea = unrestrained_corruption
+							has_idea = systematic_corruption
+							has_idea = widespread_corruption
+						}
+					}
+				}
+				MD_has_fixed_political = yes
+			}
+		}
+
+		days_mission_timeout = 180
+		is_good = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MD_incoming_protest_movement"
+			add_stability = 0.02
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MD_incoming_protest_movement"
+			country_event = protests.100
+		}
+	}
+
+	MD_incoming_revolt = {
+		activation = {
+			always = no
+		}
+
+		available = {
+			all_core_state = {
+				has_resistance = no
+			}
+		}
+
+		days_mission_timeout = 400
+		is_good = no
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MD_incoming_revolt"
+			country_event = protests.103
+		}
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MD_incoming_revolt"
+			start_civil_war_with_no_leader_change = yes
+		}
+	}
+}

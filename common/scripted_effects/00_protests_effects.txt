@@ -256,7 +256,7 @@ calculate_unrest_growth = {
 	}
 	#High interest = unrest
 	if = {
-		limit = { interest_rate > 7 }
+		limit = { check_variable = { interest_rate > 8.9 } }
 		set_temp_variable = { rate_hold = interest_rate }
 		subtract_from_temp_variable = { rate_hold = interest_rate }
 		add_to_variable = { protest_strength = protest_drift }
@@ -300,6 +300,7 @@ calculate_unrest_growth = {
 					has_idea = rampant_corruption
 					has_idea = unrestrained_corruption
 					has_idea = systematic_corruption
+					has_idea = widespread_corruption
 				}
 			}
 		}
@@ -332,7 +333,7 @@ calculate_unrest_growth = {
 
 check_protest_trigger = {
 	if = {
-		limit = { NOT = { has_country_flag = md_protests_began } check_variable = { protest_strength > 49 } }
+		limit = { NOT = { has_country_flag = MD_protests_began } check_variable = { protest_strength > 49 } }
 
 		set_temp_variable = { protest_roll = protest_strength }
 		round_temp_variable = protest_roll
@@ -342,7 +343,31 @@ check_protest_trigger = {
 
 		random = {
 			chance = var:protest_roll
-			country_event = { id = protests.100 days = 1 }
+			country_event = { id = protests.200 days = 1 }
+			activate_mission = MD_incoming_protest_movement
+		}
+	}
+}
+
+random_protest_events = {
+	if = {
+		limit = {
+			has_country_flag = MD_protests_began
+		}
+		country_event = { id = protests.101 days = 30 }
+		random_list = {
+			25 = {
+				# Nothing happens
+			}
+			25 = {
+				country_event = { id = protests.104 days = 30 }
+			}
+			25 = {
+				country_event = { id = protests.105 days = 30 }
+			}
+			25 = {
+				country_event = { id = protests.106 days = 30 }
+			}
 		}
 	}
 }

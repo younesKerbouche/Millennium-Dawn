@@ -949,6 +949,8 @@ country_event = { # Protests Erupt in Capital
 	option = {
 		name = protests.100.a
 		log = "[GetDateText]: [This.GetName]: protests.100.a executed"
+		activate_mission = MD_incoming_revolt
+		set_country_flag = MD_protests_began
 		set_temp_variable = { temp_productivity_change = -100 }
 		every_owned_state = {
 			limit = {
@@ -986,7 +988,12 @@ country_event = { # Protests Spread
 
 	immediate = {
 		hidden_effect = {
-			random_core_state = { limit = { has_resistance = no } set_state_flag = MD_protests_are_here }
+			random_core_state = {
+			limit = {
+				has_resistance = no
+				NOT = { has_state_flag = MD_dont_protest_again }
+			}
+			set_state_flag = MD_protests_are_here }
 		}
 	}
 
@@ -1045,6 +1052,7 @@ country_event = { # Regional Protests Put Down
 				resistance < 20
 			}
 			cancel_resistance = yes
+			set_state_flag = MD_dont_protest_again
 		}
 		ai_chance = { base = 10 }
 	}
@@ -1072,7 +1080,9 @@ country_event = { # Protests Die Down Nation-wide
 				has_resistance = yes
 			}
 			cancel_resistance = yes
+			clr_state_flag = MD_dont_protest_again
 		}
+		clr_country_flag = MD_protests_began
 		ai_chance = { base = 10 }
 	}
 }
@@ -1251,4 +1261,21 @@ country_event = { # Protesters Set Arms Factories
 		modify_treasury_effect = yes
 		ai_chance = { base = 10 }
 	}
+}
+
+country_event = {
+	id = protests.200
+	title = protests.200.t
+	desc = protests.200.d
+	picture = GFX_politics_demands
+
+	is_triggered_only = yes
+
+	option = {
+		name = protests.200.a
+		log = "[GetDateText]: [This.GetName]: protests.200.a executed"
+
+		ai_chance = { base = 10 }
+	}
+
 }
