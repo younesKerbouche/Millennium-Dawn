@@ -1516,8 +1516,13 @@ on_actions = {
 
 					calculate_expected_spending = yes
 					#apply_protest_effects = yes
-					calculate_unrest_growth = yes
-					random_protest_events = yes
+					if = {
+						limit = {
+							is_ai = no
+						}
+						calculate_unrest_growth = yes
+						random_protest_events = yes
+					}
 
 					# Monthly Foreign Influence Tick
 					if = { limit = { difficulty > 1 }
