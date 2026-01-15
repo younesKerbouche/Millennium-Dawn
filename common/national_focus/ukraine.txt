@@ -1065,7 +1065,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus UKR_burshtyn_tes"
-			one_random_synthetic_refinery = yes
+			one_random_renewable_energy_infra = yes
 			if = {
 				limit = {
 					NOT = {
@@ -2479,11 +2479,8 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 4 } } }
 					set_temp_variable = { rul_party_temp = 4 }
+					set_temp_variable = { disable_elections = 1 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = communism
-						elections_allowed = no
-					}
 				}
 			}
 		}
@@ -2560,11 +2557,8 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 18 } } }
 					set_temp_variable = { rul_party_temp = 18 }
+					set_temp_variable = { disable_elections = 1 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = neutrality
-						elections_allowed = no
-					}
 				}
 			}
 		}
@@ -3822,7 +3816,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus UKR_apply_economic_union"
-			add_ideas = UKR_idea_eacu_cooperation
+			SOV = {
+				country_event = md4.21
+			}
 		}
 
 		ai_will_do = {
@@ -5955,7 +5951,7 @@ focus_tree = {
 				}
 				random_owned_controlled_state = {
 					limit = { ROOT = { has_full_control_of_state = PREV } }
-					prioritize = { 694 }
+					prioritize = { 698 }
 					create_unit = {
 						division = "name = \"Azov Brigade\" division_template = \"Azov Brigade\" start_experience_factor = 0.1"
 						owner = UKR
@@ -7547,7 +7543,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = UKR_polish_liberation_batallions
+		id = UKR_polish_liberation_battalions
 		icon = ukr_separatist_battalion_poland
 		x = 0
 		y = 6
@@ -7571,7 +7567,7 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus UKR_polish_liberation_batallions"
+			log = "[GetDateText]: [Root.GetName]: Focus UKR_polish_liberation_battalions"
 			custom_effect_tooltip = UKR_polish_army_created_tt
 			set_country_flag = HUR_krakov
 			set_country_flag = HUR_pomerania
@@ -8108,7 +8104,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus UKR_extend_ukrainian_refineries"
-			two_random_synthetic_refinery = yes
+			two_random_renewable_energy_infra = yes
 			set_temp_variable = { temp_opinion = 5 }
 			change_fossil_fuel_industry_opinion = yes
 		}
@@ -9123,11 +9119,8 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 21 } } }
 					set_temp_variable = { rul_party_temp = 21 }
+					set_temp_variable = { disable_elections = 1 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = nationalist
-						elections_allowed = no
-					}
 				}
 			}
 		}
@@ -10263,6 +10256,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_STABILITY }
 
 		available = {
+			is_subject = no
 			nationalist_fascist_are_in_power = yes
 		}
 
@@ -10274,8 +10268,11 @@ focus_tree = {
 			}
 			set_temp_variable = { temp_opinion = 3 }
 			change_the_military_opinion = yes
-			add_ideas = faction_baltic_black_sea_union_member
-			create_faction = UKR_baltic_black_sea_union_faction
+			if = {
+				limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+			create_faction_from_template = faction_template_baltic_sea_union
 			for_each_scope_loop = {
 				array = global.baltic_black_sea_union_member
 				if = {
@@ -10286,7 +10283,6 @@ focus_tree = {
 					}
 				}
 			}
-			custom_effect_tooltip = UKR_baltic_black_sea_dialogue_focus_TT
 		}
 
 		ai_will_do = {
@@ -11337,11 +11333,8 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 6 } } }
 					set_temp_variable = { rul_party_temp = 6 }
+					set_temp_variable = { disable_elections = 1 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = communism
-						elections_allowed = no
-					}
 				}
 			}
 		}
@@ -13426,7 +13419,11 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus UKR_opfl_take_republic"
 			if = {
 				limit = {
-					is_subject = no
+					DPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = DPR
 				}
 				create_wargoal = {
@@ -13436,7 +13433,25 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					DPR = {
+						is_subject_of = UKR
+					}
+					country_exists = DPR
+				}
+				annex_country = { target = DPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = DPR.treasury }
+					add_to_variable = { debt = DPR.debt }
+					add_to_variable = { int_investments = DPR.int_investments }
+				}
+			}
+			if = {
+				limit = {
+					LPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = LPR
 				}
 				create_wargoal = {
@@ -13446,7 +13461,25 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					LPR = {
+						is_subject_of = UKR
+					}
+					country_exists = LPR
+				}
+				annex_country = { target = LPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = LPR.treasury }
+					add_to_variable = { debt = LPR.debt }
+					add_to_variable = { int_investments = LPR.int_investments }
+				}
+			}
+			if = {
+				limit = {
+					HPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = HPR
 				}
 				create_wargoal = {
@@ -13456,12 +13489,44 @@ focus_tree = {
 			}
 			if = {
 				limit = {
-					is_subject = no
+					HPR = {
+						is_subject_of = UKR
+					}
+					country_exists = HPR
+				}
+				annex_country = { target = HPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = HPR.treasury }
+					add_to_variable = { debt = HPR.debt }
+					add_to_variable = { int_investments = HPR.int_investments }
+				}
+			}
+			if = {
+				limit = {
+					OPR = {
+						NOT = {
+							is_subject_of = UKR
+						}
+					}
 					country_exists = OPR
 				}
 				create_wargoal = {
 					target = OPR
 					type = puppet_wargoal_focus
+				}
+			}
+			if = {
+				limit = {
+					OPR = {
+						is_subject_of = UKR
+					}
+					country_exists = OPR
+				}
+				annex_country = { target = OPR transfer_troops = yes }
+				UKR = {
+					add_to_variable = { treasury = OPR.treasury }
+					add_to_variable = { debt = OPR.debt }
+					add_to_variable = { int_investments = OPR.int_investments }
 				}
 			}
 			if = {
@@ -13499,6 +13564,7 @@ focus_tree = {
 		x = -1
 		y = 1
 		relative_position_id = UKR_opfl_economic_policy
+
 		cost = 5
 
 		prerequisite = { focus = UKR_opfl_economic_policy }
@@ -14249,7 +14315,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus UKR_our_ukraine_alternative_energy_sources"
-			two_random_synthetic_refinery = yes
+			two_random_renewable_energy_infra = yes
 			set_temp_variable = { percent_change = 5 }
 			change_domestic_influence_percentage = yes
 		}
@@ -15972,11 +16038,8 @@ focus_tree = {
 				if = {
 					limit = { NOT = { is_in_array = { ruling_party = 2 } } }
 					set_temp_variable = { rul_party_temp = 2 }
+					set_temp_variable = { disable_elections = 1 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = democratic
-						elections_allowed = no
-					}
 				}
 			}
 		}
@@ -16039,7 +16102,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -3 }
+				set_temp_variable = { modify_maidani = -5 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -6 }
 				modify_easterns_support = yes
@@ -16086,7 +16149,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 5 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -16132,7 +16195,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 5 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -16216,7 +16279,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 4 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -16288,7 +16351,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 5 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -16353,7 +16416,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 1 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_westerns = 4 }
 				modify_westerns_support = yes
@@ -16438,7 +16501,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -2 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -5 }
 				modify_easterns_support = yes
@@ -16560,7 +16623,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -1 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -4 }
 				modify_easterns_support = yes
@@ -16644,7 +16707,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -2 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -5 }
 				modify_easterns_support = yes
@@ -16700,7 +16763,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -3 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -5 }
 				modify_easterns_support = yes
@@ -16764,7 +16827,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -3 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -5 }
 				modify_easterns_support = yes
@@ -16813,7 +16876,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 1 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -17088,7 +17151,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -1 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -6 }
 				modify_easterns_support = yes
@@ -17139,7 +17202,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -1 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -6 }
 				modify_easterns_support = yes
@@ -17192,11 +17255,11 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -2 }
+				set_temp_variable = { modify_maidani = -6 }
 				modify_maidani_support = yes
-				set_temp_variable = { modify_easterns = -5 }
+				set_temp_variable = { modify_easterns = -6 }
 				modify_easterns_support = yes
-				set_temp_variable = { modify_westerns = 5 }
+				set_temp_variable = { modify_westerns = 6 }
 				modify_westerns_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -17250,7 +17313,7 @@ focus_tree = {
 								}
 							}
 						}
-						set_temp_variable = { modify_maidani = -2 }
+						set_temp_variable = { modify_maidani = -6 }
 						modify_maidani_support = yes
 						set_temp_variable = { modify_easterns = -3 }
 						modify_easterns_support = yes
@@ -17270,7 +17333,7 @@ focus_tree = {
 								}
 							}
 						}
-						set_temp_variable = { modify_maidani = 2 }
+						set_temp_variable = { modify_maidani = 6 }
 						modify_maidani_support = yes
 						set_temp_variable = { modify_easterns = 3 }
 						modify_easterns_support = yes
@@ -17327,7 +17390,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 1 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -2 }
 				modify_easterns_support = yes
@@ -17527,7 +17590,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 1 }
+				set_temp_variable = { modify_maidani = 5 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -3 }
 				modify_easterns_support = yes
@@ -17631,7 +17694,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 2 }
+				set_temp_variable = { modify_maidani = 5 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -18020,7 +18083,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = -2 }
+				set_temp_variable = { modify_maidani = -5 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -5 }
 				modify_easterns_support = yes
@@ -18077,7 +18140,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 3 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				set_temp_variable = { modify_easterns = -8 }
 				modify_easterns_support = yes
@@ -18336,7 +18399,7 @@ focus_tree = {
 						}
 					}
 				}
-				set_temp_variable = { modify_maidani = 5 }
+				set_temp_variable = { modify_maidani = 6 }
 				modify_maidani_support = yes
 				hidden_effect = {
 					UKR_maidan_start_check = yes
@@ -20556,9 +20619,8 @@ focus_tree = {
 			is_subject = yes
 			has_autonomy_state = autonomy_union_state
 			country_exists = SOV
-			custom_trigger_tooltip = {
-				tooltip = UKR_SOV_more_than_70_percent_influence_TT
-				SOV = { UKR_targeted_country_has_more_than_70_percent_influence = yes }
+			SOV = {
+				influence_higher_70 = yes
 			}
 		}
 

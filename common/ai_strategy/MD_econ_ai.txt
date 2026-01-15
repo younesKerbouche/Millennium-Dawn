@@ -1,11 +1,22 @@
-##Generic Save PP when needed!!!
+# Author(s): AngriestBird
 save_pp_for_laws = {
 	enable = {
-		has_country_flag = AI_economic_downspiral
+		count_triggers = {
+			amount = 2
+			has_country_flag = AI_economic_downspiral
+			check_variable = { interest_rate > 10 }
+			NOT = {
+				has_idea = economic_boom
+				has_idea = fast_growth
+				has_idea = stable_growth
+			}
+			NOT = {
+				has_idea = slight_corruption
+				has_idea = negligible_corruption
+			}
+		}
 	}
-	abort = {
-		NOT = { has_country_flag = AI_economic_downspiral }
-	}
+	abort_when_not_enabled = yes
 
 	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
 	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
@@ -17,45 +28,10 @@ save_pp_for_laws = {
 	ai_strategy = { type = pp_spend_amount id = idea value = 500 }
 }
 
-save_pp_for_laws_flag_aggresive_economic_ai = {
-	enable = {
-		NOT = {
-			has_idea = economic_boom
-		}
-	}
-	abort = { has_idea = economic_boom }
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = general value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = idea value = 2500 } #Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_amount id = idea value = 700 }
-}
-
-save_pp_for_laws_flag_aggresive_economic_ai_2 = {
-	enable = {
-		NOT = {
-			has_idea = negligible_corruption
-		}
-	}
-	abort = { has_idea = negligible_corruption }
-
-	ai_strategy = { type = pp_spend_priority id = relation value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = general value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = admiral value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = guarantee value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = decision value = -9999 }
-	ai_strategy = { type = pp_spend_priority id = idea value = 2500 } #Focus on Editing LAWS
-	ai_strategy = { type = pp_spend_amount id = idea value = 800 }
-}
-
 default_military_ratio_to_civvies = {
 	allowed = {
 		NOT = {
+			original_tag = ANT #Antigua and Barbuda
 			original_tag = MNC #Monaco
 			original_tag = ADO #Andorra
 			original_tag = LIC #Lic
@@ -63,10 +39,10 @@ default_military_ratio_to_civvies = {
 			original_tag = BRU #Brunei
 			original_tag = MIC #Micronesia
 			original_tag = SAM #Samoa
-			original_tag = STK #Saint Kitts
+			original_tag = STK #Saint Kitts and Nevis
 			original_tag = DMI #Dominica
 			original_tag = STL #Saint Lucia
-			original_tag = STV #Saint Vincent
+			original_tag = STV #Saint Vincent and the Grenadines
 			original_tag = BAR #Barbados
 			original_tag = BAH #Bahamas
 			original_tag = GRA #Grenada
@@ -786,7 +762,7 @@ AI_build_renewable_energy_infrastructure = {
 
 	ai_strategy = {
 		type = building_target
-		id = synthetic_refinery
+		id = renewable_energy_infra
 		value = 20
 	}
 }
@@ -803,6 +779,8 @@ AI_stop_building_civilian_industry = {
 	ai_strategy = { type = building_target id = arms_factory value = -50 }
 	ai_strategy = { type = building_target id = dockyard value = -50 }
 	ai_strategy = { type = building_target id = agriculture_district value = -50 }
+	ai_strategy = { type = building_target id = microchip_plant value = -50 }
+	ai_strategy = { type = building_target id = composite_plant value = -50 }
 
 	# Create Other Infrastructure While Low unemployment
 	ai_strategy = { type = building_target id = internet_station value = 25 }
@@ -910,4 +888,40 @@ AI_internet_station_level_five = {
 
 	# Good for Keeping Productivity Up
 	ai_strategy = { type = building_target id = internet_station value = 100 }
+}
+
+#Microchip & Composite AI
+want_chip_factories = {
+	enable = {
+		#If we both import AND consume more than we produce, we need more internal production
+		check_variable = { resource_consumed@microchips > resource_produced@microchips }
+		check_variable = { resource_imported@microchips > resource_produced@microchips }
+		#Don't try to make factories unless we have a surplus of the input supplies
+		check_variable = { resource@chromium > 0 }
+		check_variable = { resource@tungsten > 0 }
+
+		num_of_available_civilian_factories > 14
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = build_building id = microchip_plant value = 30 }
+}
+
+want_comp_factories = {
+	enable = {
+		#If we both import AND consume more than we produce, we need more internal production
+		check_variable = { resource_consumed@composites > resource_produced@composites }
+		check_variable = { resource_imported@composites > resource_produced@composites }
+
+		#Don't try to make facotires unless we have a surplus of the input supplies
+		check_variable = { resource@chromium > 0 }
+		check_variable = { resource@rubber > 0 }
+		check_variable = { resource@oil > 0 }
+
+		num_of_available_civilian_factories > 14
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = { type = build_building id = composite_plant value = 30 }
 }

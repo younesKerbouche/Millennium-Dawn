@@ -3,7 +3,7 @@ ideas = {
 	country = {
 
 		al_jazeera = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea al_jazeera" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -21,7 +21,7 @@ ideas = {
 		}
 
 		al_jazeera_banned = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea al_jazeera_banned" }
+
 
 			allowed = {
 				is_arabic_nation = yes
@@ -34,7 +34,7 @@ ideas = {
 		}
 
 		al_jazeera_allowed = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea al_jazeera_allowed" }
+
 			picture = al_jazeera
 			allowed = {
 				is_arabic_nation = yes
@@ -55,7 +55,7 @@ ideas = {
 		}
 
 		muslim_brotherhood_crackdown = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea muslim_brotherhood_crackdown" }
+
 			picture = muslim_brotherhood_banned
 			allowed = {
 				is_arabic_nation = yes
@@ -71,7 +71,7 @@ ideas = {
 		}
 
 		muslim_brotherhood_home = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea muslim_brotherhood_home" }
+
 			picture = muslim_brotherhood
 			allowed = {
 				original_tag = EGY
@@ -103,14 +103,19 @@ ideas = {
 				economic_cycles_cost_factor = 0.25
 				political_power_gain = 0.25
 				drift_defence_factor = 0.25
-				local_resources_factor = 0.25
+				local_resources_oil_factor = 0.25
+				local_resources_aluminium_factor = 0.25
+				local_resources_rubber_factor = 0.25
+				local_resources_tungsten_factor = 0.25
+				local_resources_steel_factor = 0.25
+				local_resources_chromium_factor = 0.25
 				resource_export_multiplier_modifier = 0.25
 				tax_rate_change_multiplier_modifier = 0.25
 			}
 		}
 
 		youth_radicalization = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea youth_radicalization" }
+
 			allowed_civil_war = { always = yes }
 
 			modifier = {
@@ -121,7 +126,7 @@ ideas = {
 		}
 
 		saudi_aid = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_aid" }
+
 
 			allowed = {
 				NOT = { has_war_with = SAU }
@@ -144,7 +149,13 @@ ideas = {
 		}
 
 		cybercaliphate = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea cybercaliphate" }
+			cancel = {
+				OR = {
+					NOT = { country_exists = ISI }
+					ISI = { has_country_flag = ISI_stopped_the_cybercaliphate }
+				}
+			}
+
 			modifier = {
 				fascism_drift = 0.02
 				foreign_subversive_activites = 0.2
@@ -152,7 +163,7 @@ ideas = {
 		}
 
 		katib_hezbollah = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea katib_hezbollah" }
+
 
 			allowed = {
 				original_tag = HEZ
@@ -170,7 +181,7 @@ ideas = {
 		}
 
 		katib_hezbollah_2 = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea katib_hezbollah_2" }
+
 			name = katib_hezbollah
 			allowed = {
 				original_tag = HEZ
@@ -188,7 +199,7 @@ ideas = {
 		}
 
 		katib_hezbollah_3 = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea katib_hezbollah_3" }
+
 			name = katib_hezbollah
 			allowed = {
 				original_tag = HEZ
@@ -206,7 +217,7 @@ ideas = {
 		}
 
 		syrian_hezbollah = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea syrian_hezbollah" }
+
 
 			allowed = {
 				original_tag = HEZ
@@ -224,7 +235,7 @@ ideas = {
 		}
 
 		syrian_hezbollah_2 = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea syrian_hezbollah_2" }
+
 			name = syrian_hezbollah
 			allowed = {
 				original_tag = HEZ
@@ -242,7 +253,7 @@ ideas = {
 		}
 
 		syrian_hezbollah_3 = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea syrian_hezbollah_3" }
+
 			name = syrian_hezbollah
 			allowed = {
 				original_tag = HEZ
@@ -260,7 +271,7 @@ ideas = {
 		}
 
 		qatar_expat = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea qatar_expat" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -274,7 +285,7 @@ ideas = {
 			}
 		}
 		saudi_expat = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_expat" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -288,7 +299,7 @@ ideas = {
 			}
 		}
 		omani_expat = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea omani_expat" }
+
 
 			allowed = {
 				original_tag = OMA
@@ -304,7 +315,7 @@ ideas = {
 			}
 		}
 		uae_expat = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea uae_expat" }
+
 
 			allowed = {
 				original_tag = UAE
@@ -320,7 +331,7 @@ ideas = {
 			}
 		}
 		kuwait_expat = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea kuwait_expat" }
+
 
 			allowed = {
 				original_tag = KUW
@@ -334,7 +345,7 @@ ideas = {
 			}
 		}
 		bahraini_expat = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bahraini_expat" }
+
 
 			picture = qatar_expat
 
@@ -352,7 +363,7 @@ ideas = {
 		}
 
 		qatar_expat_kafala = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea qatar_expat_kafala" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -370,7 +381,7 @@ ideas = {
 			}
 		}
 		saudi_expat_kafala = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_expat_kafala" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -388,7 +399,7 @@ ideas = {
 			}
 		}
 		omani_expat_kafala = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea omani_expat_kafala" }
+
 
 			allowed = {
 				original_tag = OMA
@@ -406,7 +417,7 @@ ideas = {
 			}
 		}
 		uae_expat_kafala = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea uae_expat_kafala" }
+
 
 			allowed = {
 				original_tag = UAE
@@ -426,7 +437,7 @@ ideas = {
 			}
 		}
 		kuwait_expat_kafala = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea kuwait_expat_kafala" }
+
 
 			allowed = {
 				original_tag = KUW
@@ -444,7 +455,7 @@ ideas = {
 			}
 		}
 		bahraini_expat_kafala = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bahraini_expat_kafala" }
+
 
 			picture = qatar_expat
 
@@ -464,7 +475,7 @@ ideas = {
 		}
 
 		qatar_expat_wage = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea qatar_expat_wage" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -481,7 +492,7 @@ ideas = {
 			}
 		}
 		saudi_expat_wage = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_expat_wage" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -498,7 +509,7 @@ ideas = {
 			}
 		}
 		omani_expat_wage = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea omani_expat_wage" }
+
 
 			allowed = {
 				original_tag = OMA
@@ -515,7 +526,7 @@ ideas = {
 			}
 		}
 		uae_expat_wage = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea uae_expat_wage" }
+
 
 			allowed = {
 				original_tag = UAE
@@ -534,7 +545,7 @@ ideas = {
 			}
 		}
 		kuwait_expat_wage = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea kuwait_expat_wage" }
+
 
 			allowed = {
 				original_tag = KUW
@@ -551,7 +562,7 @@ ideas = {
 			}
 		}
 		bahraini_expat_wage = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bahraini_expat_wage" }
+
 
 			picture = qatar_expat
 
@@ -570,7 +581,7 @@ ideas = {
 		}
 
 		qatar_expat_citizen = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea qatar_expat_citizen" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -588,7 +599,7 @@ ideas = {
 			}
 		}
 		saudi_expat_citizen = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_expat_citizen" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -606,7 +617,7 @@ ideas = {
 			}
 		}
 		omani_expat_citizen = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea omani_expat_citizen" }
+
 
 			allowed = {
 				original_tag = OMA
@@ -624,7 +635,7 @@ ideas = {
 			}
 		}
 		uae_expat_citizen = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea uae_expat_citizen" }
+
 
 			allowed = {
 				original_tag = UAE
@@ -644,7 +655,7 @@ ideas = {
 			}
 		}
 		kuwait_expat_citizen = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea kuwait_expat_citizen" }
+
 
 			allowed = {
 				original_tag = KUW
@@ -662,7 +673,7 @@ ideas = {
 			}
 		}
 		bahraini_expat_citizen = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bahraini_expat_citizen" }
+
 
 			picture = qatar_expat
 
@@ -682,7 +693,7 @@ ideas = {
 		}
 
 		qatar_expat_remittance = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea qatar_expat_remittance" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -701,7 +712,7 @@ ideas = {
 			}
 		}
 		saudi_expat_remittance = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_expat_remittance" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -720,7 +731,7 @@ ideas = {
 			}
 		}
 		omani_expat_remittance = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea omani_expat_remittance" }
+
 
 			allowed = {
 				original_tag = OMA
@@ -739,7 +750,7 @@ ideas = {
 			}
 		}
 		uae_expat_remittance = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea uae_expat_remittance" }
+
 
 			allowed = {
 				original_tag = UAE
@@ -758,7 +769,7 @@ ideas = {
 			}
 		}
 		kuwait_expat_remittance = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea kuwait_expat_remittance" }
+
 
 			allowed = {
 				original_tag = KUW
@@ -777,7 +788,7 @@ ideas = {
 			}
 		}
 		bahraini_expat_remittance = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bahraini_expat_remittance" }
+
 
 			picture = qatar_expat
 
@@ -797,7 +808,7 @@ ideas = {
 		}
 
 		qatar_expat_quota = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea qatar_expat_quota" }
+
 
 			allowed = {
 				original_tag = QAT
@@ -816,7 +827,7 @@ ideas = {
 			}
 		}
 		saudi_expat_quota = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea saudi_expat_quota" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -835,7 +846,7 @@ ideas = {
 			}
 		}
 		omani_expat_quota = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea omani_expat_quota" }
+
 
 			allowed = {
 				original_tag = OMA
@@ -854,7 +865,7 @@ ideas = {
 			}
 		}
 		uae_expat_quota = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea uae_expat_quota" }
+
 
 			allowed = {
 				original_tag = UAE
@@ -873,7 +884,7 @@ ideas = {
 			}
 		}
 		kuwait_expat_quota = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea kuwait_expat_quota" }
+
 
 			allowed = {
 				original_tag = KUW
@@ -892,7 +903,7 @@ ideas = {
 			}
 		}
 		bahraini_expat_quota = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea bahraini_expat_quota" }
+
 
 			picture = qatar_expat
 
@@ -912,7 +923,7 @@ ideas = {
 		}
 
 		iranian_aid = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea iranian_aid" }
+
 
 			allowed = {
 				NOT = { original_tag = PER }
@@ -943,7 +954,7 @@ ideas = {
 		}
 		iranian_aid_2 = { # for Hezbollah focus tree
 			name = iranian_aid_custom
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea iranian_aid_2" }
+
 			picture = iranian_aid
 			allowed = {
 				NOT = { original_tag = PER }
@@ -972,13 +983,13 @@ ideas = {
 		}
 		LoAS_member = {
 			picture = LoAS_member
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea LoAS_member" }
+
 			allowed_civil_war = { no_jihadist_government = yes }
 			cancel = { jihadist_government = yes }
 		}
 		LoAS_member_upd = {
 			picture = LoAS_member
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea LoAS_member_upd" }
+
 			allowed_civil_war = { no_jihadist_government = yes }
 			cancel = { jihadist_government = yes }
 			modifier = {
@@ -986,17 +997,22 @@ ideas = {
 			}
 		}
 		joint_oil_extraction = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea joint_oil_extraction" }
+
 			picture = resource_production
 			modifier = {
 				resource_export_multiplier_modifier = 0.10
-				local_resources_factor = 0.10
+				local_resources_oil_factor = 0.10
+local_resources_aluminium_factor = 0.10
+local_resources_rubber_factor = 0.10
+local_resources_tungsten_factor = 0.10
+local_resources_steel_factor = 0.10
+local_resources_chromium_factor = 0.10
 				corporate_tax_income_multiplier_modifier = -0.05
 			}
 		}
 
 		restoring_hope = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea restoring_hope" }
+
 
 			allowed = {
 				original_tag = SAU
@@ -1027,7 +1043,7 @@ ideas = {
 		}
 
 		construction_boom = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea construction_boom" }
+
 			picture = construction
 
 			modifier = {
@@ -1048,7 +1064,12 @@ ideas = {
 				stability_factor = -0.15
 				min_export = 0.10
 				oil_export_multiplier_modifier = 0.25
-				local_resources_factor = 0.10
+				local_resources_oil_factor = 0.10
+local_resources_aluminium_factor = 0.10
+local_resources_rubber_factor = 0.10
+local_resources_tungsten_factor = 0.10
+local_resources_steel_factor = 0.10
+local_resources_chromium_factor = 0.10
 				fuel_gain_factor = 0.10
 			}
 		}
@@ -1485,6 +1506,10 @@ ideas = {
 				fascism_drift = -0.05
 				democratic_acceptance = 25
 				ai_focus_aggressive_factor = 1
+				investment_duration_modifier = -0.25
+				investment_cost_modifier = -0.15
+				receiving_investment_duration_modifier = -0.25
+				receiving_investment_cost_modifier = -0.15
 			}
 		}
 
@@ -1948,7 +1973,12 @@ ideas = {
 
 			modifier = {
 				research_speed_factor = 0.05
-				local_resources_factor = 0.05
+				local_resources_oil_factor = 0.05
+local_resources_aluminium_factor = 0.05
+local_resources_rubber_factor = 0.05
+local_resources_tungsten_factor = 0.05
+local_resources_steel_factor = 0.05
+local_resources_chromium_factor = 0.05
 			}
 		}
 

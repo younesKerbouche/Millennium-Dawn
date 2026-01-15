@@ -923,7 +923,7 @@ focus_tree = {
 				SAU = {
 					174 = {
 						add_building_construction = {
-							type = synthetic_refinery
+							type = renewable_energy_infra
 							level = 2
 							instant_build = yes
 						}
@@ -938,7 +938,7 @@ focus_tree = {
 					limit = { owns_state = 174 }
 					174 = {
 						add_building_construction = {
-							type = synthetic_refinery
+							type = renewable_energy_infra
 							level = 2
 							instant_build = yes
 						}
@@ -1015,7 +1015,7 @@ focus_tree = {
 				SOV = {
 					665 = {
 						add_building_construction = {
-							type = synthetic_refinery
+							type = renewable_energy_infra
 							level = 2
 							instant_build = yes
 						}
@@ -1031,7 +1031,7 @@ focus_tree = {
 					limit = { owns_state = 665 }
 					665 = {
 						add_building_construction = {
-							type = synthetic_refinery
+							type = renewable_energy_infra
 							level = 2
 							instant_build = yes
 						}
@@ -1818,7 +1818,7 @@ focus_tree = {
 				idea = CAN_aecon
 				days = 730
 			}
-			one_random_synthetic_refinery = yes
+			one_random_renewable_energy_infra = yes
 		}
 
 		ai_will_do = {
@@ -2003,7 +2003,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_Seek_French_Companies"
-			add_opinion_modifier = { target = ENG modifier = french_companies  }
+			add_opinion_modifier = { target = ENG modifier = french_companies }
 			ENG = {
 				set_temp_variable = { int_investment_change = 25 }
 				modify_international_investment_effect = yes
@@ -3002,8 +3002,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: CAN_strength_in_the_americas"
-			add_political_power = -250
-			every_country = {
+			every_other_country = {
 				limit = {
 					capital_scope = {
 						OR = {
@@ -3011,9 +3010,8 @@ focus_tree = {
 							is_on_continent = south_america
 						}
 					}
-					NOT = { tag = CAN }
 				}
-				set_temp_variable = { percent_change = 1 }
+				set_temp_variable = { percent_change = 3 }
 				set_temp_variable = { tag_index = CAN.id }
 				set_temp_variable = { influence_target = THIS.id }
 				change_influence_percentage = yes
@@ -3488,6 +3486,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_Autonomie_Quebecoise"
 			increase_education_budget = yes
+			set_temp_variable = { desire_change = 0.5 }
+			change_expected_education_spending = yes
 		}
 
 		ai_will_do = {
@@ -3873,6 +3873,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_french_schools "
 			increase_education_budget = yes
+			set_temp_variable = { desire_change = 0.5 }
+			change_expected_education_spending = yes
 		}
 
 		ai_will_do = {
@@ -4188,6 +4190,8 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_nation_divided "
 			increase_military_spending = yes
 			increase_policing_budget = yes
+			set_temp_variable = { desire_change = 0.5 }
+			change_expected_police_spending = yes
 		}
 
 		ai_will_do = {
@@ -4892,6 +4896,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_Stand_Alone"
 			increase_centralization = yes
+			set_temp_variable = { desire_change = 0.5 }
+			change_expected_bureaucracy_spending = yes
 		}
 
 		ai_will_do = {
@@ -4942,6 +4948,8 @@ focus_tree = {
 			increase_social_spending = yes
 			increase_education_budget = yes
 			decrease_military_spending = yes
+			set_temp_variable = { desire_change = 0.5 }
+			change_expected_education_spending = yes
 		}
 
 		ai_will_do = {
@@ -5021,7 +5029,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_Strengthen_Ties_With_Nato"
-			every_country = {
+			every_other_country = {
 				limit = { has_idea = NATO_member }
 				add_opinion_modifier = { target = CAN modifier = diplomatic_support }
 			}
@@ -5198,7 +5206,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_Strengthen_Position_In_Nato"
-			every_country = {
+			every_other_country = {
 				limit = {
 					has_idea = NATO_member
 				}
@@ -5228,7 +5236,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_nato_research "
-			add_ideas = CAN_nato_research_research_boost
+			army_experience = 35
 			set_temp_variable = { treasury_change = -4 }
 			modify_treasury_effect = yes
 		}
@@ -5251,13 +5259,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_nato_exercises "
-			army_experience = 15
-			every_country = {
+			army_experience = 40
+			every_other_country = {
 				limit = {
-					NOT = { tag = CAN }
 					has_idea = NATO_member
 				}
-				army_experience = 15
+				army_experience = 40
 			}
 		}
 
@@ -6008,10 +6015,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CCAN_increase_ship_production "
 			add_tech_bonus = {
-				name = CAT_naval_eqp
+				name = CAT_naval_all
 				bonus = 0.50
 				uses = 2
-				category = CAT_naval_eqp
+				category = CAT_naval_all
 			}
 		}
 
@@ -7935,6 +7942,8 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus CAN_secret_police "
 			add_ideas = CAN_secret_police
 			increase_policing_budget = yes
+			set_temp_variable = { desire_change = 0.5 }
+			change_expected_police_spending = yes
 		}
 
 		ai_will_do = {

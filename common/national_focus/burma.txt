@@ -176,9 +176,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus BRM_propose_the_2008_constitution"
-			if = { limit = { BRM = { has_start_date < 2016.01.01 } }
-				news_event = { id = Burma_News.1 days = 2 random_hours = 4 }
-			}
+			news_event = { id = Burma_News.1 days = 2 random_hours = 4 }
 
 			add_popularity = { ideology = neutrality popularity = 0.05 }
 			recalculate_party = yes
@@ -217,17 +215,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus BRM_release_opposition_figures"
-			if = {
-				limit = {
-					BRM = {
-						has_start_date < 2016.01.01
-					}
-				}
-				news_event = {
-					id = Burma_News.2
-					days = 2
-					random_hours = 4
-				}
+			news_event = {
+				id = Burma_News.2
+				days = 2
+				random_hours = 4
 			}
 			add_political_power = 100
 			GCC_open_nation_level_up = yes
@@ -333,18 +324,12 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus BRM_cede_power_to_the_nld"
 
-			if = { limit = { has_start_date < 2016.01.01 }
-				news_event = { id = Burma_News.3 days = 2 random_hours = 4 }
-			}
+			news_event = { id = Burma_News.3 days = 2 random_hours = 4 }
 
 			add_stability = 0.1
 			set_temp_variable = { rul_party_temp = 16 }
 			set_temp_variable = { change_leader_temp = 1 }
 			change_ruling_party_effect = yes
-			set_politics = {
-				ruling_party = neutrality
-				elections_allowed = yes
-			}
 
 			if = { limit = { has_idea = Reduced_Western_Sanctions }
 				remove_ideas = Reduced_Western_Sanctions
@@ -967,7 +952,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus BRM_improve_security_cooperation_with_asean"
-			add_ideas = BRM_improve_security_cooperation_with_asean_research_boost
+			army_experience = 35
 			every_country = {
 				limit = {
 					NOT = { tag = BRM }
@@ -2511,11 +2496,9 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INFLUENCE FOCUS_FILTER_POLITICAL }
 
 		available = {
-			OR = {
-				any_country = {
+			any_country = {
+				OR = {
 					has_idea = Chinese_Involvement
-				}
-				any_country = {
 					has_idea = Low_Chinese_Involvement
 				}
 			}
@@ -3673,7 +3656,7 @@ focus_tree = {
 			if = {
 				limit = { has_dlc = "No Step Back" }
 				add_equipment_to_stockpile = {
-					type = ifv_hull
+					type = medium_tank_flame_chassis
 					amount = 20
 					producer = SIN
 				}

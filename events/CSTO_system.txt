@@ -11,7 +11,7 @@ country_event = { #X country wanna join CSTO, this event for Russia
 		log = "[GetDateText]: [This.GetName]: CSTO.1.a executed"
 		FROM = { country_event = { id = CSTO.3 hours = 6 } }
 		ai_chance = {
-			factor = 90
+			base = 90
 			modifier = {
 				factor = 0.6
 				OR = {
@@ -49,7 +49,7 @@ country_event = { #X country wanna join CSTO, this event for Russia
 		log = "[GetDateText]: [This.GetName]: CSTO.1.b executed"
 		FROM = { country_event = { id = CSTO.2 hours = 6 } }
 		ai_chance = {
-			factor = 10
+			base = 10
 			modifier = {
 				factor = 2
 				OR = {
@@ -110,7 +110,7 @@ country_event = { #X country got invitation from Russia
 		log = "[GetDateText]: [This.GetName]: CSTO.3.a executed"
 		CSTO_join = yes
 		ai_chance = {
-			factor = 90
+			base = 90
 			modifier = {
 				add = 10
 				UKR = {
@@ -157,7 +157,7 @@ country_event = { #X country got invitation from Russia
 		log = "[GetDateText]: [This.GetName]: CSTO.3.b executed"
 		add_political_power = 50
 		ai_chance = {
-			factor = 10
+			base = 10
 			modifier = {
 				factor = 2
 				OR = {
@@ -244,5 +244,26 @@ news_event = { #X country left the CSTO news
 		name = CSTO.5.b
 		log = "[GetDateText]: [This.GetName]: CSTO.5.o2 executed"
 		trigger = { NOT = { original_tag = FROM } }
+	}
+}
+
+news_event = { #CSTO converted to offensive alliance
+	id = CSTO.6
+	title = CSTO.6.t
+	desc = CSTO.6.d
+	picture = GFX_news_csto
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CSTO.6.a
+		log = "[GetDateText]: [This.GetName]: CSTO.6.a executed"
+		trigger = { has_idea = CSTO_member }
+	}
+	option = {
+		name = CSTO.6.b
+		log = "[GetDateText]: [This.GetName]: CSTO.6.b executed"
+		trigger = { NOT = { has_idea = CSTO_member } }
 	}
 }

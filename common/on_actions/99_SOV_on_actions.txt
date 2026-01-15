@@ -1,25 +1,53 @@
 on_actions = {
 	on_weekly_SOV = {
 		effect = {
-			# Third Chechen Prepare
 			if = {
 				limit = {
-					NOT = { SOV = { has_country_flag = che_kto_start } }
+					has_full_control_of_state = 1118
+					NOT = { has_idea = landmark_ICBMsiloyasny_hidden }
 				}
-				set_country_flag = che_kto_start
-				set_temp_variable = { modify_radicalche = 70 }
-				modify_radicalche_support = yes
-				hidden_effect = {
-					if = {
-						limit = { SOV = { is_ai = yes } }
-						country_event = { id = sov_other.39 days = 50 }
+				add_ideas = landmark_ICBMsiloyasny_hidden
+			}
+			if = {
+				limit = {
+					NOT = { has_full_control_of_state = 1118 }
+					has_idea = landmark_ICBMsiloyasny_hidden
+				}
+				remove_ideas = landmark_ICBMsiloyasny_hidden
+			}
+			for_each_scope_loop = {
+				array = SOV.subjects
+				if = {
+					limit = {
+						OR = {
+							has_autonomy_state = autonomy_state_rf
+							has_autonomy_state = autonomy_republic_rf
+							has_autonomy_state = autonomy_kray_rf
+							has_autonomy_state = autonomy_oblast_rf
+							has_autonomy_state = autonomy_okrug_rf
+						}
 					}
-					SOV = { country_event = { id = sov_other.26 days = 220 } }
+					if = {
+						limit = { NOT = { has_idea = CHE_republic_rf } }
+						add_ideas = CHE_republic_rf
+					}
+					if = {
+						limit = {
+							SOV = { has_country_flag = SOV_united_russia }
+							NOT = { has_country_flag = SUB_united_russia }
+						}
+						set_country_flag = SUB_united_russia
+					}
+					if = {
+						limit = { NOT = { has_idea = CHE_republic_rf } }
+						add_ideas = CHE_republic_rf
+					}
+					set_temp_variable = { modify_subjectavtoritet = 2 }
+					modify_subjectavtoritet_support = yes
 				}
 			}
 		}
 	}
-
 	on_monthly_SOV = {
 		random_events = {
 			1000 = 0
@@ -48,6 +76,38 @@ on_actions = {
 							OR = {
 								emerging_communist_state_are_in_power = yes
 								neutrality_neutral_communism_are_in_power = yes
+								AND = {
+									nationalist_monarchists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nationalize
+								}
+								AND = {
+									nationalist_right_wing_populists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nationalize
+								}
+								AND = {
+									nationalist_fascist_are_in_power = yes
+									has_completed_focus = SOV_nazbols_natiolalize
+								}
+								AND = {
+									nationalist_monarchists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nazbols_natiolalize
+								}
+								AND = {
+									nationalist_right_wing_populists_are_in_power = yes
+									nationalist_fascist_are_in_coalition = yes
+									has_completed_focus = SOV_nazbols_natiolalize
+								}
+								AND = {
+									nationalist_right_wing_populists_are_in_power = yes
+									has_completed_focus = SOV_nationalize
+								}
+								AND = {
+									nationalist_monarchists_are_in_power = yes
+									has_completed_focus = SOV_nationalize
+								}
 							}
 						}
 						is_subject = no
@@ -93,12 +153,26 @@ on_actions = {
 				#VTB Capitalisation
 				if = {
 					limit = {
-						has_completed_focus = SOV_economic_vtb_ipo
+						has_completed_focus = SOV_economic_vtb
 					}
 					capitalisation_vtb_calculate = yes
 					capitalisation_vtb_change_positive = yes
 					capitalisation_vtb_change_negative = yes
 				}
+				#ALROSA Capitalisation
+				if = {
+					limit = {
+						has_completed_focus = SOV_economic_alrosa
+					}
+					capitalisation_alrosa_calculate = yes
+					capitalisation_alrosa_change_positive = yes
+					capitalisation_alrosa_change_negative = yes
+				}
+			}
+			#SEPARATIST UPDATE
+			if = { limit = { is_ai = no }
+				SUB_update_separatism_stability = yes
+				SUB_update_separatism_rebellion = yes
 			}
 		}
 	}

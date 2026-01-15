@@ -820,7 +820,7 @@ focus_tree = {
 	#Constitution 1994
 	focus = {
 		id = TAT_constitution_return
-		icon = TAT_constitution
+		icon = government_beu
 		x = 0
 		y = 1
 		relative_position_id = TAT_nati_start
@@ -1588,7 +1588,12 @@ focus_tree = {
 		prerequisite = { focus = TAT_single_party }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TAT_collectivism"
-			add_to_variable = { TAT_tatar_kommi_local_resources_factor = 0.05 }
+			add_to_variable = { TAT_tatar_kommi_local_resources_oil_factor = 0.05
+local_resources_aluminium_factor = 0.05
+local_resources_rubber_factor = 0.05
+local_resources_tungsten_factor = 0.05
+local_resources_steel_factor = 0.05
+local_resources_chromium_factor = 0.05 }
 			custom_effect_tooltip = TAT_tatar_kommi11_tt
 			set_temp_variable = { temp_opinion = 5 }
 			change_communist_cadres_opinion = yes
@@ -2757,9 +2762,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus TAT_EU_integration"
 			every_country = {
 				limit = {
-					OR = {
-						has_idea = EU_member
-					}
+					has_idea = EU_member
 				}
 				add_opinion_modifier = { target = TAT modifier = supports_us }
 			}
@@ -3108,7 +3111,7 @@ focus_tree = {
 		prerequisite = { focus = TAT_western_economic_rost }
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus TAT_western_resource executed"
-			one_random_synthetic_refinery = yes
+			one_random_renewable_energy_infra = yes
 			if = {
 				limit = {
 					TAT = {
@@ -3475,7 +3478,13 @@ focus_tree = {
 		relative_position_id = TAT_economic
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TAT_sokol_bpla"
-			add_ideas = mass_produce_drone
+			add_tech_bonus = {
+				name = GENERIC_drones
+				uses = 2
+				bonus = 0.5
+				category = CAT_l_drone
+			}
+			hidden_effect = { set_technology = { Air_Kamikaze1 = 1 } }
 			set_temp_variable = { treasury_change = -1.5 }
 			modify_treasury_effect = yes
 		}
@@ -3492,12 +3501,6 @@ focus_tree = {
 		relative_position_id = TAT_economic
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TAT_eniks_bpla"
-			add_tech_bonus = {
-				name = GENERIC_drones
-				uses = 3
-				bonus = 0.5
-				category = CAT_l_drone
-			}
 			add_ideas = TAT_vpk
 			set_temp_variable = { treasury_change = -1.5 }
 			modify_treasury_effect = yes
@@ -4041,10 +4044,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus TAT_akbars_sudostroy"
 			add_tech_bonus = {
-				name = Cat_NAVAL_MODULES
+				name = TAT_akbars_sudostroy
 				bonus = 1.0
 				uses = 2
-				category = CAT_naval_misc
+				category = CAT_naval_modules
 			}
 			set_temp_variable = { treasury_change = -5 }
 			modify_treasury_effect = yes
@@ -4199,7 +4202,6 @@ focus_tree = {
 		}
 		ai_will_do = { factor = 1 }
 	}
-	shared_focus = SUB_russia_politic
 }
 
 

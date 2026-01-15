@@ -1,13 +1,158 @@
+chinese_historic_plane_category = {
+	j10_decision = {
+		icon = GFX_decision_J10A
+
+		fire_only_once = yes
+		custom_cost_trigger = {
+			has_air_experience > 19
+		}
+		custom_cost_text = air_xp_20
+
+		available = {
+			has_tech = gen_4_light
+			has_tech = air_weapons_2
+			has_tech = avionics_1
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision j10_decision"
+			air_experience = -20
+			create_equipment_variant = { #
+				name = "J-10 Menglong" #pre-production airframe
+				type = small_plane_strike_airframe_2
+				parent_version = 1
+				modules = {
+					fixed_main_weapon_slot = weap_mp_light_hardpoint_2
+					fixed_gun_slot = weap_multi_gun_3
+					fixed_auxiliary_weapon_slot_1 = weap_a2a_hardpoint_1
+					engine_type_slot = engine_light_single_2
+					avionics_type_slot = avionics_manned_2
+					wingform_type_slot = wing_delta_canard
+					special_slot_type_1 = spec_countermeasures_1
+					special_slot_type_2 = empty
+					special_slot_type_3 = empty
+				}
+				icon = "gfx/interface/technologies/CHI/AIR/MR2.dds"
+				model = "CHI_small_plane_airframe_2_entity"
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	j10a_decision = {
+		icon = GFX_decision_J10A
+
+		fire_only_once = yes
+		custom_cost_trigger = {
+			has_air_experience > 19
+		}
+		custom_cost_text = air_xp_20
+
+		available = {
+			has_tech = gen_4_light
+			has_tech = air_weapons_2
+			has_tech = countermeasures_2
+			has_tech = avionics_2
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision j10a_decision"
+			air_experience = -20
+			create_equipment_variant = { #
+				name = "Chengdu J-10A Menglong" #J-10A
+				type = small_plane_strike_airframe_2
+				parent_version = 2
+				modules = {
+					fixed_main_weapon_slot = weap_mp_light_hardpoint_2
+					fixed_gun_slot = weap_multi_gun_3
+					fixed_auxiliary_weapon_slot_1 = weap_a2a_hardpoint_1
+					engine_type_slot = engine_light_single_2
+					avionics_type_slot = avionics_manned_3
+					wingform_type_slot = wing_delta_canard
+					special_slot_type_1 = spec_countermeasures_2
+					special_slot_type_2 = empty
+					special_slot_type_3 = empty
+				}
+				upgrades = {
+					plane_bba_radar_upgrade = 1
+				}
+				mark_older_equipment_obsolete = yes
+				icon = "gfx/interface/technologies/CHI/AIR/MR2.dds"
+				model = "CHI_small_plane_airframe_2_entity"
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	j10c_decision = {
+		icon = GFX_decision_J10C
+
+		fire_only_once = yes
+		custom_cost_trigger = {
+			has_air_experience > 19
+		}
+		custom_cost_text = air_xp_20
+
+		available = {
+			has_tech = gen_4_light
+			has_tech = air_weapons_2
+			has_tech = ag_weapons_2
+			has_tech = countermeasures_2
+			has_tech = engines_3
+			has_tech = avionics_2
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision j10c_decision"
+			air_experience = -20
+			create_equipment_variant = { #
+				name = "Chengdu J-10C Menglong" #J-10C
+				type = small_plane_strike_airframe_2
+				parent_version = 3
+				modules = {
+					fixed_main_weapon_slot = weap_mp_med_hardpoint_2
+					fixed_gun_slot = weap_multi_gun_3
+					fixed_auxiliary_weapon_slot_1 = weap_a2a_hardpoint_2
+					engine_type_slot = engine_light_single_3
+					avionics_type_slot = avionics_manned_3
+					wingform_type_slot = wing_delta_canard
+					special_slot_type_1 = spec_countermeasures_2
+					special_slot_type_2 = spec_thrust_vector_2
+					special_slot_type_3 = empty
+				}
+				upgrades = {
+					plane_bba_radar_upgrade = 3
+				}
+				mark_older_equipment_obsolete = yes
+				icon = "gfx/interface/technologies/CHI/AIR/MR3.dds"
+				model = "CHI_small_plane_airframe_2_entity"
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
+
 sco_category = {
 
 	provide_development_assistance = {
-		icon = GFX_decision_sco_develp_button
-
-		visible = {
+		allowed = {
 			OR = {
 				original_tag = CHI
 				original_tag = SOV
 			}
+		}
+		icon = GFX_decision_sco_develp_button
+
+		visible = {
 			if = {
 				limit = { original_tag = CHI }
 				NOT = { has_completed_focus = CHI_Development_Assistance }
@@ -74,16 +219,16 @@ sco_category = {
 		days_re_enable = 365
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	provide_development_assistance_CHI = {
+		allowed = { original_tag = CHI }
 		icon = GFX_decision_sco_develp_button
 
 		visible = {
 			is_sco = yes
-			original_tag = CHI
 			has_completed_focus = CHI_Development_Assistance
 			FROM = { is_sco = yes }
 		}
@@ -148,7 +293,8 @@ sco_category = {
 
 		visible = {
 			OR = {
-				AND = {
+				AND = { #Italy
+					original_tag = ITA
 					is_subject = no
 					has_completed_focus = ITA_attempt_join_sco
 					CHI = {
@@ -164,8 +310,20 @@ sco_category = {
 					}
 				}
 				AND = {
-					is_subject = no
+					original_tag = SWE
+					SWE = { has_completed_focus = SWE_SCO_observer_status }
+					NOT = {
+						has_idea = sco_member
+						has_idea = sco_observer
+						has_idea = sco_member_econ
+						has_idea = sco_member_pol
+						has_idea = sco_member_mil
+						has_country_flag = SCO_observer_status_rejected
+					}
+				}
+				AND = { #Ukraine
 					original_tag = UKR
+					is_subject = no
 					CHI = {
 						has_completed_focus = CHI_Form_the_SCO
 					}
@@ -188,7 +346,38 @@ sco_category = {
 						has_country_flag = SCO_observer_status_rejected
 					}
 				}
-				AND = {
+				AND = { #Libya
+					original_tag = LBA
+					is_subject = no
+					CHI = {
+						AND = {
+							has_completed_focus = CHI_Form_the_SCO
+							has_completed_focus = CHI_African_Railway_Projects
+						}
+					}
+					NOT = {
+						has_idea = sco_member
+						has_idea = sco_observer
+						has_idea = sco_member_econ
+						has_idea = sco_member_pol
+						has_idea = sco_member_mil
+						has_country_flag = SCO_observer_status_rejected
+					}
+					LBA = {
+						OR = {
+							NOT = {
+								OR = {
+									has_completed_focus = LBA_strive_for_african_union
+									has_completed_focus = LBA_approach_nato
+								}
+							}
+							NOT = {
+								salafist_caliphate_are_in_power = yes
+							}
+						}
+					}
+				}
+				AND = { #Asia, Middle East and Africa
 					is_subject = no
 					CHI = {
 						has_completed_focus = CHI_Form_the_SCO
@@ -201,13 +390,51 @@ sco_category = {
 						has_idea = sco_member_mil
 						has_country_flag = SCO_observer_status_rejected
 					}
-					if = {
+					if = { #ASEAN
 						limit = { has_idea = ASEAN_Member }
 						CHI = {
 							has_completed_focus = CHI_Undermine_ASEAN
 						}
 					}
-					if = {
+					if = { #Indian Subcontinent
+						limit = {
+							OR = {
+								original_tag = RAJ
+								original_tag = PAK
+							}
+						}
+						NOT = {
+							RAJ = {
+								has_war_with = PAK
+							}
+							PAK = {
+								has_war_with = RAJ
+							}
+						}
+					}
+					if = { #Korean Peninsula(North)
+						limit = {
+							original_tag = NKO
+						}
+						NOT = {
+							has_war_with = KOR
+						}
+					}
+					if = { #Korean Peninsula(South)
+						limit = {
+							original_tag = KOR
+						}
+						AND = {
+							NOT = {
+								has_war_with = NKO
+							}
+							OR = {
+								KOR_has_progressive_government = yes
+								KOR_has_liberal_government = yes
+							}
+						}
+					}
+					if = { #Middle East
 						limit = {
 							OR = {
 								original_tag = ALA
@@ -222,6 +449,7 @@ sco_category = {
 								original_tag = ISI
 								original_tag = JOR
 								original_tag = KUR
+								original_tag = PUK
 								original_tag = KUW
 								original_tag = LEB
 								original_tag = NUS
@@ -251,7 +479,7 @@ sco_category = {
 							}
 						}
 					}
-					if = {
+					if = { #Nigeria
 						limit = {
 							original_tag = NIG
 						}
@@ -311,7 +539,7 @@ sco_category = {
 							}
 						}
 					}
-					if = {
+					if = { #Cameroon
 						limit = {
 							original_tag = CAM
 						}
@@ -368,7 +596,7 @@ sco_category = {
 							is_influencer = no
 						}
 					}
-					if = {
+					if = { #Other African Countries
 						limit = {
 							OR = {
 								original_tag = DRC
@@ -381,14 +609,15 @@ sco_category = {
 						CHI = { has_completed_focus = CHI_African_Railway_Projects }
 					}
 				}
-				AND = {
+				AND = { #Americas
 					is_subject = no
-					original_tag = LBA
+					OR = {
+						original_tag = BRA
+						original_tag = CUB
+						original_tag = VEN
+					}
 					CHI = {
-						AND = {
-							has_completed_focus = CHI_Form_the_SCO
-							has_completed_focus = CHI_African_Railway_Projects
-						}
+						has_completed_focus = CHI_Form_the_SCO
 					}
 					NOT = {
 						has_idea = sco_member
@@ -398,17 +627,31 @@ sco_category = {
 						has_idea = sco_member_mil
 						has_country_flag = SCO_observer_status_rejected
 					}
-					LBA = {
-						OR = {
-							NOT = {
-								OR = {
-									has_completed_focus = LBA_strive_for_african_union
-									has_completed_focus = LBA_approach_nato
-								}
-							}
-							NOT = {
-								salafist_caliphate_are_in_power = yes
-							}
+					if = { #BRAZIL!!!!!
+						limit = {
+							original_tag = BRA
+						}
+						has_opinion = {
+							target = CHI
+							value > 74
+						}
+					}
+					if = {
+						limit = {
+							original_tag = VEN
+						}
+						has_opinion = {
+							target = CHI
+							value > 99
+						}
+					}
+					if = { #Cuba
+						limit = {
+							original_tag = CUB
+						}
+						has_opinion = {
+							target = CHI
+							value > 49
 						}
 					}
 				}
@@ -649,6 +892,7 @@ sco_category = {
 
 		remove_effect = {
 			add_to_array = { global.sco_members = ROOT }
+			SCO_dirty_update = yes
 			if = {
 				limit = {
 					NOT = { has_country_flag = SCO_membership_rejected }
@@ -721,11 +965,11 @@ sco_category = {
 	}
 
 	give_up_membership_status = {
+		allowed = { NOT = { original_tag = CHI } }
 		icon = GFX_decision_sco_giveup_button
 
 		visible = {
 			is_sco = yes
-			NOT = { original_tag = CHI }
 		}
 
 		available = {
@@ -807,6 +1051,12 @@ sco_category = {
 	}
 
 	host_joint_exercises = {
+		allowed = {
+			OR = {
+				original_tag = CHI
+				original_tag = SOV
+			}
+		}
 
 		icon = GFX_decision_sco_exersises_button
 
@@ -896,7 +1146,7 @@ sco_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -906,8 +1156,6 @@ sco_category = {
 
 		visible = {
 			is_sco = yes
-			#NOT = { has_country_flag = SCO_joint_exercises_accepted }
-			#NOT = { has_country_flag = SCO_joint_exercises_offered }
 			FROM = { is_sco = yes }
 		}
 
@@ -915,10 +1163,6 @@ sco_category = {
 
 		target_trigger = {
 			country_exists = FROM
-			FROM = {
-				#NOT = { has_country_flag = SCO_joint_exercises_accepted }
-				#NOT = { has_country_flag = SCO_joint_exercises_offered }
-			}
 		}
 
 		available = {
@@ -965,7 +1209,7 @@ sco_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -1030,7 +1274,7 @@ sco_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 
 	}
@@ -1064,6 +1308,7 @@ south_china_sea_category = {
 		days_remove = 90
 
 		remove_effect = {
+			log = "[GetDateText]: [This.GetName]: decision oil_exploration_paracels executed"
 			set_temp_variable = { treasury_change = -3.75 }
 			modify_treasury_effect = yes
 			if = {
@@ -1071,7 +1316,7 @@ south_china_sea_category = {
 				813 = {
 					add_resource = {
 						type = oil
-						amount = 4
+						amount = 8
 					}
 				}
 				VIE = {
@@ -1088,13 +1333,13 @@ south_china_sea_category = {
 				813 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				521 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 			}
@@ -1103,11 +1348,10 @@ south_china_sea_category = {
 				813 = {
 					add_resource = {
 						type = oil
-						amount = 4
+						amount = 6
 					}
 				}
 			}
-			log = "[GetDateText]: [This.GetName]: decision oil_exploration_paracels executed"
 		}
 	}
 
@@ -1137,6 +1381,7 @@ south_china_sea_category = {
 		days_remove = 90
 
 		remove_effect = {
+			log = "[GetDateText]: [This.GetName]: decision oil_exploration_macclesfield executed"
 			set_temp_variable = { treasury_change = -3.75 }
 			modify_treasury_effect = yes
 			if = {
@@ -1144,7 +1389,7 @@ south_china_sea_category = {
 				943 = {
 					add_resource = {
 						type = oil
-						amount = 4
+						amount = 8
 					}
 				}
 				PHI = {
@@ -1161,13 +1406,13 @@ south_china_sea_category = {
 				943 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				735 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 			}
@@ -1176,11 +1421,10 @@ south_china_sea_category = {
 				943 = {
 					add_resource = {
 						type = oil
-						amount = 4
+						amount = 6
 					}
 				}
 			}
-			log = "[GetDateText]: [This.GetName]: decision oil_exploration_macclesfield executed"
 		}
 	}
 
@@ -1223,6 +1467,213 @@ south_china_sea_category = {
 				526 = {
 					add_resource = {
 						type = oil
+						amount = 8
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+						has_country_flag = spratlys_deal_PHI
+					}
+					has_country_flag = spratlys_deal_VIE
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 4
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_VIE
+						has_country_flag = spratlys_deal_PHI
+					}
+					has_country_flag = spratlys_deal_MAY
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 5
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+						has_country_flag = spratlys_deal_VIE
+					}
+					has_country_flag = spratlys_deal_PHI
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 5
+					}
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_VIE
+					}
+					has_country_flag = spratlys_deal_PHI
+					has_country_flag = spratlys_deal_MAY
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 4
+					}
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 4
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
 						amount = 4
 					}
 				}
@@ -1244,213 +1695,6 @@ south_china_sea_category = {
 						}
 					}
 				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-						has_country_flag = spratlys_deal_PHI
-					}
-					has_country_flag = spratlys_deal_VIE
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_VIE
-						has_country_flag = spratlys_deal_PHI
-					}
-					has_country_flag = spratlys_deal_MAY
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-						has_country_flag = spratlys_deal_VIE
-					}
-					has_country_flag = spratlys_deal_PHI
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_VIE
-					}
-					has_country_flag = spratlys_deal_PHI
-					has_country_flag = spratlys_deal_MAY
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 2
-					}
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
 			}
 			else_if = {
 				limit = {
@@ -1463,19 +1707,19 @@ south_china_sea_category = {
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				801 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -1508,19 +1752,19 @@ south_china_sea_category = {
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				801 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -1551,25 +1795,25 @@ south_china_sea_category = {
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				801 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 			}
@@ -1627,198 +1871,337 @@ south_china_sea_category = {
 				801 = {
 					add_resource = {
 						type = oil
+						amount = 8
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+						has_country_flag = spratlys_deal_PHI
+					}
+					has_country_flag = spratlys_deal_CHI
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_CHI
+						has_country_flag = spratlys_deal_PHI
+					}
+					has_country_flag = spratlys_deal_MAY
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+						has_country_flag = spratlys_deal_CHI
+					}
+					has_country_flag = spratlys_deal_PHI
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_CHI
+					}
+					has_country_flag = spratlys_deal_PHI
+					has_country_flag = spratlys_deal_MAY
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+					}
+					has_country_flag = spratlys_deal_PHI
+					has_country_flag = spratlys_deal_CHI
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_PHI
+					}
+					has_country_flag = spratlys_deal_MAY
+					has_country_flag = spratlys_deal_CHI
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_flag = spratlys_deal_PHI
+					has_country_flag = spratlys_deal_MAY
+					has_country_flag = spratlys_deal_CHI
+				}
+				526 = {
+					add_resource = {
+						type = oil
 						amount = 4
 					}
 				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-						has_country_flag = spratlys_deal_PHI
-					}
-					has_country_flag = spratlys_deal_CHI
-				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_CHI
-						has_country_flag = spratlys_deal_PHI
-					}
-					has_country_flag = spratlys_deal_MAY
-				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-						has_country_flag = spratlys_deal_CHI
-					}
-					has_country_flag = spratlys_deal_PHI
-				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_CHI
-					}
-					has_country_flag = spratlys_deal_PHI
-					has_country_flag = spratlys_deal_MAY
-				}
 				801 = {
 					add_resource = {
 						type = oil
@@ -1828,152 +2211,13 @@ south_china_sea_category = {
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-					}
-					has_country_flag = spratlys_deal_PHI
-					has_country_flag = spratlys_deal_CHI
-				}
-				801 = {
-					add_resource = {
-						type = oil
 						amount = 2
 					}
 				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_PHI
-					}
-					has_country_flag = spratlys_deal_MAY
-					has_country_flag = spratlys_deal_CHI
-				}
-				801 = {
+				816 = {
 					add_resource = {
 						type = oil
 						amount = 2
-					}
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					has_country_flag = spratlys_deal_PHI
-					has_country_flag = spratlys_deal_MAY
-					has_country_flag = spratlys_deal_CHI
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
 					}
 				}
 			}
@@ -2031,259 +2275,259 @@ south_china_sea_category = {
 				802 = {
 					add_resource = {
 						type = oil
+						amount = 8
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+						has_country_flag = spratlys_deal_VIE
+					}
+					has_country_flag = spratlys_deal_CHI
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 2
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_CHI
+						has_country_flag = spratlys_deal_VIE
+					}
+					has_country_flag = spratlys_deal_MAY
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 2
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+						has_country_flag = spratlys_deal_CHI
+					}
+					has_country_flag = spratlys_deal_VIE
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_CHI
+					}
+					has_country_flag = spratlys_deal_VIE
+					has_country_flag = spratlys_deal_MAY
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_MAY
+					}
+					has_country_flag = spratlys_deal_VIE
+					has_country_flag = spratlys_deal_CHI
+				}
+				802 = {
+					add_resource = {
+						type = oil
 						amount = 4
 					}
 				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-						has_country_flag = spratlys_deal_VIE
-					}
-					has_country_flag = spratlys_deal_CHI
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_CHI
-						has_country_flag = spratlys_deal_VIE
-					}
-					has_country_flag = spratlys_deal_MAY
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-						has_country_flag = spratlys_deal_CHI
-					}
-					has_country_flag = spratlys_deal_VIE
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
 				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_CHI
-					}
-					has_country_flag = spratlys_deal_VIE
-					has_country_flag = spratlys_deal_MAY
-				}
-				802 = {
 					add_resource = {
 						type = oil
 						amount = 2
 					}
 				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_MAY
-					}
-					has_country_flag = spratlys_deal_VIE
-					has_country_flag = spratlys_deal_CHI
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 2
-					}
-				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -2316,19 +2560,19 @@ south_china_sea_category = {
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -2359,25 +2603,25 @@ south_china_sea_category = {
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				801 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 			}
@@ -2436,214 +2680,214 @@ south_china_sea_category = {
 				816 = {
 					add_resource = {
 						type = oil
+						amount = 8
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_PHI
+						has_country_flag = spratlys_deal_VIE
+					}
+					has_country_flag = spratlys_deal_CHI
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				526 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_CHI
+						has_country_flag = spratlys_deal_VIE
+					}
+					has_country_flag = spratlys_deal_PHI
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				802 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = VIE } }
+					VIE = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_PHI
+						has_country_flag = spratlys_deal_CHI
+					}
+					has_country_flag = spratlys_deal_VIE
+				}
+				816 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+				801 = {
+					add_resource = {
+						type = oil
+						amount = 3
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = CHI } }
+					CHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = MAY } }
+					MAY = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { original_tag = PHI } }
+					PHI = {
+						add_opinion_modifier = {
+							target = ROOT
+							modifier = oil_exploration_disputed
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_country_flag = spratlys_deal_CHI
+					}
+					has_country_flag = spratlys_deal_VIE
+					has_country_flag = spratlys_deal_PHI
+				}
+				816 = {
+					add_resource = {
+						type = oil
 						amount = 4
 					}
 				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_PHI
-						has_country_flag = spratlys_deal_VIE
-					}
-					has_country_flag = spratlys_deal_CHI
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				526 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_CHI
-						has_country_flag = spratlys_deal_VIE
-					}
-					has_country_flag = spratlys_deal_PHI
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
-				802 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = VIE } }
-					VIE = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_PHI
-						has_country_flag = spratlys_deal_CHI
-					}
-					has_country_flag = spratlys_deal_VIE
-				}
-				816 = {
-					add_resource = {
-						type = oil
-						amount = 3
-					}
-				}
 				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = CHI } }
-					CHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = MAY } }
-					MAY = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { original_tag = PHI } }
-					PHI = {
-						add_opinion_modifier = {
-							target = ROOT
-							modifier = oil_exploration_disputed
-						}
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					NOT = {
-						has_country_flag = spratlys_deal_CHI
-					}
-					has_country_flag = spratlys_deal_VIE
-					has_country_flag = spratlys_deal_PHI
-				}
-				816 = {
 					add_resource = {
 						type = oil
 						amount = 2
 					}
 				}
-				801 = {
-					add_resource = {
-						type = oil
-						amount = 1
-					}
-				}
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -2676,19 +2920,19 @@ south_china_sea_category = {
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				801 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -2721,19 +2965,19 @@ south_china_sea_category = {
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 2
+						amount = 4
 					}
 				}
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 2
 					}
 				}
 				if = {
@@ -2764,25 +3008,25 @@ south_china_sea_category = {
 				526 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				801 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				802 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 				816 = {
 					add_resource = {
 						type = oil
-						amount = 1
+						amount = 3
 					}
 				}
 			}
@@ -2803,11 +3047,10 @@ south_china_sea_category = {
 	}
 
 	joint_development_zone_malaysia = {
-
+		allowed = { NOT = { original_tag = MAY } }
 		icon = GFX_decision_generic_political_discourse
 
 		visible = {
-			NOT = { original_tag = MAY }
 			MAY = { controls_state = 816 }
 			OR = {
 				controls_state = 802
@@ -2815,6 +3058,10 @@ south_china_sea_category = {
 				controls_state = 526
 			}
 			NOT = { has_country_flag = spratlys_deal_MAY }
+			if = {
+				limit = { original_tag = CHI }
+				has_completed_focus = CHI_Joint_Development_Zones
+			}
 		}
 
 		highlight_states = {
@@ -2829,10 +3076,6 @@ south_china_sea_category = {
 					target = ROOT
 					value > 14
 				}
-			}
-			if = {
-				limit = { original_tag = CHI }
-				has_completed_focus = CHI_Joint_Development_Zones
 			}
 		}
 
@@ -2868,11 +3111,10 @@ south_china_sea_category = {
 	}
 
 	joint_development_zone_philippines = {
-
+		allowed = { NOT = { original_tag = PHI } }
 		icon = GFX_decision_generic_political_discourse
 
 		visible = {
-			NOT = { original_tag = PHI }
 			PHI = { controls_state = 802 }
 			OR = {
 				controls_state = 816
@@ -2880,6 +3122,10 @@ south_china_sea_category = {
 				controls_state = 526
 			}
 			NOT = { has_country_flag = spratlys_deal_PHI }
+			if = {
+				limit = { original_tag = CHI }
+				has_completed_focus = CHI_Joint_Development_Zones
+			}
 		}
 
 		available = {
@@ -2888,10 +3134,6 @@ south_china_sea_category = {
 					target = ROOT
 					value > 14
 				}
-			}
-			if = {
-				limit = { original_tag = CHI }
-				has_completed_focus = CHI_Joint_Development_Zones
 			}
 		}
 
@@ -2933,11 +3175,11 @@ south_china_sea_category = {
 	}
 
 	joint_development_zone_vietnam = {
+		allowed = { NOT = { original_tag = VIE } }
 
 		icon = GFX_decision_generic_political_discourse
 
 		visible = {
-			NOT = { original_tag = VIE }
 			VIE = { controls_state = 801 }
 			OR = {
 				controls_state = 802
@@ -2945,6 +3187,10 @@ south_china_sea_category = {
 				controls_state = 526
 			}
 			NOT = { has_country_flag = spratlys_deal_VIE }
+			if = {
+				limit = { original_tag = CHI }
+				has_completed_focus = CHI_Joint_Development_Zones
+			}
 		}
 
 		highlight_states = {
@@ -2959,10 +3205,6 @@ south_china_sea_category = {
 					target = ROOT
 					value > 14
 				}
-			}
-			if = {
-				limit = { original_tag = CHI }
-				has_completed_focus = CHI_Joint_Development_Zones
 			}
 		}
 
@@ -2998,11 +3240,11 @@ south_china_sea_category = {
 	}
 
 	maritime_boundary_malaysia = {
+		allowed = { NOT = { original_tag = MAY } }
 
 		icon = GFX_decision_border_war
 
 		visible = {
-			NOT = { original_tag = MAY }
 			MAY = { controls_state = 816 }
 			OR = {
 				AND = {
@@ -3017,6 +3259,10 @@ south_china_sea_category = {
 					controls_state = 526
 					526 = { is_claimed_by = MAY }
 				}
+			}
+			if = {
+				limit = { original_tag = CHI }
+				has_completed_focus = CHI_Negotiate_Maritime_Boundaries
 			}
 		}
 
@@ -3035,10 +3281,6 @@ south_china_sea_category = {
 				}
 			}
 			has_country_flag = spratlys_deal_MAY
-			if = {
-				limit = { original_tag = CHI }
-				has_completed_focus = CHI_Negotiate_Maritime_Boundaries
-			}
 		}
 
 		cost = 100
@@ -3072,11 +3314,11 @@ south_china_sea_category = {
 	}
 
 	maritime_boundary_philippines = {
+		allowed = { NOT = { original_tag = PHI } }
 
 		icon = GFX_decision_border_war
 
 		visible = {
-			NOT = { original_tag = PHI }
 			PHI = { controls_state = 802 }
 			OR = {
 				AND = {
@@ -3091,6 +3333,10 @@ south_china_sea_category = {
 					controls_state = 526
 					526 = { is_claimed_by = PHI }
 				}
+			}
+			if = {
+				limit = { original_tag = CHI }
+				has_completed_focus = CHI_Negotiate_Maritime_Boundaries
 			}
 		}
 		highlight_states = {
@@ -3107,10 +3353,6 @@ south_china_sea_category = {
 				}
 			}
 			has_country_flag = spratlys_deal_PHI
-			if = {
-				limit = { original_tag = CHI }
-				has_completed_focus = CHI_Negotiate_Maritime_Boundaries
-			}
 		}
 
 		cost = 100
@@ -3143,11 +3385,10 @@ south_china_sea_category = {
 	}
 
 	maritime_boundary_vietnam = {
-
+		allowed = { NOT = { original_tag = VIE } }
 		icon = GFX_decision_border_war
 
 		visible = {
-			NOT = { original_tag = VIE }
 			VIE = { controls_state = 801 }
 			OR = {
 				AND = {
@@ -3162,6 +3403,10 @@ south_china_sea_category = {
 					controls_state = 526
 					526 = { is_claimed_by = VIE }
 				}
+			}
+			if = {
+				limit = { original_tag = CHI }
+				has_completed_focus = CHI_Negotiate_Maritime_Boundaries
 			}
 		}
 
@@ -3179,10 +3424,6 @@ south_china_sea_category = {
 				}
 			}
 			has_country_flag = spratlys_deal_VIE
-			if = {
-				limit = { original_tag = CHI }
-				has_completed_focus = CHI_Negotiate_Maritime_Boundaries
-			}
 		}
 
 		cost = 100
@@ -3474,43 +3715,29 @@ one_china_category = {
 		icon = GFX_decision_generic_nationalism
 
 		complete_effect = {
-			set_variable = {
-				var = pan_green_coalition_support
-				value = party_pop_array^2
-			}
-			add_to_variable = {
-				var = pan_green_coalition_support
-				value = party_pop_array^18
-
-			}
-			set_variable = {
-				var = pan_blue_coalition_support
-				value = party_pop_array^1
-			}
-			add_to_variable = {
-				var = pan_blue_coalition_support
-				value = party_pop_array^6
-			}
-			add_to_variable = {
-				var = pan_blue_coalition_support
-				value = party_pop_array^14
-			}
+			set_variable = { var = pan_green_coalition_support value = party_pop_array^2 }
+			add_to_variable = { var = pan_green_coalition_support value = party_pop_array^18 }
+			set_variable = { var = pan_blue_coalition_support value = party_pop_array^1 }
+			add_to_variable = { var = pan_blue_coalition_support value = party_pop_array^6 }
+			add_to_variable = { var = pan_blue_coalition_support value = party_pop_array^14 }
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
 	show_countries_that_recognize_the_ROC = {
-
-		icon = GFX_decision_generic_nationalism
-
-		visible = {
+		allowed = {
 			OR = {
 				original_tag = TAI
 				original_tag = CHI
 			}
+		}
+
+		icon = GFX_decision_generic_nationalism
+
+		visible = {
 			NOT = {
 				TAI = {
 					is_subject = yes
@@ -3520,19 +3747,27 @@ one_china_category = {
 		}
 
 		complete_effect = {
-			statehood_show_recognised_ROC = yes
+			every_country = {
+				limit = {
+					has_country_flag = Recognised_TAI
+				}
+				display_individual_scopes = yes
+
+				set_temp_variable = { selected_tag = THIS.id }
+				TAG_get_name_with_flag = yes
+				newline = yes
+			}
 		}
 
 
 	}
 
 	resubmit_roadmap = {
-
+		allowed = { original_tag = CHI }
 		icon = GFX_decision_generic_political_discourse
 
 		visible = {
-			original_tag = CHI
-			TAI = { has_country_flag = rejected_roadmap }
+			TAI = { has_country_flag = TAI_rejected_roadmap }
 		}
 
 		cost = 50
@@ -3551,12 +3786,12 @@ one_china_category = {
 	}
 
 	anti_DPP_media_campaign = {
-
+		allowed = { original_tag = CHI }
 		icon = eng_propaganda_campaigns
 
 		visible = {
-			original_tag = CHI
 			TAI = {
+				check_variable = { TAI.party_pop_array^2 > 0 }
 				is_subject = no
 				NOT = { has_country_flag = anti_infiltration_bill }
 			}
@@ -3567,9 +3802,6 @@ one_china_category = {
 		}
 
 		custom_cost_text = cost_1_5
-
-		available = {
-		}
 
 		days_remove = 30
 
@@ -3614,12 +3846,12 @@ one_china_category = {
 	}
 
 	anti_DPP_media_campaign_2 = {
-
+		allowed = { original_tag = CHI }
 		icon = eng_propaganda_campaigns
 
 		visible = {
-			original_tag = CHI
 			TAI = {
+				check_variable = { TAI.party_pop_array^2 > 0 }
 				is_subject = no
 				has_country_flag = anti_infiltration_bill
 			}
@@ -3630,9 +3862,6 @@ one_china_category = {
 		}
 
 		custom_cost_text = cost_1_5
-
-		available = {
-		}
 
 		days_remove = 90
 
@@ -3677,11 +3906,10 @@ one_china_category = {
 	}
 
 	ban_solo_travel_to_taiwan = {
-
+		allowed = { original_tag = CHI }
 		icon = GFX_decision_border_war
 
 		visible = {
-			original_tag = CHI
 			NOT = {
 				TAI = {
 					OR = {
@@ -3726,16 +3954,13 @@ one_china_category = {
 	}
 
 	rescind_travel_ban = {
-
+		allowed = { original_tag = CHI }
 		icon = GFX_decision_border_war
 
 		visible = {
-			original_tag = CHI
 			TAI = {
-				AND = {
-					is_subject = no
-					has_idea = china_travel_ban
-				}
+				is_subject = no
+				has_idea = china_travel_ban
 			}
 		}
 
@@ -3772,11 +3997,10 @@ one_china_category = {
 	}
 
 	bribe_military_officials = {
-
+		allowed = { original_tag = CHI }
 		icon = GFX_decision_generic_army_support
 
 		visible = {
-			original_tag = CHI
 			has_completed_focus = CHI_Gain_Support_of_Military_Elements
 			NOT = { has_completed_focus = CHI_The_Fifth_Column }
 		}
@@ -3786,9 +4010,6 @@ one_china_category = {
 		}
 
 		custom_cost_text = cost_5_0
-
-		available = {
-		}
 
 		highlight_states = {
 			highlight_states_trigger = {
@@ -3814,12 +4035,9 @@ one_china_category = {
 	}
 
 	declare_independence_taiwan = {
+		allowed = { original_tag = TAI }
 
 		icon = GFX_decision_generic_nationalism
-
-		allowed = {
-			original_tag = TAI
-		}
 
 		available = {
 			custom_trigger_tooltip = {
@@ -3956,15 +4174,15 @@ one_china_category = {
 	}
 
 	fortify_kinmen = {
+		allowed = { original_tag = TAI }
 
 		icon = GFX_decision_generic_construction
 
-		allowed = {
-			original_tag = TAI
-		}
-
 		available = {
-			threat > 0.1
+			custom_trigger_tooltip = {
+				tooltip = CHI_chinese_aggression_greater_than_4_tt
+				check_variable = { CHI.chinese_aggression > 4 }
+			}
 		}
 
 		custom_cost_trigger = {
@@ -3987,10 +4205,6 @@ one_china_category = {
 
 		days_remove = 14
 
-		modifier = {
-			civilian_factory_use = 2
-		}
-
 		remove_effect = {
 			430 = {
 				add_building_construction = {
@@ -4006,20 +4220,28 @@ one_china_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
+			modifier = {
+				factor = 10
+				check_variable = { CHI.chinese_aggression > 4 }
+			}
+			modifier = {
+				factor = 10
+				check_variable = { CHI.chinese_aggression > 8 }
+			}
 		}
 	}
 
 	fortify_matsu = {
+		allowed = { original_tag = TAI }
 
 		icon = GFX_decision_generic_construction
 
-		allowed = {
-			original_tag = TAI
-		}
-
 		available = {
-			threat > 0.1
+			custom_trigger_tooltip = {
+				tooltip = CHI_chinese_aggression_greater_than_4_tt
+				check_variable = { CHI.chinese_aggression > 4 }
+			}
 		}
 
 		custom_cost_trigger = {
@@ -4042,10 +4264,6 @@ one_china_category = {
 
 		days_remove = 14
 
-		modifier = {
-			civilian_factory_use = 2
-		}
-
 		remove_effect = {
 			1109 = {
 				add_building_construction = {
@@ -4061,16 +4279,21 @@ one_china_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
+			modifier = {
+				factor = 10
+				check_variable = { CHI.chinese_aggression > 4 }
+			}
+			modifier = {
+				factor = 10
+				check_variable = { CHI.chinese_aggression > 8 }
+			}
 		}
 	}
 
 	anti_infiltration_bill = {
+		allowed = { original_tag = TAI }
 		icon = eng_propaganda_campaigns
-
-		visible = {
-			original_tag = TAI
-		}
 
 		available = {
 			custom_trigger_tooltip = {
@@ -4092,7 +4315,7 @@ one_china_category = {
 		}
 
 		complete_effect = {
-			custom_effect_tooltip = anti_infiltration_bill_tt
+			custom_effect_tooltip = TAI_anti_infiltration_bill_tt
 			set_country_flag = anti_infiltration_bill
 			news_event = { days = 1 id = taiwan_news.6 }
 			log = "[GetDateText]: [This.GetName]: decision anti_infiltration_bill executed"
@@ -4184,7 +4407,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	central_china_build_high_speed_railway = {
@@ -4281,7 +4504,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	eastern_china_build_high_speed_railway = {
@@ -4359,7 +4582,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	southern_china_build_high_speed_railway = {
@@ -4467,7 +4690,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	western_china_build_high_speed_railway = {
@@ -4527,7 +4750,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	tibet_build_high_speed_railway = {
@@ -4581,7 +4804,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	mongolia_build_high_speed_railway = {
@@ -4631,7 +4854,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 	taiwan_build_high_speed_railway = {
@@ -4706,7 +4929,7 @@ high_speed_railway_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -4748,7 +4971,7 @@ southwest_hydroelectricity_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4788,7 +5011,7 @@ southwest_hydroelectricity_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4828,7 +5051,7 @@ southwest_hydroelectricity_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4868,7 +5091,7 @@ southwest_hydroelectricity_dev_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -4911,7 +5134,7 @@ xinjiang_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5068,7 +5291,7 @@ xinjiang_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5092,9 +5315,9 @@ xinjiang_category = {
 		}
 
 		complete_effect = {
+			log = "[GetDateText]: [This.GetName]: decision build_mosques executed"
 			set_temp_variable = { treasury_change = -1.5 }
 			modify_treasury_effect = yes
-			log = "[GetDateText]: [This.GetName]: decision build_mosques executed"
 		}
 
 		days_remove = 50
@@ -5102,12 +5325,12 @@ xinjiang_category = {
 		days_re_enable = 120
 
 		remove_effect = {
-			set_temp_variable = { modify_uighur_opinion = 5 }
+			set_temp_variable = { modify_uighur_opinion = 8 }
 			CHI_modify_uighur_opinion = yes
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 }
@@ -5147,7 +5370,7 @@ outer_mongolia_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5175,17 +5398,17 @@ outer_mongolia_category = {
 
 		remove_effect = {
 			CHI = { set_country_flag = amarbayasgalant_repaired }
-			MON = { add_opinion_modifier = { target = CHI
-					modifier = repair_of_amarbayasgalant
-					}
-					set_temp_variable = { percent_change = 2 }
-					set_temp_variable = { tag_index = CHI }
-					set_temp_variable = { influence_target = MON }
-					change_influence_percentage = yes }
+			MON = {
+				add_opinion_modifier = { target = CHI modifier = repair_of_amarbayasgalant }
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = CHI }
+				set_temp_variable = { influence_target = MON }
+				change_influence_percentage = yes
+			}
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5223,7 +5446,7 @@ outer_mongolia_category = {
 		}
 
 		ai_will_do = {
-			factor = 1
+			base = 1
 		}
 	}
 
@@ -5365,7 +5588,6 @@ taiwan_coup_category = {
 			}
 		}
 
-		cost = 50
 
 		complete_effect = {
 			log = "[GetDateText]: [This.GetName]: decision send_political_support_taiwan executed"
@@ -5374,6 +5596,7 @@ taiwan_coup_category = {
 		days_remove = 2
 
 		remove_effect = {
+			add_political_power = -50
 			TAI = {
 				add_political_power = 50
 			}
@@ -5474,6 +5697,7 @@ taiwan_coup_category = {
 					TAI_preparations > CHI_preparations
 				}
 			}
+			NOT = { TAI = { has_idea = fate_of_mongolian_area_1 } }
 		}
 
 		highlight_states = {
@@ -5758,7 +5982,7 @@ hongkong_category = {
 			HKG = {
 				add_stability = -0.1
 				decrease_economic_growth = yes
-				set_country_flag = troops_deployed
+				set_country_flag = CHI_troops_deployed
 				set_temp_variable = { percent_change = 4 }
 				set_temp_variable = { tag_index = ROOT.id }
 				set_temp_variable = { influence_target = THIS.id }
@@ -5864,7 +6088,7 @@ hongkong_category = {
 						popularity = -0.1
 					}
 				}
-				set_country_flag = troops_deployed
+				set_country_flag = CHI_troops_deployed
 				set_temp_variable = { percent_change = 4 }
 				set_temp_variable = { tag_index = ROOT.id }
 				set_temp_variable = { influence_target = THIS.id }
@@ -5919,7 +6143,7 @@ hongkong_category = {
 					}
 				}
 				HKG = {
-					has_country_flag = troops_deployed
+					has_country_flag = CHI_troops_deployed
 				}
 			}
 		}
@@ -5999,7 +6223,7 @@ hongkong_category = {
 			HKG = {
 				remove_ideas = Hong_Kong_Protests_01
 			}
-			HKG = { clr_country_flag = troops_deployed }
+			HKG = { clr_country_flag = CHI_troops_deployed }
 		}
 	}
 
@@ -6036,7 +6260,7 @@ hongkong_category = {
 					HKG = { NOT = { has_country_flag = reunification } }
 				}
 				HKG = {
-					has_country_flag = troops_deployed
+					has_country_flag = CHI_troops_deployed
 				}
 			}
 		}
@@ -6124,7 +6348,7 @@ hongkong_category = {
 			HKG = {
 				remove_ideas = Hong_Kong_Protests_02
 			}
-			HKG = { clr_country_flag = troops_deployed }
+			HKG = { clr_country_flag = CHI_troops_deployed }
 		}
 	}
 
@@ -6161,7 +6385,7 @@ hongkong_category = {
 					HKG = { NOT = { has_country_flag = reunification } }
 				}
 				HKG = {
-					has_country_flag = troops_deployed
+					has_country_flag = CHI_troops_deployed
 				}
 			}
 		}
@@ -6201,79 +6425,7 @@ hongkong_category = {
 			HKG = {
 				remove_ideas = Hong_Kong_Protests_03
 			}
-			HKG = { clr_country_flag = troops_deployed }
-		}
-	}
-}
-
-invigorate_country_through_STE_category = {
-
-	strategy_of_invigorating_through_STE = {
-
-		allowed = { original_tag = CHI }
-
-		icon = GFX_decision_generic_research
-
-		is_good = yes
-
-		days_mission_timeout = 730
-		fire_only_once = yes
-
-		activation = {
-			has_completed_focus = CHI_Invigorate_Country_Through_STE
-		}
-
-		available = {
-			always = no
-		}
-
-		timeout_effect = {
-			add_tech_bonus = {
-				name = strategy_of_invigorating_through_STE
-				bonus = 0.4
-				uses = 1
-				category = CAT_internet_tech
-			}
-			add_tech_bonus = {
-				name = strategy_of_invigorating_through_STE
-				bonus = 0.2
-				uses = 2
-				category = CAT_computing_tech
-			}
-		}
-	}
-
-	increase_research_funds = {
-		icon = GFX_decision_category_debt_payments
-
-		available = {
-			has_completed_focus = CHI_Invigorate_Country_Through_STE
-		}
-
-		visible = {
-			always = yes
-		}
-
-		custom_cost_trigger = {
-			check_variable = { treasury > 3.49 }
-		}
-
-		custom_cost_text = cost_3_5
-
-		days_remove = 120
-
-		days_re_enable = 60
-
-		modifier = {
-			research_speed_factor = 0.05
-		}
-
-		complete_effect = {
-			set_temp_variable = { treasury_change = -3.5 }
-			modify_treasury_effect = yes
-		}
-		remove_effect = {
-
+			HKG = { clr_country_flag = CHI_troops_deployed }
 		}
 	}
 }
@@ -6289,6 +6441,7 @@ arunachal_war_decisions_category = {
 		days_remove = 15
 		days_re_enable = 20
 		custom_cost_text = command_power_more_than_20
+		fixed_random_seed = no
 		custom_cost_trigger = {
 			command_power > 20
 		}
@@ -6344,13 +6497,14 @@ arunachal_war_decisions_category = {
 	prepare_mech_army_training_arunachal = {
 		available = {
 			has_war = no
-			has_equipment = { apc_hull > 5 }
-			has_equipment = { mbt_hull > 3 }
+			has_equipment = { medium_tank_amphibious_chassis > 5 }
+			has_equipment = { medium_tank_chassis > 3 }
 		}
 
 		days_remove = 15
 		days_re_enable = 20
 		custom_cost_text = command_power_more_than_20
+		fixed_random_seed = no
 		custom_cost_trigger = {
 			command_power > 20
 		}
@@ -6361,11 +6515,11 @@ arunachal_war_decisions_category = {
 			custom_effect_tooltip = arunachal_increase_readiness_TT
 
 			add_equipment_to_stockpile = {
-				type = apc_hull
+				type = medium_tank_amphibious_chassis
 				amount = -5
 			}
 			add_equipment_to_stockpile = {
-				type = mbt_hull
+				type = medium_tank_chassis
 				amount = -3
 			}
 
@@ -6412,6 +6566,7 @@ arunachal_war_decisions_category = {
 		days_remove = 15
 		days_re_enable = 20
 		custom_cost_text = command_power_more_than_20
+		fixed_random_seed = no
 		custom_cost_trigger = {
 			command_power > 20
 		}
@@ -6465,6 +6620,7 @@ arunachal_war_decisions_category = {
 		days_remove = 15
 		days_re_enable = 20
 		custom_cost_text = command_power_more_than_20
+		fixed_random_seed = no
 		custom_cost_trigger = {
 			command_power > 20
 		}
@@ -6520,6 +6676,7 @@ arunachal_war_decisions_category = {
 		days_remove = 15
 		days_re_enable = 20
 		custom_cost_text = command_power_more_than_20
+		fixed_random_seed = no
 		custom_cost_trigger = {
 			command_power > 20
 		}

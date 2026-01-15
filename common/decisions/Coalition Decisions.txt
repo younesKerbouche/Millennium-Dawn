@@ -18,14 +18,12 @@ coalition_decisions = {
 		}
 
 		activation = {
-			#is triggered only
 			has_country_flag = coalition_forming
 		}
 
 		is_good = no
 
 		days_mission_timeout = 30
-		days_remove = 0
 
 		fire_only_once = yes
 
@@ -257,6 +255,9 @@ coalition_decisions = {
 						}
 					}
 					set_leader = yes
+					hidden_effect = {
+						IP_idea_configuration = yes
+					}
 				}
 			}
 			clr_country_flag = coalition_forming
@@ -277,9 +278,9 @@ coalition_decisions = {
 	Western_Autocracy_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^0 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^0 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 0 } #is already in coalition
 					is_in_array = { ruling_party = 0 } #is already in coalition
 				}
@@ -337,9 +338,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -366,17 +365,16 @@ coalition_decisions = {
 	}
 	Western_Autocracy_remove = {
 		icon = decision
-		available = { }
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 0 } }
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Western_Autocracy_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_0 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^0 } #size
@@ -395,6 +393,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 0 } #conservatism
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -403,9 +402,9 @@ coalition_decisions = {
 	conservatism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^1 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^1 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 1 } #is already in coalition
 					is_in_array = { ruling_party = 1 } #is already in coalition
 				}
@@ -479,9 +478,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -509,17 +506,16 @@ coalition_decisions = {
 	}
 	conservatism_remove = {
 		icon = decision
-		available = { }
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 1 } }
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision conservatism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_1 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^1 } #size
@@ -538,6 +534,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 1 } #conservatism
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -546,9 +543,9 @@ coalition_decisions = {
 	liberalism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^2 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^2 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 2 } #is already in coalition
 					is_in_array = { ruling_party = 2 } #is already in coalition
 				}
@@ -622,7 +619,7 @@ coalition_decisions = {
 							tooltip = mutual_socialism_25_tt
 							#won't join social democrats if both are strong
 							AND = {
-								NOT = { TAG = USA }
+								NOT = { tag = USA }
 								OR = {
 									is_in_array = { gov_coalition_array = 3 } #social democrats
 									is_in_array = { ruling_party = 3 } #social democrats
@@ -656,10 +653,6 @@ coalition_decisions = {
 			}
 		}
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
-
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
@@ -684,17 +677,14 @@ coalition_decisions = {
 	}
 	liberalism_remove = {
 		icon = decision
-		available = { }
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 2 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision liberalism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_2 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^2 } #size
@@ -711,6 +701,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 2 } #liberalism
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -719,9 +710,9 @@ coalition_decisions = {
 	socialism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^3 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^3 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 3 } #is already in coalition
 					is_in_array = { ruling_party = 3 } #is already in coalition
 				}
@@ -815,9 +806,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -843,17 +832,14 @@ coalition_decisions = {
 	}
 	socialism_remove = {
 		icon = decision
-		available = { }
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 3 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision socialism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_3 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^3 } #size
@@ -872,6 +858,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 3 } #socialism
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -879,12 +866,11 @@ coalition_decisions = {
 	Communist-State_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^4 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^4 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 4 } #is already in coalition
 					is_in_array = { ruling_party = 4 } #is already in coalition
-
 				}
 			}
 		}
@@ -944,9 +930,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -974,16 +958,14 @@ coalition_decisions = {
 	}
 	Communist-State_remove = {
 		icon = decision
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 4 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Communist-State_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_4 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^4 } #size
@@ -1002,6 +984,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 4 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -1009,12 +992,11 @@ coalition_decisions = {
 	anarchist_communism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^5 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^5 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 5 } #is already in coalition
 					is_in_array = { ruling_party = 5 } #is already in coalition
-
 				}
 			}
 		}
@@ -1075,9 +1057,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1105,18 +1085,14 @@ coalition_decisions = {
 	}
 	anarchist_communism_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 5 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision anarchist_communism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_5 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^5 } #size
@@ -1135,6 +1111,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 5 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -1142,12 +1119,11 @@ coalition_decisions = {
 	Conservative_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^6 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^6 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 6 } #is already in coalition
 					is_in_array = { ruling_party = 6 } #is already in coalition
-
 				}
 			}
 		}
@@ -1210,9 +1186,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1240,18 +1214,14 @@ coalition_decisions = {
 	}
 	Conservative_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 6 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Conservative_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_6 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^6 } #size
@@ -1270,6 +1240,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 6 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -1277,12 +1248,11 @@ coalition_decisions = {
 	Autocracy_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^7 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^7 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 7 } #is already in coalition
 					is_in_array = { ruling_party = 7 } #is already in coalition
-
 				}
 			}
 		}
@@ -1347,9 +1317,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1377,18 +1345,14 @@ coalition_decisions = {
 	}
 	Autocracy_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 7 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Autocracy_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_7 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^7 } #size
@@ -1407,18 +1371,18 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 7 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
 	Mod_Vilayat_e_Faqih_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^8 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^8 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 8 } #is already in coalition
 					is_in_array = { ruling_party = 8 } #is already in coalition
-
 				}
 			}
 		}
@@ -1471,9 +1435,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1501,18 +1463,14 @@ coalition_decisions = {
 	}
 	Mod_Vilayat_e_Faqih_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 8 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Mod_Vilayat_e_Faqih_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_8 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^8 } #size
@@ -1531,6 +1489,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 8 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -1538,9 +1497,9 @@ coalition_decisions = {
 	Vilayat_e_Faqih_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^9 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^9 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 9 } #is already in coalition
 					is_in_array = { ruling_party = 9 } #is already in coalition
 
@@ -1596,9 +1555,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1626,18 +1583,14 @@ coalition_decisions = {
 	}
 	Vilayat_e_Faqih_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 9 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Vilayat_e_Faqih_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_9 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^9 } #size
@@ -1656,6 +1609,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 9 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -1665,12 +1619,11 @@ coalition_decisions = {
 	Kingdom_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^10 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^10 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 10 } #is already in coalition
 					is_in_array = { ruling_party = 10 } #is already in coalition
-
 				}
 			}
 		}
@@ -1727,9 +1680,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1757,18 +1708,16 @@ coalition_decisions = {
 	}
 	Kingdom_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 10 } }
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Kingdom_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_10 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^10 } #size
@@ -1787,18 +1736,18 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 10 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
 	Caliphate_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^11 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^11 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 11 } #is already in coalition
 					is_in_array = { ruling_party = 11 } #is already in coalition
-
 				}
 			}
 		}
@@ -1863,9 +1812,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -1893,18 +1840,14 @@ coalition_decisions = {
 	}
 	Caliphate_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 11 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Caliphate_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_11 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^11 } #size
@@ -1923,6 +1866,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 11 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -1930,9 +1874,9 @@ coalition_decisions = {
 	Neutral_Muslim_Brotherhood_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^12 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^12 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 12 } #is already in coalition
 					is_in_array = { ruling_party = 12 } #is already in coalition
 
@@ -1994,9 +1938,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2024,18 +1966,14 @@ coalition_decisions = {
 	}
 	Neutral_Muslim_Brotherhood_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 12 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Neutral_Muslim_Brotherhood_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_12 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^12 } #size
@@ -2054,6 +1992,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 12 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2061,12 +2000,11 @@ coalition_decisions = {
 	Neutral_Autocracy_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^13 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^13 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 13 } #is already in coalition
 					is_in_array = { ruling_party = 13 } #is already in coalition
-
 				}
 			}
 		}
@@ -2123,9 +2061,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2153,18 +2089,14 @@ coalition_decisions = {
 	}
 	Neutral_Autocracy_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 13 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Neutral_Autocracy_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_13 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^13 } #size
@@ -2183,6 +2115,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 13 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2190,12 +2123,11 @@ coalition_decisions = {
 	Neutral_conservatism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^14 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^14 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 14 } #is already in coalition
 					is_in_array = { ruling_party = 14 } #is already in coalition
-
 				}
 			}
 		}
@@ -2256,9 +2188,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2286,18 +2216,14 @@ coalition_decisions = {
 	}
 	Neutral_conservatism_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 14 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Neutral_conservatism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_14 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^14 } #size
@@ -2316,6 +2242,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 14 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2323,12 +2250,11 @@ coalition_decisions = {
 	oligarchism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^15 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^15 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 15 } #is already in coalition
 					is_in_array = { ruling_party = 15 } #is already in coalition
-
 				}
 			}
 		}
@@ -2338,7 +2264,6 @@ coalition_decisions = {
 			}
 			NOT = {
 				OR = {
-
 					custom_trigger_tooltip = {
 						tooltip = is_biggest_party
 						check_variable = { max_index_1 = 15 }
@@ -2375,9 +2300,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2405,18 +2328,14 @@ coalition_decisions = {
 	}
 	oligarchism_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 15 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision oligarchism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_15 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^15 } #size
@@ -2435,6 +2354,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 15 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2442,12 +2362,11 @@ coalition_decisions = {
 	Neutral_Libertarian_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^16 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^16 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 16 } #is already in coalition
 					is_in_array = { ruling_party = 16 } #is already in coalition
-
 				}
 			}
 		}
@@ -2514,9 +2433,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2544,18 +2461,16 @@ coalition_decisions = {
 	}
 	Neutral_Libertarian_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 16 } }
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Neutral_Libertarian_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_16 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^16 } #size
@@ -2574,6 +2489,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 16 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2581,12 +2497,11 @@ coalition_decisions = {
 	Neutral_green_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^17 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^17 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 17 } #is already in coalition
 					is_in_array = { ruling_party = 17 } #is already in coalition
-
 				}
 			}
 		}
@@ -2643,9 +2558,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2673,18 +2586,14 @@ coalition_decisions = {
 	}
 	Neutral_green_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 17 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Neutral_green_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_17 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^17 } #size
@@ -2703,6 +2612,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 17 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2710,9 +2620,9 @@ coalition_decisions = {
 	neutral_Social_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^18 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^18 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 18 } #is already in coalition
 					is_in_array = { ruling_party = 18 } #is already in coalition
 
@@ -2776,9 +2686,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2806,18 +2714,14 @@ coalition_decisions = {
 	}
 	neutral_Social_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 18 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision neutral_Social_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_18 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^18 } #size
@@ -2836,6 +2740,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 18 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2843,12 +2748,11 @@ coalition_decisions = {
 	Neutral_Communism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^19 > election_threshold } #failed elections
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^19 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 19 } #is already in coalition
 					is_in_array = { ruling_party = 19 } #is already in coalition
-
 				}
 			}
 		}
@@ -2915,9 +2819,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -2945,18 +2847,14 @@ coalition_decisions = {
 	}
 	Neutral_Communism_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 19 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Neutral_Communism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_19 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^19 } #size
@@ -2975,6 +2873,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 19 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -2982,12 +2881,11 @@ coalition_decisions = {
 	Nat_Populism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^20 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^20 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 20 } #is already in coalition
 					is_in_array = { ruling_party = 20 } #is already in coalition
-
 				}
 			}
 		}
@@ -3041,9 +2939,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -3071,18 +2967,14 @@ coalition_decisions = {
 	}
 	Nat_Populism_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 20 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Nat_Populism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_20 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^20 } #size
@@ -3101,6 +2993,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 20 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -3108,12 +3001,11 @@ coalition_decisions = {
 	Nat_Fascism_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^21 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^21 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 21 } #is already in coalition
 					is_in_array = { ruling_party = 21 } #is already in coalition
-
 				}
 			}
 		}
@@ -3182,9 +3074,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -3212,18 +3102,14 @@ coalition_decisions = {
 	}
 	Nat_Fascism_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 21 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Nat_Fascism_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_21 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^21 } #size
@@ -3242,18 +3128,18 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 21 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
 	Nat_Autocracy_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^22 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^22 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 22 } #is already in coalition
 					is_in_array = { ruling_party = 22 } #is already in coalition
-
 				}
 			}
 		}
@@ -3306,9 +3192,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -3336,18 +3220,14 @@ coalition_decisions = {
 	}
 	Nat_Autocracy_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 22 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Nat_Autocracy_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_22 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^22 } #size
@@ -3366,18 +3246,18 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 22 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
 	Monarchist_invite = {
 		icon = decision
 		visible = {
+			check_variable = { party_pop_elect_array^23 > election_threshold }
 			NOT = {
 				OR = {
-					check_variable = { party_pop_elect_array^23 < election_threshold } #failed elections
 					is_in_array = { gov_coalition_array = 23 } #is already in coalition
 					is_in_array = { ruling_party = 23 } #is already in coalition
-
 				}
 			}
 		}
@@ -3432,9 +3312,7 @@ coalition_decisions = {
 				}
 			}
 		}
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -3462,18 +3340,14 @@ coalition_decisions = {
 	}
 	Monarchist_remove = {
 		icon = decision
-		available = {
-		}
+		available = { NOT = { has_country_flag = coalition_party_negotiations } }
 		visible = { is_in_array = { gov_coalition_array = 23 } }
-
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
 
 		ai_will_do = { base = 0 }
 
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision Monarchist_remove"
+			set_country_flag = coalition_party_negotiations
 			hidden_effect = {
 				pol_distance_matrix_23 = yes
 				multiply_variable = { pol_distance_current = party_pop_elect_array^23 } #size
@@ -3492,6 +3366,7 @@ coalition_decisions = {
 				}
 				remove_from_array = { gov_coalition_array = 23 }
 				update_government_coalition_strength = yes
+				clr_country_flag = coalition_party_negotiations
 			}
 		}
 	}
@@ -3511,9 +3386,7 @@ coalition_decisions = {
 		available = {
 		}
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 
@@ -3539,9 +3412,7 @@ coalition_decisions = {
 		available = {
 		}
 
-		cost = 0
-		days_remove = 0
-		days_re_enable = 0
+
 
 		ai_will_do = { base = 0 }
 

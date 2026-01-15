@@ -12,9 +12,6 @@ types = {
 		arrow = {
 			type = air
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		allowed = {
 
@@ -90,22 +87,23 @@ types = {
 				# Raiding unit modifiers
 				experience = {
 					weight = 0.2
-					weight = -0.2
+					start_weight = -0.2
 					reference = 0.5
 				}
 
 				organisation = {
 					weight = 0.3
-					weight = -0.3
+					start_weight = -0.3
 					reference = 60
 				}
 				strength = {
 					weight = 0.05
-					weight = -0.05
+					start_weight = -0.05
 					reference = 1
 				}
 				recon = {
 					weight = 0.5
+					start_weight = -0.05
 					reference = 10
 				}
 
@@ -402,6 +400,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -424,7 +431,6 @@ types = {
 				factor = 0
 			}
 		}
-
 	}
 	#Targeted Recon missions for the main drones
 	#TODO: Add the benifit of recon back to this raid
@@ -438,9 +444,6 @@ types = {
 
 		arrow = {
 			type = line
-		}
-		unit_model = {
-			type = equipment
 		}
 
 		allowed = {
@@ -530,7 +533,7 @@ types = {
 				air_defence = {
 					reference = 150
 					weight = 0.2
-					weight = -0.2
+					start_weight = -0.2
 				}
 				air_superiority = {
 					reference = 1
@@ -957,6 +960,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -992,9 +1004,6 @@ types = {
 		arrow = {
 			type = air
 		}
-		unit_model = {
-			type = equipment
-		}
 
 		allowed = {
 
@@ -1020,7 +1029,8 @@ types = {
 							has_idea = intervention_limited_interventionism
 						}
 						is_neighbor_of = FROM
-					} else_if = {
+					}
+					else_if = {
 						limit = {
 							has_idea = intervention_regional_interventionism
 						}
@@ -1057,7 +1067,7 @@ types = {
 
 		target_type = {
 			building = {
-				type = facility
+				tags = facility
 			}
 		}
 
@@ -1102,7 +1112,7 @@ types = {
 				air_defence = {
 					reference = 150
 					weight = 0.2
-					weight = -0.2
+					start_weight = -0.2
 				}
 				air_superiority = {
 					reference = 1
@@ -1227,38 +1237,12 @@ types = {
 					}
 				}
 				victim_effects = {
-					if = {
-						limit = {
-							NOT = { var:actor_country = { has_war_with = var:ROOT.victim_country } }
-						}
-						hidden_effect = {
-							var:actor_country = {
-								set_variable = { THIS.target_country = var:ROOT.victim_country }
-								set_variable = { THIS.actor_country = var:ROOT.hostile_country }
-								country_event = {
-									id = MD_raid.8
-								}
-							}
-						}
-					}
-			    }
+					send_raid_event_to_victim = yes
+				}
 			}
 			limited_success = {
 				victim_effects = {
-					if = {
-						limit = {
-							NOT = { var:actor_country = { has_war_with = var:ROOT.victim_country } }
-						}
-						hidden_effect = {
-							var:actor_country = {
-								set_variable = { THIS.target_country = var:ROOT.victim_country }
-								set_variable = { THIS.actor_country = var:ROOT.hostile_country }
-								country_event = {
-									id = MD_raid.8
-								}
-							}
-						}
-					}
+					send_raid_event_to_victim = yes
 
 					var:target_state = {
 						set_temp_variable = { ROOT.aa_defense = THIS.non_damaged_building_level@anti_air_building }
@@ -1409,20 +1393,7 @@ types = {
 			}
 			success = {
 				victim_effects = {
-					if = {
-						limit = {
-							NOT = { var:actor_country = { has_war_with = var:ROOT.victim_country } }
-						}
-						hidden_effect = {
-							var:actor_country = {
-								set_variable = { THIS.target_country = var:ROOT.victim_country }
-								set_variable = { THIS.actor_country = var:ROOT.hostile_country }
-								country_event = {
-									id = MD_raid.8
-								}
-							}
-						}
-					}
+					send_raid_event_to_victim = yes
 
 					var:target_state = {
 						set_temp_variable = { ROOT.aa_defense = THIS.non_damaged_building_level@anti_air_building }
@@ -1574,20 +1545,7 @@ types = {
 			}
 			critical_success = {
 				victim_effects = {
-					if = {
-						limit = {
-							NOT = { var:actor_country = { has_war_with = var:ROOT.victim_country } }
-						}
-						hidden_effect = {
-							var:actor_country = {
-								set_variable = { THIS.target_country = var:ROOT.victim_country }
-								set_variable = { THIS.actor_country = var:ROOT.hostile_country }
-								country_event = {
-									id = MD_raid.8
-								}
-							}
-						}
-					}
+					send_raid_event_to_victim = yes
 
 					var:target_state = {
 						set_temp_variable = { ROOT.aa_defense = THIS.non_damaged_building_level@anti_air_building }
@@ -1780,6 +1738,15 @@ types = {
 						THIS = { has_government = communism }
 					}
 				}
+			}
+			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
 			}
 			modifier = {
 				factor = 0

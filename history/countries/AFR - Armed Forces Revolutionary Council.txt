@@ -6,19 +6,14 @@
 	set_variable = { gdp_per_capita = 12.129 }
 
 
-	if = {
-		limit = {
-			has_start_date < 2000.1.2
-		}
-		declare_war_on = {
-			target = SIE
-			type = civil_war
-		}
-		LIB = {
-			add_to_war = {
-				targeted_alliance = AFR
-				enemy = SIE
-			}
+	declare_war_on = {
+		target = SIE
+		type = civil_war
+	}
+	LIB = {
+		add_to_war = {
+			targeted_alliance = AFR
+			enemy = SIE
 		}
 	}
 
@@ -50,9 +45,6 @@
 	set_variable = { var = corporate_tax_rate value = 20 }
 	set_variable = { var = population_tax_rate value = 20 }
 	set_variable = { var = int_investments value = 0 }
-	every_controlled_state = {
-		set_variable = { productivity_state_var = 473 }
-	}
 	set_variable = { overall_productivity = 473 }
 
 	set_variable = { farmers_opinion = 40 }
@@ -65,7 +57,7 @@
 
 	# Starting tech
 	set_technology = {
-		legacy_doctrines = 1
+
 		infantry_mass_assault = 1
 
 		#For Templates
@@ -82,6 +74,7 @@
 	}
 	if = {
 		limit = { has_dlc = "No Step Back" }
+
 		set_technology = {
 			nsb_Anti_Air_0 = 1
 		}
@@ -155,13 +148,5 @@
 	recruit_character = AFR_foday_kallay
 
 	set_variable = { literacy_rate = 0.348 }
-}
 
-2017.1.1 = {
-	remove_ideas = {
-		blood_diamond_trade
-		child_soldiers
-	}
-
-	clr_country_flag = Conscripting_Child_Soldiers
 }

@@ -1,73 +1,49 @@
 ###########SOVFED DECISIONS###########
 SOV_Sovfed_category = {
-	###########SUBJECT MAIN DECISIONS###########
-	#PAY DEPT
-	SUB_subject_pay_dept = {
-		fire_only_once = no
-		days_remove = 10
-		icon = GFX_decision_sovfed_annex_button
-		visible = {
-			check_variable = { ROOT.debt > 5 }
-			check_variable = { ROOT.treasury > 5 }
-			ROOT = { 
-				is_ai = yes
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SUB_subject_pay_dept"
-			set_temp_variable = { debt_change = debt }
-			multiply_temp_variable = { debt_change = -5 }
-			modify_debt_effect = yes
-			set_temp_variable = { treasury_change = -5 }
-			modify_treasury_effect = yes
-		}
-		ai_will_do = { factor = 360 }
-	}
 	#ANNEX SUBJECTS
 	SUB_subject_annex = {
-		fire_only_once = no
+		allowed = { original_tag = SOV }
 		days_remove = 450
 		icon = GFX_decision_sovfed_annex_button
+
+		visible = {
+			SUB_subjects_availables = yes
+		}
 		available = {
 			NOT = { has_government = democratic }
 		}
-		visible = {
-			original_tag = SOV
-			SUB_subjects_availables = yes
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_subject_annex"
 			russia_subjects_annex = yes
 		}
-		ai_will_do = { factor = 360 }
+
+		ai_will_do = {
+			base = 360
+			modifier = {
+				emerging_reactionaries_are_in_power = yes
+				date < 2015.1.1
+				add = -360
+			}
+		}
 	}
 	#INTEGRATE IN RUSSIAN ECONOMIC - TRANSNISTRIA
 	SUB_economic_integrate = {
-		fire_only_once = no
+		allowed = { original_tag = PMR }
 		days_remove = 30
 		icon = GFX_decision_sovfed_economic_button
+
+		visible = {
+			SUB_has_russian_special_autonomy = yes
+			SUB_subjects_economic_integration = yes
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_sovfed_pmr_subject_economic_available_tt
 				has_country_flag = PMR_sheriff_finish
 			}
 		}
-		visible = {
-			original_tag = PMR
-			OR = {
-				has_autonomy_state = autonomy_republic_rf
-				has_autonomy_state = autonomy_kray_rf
-				has_autonomy_state = autonomy_oblast_rf
-				has_autonomy_state = autonomy_okrug_rf
-			}
-			SUB_subjects_economic_integration = yes
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_economic_integrate"
 			custom_effect_tooltip = SUB_sovfed_pmr_subject_economic_tt
@@ -80,19 +56,11 @@ SOV_Sovfed_category = {
 	}
 	#INTEGRATE IN RUSSIAN ECONOMIC
 	SUB_economic_integrate_yes = {
-		fire_only_once = no
-		days_remove = 30
+		allowed = { NOT = { original_tag = PMR } }
+		days_remove = 85
 		icon = GFX_decision_sovfed_economic_button
 		visible = {
-			NOT = {
-				original_tag = PMR
-			}
-			OR = {
-				has_autonomy_state = autonomy_republic_rf
-				has_autonomy_state = autonomy_kray_rf
-				has_autonomy_state = autonomy_oblast_rf
-				has_autonomy_state = autonomy_okrug_rf
-			}
+			SUB_has_russian_special_autonomy = yes
 			SUB_subjects_economic_integration = yes
 		}
 		complete_effect = {
@@ -107,16 +75,10 @@ SOV_Sovfed_category = {
 	}
 	#INTEGRATE IN RUSSIAN ARMY
 	SUB_army_integrate = {
-		fire_only_once = no
 		days_remove = 30
 		icon = GFX_decision_sovfed_campaign_button
 		visible = {
-			OR = {
-				has_autonomy_state = autonomy_republic_rf
-				has_autonomy_state = autonomy_kray_rf
-				has_autonomy_state = autonomy_oblast_rf
-				has_autonomy_state = autonomy_okrug_rf
-			}
+			SUB_has_russian_special_autonomy = yes
 			SUB_subjects_army_integration = yes
 		}
 		complete_effect = {
@@ -131,16 +93,17 @@ SOV_Sovfed_category = {
 	}
 	#ANNEX STATES
 	SUB_state_annex = {
-		fire_only_once = no
+		allowed = { original_tag = SOV }
 		days_remove = 450
 		icon = GFX_decision_sovfed_annex_button
+
+		visible = {
+			SUB_state_availables = yes
+		}
 		available = {
 			NOT = { has_government = democratic }
 		}
-		visible = {
-			original_tag = SOV
-			SUB_state_availables = yes
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_state_annex"
 			russia_state_annex = yes
@@ -149,26 +112,26 @@ SOV_Sovfed_category = {
 	}
 	#REQUEST MONEY
 	SUB_subsidies = {
+		allowed = { NOT = { original_tag = SOV } }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 180
 		cost = 50
+
+		visible = {
+			OR = {
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+				has_autonomy_state = autonomy_governorate_rf
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_40
 				check_variable = { ROOT.subjectavtoritet > 39 }
 			}
 		}
-		visible = {
-			NOT = { original_tag = SOV }
-			ROOT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_subsidies"
 			russia_subject_money_small = yes
@@ -176,25 +139,26 @@ SOV_Sovfed_category = {
 	}
 	#REQUEST NEW STATUS OF SUBJECT
 	SUB_change_status = {
+		allowed = { NOT = { original_tag = SOV } }
 		icon = GFX_decision_sovfed_paper_button
 		days_remove = 400
 		cost = 50
+
+		visible = {
+			OR = {
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+				has_autonomy_state = autonomy_governorate_rf
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_50
 				check_variable = { ROOT.subjectavtoritet > 49 }
 			}
 		}
-		visible = {
-			NOT = { original_tag = SOV }
-			ROOT = { 
-				OR = {
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_change_status"
 			SOV = { country_event = { id = subject_rus.66 days = 1 } }
@@ -203,11 +167,24 @@ SOV_Sovfed_category = {
 	}
 	#GOVERNORATES OF RUSSIAN EMPIRE - CREATE
 	SUB_rusempire_governorates_create = {
-		icon = GFX_decision_rusempire_button
-		days_remove = 80
-		fire_only_once = no
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_governorate_button
+		days_remove = 180
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SOV_available_governorate_create_tt
+				SOV_russian_empire_create_governorates_availables = yes
+			}
+		}
 		visible = {
-			SOV_russian_empire_create_governorates_availables = yes
+			custom_trigger_tooltip = {
+				tooltip = SOV_available_governorate_create_tt
+				SOV_russian_empire_create_governorates_availables = yes
+			}
+			OR = {
+				nationalist_monarchists_are_in_power = yes
+				nationalist_right_wing_populists_are_in_power = yes
+			}
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove SOV_rusempire_governorates"
@@ -216,11 +193,24 @@ SOV_Sovfed_category = {
 	}
 	#GOVERNORATES OF RUSSIAN EMPIRE - ANNEX
 	SUB_rusempire_governorates_annex = {
-		icon = GFX_decision_rusempire_button
-		days_remove = 80
-		fire_only_once = no
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_governorate_button
+		days_remove = 140
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SOV_available_governorate_annex_tt
+				SOV_russian_empire_annex_governorates_availables = yes
+			}
+		}
 		visible = {
-			SOV_russian_empire_annex_governorates_availables = yes
+			custom_trigger_tooltip = {
+				tooltip = SOV_available_governorate_annex_tt
+				SOV_russian_empire_annex_governorates_availables = yes
+			}
+			OR = {
+				nationalist_monarchists_are_in_power = yes
+				nationalist_right_wing_populists_are_in_power = yes
+			}
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision remove SUB_rusempire_governorates_annex"
@@ -229,9 +219,9 @@ SOV_Sovfed_category = {
 	}
 	#GOVERNORATES OF RUSSIAN EMPIRE - CAUCAS DESTROY
 	SUB_rusempire_governorates_caucas_destroy = {
-		icon = GFX_decision_rusempire_button
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_governorate_button
 		days_remove = 80
-		fire_only_once = no
 		visible = {
 			SOV_russian_empire_destroy_republic_caucas_availables = yes
 			has_completed_focus = SOV_governorates
@@ -243,9 +233,10 @@ SOV_Sovfed_category = {
 	}
 	#GOVERNORATES OF RUSSIAN EMPIRE - OTHER DESTROY
 	SUB_rusempire_governorates_other_destroy = {
-		icon = GFX_decision_rusempire_button
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_governorate_button
 		days_remove = 80
-		fire_only_once = no
+
 		visible = {
 			SOV_russian_empire_destroy_republic_other_availables = yes
 			has_completed_focus = SOV_governorates
@@ -257,9 +248,10 @@ SOV_Sovfed_category = {
 	}
 	#GOVERNORATES OF RUSSIAN EMPIRE - SIBERIA AND URAL DESTROY
 	SUB_rusempire_governorates_siberia_destroy = {
-		icon = GFX_decision_rusempire_button
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_governorate_button
 		days_remove = 80
-		fire_only_once = no
+
 		visible = {
 			SOV_russian_empire_destroy_republic_siberia_availables = yes
 			has_completed_focus = SOV_governorates
@@ -271,9 +263,10 @@ SOV_Sovfed_category = {
 	}
 	#GOVERNORATES OF RUSSIAN EMPIRE - POVOLJIE DESTROY
 	SUB_rusempire_governorates_povoljie_destroy = {
-		icon = GFX_decision_rusempire_button
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_governorate_button
 		days_remove = 80
-		fire_only_once = no
+
 		visible = {
 			SOV_russian_empire_destroy_republic_povoljie_availables = yes
 			has_completed_focus = SOV_governorates
@@ -283,465 +276,137 @@ SOV_Sovfed_category = {
 			SOV_russian_republics_destroy_povoljie = yes
 		}
 	}
+	#SOVIET REPUBLIC - ANNEX
+	SUB_russvoiet_republic_annex = {
+		allowed = { original_tag = SOV }
+		icon = GFX_decision_sovfed_soviet_button
+		days_remove = 80
+
+		visible = {
+			has_completed_focus = SOV_coup_major_post_soviet_countries
+			emerging_communist_state_are_in_power = yes
+			SOV_soviet_russia_annex_republic_availables = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove SUB_russvoiet_republic_annex"
+			SOV_soviet_republic_annex = yes
+		}
+	}
 	###########RUSSIA DECISIONS###########
-	###########MOSCOW - Open###########
-	SUB_moscow_open = {
-		icon = GFX_decision_subject_moscow_button
-		days_remove = 1
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_close
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		ai_will_do = {
-			factor = 355
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SUB_moscow_open"
-			clr_country_flag = SUB_moscow_close
-			set_country_flag = SUB_moscow_open
-		}
-	}
-	##########MOSCOW - Close###########
-	SUB_moscow_close = {
-		icon = GFX_decision_subject_moscow_button
-		days_remove = 1
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_open
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SUB_moscow_close"
-			clr_country_flag = SUB_moscow_open
-			set_country_flag = SUB_moscow_close
-		}
-	}
 	#MOSCOW ELECTION
 	SOV_moscos_election1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_subject_moscow_button
 		fire_only_once = yes
 		days_remove = 20
+
 		visible = {
-			has_country_flag = SUB_moscow_open
-			tag = SOV
 			owns_state = 652
 			has_country_flag = SUB_moscow_4
 			NOT = { has_country_flag = SOV_moscow_no_more }
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_election1"
 			country_event = { id = subject_rus.109 }
 		}
+
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#MOSCOW BUILD
 	SOV_moscos_build2 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 7.9 }
-		}
-		custom_cost_text = cost_8_0
+
 		days_remove = 380
+
+		visible = {
+			owns_state = 652
+			NOT = {
+				has_country_flag = SUB_moscow_9
+			}
+			SUB_moscow_exist_development = yes
+		}
 		available = {
 			date > 2003.1.1
 		}
-		visible = {
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			NOT = { has_country_flag = SUB_moscow_2 }
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build2"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_1_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_2_level } }
-			set_country_flag = SUB_moscow_2
+			SOV_moscow_build_script = yes
 		}
+
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
-	SOV_moscos_build3 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 7.9 }
-		}
-		custom_cost_text = cost_8_0
+	#EKATERINBURG BUILD
+	SOV_ekb_build = {
+		allowed = { tag = SOV }
+		icon = GFX_decision_subject_ekaterinburg_button
+
 		days_remove = 380
 		visible = {
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_2
-			NOT = { has_country_flag = SOV_moscow_no_more }
+			owns_state = 676
+			has_completed_focus = SOV_nazbols_ekb
+			SUB_ekaterinburg_exist_development = yes
 		}
+
 		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build3"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_2_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_3_level } }
-			set_country_flag = SUB_moscow_3
-			clr_country_flag = SUB_moscow_2
+			log = "[GetDateText]: [Root.GetName]: Decision SOV_ekb_build"
+			SOV_ekb_build_script = yes
 		}
+
 		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build4 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 8.9 }
-		}
-		custom_cost_text = cost_9_0
-		days_remove = 380
-		visible = {
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_3
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build4"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_3_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_4_level } }
-			set_country_flag = SUB_moscow_4
-			clr_country_flag = SUB_moscow_3
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build5 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 8.9 }
-		}
-		available = {
-			has_country_flag = SUB_moscow_election
-		}
-		custom_cost_text = cost_9_0
-		days_remove = 380
-		visible = {
-			has_country_flag = SUB_moscow_open
-			OR = {
-				has_idea = SUB_moscow_degtyarev_ldpr
-				has_idea = SUB_moscow_sobyanin_edro
-				has_idea = SUB_moscow_melnikov_cprf
-			}
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_4
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build5"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_4_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_5_level } }
-			set_country_flag = SUB_moscow_5
-			clr_country_flag = SUB_moscow_4
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build6 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 9.9 }
-		}
-		custom_cost_text = cost_10_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_degtyarev_ldpr
-				has_idea = SUB_moscow_sobyanin_edro
-				has_idea = SUB_moscow_melnikov_cprf
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_5
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build6"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_5_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_6_level } }
-			set_country_flag = SUB_moscow_6
-			clr_country_flag = SUB_moscow_5
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build7 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 9.9 }
-		}
-		custom_cost_text = cost_10_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_degtyarev_ldpr
-				has_idea = SUB_moscow_sobyanin_edro
-				has_idea = SUB_moscow_melnikov_cprf
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_6
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build7"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_6_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_7_level } }
-			set_country_flag = SUB_moscow_7
-			clr_country_flag = SUB_moscow_6
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build8 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 11.9 }
-		}
-		custom_cost_text = cost_12_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_degtyarev_ldpr
-				has_idea = SUB_moscow_sobyanin_edro
-				has_idea = SUB_moscow_melnikov_cprf
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_7
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build8"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_7_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_8_level } }
-			set_country_flag = SUB_moscow_8
-			clr_country_flag = SUB_moscow_7
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build9 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 11.9 }
-		}
-		custom_cost_text = cost_12_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_degtyarev_ldpr
-				has_idea = SUB_moscow_sobyanin_edro
-				has_idea = SUB_moscow_melnikov_cprf
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_8
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build8"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_8_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_9_level } }
-			set_country_flag = SUB_moscow_9
-			clr_country_flag = SUB_moscow_8
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build16 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 9.9 }
-		}
-		custom_cost_text = cost_10_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_mitrohin_yablo
-				has_idea = SUB_moscow_navalny_parnas
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_5
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build16"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_5_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_16_level } }
-			set_country_flag = SUB_moscow_16
-			clr_country_flag = SUB_moscow_5
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build17 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 9.9 }
-		}
-		custom_cost_text = cost_10_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_mitrohin_yablo
-				has_idea = SUB_moscow_navalny_parnas
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_16
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build17"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_16_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_17_level } }
-			set_country_flag = SUB_moscow_17
-			clr_country_flag = SUB_moscow_16
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build18 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 9.9 }
-		}
-		custom_cost_text = cost_10_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_mitrohin_yablo
-				has_idea = SUB_moscow_navalny_parnas
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_17
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build18"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_17_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_18_level } }
-			set_country_flag = SUB_moscow_18
-			clr_country_flag = SUB_moscow_17
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SOV_moscos_build19 = {
-		icon = GFX_decision_subject_moscow_button
-		fire_only_once = yes
-		custom_cost_trigger = {
-			check_variable = { treasury > 9.9 }
-		}
-		custom_cost_text = cost_10_0
-		days_remove = 380
-		visible = {
-			OR = {
-				has_idea = SUB_moscow_mitrohin_yablo
-				has_idea = SUB_moscow_navalny_parnas
-			}
-			has_country_flag = SUB_moscow_open
-			tag = SOV
-			owns_state = 652
-			has_country_flag = SUB_moscow_18
-			NOT = { has_country_flag = SOV_moscow_no_more }
-		}
-		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_moscos_build19"
-			652 = { remove_dynamic_modifier = { modifier = MSC_city_18_level } }
-			652 = { add_dynamic_modifier = { modifier = MSC_city_19_level } }
-			clr_country_flag = SUB_moscow_18
-		}
-		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#SUBJECT UNIFICATION DECISIONS
 	###########Unification - Open###########
 	SOV_unification_to_open = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		days_remove = 1
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
-			has_country_flag = SUB_unification_to_close
+			NOT = { has_country_flag = SUB_unification_to_open }
 		}
-		ai_will_do = {
-			factor = 355
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_unification_to_open"
-			clr_country_flag = SUB_unification_to_close
 			set_country_flag = SUB_unification_to_open
+		}
+
+		ai_will_do = {
+			base = 355
 		}
 	}
 	###########Unification - Close###########
 	SOV_unification_to_close = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		days_remove = 1
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_unification_to_open
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_unification_to_close"
 			clr_country_flag = SUB_unification_to_open
-			set_country_flag = SUB_unification_to_close
 		}
 	}
 	SOV_perm_unif = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		fire_only_once = yes
 		days_remove = 380
 		visible = {
-			tag = SOV
 			owns_state = 658
 			has_country_flag = SUB_unification_to_open
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_perm_unif"
 			custom_effect_tooltip = SOV_subjectsepar_minus_tt
@@ -753,15 +418,15 @@ SOV_Sovfed_category = {
 			658 = { add_dynamic_modifier = { modifier = SUB_perm_good } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_krasnoyarsk_unif = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		fire_only_once = yes
 		days_remove = 380
 		visible = {
-			tag = SOV
 			owns_state = 682
 			has_country_flag = SUB_unification_to_open
 		}
@@ -776,18 +441,20 @@ SOV_Sovfed_category = {
 			682 = { add_dynamic_modifier = { modifier = SUB_krasnoyarsk_good } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_transbaikal_unif = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		fire_only_once = yes
 		days_remove = 380
+
 		visible = {
-			tag = SOV
 			owns_state = 1070
 			has_country_flag = SUB_unification_to_open
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_transbaikal_unif"
 			custom_effect_tooltip = SOV_subjectsepar_minus_tt
@@ -799,18 +466,20 @@ SOV_Sovfed_category = {
 			1070 = { add_dynamic_modifier = { modifier = SUB_transbaikal_good } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_cumchatka_unif = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		fire_only_once = yes
 		days_remove = 380
+
 		visible = {
-			tag = SOV
 			owns_state = 1137
 			has_country_flag = SUB_unification_to_open
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_transbaikal_unif"
 			custom_effect_tooltip = SOV_subjectsepar_minus_tt
@@ -821,863 +490,9 @@ SOV_Sovfed_category = {
 			1137 = { remove_dynamic_modifier = { modifier = SUB_cumchatka_bad } }
 			1137 = { add_dynamic_modifier = { modifier = SUB_cumchatka_good } }
 		}
+
 		ai_will_do = {
-			factor = 355
-		}
-	}
-	#SUBSIDIES TO SUBJECT
-	###########Subsidies - Open###########
-	SOV_subsidies_to_open = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 1
-		fire_only_once = no
-		visible = {
-			has_country_flag = SUB_subsidies_to_close
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_open"
-			clr_country_flag = SUB_subsidies_to_close
-			set_country_flag = SUB_subsidies_to_open
-		}
-	}
-	###########Subsidies - Close###########
-	SOV_subsidies_to_close = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 1
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_close"
-			clr_country_flag = SUB_subsidies_to_open
-			set_country_flag = SUB_subsidies_to_close
-		}
-	}
-	SOV_subsidies_to_crm = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			CRM = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_crm"
-			set_country_flag = SUB_crm_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				CRM = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_tat = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			TAT = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_tat"
-			set_country_flag = SUB_tat_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				TAT = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_bsh = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_bsh"
-			set_country_flag = SUB_bsh_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				BSH = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_soo = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			SOO = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_soo"
-			set_country_flag = SUB_soo_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				SOO = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_dpr = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			DPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_dpr"
-			set_country_flag = SUB_dpr_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				DPR = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_lpr = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			LPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_lpr"
-			set_country_flag = SUB_lpr_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				LPR = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_pmr = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			PMR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_pmr"
-			set_country_flag = SUB_pmr_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				PMR = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_che = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			CHE = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_che"
-			set_country_flag = SUB_che_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				CHE = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_ady = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			ADY = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_ady"
-			set_country_flag = SUB_ady_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_ing = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			ING = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_ing"
-			set_country_flag = SUB_ing_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_kcc = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			KCC = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_kcc"
-			set_country_flag = SUB_kcc_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_klm = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			KLM = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_klm"
-			set_country_flag = SUB_klm_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_udm = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			UDM = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_udm"
-			set_country_flag = SUB_udm_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_mov = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			MOV = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_mov"
-			set_country_flag = SUB_mov_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_chu = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			CHU = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_chu"
-			set_country_flag = SUB_chu_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_mel = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			MEL = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_mel"
-			set_country_flag = SUB_mel_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_yak = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			YAK = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_yak"
-			set_country_flag = SUB_yak_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_khs = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			KHS = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_khs"
-			set_country_flag = SUB_khs_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-	}
-	SOV_subsidies_to_tuv = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			TUV = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_tuv"
-			set_country_flag = SUB_tuv_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				TUV = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_khm = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			KHM = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_khm"
-			set_country_flag = SUB_khm_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				KHM = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_yam = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			YAM = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_yam"
-			set_country_flag = SUB_yam_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				YAM = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_nee = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			NEE = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_nee"
-			set_country_flag = SUB_nee_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				NEE = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_dag = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			DAG = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_dag"
-			set_country_flag = SUB_dag_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				DAG = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_bry = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			BRY = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_bry"
-			set_country_flag = SUB_bry_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				BRY = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_alt = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			ALT = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_alt"
-			set_country_flag = SUB_alt_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				ALT = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_kae = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			KAE = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_kae"
-			set_country_flag = SUB_kae_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				KAE = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_ura = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			URA = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_ura"
-			set_country_flag = SUB_ura_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				URA = { is_ai = no }
-				add = 1000
-			}
-		}
-	}
-	SOV_subsidies_to_kub = {
-		icon = GFX_decision_sovfed_money_button
-		days_remove = 180
-		fire_only_once = no
-		visible = {
-			tag = SOV
-			has_country_flag = SUB_subsidies_to_open
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			NOT = { has_country_flag = SUB_active_subsidies }
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision SOV_subsidies_to_ura"
-			set_country_flag = SUB_kub_subsidies
-			set_country_flag = SUB_active_subsidies
-			country_event = { id = subject_rus.97 }
-		}
-		ai_will_do = {
-			factor = 0
-			modifier = {
-				KUB = { is_ai = no }
-				add = 1000
-			}
+			base = 355
 		}
 	}
 	#SUBJECT FEDERAL TAXES DECISIONS
@@ -1685,7 +500,7 @@ SOV_Sovfed_category = {
 	SOV_taxes_to_open = {
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 1
-		fire_only_once = no
+
 		visible = {
 			has_country_flag = SUB_taxes_to_close
 			SUB_subjects_availables = yes
@@ -1704,11 +519,11 @@ SOV_Sovfed_category = {
 	}
 	###########Taxes - Close###########
 	SOV_taxes_to_close = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 1
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1725,11 +540,11 @@ SOV_Sovfed_category = {
 	}
 	#CAUCAS FEDERAL TAXES RISE
 	SOV_rise_up_taxes_caucas = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1745,11 +560,11 @@ SOV_Sovfed_category = {
 	}
 	#CAUCAS FEDERAL TAXES FALL
 	SOV_fall_up_taxes_caucas = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1765,11 +580,11 @@ SOV_Sovfed_category = {
 	}
 	#SIBERIA FEDERAL TAXES RISE
 	SOV_rise_up_taxes_siberia = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1785,11 +600,11 @@ SOV_Sovfed_category = {
 	}
 	#SIBERIA FEDERAL TAXES FALL
 	SOV_fall_up_taxes_siberia = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1805,11 +620,11 @@ SOV_Sovfed_category = {
 	}
 	#VOLGA REGION FEDERAL TAXES RISE
 	SOV_rise_up_taxes_volga = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1825,11 +640,11 @@ SOV_Sovfed_category = {
 	}
 	#VOLGA REGION FEDERAL TAXES FALL
 	SOV_fall_up_taxes_volga = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1845,11 +660,11 @@ SOV_Sovfed_category = {
 	}
 	#OTHER REGIONS FEDERAL TAXES RISE
 	SOV_rise_up_taxes_other = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1865,11 +680,11 @@ SOV_Sovfed_category = {
 	}
 	#OTHER REGIONS FEDERAL TAXES FALL
 	SOV_fall_up_taxes_other = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_money_button
 		days_remove = 70
-		fire_only_once = no
+
 		visible = {
-			tag = SOV
 			has_country_flag = SUB_taxes_to_open
 			NOT = {
 				SOV = {
@@ -1886,16 +701,17 @@ SOV_Sovfed_category = {
 	#SUBJECT INDUSTRY ADDED DECISIONS
 	#TATARSTAN INDUSTRY ADDED
 	SOV_added_tatarstan = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
+			country_exists = TAT
 			NOT = { has_idea = TAT_vpk5 }
 			NOT = { has_idea = TAT_vpk6 }
-			TAT = {	has_completed_focus = TAT_kazavia }
-			TAT = {	
-				exists = yes
+			TAT = {
+				has_completed_focus = TAT_kazavia
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -1904,6 +720,7 @@ SOV_Sovfed_category = {
 				}
 			}
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_added_tatarstan"
 			add_ideas = TAT_vpk5
@@ -1915,15 +732,17 @@ SOV_Sovfed_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
+
 	SOV_added_tatarstan1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
 			NOT = { has_idea = TAT_vpk5 }
 			NOT = { has_idea = TAT_vpk6 }
 			TAT = {	has_completed_focus = TAT_kazavia }
@@ -1935,22 +754,24 @@ SOV_Sovfed_category = {
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
+
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#BASHKORTOSTAN INDUSTRY ADDED
 	SOV_added_bashkortostan = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
+			country_exists = BSH
 			NOT = { has_idea = BSH_vpk5 }
 			NOT = { has_idea = BSH_vpk6 }
-			BSH = {	has_completed_focus = BSH_new_mil }
-			BSH = {	
-				exists = yes
+			BSH = {
+				has_completed_focus = BSH_new_mil
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -1970,15 +791,16 @@ SOV_Sovfed_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_added_bashkortostan1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
 			NOT = { has_idea = BSH_vpk5 }
 			NOT = { has_idea = BSH_vpk6 }
 			BSH = {	has_completed_focus = BSH_new_mil }
@@ -1991,21 +813,21 @@ SOV_Sovfed_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#CRIMEA INDUSTRY ADDED
 	SOV_added_crimea = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
 		visible = {
-			tag = SOV
+			country_exists = CRM
 			NOT = { has_idea = CRM_naval1 }
 			NOT = { has_idea = CRM_naval2 }
-			CRM = {	has_completed_focus = CRM_zavod_ships }
-			CRM = {	
-				exists = yes
+			CRM = {
+				has_completed_focus = CRM_zavod_ships
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -2025,15 +847,16 @@ SOV_Sovfed_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_added_crimea1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
 			NOT = { has_idea = CRM_naval1 }
 			NOT = { has_idea = CRM_naval2 }
 			CRM = {	has_completed_focus = CRM_zavod_ships }
@@ -2046,21 +869,22 @@ SOV_Sovfed_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#CHECHEN GUDERMES ADDED
 	SOV_added_gudermez = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_campaign_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
+			country_exists = CHE
 			NOT = { has_idea = CHE_gudermes3_idea1 }
 			NOT = { has_idea = CHE_gudermes3_idea2 }
-			CHE = {	has_completed_focus = CHE_russian_university_spetsnaz }
-			CHE = {	
-				exists = yes
+			CHE = {
+				has_completed_focus = CHE_russian_university_spetsnaz
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -2080,15 +904,16 @@ SOV_Sovfed_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_added_gudermez1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_campaign_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
 			NOT = { has_idea = CHE_gudermes3_idea1 }
 			NOT = { has_idea = CHE_gudermes3_idea2 }
 			CHE = {	has_completed_focus = CHE_russian_university_spetsnaz }
@@ -2101,21 +926,22 @@ SOV_Sovfed_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#KHARKIV INDUSTRY ADDED
 	SOV_added_kharkivz = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
+			country_exists = HPR
 			NOT = { has_idea = HPR_concern_sov }
 			NOT = { has_idea = HPR_concern_sov1 }
-			HPR = {	has_completed_focus = HPR_concers }
-			HPR = {	
-				exists = yes
+			HPR = {
+				has_completed_focus = HPR_concers
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -2124,6 +950,7 @@ SOV_Sovfed_category = {
 				}
 			}
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_added_kharkivz"
 			add_ideas = HPR_concern_sov
@@ -2135,42 +962,45 @@ SOV_Sovfed_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_added_kharkivz1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
+
 		visible = {
-			tag = SOV
 			NOT = { has_idea = HPR_concern_sov }
 			NOT = { has_idea = HPR_concern_sov1 }
 			HPR = {	has_completed_focus = HPR_concers }
 			SOV = { owns_state = 696 }
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SOV_added_kharkivz1"
 			add_ideas = HPR_concern_sov1
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
+
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	#URAL INDUSTRY ADDED
 	SOV_added_uralz = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
 		visible = {
-			tag = SOV
+			country_exists = URA
 			NOT = { has_idea = URA_ekb_concern_idea_other }
 			NOT = { has_idea = URA_ekb_concern_idea_other1 }
-			URA = {	has_completed_focus = URA_ural_concern }
-			URA = {	
-				exists = yes
+			URA = {
+				has_completed_focus = URA_ural_concern
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -2190,15 +1020,15 @@ SOV_Sovfed_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SOV_added_uralz1 = {
+		allowed = { tag = SOV }
 		icon = GFX_decision_sovfed_button
 		cost = 180
 		days_remove = 100
 		visible = {
-			tag = SOV
 			NOT = { has_idea = URA_ekb_concern_idea_other }
 			NOT = { has_idea = URA_ekb_concern_idea_other1 }
 			URA = {	has_completed_focus = URA_ural_concern }
@@ -2210,8 +1040,9 @@ SOV_Sovfed_category = {
 			set_temp_variable = { treasury_change = -3 }
 			modify_treasury_effect = yes
 		}
+
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	######BASKHIRIA DECISIONS#######
@@ -2221,12 +1052,7 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 65
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_40
-				check_variable = { BSH.subjectavtoritet > 39 }
-			}
-		}
+
 		visible = {
 			BSH = {
 				emerging_communist_state_are_in_power = yes
@@ -2239,6 +1065,13 @@ SOV_Sovfed_category = {
 			}
 			SOV = { NOT = { has_country_flag = BSH_aes_ok } }
 		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_40
+				check_variable = { BSH.subjectavtoritet > 39 }
+			}
+		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision BSH_subject_aes"
 			SOV = { country_event = subject_rus.5 }
@@ -2250,6 +1083,26 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_idel_ural_button
 		days_remove = 380
 		cost = 150
+
+		visible = {
+			has_completed_focus = BSH_bashkiria_idel_ural_inner
+			has_government = nationalist
+			country_exists = TAT
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			TAT = {
+				OR = {
+					has_autonomy_state = autonomy_republic_rf
+					has_autonomy_state = autonomy_kray_rf
+					has_autonomy_state = autonomy_oblast_rf
+					has_autonomy_state = autonomy_okrug_rf
+				}
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
@@ -2259,27 +1112,7 @@ SOV_Sovfed_category = {
 				influence_higher_50 = yes
 			}
 		}
-		visible = {
-			has_government = nationalist
-			has_completed_focus = BSH_bashkiria_idel_ural_inner
-			country_exists = TAT
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision BSH_unite_idel_ural"
 			SOV = { country_event = { id = subject_rus.8 days = 1 } }
@@ -2312,7 +1145,7 @@ SOV_Sovfed_category = {
 					has_autonomy_state = autonomy_okrug_rf
 				}
 			}
-			TAT = { 
+			TAT = {
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -2326,588 +1159,13 @@ SOV_Sovfed_category = {
 			SOV = { country_event = { id = subject_rus.48 days = 1 } }
 		}
 	}
-	######Islamic World(Turkey)#######
-	BSH_islamic_world_tur = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 100
-		available = {
-			TUR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = TUR
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_islamic_world_tur"
-			TUR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Islamic World(Iraq)#######
-	BSH_islamic_world_irq = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 100
-		available = {
-			IRQ = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = IRQ
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_islamic_world_irq"
-			IRQ = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Islamic World(UAE)#######
-	BSH_islamic_world_uae = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 100
-		available = {
-			UAE = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = UAE
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_islamic_world_uae"
-			UAE = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Islamic World(Tajikistan)#######
-	BSH_islamic_world_taj = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 100
-		available = {
-			TAJ = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = TAJ
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_islamic_world_taj"
-			TAJ = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Islamic World(Morocco)#######
-	BSH_islamic_world_mor = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		allowed = { original_tag = BSH }
-		days_remove = 400
-		cost = 100
-		available = {
-			MOR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = MOR
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_islamic_world_mor"
-			MOR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(China)#######
-	BSH_world_chi = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CHI = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_china
-		}
-		visible = {
-			country_exists = CHI
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_chi"
-			CHI = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Belarus)#######
-	BSH_world_belarus = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BLR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_belarus
-		}
-		visible = {
-			country_exists = BLR
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_chi"
-			BLR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Uzbekistan)#######
-	BSH_world_uzbek = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			UZB = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_uzb
-		}
-		visible = {
-			country_exists = UZB
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_uzbek"
-			UZB = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Kazakhstan)#######
-	BSH_world_kaz = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			KAZ = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_russia_kazah
-		}
-		visible = {
-			country_exists = KAZ
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_kaz"
-			KAZ = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Donetsk)#######
-	BSH_world_dpr = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			DPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = DPR
-			DPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_dpr"
-			DPR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Lugansk)#######
-	BSH_world_lpr = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			LPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = LPR
-			LPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_lpr"
-			LPR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Kharkiv)#######
-	BSH_world_hpr = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			HPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = HPR
-			HPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_hpr"
-			HPR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######World(Odessa)#######
-	BSH_world_opr = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			OPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = OPR
-			OPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_opr"
-			OPR = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Warsaw Pact(Poland)#######
-	BSH_world_pol = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			POL = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = POL
-			POL = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_pol"
-			POL = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Warsaw Pact(Hungary)#######
-	BSH_world_hun = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			HUN = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = HUN
-			HUN = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_hun"
-			HUN = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Warsaw Pact(Romania)#######
-	BSH_world_rom = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			ROM = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = ROM
-			ROM = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_rom"
-			ROM = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Warsaw Pact(Bulgaria)#######
-	BSH_world_bul = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BUL = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = BUL
-			BUL = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_bul"
-			BUL = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
-	######Warsaw Pact(Czechia)#######
-	BSH_world_cze = {
-		allowed = { original_tag = BSH }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CZE = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = BSH_agriculture
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = CZE
-			CZE = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision BSH_world_cze"
-			CZE = { country_event = { id = subject_rus.54 days = 1 } }
-		}
-	}
 	######Clean Air(Russia)#######
 	BSH_clear_air = {
 		allowed = { original_tag = BSH }
 		icon = GFX_decision_sovfed_button
 		days_remove = 300
 		cost = 50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_40
-				check_variable = { ROOT.subjectavtoritet > 39 }
-			}
-		}
+
 		visible = {
 			OR = {
 				has_idea = SUB_khmao_ecology_1
@@ -2915,19 +1173,25 @@ SOV_Sovfed_category = {
 				has_idea = SUB_khmao_ecology_2
 				has_idea = SUB_khmao_ecology_3
 			}
-			BSH = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
 		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_40
+				check_variable = { ROOT.subjectavtoritet > 39 }
+			}
+		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision BSH_clear_air"
 			SOV = { country_event = { id = subject_rus.60 days = 1 } }
 		}
+
 		ai_will_do = {
 			factor = 10
 		}
@@ -2951,15 +1215,13 @@ SOV_Sovfed_category = {
 		visible = {
 			has_completed_focus = TAT_idel_ural_rus
 			country_exists = BSH
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
-			BSH = { 
+			BSH = {
 				OR = {
 					has_autonomy_state = autonomy_republic_rf
 					has_autonomy_state = autonomy_kray_rf
@@ -2973,616 +1235,13 @@ SOV_Sovfed_category = {
 			SOV = { country_event = { id = subject_rus.17 days = 1 } }
 		}
 	}
-	######Islamic World(Turkey)#######
-	TAT_islamic_world_tur = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			TUR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = TUR
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_islamic_world_tur"
-			TUR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Islamic World(Saudi Arabia)#######
-	TAT_islamic_world_sau = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			SAU = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = SAU
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_islamic_world_sau"
-			SAU = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Islamic World(Bahrein)#######
-	TAT_islamic_world_bhr = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BHR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = BHR
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_islamic_world_bhr"
-			BHR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Islamic World(UAE)#######
-	TAT_islamic_world_uae = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			UAE = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = UAE
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_islamic_world_uae"
-			UAE = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Islamic World(Qatar)#######
-	TAT_islamic_world_qat = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			QAT = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_islamic
-		}
-		visible = {
-			country_exists = QAT
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_islamic_world_qat"
-			QAT = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(China)#######
-	TAT_world_chi = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CHI = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_china
-		}
-		visible = {
-			country_exists = CHI
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_chi"
-			CHI = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Belarus)#######
-	TAT_world_belarus = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BLR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_belarus
-		}
-		visible = {
-			country_exists = BLR
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_chi"
-			BLR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Cuba)#######
-	TAT_world_cuba = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CUB = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_cuba
-		}
-		visible = {
-			country_exists = CUB
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_cuba"
-			CUB = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Uzbekistan)#######
-	TAT_world_uzbek = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			UZB = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_uzb
-		}
-		visible = {
-			country_exists = UZB
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_uzbek"
-			UZB = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Kazakhstan)#######
-	TAT_world_kaz = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			KAZ = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_russia_kazah
-		}
-		visible = {
-			country_exists = KAZ
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_kaz"
-			KAZ = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Donetsk)#######
-	TAT_world_dpr = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			DPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = DPR
-			DPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_dpr"
-			DPR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Lugansk)#######
-	TAT_world_lpr = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			LPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = LPR
-			LPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_lpr"
-			LPR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Kharkiv)#######
-	TAT_world_hpr = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			HPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = HPR
-			HPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_hpr"
-			HPR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######World(Odessa)#######
-	TAT_world_opr = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			OPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = OPR
-			OPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_opr"
-			OPR = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Warsaw Pact (Poland)#######
-	TAT_world_pol = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			POL = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = POL
-			POL = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_pol"
-			POL = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Warsaw Pact (Romania)#######
-	TAT_world_rom = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			ROM = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = ROM
-			ROM = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_rom"
-			ROM = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Warsaw Pact (Czech)#######
-	TAT_world_cze = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CZE = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = CZE
-			CZE = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_cze"
-			CZE = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Warsaw Pact (Hungary)#######
-	TAT_world_hun = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			HUN = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = HUN
-			HUN = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_hun"
-			HUN = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
-	######Warsaw Pact (Bulgary)#######
-	TAT_world_bul = {
-		allowed = { original_tag = TAT }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BUL = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = TAT_akbars_agro_prom
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = BUL
-			BUL = {
-				has_autonomy_state = autonomy_warsaw
-			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision TAT_world_bul"
-			BUL = { country_event = { id = subject_rus.51 days = 1 } }
-		}
-	}
 	######Clean Air(Russia)#######
 	TAT_clear_air = {
 		allowed = { original_tag = TAT }
 		icon = GFX_decision_sovfed_button
 		days_remove = 300
 		cost = 50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_40
-				check_variable = { ROOT.subjectavtoritet > 39 }
-			}
-		}
+
 		visible = {
 			OR = {
 				has_idea = SUB_khmao_ecology_1
@@ -3590,15 +1249,20 @@ SOV_Sovfed_category = {
 				has_idea = SUB_khmao_ecology_2
 				has_idea = SUB_khmao_ecology_3
 			}
-			TAT = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
 		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_40
+				check_variable = { ROOT.subjectavtoritet > 39 }
+			}
+		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision TA_clear_air"
 			SOV = { country_event = { id = subject_rus.60 days = 1 } }
@@ -3608,507 +1272,13 @@ SOV_Sovfed_category = {
 		}
 	}
 	######YUGRA(KHMAO) DECISIONS#######
-	######World(China)#######
-	KHM_world_chi = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CHI = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_russia_china
-		}
-		visible = {
-			original_tag = KHM
-			country_exists = CHI
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_chi"
-			CHI = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Uzbekistan)#######
-	KHM_world_uzbek = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			UZB = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_russia_china
-		}
-		visible = {
-			original_tag = KHM
-			country_exists = UZB
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_uzbeki"
-			UZB = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Belarus)#######
-	KHM_world_belarus = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BLR = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_russia_belarus
-		}
-		visible = {
-			country_exists = BLR
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_belarus"
-			BLR = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Czech)#######
-	KHM_world_czech = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			CZE = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = KHM_czech
-		}
-		visible = {
-			country_exists = CZE
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_czech"
-			CZE = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Kazakhstan)#######
-	KHM_world_kaz = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			KAZ = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_russia_kazah
-		}
-		visible = {
-			country_exists = KAZ
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_kaz"
-			KAZ = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Donetsk)#######
-	KHM_world_dpr = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			DPR = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = DPR
-			DPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_dpr"
-			DPR = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Lugansk)#######
-	KHM_world_lpr = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			LPR = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = LPR
-			LPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_lpr"
-			LPR = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Odessa)#######
-	KHM_world_opr = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			OPR = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = OPR
-			OPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_opr"
-			OPR = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World(Kharkiv)#######
-	KHM_world_hpr = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			HPR = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = HPR
-			HPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_hpr"
-			HPR = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######Warsaw Pact(Poland)#######
-	KHM_world_pol = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			POL = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = POL
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			POL = {
-				has_autonomy_state = autonomy_warsaw
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_pol"
-			POL = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######Warsaw Pact(Romania)#######
-	KHM_world_rom = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			ROM = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = ROM
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			ROM = {
-				has_autonomy_state = autonomy_warsaw
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_rom"
-			ROM = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######Warsaw Pact(Hungary)#######
-	KHM_world_hun = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			HUN = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = HUN
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			HUN = {
-				has_autonomy_state = autonomy_warsaw
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_hun"
-			HUN = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######Warsaw Pact(Bulgaria)#######
-	KHM_world_bul = {
-		allowed = { original_tag = KHM }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			BUL = {
-				NOT = { has_idea = KHM_export }
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = KHM_surgutneftegaz
-			has_completed_focus = SUB_warsaw
-		}
-		visible = {
-			country_exists = BUL
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			BUL = {
-				has_autonomy_state = autonomy_warsaw
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KHM_world_bul"
-			BUL = { country_event = { id = subject_rus.57 days = 1 } }
-		}
-
-		ai_will_do = {
-			factor = 10
-		}
-	}
 	######Clean Air(Russia)#######
 	KHM_clear_air = {
 		allowed = { original_tag = KHM }
 		icon = GFX_decision_sovfed_button
 		days_remove = 300
 		cost = 50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_40
-				check_variable = { ROOT.subjectavtoritet > 39 }
-			}
-		}
+
 		visible = {
 			OR = {
 				has_idea = SUB_khmao_ecology_1
@@ -4116,15 +1286,20 @@ SOV_Sovfed_category = {
 				has_idea = SUB_khmao_ecology_2
 				has_idea = SUB_khmao_ecology_3
 			}
-			KHM = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
 		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_40
+				check_variable = { ROOT.subjectavtoritet > 39 }
+			}
+		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KHM_clear_air"
 			SOV = { country_event = { id = subject_rus.60 days = 1 } }
@@ -4140,11 +1315,19 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 10
 		cost = 25
-		available = {
-			has_country_leader = {
-				name = "Ramzan Kadyrov"
-				ruling_only = yes
+
+		visible = {
+			country_exists = GEO
+			emerging_reactionaries_are_in_power = yes
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+		}
+		available = {
+			has_country_leader = { name = "Ramzan Kadyrov" ruling_only = yes }
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_40
 				check_variable = { CHE.subjectavtoritet > 39 }
@@ -4156,39 +1339,32 @@ SOV_Sovfed_category = {
 				}
 			}
 		}
-		visible = {
-			country_exists = GEO
-			original_tag = CHE
-			CHE = {
-				emerging_reactionaries_are_in_power = yes
-			}
-			CHE = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision CHE_attack_ukr"
 			SOV = { country_event = chechnya.2 }
 		}
-
-
 	}
+
 	######Attack Poland#######
 	CHE_attack_pol = {
 		allowed = { original_tag = CHE }
 		icon = GFX_decision_sovfed_button
 		days_remove = 10
 		cost = 25
-		available = {
-			has_country_leader = {
-				name = "Ramzan Kadyrov"
-				ruling_only = yes
+
+		visible = {
+			country_exists = POL
+			emerging_reactionaries_are_in_power = yes
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+		}
+		available = {
+			has_country_leader = { name = "Ramzan Kadyrov" ruling_only = yes }
 			POL = {
 				OR = {
 					NOT = { is_subject_of = SOV }
@@ -4200,21 +1376,7 @@ SOV_Sovfed_category = {
 				check_variable = { CHE.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			country_exists = POL
-			original_tag = CHE
-			CHE = {
-				emerging_reactionaries_are_in_power = yes
-			}
-			CHE = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision CHE_attack_pol"
 			SOV = { country_event = chechnya.1 }
@@ -4226,6 +1388,17 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 10
 		cost = 25
+
+		visible = {
+			country_exists = BLR
+			emerging_reactionaries_are_in_power = yes
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+		}
 		available = {
 			has_country_leader = {
 				name = "Ramzan Kadyrov"
@@ -4233,8 +1406,8 @@ SOV_Sovfed_category = {
 			}
 			BLR = {
 				OR = {
-				NOT = { is_subject_of = SOV }
-				NOT = { is_in_faction_with = SOV }
+					NOT = { is_subject_of = SOV }
+					NOT = { is_in_faction_with = SOV }
 				}
 			}
 			custom_trigger_tooltip = {
@@ -4242,21 +1415,7 @@ SOV_Sovfed_category = {
 				check_variable = { CHE.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			country_exists = BLR
-			original_tag = CHE
-			CHE = {
-				emerging_reactionaries_are_in_power = yes
-			}
-			CHE = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision CHE_attack_blr"
 			SOV = { country_event = chechnya.3 }
@@ -4268,15 +1427,23 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 10
 		cost = 55
-		available = {
-			has_country_leader = {
-				name = "Ramzan Kadyrov"
-				ruling_only = yes
+
+		visible = {
+			country_exists = UKR
+			emerging_reactionaries_are_in_power = yes
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+		}
+		available = {
+			has_country_leader = { name = "Ramzan Kadyrov" ruling_only = yes }
 			UKR = {
 				OR = {
-				NOT = { is_subject_of = SOV }
-				NOT = { is_in_faction_with = SOV }
+					NOT = { is_subject_of = SOV }
+					NOT = { is_in_faction_with = SOV }
 				}
 			}
 			custom_trigger_tooltip = {
@@ -4284,21 +1451,7 @@ SOV_Sovfed_category = {
 				check_variable = { CHE.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			country_exists = UKR
-			original_tag = CHE
-			CHE = {
-				emerging_reactionaries_are_in_power = yes
-			}
-			CHE = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision CHE_attack_ukr"
 			SOV = { country_event = chechnya.12 }
@@ -4310,15 +1463,23 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 10
 		cost = 55
-		available = {
-			has_country_leader = {
-				name = "Ramzan Kadyrov"
-				ruling_only = yes
+
+		visible = {
+			country_exists = POL
+			emerging_reactionaries_are_in_power = yes
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+		}
+		available = {
+			has_country_leader = { name = "Ramzan Kadyrov" ruling_only = yes }
 			POL = {
 				OR = {
-				NOT = { is_subject_of = SOV }
-				NOT = { is_in_faction_with = SOV }
+					NOT = { is_subject_of = SOV }
+					NOT = { is_in_faction_with = SOV }
 				}
 			}
 			custom_trigger_tooltip = {
@@ -4326,21 +1487,7 @@ SOV_Sovfed_category = {
 				check_variable = { CHE.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			country_exists = POL
-			original_tag = CHE
-			CHE = {
-				emerging_reactionaries_are_in_power = yes
-			}
-			CHE = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision CHE_bund_sil"
 			SOV = { country_event = chechnya.26 }
@@ -4352,28 +1499,27 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
+
+		visible = {
+			OR = {
+				emerging_communist_state_are_in_power = yes
+				neutrality_neutral_communism_are_in_power = yes
+			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			SOV = { owns_state = 1126 }
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
 				check_variable = { CHE.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			OR = {
-				emerging_communist_state_are_in_power = yes
-				neutrality_neutral_communism_are_in_power = yes
-			}
-			SOV = { owns_state = 1126 }
-			original_tag = CHE
-			CHE = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision CHE_unite_ing_last"
 			SOV = { country_event = { id = subject_rus.32 days = 1 } }
@@ -4386,33 +1532,32 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_60
-				check_variable = { KUB.subjectavtoritet > 59 }
-			}
-		}
+
 		visible = {
 			OR = {
-			has_completed_focus = KUB_bring_back_adygea
-			has_completed_focus = KUB_return_adygea
-			has_completed_focus = KUB_adygea
+				has_completed_focus = KUB_bring_back_adygea
+				has_completed_focus = KUB_return_adygea
+				has_completed_focus = KUB_adygea
+			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
 			OR = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
 			SOV = { owns_state = 1127 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_60
+				check_variable = { KUB.subjectavtoritet > 59 }
 			}
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KUB_unite_adyg"
 			SOV = { country_event = { id = kuban.18 days = 1 } }
@@ -4424,26 +1569,25 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
+
+		visible = {
+			has_completed_focus = KUB_adygea_que
+			emerging_reactionaries_are_in_power = yes
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			SOV = { owns_state = 1127 }
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
 				check_variable = { KUB.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			has_completed_focus = KUB_adygea_que
-			emerging_reactionaries_are_in_power = yes
-			SOV = { owns_state = 1127 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KUB_unite_adyg_united_russia"
 			SOV = { country_event = { id = kuban.15 days = 1 } }
@@ -4455,33 +1599,34 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_60
-				check_variable = { KUB.subjectavtoritet > 59 }
-			}
-		}
+
 		visible = {
 			has_completed_focus = KUB_north_caucas_republics
 			OR = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
-			SOV = { owns_state = 1125 }
-			SOV = { owns_state = 1126 }
-			SOV = { owns_state = 671 }
-			SOV = { owns_state = 674 }
-			SOV = { owns_state = 673 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			SOV = {
+				owns_state = 1125
+				owns_state = 1126
+				owns_state = 671
+				owns_state = 674
+				owns_state = 673
 			}
 		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_60
+				check_variable = { KUB.subjectavtoritet > 59 }
+			}
+		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KUB_terskaya_sr"
 			SOV = { country_event = { id = kuban.21 days = 1 } }
@@ -4493,63 +1638,62 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_60
-				check_variable = { KUB.subjectavtoritet > 59 }
-			}
-		}
+
 		visible = {
 			has_completed_focus = KUB_stavropolskaya_sr
 			OR = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
-			SOV = { owns_state = 670 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+			SOV = { owns_state = 670 }
 		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision KUB_stavropolskaya_sr"
-			SOV = { country_event = { id = kuban.24 days = 1 } }
-		}
-	}
-	####Kuban Integrates Chechnya####
-	KUB_chechnya_sr = {
-		allowed = { original_tag = KUB }
-		icon = GFX_decision_sovfed_button
-		days_remove = 380
-		cost = 150
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
 				check_variable = { KUB.subjectavtoritet > 59 }
 			}
 		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision KUB_stavropolskaya_sr"
+			SOV = { country_event = { id = kuban.24 days = 1 } }
+		}
+	}
+
+	####Kuban Integrates Chechnya####
+	KUB_chechnya_sr = {
+		allowed = { original_tag = KUB }
+		icon = GFX_decision_sovfed_button
+		days_remove = 380
+		cost = 150
+
 		visible = {
 			has_completed_focus = KUB_north_caucas_republics
 			OR = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
 			SOV = { owns_state = 672 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_60
+				check_variable = { KUB.subjectavtoritet > 59 }
 			}
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KUB_chechnya_sr"
 			SOV = { country_event = { id = kuban.22 days = 1 } }
@@ -4561,29 +1705,28 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_authority_more_60
-				check_variable = { KUB.subjectavtoritet > 59 }
-			}
-		}
+
 		visible = {
 			has_completed_focus = KUB_donskaya_sr
 			OR = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
 			SOV = { owns_state = 667 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SUB_authority_more_60
+				check_variable = { KUB.subjectavtoritet > 59 }
 			}
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KUB_rostov_sr"
 			SOV = { country_event = { id = kuban.23 days = 1 } }
@@ -4607,16 +1750,13 @@ SOV_Sovfed_category = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
-			SOV = { owns_state = 1125 }
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+			SOV = { owns_state = 1125 }
 		}
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KUB_unite_adyg"
@@ -4631,6 +1771,17 @@ SOV_Sovfed_category = {
 		days_remove = 10
 		cost = 55
 		fire_only_once = yes
+
+
+		visible = {
+			country_exists = MLV
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_40
@@ -4643,18 +1794,7 @@ SOV_Sovfed_category = {
 				}
 			}
 		}
-		visible = {
-			country_exists = MLV
-			original_tag = PMR
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision PMR_attack_mlv"
 			SOV = { country_event = { id = subject_rus.42 days = 1 } }
@@ -4668,6 +1808,16 @@ SOV_Sovfed_category = {
 		days_remove = 10
 		cost = 100
 		fire_only_once = yes
+
+		visible = {
+			country_exists = MLV
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_40
@@ -4677,568 +1827,21 @@ SOV_Sovfed_category = {
 				is_subject_of = SOV
 			}
 		}
-		visible = {
-			country_exists = MLV
-			original_tag = PMR
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision PMR_annex_mlv"
 			SOV = { country_event = { id = subject_rus.127 days = 1 } }
 		}
 		ai_will_do = { factor = 10 }
 	}
-	######World Kazakhstan#######
-	PMR_world_kaz = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			KAZ = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_russia_kazah
-		}
-		visible = {
-			country_exists = KAZ
-			check_variable = { PMR.kolbasna > 700 }
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_kaz"
-			KAZ = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Uzbekistan#######
-	PMR_world_uzbek = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			UZB = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_russia_uzb
-		}
-		visible = {
-			country_exists = UZB
-			check_variable = { PMR.kolbasna > 700 }
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_uzbek"
-			UZB = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Belarus#######
-	PMR_world_belarus = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			BLR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_russia_belarus
-		}
-		visible = {
-			country_exists = BLR
-			check_variable = { PMR.kolbasna > 700 }
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_belarus"
-			BLR = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Donetsk#######
-	PMR_world_dpr = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			DPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = DPR
-			check_variable = { PMR.kolbasna > 700 }
-			DPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_dpr"
-			DPR = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Lugansk#######
-	PMR_world_lpr = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			LPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = LPR
-			check_variable = { PMR.kolbasna > 700 }
-			LPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_lpr"
-			LPR = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Kharkiv#######
-	PMR_world_hpr = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			HPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = HPR
-			check_variable = { PMR.kolbasna > 700 }
-			HPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_hpr"
-			HPR = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Odessa#######
-	PMR_world_opr = {
-		allowed = { original_tag = PMR }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			OPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = PMR_sell_weapon
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = OPR
-			check_variable = { PMR.kolbasna > 700 }
-			OPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			PMR = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision PMR_world_opr"
-			OPR = { country_event = { id = subject_rus.63 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
 	######URAL DECISIONS#######
-	######World Belarus#######
-	URA_world_blr = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			BLR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_russia_belarus
-		}
-		visible = {
-			country_exists = BLR
-			BLR = {
-				NOT = { has_war_with = SOV }
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_blr"
-			BLR = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Kazahstan#######
-	URA_world_kaz = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			KAZ = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_russia_kazah
-		}
-		visible = {
-			country_exists = KAZ
-			KAZ = {
-				NOT = { has_war_with = SOV }
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_kaz"
-			KAZ = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Uzbekistan#######
-	URA_world_uzbek = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			UZB = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_russia_kazah
-		}
-		visible = {
-			country_exists = UZB
-			UZB = {
-				NOT = { has_war_with = SOV }
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_uzb"
-			UZB = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Donetsk#######
-	URA_world_dpr = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			DPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = DPR
-			DPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_dpr"
-			DPR = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Lugansk#######
-	URA_world_lpr = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			LPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = LPR
-			LPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_lpr"
-			LPR = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Kharkiv#######
-	URA_world_hpr = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-
-		available = {
-			HPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = HPR
-			HPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_hpr"
-			HPR = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
-	######World Odessa#######
-	URA_world_opr = {
-		allowed = { original_tag = URA }
-		icon = GFX_decision_sovfed_button
-		days_remove = 400
-		cost = 50
-		available = {
-			OPR = {
-				NOT = { has_war_with = SOV }
-			}
-			has_completed_focus = URA_ural_concern
-			has_completed_focus = SUB_novorossiya
-		}
-		visible = {
-			country_exists = OPR
-			OPR = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
-		complete_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision URA_world_opr"
-			OPR = { country_event = { id = subject_rus.121 days = 1 } }
-		}
-		ai_will_do = {
-			factor = 10
-		}
-	}
 	######Unite with Kurgan#######
 	URA_unite_with_kurgan = {
 		allowed = { original_tag = URA }
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
+
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
@@ -5246,25 +1849,21 @@ SOV_Sovfed_category = {
 			}
 		}
 		visible = {
+			country_exists = SOV
 			OR = {
 				has_completed_focus = URA_meet_governors
 				has_completed_focus = URA_rne_russian_dictatorship
 				has_completed_focus = URA_communism_ural_oblast
 			}
-			original_tag = URA
-			country_exists = SOV
-			SOV = {
-				owns_state = 1071
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
+			SOV = { owns_state = 1071 }
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision URA_unite_with_kurgan"
 			SOV = { country_event = { id = ural_event.8 days = 1 } }
@@ -5276,32 +1875,29 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
+
+		visible = {
+			country_exists = SOV
+			OR = {
+				has_completed_focus = URA_meet_governors
+				has_completed_focus = URA_rne_russian_dictatorship
+				has_completed_focus = URA_communism_ural_oblast
+			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			SOV = { owns_state = 675 }
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
 				check_variable = { URA.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			OR = {
-				has_completed_focus = URA_meet_governors
-				has_completed_focus = URA_rne_russian_dictatorship
-				has_completed_focus = URA_communism_ural_oblast
-			}
-			original_tag = URA
-			country_exists = SOV
-			SOV = {
-				owns_state = 675
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision URA_unite_with_chelyaba"
 			SOV = { country_event = { id = ural_event.11 days = 1 } }
@@ -5313,32 +1909,29 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
+
+		visible = {
+			country_exists = SOV
+			OR = {
+				has_completed_focus = URA_meet_governors
+				has_completed_focus = URA_rne_russian_dictatorship
+				has_completed_focus = URA_communism_ural_oblast
+			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			SOV = { owns_state = 1118 }
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
 				check_variable = { URA.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			OR = {
-				has_completed_focus = URA_meet_governors
-				has_completed_focus = URA_rne_russian_dictatorship
-				has_completed_focus = URA_communism_ural_oblast
-			}
-			original_tag = URA
-			country_exists = SOV
-			SOV = {
-				owns_state = 1118
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision URA_unite_with_orenburg"
 			SOV = { country_event = { id = ural_event.13 days = 1 } }
@@ -5350,32 +1943,29 @@ SOV_Sovfed_category = {
 		icon = GFX_decision_sovfed_button
 		days_remove = 380
 		cost = 150
+
+		visible = {
+			country_exists = SOV
+			OR = {
+				has_completed_focus = URA_meet_governors
+				has_completed_focus = URA_rne_russian_dictatorship
+				has_completed_focus = URA_communism_ural_oblast
+			}
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			SOV = { owns_state = 658 }
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_authority_more_60
 				check_variable = { URA.subjectavtoritet > 59 }
 			}
 		}
-		visible = {
-			OR = {
-				has_completed_focus = URA_meet_governors
-				has_completed_focus = URA_rne_russian_dictatorship
-				has_completed_focus = URA_communism_ural_oblast
-			}
-			original_tag = URA
-			country_exists = SOV
-			SOV = {
-				owns_state = 658
-			}
-			URA = { 
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision URA_unite_with_perm"
 			SOV = { country_event = { id = ural_event.15 days = 1 } }
@@ -5388,23 +1978,23 @@ SUB_nationalism_category = {
 		icon = GFX_decision_combatinfl_button
 		days_remove = 20
 		cost = 55
+
+		visible = {
+			NOT = { has_country_flag = SUB_subject_rebeliion_flag }
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_inped_more_85_tt
 				check_variable = { ROOT.subjectinped > 85 }
 			}
 		}
-		visible = {
-			ROOT = {
-				NOT = { has_country_flag = SUB_subject_rebeliion_flag }
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-			}
-		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_anti_russia"
 			set_temp_variable = { modify_subjectavtoritet = -48 }
@@ -5414,70 +2004,71 @@ SUB_nationalism_category = {
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SUB_ural_separatism = {
+		allowed = { original_tag = URA }
 		icon = GFX_decision_combatinfl_button
 		days_remove = 70
 		cost = 75
+
 		visible = {
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
+			}
+			OR = {
+				has_idea = URA_uralian_spirit_idea
+				has_idea = URA_uralian_spirit_idea1
+				has_idea = URA_uralian_spirit_idea2
+				has_idea = URA_uralian_spirit_idea3
+			}
 			custom_trigger_tooltip = {
 				tooltip = SUB_inped_more_85_tt
 				check_variable = { ROOT.subjectinped < 85 }
 			}
-			original_tag = URA
-			URA = {
-				NOT = { has_country_flag = SUB_subject_rebeliion_flag }
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-				OR = {
-					has_idea = URA_uralian_spirit_idea
-					has_idea = URA_uralian_spirit_idea1
-					has_idea = URA_uralian_spirit_idea2
-					has_idea = URA_uralian_spirit_idea3
-				}
-			}
+			NOT = { has_country_flag = SUB_subject_rebeliion_flag }
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_ural_separatism"
 			URA_ural_spirit_separatism = yes
 		}
+
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	SUB_kuban_separatism = {
+		allowed = { original_tag = KUB }
 		icon = GFX_decision_combatinfl_button
 		days_remove = 70
 		cost = 75
+
 		visible = {
 			custom_trigger_tooltip = {
 				tooltip = SUB_inped_more_85_tt
 				check_variable = { ROOT.subjectinped < 85 }
 			}
-			original_tag = KUB
-			KUB = {
-				OR = {
-					has_autonomy_state = autonomy_republic_rf
-					has_autonomy_state = autonomy_kray_rf
-					has_autonomy_state = autonomy_oblast_rf
-					has_autonomy_state = autonomy_okrug_rf
-				}
-				NOT = { has_country_flag = SUB_subject_rebeliion_flag }
+			OR = {
+				has_autonomy_state = autonomy_republic_rf
+				has_autonomy_state = autonomy_kray_rf
+				has_autonomy_state = autonomy_oblast_rf
+				has_autonomy_state = autonomy_okrug_rf
 			}
+			NOT = { has_country_flag = SUB_subject_rebeliion_flag }
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SUB_kuban_separatism"
 			set_temp_variable = { modify_subjectinped = 6 }
 			modify_subjectinped_support = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 }
@@ -5489,8 +2080,8 @@ URA_policy_category = {
 		days_remove = 180
 		cost = 75
 		visible = {
-			is_subject = no
 			country_exists = MNT
+			is_subject = no
 			nationalist_monarchists_are_in_power = yes
 			has_completed_focus = URA_monarchy_negotiate_land
 			MNT = { NOT = { has_idea = URA_romanov_empire } }
@@ -5499,7 +2090,7 @@ URA_policy_category = {
 			MNT = { country_event = { id = ural_event.39 days = 1 } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_albania = {
@@ -5507,8 +2098,8 @@ URA_policy_category = {
 		days_remove = 180
 		cost = 75
 		visible = {
-			is_subject = no
 			country_exists = ALB
+			is_subject = no
 			nationalist_monarchists_are_in_power = yes
 			has_completed_focus = URA_monarchy_negotiate_land
 			ALB = { NOT = { has_idea = URA_romanov_empire } }
@@ -5517,7 +2108,7 @@ URA_policy_category = {
 			ALB = { country_event = { id = ural_event.39 days = 1 } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_macedonia = {
@@ -5535,7 +2126,7 @@ URA_policy_category = {
 			FYR = { country_event = { id = ural_event.39 days = 1 } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_gambia = {
@@ -5543,8 +2134,8 @@ URA_policy_category = {
 		days_remove = 180
 		cost = 75
 		visible = {
-			is_subject = no
 			country_exists = GAM
+			is_subject = no
 			nationalist_monarchists_are_in_power = yes
 			has_completed_focus = URA_monarchy_negotiate_land
 			GAM = { NOT = { has_idea = URA_romanov_empire } }
@@ -5553,7 +2144,7 @@ URA_policy_category = {
 			GAM = { country_event = { id = ural_event.39 days = 1 } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_trinidad = {
@@ -5561,8 +2152,8 @@ URA_policy_category = {
 		days_remove = 180
 		cost = 75
 		visible = {
-			is_subject = no
 			country_exists = TRI
+			is_subject = no
 			nationalist_monarchists_are_in_power = yes
 			has_completed_focus = URA_monarchy_negotiate_land
 		}
@@ -5570,15 +2161,15 @@ URA_policy_category = {
 			TRI = { country_event = { id = ural_event.39 days = 1 } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_montenegro_influency = {
 		icon = GFX_decision_bancru_ask_button
 		days_remove = 180
 		visible = {
-			is_subject = no
 			country_exists = MNT
+			is_subject = no
 			nationalist_monarchists_are_in_power = yes
 			MNT = { has_idea = URA_romanov_empire }
 		}
@@ -5591,7 +2182,7 @@ URA_policy_category = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_albania_influency = {
@@ -5612,7 +2203,7 @@ URA_policy_category = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_macedonia_influency = {
@@ -5633,7 +2224,7 @@ URA_policy_category = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_gambia_influency = {
@@ -5654,7 +2245,7 @@ URA_policy_category = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_romanov_trinidad_influency = {
@@ -5675,7 +2266,7 @@ URA_policy_category = {
 			change_influence_percentage = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	###########RNE###########
@@ -5694,11 +2285,11 @@ URA_policy_category = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
 				set_temp_variable = { temp_outlook_increase = 0.05 }
-				add_relative_party_popularity = yes	
+				add_relative_party_popularity = yes
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_nazbols_unite = {
@@ -5716,11 +2307,11 @@ URA_policy_category = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
 				set_temp_variable = { temp_outlook_increase = 0.05 }
-				add_relative_party_popularity = yes	
+				add_relative_party_popularity = yes
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_nazbols_revanshizm = {
@@ -5738,11 +2329,11 @@ URA_policy_category = {
 				set_temp_variable = { party_index = 21 }
 				set_temp_variable = { party_popularity_increase = 0.05 }
 				set_temp_variable = { temp_outlook_increase = 0.05 }
-				add_relative_party_popularity = yes	
+				add_relative_party_popularity = yes
 			}
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	###########Rossel###########
@@ -5762,7 +2353,7 @@ URA_policy_category = {
 			GER = { country_event = { id = ural_event.24 days = 1 } }
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	###########Promka###########
@@ -5780,7 +2371,7 @@ URA_policy_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_returm_ugmk_promka = {
@@ -5797,7 +2388,7 @@ URA_policy_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_returm_kurgan_promka = {
@@ -5814,7 +2405,7 @@ URA_policy_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 	URA_returm_chelyaba_promka = {
@@ -5831,30 +2422,28 @@ URA_policy_category = {
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 	}
 }
 ###########TATARSTAN TATNEFT###########
 TAT_tatneft_category = {
 	TAT_tatneft_start = {
+		allowed = { original_tag = TAT }
+		icon = GFX_decision_tatneft_button
+
+		custom_cost_text = cost_4_0
 		custom_cost_trigger = {
 			check_variable = { treasury > 4.0 }
 		}
-		custom_cost_text = cost_4_0
-		icon = GFX_decision_tatneft_button
+
 		days_remove = 180
 		fire_only_once = yes
-		allowed = { original_tag = TAT }
-		available = {
-			has_completed_focus = TAT_tatneft
-		}
-		ai_will_do = {
-			factor = 355
-		}
+
 		visible = {
 			has_completed_focus = TAT_tatneft
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision TAT_tatneft_start"
 			set_country_flag = TAT_neftehimshina
@@ -5864,6 +2453,10 @@ TAT_tatneft_category = {
 					amount = 4
 				}
 			}
+		}
+
+		ai_will_do = {
+			base = 355
 		}
 	}
 	TAT_tatneft_tech = {
@@ -5876,7 +2469,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			has_country_flag = TAT_neftehimshina
@@ -5900,7 +2493,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			has_country_flag = TAT_tech
@@ -5921,7 +2514,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = TUR
@@ -5939,7 +2532,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = PER
@@ -5957,7 +2550,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = IRQ
@@ -5975,7 +2568,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = SYR
@@ -5993,7 +2586,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = LBA
@@ -6011,7 +2604,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = SUD
@@ -6029,7 +2622,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = SAU
@@ -6047,7 +2640,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = ALG
@@ -6065,7 +2658,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = KLM
@@ -6087,7 +2680,7 @@ TAT_tatneft_category = {
 		fire_only_once = yes
 		allowed = { original_tag = TAT }
 		ai_will_do = {
-			factor = 355
+			base = 355
 		}
 		visible = {
 			country_exists = NEE
@@ -6108,7 +2701,7 @@ SIL_bund_category = {
 	SIL_bund_pol_police = {
 		icon = GFX_decision_silesia_button
 		days_remove = 45
-		fire_only_once = no
+
 		cost = 35
 		allowed = { original_tag = POL }
 		ai_will_do = { factor = 100 }
@@ -6140,18 +2733,16 @@ SIL_bund_category = {
 	SIL_bund_pol_spec = {
 		icon = GFX_decision_silesia_button
 		days_remove = 60
-		fire_only_once = no
+
 		cost = 55
 		allowed = { original_tag = POL }
 		ai_will_do = { factor = 100 }
 		visible = {
-			POL = {
-				OR = {
+			country_exists = POL
+			OR = {
 				NOT = { is_subject_of = SOV }
 				NOT = { is_in_faction_with = SOV }
-				}
 			}
-			country_exists = POL
 			NOT = {
 				POL = {
 					OR = {
@@ -6161,6 +2752,7 @@ SIL_bund_category = {
 				}
 			}
 		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SIL_bund_pol_spec"
 			POL = {
@@ -6170,17 +2762,17 @@ SIL_bund_category = {
 		}
 	}
 	SIL_bund_pol_nati = {
+		allowed = { original_tag = POL }
 		icon = GFX_decision_silesia_button
 		days_remove = 78
-		fire_only_once = no
+
 		cost = 45
-		allowed = { original_tag = POL }
 		ai_will_do = { factor = 100 }
 		available = {
 			POL = {
 				OR = {
-				NOT = { is_subject_of = SOV }
-				NOT = { is_in_faction_with = SOV }
+					NOT = { is_subject_of = SOV }
+					NOT = { is_in_faction_with = SOV }
 				}
 			}
 			OR = {
@@ -6208,18 +2800,17 @@ SIL_bund_category = {
 		}
 	}
 	SIL_bund_pol_ukr = {
+		allowed = { original_tag = POL }
 		icon = GFX_decision_silesia_button
 		days_remove = 55
-		fire_only_once = no
+
 		cost = 35
-		allowed = { original_tag = POL }
+
 		ai_will_do = { factor = 100 }
 		available = {
-			POL = {
-				OR = {
+			OR = {
 				NOT = { is_subject_of = SOV }
 				NOT = { is_in_faction_with = SOV }
-				}
 			}
 			OR = {
 				UKR = {	is_in_faction_with = POL }
@@ -6248,15 +2839,15 @@ SIL_bund_category = {
 	SIL_bund_pol_es = {
 		icon = GFX_decision_silesia_button
 		days_remove = 90
-		fire_only_once = no
+
 		cost = 45
 		allowed = { original_tag = POL }
 		ai_will_do = { factor = 100 }
 		available = {
 			POL = {
 				OR = {
-				NOT = { is_subject_of = SOV }
-				NOT = { is_in_faction_with = SOV }
+					NOT = { is_subject_of = SOV }
+					NOT = { is_in_faction_with = SOV }
 				}
 			}
 			has_idea = EU_member
@@ -6279,19 +2870,32 @@ SIL_bund_category = {
 				modify_silesiabund_support = yes
 			}
 		}
+
+		ai_will_do = { base = 100 }
 	}
 	SIL_bund_pol_visegrad = {
+		allowed = { original_tag = POL }
 		icon = GFX_decision_silesia_button
 		days_remove = 60
-		fire_only_once = no
+
 		cost = 55
-		allowed = { original_tag = POL }
-		ai_will_do = { factor = 100 }
+
+		visible = {
+			country_exists = POL
+			NOT = {
+				POL = {
+					OR = {
+						has_country_flag = SIL_end_bund
+						has_country_flag = SIL_start_bund
+					}
+				}
+			}
+		}
 		available = {
 			POL = {
 				OR = {
-				NOT = { is_subject_of = SOV }
-				NOT = { is_in_faction_with = SOV }
+					NOT = { is_subject_of = SOV }
+					NOT = { is_in_faction_with = SOV }
 				}
 			}
 			OR = {
@@ -6309,17 +2913,7 @@ SIL_bund_category = {
 				}
 			}
 		}
-		visible = {
-			country_exists = POL
-			NOT = {
-				POL = {
-					OR = {
-						has_country_flag = SIL_end_bund
-						has_country_flag = SIL_start_bund
-					}
-				}
-			}
-		}
+
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SIL_bund_pol_visegrad"
 			POL = {
@@ -6327,6 +2921,8 @@ SIL_bund_category = {
 				modify_silesiabund_support = yes
 			}
 		}
+
+		ai_will_do = { base = 100 }
 	}
 	SIL_bund_pol_end = {
 		icon = GFX_decision_silesia_button
@@ -6334,7 +2930,7 @@ SIL_bund_category = {
 		fire_only_once = yes
 		cost = 55
 		allowed = { original_tag = POL }
-		ai_will_do = { factor = 100 }
+
 		available = {
 			POL = {
 				OR = {
@@ -6365,14 +2961,16 @@ SIL_bund_category = {
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision SIL_bund_pol_end"
 			hidden_effect = {
-			POL = { set_country_flag = SIL_end_bund }
+				POL = { set_country_flag = SIL_end_bund }
 			}
 		}
+
+		ai_will_do = { base = 100 }
 	}
 	SIL_bund_sov_finance = {
 		icon = GFX_decision_silesia_button
 		days_remove = 38
-		fire_only_once = no
+
 		cost = 10
 		allowed = { original_tag = SOV }
 		ai_will_do = { factor = 100 }
@@ -6390,7 +2988,7 @@ SIL_bund_category = {
 						has_country_flag = SIL_end_bund
 						has_country_flag = SIL_start_bund
 					}
-			   }
+			  }
 			}
 		}
 		complete_effect = {
@@ -6406,7 +3004,7 @@ SIL_bund_category = {
 	SIL_bund_sov_vlianie = {
 		icon = GFX_decision_silesia_button
 		days_remove = 45
-		fire_only_once = no
+
 		cost = 55
 		allowed = { original_tag = SOV }
 		ai_will_do = { factor = 100 }
@@ -6476,8 +3074,6 @@ SIL_bund_category = {
 				set_temp_variable = { modify_silesiabund = 11 }
 				modify_silesiabund_support = yes
 			}
-			set_temp_variable = { modify_wagner = -1500 }
-			modify_wagner_support = yes
 			hidden_effect = {
 				POL = { set_country_flag = SIL_wagner_help }
 			}
@@ -6486,7 +3082,7 @@ SIL_bund_category = {
 	SIL_bund_sov_weapons = {
 		icon = GFX_decision_silesia_button
 		days_remove = 35
-		fire_only_once = no
+
 		cost = 10
 		allowed = { original_tag = SOV }
 		ai_will_do = { factor = 100 }
@@ -6523,7 +3119,7 @@ SIL_bund_category = {
 	SIL_bund_sov_warsaw = {
 		icon = GFX_decision_silesia_button
 		days_remove = 70
-		fire_only_once = no
+
 		cost = 65
 		allowed = { original_tag = SOV }
 		ai_will_do = { factor = 100 }
@@ -6676,7 +3272,7 @@ SIL_bund_category = {
 	SIL_bund_che_diaspora = {
 		icon = GFX_decision_silesia_button
 		days_remove = 70
-		fire_only_once = no
+
 		cost = 40
 		allowed = { original_tag = CHE }
 		ai_will_do = { factor = 100 }
@@ -6715,18 +3311,17 @@ SIL_bund_category = {
 Form_Idel_Ural = {
 	######BSH INTEGRATE TAT#######
 	BSH_integrate_TAT = {
+		allowed = { tag = BSH }
 		icon = GFX_decision_idel_ural_button
 		cost = 200
-		ai_will_do = { factor = 10 }
-		allowed = {
-			tag = BSH
-		}
+
 		visible = {
 			has_completed_focus = BSH_bashkiria_idel_ural_outer
 			TAT = { is_subject_of = BSH }
 			has_war = no
 			is_puppet = no
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision BSH_integrate_TAT"
 			set_cosmetic_tag = BSH_IDL
@@ -6734,21 +3329,22 @@ Form_Idel_Ural = {
 				annex_country = { target = TAT transfer_troops = yes }
 			}
 		}
+
+		ai_will_do = { base = 100 }
 	}
 	######TAT INTEGRATE BSH#######
 	TAT_integrate_BSH = {
+		allowed = { tag = TAT }
 		icon = GFX_decision_idel_ural_button
 		cost = 200
-		ai_will_do = { factor = 10 }
-		allowed = {
-			tag = TAT
-		}
+
 		visible = {
 			has_completed_focus = TAT_idel_ural_free
 			BSH = { is_subject_of = TAT }
 			has_war = no
 			is_puppet = no
 		}
+
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision BSH_integrate_TAT"
 			set_cosmetic_tag = BSH_IDL
@@ -6756,15 +3352,15 @@ Form_Idel_Ural = {
 				annex_country = { target = BSH transfer_troops = yes }
 			}
 		}
+
+		ai_will_do = { base = 100 }
 	}
 	######BSH INTEGRATE TAT STATE#######
 	BSH_integrate_TATar = {
+		allowed = { tag = BSH }
 		icon = GFX_decision_idel_ural_button
 		cost = 200
-		ai_will_do = { factor = 10 }
-		allowed = {
-			tag = BSH
-		}
+
 		visible = {
 			has_completed_focus = BSH_bashkiria_idel_ural_outer
 			owns_state = 661
@@ -6776,15 +3372,17 @@ Form_Idel_Ural = {
 			set_cosmetic_tag = BSH_IDL
 			BSH = { add_state_core = 661 }
 		}
+
+		ai_will_do = {
+			base = 10
+		}
 	}
 	######TAT INTEGRATE BSH STATE#######
 	TAT_integrate_BSHkir = {
+		allowed = { tag = TAT }
 		icon = GFX_decision_idel_ural_button
 		cost = 200
-		ai_will_do = { factor = 10 }
-		allowed = {
-			tag = TAT
-		}
+
 		visible = {
 			has_completed_focus = TAT_idel_ural_free
 			owns_state = 664
@@ -6796,780 +3394,21 @@ Form_Idel_Ural = {
 			set_cosmetic_tag = BSH_IDL
 			TAT = { add_state_core = 664 }
 		}
-	}
-}
-###########KAZACHESTVO###########
-SUB_kazachestvo_category = {
-	###########Kazaks Ural###########
-	SUB_kazachestvo_ural = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_uralkazaks_recruit_tt
-				check_variable = { URA.kazaksURA > 1999 }
-			}
-		}
-		visible = {
-			URA = {
-				has_completed_focus = URA_monarchy_revive_cossack
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 676
-					}
-				}
-				AND = {
-					original_tag = URA
-					URA = {
-						owns_state = 676
-					}
-				}
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			URA = {
-				set_temp_variable = { modify_kazaksURA = -2000 }
-				modify_kazaksURA_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 676 }
-				create_unit = {
-					division = "name = \"Urals Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
+
 		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_ural_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			URA = {
-				has_completed_focus = URA_monarchy_revive_cossack
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 676
-					}
-				}
-				AND = {
-					original_tag = URA
-					URA = {
-						owns_state = 676
-					}
-				}
-			}
-		}
-		complete_effect = {
-			URA = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksURA = 100 }
-						modify_kazaksURA_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksURA = 75 }
-						modify_kazaksURA_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksURA = 55 }
-						modify_kazaksURA_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksURA = 25 }
-						modify_kazaksURA_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_orenburg = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_orenburgkazaks_recruit_tt
-				check_variable = { URA.kazaksORE > 1999 }
-			}
-		}
-		visible = {
-			URA = {
-				has_completed_focus = URA_monarchy_revive_cossack
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 1118
-					}
-				}
-				AND = {
-					original_tag = URA
-					URA = {
-						owns_state = 1118
-					}
-				}
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			URA = {
-				set_temp_variable = { modify_kazaksORE = -2000 }
-				modify_kazaksORE_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 1118 }
-				create_unit = {
-					division = "name = \"Orenburg Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_orenburg_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			URA = {
-				has_completed_focus = URA_monarchy_revive_cossack
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 1118
-					}
-				}
-				AND = {
-					original_tag = URA
-					URA = {
-						owns_state = 1118
-					}
-				}
-			}
-		}
-		complete_effect = {
-			URA = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksORE = 75 }
-						modify_kazaksORE_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksORE = 55 }
-						modify_kazaksORE_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksORE = 35 }
-						modify_kazaksORE_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksORE = 15 }
-						modify_kazaksORE_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_kuban = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_kubankazaks_recruit_tt
-				check_variable = { KUB.kazaksKUB > 1999 }
-			}
-		}
-		visible = {
-			KUB = {
-				has_completed_focus = KUB_revival_cossak_army
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 668
-					}
-				}
-				AND = {
-					original_tag = KUB
-					KUB = {
-						owns_state = 668
-					}
-				}
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			KUB = {
-				set_temp_variable = { modify_kazaksKUB = -2000 }
-				modify_kazaksKUB_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 668 }
-				create_unit = {
-					division = "name = \"Kuban Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_kuban_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			KUB = {
-				has_completed_focus = KUB_revival_cossak_army
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 668
-					}
-				}
-				AND = {
-					original_tag = KUB
-					KUB = {
-						owns_state = 668
-					}
-				}
-			}
-		}
-		complete_effect = {
-			KUB = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksKUB = 100 }
-						modify_kazaksKUB_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksKUB = 75 }
-						modify_kazaksKUB_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksKUB = 55 }
-						modify_kazaksKUB_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksKUB = 25 }
-						modify_kazaksKUB_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_volga = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_volgakazaks_recruit_tt
-				check_variable = { SOV.kazaksVOLJ > 1999 }
-			}
-		}
-		visible = {
-			SOV = {
-				has_completed_focus = SOV_kazachestvo
-			}
-			original_tag = SOV
-			SOV = {
-				owns_state = 663
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			SOV = {
-				set_temp_variable = { modify_kazaksVOLJ = -2000 }
-				modify_kazaksVOLJ_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 663 }
-				create_unit = {
-					division = "name = \"Volga Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_volga_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			SOV = {
-				has_completed_focus = SOV_kazachestvo
-			}
-			original_tag = SOV
-			SOV = {
-				owns_state = 663
-			}
-		}
-		complete_effect = {
-			SOV = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksVOLJ = 100 }
-						modify_kazaksVOLJ_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksVOLJ = 75 }
-						modify_kazaksVOLJ_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksVOLJ = 55 }
-						modify_kazaksVOLJ_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksVOLJ = 25 }
-						modify_kazaksVOLJ_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_siberia = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_siberiakazaks_recruit_tt
-				check_variable = { SOV.kazaksSIB > 1999 }
-			}
-		}
-		visible = {
-			SOV = {
-				has_completed_focus = SOV_kazachestvo
-			}
-			original_tag = SOV
-			SOV = {
-				owns_state = 1067
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			SOV = {
-				set_temp_variable = { modify_kazaksSIB = -2000 }
-				modify_kazaksSIB_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 1067 }
-				create_unit = {
-					division = "name = \"Siberian Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_siberia_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			SOV = {
-				has_completed_focus = SOV_kazachestvo
-			}
-			original_tag = SOV
-			SOV = {
-				owns_state = 1067
-			}
-		}
-		complete_effect = {
-			SOV = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksSIB = 100 }
-						modify_kazaksSIB_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksSIB = 75 }
-						modify_kazaksSIB_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksSIB = 55 }
-						modify_kazaksSIB_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksSIB = 25 }
-						modify_kazaksSIB_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_centr = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_centrkazaks_recruit_tt
-				check_variable = { SOV.kazaksMSC > 1999 }
-			}
-		}
-		visible = {
-			SOV = {
-				has_completed_focus = SOV_kazachestvo
-			}
-			original_tag = SOV
-			SOV = {
-				owns_state = 1189
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			SOV = {
-				set_temp_variable = { modify_kazaksMSC = -2000 }
-				modify_kazaksMSC_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 1189 }
-				create_unit = {
-					division = "name = \"Central Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_centr_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			SOV = {
-				has_completed_focus = SOV_kazachestvo
-			}
-			original_tag = SOV
-			SOV = {
-				owns_state = 1189
-			}
-		}
-		complete_effect = {
-			SOV = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksMSC = 100 }
-						modify_kazaksMSC_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksMSC = 75 }
-						modify_kazaksMSC_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksMSC = 55 }
-						modify_kazaksMSC_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksMSC = 25 }
-						modify_kazaksMSC_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_crimea = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 100
-		custom_cost_trigger = {
-			command_power > 50
-		}
-		custom_cost_text = command_power_more_than_50
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = SUB_crimeakazaks_recruit_tt
-				check_variable = { CRM.kazaksCRM > 1999 }
-			}
-		}
-		visible = {
-			CRM = {
-				has_completed_focus = CRM_kazaki
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 669
-					}
-				}
-				AND = {
-					original_tag = CRM
-					CRM = {
-						owns_state = 669
-					}
-				}
-			}
-		}
-		complete_effect = {
-			hidden_effect = {
-				if = {
-					limit = {
-						original_tag = SOV
-						NOT = { has_country_flag = SUB_kazaks_brigade_added }
-					}
-					division_template = {
-						name = "Cossack Regiment"
-						is_locked = yes
-						regiments = {
-							L_Inf_Bat = { x = 0 y = 0 }
-							L_Inf_Bat = { x = 0 y = 1 }
-							L_Inf_Bat = { x = 0 y = 2 }
-						}
-					}
-					set_country_flag = SUB_kazaks_brigade_added
-				}
-			}
-			CRM = {
-				set_temp_variable = { modify_kazaksCRM = -2000 }
-				modify_kazaksCRM_support = yes
-			}
-			random_owned_controlled_state = {
-				limit = { ROOT = { has_full_control_of_state = PREV } }
-				prioritize = { 669 }
-				create_unit = {
-					division = "name = \"Crimea Cossack Regiment\" division_template = \"Cossack Regiment\" start_experience_factor = 0.1"
-					owner = ROOT
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
-		}
-	}
-	SUB_kazachestvo_crimea_recruit = {
-		icon = GFX_decision_sub_kazaks_button
-		days_remove = 40
-		cost = 45
-		visible = {
-			CRM = {
-				has_completed_focus = CRM_kazaki
-			}
-			OR = {
-				AND = {
-					original_tag = SOV
-					SOV = {
-						owns_state = 669
-					}
-				}
-				AND = {
-					original_tag = CRM
-					CRM = {
-						owns_state = 669
-					}
-				}
-			}
-		}
-		complete_effect = {
-			CRM = {
-				random_list = {
-					25 = {
-						set_temp_variable = { modify_kazaksCRM = 55 }
-						modify_kazaksCRM_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksCRM = 35 }
-						modify_kazaksCRM_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksCRM = 25 }
-						modify_kazaksCRM_support = yes
-					}
-					25 = {
-						set_temp_variable = { modify_kazaksCRM = 15 }
-						modify_kazaksCRM_support = yes
-					}
-				}
-			}
-		}
-		ai_will_do = {
-			factor = 355
+			base = 10
 		}
 	}
 }
+
 #YUGRA REUNIFICATION
 KHM_reunifcation_category = {
 	KHM_core_rus = {
+		allowed = { original_tag = KHM }
 		icon = GFX_decision_khmao_button
 		days_remove = 360
-		fire_only_once = no
+
 		cost = 25
-		allowed = { original_tag = KHM }
-		ai_will_do = { factor = 355 }
 		visible = {
 			SOV = {
 				OR = {
@@ -7591,14 +3430,18 @@ KHM_reunifcation_category = {
 			log = "[GetDateText]: [Root.GetName]: Decision KHM_core_rus"
 			khanti_territory_core = yes
 		}
+
+		ai_will_do = {
+			base = 355
+		}
 	}
 	KHM_subject_rus = {
+		allowed = { original_tag = KHM }
 		icon = GFX_decision_khmao_button
 		days_remove = 360
-		fire_only_once = no
+
 		cost = 25
-		allowed = { original_tag = KHM }
-		ai_will_do = { factor = 355 }
+
 		visible = {
 			has_completed_focus = KHM_motherland_calls
 			SOV = {
@@ -7621,44 +3464,48 @@ KHM_reunifcation_category = {
 			log = "[GetDateText]: [Root.GetName]: Decision KHM_subject_rus"
 			russia_khm_subjects = yes
 		}
+
+		ai_will_do = {
+			base = 355
+		}
 	}
 	KHM_subject_annexion = {
+		allowed = { original_tag = KHM }
 		icon = GFX_decision_khmao_button
 		days_remove = 360
-		fire_only_once = no
+
 		cost = 25
-		allowed = { original_tag = KHM }
-		ai_will_do = { factor = 355 }
+
 		visible = {
 			is_subject = no
 			if = {
 				limit = {
 					OR = {
-					original_tag = CHE
-					original_tag = SOO
-					original_tag = CRM
-					original_tag = YAK
-					original_tag = DAG
-					original_tag = KAE
-					original_tag = TAT
-					original_tag = BSH
-					original_tag = NEE
-					original_tag = YAM
-					original_tag = CKK
-					original_tag = KHS
-					original_tag = ALT
-					original_tag = URA
-					original_tag = SIB
-					original_tag = FAR
-					original_tag = GOR
-					original_tag = KUB
-					original_tag = TUV
-					original_tag = KOM
-					original_tag = ADY
-					original_tag = KBK
-					original_tag = ING
-					original_tag = BRY
-					original_tag = KLM
+						original_tag = CHE
+						original_tag = SOO
+						original_tag = CRM
+						original_tag = YAK
+						original_tag = DAG
+						original_tag = KAE
+						original_tag = TAT
+						original_tag = BSH
+						original_tag = NEE
+						original_tag = YAM
+						original_tag = CKK
+						original_tag = KHS
+						original_tag = ALT
+						original_tag = URA
+						original_tag = SIB
+						original_tag = FAR
+						original_tag = GOR
+						original_tag = KUB
+						original_tag = TUV
+						original_tag = KOM
+						original_tag = ADY
+						original_tag = KBK
+						original_tag = ING
+						original_tag = BRY
+						original_tag = KLM
 					}
 				}
 				has_autonomy_state = autonomy_republic_khm
@@ -7684,6 +3531,10 @@ KHM_reunifcation_category = {
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision KHM_subject_rus"
 			khanti_subjects_annex = yes
+		}
+
+		ai_will_do = {
+			base = 355
 		}
 	}
 }

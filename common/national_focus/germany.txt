@@ -12,6 +12,35 @@ focus_tree = {
 	initial_show_position = { x = 100 y = 0 }
 	continuous_focus_position = { x = 5300 y = 3040 }
 
+	shortcut = {
+		name = GER_Nationalism
+		target = GER_stray_from_the_republic
+		scroll_wheel_factor = 0.80
+	}
+
+	shortcut = {
+		name = GER_Economy
+		target = GER_the_divide
+		scroll_wheel_factor = 0.80
+	}
+
+	shortcut = {
+		name = GER_Alexander
+		target = GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations
+		scroll_wheel_factor = 0.80
+	}
+
+	shortcut = {
+		name = GER_Military
+		target = Ger_Einsatzfuhrungskommando
+		scroll_wheel_factor = 0.80
+	}
+
+	shortcut = {
+		name = GER_constitution
+		target = GER_the_constitution_of_germany
+		scroll_wheel_factor = 0.80
+	}
 
 	### CAT_industry Tree ###
 	#DEUTSCHLAND INDUSTRIE
@@ -163,6 +192,13 @@ focus_tree = {
 			set_temp_variable = { percent_change = 5 }
 			change_domestic_influence_percentage = yes
 			two_random_industrial_complex = yes
+			add_tech_bonus = {
+				name = GER_german_oilrig_designs_bonus
+				category = CAT_excavation_tech
+				category = CAT_fuel_oil
+				uses = 2
+				bonus = 0.5
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -213,7 +249,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_bio_options"
-			two_random_synthetic_refinery = yes
+			two_random_renewable_energy_infra = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -326,15 +362,16 @@ focus_tree = {
 
 	focus = { #LIFT THE FRACKING BAN
 		id = GER_lift_fracking_ban
-		icon = GENERIC_austerity_measures
+		icon = oil_companies
 
 		x = 1
-		y = 1
+		y = 2
 		relative_position_id = GER_alternative_fuel_options
 
-		cost = 8.6
+		cost = 10
 
 		prerequisite = { focus = GER_alternative_fuel_options }
+		prerequisite = { focus = GER_modernise_mining_equipment }
 
 		available = {
 			custom_trigger_tooltip = {
@@ -349,98 +386,94 @@ focus_tree = {
 			}
 		}
 
+		select_effect = {
+			add_political_power = -100
+			set_temp_variable = { party_popularity_increase = -0.05 }
+			set_party_index_to_ruling_party = yes
+			add_relative_party_popularity = yes
+		}
+
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_lift_fracking_ban"
-			set_temp_variable = { party_popularity_increase = -0.03 }
-			set_party_index_to_ruling_party = yes
-			add_relative_party_popularity = yes
-			newline = yes
-			custom_effect_tooltip = GER_20_pp_cost_TT
+			random_owned_state = {
+				random_list = {
+					50 = {
+						add_resource = {
+							type = oil
+							amount = 6
+						}
+					}
+					35 = {
+						add_resource = {
+							type = oil
+							amount = 10
+						}
+					}
+					15 = {
+						add_resource = {
+							type = oil
+							amount = 15
+						}
+					}
+				}
+			}
+			random_owned_state = {
+				random_list = {
+					50 = {
+						add_resource = {
+							type = oil
+							amount = 6
+						}
+					}
+					35 = {
+						add_resource = {
+							type = oil
+							amount = 10
+						}
+					}
+					15 = {
+						add_resource = {
+							type = oil
+							amount = 15
+						}
+					}
+				}
+			}
+			random_owned_state = {
+				random_list = {
+					50 = {
+						add_resource = {
+							type = oil
+							amount = 6
+						}
+					}
+					35 = {
+						add_resource = {
+							type = oil
+							amount = 10
+						}
+					}
+					15 = {
+						add_resource = {
+							type = oil
+							amount = 15
+						}
+					}
+				}
+			}
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 		}
 		ai_will_do = {
 			base = 1
 		}
 	}
-
-	focus = { #SCOUT FOR FRACKING SITES
-		id = GER_scout_fracking_sites
-		icon = seize_oil
-
-		x = 0
-		y = 1
-		relative_position_id = GER_lift_fracking_ban
-
-		cost = 4.3
-
-		prerequisite = { focus = GER_lift_fracking_ban }
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_scout_fracking_sites"
-			add_political_power = 100
-		}
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = { #BEGIN FRACKING
-		id = GER_begin_fracking
-		icon = oil_companies
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-		x = 0
-		y = 1
-		relative_position_id = GER_scout_fracking_sites
-
-		cost = 7.9
-
-		prerequisite = { focus = GER_scout_fracking_sites }
-
-		available = {
-			39 = {
-				is_owned_and_controlled_by = GER
-			}
-			38 = {
-				is_owned_and_controlled_by = GER
-			}
-		}
-
-		bypass = {
-			NOT = {
-				39 = {
-					is_owned_and_controlled_by = GER
-				}
-				38 = {
-					is_owned_and_controlled_by = GER
-				}
-			}
-			has_civil_war = no
-		}
-
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_begin_fracking"
-			39 = {
-				add_resource = {
-					type = oil
-					amount = 10
-				}
-			}
-			newline = yes
-			add_stability = -0.05
-			set_temp_variable = { treasury_change = -5.00 }
-			modify_treasury_effect = yes
-		}
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = { #EXPAND MAINSTREAM INDUSTRY
+	focus = {
 		id = GER_expand_mainstream_industry
 		icon = industry2
 
@@ -454,10 +487,112 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
 
+		bypass = {
+			NOT = { has_idea = industrial_conglomerates }
+			NOT = { has_idea = defense_industry }
+			NOT = { has_idea = international_bankers }
+			NOT = { has_idea = maritime_industry }
+			NOT = { has_idea = farmers }
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_expand_mainstream_industry"
-			set_temp_variable = { temp_opinion = 5 }
-			change_industrial_conglomerates_opinion = yes
+			custom_effect_tooltip = GER_expand_mainstream_industry_tt1
+			effect_tooltip = {
+				two_random_industrial_complex = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_industrial_conglomerates_opinion = yes
+			}
+			custom_effect_tooltip = GER_expand_mainstream_industry_tt2
+			effect_tooltip = {
+				two_random_arms_factory = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_defense_industry_opinion = yes
+			}
+			custom_effect_tooltip = GER_expand_mainstream_industry_tt3
+			effect_tooltip = {
+				random_owned_state = {
+					add_building_construction = {
+						type = offices
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				random_owned_state = {
+					add_building_construction = {
+						type = offices
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				set_temp_variable = { treasury_change = -26.00 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_international_bankers_opinion = yes
+			}
+			custom_effect_tooltip = GER_expand_mainstream_industry_tt4
+			effect_tooltip = {
+				two_random_dockyards = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_maritime_industry_opinion = yes
+			}
+			custom_effect_tooltip = GER_expand_mainstream_industry_tt5
+			effect_tooltip = {
+				two_random_agriculture_district = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_farmers_opinion = yes
+			}
+			newline = yes
+			custom_effect_tooltip = current_effect_tooltip
+			if = {
+				limit = { has_idea = industrial_conglomerates }
+				two_random_industrial_complex = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_industrial_conglomerates_opinion = yes
+			}
+			if = {
+				limit = { has_idea = defense_industry }
+				two_random_arms_factory = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_defense_industry_opinion = yes
+			}
+			if = {
+				limit = { has_idea = international_bankers }
+				random_owned_state = {
+					add_building_construction = {
+						type = offices
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				random_owned_state = {
+					add_building_construction = {
+						type = offices
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				set_temp_variable = { treasury_change = -26.00 }
+				modify_treasury_effect = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_international_bankers_opinion = yes
+			}
+			if = {
+				limit = { has_idea = maritime_industry }
+				two_random_dockyards = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_maritime_industry_opinion = yes
+			}
+			if = {
+				limit = { has_idea = farmers }
+				two_random_agriculture_district = yes
+				set_temp_variable = { temp_opinion = 5 }
+				change_farmers_opinion = yes
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -493,6 +628,7 @@ focus_tree = {
 
 			set_temp_variable = { temp_opinion = 5 }
 			change_labour_unions_opinion = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = 0.02 }
 			update_GER_welfare_cost = yes
 
@@ -528,7 +664,7 @@ focus_tree = {
 
 	focus = { #REVIVE THE GERMAN WORKSHOP
 		id = GER_revive_the_german_workshop
-		icon = construction4
+		icon = industry_civilian
 
 		x = 0
 		y = 3
@@ -574,9 +710,11 @@ focus_tree = {
 
 		available = {
 			OR = {
-				emerging_communist_state_are_not_in_power = yes
-				neutrality_neutral_communism_are_not_in_power = yes
-				emerging_anarchist_communism_are_not_in_power = yes
+				NOT = {
+					emerging_communist_state_are_in_power = yes
+					neutrality_neutral_communism_are_in_power = yes
+					emerging_anarchist_communism_are_in_power = yes
+				}
 			}
 		}
 
@@ -584,6 +722,36 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_the_divide"
+			539 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			1079 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			44 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			972 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			545 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
 			custom_effect_tooltip = GER_east_increase_opinion3
 			add_to_variable = { GER_east_opinion = 3 }
 		}
@@ -901,7 +1069,7 @@ focus_tree = {
 
 	focus = { #CONSTRUCT KARLSRUHE PLANT
 		id = GER_construct_karlsruhe_plant
-		icon = factory_planning
+		icon = baku_supsa
 
 		x = 1
 		y = 1
@@ -963,7 +1131,7 @@ focus_tree = {
 
 	focus = { #CONSTRUCT COLOGNE PLANT
 		id = GER_construct_cologne_plant
-		icon = factory_planning
+		icon = baku_erzurum
 
 		x = -1
 		y = 1
@@ -1240,6 +1408,11 @@ focus_tree = {
 				uses = 1
 				category = CAT_excavation_tech
 			}
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -1265,6 +1438,11 @@ focus_tree = {
 			set_temp_variable = { party_popularity_increase = 0.02 }
 			set_party_index_to_ruling_party = yes
 			add_relative_party_popularity = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			newline = yes
 			set_temp_variable = { treasury_change = -10.00 }
 			modify_treasury_effect = yes
@@ -1297,6 +1475,11 @@ focus_tree = {
 			39 = { add_manpower = 5420 }
 			set_temp_variable = { temp_opinion = 2 }
 			change_small_medium_business_owners_opinion = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			newline = yes
 			set_temp_variable = { treasury_change = -4.00 }
 			modify_treasury_effect = yes
@@ -1329,10 +1512,15 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_increase_mining_output"
 			add_tech_bonus = {
-				name = CAT_artillery
+				name = CAT_excavation_tech
 				bonus = 0.40
 				uses = 1
 				category = CAT_excavation_tech
+			}
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
 			}
 		}
 		ai_will_do = {
@@ -1342,7 +1530,7 @@ focus_tree = {
 
 	focus = { #SAMSON PIT (SILVER)
 		id = GER_samson_pit
-		icon = mining_truck
+		icon = GER_lower_saxony_mining
 
 		x = -2
 		y = 1
@@ -1379,6 +1567,11 @@ focus_tree = {
 				}
 			}
 			newline = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			set_temp_variable = { treasury_change = -8.00 }
 			modify_treasury_effect = yes
 		}
@@ -1389,7 +1582,7 @@ focus_tree = {
 
 	focus = { #GLASEBACH MINE (SILVER)
 		id = GER_glasebach_mine
-		icon = mining_truck
+		icon = GER_lower_saxony_anhalt_mining
 
 		x = 0
 		y = 1
@@ -1425,6 +1618,11 @@ focus_tree = {
 					amount = 5
 				}
 			}
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			newline = yes
 			set_temp_variable = { treasury_change = -8.00 }
 			modify_treasury_effect = yes
@@ -1436,7 +1634,7 @@ focus_tree = {
 
 	focus = { #rammelsberg MINE (COPPER)
 		id = GER_rammelsberg_mine
-		icon = mining_truck
+		icon = GER_ruhr_mining
 
 		x = 0
 		y = 1
@@ -1447,14 +1645,14 @@ focus_tree = {
 		prerequisite = { focus = GER_increase_mining_output }
 
 		available = {
-			38 = {
+			39 = {
 				is_owned_and_controlled_by = GER
 			}
 		}
 
 		bypass = {
 			NOT = {
-				38 = {
+				39 = {
 					is_owned_and_controlled_by = GER
 				}
 			}
@@ -1465,12 +1663,17 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_rammelsberg_mine"
-			38 = {
+			39 = {
 				add_dynamic_modifier = { modifier = GER_mines }
 				add_resource = {
 					type = chromium
 					amount = 5
 				}
+			}
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
 			}
 			newline = yes
 			set_temp_variable = { treasury_change = -7.50 }
@@ -1483,7 +1686,7 @@ focus_tree = {
 
 	focus = { #rammelsberg MINE LEAD DEPOSITS (LEAD)
 		id = GER_rammelsberg_mine_expanded
-		icon = mining_truck
+		icon = GER_thuringa_mining
 
 		x = 0
 		y = 1
@@ -1494,14 +1697,14 @@ focus_tree = {
 		prerequisite = { focus = GER_rammelsberg_mine }
 
 		available = {
-			38 = {
+			545 = {
 				is_owned_and_controlled_by = GER
 			}
 		}
 
 		bypass = {
 			NOT = {
-				38 = {
+				545 = {
 					is_owned_and_controlled_by = GER
 				}
 			}
@@ -1512,7 +1715,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_rammelsberg_mine_expanded"
-			38 = {
+			545 = {
 				add_dynamic_modifier = { modifier = GER_mines }
 				add_resource = {
 					type = chromium
@@ -1520,6 +1723,11 @@ focus_tree = {
 				}
 			}
 			newline = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			set_temp_variable = { treasury_change = -7.50 }
 			modify_treasury_effect = yes
 		}
@@ -1530,7 +1738,7 @@ focus_tree = {
 
 	focus = { #GRÜNTEN MINE (STEEL)
 		id = GER_grunten_mine
-		icon = mining_truck
+		icon = GER_bayern_mining
 
 		x = 2
 		y = 1
@@ -1568,6 +1776,11 @@ focus_tree = {
 				}
 			}
 			newline = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			set_temp_variable = { treasury_change = -8.50 }
 			modify_treasury_effect = yes
 		}
@@ -1578,7 +1791,7 @@ focus_tree = {
 
 	focus = { #RUHR MINE (STEEL)
 		id = GER_ruhr_mine
-		icon = mining_truck
+		icon = GER_ruhr_mining
 
 		x = 0
 		y = 1
@@ -1589,14 +1802,14 @@ focus_tree = {
 		prerequisite = { focus = GER_grunten_mine }
 
 		available = {
-			39 = {
+			966 = {
 				is_owned_and_controlled_by = GER
 			}
 		}
 
 		bypass = {
 			NOT = {
-				39 = {
+				966 = {
 					is_owned_and_controlled_by = GER
 				}
 			}
@@ -1607,7 +1820,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_ruhr_mine"
-			39 = {
+			966 = {
 				add_dynamic_modifier = { modifier = GER_mines }
 				add_resource = {
 					type = steel
@@ -1619,6 +1832,11 @@ focus_tree = {
 				}
 			}
 			newline = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			set_temp_variable = { treasury_change = -10.00 }
 			modify_treasury_effect = yes
 		}
@@ -1654,6 +1872,11 @@ focus_tree = {
 				category = CAT_construction_tech
 			}
 			newline = yes
+			if = {
+				limit = { has_idea = fossil_fuel_industry }
+				set_temp_variable = { temp_opinion = 5 }
+				change_fossil_fuel_industry_opinion = yes
+			}
 			set_temp_variable = { treasury_change = -10.00 }
 			modify_treasury_effect = yes
 		}
@@ -1682,6 +1905,36 @@ focus_tree = {
 			set_temp_variable = { party_popularity_increase = 0.05 }
 			add_relative_party_popularity = yes
 			add_stability = 0.02
+			38 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			39 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			41 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			40 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
+			966 = {
+				add_dynamic_modifier = {
+					modifier = DEN_local_construction_initiatives_modifier
+					days = 365
+				}
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -1699,11 +1952,10 @@ focus_tree = {
 		cost = 8.6
 
 		prerequisite = { focus = GER_expand_west }
-
+		prerequisite = { focus = GER_ruhr_mine }
 		prerequisite = { focus = GER_modernise_mining_equipment }
 
 		available = {
-			has_completed_focus = GER_ruhr_mine
 			39 = {
 				is_owned_and_controlled_by = GER
 			}
@@ -1760,6 +2012,12 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_revive_the_rhine"
 			add_ideas = GER_idea_rhineland_industry
+			newline = yes
+			39 = {
+				remove_dynamic_modifier = {
+					modifier = GER_downfall_of_heavy_industrie
+				}
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -1768,7 +2026,7 @@ focus_tree = {
 
 	focus = { #CONSTRUCT NEW SPEIRA GmbH PLANT
 		id = GER_new_speira_plant
-		icon = revive_rhineland
+		icon = focus_generic_aluminum
 
 		x = -1
 		y = 1
@@ -1822,7 +2080,7 @@ focus_tree = {
 
 	focus = { #CONSTRUCT NEW DOCKS AT PORT OF HAMBURG
 		id = GER_new_docks_port_hamburg
-		icon = naval_dockyard
+		icon = trieste_port
 
 		x = 1
 		y = 1
@@ -1894,12 +2152,18 @@ focus_tree = {
 
 		prerequisite = { focus = GER_the_divide }
 
+		available = {
+			has_completed_focus = GER_german_politics
+		}
+
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_expand_east"
 			custom_effect_tooltip = GER_east_increase_opinion2
 			add_to_variable = { GER_east_opinion = 2 }
+			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_police_cost_change = -0.03 }
 			update_GER_police_cost = yes
 		}
@@ -1927,12 +2191,19 @@ focus_tree = {
 		}
 
 		bypass = {
-			NOT = {
+			OR = {
+				AND = {
+					NOT = {
+						44 = {
+							is_owned_and_controlled_by = GER
+						}
+					}
+					has_civil_war = no
+				}
 				44 = {
-					is_owned_and_controlled_by = GER
+					infrastructure > 4
 				}
 			}
-			has_civil_war = no
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
@@ -1974,12 +2245,19 @@ focus_tree = {
 		}
 
 		bypass = {
-			NOT = {
+			OR = {
+				AND = {
+					NOT = {
+						1079 = {
+							is_owned_and_controlled_by = GER
+						}
+					}
+					has_civil_war = no
+				}
 				1079 = {
-					is_owned_and_controlled_by = GER
+					infrastructure > 4
 				}
 			}
-			has_civil_war = no
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
@@ -2061,7 +2339,7 @@ focus_tree = {
 
 	focus = { #BRINGING GERMANY CLOSER TOGETHER
 		id = GER_bringing_germany_closer_together
-		icon = germany
+		icon = GER_unified
 
 		x = 0
 		y = 4
@@ -2069,20 +2347,51 @@ focus_tree = {
 
 		cost = 10.0
 
-		prerequisite = {
-			focus = GER_berlin_projects
-		}
+		prerequisite = { focus = GER_berlin_projects }
+		prerequisite = { focus = GER_new_docks_port_hamburg }
 
-		prerequisite = {
-			focus = GER_new_docks_port_hamburg
+		available = {
+			539 = {
+				infrastructure > 4
+				custom_trigger_tooltip = { tooltip = STATE_productivity_higher_than_999_tt }
+				check_variable = { 539.productivity_state_var > 999 }
+			}
+			1079 = {
+				infrastructure > 4
+				custom_trigger_tooltip = { tooltip = STATE_productivity_higher_than_999_tt }
+				check_variable = { 1079.productivity_state_var > 999 }
+			}
+			44 = {
+				infrastructure > 4
+				custom_trigger_tooltip = { tooltip = STATE_productivity_higher_than_999_tt }
+				check_variable = { 44.productivity_state_var > 999 }
+			}
+			972 = {
+				infrastructure > 4
+				custom_trigger_tooltip = { tooltip = STATE_productivity_higher_than_999_tt }
+				check_variable = { 972.productivity_state_var > 999 }
+			}
+			545 = {
+				infrastructure > 4
+				custom_trigger_tooltip = { tooltip = STATE_productivity_higher_than_999_tt }
+				check_variable = { 545.productivity_state_var > 999 }
+			}
 		}
 
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_bringing_germany_closer_together"
-			custom_effect_tooltip = GER_east_german_divide_end
-			set_country_flag = GER_its_over
+			custom_effect_tooltip = GER_united_truly_TT
+			newline = yes
+			remove_ideas = GER_idea_germany_divided
+			set_country_flag = GER_united
+			hidden_effect = {
+				remove_ideas = GER_idea_east_german_debuff2
+				remove_ideas = GER_idea_east_german_debuff4
+				remove_ideas = GER_idea_east_german_debuff3
+				remove_ideas = GER_idea_east_german_debuff1
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -2181,6 +2490,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_shaking_up_the_system"
 			add_stability = 0.05
+			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_health_cost_change = -0.05 }
 			update_GER_healthcare_cost = yes
 		}
@@ -2208,6 +2519,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_bigger_pharma"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_health_cost_change = -0.015 }
 			update_GER_healthcare_cost = yes
 			newline = yes
@@ -2282,6 +2594,7 @@ focus_tree = {
 				}
 			}
 			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_health_cost_change = -0.05 }
 			update_GER_healthcare_cost = yes
 		}
@@ -2292,7 +2605,7 @@ focus_tree = {
 
 	focus = {
 		id = GER_chinas_policy
-		icon = asian_persuasion
+		icon = communist_china
 
 		x = -1
 		y = 2
@@ -2414,6 +2727,7 @@ focus_tree = {
 		}
 
 		select_effect = {
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_health_cost_change = -0.1 }
 			update_GER_healthcare_cost = yes
 		}
@@ -2422,14 +2736,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_construct_more_healthcare_centres"
+			custom_effect_tooltip = focus_select_effect_tt
+			effect_tooltip = {
+				custom_effect_tooltip = GER_change_public_budget
+				set_temp_variable = { GER_health_cost_change = -0.1 }
+				update_GER_healthcare_cost = yes
+			}
+			newline = yes
 			swap_ideas = {
 				remove_idea = GER_idea_health_reforms
 				add_idea = GER_idea_health_reforms2
 			}
-			hidden_effect = {
-				set_temp_variable = { treasury_change = -30 }
-				modify_treasury_effect = yes
-			}
+			set_temp_variable = { treasury_change = -30 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -2657,7 +2976,7 @@ focus_tree = {
 			38 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -2720,7 +3039,7 @@ focus_tree = {
 			972 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -2728,7 +3047,7 @@ focus_tree = {
 			37 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -2801,7 +3120,7 @@ focus_tree = {
 			41 = {
 				add_extra_state_shared_building_slots = 1
 					add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -2809,7 +3128,7 @@ focus_tree = {
 			42 = {
 				add_extra_state_shared_building_slots = 1
 					add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -2817,7 +3136,7 @@ focus_tree = {
 			964 = {
 				add_extra_state_shared_building_slots = 1
 					add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -2911,7 +3230,7 @@ focus_tree = {
 			38 = {
 				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
 				}
@@ -3286,6 +3605,7 @@ focus_tree = {
 
 		prerequisite = { focus = GER_upgrade_nuclear_fuel_processing }
 		prerequisite = { focus = GER_revive_greifswald }
+		prerequisite = { focus = GER_nuclear_waste_recycling }
 
 		available = {
 			neutrality_neutral_green_not_in_power_or_coalition = yes
@@ -3299,8 +3619,6 @@ focus_tree = {
 				has_completed_focus = GER_shutdown_plants
 				has_completed_focus = GER_halt_nuclear_expansion
 			}
-			has_completed_focus = GER_nuclear_waste_recycling
-			has_completed_focus = GER_upgrade_nuclear_fuel_processing
 		}
 
 		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_RENEWABLE_ENERGY_INFRASTRUCTURE }
@@ -3435,7 +3753,7 @@ focus_tree = {
 					has_idea = edu_05
 				}
 			}
-			has_tech = reactor7
+			has_tech = reactor4
 			neutrality_neutral_green_not_in_power_or_coalition = yes
 			OR = {
 				has_idea = nuclear_energy
@@ -3449,10 +3767,21 @@ focus_tree = {
 			}
 		}
 
+		continue_if_invalid = yes
+
+		select_effect = {
+			add_political_power = -150
+		}
+
 		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_RENEWABLE_ENERGY_INFRASTRUCTURE }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_the_glowing_one"
+			custom_effect_tooltip = focus_select_effect_tt
+			effect_tooltip = {
+				add_political_power = -150
+			}
+			newline = yes
 			swap_ideas = {
 				remove_idea = GER_idea_nuclear_expansion3
 				add_idea = GER_idea_nuclear_expansion4
@@ -3465,7 +3794,6 @@ focus_tree = {
 			}
 			set_temp_variable = { treasury_change = -16.00 }
 			modify_treasury_effect = yes
-			add_political_power = -150
 		}
 		ai_will_do = {
 			base = 1
@@ -3526,11 +3854,17 @@ focus_tree = {
 			}
 			if = { limit = { has_idea = industrial_conglomerates }
 				custom_trigger_tooltip = {
-					tooltip = GER_Industrial_conglomerates_slightly_positive_TT
+					tooltip = GER_industrial_conglomerates_slightly_positive_TT
 					check_variable = { industrial_conglomerates_opinion > 49 }
 				}
 			}
 			has_political_power > 20
+		}
+
+		continue_if_invalid = yes
+
+		select_effect = {
+			add_political_power = -20
 		}
 
 		bypass = {
@@ -3546,6 +3880,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_acquire_enbw_energy"
+			custom_effect_tooltip = focus_select_effect_tt
+			effect_tooltip = {
+				add_political_power = -20
+			}
+			newline = yes
 			41 = {
 				add_building_construction = {
 					type = offices
@@ -3554,11 +3893,6 @@ focus_tree = {
 				}
 				add_extra_state_shared_building_slots = 1
 			}
-			hidden_effect = {
-				add_political_power = -20
-			}
-			newline = yes
-			custom_effect_tooltip = GER_20_pp_cost_TT
 			newline = yes
 			set_temp_variable = { treasury_change = -12.00 }
 			modify_treasury_effect = yes
@@ -3586,7 +3920,7 @@ focus_tree = {
 			}
 			if = { limit = { has_idea = industrial_conglomerates }
 				custom_trigger_tooltip = {
-					tooltip = GER_Industrial_conglomerates_slightly_positive_TT
+					tooltip = GER_industrial_conglomerates_slightly_positive_TT
 					check_variable = { industrial_conglomerates_opinion > 49 }
 				}
 			}
@@ -3602,11 +3936,22 @@ focus_tree = {
 			has_civil_war = no
 		}
 
+		continue_if_invalid = yes
+
+		select_effect = {
+			add_political_power = -20
+		}
+
 
 		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_RENEWABLE_ENERGY_INFRASTRUCTURE }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_acquire_rwe_energy"
+			custom_effect_tooltip = focus_select_effect_tt
+			effect_tooltip = {
+				add_political_power = -20
+			}
+			newline = yes
 			37 = {
 				add_building_construction = {
 					type = offices
@@ -3615,11 +3960,6 @@ focus_tree = {
 				}
 				add_extra_state_shared_building_slots = 1
 			}
-			hidden_effect = {
-				add_political_power = -20
-			}
-			newline = yes
-			custom_effect_tooltip = GER_20_pp_cost_TT
 			newline = yes
 			set_temp_variable = { treasury_change = -12.00 }
 			modify_treasury_effect = yes
@@ -3647,11 +3987,17 @@ focus_tree = {
 			}
 			if = { limit = { has_idea = industrial_conglomerates }
 				custom_trigger_tooltip = {
-					tooltip = GER_Industrial_conglomerates_slightly_positive_TT
+					tooltip = GER_industrial_conglomerates_slightly_positive_TT
 					check_variable = { industrial_conglomerates_opinion > 49 }
 				}
 			}
 			has_political_power > 20
+		}
+
+		continue_if_invalid = yes
+
+		select_effect = {
+			add_political_power = -20
 		}
 
 		bypass = {
@@ -3667,6 +4013,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_acquire_eon_energy"
+			custom_effect_tooltip = focus_select_effect_tt
+			effect_tooltip = {
+				add_political_power = -20
+			}
+			newline = yes
 			43 = {
 				add_building_construction = {
 					type = offices
@@ -3675,11 +4026,6 @@ focus_tree = {
 				}
 				add_extra_state_shared_building_slots = 1
 			}
-			hidden_effect = {
-				add_political_power = -20
-			}
-			newline = yes
-			custom_effect_tooltip = GER_20_pp_cost_TT
 			newline = yes
 			set_temp_variable = { treasury_change = -12.00 }
 			modify_treasury_effect = yes
@@ -3701,16 +4047,6 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_RENEWABLE_ENERGY_INFRASTRUCTURE }
 
-		available = {
-			if = { limit = { has_idea = industrial_conglomerates }
-				custom_trigger_tooltip = {
-					tooltip = GER_Industrial_conglomerates_slightly_positive_TT
-					check_variable = { industrial_conglomerates_opinion > 49 }
-				}
-			}
-			has_political_power > 500
-		}
-
 		prerequisite = { focus = GER_acquire_rwe_energy }
 		prerequisite = { focus = GER_acquire_eon_energy }
 		prerequisite = { focus = GER_acquire_enbw_energy }
@@ -3725,16 +4061,20 @@ focus_tree = {
 			has_political_power > 500
 		}
 
-		search_filters = { FOCUS_FILTER_ECONOMY FOCUS_FILTER_RENEWABLE_ENERGY_INFRASTRUCTURE }
+		continue_if_invalid = yes
+
+		select_effect = {
+			add_political_power = -500
+		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_nationalise_german_energy_companies"
-			add_ideas = GER_idea_nationalised_energy_companies
-			hidden_effect = {
+			custom_effect_tooltip = focus_select_effect_tt
+			effect_tooltip = {
 				add_political_power = -500
 			}
 			newline = yes
-			custom_effect_tooltip = GER_500_pp_cost_TT
+			add_ideas = GER_idea_nationalised_energy_companies
 			newline = yes
 			if = {
 				limit = { has_completed_focus = GER_complete_renewable_energy_projects }
@@ -3883,6 +4223,10 @@ focus_tree = {
 
 		prerequisite = {
 			focus = GER_farewell_to_humiliation
+		}
+
+		bypass = {
+			NOT = { has_idea = GER_idea_war_reparations }
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_PROPAGANDA }
@@ -4038,6 +4382,7 @@ focus_tree = {
 				limit = {
 					has_idea = bureau_04
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_centralization_cost_change = -0.03 }
 				update_GER_centralization_cost = yes
 			}
@@ -4072,6 +4417,8 @@ focus_tree = {
 			custom_effect_tooltip = GER_bavaria_isnt_going_anywhere
 			clear_variable = GER_bavarian_nationalism_var
 			set_country_flag = GER_bavaria_gone
+			964 = { remove_core_of = BAY }
+			43 = { remove_core_of = BAY }
 		}
 		ai_will_do = {
 			base = 1
@@ -4152,6 +4499,7 @@ focus_tree = {
 				limit = {
 					has_idea = bureau_01
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_centralization_cost_change = -0.03 }
 				update_GER_centralization_cost = yes
 			}
@@ -4568,6 +4916,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_manage_workers"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = -0.01 }
 			update_GER_welfare_cost = yes
 		}
@@ -4592,12 +4941,15 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_stabilize_government_income"
 			increase_centralization = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_interest_cost_change = 0.001 }
 			update_GER_interest_cost = yes
 			if = {
 				limit = {
 					has_idea = bureau_04
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_centralization_cost_change = -0.03 }
 				update_GER_centralization_cost = yes
 			}
@@ -4652,6 +5004,7 @@ focus_tree = {
 				limit = {
 					has_idea = police_05
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_police_cost_change = -0.03 }
 				update_GER_police_cost = yes
 			}
@@ -4901,8 +5254,6 @@ focus_tree = {
 		prerequisite = { focus = GER_Investments_cologne }
 		prerequisite = { focus = GER_Investments_stuggart }
 
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_foreign_investment_opportunities"
 			set_temp_variable = { treasury_change = gdp_total }
@@ -5045,6 +5396,7 @@ focus_tree = {
 				limit = {
 					has_idea = edu_05
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_education_cost_change = -0.05 }
 				update_GER_education_cost = yes
 			}
@@ -5066,6 +5418,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_International_schools"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_education_cost_change = -0.01 }
 			update_GER_education_cost = yes
 		}
@@ -5105,6 +5458,10 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
+		bypass = {
+			has_government = nationalist
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_bundeswehr"
 			add_ideas = GER_idea_Innere_fuhrung_I
@@ -5128,9 +5485,20 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Establish_Streitkrafte_basis"
-			add_ideas = GER_idea_Streitkrafte_Basis
-			set_temp_variable = { GER_military_cost2_change = -0.02 }
-			update_GER_military_cost2 = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_army_speed_factor_change = 0.05 }
+			update_GER_army_speed_factor = yes
+			set_temp_variable = { GER_army_org_factor_change = 0.02 }
+			update_GER_army_org_factor = yes
+			set_temp_variable = { GER_supply_factor_change = 0.05 }
+			update_GER_supply_factor = yes
+			set_temp_variable = { GER_army_morale_factor_change = 0.04 }
+			update_GER_army_morale_factor = yes
+			set_temp_variable = { GER_army_org_regain_change = 0.03 }
+			update_GER_army_org_regain = yes
+			set_temp_variable = { GER_personnel_cost_multiplier_modifier_heer_change = -0.02 }
+			update_GER_personnel_cost_multiplier_modifier_heer = yes
+			# country_event = { id = GER_Cold_War.26 days = 1 }
 		}
 
 		ai_will_do = {
@@ -5151,6 +5519,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus Ger_Einsatzfuhrungskommando"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_training_time_factor_change = 0.02 }
 			update_GER_training_time_factor = yes
 			set_temp_variable = { GER_experience_gain_army_change = 0.02 }
@@ -5182,11 +5551,39 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_the_balanced_Army"
-			add_ideas = GER_the_balanced_Army
-			set_temp_variable = { GER_army_org_factor_change = 0.05 }
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_experience_gain_army_change = 0.05 }
+			update_GER_experience_gain_army = yes
+			set_temp_variable = { GER_army_org_factor_change = 0.15 }
 			update_GER_army_org_factor = yes
+			set_temp_variable = { GER_army_org_regain_change = 0.10 }
+			update_GER_army_org_regain = yes
+			set_temp_variable = { GER_army_core_attack_factor_change = -0.20 }
+			update_GER_army_core_attack_factor = yes
+			set_temp_variable = { GER_army_core_defence_factor_change = -0.20 }
+			update_GER_army_core_defence_factor = yes
+			set_temp_variable = { GER_training_time_factor_change = -0.10 }
+			update_GER_training_time_factor = yes
+			set_temp_variable = { GER_max_planning_modifier_change = -0.01 }
+			update_GER_max_planning_modifier = yes
 			set_temp_variable = { GER_army_speed_factor_change = 0.05 }
 			update_GER_army_speed_factor = yes
+			set_temp_variable = { GER_breakthrough_factor_change = 0.05 }
+			update_GER_breakthrough_factor = yes
+			set_temp_variable = { GER_supply_combat_penalties_on_core_factor_heer_change = 0.10 }
+			update_GER_supply_combat_penalties_on_core_factor_heer = yes
+			set_temp_variable = { GER_personnel_cost_multiplier_modifier_heer_change = 0.10 }
+			update_GER_personnel_cost_multiplier_modifier_heer = yes
+			set_temp_variable = { GER_army_personnel_cost_multiplier_modifier_heer_change = -0.5 }
+			update_GER_army_personnel_cost_multiplier_modifier_heer = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_navy_personnel_cost_multiplier_modifier_marine_change = -0.3 }
+			update_GER_navy_personnel_cost_multiplier_modifier_marine = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_airforce_personnel_cost_multiplier_modifier_luftwaffe_change = -0.3 }
+			update_GER_airforce_personnel_cost_multiplier_modifier_luftwaffe = yes
 		}
 
 		ai_will_do = {
@@ -5207,6 +5604,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Joint_operation_Training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_land_reinforce_rate_change = 0.05 }
 			update_GER_land_reinforce_rate = yes
 			set_temp_variable = { GER_army_org_factor_change = 0.05 }
@@ -5233,6 +5631,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Crisis_management_doctrine"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_planning_speed_change = 0.05 }
 			update_GER_planning_speed = yes
 			set_temp_variable = { GER_command_abilities_cost_factor_change = 0.05 }
@@ -5257,6 +5656,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Infantry_Spezialisation"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_night_attack_change = 0.05 }
 			update_GER_army_night_attack = yes
 			set_temp_variable = { GER_army_infantry_defence_factor_change = 0.04 }
@@ -5283,6 +5683,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Combined_exersice"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_org_factor_change = 0.05 }
 			update_GER_army_org_factor = yes
 			set_temp_variable = { GER_army_speed_factor_change = 0.05 }
@@ -5337,6 +5738,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Delay_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_armor_defence_factor_change = 0.04 }
 			update_GER_army_armor_defence_factor = yes
 			set_temp_variable = { GER_army_armor_speed_factor_change = 0.04 }
@@ -5369,6 +5771,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_security_intervention"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_speed_factor_change = 0.04 }
 			update_GER_army_speed_factor = yes
 			set_temp_variable = { GER_army_attack_speed_factor_change = 0.04 }
@@ -5383,18 +5786,50 @@ focus_tree = {
 		id = GER_Ready_to_transform
 		icon = german_modernization
 
-		x = 0
+		x = 6
 		y = 1
 		relative_position_id = GER_security_intervention
 		cost = 6
-		prerequisite = { focus = GER_security_intervention }
-		prerequisite = { focus = GER_Global_Crisis_management }
-		prerequisite = { focus = GER_Ready_for_Defence }
+
+		prerequisite = {
+			focus = GER_security_intervention
+			focus = GER_Global_Crisis_management
+			focus = GER_Ready_for_Defence
+		}
+
+		available = {
+			NOT = {
+				has_government = nationalist
+				has_government = fascism
+			}
+			has_army_size = {
+				size > 350000
+			}
+		}
 
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_Neue_Luftwaffenstruktur"
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Ready_to_transform"
 			add_ideas = GER_idea_Transformation
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_experience_gain_army_change = -0.05 }
+			update_GER_experience_gain_army = yes
+			set_temp_variable = { GER_army_org_factor_change = 0.05 }
+			update_GER_army_org_factor = yes
+			set_temp_variable = { GER_supply_consumption_factor_change = -0.05 }
+			update_GER_supply_consumption_factor = yes
+			set_temp_variable = { GER_army_morale_factor_change = 0.05 }
+			update_GER_army_morale_factor = yes
+			set_temp_variable = { GER_Army_attack_change = 0.02 }
+			update_GER_Army_attack = yes
+			set_temp_variable = { GER_Army_defence_change = 0.05 }
+			update_GER_Army_defence = yes
+			set_temp_variable = { GER_send_volunteer_size_change = 2 }
+			update_GER_send_volunteer_size = yes
+			set_temp_variable = { GER_max_planning_modifier_change = 0.01 }
+			update_GER_max_planning_modifier = yes
+			set_temp_variable = { GER_personnel_cost_multiplier_modifier_heer_change = 0.30 }
+			update_GER_personnel_cost_multiplier_modifier_heer = yes
 		}
 
 		ai_will_do = {
@@ -5415,14 +5850,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Air_mobility_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor_change = 0.03 }
 			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor = yes
 			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor_change = 0.03 }
 			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor = yes
-			set_temp_variable = { GER_modifier_army_sub_unit_Arm_Air_assault_Bat_attack_factor_change = 0.03 }
-			update_GER_modifier_army_sub_unit_Arm_Air_assault_Bat_attack_factor = yes
-			set_temp_variable = { GER_modifier_army_sub_unit_Arm_Air_assault_Bat_defence_factor_change = 0.03 }
-			update_GER_modifier_army_sub_unit_Arm_Air_assault_Bat_defence_factor = yes
+			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor_change = 0.03 }
+			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor = yes
+			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor_change = 0.03 }
+			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor = yes
 		}
 
 		ai_will_do = {
@@ -5443,6 +5879,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Direct_counter_attack"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_modifier_army_sub_unit_attack_helo_bat_attack_factor_change = 0.03 }
 			update_GER_modifier_army_sub_unit_attack_helo_bat_attack_factor = yes
 			set_temp_variable = { GER_modifier_army_sub_unit_attack_helo_bat_defence_factor_change = 0.03 }
@@ -5471,6 +5908,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_Teritorial_defence"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_core_attack_factor_change = 0.02 }
 			update_GER_army_core_attack_factor = yes
 			set_temp_variable = { GER_army_core_defence_factor_change = 0.02 }
@@ -5495,6 +5933,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Modernize_Armored_Tactics"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_armor_attack_factor_change = 0.04 }
 			update_GER_army_armor_attack_factor = yes
 			set_temp_variable = { GER_army_armor_defence_factor_change = 0.04 }
@@ -5522,6 +5961,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Rapid_Armor_deployment_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_org_factor_change = 0.05 }
 			update_GER_army_org_factor = yes
 			set_temp_variable = { GER_army_speed_factor_change = 0.05 }
@@ -5546,14 +5986,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_mechanized_tactic"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_mechanized_defence_factor_change = 0.04 }
 			update_GER_mechanized_defence_factor = yes
 			set_temp_variable = { GER_mechanized_attack_factor_change = 0.04 }
 			update_GER_mechanized_attack_factor = yes
-			set_temp_variable = { GER_modifier_army_sub_unit_Arm_Air_assault_Bat_attack_factor_change = 0.04 }
-			update_GER_modifier_army_sub_unit_Arm_Air_assault_Bat_attack_factor = yes
-			set_temp_variable = { GER_modifier_army_sub_unit_Arm_Air_assault_Bat_defence_factor_change = 0.04 }
-			update_GER_modifier_army_sub_unit_Arm_Air_assault_Bat_defence_factor = yes
+			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor_change = 0.04 }
+			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor = yes
+			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor_change = 0.04 }
+			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -5573,9 +6014,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improved_logistics"
-			set_temp_variable = { GER_supply_factor_change = 0.05 }
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_supply_factor_change = -0.05 }
 			update_GER_supply_factor = yes
-			set_temp_variable = { GER_supply_consumption_factor_change = 0.05 }
+			set_temp_variable = { GER_supply_consumption_factor_change = -0.05 }
 			update_GER_supply_consumption_factor = yes
 			set_temp_variable = { GER_army_morale_factor_change = 0.05 }
 			update_GER_army_morale_factor = yes
@@ -5605,14 +6047,52 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_KRK_army"
-			add_ideas = GER_idea_Intervention_Army
-			increase_intervention_law_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_experience_gain_army_change = 0.05 }
+			update_GER_experience_gain_army = yes
+			set_temp_variable = { GER_army_org_factor_change = 0.05 }
+			update_GER_army_org_factor = yes
+			set_temp_variable = { GER_army_morale_factor_change = 0.10 }
+			update_GER_army_morale_factor = yes
+			set_temp_variable = { GER_amphibious_invasion_change = 0.05 }
+			update_GER_amphibious_invasion = yes
+			set_temp_variable = { GER_army_core_attack_factor_change = -0.20 }
+			update_GER_army_core_attack_factor = yes
+			set_temp_variable = { GER_army_core_defence_factor_change = -0.20 }
+			update_GER_army_core_defence_factor = yes
+			set_temp_variable = { GER_training_time_factor_change = -0.10 }
+			update_GER_training_time_factor = yes
+			set_temp_variable = { GER_send_volunteer_size_change = 1 }
+			update_GER_send_volunteer_size = yes
+			set_temp_variable = { GER_max_planning_modifier_change = -0.01 }
+			update_GER_max_planning_modifier = yes
+			set_temp_variable = { GER_minimum_training_level_change = 0.10 }
+			update_GER_minimum_training_level = yes
+			set_temp_variable = { GER_terrain_penalty_reduction_change = 0.05 }
+			update_GER_terrain_penalty_reduction = yes
+			set_temp_variable = { GER_supply_combat_penalties_on_core_factor_heer_change = 0.10 }
+			update_GER_supply_combat_penalties_on_core_factor_heer = yes
 			set_temp_variable = { GER_planning_speed_change = 0.05 }
 			update_GER_planning_speed = yes
 			set_temp_variable = { GER_command_abilities_cost_factor_change = 0.05 }
 			update_GER_command_abilities_cost_factor = yes
+			set_temp_variable = { GER_personnel_cost_multiplier_modifier_heer_change = 0.10 }
+			update_GER_personnel_cost_multiplier_modifier_heer = yes
+			set_temp_variable = { GER_army_personnel_cost_multiplier_modifier_heer_change = -0.5 }
+			update_GER_army_personnel_cost_multiplier_modifier_heer = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_navy_personnel_cost_multiplier_modifier_marine_change = -0.3 }
+			update_GER_navy_personnel_cost_multiplier_modifier_marine = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_airforce_personnel_cost_multiplier_modifier_luftwaffe_change = -0.3 }
+			update_GER_airforce_personnel_cost_multiplier_modifier_luftwaffe = yes
+			newline = yes
+			increase_intervention_law_effect = yes
+			newline = yes
 			add_doctrine_cost_reduction = {
-				name = FRA_network_centric_warfare
+				name = GER_KRK_army
 				category = CAT_land_doctrine
 				uses = 2
 				cost_reduction = 0.5
@@ -5637,6 +6117,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_KRK_army"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_speed_factor_change = 0.05 }
 			update_GER_army_speed_factor = yes
 			set_temp_variable = { GER_training_time_factor_change = 0.1 }
@@ -5661,10 +6142,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Integrated_command_and_control"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_land_reinforce_rate_change = 0.05 }
 			update_GER_land_reinforce_rate = yes
-			set_temp_variable = { GER_supply_factor_change = 0.05 }
-			update_GER_supply_factor = yes
 			set_temp_variable = { GER_Initiative_factor_change = 0.05 }
 			update_GER_Initiative_factor = yes
 		}
@@ -5688,6 +6168,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Strengthen_infantry_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_infantry_defence_factor_change = 0.02 }
 			update_GER_army_infantry_defence_factor = yes
 			set_temp_variable = { GER_army_infantry_attack_factor_change = 0.02 }
@@ -5713,6 +6194,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_mobile_Warfare_doctrine"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_attack_speed_factor_change = 0.05 }
 			update_GER_army_attack_speed_factor = yes
 			set_temp_variable = { GER_army_org_factor_change = 0.05 }
@@ -5738,6 +6220,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_Armor_Tactics"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_armor_attack_factor_change = 0.05 }
 			update_GER_army_armor_attack_factor = yes
 			set_temp_variable = { GER_army_armor_defence_factor_change = 0.05 }
@@ -5763,6 +6246,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Rapid_Armor_deployment"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_armor_speed_factor_change = 0.05 }
 			update_GER_army_armor_speed_factor = yes
 			set_temp_variable = { GER_training_time_factor_change = 0.1 }
@@ -5787,6 +6271,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_Mechaniced_Units"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_mechanized_defence_factor_change = 0.05 }
 			update_GER_mechanized_defence_factor = yes
 			set_temp_variable = { GER_mechanized_attack_factor_change = 0.05 }
@@ -5815,11 +6300,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_global_interventions"
-			increase_intervention_law_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_planning_speed_change = 0.02 }
 			update_GER_planning_speed = yes
 			set_temp_variable = { GER_terrain_penalty_reduction_change = 0.03 }
 			update_GER_terrain_penalty_reduction = yes
+			newline = yes
+			increase_intervention_law_effect = yes
 		}
 
 		ai_will_do = {
@@ -5840,14 +6327,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Air_mobility_exercise"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor_change = 0.03 }
 			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor = yes
 			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor_change = 0.03 }
 			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor = yes
-			set_temp_variable = { GER_modifier_army_sub_unit_Arm_Air_assault_Bat_attack_factor_change = 0.03 }
-			update_GER_modifier_army_sub_unit_Arm_Air_assault_Bat_attack_factor = yes
-			set_temp_variable = { GER_modifier_army_sub_unit_Arm_Air_assault_Bat_defence_factor_change = 0.03 }
-			update_GER_modifier_army_sub_unit_Arm_Air_assault_Bat_defence_factor = yes
+			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor_change = 0.03 }
+			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor = yes
+			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor_change = 0.03 }
+			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -5867,8 +6355,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Enhanced_logistics"
-			set_temp_variable = { GER_supply_factor_change = 0.05 }
-			update_GER_supply_factor = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_morale_factor_change = 0.05 }
 			update_GER_army_morale_factor = yes
 		}
@@ -5890,6 +6377,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_lone_fighter_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_out_of_supply_factor_change = 0.05 }
 			update_GER_out_of_supply_factor = yes
 			set_temp_variable = { GER_Intel_from_combat_factor_change = 0.1 }
@@ -5917,12 +6405,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Global_Crisis_management"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_minimum_training_level_change = 0.05 }
 			update_GER_minimum_training_level = yes
 			set_temp_variable = { GER_combat_width_factor_change = -0.04 }
 			update_GER_combat_width_factor = yes
+			newline = yes
 			add_doctrine_cost_reduction = {
-				name = FRA_network_centric_warfare
+				name = GER_Global_Crisis_management
 				category = CAT_land_doctrine
 				uses = 2
 				cost_reduction = 0.5
@@ -5946,13 +6436,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Specialized_Indantry"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_training_time_factor_change = 0.1 }
 			update_GER_training_time_factor = yes
 			set_temp_variable = { GER_acclimatization_hot_climate_gain_factor_change = 0.05 }
 			update_GER_acclimatization_hot_climate_gain_factor = yes
 			set_temp_variable = { GER_acclimatization_cold_climate_gain_factor_change = 0.05 }
 			update_GER_acclimatization_cold_climate_gain_factor = yes
-			set_temp_variable = { GER_attrition_modifier_change = 0.05 }
+			set_temp_variable = { GER_attrition_modifier_change = -0.05 }
 			update_GER_attrition_modifier = yes
 		}
 		ai_will_do = {
@@ -5979,13 +6470,42 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_HVK_army"
-			add_ideas = GER_idea_Defence_Army
-			set_temp_variable = { GER_max_planning_modifier_change = 0.02 }
-			update_GER_max_planning_modifier = yes
-			set_temp_variable = { GER_army_org_factor_change = 0.01 }
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_experience_gain_army_change = 0.05 }
+			update_GER_experience_gain_army = yes
+			set_temp_variable = { GER_army_org_factor_change = 0.16 }
 			update_GER_army_org_factor = yes
+			set_temp_variable = { GER_army_org_regain_change = 0.10 }
+			update_GER_army_org_regain = yes
+			set_temp_variable = { GER_dig_in_speed_factor_change = 0.05 }
+			update_GER_dig_in_speed_factor = yes
+			set_temp_variable = { GER_army_core_attack_factor_change = 0.03 }
+			update_GER_army_core_attack_factor = yes
+			set_temp_variable = { GER_army_core_defence_factor_change = -0.15 }
+			update_GER_army_core_defence_factor = yes
+			set_temp_variable = { GER_training_time_factor_change = -0.05 }
+			update_GER_training_time_factor = yes
+			set_temp_variable = { GER_send_volunteer_size_change = -1 }
+			update_GER_send_volunteer_size = yes
+			set_temp_variable = { GER_max_planning_modifier_change = 0.01 }
+			update_GER_max_planning_modifier = yes
+			set_temp_variable = { GER_supply_combat_penalties_on_core_factor_heer_change = 0.10 }
+			update_GER_supply_combat_penalties_on_core_factor_heer = yes
+			set_temp_variable = { GER_personnel_cost_multiplier_modifier_heer_change = -0.05 }
+			update_GER_personnel_cost_multiplier_modifier_heer = yes
+			set_temp_variable = { GER_army_personnel_cost_multiplier_modifier_heer_change = -0.5 }
+			update_GER_army_personnel_cost_multiplier_modifier_heer = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_navy_personnel_cost_multiplier_modifier_marine_change = -0.3 }
+			update_GER_navy_personnel_cost_multiplier_modifier_marine = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_airforce_personnel_cost_multiplier_modifier_luftwaffe_change = -0.3 }
+			update_GER_airforce_personnel_cost_multiplier_modifier_luftwaffe = yes
+			newline = yes
 			add_doctrine_cost_reduction = {
-				name = FRA_network_centric_warfare
+				name = GER_HVK_army
 				category = CAT_land_doctrine
 				uses = 2
 				cost_reduction = 0.5
@@ -6009,6 +6529,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reorganize_the_Active_troops"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_planning_speed_change = 0.02 }
 			update_GER_planning_speed = yes
 			set_temp_variable = { GER_Intel_from_combat_factor_change = 0.02 }
@@ -6034,6 +6555,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reorganize_reserve"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_max_planning_modifier_change = 0.02 }
 			update_GER_max_planning_modifier = yes
 			set_temp_variable = { GER_dig_in_speed_factor_change = 0.03 }
@@ -6060,6 +6582,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Territorial_defence_coordination"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_core_attack_factor_change = 0.07 }
 			update_GER_army_core_attack_factor = yes
 			set_temp_variable = { GER_army_core_defence_factor_change = 0.07 }
@@ -6085,6 +6608,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Optimize_supply_chain"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_recon_factor_change = 0.05 }
 			update_GER_recon_factor = yes
 			set_temp_variable = { GER_recon_factor_while_entrenched_change = 0.02 }
@@ -6117,6 +6641,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reserve_mobilisation_plan"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_mobilization_speed_change = 0.05 }
 			update_GER_mobilization_speed = yes
 			set_temp_variable = { GER_land_reinforce_rate_change = 0.07 }
@@ -6140,6 +6665,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_reserve_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_infantry_defence_factor_change = 0.07 }
 			update_GER_army_infantry_defence_factor = yes
 			set_temp_variable = { GER_army_infantry_attack_factor_change = 0.05 }
@@ -6167,10 +6693,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Rapid_Response_supply"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_speed_factor_change = 0.05 }
 			update_GER_army_speed_factor = yes
-			set_temp_variable = { GER_supply_consumption_factor_change = 0.05 }
-			update_GER_supply_consumption_factor = yes
+			set_temp_variable = { GER_supply_factor_change = 0.05 }
+			update_GER_supply_factor = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -6190,6 +6717,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_entrenchment_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_dig_in_speed_factor_change = 0.05 }
 			update_GER_dig_in_speed_factor = yes
 			set_temp_variable = { GER_recon_factor_while_entrenched_change = 0.04 }
@@ -6215,6 +6743,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Wargames_and_exercize"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_planning_speed_change = 0.05 }
 			update_GER_planning_speed = yes
 			set_temp_variable = { GER_max_planning_modifier_change = 0.05 }
@@ -6245,6 +6774,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Ready_for_Defence"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_core_attack_factor_change = 0.05 }
 			update_GER_army_core_attack_factor = yes
 			set_temp_variable = { GER_army_core_defence_factor_change = 0.05 }
@@ -6272,9 +6802,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_army_defence_exercise"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_Army_defence_change = 0.05 }
 			update_GER_Army_defence = yes
-			set_temp_variable = { GER_attrition_modifier_change = 0.05 }
+			set_temp_variable = { GER_attrition_modifier_change = -0.05 }
 			update_GER_attrition_modifier = yes
 			set_temp_variable = { GER_land_reinforce_rate_change = 0.05 }
 			update_GER_land_reinforce_rate = yes
@@ -6298,11 +6829,12 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Armored_Delay"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_armor_defence_factor_change = 0.08 }
 			update_GER_army_armor_defence_factor = yes
 			set_temp_variable = { GER_army_armor_speed_factor_change = 0.07 }
 			update_GER_army_armor_speed_factor = yes
-			set_temp_variable = { GER_attrition_modifier_change = 0.04 }
+			set_temp_variable = { GER_attrition_modifier_change = -0.04 }
 			update_GER_attrition_modifier = yes
 		}
 
@@ -6324,6 +6856,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_Armor_counterattack"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_armor_attack_factor_change = 0.05 }
 			update_GER_army_armor_attack_factor = yes
 			set_temp_variable = { GER_army_armor_speed_factor_change = 0.05 }
@@ -6351,8 +6884,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Airforce_structure"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_mission_efficiency_change = 0.05 }
 			update_GER_air_mission_efficiency = yes
+			newline = yes
 			country_event = { id = germany.580 days = 1 }
 		}
 
@@ -6374,14 +6909,17 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Restructure_Airdefense"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_Intercept_efficiency_change = 0.05 }
+			update_GER_Intercept_efficiency = yes
+			newline = yes
 			if = {
 				limit = {
 					has_dlc = "No Step Back"
 				}
 				country_event = { id = germany.590 }
 			}
-			Else_if = {
-				limit = { NOT = { has_dlc = "No Step Back" } }
+			else = {
 				add_tech_bonus = {
 					name = CAT_aa
 					bonus = 0.5
@@ -6389,8 +6927,6 @@ focus_tree = {
 					category = CAT_aa
 				}
 			}
-			set_temp_variable = { GER_Intercept_efficiency_change = 0.05 }
-			update_GER_Intercept_efficiency = yes
 		}
 
 		ai_will_do = {
@@ -6411,6 +6947,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Restructure_kommando_luftwaffe"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_mission_efficiency_change = 0.05 }
 			update_GER_air_mission_efficiency = yes
 			set_temp_variable = { GER_home_defence_factor_change = 0.05 }
@@ -6435,6 +6972,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_enhance_pilot_training"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_training_xp_gain_factor_change = 0.05 }
 			update_GER_air_training_xp_gain_factor = yes
 			set_temp_variable = { GER_air_accidents_change = 0.05 }
@@ -6463,14 +7001,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Capability_focus"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_air_weather_penalty_change = 0.04 }
+			update_GER_air_weather_penalty = yes
+			newline = yes
 			add_doctrine_cost_reduction = {
 				name = CAT_air_doctrine
 				cost_reduction = 0.5
 				uses = 2
 				category = CAT_air_doctrine
 			}
-			set_temp_variable = { GER_air_weather_penalty_change = 0.04 }
-			update_GER_air_weather_penalty = yes
 		}
 
 		ai_will_do = {
@@ -6496,6 +7036,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_strike_focus"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_mission_efficiency_change = 0.05 }
 			update_GER_air_mission_efficiency = yes
 		}
@@ -6518,6 +7059,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_groundattack_training"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_close_air_support_org_damage_factor_change = 0.05 }
 			update_GER_air_close_air_support_org_damage_factor = yes
 			set_temp_variable = { GER_ground_attack_change = 0.05 }
@@ -6542,6 +7084,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Integrated_strike_tactics"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_cas_efficiency_change = 0.05 }
 			update_GER_cas_efficiency = yes
 			set_temp_variable = { GER_ground_attack_change = 0.05 }
@@ -6566,6 +7109,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Combat_exercise_simulation_center"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_mission_efficiency_change = 0.05 }
 			update_GER_air_mission_efficiency = yes
 			set_temp_variable = { GER_air_mission_xp_gain_factor_change = 0.05 }
@@ -6595,10 +7139,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_REC_focus"
-			set_temp_variable = { GER_recon_factor_change = 0.05 }
-			update_GER_recon_factor = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_night_penalty_change = 0.02 }
 			update_GER_air_night_penalty = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_recon_factor_change = 0.05 }
+			update_GER_recon_factor = yes
 		}
 
 		ai_will_do = {
@@ -6619,6 +7166,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Joint_Exercise_complimentary_use"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_Initiative_factor_change = 0.05 }
 			update_GER_Initiative_factor = yes
 		}
@@ -6641,6 +7189,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Naval_Air_rec"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_naval_strike_targetting_change = 0.05 }
 			update_GER_naval_strike_targetting = yes
 		}
@@ -6668,6 +7217,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Airsuperiority_focus"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_superiority_efficiency_change = 0.1 }
 			update_GER_air_superiority_efficiency = yes
 		}
@@ -6690,6 +7240,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_Radarcapability"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_Intercept_efficiency_change = 0.05 }
 			update_GER_Intercept_efficiency = yes
 			set_temp_variable = { GER_air_mission_efficiency_change = 0.09 }
@@ -6714,6 +7265,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_fighter_training"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_training_xp_gain_factor_change = 0.05 }
 			update_GER_air_training_xp_gain_factor = yes
 			set_temp_variable = { GER_air_ace_generator_chance_factor_change = 0.02 }
@@ -6739,6 +7291,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_fight_simulation_center"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_attack_change = 0.05 }
 			update_GER_air_attack = yes
 			set_temp_variable = { GER_air_defence_change = 0.05 }
@@ -6794,10 +7347,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_reseach_requirents_for_airforce"
 			add_tech_bonus = {
-				name = KOR_new_uniforms
+				name = CAT_air_eqp
 				bonus = 0.25
 				uses = 1
-				category = CAT_armor
+				category = CAT_air_eqp
 			}
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
@@ -6824,13 +7377,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Upgrade_Comunication_network"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_mission_efficiency_change = 0.07 }
 			update_GER_air_mission_efficiency = yes
 			set_temp_variable = { GER_air_attack_change = 0.05 }
 			update_GER_air_attack = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -6853,14 +7408,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_future_of_airforce"
-			IF = {
+			if = {
 				limit = { has_dlc = "By Blood Alone" }
 				country_event = {
 					id = germany_foci.140
 				}
 			}
-			else_if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
+			else = {
 				add_tech_bonus = {
 					name = CAT_fixed_wing
 					bonus = 0.4
@@ -6890,6 +7444,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Simulated_digital_warfare_Exercise"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_attack_change = 0.07 }
 			update_GER_air_attack = yes
 			set_temp_variable = { GER_air_defence_change = 0.05 }
@@ -6914,13 +7469,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Implement_realtime_data_sharing"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_superiority_bonus_in_combat_change = 0.02 }
 			update_GER_air_superiority_bonus_in_combat = yes
 			set_temp_variable = { GER_Intercept_efficiency_change = 0.02 }
 			update_GER_Intercept_efficiency = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -6941,6 +7498,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Artificial_Inteligence_integration"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_air_range_factor_change = 0.06 }
 			update_GER_air_range_factor = yes
 			set_temp_variable = { GER_air_superiority_bonus_in_combat_change = 0.05 }
@@ -6965,6 +7523,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Integrate_realtime_satelite_rec"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_ground_attack_change = 0.07 }
 			update_GER_ground_attack = yes
 			set_temp_variable = { GER_air_night_penalty_change = 0.03 }
@@ -6989,13 +7548,17 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Integrate_UAV_digital_rec"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_air_close_air_support_org_damage_factor_change = 0.02 }
+			update_GER_air_close_air_support_org_damage_factor = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_Initiative_factor_change = 0.02 }
+			update_GER_Initiative_factor = yes
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_Initiative_factor_change = 0.02 }
-			update_GER_Initiative_factor = yes
-			set_temp_variable = { GER_air_close_air_support_org_damage_factor_change = 0.02 }
-			update_GER_air_close_air_support_org_damage_factor = yes
 		}
 
 		ai_will_do = {
@@ -7019,13 +7582,20 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Weltraumkommando_der_Bundeswehr"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_research_speed_factor_luftwaffe_change = 0.06 }
+			update_GER_research_speed_factor_luftwaffe = yes
+			set_temp_variable = { GER_decryption_factor_luftwaffe_change = 0.10 }
+			update_GER_decryption_factor_luftwaffe = yes
+			set_temp_variable = { GER_intercept_efficiency_change = 0.10 }
+			update_GER_intercept_efficiency = yes
+			newline = yes
 			add_tech_bonus = {
 				name = CAT_space
 				bonus = 0.30
 				uses = 2
 				category = CAT_space
 			}
-			add_ideas = GER_idea_Weltraumkommando
 		}
 
 		ai_will_do = {
@@ -7044,6 +7614,10 @@ focus_tree = {
 		cost = 5
 		prerequisite = { focus = GER_Weltraumkommando_der_Bundeswehr }
 
+		available = {
+			has_completed_space_program = yes
+		}
+
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_AIRCRAFT }
 
 		completion_reward = {
@@ -7057,7 +7631,6 @@ focus_tree = {
 				uses = 1
 				category = CAT_satellite
 			}
-			set_technology = { KILLSAT1 = 1 }
 		}
 
 		ai_will_do = {
@@ -7089,7 +7662,6 @@ focus_tree = {
 				uses = 1
 				category = CAT_satellite
 			}
-			set_technology = { SPYSAT1 = 1 }
 		}
 
 		ai_will_do = {
@@ -7149,6 +7721,8 @@ focus_tree = {
 				uses = 1
 				cost_reduction = 0.5
 			}
+			newline	= yes
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_ships_at_battle_start_change = 0.02 }
 			update_GER_ships_at_battle_start = yes
 		}
@@ -7182,6 +7756,8 @@ focus_tree = {
 				uses = 1
 				cost_reduction = 0.5
 			}
+			newline	= yes
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_capital_ship_attack_factor_change = 0.02 }
 			update_GER_navy_capital_ship_attack_factor = yes
 		}
@@ -7215,6 +7791,8 @@ focus_tree = {
 				uses = 1
 				cost_reduction = 0.5
 			}
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_screening_without_screens_change = 0.02 }
 			update_GER_screening_without_screens = yes
 		}
@@ -7237,6 +7815,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Develope_Join_operation_Doctrine"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_org_factor_change = 0.02 }
 			update_GER_navy_org_factor = yes
 			set_temp_variable = { GER_naval_damage_factor_change = 0.02 }
@@ -7263,6 +7842,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_coastial_patroles"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_detection_change = 0.02 }
 			update_GER_naval_detection = yes
 			set_temp_variable = { GER_screening_without_screens_change = 0.02 }
@@ -7290,6 +7870,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_navy_training"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_positioning_change = 0.02 }
 			update_GER_positioning = yes
 			set_temp_variable = { GER_naval_retreat_speed_after_initial_combat_change = 0.02 }
@@ -7320,6 +7901,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_littoral_warfare_training"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_torpedo_cooldown_factor_change = 0.02 }
 			update_GER_naval_torpedo_cooldown_factor = yes
 			set_temp_variable = { GER_naval_torpedo_hit_chance_factor_change = 0.02 }
@@ -7348,6 +7930,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_littoral_warfare_training"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_max_range_factor_change = 0.02 }
 			update_GER_navy_max_range_factor = yes
 			set_temp_variable = { GER_positioning_change = 0.02 }
@@ -7373,6 +7956,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_not_perfect_but_flexible"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_retreat_speed_after_initial_combat_change = 0.02 }
 			update_GER_naval_retreat_speed_after_initial_combat = yes
 			set_temp_variable = { GER_naval_retreat_chance_after_initial_combat_change = 0.02 }
@@ -7401,6 +7985,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Global_intervention"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_speed_factor_change = 0.02 }
 			update_GER_naval_speed_factor = yes
 			set_temp_variable = { GER_naval_damage_factor_change = 0.02 }
@@ -7426,6 +8011,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_handle_asymetrick_threat"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_mines_effect_reduction_change = 0.02 }
 			update_GER_naval_mines_effect_reduction = yes
 			set_temp_variable = { GER_naval_morale_factor_change = 0.02 }
@@ -7457,6 +8043,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Coasteal_and_open_sea_defense"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_positioning_change = 0.02 }
 			update_GER_positioning = yes
 			set_temp_variable = { GER_naval_coordination_change = 0.02 }
@@ -7481,6 +8068,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Naval_training_expansion"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_accidents_chance_change = 0.02 }
 			update_GER_naval_accidents_chance = yes
 			set_temp_variable = { GER_navy_screen_attack_factor_change = 0.02 }
@@ -7505,6 +8093,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reorganise_marine_infanterie"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_invasion_prep_speed_change = 0.02 }
 			update_GER_naval_invasion_prep_speed = yes
 			set_temp_variable = { GER_naval_invasion_planning_bonus_speed_change = 0.02 }
@@ -7517,7 +8106,7 @@ focus_tree = {
 	}
 	focus = {
 		id = GER_Reorganize_strike_groupe
-		icon = Naval_Upgrade
+		icon = naval_upgrade
 
 		x = 2
 		y = 1
@@ -7529,6 +8118,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reorganize_strike_groupe"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_critical_receive_chance_change = 0.02 }
 			update_GER_critical_receive_chance = yes
 			set_temp_variable = { GER_naval_critical_score_chance_factor_change = 0.02 }
@@ -7555,6 +8145,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_naval_logistics"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_max_range_factor_change = 0.02 }
 			update_GER_navy_max_range_factor = yes
 			set_temp_variable = { GER_navy_org_factor_change = 0.02 }
@@ -7583,6 +8174,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Homewater_intervention"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_damage_factor_change = 0.02 }
 			update_GER_naval_damage_factor = yes
 			set_temp_variable = { GER_naval_defense_factor_change = 0.02 }
@@ -7608,6 +8200,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_mine_warfare"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_mine_hit_chance_change = 0.02 }
 			update_GER_naval_mine_hit_chance = yes
 			set_temp_variable = { GER_naval_mines_damage_factor_change = 0.02 }
@@ -7628,8 +8221,10 @@ focus_tree = {
 		y = 1
 		relative_position_id = GER_Improve_mine_warfare
 		cost = 6
-		prerequisite = { focus = GER_Improve_mine_warfare }
-		prerequisite = { focus = GER_not_perfect_but_flexible }
+		prerequisite = {
+			focus = GER_Improve_mine_warfare
+			focus = GER_not_perfect_but_flexible
+		}
 
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_NAVY }
 
@@ -7637,6 +8232,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_coasteal_and_shallow_sea_defense"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_detection_change = 0.02 }
 			update_GER_naval_detection = yes
 			set_temp_variable = { GER_naval_morale_factor_change = 0.02 }
@@ -7660,6 +8256,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_joint_operation_ability"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_screening_without_screens_change = 0.02 }
 			update_GER_screening_without_screens = yes
 			set_temp_variable = { GER_ships_at_battle_start_change = 0.02 }
@@ -7684,6 +8281,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Rapid_deployment_doctrine_force"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_invasion_prep_speed_change = 0.02 }
 			update_GER_naval_invasion_prep_speed = yes
 			set_temp_variable = { GER_naval_invasion_planning_bonus_speed_change = 0.02 }
@@ -7710,6 +8308,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Coastal_ships"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_defense_factor_change = 0.02 }
 			update_GER_naval_defense_factor = yes
 			set_temp_variable = { GER_naval_detection_change = 0.02 }
@@ -7734,6 +8333,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Hit_and_run"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_retreat_speed_after_initial_combat_change = 0.02 }
 			update_GER_naval_retreat_speed_after_initial_combat = yes
 			set_temp_variable = { GER_naval_retreat_chance_after_initial_combat_change = 0.02 }
@@ -7767,6 +8367,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Found_interbranch_command_center"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_anti_air_attack_factor_change = 0.02 }
 			update_GER_navy_anti_air_attack_factor = yes
 			set_temp_variable = { GER_naval_coordination_change = 0.02 }
@@ -7793,6 +8394,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Cyber_warfare_defence"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_critical_score_chance_factor_change = 0.02 }
 			update_GER_naval_critical_score_chance_factor = yes
 			set_temp_variable = { GER_naval_hit_chance_change = 0.02 }
@@ -7817,6 +8419,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Interbranch_wargames"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_anti_air_attack_factor_change = 0.02 }
 			update_GER_navy_anti_air_attack_factor = yes
 			set_temp_variable = { GER_critical_receive_chance_change = 0.02 }
@@ -7845,6 +8448,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_LOgistic_and_Supplyvhain_optimize"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_max_range_factor_change = 0.02 }
 			update_GER_navy_max_range_factor = yes
 			set_temp_variable = { GER_navy_fuel_consumption_factor_change = 0.02 }
@@ -7869,6 +8473,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_naval_realtime_data_sharing"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_torpedo_cooldown_factor_change = 0.02 }
 			update_GER_naval_torpedo_cooldown_factor = yes
 			set_temp_variable = { GER_naval_torpedo_hit_chance_factor_change = 0.02 }
@@ -7897,6 +8502,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_satelite_surveillance_system"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_spotting_chance_change = 0.02 }
 			update_GER_spotting_chance = yes
 			set_temp_variable = { GER_naval_mine_hit_chance_change = 0.02 }
@@ -7923,6 +8529,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Develope_Join_operation_Doctrine_I"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_org_factor_change = 0.02 }
 			update_GER_navy_org_factor = yes
 			set_temp_variable = { GER_naval_damage_factor_change = 0.02 }
@@ -7947,6 +8554,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_Sea_patroles"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_screen_attack_factor_change = 0.02 }
 			update_GER_navy_screen_attack_factor = yes
 			set_temp_variable = { GER_navy_screen_defence_factor_change = 0.02 }
@@ -7971,6 +8579,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_navy_training_I"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_navy_max_range_factor_change = 0.02 }
 			update_GER_navy_max_range_factor = yes
 			set_temp_variable = { GER_critical_receive_chance_change = 0.02 }
@@ -7998,6 +8607,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_high_seas_warfare_training"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_detection_change = 0.02 }
 			update_GER_naval_detection = yes
 			set_temp_variable = { GER_ships_at_battle_start_change = 0.02 }
@@ -8022,6 +8632,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Develope_Join_operation_Doctrine_II"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_positioning_change = 0.02 }
 			update_GER_positioning = yes
 			set_temp_variable = { GER_navy_org_factor_change = 0.02 }
@@ -8046,6 +8657,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_Coast_and_riverin_patroles"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_detection_change = 0.02 }
 			update_GER_naval_detection = yes
 			set_temp_variable = { GER_spotting_chance_change = 0.02 }
@@ -8070,6 +8682,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Advanced_navy_training_II"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_accidents_chance_change = 0.02 }
 			update_GER_naval_accidents_chance = yes
 			set_temp_variable = { GER_positioning_change = 0.02 }
@@ -8098,6 +8711,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_littoral_and_Riverin_warfare_training"
+			custom_effect_tooltip = GER_change_marine_spirit
 			set_temp_variable = { GER_naval_mine_hit_chance_change = 0.02 }
 			update_GER_naval_mine_hit_chance = yes
 			set_temp_variable = { GER_naval_mines_damage_factor_change = 0.02 }
@@ -8117,19 +8731,22 @@ focus_tree = {
 		relative_position_id = GER_not_perfect_but_flexible
 		cost = 4.3
 
-		prerequisite = { focus = GER_not_perfect_but_flexible }
-		prerequisite = { focus = GER_handle_asymetrick_threat }
-		prerequisite = { focus = GER_Improve_mine_warfare }
+		prerequisite = {
+			focus = GER_not_perfect_but_flexible
+		 	focus = GER_handle_asymetrick_threat
+		 	focus = GER_Improve_mine_warfare
+		 }
 
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_NAVY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Shipyards"
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
+			update_GER_dockyard_productivity = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
-			update_GER_dockyard_productivity = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -8157,11 +8774,14 @@ focus_tree = {
 				uses = 1
 				category = CAT_surface_ship
 			}
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
+			update_GER_dockyard_productivity = yes
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
-			update_GER_dockyard_productivity = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -8170,7 +8790,7 @@ focus_tree = {
 	focus = {
 		id = GER_ThyssenKrupp_Marinesystem
 		icon = thyssenkrupp_factory
-		x = 0
+		x = 2
 		y = 1
 		relative_position_id = GER_Shipyards
 		cost = 4.3
@@ -8190,11 +8810,14 @@ focus_tree = {
 				category = CAT_surface_ship
 				category = CAT_sub
 			}
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
+			update_GER_dockyard_productivity = yes
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
-			update_GER_dockyard_productivity = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -8203,7 +8826,7 @@ focus_tree = {
 	focus = {
 		id = GER_HDW
 		icon = Generic_Maritime
-		x = 2
+		x = 0
 		y = 1
 		relative_position_id = GER_Shipyards
 		cost = 4.3
@@ -8222,11 +8845,46 @@ focus_tree = {
 				uses = 1
 				category = CAT_sub
 			}
+			newline = yes
+			custom_effect_tooltip = GER_change_marine_spirit
+			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
+			update_GER_dockyard_productivity = yes
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_dockyard_productivity_change = 0.03 }
-			update_GER_dockyard_productivity = yes
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	focus = {
+		id = GER_GNY
+		icon = Generic_Maritime
+		x = 0
+		y = 1
+		relative_position_id = GER_HDW
+		cost = 4.3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = { focus = GER_HDW }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_HDW"
+			add_tech_bonus = {
+				name = CAT_corvette
+				bonus = 0.5
+				uses = 1
+				category = CAT_frigate
+				category = CAT_corvette
+			}
+			newline = yes
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				unlock_military_industrial_organization_tooltip = mio:GER_german_naval_yards
+			}
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -8240,30 +8898,37 @@ focus_tree = {
 		y = 1
 		relative_position_id = GER_Coastal_ships
 		cost = 4.3
-		available = {
-			has_dlc = "Man the Guns"
-		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		prerequisite = { focus = GER_Coastal_ships }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_New_Minesweepers"
-			#event
-			create_equipment_variant = {
-			name = "Frankenthal 2 Class"
-			type = corvette_hull_3
-			name_group = GER_MODERN_CORVETTES_NAMES
-			parent_version = 0
-			modules = {
-				fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
-				fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-				fixed_ship_radar_slot = module_sonar_5
-				fixed_ship_auxillary_slot_1 = module_asm_2
-				fixed_ship_battery_slot = module_ciws_2
-				front_1_custom_slot = module_chain_gun
-				rear_1_custom_slot = module_minelaying
+			if = {
+				limit = {
+					NOT = {
+						has_tech = corvette_hull_4
+					}
+				}
+				set_technology = {
+					corvette_hull_4 = 1
+				}
 			}
-		}
+			create_equipment_variant = {
+				name = "Frankenthal 2 Class"
+				type = corvette_hull_4
+				name_group = GER_MODERN_CORVETTES_NAMES
+				parent_version = 0
+				modules = {
+					fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+					fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
+					fixed_ship_radar_slot = module_sonar_5
+					fixed_ship_auxillary_slot_1 = module_asm_2
+					fixed_ship_battery_slot = module_ciws_2
+					front_1_custom_slot = module_chain_gun
+					rear_1_custom_slot = module_minelaying
+				}
+			}
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
@@ -8281,35 +8946,37 @@ focus_tree = {
 		cost = 4.3
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		prerequisite = { focus = GER_Improve_naval_logistics }
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_New_Fregattes"
-			if = { limit = { has_dlc = "Man the Guns" }
-				create_equipment_variant = {
-					name = "Baden-Württemberg Class"
-					type = frigate_hull_4
-					name_group = GER_MODERN_FRIGATE_NAMES
-					parent_version = 0
-					modules = {
-						fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
-						fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-						fixed_ship_radar_slot = module_radar_5
-						fixed_ship_auxillary_slot_2 = module_asm_3
-						fixed_ship_auxillary_slot_1 = module_asm_3
-						fixed_ship_auxillary_slot = module_esm_3
-						fixed_ship_battery_slot = module_76mm_gun_3
-						front_1_custom_slot = module_chain_gun
-						rear_1_custom_slot = module_light_helipad_1
+			if = {
+				limit = {
+					NOT = {
+						has_tech = frigate_hull_4
 					}
 				}
-			}
-			else_if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				set_technology = { missile_frigate_4 = 1 }
-				create_equipment_variant = {
-					name = "Type 214-Class"
-					type = missile_frigate_4
+				set_technology = {
+					frigate_hull_4 = 1
 				}
 			}
+			create_equipment_variant = {
+				name = "Baden-Württemberg Class"
+				type = frigate_hull_4
+				name_group = GER_MODERN_FRIGATE_NAMES
+				parent_version = 0
+				modules = {
+					fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+					fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+					fixed_ship_radar_slot = module_radar_5
+					fixed_ship_auxillary_slot_2 = module_asm_3
+					fixed_ship_auxillary_slot_1 = module_asm_3
+					fixed_ship_auxillary_slot = module_esm_3
+					fixed_ship_battery_slot = module_76mm_gun_3
+					front_1_custom_slot = module_chain_gun
+					rear_1_custom_slot = module_light_helipad_1
+				}
+			}
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
@@ -8330,32 +8997,33 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_New_Corvettes"
-			if = { limit = { has_dlc = "Man the Guns" }
-				create_equipment_variant = {
-				name = "Braunschweig Class"
-				type = corvette_hull_3
-					name_group = GER_MODERN_CORVETTES_NAMES
-					parent_version = 0
-					modules = {
-						fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
-						fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
-						fixed_ship_radar_slot = module_sonar_5
-						fixed_ship_auxillary_slot_1 = module_asm_2
-						fixed_ship_auxillary_slot = module_minelaying
-						fixed_ship_battery_slot = module_76mm_gun_3
-						front_1_custom_slot = module_ram_3
-						rear_1_custom_slot = module_light_helipad_1
+			if = {
+				limit = {
+					NOT = {
+						has_tech = corvette_hull_4
 					}
 				}
-			}
-			else_if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				set_technology = { missile_corvette_3 = 1 }
-				create_equipment_variant = {
-					name = "Braunschweig Class"
-					type = missile_corvette_3
+				set_technology = {
+					corvette_hull_4 = 1
 				}
 			}
+			create_equipment_variant = {
+			name = "Köln Class"
+			type = corvette_hull_4
+				name_group = GER_MODERN_CORVETTES_NAMES
+				parent_version = 0
+				modules = {
+					fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+					fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+					fixed_ship_radar_slot = module_radar_5
+					fixed_ship_auxillary_slot_1 = module_asm_2
+					fixed_ship_auxillary_slot = module_minelaying
+					fixed_ship_battery_slot = module_76mm_gun_3
+					front_1_custom_slot = module_ram_3
+					rear_1_custom_slot = module_light_helipad_1
+				}
+			}
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
@@ -8376,31 +9044,32 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_New_Submarines"
-			if = { limit = { has_dlc = "Man the Guns" }
-					create_equipment_variant = {
-					name = "Type 214 Class"
-					type = attack_submarine_hull_4
-					name_group = GER_MODERN_SUBMARINES_NAMES
-					parent_version = 0
-					modules = {
-						fixed_ship_engine_slot = module_sub_diesel_electric_power3
-						fixed_ship_radar_slot = module_sonar_5
-						fixed_ship_auxillary_slot_3 = module_torpedoes_2
-						fixed_ship_auxillary_slot_2 = module_sub_esm_2
-						fixed_ship_auxillary_slot_1 = module_torpedoes_2
-						fixed_ship_auxillary_slot = module_vls_sub_asm_3
-						fixed_ship_battery_slot = module_anti_ship_torpedoes_2
+			if = {
+				limit = {
+					NOT = {
+						has_tech = attack_submarine_hull_4
 					}
 				}
-			}
-			else_if = {
-				limit = { NOT = { has_dlc = "Man the Guns" } }
-				set_technology = { diesel_attack_submarine_4 = 1 }
-				create_equipment_variant = {
-					name = "Type 214-Class"
-					type = diesel_attack_submarine_4
+				set_technology = {
+					attack_submarine_hull_4 = 1
 				}
 			}
+			create_equipment_variant = {
+				name = "Type 214 Class"
+				type = attack_submarine_hull_4
+				name_group = GER_MODERN_SUBMARINES_NAMES
+				parent_version = 0
+				modules = {
+					fixed_ship_engine_slot = module_sub_diesel_electric_power3
+					fixed_ship_radar_slot = module_sonar_5
+					fixed_ship_auxillary_slot_3 = module_torpedoes_2
+					fixed_ship_auxillary_slot_2 = module_sub_esm_2
+					fixed_ship_auxillary_slot_1 = module_torpedoes_2
+					fixed_ship_auxillary_slot = module_vls_sub_asm_3
+					fixed_ship_battery_slot = module_anti_ship_torpedoes_2
+				}
+			}
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
@@ -8413,10 +9082,17 @@ focus_tree = {
 	focus = {
 		id = GER_AFV_projects
 		icon = tanks4
-		x = 13
-		y = 6
-		relative_position_id = GER_Establish_Streitkrafte_basis
+		x = -6
+		y = 1
+		relative_position_id = GER_security_intervention
+
 		cost = 12.9
+
+		prerequisite = {
+			focus = GER_security_intervention
+			focus = GER_Global_Crisis_management
+			focus = GER_Ready_for_Defence
+		}
 
 		available = {
 			has_dlc = "Arms Against Tyranny"
@@ -8486,6 +9162,7 @@ focus_tree = {
 				limit = {
 					has_dlc = "Arms Against Tyranny"
 				}
+				unlock_military_industrial_organization_tooltip = mio:GER_artec
 				mio:GER_artec = {
 					add_mio_research_bonus = 0.1
 					add_mio_size = 2
@@ -8623,81 +9300,7 @@ focus_tree = {
 			factor = 1
 		}
 	}
-	focus = {
-		id = GER_Start_Tank_Programms
-		icon = leopard_2a6
-		x = -2
-		y = 3
-		relative_position_id = GER_AFV_projects
-		cost = 4.3
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		prerequisite = {
-			focus = GER_choose_electronic
-			focus = GER_choose_engine
-			focus = GER_choose_optics
-			focus = GER_choose_C4ISR
-		}
 
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_Start_Tank_Programms"
-			country_event = {
-				id = germany_foci.13
-			}
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	focus = {
-		id = GER_Start_APC_Programms
-		icon = apc
-		x = 0
-		y = 3
-		relative_position_id = GER_AFV_projects
-		cost = 4.3
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		prerequisite = {
-			focus = GER_choose_electronic
-			focus = GER_choose_engine
-			focus = GER_choose_optics
-			focus = GER_choose_C4ISR
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_Leopard_Tank"
-			country_event = {
-				id = germany_foci.11
-			}
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
-	focus = {
-		id = GER_Start_IFV_Programms
-		icon = ifv
-		x = 2
-		y = 3
-		relative_position_id = GER_AFV_projects
-		cost = 4.3
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		prerequisite = {
-			focus = GER_choose_electronic
-			focus = GER_choose_engine
-			focus = GER_choose_optics
-			focus = GER_choose_C4ISR
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_Leopard_Tank"
-			country_event = {
-				id = germany_foci.12
-			}
-		}
-		ai_will_do = {
-			factor = 1
-		}
-	}
 
 	focus = {
 		id = GER_Update_SAM
@@ -8713,16 +9316,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_SAM"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
 			add_tech_bonus = {
-				name = KOR_new_uniforms
+				name = CAT_sam
 				bonus = 0.50
 				uses = 1
 				category = CAT_sam
 			}
-			set_temp_variable = { treasury_change = -9.00 }
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
@@ -8743,15 +9344,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_Mobile_Airdefense"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
 			add_tech_bonus = {
-				name = KOR_new_uniforms
+				name = CAT_aa
 				bonus = 0.25
 				uses = 2
 				category = CAT_aa
 			}
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -8771,7 +9372,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Choose_future_MR"
-			IF = {
+			if = {
 				limit = { has_dlc = "By Blood Alone" }
 				country_event = {
 					id = germany_foci.1
@@ -8805,7 +9406,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_New_heavy_Plain"
-			IF = {
+			if = {
 				limit = { has_dlc = "By Blood Alone" }
 				country_event = {
 					id = germany_foci.3
@@ -8865,7 +9466,6 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_future_air_rec"
-			#event
 			add_tech_bonus = {
 				name = CAT_air_camera
 				bonus = 0.25
@@ -8895,10 +9495,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_New_Airdefence"
 			add_tech_bonus = {
-				name = KOR_new_uniforms
+				name = CAT_sam
 				bonus = 0.25
 				uses = 1
-				category = CAT_armor
+				category = CAT_sam
 			}
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
@@ -9004,7 +9604,29 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Specialiced_forces"
-			add_ideas = GER_idea_special_forces
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_paratrooper_weight_factor_luftwaffe_change = 0.05 }
+			update_GER_paratrooper_weight_factor_luftwaffe = yes
+			set_temp_variable = { GER_paradrop_organization_factor_luftwaffe_change = 0.20 }
+			update_GER_paradrop_organization_factor_luftwaffe = yes
+			set_temp_variable = { GER_extra_paratrooper_supply_grace_luftwaffe_change = 25 }
+			update_GER_extra_paratrooper_supply_grace_luftwaffe = yes
+			set_temp_variable = { GER_paratrooper_aa_defense_luftwaffe_change = 0.15 }
+			update_GER_paratrooper_aa_defense_luftwaffe = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_recon_factor_change = 0.05 }
+			update_GER_recon_factor = yes
+			set_temp_variable = { GER_special_forces_attack_factor_change = 0.05 }
+			update_GER_special_forces_attack_factor = yes
+			set_temp_variable = { GER_special_forces_defence_factor_change = 0.05 }
+			update_GER_special_forces_defence_factor = yes
+			set_temp_variable = { GER_send_volunteer_size_change = 1 }
+			update_GER_send_volunteer_size = yes
+			set_temp_variable = { GER_army_night_attack_change = 0.05 }
+			update_GER_army_night_attack = yes
+			set_temp_variable = { GER_Initiative_factor_change = 0.05 }
+			update_GER_initiative_factor = yes
 		}
 
 		ai_will_do = {
@@ -9018,7 +9640,7 @@ focus_tree = {
 		x = -2
 		y = 1
 		relative_position_id = GER_Specialiced_forces
-		cost = 4.3
+		cost = 7
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = { focus = GER_Specialiced_forces }
 
@@ -9031,8 +9653,7 @@ focus_tree = {
 				}
 				country_event = { id = germany_foci.150 }
 			}
-			Else_if = {
-				limit = { NOT = { has_dlc = "No Step Back" } }
+			Else = {
 				add_tech_bonus = {
 				name = CAT_atk_heli
 				bonus = 0.5
@@ -9053,7 +9674,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = GER_Specialiced_forces
-		cost = 4.3
+		cost = 7
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = { focus = GER_Specialiced_forces }
 
@@ -9065,8 +9686,7 @@ focus_tree = {
 				}
 				country_event = { id = germany_foci.152 }
 			}
-			Else_if = {
-				limit = { NOT = { has_dlc = "By Blood Alone" } }
+			Else = {
 				add_tech_bonus = {
 					name = CAT_a_uav
 					bonus = 0.5
@@ -9099,8 +9719,7 @@ focus_tree = {
 				}
 				country_event = { id = germany_foci.151 }
 			}
-			Else_if = {
-				limit = { NOT = { has_dlc = "No Step Back" } }
+			Else = {
 				add_tech_bonus = {
 					name = CAT_trans_heli
 					bonus = 0.5
@@ -9122,7 +9741,7 @@ focus_tree = {
 		x = 0
 		y = 1
 		relative_position_id = GER_New_drones
-		cost = 4.3
+		cost = 9
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = {
 			focus = GER_New_drones
@@ -9132,14 +9751,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_plan_the_programm"
-			one_random_arms_factory = yes
+			random_owned_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
 			add_tech_bonus = {
-				name = KOR_new_uniforms
+				name = GER_plan_the_programm
 				bonus = 0.25
 				uses = 1
 				category = CAT_heli
 			}
-			set_temp_variable = { treasury_change = -9.00 }
+			set_temp_variable = { treasury_change = -16.5 }
 			modify_treasury_effect = yes
 		}
 		ai_will_do = {
@@ -9156,6 +9782,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = { focus = GER_plan_the_programm }
 
+		available = {
+			date > 2010.01.01
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Future_Attach_helo"
 			if = {
@@ -9164,17 +9794,13 @@ focus_tree = {
 				}
 				country_event = { id = germany_foci.154 }
 			}
-			Else_if = {
-				limit = { NOT = { has_dlc = "No Step Back" } }
+			Else = {
 				add_tech_bonus = {
 				name = CAT_atk_heli
 				bonus = 0.5
 				uses = 1
 				category = CAT_atk_heli
 				}
-			}
-			country_event = {
-				id = germany_foci.154
 			}
 			set_temp_variable = { treasury_change = -9.00 }
 			modify_treasury_effect = yes
@@ -9187,22 +9813,30 @@ focus_tree = {
 	focus = {
 		id = GER_Reform_Fuhrungsakademie
 		icon = german_coa
-		x = -2
+		x = -1
 		y = 1
 		relative_position_id = GER_Ready_to_transform
 		cost = 4.3
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = { focus = GER_Ready_to_transform }
 
+		available = {
+			NOT = {
+				has_government = nationalist
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_Fuhrungsakademie"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_leader_xp_gain_change = 0.04 }
 			update_GER_leader_xp_gain = yes
 			set_temp_variable = { GER_army_leader_start_level_change = 0.05 }
 			update_GER_army_leader_start_level = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9212,22 +9846,28 @@ focus_tree = {
 	focus = {
 		id = GER_Reform_Zentrum_innere_Fuhrung
 		icon = german_shield
-		x = 2
+		x = 1
 		y = 1
 		relative_position_id = GER_Ready_to_transform
 		cost = 4.3
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = { focus = GER_Ready_to_transform }
 
+		available = {
+			NOT = {
+				has_government = nationalist
+			}
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_Zentrum_innere_Fuhrung"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
 			swap_ideas = {
 				remove_idea = GER_idea_Innere_fuhrung_I
 				add_idea = GER_idea_Innere_fuhrung_II
 			}
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9248,11 +9888,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_Heeresamt"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
-			set_temp_variable = { GER_military_cost2_change = -0.05 }
-			update_GER_military_cost2 = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_personnel_cost_multiplier_modifier_heer_change = -0.05 }
+			update_GER_personnel_cost_multiplier_modifier_heer = yes
 			create_corps_commander = {
 				name = "Manfred Dietrich"
 				GFX = "GFX_Manfred_Dietrich"
@@ -9263,6 +9901,7 @@ focus_tree = {
 				planning_skill = 4
 				logistics_skill = 3
 			}
+			newline = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9273,21 +9912,18 @@ focus_tree = {
 		id = GER_Invest_in_Universitat_der_Bundeswehr_Hamburg
 		icon = bundeskanzler_helmet
 		x = 0
-		y = 1
+		y = 2
 		relative_position_id = GER_Ready_to_transform
 		cost = 4.3
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 		prerequisite = {
 			focus = GER_Reform_Fuhrungsakademie
 			focus = GER_Reform_Zentrum_innere_Fuhrung
-			focus = GER_Reform_Heeresamt
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Invest_in_Universitat_der_Bundeswehr_Hamburg"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_leader_start_attack_level_change = 0.03 }
 			update_GER_army_leader_start_attack_level = yes
 			set_temp_variable = { GER_army_leader_start_defence_level_change = 0.02 }
@@ -9296,6 +9932,10 @@ focus_tree = {
 			update_GER_army_leader_start_logistics_level = yes
 			set_temp_variable = { GER_army_leader_start_planning_level_change = 0.02 }
 			update_GER_army_leader_start_planning_level = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -9315,6 +9955,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_cooperation_in_education"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_leader_start_level_change = 0.04 }
 			update_GER_army_leader_start_level = yes
 			set_temp_variable = { GER_army_leader_start_attack_level_change = 0.03 }
@@ -9345,9 +9986,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_focus_artillerie_schule"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { Ger_army_artillery_attack_factor_change = 0.06 }
+			update_Ger_army_artillery_attack_factor = yes
+			set_temp_variable = { Ger_army_artillery_defence_factor_change = 0.06 }
+			update_Ger_army_artillery_defence_factor = yes
+			set_temp_variable = { GER_breakthrough_factor_change = 0.06 }
+			update_GER_breakthrough_factor = yes
+			newline = yes
+			army_experience = 35
+			newline = yes
 			create_corps_commander = {
 				name = "Heinrich Fischer"
 				GFX = "GFX_Heinrich_Fischer"
@@ -9358,13 +10006,10 @@ focus_tree = {
 				planning_skill = 3
 				logistics_skill = 2
 			}
-			army_experience = 35
-			set_temp_variable = { Ger_army_artillery_attack_factor_change = 0.06 }
-			update_Ger_army_artillery_attack_factor = yes
-			set_temp_variable = { Ger_army_artillery_defence_factor_change = 0.06 }
-			update_Ger_army_artillery_defence_factor = yes
-			set_temp_variable = { GER_breakthrough_factor_change = 0.06 }
-			update_GER_breakthrough_factor = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9385,9 +10030,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_focus_Panzertruppenschule"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_army_armor_attack_factor_change = 0.04 }
+			update_GER_army_armor_attack_factor = yes
+			set_temp_variable = { GER_army_armor_defence_factor_change = 0.03 }
+			update_GER_army_armor_defence_factor = yes
+			set_temp_variable = { GER_army_armor_speed_factor_change = 0.03 }
+			update_GER_army_armor_speed_factor = yes
+			newline = yes
+			army_experience = 35
+			newline = yes
 			create_corps_commander = {
 				name = "Christian Trull"
 				GFX = "GFX_Christian_Trull"
@@ -9398,13 +10050,10 @@ focus_tree = {
 				planning_skill = 3
 				logistics_skill = 4
 			}
-			army_experience = 35
-			set_temp_variable = { GER_army_armor_attack_factor_change = 0.04 }
-			update_GER_army_armor_attack_factor = yes
-			set_temp_variable = { GER_army_armor_defence_factor_change = 0.03 }
-			update_GER_army_armor_defence_factor = yes
-			set_temp_variable = { GER_army_armor_speed_factor_change = 0.03 }
-			update_GER_army_armor_speed_factor = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 
 		}
 		ai_will_do = {
@@ -9426,9 +10075,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_focus_Infanterie_Schule"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_army_infantry_defence_factor_change = 0.03 }
+			update_GER_army_infantry_defence_factor = yes
+			set_temp_variable = { GER_army_infantry_attack_factor_change = 0.04 }
+			update_GER_army_infantry_attack_factor = yes
+			set_temp_variable = { GER_mechanized_defence_factor_change = 0.03 }
+			update_GER_mechanized_defence_factor = yes
+			set_temp_variable = { GER_mechanized_attack_factor_change = 0.04 }
+			update_GER_mechanized_attack_factor = yes
+			newline = yes
 			create_corps_commander = {
 				name = "Wolf-Dieter Löser"
 				GFX = "GFX_Wolf-Dieter_Löser"
@@ -9439,14 +10095,10 @@ focus_tree = {
 				planning_skill = 4
 				logistics_skill = 5
 			}
-			set_temp_variable = { GER_army_infantry_defence_factor_change = 0.03 }
-			update_GER_army_infantry_defence_factor = yes
-			set_temp_variable = { GER_army_infantry_attack_factor_change = 0.04 }
-			update_GER_army_infantry_attack_factor = yes
-			set_temp_variable = { GER_mechanized_defence_factor_change = 0.03 }
-			update_GER_mechanized_defence_factor = yes
-			set_temp_variable = { GER_mechanized_attack_factor_change = 0.04 }
-			update_GER_mechanized_attack_factor = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9469,15 +10121,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_NEW_depardments"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
 			add_doctrine_cost_reduction = {
 				name = Cost_Reduction
 				category = CAT_land_doctrine
 				uses = 2
 				cost_reduction = 0.5
 			}
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9497,16 +10149,29 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Training_Command"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
-			add_ideas = GER_idea_Army_Training_Command
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_minimum_training_level_change = 0.03 }
 			update_GER_minimum_training_level = yes
 			set_temp_variable = { GER_experience_gain_army_change = 0.03 }
 			update_GER_experience_gain_army = yes
 			set_temp_variable = { GER_leader_xp_gain_change = 0.03 }
 			update_GER_leader_xp_gain = yes
+			set_temp_variable = { GER_max_planning_modifier_change = 0.02 }
+			update_GER_max_planning_modifier = yes
+			set_temp_variable = { GER_army_speed_factor_change = 0.02 }
+			update_GER_army_speed_factor = yes
+			set_temp_variable = { GER_experience_gain_army_change = -0.05 }
+			update_GER_experience_gain_army = yes
+			set_temp_variable = { GER_army_org_factor_change = 0.02 }
+			update_GER_army_org_factor = yes
+			set_temp_variable = { GER_army_morale_factor_change = 0.02 }
+			update_GER_army_morale_factor = yes
+			set_temp_variable = { GER_Army_attack_change = 0.02 }
+			update_GER_Army_attack = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9526,13 +10191,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Army_Concepts_and_Capabilities_Development_Centre"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_max_planning_modifier_change = 0.05 }
 			update_GER_max_planning_modifier = yes
 			set_temp_variable = { GER_planning_speed_change = 0.06 }
 			update_GER_planning_speed = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -9552,12 +10219,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Cyber_and_Information_Doman_Service"
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_Initiative_factor_change = 0.04 }
+			update_GER_Initiative_factor = yes
+			set_temp_variable = { GER_max_planning_modifier_change = 0.07 }
+			update_GER_max_planning_modifier = yes
+			set_temp_variable = { GER_intel_network_gain_factor_heer_change = 0.05 }
+			update_GER_intel_network_gain_factor_heer = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
+			set_temp_variable = { GER_decryption_factor_luftwaffe_change = 0.07 }
+			update_GER_decryption_factor_luftwaffe = yes
+			newline = yes
 			set_temp_variable = { treasury_change = gdp_per_capita }
 			multiply_temp_variable = { treasury_change = -0.15 }
 			modify_treasury_effect = yes
-			add_ideas = GER_idea_Cyber_and_Information_Domain_Service
-			set_temp_variable = { GER_Initiative_factor_change = 0.04 }
-			update_GER_Initiative_factor = yes
 		}
 
 		ai_will_do = {
@@ -9574,6 +10250,12 @@ focus_tree = {
 		cost = 5
 		prerequisite = {
 			focus = GER_cooperation_in_education
+		}
+
+		available = {
+			NOT = {
+				has_government = nationalist
+			}
 		}
 
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
@@ -9616,7 +10298,11 @@ focus_tree = {
 				uses = 2
 				cost_reduction = 0.5
 			}
-			add_ideas = GER_idea_light_Force
+			newline = yes
+			swap_ideas = {
+				remove_idea = GER_Idea_Innere_fuhrung_II
+				add_idea = GER_Idea_Innere_fuhrung_3a
+			}
 		}
 
 		ai_will_do = {
@@ -9646,7 +10332,11 @@ focus_tree = {
 				uses = 2
 				cost_reduction = 0.5
 			}
-			add_ideas = GER_idea_medium_Force
+			newline = yes
+			swap_ideas = {
+				remove_idea = GER_Idea_Innere_fuhrung_II
+				add_idea = GER_Idea_Innere_fuhrung_3b
+			}
 		}
 
 		ai_will_do = {
@@ -9676,33 +10366,10 @@ focus_tree = {
 				uses = 2
 				cost_reduction = 0.5
 			}
-			add_ideas = GER_idea_heavy_Force
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = GER_Bundeswehr_2.0
-		icon = bundeswehr_help
-
-		x = 0
-		y = 1
-		relative_position_id = GER_Introduce_Medium_Forces
-		cost = 4.3
-		prerequisite = { focus = GER_European_Anker_Army }
-
-		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
-
-		completion_reward = {
-			log = "[GetDateText]: [Root.GetName]: Focus GER_Bundeswehr_2.0"
-			add_doctrine_cost_reduction = {
-				name = Cost_Reduction
-				category = CAT_land_doctrine
-				uses = 2
-				cost_reduction = 0.5
+			newline = yes
+			swap_ideas = {
+				remove_idea = GER_Idea_Innere_fuhrung_II
+				add_idea = GER_Idea_Innere_fuhrung_3c
 			}
 		}
 
@@ -9710,7 +10377,6 @@ focus_tree = {
 			base = 1
 		}
 	}
-
 	focus = {
 		id = GER_Update_rec_forces
 		icon = coalition_army
@@ -9725,15 +10391,17 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_rec_forces"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_recon_factor_change = 0.05 }
 			update_GER_recon_factor = yes
 			set_temp_variable = { GER_Intel_from_combat_factor_change = 0.04 }
 			update_GER_Intel_from_combat_factor = yes
 			set_temp_variable = { GER_no_supply_grace_change = 0.02 }
 			update_GER_no_supply_grace = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -9759,6 +10427,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Specialiced_terrain_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_terrain_penalty_reduction_change = 0.03 }
 			update_GER_terrain_penalty_reduction = yes
 			set_temp_variable = { GER_army_night_attack_change = 0.02 }
@@ -9788,14 +10457,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Introduce_drone_rec_troop"
+			custom_effect_tooltip = GER_change_heer_spirit
+			set_temp_variable = { GER_recon_factor_while_entrenched_change = 0.02 }
+			update_GER_recon_factor_while_entrenched = yes
+			newline = yes
 			add_tech_bonus = {
 				name = GER_Artillerie_tech
 				bonus = 0.4
 				uses = 1
 				category = CAT_l_drone
 			}
-			set_temp_variable = { GER_recon_factor_while_entrenched_change = 0.02 }
-			update_GER_recon_factor_while_entrenched = yes
 		}
 
 		ai_will_do = {
@@ -9821,8 +10492,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_FAC_training"
+			custom_effect_tooltip = GER_change_luftwaffe_spirit
 			set_temp_variable = { GER_cas_efficiency_change = 0.05 }
 			update_GER_cas_efficiency = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_Initiative_factor_change = 0.03 }
 			update_GER_Initiative_factor = yes
 		}
@@ -9839,14 +10513,17 @@ focus_tree = {
 		y = 2
 		relative_position_id = GER_Update_rec_forces
 		cost = 4.3
-		prerequisite = { focus = GER_Update_rec_forces }
-		prerequisite = { focus = GER_Specialiced_terrain_training }
-		prerequisite = { focus = GER_FAC_training }
+		prerequisite = {
+			focus = GER_Introduce_drone_rec_troop
+			focus = GER_Specialiced_terrain_training
+			focus = GER_FAC_training
+		}
 
 		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_ARMY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_modernice_REC_network"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_army_speed_factor_change = 0.02 }
 			update_GER_army_speed_factor = yes
 			set_temp_variable = { GER_planning_speed_change = 0.04 }
@@ -9871,13 +10548,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_modernice_Special_forces"
-			set_temp_variable = { treasury_change = gdp_per_capita }
-			multiply_temp_variable = { treasury_change = -0.15 }
-			modify_treasury_effect = yes
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_special_forces_out_of_supply_factor_change = 0.04 }
 			update_GER_special_forces_out_of_supply_factor = yes
 			set_temp_variable = { GER_special_forces_cap_change = 0.04 }
 			update_GER_special_forces_cap = yes
+			newline = yes
+			set_temp_variable = { treasury_change = gdp_per_capita }
+			multiply_temp_variable = { treasury_change = -0.15 }
+			modify_treasury_effect = yes
 		}
 
 		ai_will_do = {
@@ -9902,6 +10581,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_KSK"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_special_forces_attack_factor_change = 0.04 }
 			update_GER_special_forces_attack_factor = yes
 			set_temp_variable = { GER_special_forces_defence_factor_change = 0.06 }
@@ -9932,6 +10612,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Expand_SEK_M"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_amphibious_invasion_change = 0.04 }
 			update_GER_amphibious_invasion = yes
 			set_temp_variable = { GER_special_forces_out_of_supply_factor_change = 0.06 }
@@ -9961,6 +10642,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Introduce_EGB"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor_change = 0.06 }
 			update_GER_modifier_army_sub_unit_L_Air_assault_Bat_attack_factor = yes
 			set_temp_variable = { GER_modifier_army_sub_unit_L_Air_assault_Bat_defence_factor_change = 0.04 }
@@ -9989,6 +10671,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Improve_special_forces_training"
+			custom_effect_tooltip = GER_change_heer_spirit
 			set_temp_variable = { GER_modifier_army_sub_unit_Special_Forces_speed_factor_change = 0.05 }
 			update_GER_modifier_army_sub_unit_Special_Forces_speed_factor = yes
 			set_temp_variable = { GER_special_forces_out_of_supply_factor_change = 0.03 }
@@ -10013,6 +10696,10 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
+		available = {
+			has_government = democratic
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations"
 			add_dynamic_modifier = { modifier = GER_Diplomatic }
@@ -10022,9 +10709,10 @@ focus_tree = {
 					set_temp_variable = { debt_change = GER.gdp_per_capita }
 					multiply_temp_variable = { debt_change = 0.31 }
 					modify_debt_effect = yes
-
 			set_country_flag = GER_Humbold_foundation
+			newline = yes
 			add_to_tech_sharing_group = Humbold_foundation_sharing_group
+			newline = yes
 			add_ideas = GER_wandel_durch_handel
 		}
 		ai_will_do = {
@@ -10045,11 +10733,16 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
+		available = {
+			has_government = democratic
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_KFW_Restructure"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_productivity_growth_modifier_change = 0.02 }
-				update_GER_dip_productivity_growth_modifier = yes
-
+			update_GER_dip_productivity_growth_modifier = yes
+			newline = yes
 			41 = {
 				add_dynamic_modifier = { modifier = GER_KfW_IPEX_Bank }
 			}
@@ -10070,10 +10763,15 @@ focus_tree = {
 
 		prerequisite = { focus = GER_KFW_Restructure }
 
+		available = {
+			has_government = democratic
+		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_global_infrastructure_projects"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			PRU = {
 				country_event = {
 					id = GER_Diplomacy.1 days = 1
@@ -10089,10 +10787,10 @@ focus_tree = {
 					id = GER_Diplomacy.1 days = 5
 				}
 			}
-			GER = {
-				set_temp_variable = { GER_dip_production_speed_infrastructure_factor_change = 0.05 }
-				update_GER_dip_production_speed_infrastructure_factor = yes
-			}
+			newline = yes
+			custom_effect_tooltip = GER_change_diplomatic
+			set_temp_variable = { GER_dip_production_speed_infrastructure_factor_change = 0.05 }
+			update_GER_dip_production_speed_infrastructure_factor = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -10110,10 +10808,15 @@ focus_tree = {
 
 		prerequisite = { focus = GER_KFW_Restructure }
 
+		available = {
+			has_government = democratic
+		}
+
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Green_finance_initiative"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			MOR = {
 				country_event = {
 					id = GER_Diplomacy.2 days = 1
@@ -10129,10 +10832,10 @@ focus_tree = {
 					id = GER_Diplomacy.2 days = 5
 				}
 			}
-			GER = {
-				set_temp_variable = { GER_dip_renewable_energy_gain_multiplier_change = 0.05 }
-				update_GER_dip_renewable_energy_gain_multiplier = yes
-			}
+			newline = yes
+			custom_effect_tooltip = GER_change_diplomatic
+			set_temp_variable = { GER_dip_renewable_energy_gain_multiplier_change = 0.05 }
+			update_GER_dip_renewable_energy_gain_multiplier = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -10151,13 +10854,16 @@ focus_tree = {
 		prerequisite = {
 			focus = GER_Green_finance_initiative
 			focus = GER_global_infrastructure_projects
-
-			}
+		}
+		available = {
+			has_government = democratic
+		}
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Strategic_Partnership_India"
+			custom_effect_tooltip = GER_Strategic_Partnership_tt
 			RAJ = {
 				country_event = {
 					id = GER_Diplomacy.3 days = 1
@@ -10178,12 +10884,21 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_found_Bundesagentur_fur_Aussenwirtschaft"
+			swap_ideas = {
+				remove_idea = GER_wandel_durch_handel
+				add_idea = GER_wandel_durch_handel_2
+			}
+			newline = yes
 			CHL = {
 				country_event = {
 					id = GER_Diplomacy.10 days = 1
@@ -10199,14 +10914,13 @@ focus_tree = {
 					id = GER_Diplomacy.10 days = 5
 				}
 			}
-			GER = {
-				add_ideas = GER_idea_found_Bundesagentur_fur_Aussenwirtschaft
-			}
 		}
+
 		ai_will_do = {
 			base = 1
 		}
 	}
+
 	focus = {
 		id = GER_Securing_acces_to_Key_Ressources
 		icon = treasure_chest
@@ -10216,6 +10930,10 @@ focus_tree = {
 		relative_position_id = GER_found_Bundesagentur_fur_Aussenwirtschaft
 
 		cost = 6.5
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = { focus = GER_found_Bundesagentur_fur_Aussenwirtschaft }
 
@@ -10258,12 +10976,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_the_DED"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_productivity_growth_modifier_change = 0.02 }
 			update_GER_dip_productivity_growth_modifier = yes
 			set_temp_variable = { GER_dip_industrial_capacity_factory_change = 0.02 }
@@ -10283,13 +11006,20 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_found_Bundesagentur_fur_Aussenwirtschaft }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Promote_private_investments"
-			add_ideas = GER_Idea_Privat_investors
+			swap_ideas = {
+				remove_idea = GER_wandel_durch_handel_2
+				add_idea = GER_wandel_durch_handel_3
+			}
 		}
 		ai_will_do = {
 			factor = 1
@@ -10305,12 +11035,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Reform_the_DED }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Development_Projects"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			UGA = {
 				country_event = {
 					id = GER_Diplomacy.9 days = 1
@@ -10341,12 +11076,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DAAD_Expand_Academic_exchange_service"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_production_speed_industrial_complex_factor_change = 0.02 }
 			update_GER_dip_production_speed_industrial_complex_factor = yes
 			set_temp_variable = { GER_dip_production_speed_offices_factor_change = 0.02 }
@@ -10368,12 +11108,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_DAAD_Expand_Academic_exchange_service }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_International_education_projects"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			MEX = {
 				country_event = {
 					id = GER_Diplomacy.5 days = 1
@@ -10389,10 +11134,10 @@ focus_tree = {
 					id = GER_Diplomacy.5 days = 5
 				}
 			}
-			GER = {
-				set_temp_variable = { GER_dip_research_speed_factor_change = 0.02 }
-				update_GER_dip_research_speed_factor = yes
-			}
+			newline = yes
+			custom_effect_tooltip = GER_change_diplomatic
+			set_temp_variable = { GER_dip_research_speed_factor_change = 0.02 }
+			update_GER_dip_research_speed_factor = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -10408,12 +11153,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_DAAD_Expand_Academic_exchange_service }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Education_for_stability"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			NAM = {
 				country_event = {
 					id = GER_Diplomacy.4 days = 1
@@ -10429,10 +11179,10 @@ focus_tree = {
 					id = GER_Diplomacy.4 days = 5
 				}
 			}
-			GER = {
-				set_temp_variable = { GER_dip_return_on_investment_modifier_change = 0.02 }
-				update_GER_dip_return_on_investment_modifier = yes
-			}
+			newline = yes
+			custom_effect_tooltip = GER_change_diplomatic
+			set_temp_variable = { GER_dip_return_on_investment_modifier_change = 0.02 }
+			update_GER_dip_return_on_investment_modifier = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -10447,6 +11197,10 @@ focus_tree = {
 		relative_position_id = GER_DAAD_Expand_Academic_exchange_service
 
 		cost = 8.7
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = {
 			focus = GER_International_education_projects
@@ -10482,10 +11236,16 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
+		available = {
+			has_government = democratic
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Modernize_Goethe_Institutes"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_research_speed_factor_change = 0.02 }
 			update_GER_dip_research_speed_factor = yes
+			newline = yes
 			43 = {
 				add_dynamic_modifier = { modifier = GER_Goethe_intitut }
 			}
@@ -10504,12 +11264,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Modernize_Goethe_Institutes }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Promote_the_german_language"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			KYR = {
 				country_event = {
 					id = GER_Diplomacy.6 days = 1
@@ -10525,10 +11290,10 @@ focus_tree = {
 					id = GER_Diplomacy.6 days = 5
 				}
 			}
-			GER = {
-				set_temp_variable = { GER_dip_foreign_influence_defense_modifier_change = 0.05 }
-				update_GER_dip_foreign_influence_defense_modifier = yes
-			}
+			newline = yes
+			custom_effect_tooltip = GER_change_diplomatic
+			set_temp_variable = { GER_dip_foreign_influence_defense_modifier_change = 0.05 }
+			update_GER_dip_foreign_influence_defense_modifier = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -10544,12 +11309,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Modernize_Goethe_Institutes }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Culture_andIntegration"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			TUR = {
 				country_event = {
 					id = GER_Diplomacy.6 days = 1
@@ -10565,10 +11335,10 @@ focus_tree = {
 					id = GER_Diplomacy.6 days = 5
 				}
 			}
-			GER = {
-				set_temp_variable = { GER_dip_migration_rate_value_factor_change = 0.05 }
-				update_GER_dip_migration_rate_value_factor = yes
-			}
+			newline = yes
+			custom_effect_tooltip = GER_change_diplomatic
+			set_temp_variable = { GER_dip_migration_rate_value_factor_change = 0.05 }
+			update_GER_dip_migration_rate_value_factor = yes
 		}
 		ai_will_do = {
 			factor = 1
@@ -10583,6 +11353,10 @@ focus_tree = {
 		relative_position_id = GER_Modernize_Goethe_Institutes
 
 		cost = 8.7
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = {
 			focus = GER_Culture_andIntegration
@@ -10613,12 +11387,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Reform_and_Strenghen_of_german_foreign_intitutes"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_production_speed_offices_factor_change = 0.02 }
 			update_GER_dip_production_speed_offices_factor = yes
 			set_temp_variable = { GER_dip_foreign_influence_defense_modifier_change = 0.02 }
@@ -10638,12 +11417,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Reform_and_Strenghen_of_german_foreign_intitutes }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_International_cutting_edge_research"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			USA = {
 				country_event = {
 					id = GER_Diplomacy.7 days = 1
@@ -10669,12 +11453,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Reform_and_Strenghen_of_german_foreign_intitutes }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Promote_academic_elites"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			AST = {
 				country_event = {
 					id = GER_Diplomacy.7 days = 1
@@ -10699,6 +11488,10 @@ focus_tree = {
 		relative_position_id = GER_Reform_and_Strenghen_of_german_foreign_intitutes
 
 		cost = 8.7
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = {
 			focus = GER_Promote_academic_elites
@@ -10730,12 +11523,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Alexander_von_humboldt_Institutes_Strengthen_reswarch_cooperations }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Found_InWent"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_production_factory_start_efficiency_factor_change = 0.02 }
 			update_GER_dip_production_factory_start_efficiency_factor = yes
 			set_temp_variable = { GER_dip_industrial_capacity_factory_change = 0.02 }
@@ -10755,12 +11553,17 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = { focus = GER_Found_InWent }
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Suitable_Agriculture_programs"
+			custom_effect_tooltip = GER_global_infrastructure_projects_tt
 			COL = {
 				country_event = {
 					id = GER_Diplomacy.8 days = 1
@@ -10791,6 +11594,10 @@ focus_tree = {
 
 		cost = 6.5
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = {
 			focus = GER_Suitable_Agriculture_programs
 			focus = GER_Securing_acces_to_Key_Ressources
@@ -10802,6 +11609,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Found_the_GIZ"
+			custom_effect_tooltip = GER_change_diplomatic
 			set_temp_variable = { GER_dip_foreign_influence_modifier_change = 0.02 }
 			update_GER_dip_foreign_influence_modifier = yes
 			set_temp_variable = { GER_dip_foreign_influence_defense_modifier_change = 0.02 }
@@ -10820,6 +11628,10 @@ focus_tree = {
 		relative_position_id = GER_Found_the_GIZ
 
 		cost = 8.7
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = {
 			focus = GER_Found_the_GIZ
@@ -10849,6 +11661,10 @@ focus_tree = {
 
 		cost = 8.7
 
+		available = {
+			has_government = democratic
+		}
+
 		prerequisite = {
 			focus = GER_Found_the_GIZ
 		}
@@ -10876,6 +11692,10 @@ focus_tree = {
 		relative_position_id = GER_Found_the_GIZ
 
 		cost = 8.7
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = {
 			focus = GER_Found_the_GIZ
@@ -10905,6 +11725,10 @@ focus_tree = {
 		relative_position_id = GER_Found_the_GIZ
 
 		cost = 8.7
+
+		available = {
+			has_government = democratic
+		}
 
 		prerequisite = {
 			focus = GER_Found_the_GIZ
@@ -11072,12 +11896,12 @@ focus_tree = {
 				producer = GER
 			}
 			add_equipment_to_stockpile = {
-				type = apc_hull
+				type = medium_tank_amphibious_chassis
 				amount = -50
 				producer = GER
 			}
 			add_equipment_to_stockpile = {
-				type = mbt_hull
+				type = medium_tank_chassis
 				amount = -25
 				producer = GER
 			}
@@ -11089,12 +11913,12 @@ focus_tree = {
 					producer = GER
 				}
 				add_equipment_to_stockpile = {
-					type = apc_hull
+					type = medium_tank_amphibious_chassis
 					amount = 50
 					producer = GER
 				}
 				add_equipment_to_stockpile = {
-					type = mbt_hull
+					type = medium_tank_chassis
 					amount = 25
 					producer = GER
 				}
@@ -11139,12 +11963,12 @@ focus_tree = {
 				producer = GER
 			}
 			add_equipment_to_stockpile = {
-				type = apc_hull
+				type = medium_tank_amphibious_chassis
 				amount = -50
 				producer = GER
 			}
 			add_equipment_to_stockpile = {
-				type = mbt_hull
+				type = medium_tank_chassis
 				amount = -25
 				producer = GER
 			}
@@ -11156,12 +11980,12 @@ focus_tree = {
 					producer = GER
 				}
 				add_equipment_to_stockpile = {
-					type = apc_hull
+					type = medium_tank_amphibious_chassis
 					amount = 50
 					producer = GER
 				}
 				add_equipment_to_stockpile = {
-					type = mbt_hull
+					type = medium_tank_chassis
 					amount = 25
 					producer = GER
 				}
@@ -11206,12 +12030,12 @@ focus_tree = {
 				producer = GER
 			}
 			add_equipment_to_stockpile = {
-				type = apc_hull
+				type = medium_tank_amphibious_chassis
 				amount = -50
 				producer = GER
 			}
 			add_equipment_to_stockpile = {
-				type = mbt_hull
+				type = medium_tank_chassis
 				amount = -25
 				producer = GER
 			}
@@ -11223,12 +12047,12 @@ focus_tree = {
 					producer = GER
 				}
 				add_equipment_to_stockpile = {
-					type = apc_hull
+					type = medium_tank_amphibious_chassis
 					amount = 50
 					producer = GER
 				}
 				add_equipment_to_stockpile = {
-					type = mbt_hull
+					type = medium_tank_chassis
 					amount = 25
 					producer = GER
 				}
@@ -12161,6 +12985,7 @@ focus_tree = {
 			decrease_social_spending = yes
 			block_social_increase = yes
 			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = -0.02 }
 			update_GER_welfare_cost = yes
 		}
@@ -12185,11 +13010,12 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_health_cuts"
-			decrease_healthcare_budget = yes
-			block_health_increase = yes
-			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_health_cost_change = -0.02 }
 			update_GER_healthcare_cost = yes
+			newline = yes
+			decrease_healthcare_budget = yes
+			block_health_increase = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -12330,6 +13156,7 @@ focus_tree = {
 				limit = {
 					has_idea = bureau_04
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_centralization_cost_change = -0.03 }
 				update_GER_centralization_cost = yes
 			}
@@ -12360,6 +13187,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_hartz_iii"
 			set_temp_variable = { temp_opinion = 5 }
 			change_labour_unions_opinion = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = -0.01 }
 			update_GER_welfare_cost = yes
 		}
@@ -12390,6 +13218,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_social_cuts"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_centralization_cost_change = -0.05 }
 			update_GER_centralization_cost = yes
 		}
@@ -12933,7 +13762,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_renewable_support"
-			two_random_synthetic_refinery = yes
+			two_random_renewable_energy_infra = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -13029,6 +13858,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_animal_welfare"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_health_cost_change = -0.02 }
 			update_GER_healthcare_cost = yes
 			set_temp_variable = { GER_welfare_cost_change = 0.01 }
@@ -13082,8 +13912,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_family_values"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = -0.05 }
 			update_GER_welfare_cost = yes
+			newline = yes
 			set_temp_variable = { party_index = 1 }
 			set_temp_variable = { party_popularity_increase = -0.025 }
 			set_temp_variable = { temp_outlook_increase = -0.05 }
@@ -13166,7 +13998,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_tighten_borders"
 			set_temp_variable = { percent_change = 5 }
 			change_domestic_influence_percentage = yes
-			decrease_migration_law = yes
+			increase_migration_law = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -13328,7 +14160,10 @@ focus_tree = {
 			focus = GER_german_politics
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_FDP"
@@ -13358,7 +14193,10 @@ focus_tree = {
 			focus = GER_FDP
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_a_stronger_military"
@@ -13367,6 +14205,7 @@ focus_tree = {
 				limit = {
 					has_idea = defence_09
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.04 }
 				update_GER_military_cost = yes
 			}
@@ -13387,7 +14226,10 @@ focus_tree = {
 			focus = GER_FDP
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_free_market_principles"
@@ -13409,7 +14251,10 @@ focus_tree = {
 			focus = GER_FDP
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_social_welfare_reform"
@@ -13434,11 +14279,16 @@ focus_tree = {
 			focus = GER_social_welfare_reform
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_need_based_assistance"
 			add_stability = -0.02
+			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = -0.01 }
 			update_GER_welfare_cost = yes
 		}
@@ -13461,7 +14311,10 @@ focus_tree = {
 			focus = GER_free_market_principles
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_workfare_programs"
@@ -13493,6 +14346,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_on_the_job_training"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_education_cost_change = -0.01 }
 			update_GER_education_cost = yes
 		}
@@ -13515,7 +14369,10 @@ focus_tree = {
 			focus = GER_free_market_principles
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_privatization_of_defense"
@@ -13537,7 +14394,10 @@ focus_tree = {
 			focus = GER_a_stronger_military
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 			has_idea = NATO_member
 		}
 		bypass = {
@@ -13570,7 +14430,10 @@ focus_tree = {
 			focus = GER_privatization_of_defense
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_modernization_initiative"
@@ -13606,7 +14469,10 @@ focus_tree = {
 			focus = GER_privatization_of_defense
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_cybersecurity"
@@ -13635,7 +14501,10 @@ focus_tree = {
 			focus = GER_cybersecurity
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 			has_tech = machine_learning
 		}
 		completion_reward = {
@@ -13664,7 +14533,10 @@ focus_tree = {
 			focus = GER_cybersecurity
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 			has_tech = computing3
 			has_tech = wifi
 		}
@@ -13703,7 +14575,10 @@ focus_tree = {
 			focus = GER_cyber_workforce
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 			has_tech = internet3
 		}
 		completion_reward = {
@@ -13714,6 +14589,7 @@ focus_tree = {
 				limit = {
 					has_idea = bureau_04
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_centralization_cost_change = -0.03 }
 				update_GER_centralization_cost = yes
 			}
@@ -13736,7 +14612,10 @@ focus_tree = {
 		}
 
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_support_lgbt"
@@ -13763,7 +14642,10 @@ focus_tree = {
 		}
 
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 			42 = {
 				is_owned_and_controlled_by = GER
 			}
@@ -13828,7 +14710,10 @@ focus_tree = {
 			focus = GER_points_based_immigration
 		}
 		available = {
-			neutrality_neutral_libertarians_are_in_power = yes
+			OR = {
+				neutrality_neutral_libertarians_are_in_coalition = yes
+				neutrality_neutral_libertarians_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_legalization_of_cannabis"
@@ -13854,7 +14739,10 @@ focus_tree = {
 			focus = GER_german_politics
 		}
 		available = {
-			neutrality_neutral_green_are_in_power = yes
+			OR = {
+				neutrality_neutral_green_are_in_coalition = yes
+				neutrality_neutral_green_are_in_power = yes
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_green_alliance"
@@ -14288,6 +15176,8 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_a_better_minimum_wage"
 			set_temp_variable = { temp_opinion = 5 }
 			change_labour_unions_opinion = yes
+			newline = yes
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = 0.01 }
 			update_GER_welfare_cost = yes
 		}
@@ -14388,8 +15278,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_partial_retirement_benefits"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = 0.01 }
 			update_GER_welfare_cost = yes
+			newline = yes
 			set_temp_variable = { party_index = 17 }
 			set_temp_variable = { party_popularity_increase = 0.05 }
 			set_temp_variable = { temp_outlook_increase = 0.05 }
@@ -14502,6 +15394,7 @@ focus_tree = {
 				limit = {
 					has_idea = police_05
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_police_cost_change = -0.03 }
 				update_GER_police_cost = yes
 			}
@@ -14617,6 +15510,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_against_immigration"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_police_cost_change = -0.03 }
 			update_GER_police_cost = yes
 		}
@@ -14821,12 +15715,12 @@ focus_tree = {
 			two_random_arms_factory = yes
 			random_core_state = {
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = -1
 					instant_build = yes
 				}
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = -1
 					instant_build = yes
 				}
@@ -14997,13 +15891,11 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_conscription_increase"
 			increase_conscription_effect = yes
-			hidden_effect = {
-				increase_conscription_effect = yes
-			}
 			if = {
 				limit = {
 					has_idea = draft_army
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.05 }
 				update_GER_military_cost = yes
 			}
@@ -15165,6 +16057,7 @@ focus_tree = {
 				limit = {
 					has_idea = defence_00
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.05 }
 				update_GER_military_cost = yes
 			}
@@ -15426,6 +16319,7 @@ focus_tree = {
 				limit = {
 					has_idea = bureau_01
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_centralization_cost_change = -0.05 }
 				update_GER_centralization_cost = yes
 			}
@@ -15476,6 +16370,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_minimum_wage_increase"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = 0.01 }
 			update_GER_welfare_cost = yes
 		}
@@ -15527,6 +16422,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_economic_decentralization"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_interest_cost_change = -0.005 }
 			update_GER_interest_cost = yes
 		}
@@ -15944,6 +16840,7 @@ focus_tree = {
 				limit = {
 					has_idea = police_05
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_police_cost_change = -0.03 }
 				update_GER_police_cost = yes
 			}
@@ -16196,8 +17093,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_social_security"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_welfare_cost_change = 0.01 }
 			update_GER_welfare_cost = yes
+			newline = yes
 			add_stability = 0.03
 		}
 		ai_will_do = {
@@ -16249,6 +17148,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_self_sufficiency"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_military_cost_change = -0.05 }
 			update_GER_military_cost = yes
 			newline = yes
@@ -16428,6 +17328,7 @@ focus_tree = {
 				limit = {
 					has_idea = defence_09
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.04 }
 				update_GER_military_cost = yes
 			}
@@ -16713,9 +17614,9 @@ focus_tree = {
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_a_new_constitution"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_police_cost_change = 0.01 }
 			update_GER_police_cost = yes
-			newline = yes
 			set_temp_variable = { GER_centralization_cost_change = -0.03 }
 			update_GER_centralization_cost = yes
 		}
@@ -16744,6 +17645,16 @@ focus_tree = {
 				ideology = nationalist
 				popularity = 0.05
 			}
+			newline = yes
+			if = {
+				limit = {
+					has_idea = GER_idea_okosteuer
+				}
+				remove_ideas = GER_idea_okosteuer
+			}
+			else = {
+				remove_ideas = GER_idea_okosteuer_II
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -16770,6 +17681,7 @@ focus_tree = {
 				limit = {
 					has_idea = defence_09
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.04 }
 				update_GER_military_cost = yes
 			}
@@ -16821,6 +17733,7 @@ focus_tree = {
 				limit = {
 					has_idea = draft_army
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.05 }
 				update_GER_military_cost = yes
 			}
@@ -17575,6 +18488,7 @@ focus_tree = {
 					set_temp_variable = { temp_outlook_increase = 0.45 }
 					add_relative_party_popularity = yes
 					hidden_effect = {
+						NATO_leave = yes
 						clear_array = ruling_party
 						clear_array = gov_coalition_array
 						add_to_array = { ruling_party = 23 }
@@ -17613,6 +18527,22 @@ focus_tree = {
 		}
 		available = {
 			nationalist_monarchists_are_in_power = yes
+		}
+		bypass = {
+			OR = {
+				has_game_rule = {
+					rule = rule_disable_nato
+					option = no
+				}
+				AND = {
+					NOT = { POL = { has_idea = NATO_member } }
+					NOT = { FRA = { has_idea = NATO_member } }
+					NOT = { DEN = { has_idea = NATO_member } }
+					NOT = { BEL = { has_idea = NATO_member } }
+					NOT = { HOL = { has_idea = NATO_member } }
+					NOT = { CZE = { has_idea = NATO_member } }
+				}
+			}
 		}
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_anti_nato"
@@ -17747,6 +18677,7 @@ focus_tree = {
 					set_temp_variable = { temp_outlook_increase = 0.45 }
 					add_relative_party_popularity = yes
 					hidden_effect = {
+						NATO_leave = yes
 						clear_array = ruling_party
 						clear_array = gov_coalition_array
 						add_to_array = { ruling_party = 23 }
@@ -17775,18 +18706,19 @@ focus_tree = {
 	focus = {
 		id = GER_the_imperial_bloc
 		icon = Generic_Imperial_Eagle
-		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		x = 0
 		y = 2
-		cost = 6.5
 		relative_position_id = GER_european_mentor
-		prerequisite = {
-			focus = GER_anti_nato
-		}
-		prerequisite = {
-			focus = GER_restore_italian_crown focus = GER_restore_ottoman_sultan
-		}
+
+		cost = 6.5
+
+		prerequisite = { focus = GER_anti_nato }
+		prerequisite = { focus = GER_restore_italian_crown focus = GER_restore_ottoman_sultan }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
 		available = {
+			is_subject = no
 			nationalist_monarchists_are_in_power = yes
 			OR = {
 				TUR = {
@@ -17802,14 +18734,23 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_the_imperial_bloc"
 			add_ideas = faction_imperial_bloc_alliance
-			create_faction = imperial_bloc_alliance
+			if = { limit = { is_faction_leader = yes }
+				dismantle_faction = yes
+			}
+			else_if = { limit = { is_in_faction = yes }
+				leave_faction = yes
+			}
+
+			create_faction_from_template = faction_template_imperial_bloc
 			newline = yes
 			custom_effect_tooltip = GER_make_imperial_for_invite
 		}
+
 		ai_will_do = {
 			base = 1
 		}
 	}
+
 	focus = {
 		id = GER_restore_the_empire
 		icon = focus_ger_revive_kaiserreich
@@ -17820,8 +18761,6 @@ focus_tree = {
 		relative_position_id = GER_european_mentor
 		prerequisite = {
 			focus = GER_the_imperial_bloc
-		}
-		prerequisite = {
 			focus = GER_germans_in_belg
 		}
 		available = {
@@ -17970,7 +18909,7 @@ focus_tree = {
 			539 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
-					type = synthetic_refinery
+					type = renewable_energy_infra
 					level = 2
 					instant_build = yes
 				}
@@ -18186,12 +19125,23 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_BMW_Focus"
 			set_temp_variable = { temp_opinion = 5 }
 			change_industrial_conglomerates_opinion = yes
-		44 = {
+			44 = {
 				add_extra_state_shared_building_slots = 2
 				add_building_construction = {
 					type = industrial_complex
 					level = 2
 					instant_build = yes
+				}
+			}
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				newline = yes
+				custom_effect_tooltip = GER_BMW_Focus_tt
+				hidden_effect = {
+					country_event = {
+						id = germany.66
+						days = 180
+					}
 				}
 			}
 		}
@@ -18266,8 +19216,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Restructure_Infrastructure"
 			add_timed_idea = {
-				idea = GER_idea_Restructure_Infrastructure
-				days = 300
+				idea = GER_idea_restructure_Infrastructure
+				years = 1
 			}
 		}
 
@@ -18278,7 +19228,7 @@ focus_tree = {
 
 	focus = {
 		id = GER_Deutsche_Post
-		icon = Payment_on_roads
+		icon = generic_mail
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
 		x = -4
 		y = 1
@@ -18405,13 +19355,14 @@ focus_tree = {
 		icon = construction_engineering
 
 		x = 0
-		y = 1
-		relative_position_id = GER_Start_APC_Programms
-		cost = 7.15
+		y = 2
+		relative_position_id = GER_Cooperation_possible
+		cost = 10
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-		prerequisite = { focus = GER_Start_APC_Programms }
-		prerequisite = { focus = GER_Start_Tank_Programms }
-		prerequisite = { focus = GER_Start_IFV_Programms }
+		prerequisite = { focus = GER_choose_electronic }
+		prerequisite = { focus = GER_choose_engine }
+		prerequisite = { focus = GER_choose_optics }
+		prerequisite = { focus = GER_choose_C4ISR }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
@@ -18423,78 +19374,164 @@ focus_tree = {
 	}
 
 
-focus = { #Radar company
-	id = GER_Flensburger_Fahrzeugbau_I #vehicle construction
-	icon = industry_tanks
+	focus = { #Radar company
+		id = GER_Flensburger_Fahrzeugbau_I #vehicle construction
+		icon = industry_tanks
 
-	x = 0
-	y = 1
-	relative_position_id = GER_additional_Constructeur
-	cost = 7.15
-	search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-	prerequisite = { focus = GER_additional_Constructeur }
-	mutually_exclusive = {
-			focus = GER_Armored_Car_Systems_I
-			focus = GER_MAN_again
+		x = 0
+		y = 1
+		relative_position_id = GER_additional_Constructeur
+		cost = 7.15
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
+		prerequisite = { focus = GER_additional_Constructeur }
+		mutually_exclusive = {
+				focus = GER_Armored_Car_Systems_I
+				focus = GER_MAN_again
+			}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
+			custom_effect_tooltip = GER_Flensburger_Fahrzeugbau_I_TT
 		}
 
-	completion_reward = {
-		log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
-		custom_effect_tooltip = GER_Flensburger_Fahrzeugbau_I_TT
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = { #Radar company
+		id = GER_Armored_Car_Systems_I
+		icon = industry2
+
+		x = -2
+		y = 1
+		relative_position_id = GER_additional_Constructeur
+		cost = 7.15
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
+		prerequisite = { focus = GER_additional_Constructeur }
+		mutually_exclusive = {
+				focus = GER_Flensburger_Fahrzeugbau_I
+				focus = GER_MAN_again
+			}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
+			custom_effect_tooltip = GER_Armored_Car_Systems_I_TT
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = { #Radar company
+		id = GER_MAN_again #vehicle construction
+		icon = industry3
+
+		x = 2
+		y = 1
+		relative_position_id = GER_additional_Constructeur
+		cost = 7.15
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
+		prerequisite = { focus = GER_additional_Constructeur }
+		mutually_exclusive = {
+				focus = GER_Flensburger_Fahrzeugbau_I
+				focus = GER_Armored_Car_Systems_I
+			}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
+			custom_effect_tooltip = GER_MAN_again_TT
+			mio:GER_rheinmetall_man = {
+			add_mio_size_up_requirement_factor = -0.15
+			add_mio_funds = 1500
+			add_mio_research_bonus = 0.15
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
 	}
 
-	ai_will_do = {
-		factor = 1
-	}
-}
-focus = { #Radar company
-	id = GER_Armored_Car_Systems_I
-	icon = industry2
-
-	x = -2
-	y = 1
-	relative_position_id = GER_additional_Constructeur
-	cost = 7.15
-	search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-	prerequisite = { focus = GER_additional_Constructeur }
-	mutually_exclusive = {
+	focus = {
+		id = GER_Start_APC_Programms
+		icon = apc
+		x = -1
+		y = 2
+		relative_position_id = GER_additional_Constructeur
+		cost = 14
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = GER_Armored_Car_Systems_I
 			focus = GER_Flensburger_Fahrzeugbau_I
 			focus = GER_MAN_again
 		}
-
-	completion_reward = {
-		log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
-		custom_effect_tooltip = GER_Armored_Car_Systems_I_TT
-	}
-
-	ai_will_do = {
-		factor = 1
-	}
-}
-focus = { #Radar company
-	id = GER_MAN_again #vehicle construction
-	icon = industry3
-
-	x = 2
-	y = 1
-	relative_position_id = GER_additional_Constructeur
-	cost = 7.15
-	search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_ECONOMY }
-	prerequisite = { focus = GER_additional_Constructeur }
-	mutually_exclusive = {
-			focus = GER_Flensburger_Fahrzeugbau_I
-			focus = GER_Armored_Car_Systems_I
+		available = {
+			date > 2005.01.01
 		}
 
-	completion_reward = {
-		log = "[GetDateText]: [Root.GetName]: Focus GER_Military_companies"
-		custom_effect_tooltip = GER_MAN_again_TT
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_Leopard_Tank"
+			country_event = {
+				id = germany_foci.11
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
 	}
+	focus = {
+		id = GER_Start_IFV_Programms
+		icon = ifv
+		x = 1
+		y = 2
+		relative_position_id = GER_additional_Constructeur
+		cost = 14
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = GER_Armored_Car_Systems_I
+			focus = GER_Flensburger_Fahrzeugbau_I
+			focus = GER_MAN_again
+		}
+		available = {
+			date > 2007.01.01
+		}
 
-	ai_will_do = {
-		factor = 1
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Update_Leopard_Tank"
+			country_event = {
+				id = germany_foci.12
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
 	}
-}
+	focus = {
+		id = GER_Start_Tank_Programms
+		icon = leopard_2a6
+		x = 0
+		y = 3
+		relative_position_id = GER_additional_Constructeur
+		cost = 15
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = GER_Start_APC_Programms
+			focus = GER_Start_IFV_Programms
+		}
+		available = {
+			date > 2010.01.01
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Start_Tank_Programms"
+			country_event = {
+				id = germany_foci.13
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
 	focus = {
 		id = GER_Regional_Innovation_Center
 		icon = research
@@ -18569,7 +19606,30 @@ focus = { #Radar company
 		prerequisite = { Focus = GER_Startup_Investments }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Startup_Investments"
-			add_political_power = 50
+			if = {
+				limit = { has_idea = GER_neuer_markt_idea }
+				swap_ideas = {
+					remove_idea = GER_neuer_markt_idea
+					add_idea = GER_neuer_markt_idea2
+				}
+			}
+			else_if = {
+				limit = { has_idea = GER_neuer_markt_colapse_I }
+				swap_ideas = {
+					remove_idea = GER_neuer_markt_colapse_I
+					add_idea = GER_neuer_markt_idea2
+				}
+			}
+			else_if = {
+				limit = { has_idea = GER_neuer_markt_colapse_II }
+				swap_ideas = {
+					remove_idea = GER_neuer_markt_colapse_II
+					add_idea = GER_neuer_markt_idea2
+				}
+			}
+			else = {
+				add_ideas = GER_neuer_markt_idea2
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -18757,14 +19817,20 @@ focus = { #Radar company
 		prerequisite = { focus = GER_Restructure_Infrastructure }
 
 		completion_reward = {
-		log = "[GetDateText]: [Root.GetName]: Focus GER_Deutsche_Bahn_AG"
-		add_tech_bonus = {
-				name = GER_resource_excavation_research
-				bonus = 0.30
-				uses = 1
-				technology = early_high_speed_rail
+			log = "[GetDateText]: [Root.GetName]: Focus GER_Deutsche_Bahn_AG"
+			add_tech_bonus = {
+					name = GER_resource_excavation_research
+					bonus = 0.30
+					uses = 1
+					technology = early_high_speed_rail
+				}
+			add_timed_idea = {
+					idea = GER_idea_deutsche_bahn_investments
+					years = 1
+				}
+			hidden_effect = {
+				add_dynamic_modifier = { modifier = GER_Deutsch_Bahn_mod }
 			}
-			add_dynamic_modifier = { modifier = GER_Deutsch_Bahn_mod }
 		}
 		ai_will_do = {
 			base = 1
@@ -18809,7 +19875,12 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DHL"
-			add_ideas = GER_idea_DHL
+			remove_ideas = GER_idea_Privatisation_Post_II
+			newline = yes
+			swap_ideas = {
+				remove_idea = GER_idea_deutsche_telekom
+				add_idea = GER_idea_DHL
+			}
 		}
 		ai_will_do = {
 			base = 1
@@ -18828,18 +19899,19 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_Deutsche_Bahn"
-
 			add_timed_idea = {
 				idea = GER_idea_duetch_reichsban
 				days = 500
 			}
 			newline = yes
-		set_temp_variable = { treasury_change = -3.50 }
-			modify_treasury_effect = yes
-		set_temp_variable = { GER_mil_factory_workforce_change = -0.02 }
+			custom_effect_tooltip = GER_change_db
+			set_temp_variable = { GER_mil_factory_workforce_change = -0.02 }
 			update_GER_mil_factory_workforce = yes
-		set_temp_variable = { GER_office_workforce_change = -0.03 }
+			set_temp_variable = { GER_office_workforce_change = -0.03 }
 			update_GER_office_workforce = yes
+			newline = yes
+			set_temp_variable = { treasury_change = -3.50 }
+			modify_treasury_effect = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -18857,12 +19929,12 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DB_Fernverkehr_AG"
-
+			custom_effect_tooltip = GER_change_db
+			set_temp_variable = { GER_population_energy_consumption_change = -0.02 }
+			update_GER_population_energy_consumption = yes
 			newline = yes
 			set_temp_variable = { treasury_change = -3.50 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_population_energy_consumption_change = -0.02 }
-				update_GER_population_energy_consumption = yes
 		}
 
 		ai_will_do = {
@@ -18882,12 +19954,12 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DB_Regio"
-
+			custom_effect_tooltip = GER_change_db
+			set_temp_variable = { GER_population_energy_consumption_change = -0.02 }
+			update_GER_population_energy_consumption = yes
 			newline = yes
 			set_temp_variable = { treasury_change = -3.50 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_population_energy_consumption_change = -0.02 }
-				update_GER_population_energy_consumption = yes
 		}
 
 		ai_will_do = {
@@ -18907,12 +19979,12 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DB_Cargo"
-
+			custom_effect_tooltip = GER_change_db
+			set_temp_variable = { GER_supply_consumption_factor_change = -0.05 }
+			update_GER_supply_consumption_factor = yes
 			newline = yes
 			set_temp_variable = { treasury_change = -3.50 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_supply_consumption_factor_change = -0.05 }
-				update_GER_supply_consumption_factor = yes
 		}
 
 		ai_will_do = {
@@ -18932,19 +20004,20 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DB_Schenker"
+			custom_effect_tooltip = GER_change_db
+			set_temp_variable = { GER_offices_contruction_speed_change = 0.03 }
+			update_GER_offices_contruction_speed = yes
+			set_temp_variable = { GER_arms_factory_contruction_speed_change = 0.02 }
+			update_GER_arms_factory_contruction_speed = yes
+			set_temp_variable = { GER_civ_construction_speed_change = 0.03 }
+			update_GER_civ_construction_speed = yes
+			newline = yes
 			add_tech_bonus = {
 				name = GER_resource_excavation_research
 				bonus = 0.15
 				uses = 1
-				technology = high_speed_rail
+				category = CAT_infrastructure
 			}
-			set_temp_variable = { GER_offices_contruction_speed_change = 0.03 }
-				update_GER_offices_contruction_speed = yes
-			set_temp_variable = { GER_arms_factory_contruction_speed_change = 0.02 }
-				update_GER_arms_factory_contruction_speed = yes
-			set_temp_variable = { GER_civ_construction_speed_change = 0.03 }
-				update_GER_civ_construction_speed = yes
-
 		}
 		ai_will_do = {
 			base = 1
@@ -18962,16 +20035,16 @@ focus = { #Radar company
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_DB_Netz_AG"
-
+			custom_effect_tooltip = GER_change_db
+			set_temp_variable = { GER_offices_contruction_speed_change = 0.03 }
+			update_GER_offices_contruction_speed = yes
+			set_temp_variable = { GER_arms_factory_contruction_speed_change = 0.02 }
+			update_GER_arms_factory_contruction_speed = yes
+			set_temp_variable = { GER_civ_construction_speed_change = 0.03 }
+			update_GER_civ_construction_speed = yes
 			newline = yes
 			set_temp_variable = { treasury_change = -3.50 }
 			modify_treasury_effect = yes
-			set_temp_variable = { GER_offices_contruction_speed_change = 0.03 }
-				update_GER_offices_contruction_speed = yes
-			set_temp_variable = { GER_arms_factory_contruction_speed_change = 0.02 }
-				update_GER_arms_factory_contruction_speed = yes
-			set_temp_variable = { GER_civ_construction_speed_change = 0.03 }
-				update_GER_civ_construction_speed = yes
 		}
 		ai_will_do = {
 			base = 1
@@ -19009,7 +20082,7 @@ focus = { #Radar company
 	#
 	focus = {
 		id = GER_colonial_spark
-		icon = german_nationalism2
+		icon = focus_GER_realize_mittelafrika
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_PROPAGANDA FOCUS_FILTER_POLITICAL }
 		x = -1
 		y = 1
@@ -19021,6 +20094,7 @@ focus = { #Radar company
 		prerequisite = { focus = GER_german_irredentism }
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus GER_colonial_spark"
+			custom_effect_tooltip = GER_change_public_budget
 			set_temp_variable = { GER_military_cost_change = -0.02 }
 			update_GER_military_cost = yes
 		}
@@ -19052,6 +20126,7 @@ focus = { #Radar company
 				limit = {
 					has_idea = defence_09
 				}
+				custom_effect_tooltip = GER_change_public_budget
 				set_temp_variable = { GER_military_cost_change = -0.04 }
 				update_GER_military_cost = yes
 			}
@@ -19150,8 +20225,11 @@ focus = { #Radar company
 			country_exists = TNZ
 		}
 		bypass = {
-			NOT = {
-				country_exists = TNZ
+			TNZ = {
+				OR = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_colonial_spark }
@@ -19181,8 +20259,11 @@ focus = { #Radar company
 			country_exists = CAM
 		}
 		bypass = {
-			NOT = {
-				country_exists = CAM
+			CAM = {
+				OR = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_colonial_spark }
@@ -19212,8 +20293,11 @@ focus = { #Radar company
 			country_exists = NAM
 		}
 		bypass = {
-			NOT = {
-				country_exists = NAM
+			NAM = {
+				OR = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_reclaim_tanzania }
@@ -19243,8 +20327,11 @@ focus = { #Radar company
 			country_exists = TOG
 		}
 		bypass = {
-			NOT = {
-				country_exists = TOG
+			TOG = {
+				OR = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_namibian_invasion }
@@ -19273,8 +20360,11 @@ focus = { #Radar company
 			country_exists = DRC
 		}
 		bypass = {
-			NOT = {
-				country_exists = DRC
+			DRC = {
+				OR = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_namibian_invasion }
@@ -19304,8 +20394,11 @@ focus = { #Radar company
 			country_exists = PAP
 		}
 		bypass = {
-			NOT = {
-				country_exists = PAP
+			OR = {
+				PAP = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_colonial_spark }
@@ -19335,8 +20428,11 @@ focus = { #Radar company
 			country_exists = MIC
 		}
 		bypass = {
-			NOT = {
-				country_exists = MIC
+			MIC = {
+				OR = {
+					exists = no
+					is_subject_of = GER
+				}
 			}
 		}
 		prerequisite = { focus = GER_new_guinea }
@@ -19569,7 +20665,7 @@ focus = { #Radar company
 	}
 	focus = {
 		id = GER_Italian_invasion
-		icon = war3
+		icon = focus_usa_attack_italy
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_PROPAGANDA FOCUS_FILTER_POLITICAL }
 		x = 5
 		y = 4
