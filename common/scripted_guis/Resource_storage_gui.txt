@@ -1,12 +1,58 @@
 scripted_gui = {
-  resource_storage_scripted_gui = {
+  	open_storage_window = {
+		window_name = "open_storage_gui"
+		context_type = player_context
+		parent_window_token = trade_tab
+
+		effects = {
+			open_storage_window_click = {
+				if = {
+					limit = { NOT = { has_country_flag = open_storage_screen } }
+					set_country_flag = open_storage_screen
+				}
+				else = {
+					clr_country_flag = open_storage_screen
+				}
+			}
+		}
+	}
+
+	storage_scripted_gui = {
+		window_name = "storage_scripted_gui"
+		context_type = player_context
+		parent_window_token = trade_tab
+
+		visible = {
+			ROOT = {
+				OR = {
+					is_ai = yes
+					has_country_flag = open_storage_screen
+				}
+			}
+		}
+
+		triggers = {
+
+		}
+
+		effects = {
+			close_storage_screen_button_click = {
+				clr_country_flag = open_storage_screen
+			}
+		}
+		#NOTE: NO AI is needed for this system. AI will be baked in as "always on"
+		#This will save performance on the AI, as they would always just click it on anyways
+		#This lets AI use the system, while also letting players have more control
+	}
+
+	resource_storage_scripted_gui = {
         window_name = "resource_storage_gui_window"
         context_type = player_context
         parent_window_token = trade_tab
         effects = {
             increase_storage_button_click = {
-                    activate_mission = test_decision_rss
-                    set_country_flag = allowed_to_take
+                activate_mission = test_decision_rss
+                set_country_flag = allowed_to_take
             }
         }
 
