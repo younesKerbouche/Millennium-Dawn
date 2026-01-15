@@ -547,287 +547,56 @@ set_improved_trade_agreement = {
 	}
 }
 
-monthly_economy_params_fluctuation = {
-	# Volatility
-	set_temp_variable = { chance_to_change_target_positive = 5 }
-	set_temp_variable = { chance_to_change_target_negative = 5 }
-	set_temp_variable = { chance_to_change_positive = 25 }
-	set_temp_variable = { chance_to_change_negative = 25 }
+quarterly_inflation_calculation = {
+	#Get and set the basic civilian economic growth for this quarter, as a basic percentage now
+	set_temp_variable = { gdpc_inflation_adjuster = last_quarter_gdpc_growth_rate }
+	log = "Starting GDPC - [?gdpc_inflation_adjuster]"
 
+	#Grab the tax rate, and shift it to where it'll do the math right for us
+	set_temp_variable = { tax_rate_modifier = tax_rate }
+	log = "Starting Tax Adjuster - [?tax_rate_modifier]"
+	multiply_temp_variable = { tax_rate_modifier = 0.01 }
+	log = "Adjuster Tax Adjuster - [?tax_rate_modifier]"
+
+	#Adjust the inflation rate based on GDP/C + Taxes
+	set_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
+	multiply_temp_variable = { gdpc_inflation_adjuster = tax_rate_modifier }
+	log = "Tax Modified Inflation Adjuster - [?gdpc_inflation_adjuster]"
+	subtract_from_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
+
+	log = "Final Inflation Rate Adjuster Pre Average - [?inflation_rate_adjuster]"
+
+	#Add this to the array, so we can average yearly inflation. this should stop rapid swings up and down, slowing movement
+	add_to_array = { year_quarter_inflation_tracker = inflation_rate_adjuster }
+	set_temp_variable = { loop_counter = 0 }
+
+	#Check to make sure the array has only 4 items
+	for_each_loop = {
+		array = year_quarter_inflation_tracker
+		value = v
+
+		add_to_temp_variable = { loop_counter = 1 }
+	}
+
+	#If more than 4 items, remove the oldest, so it keeps the yearly average
 	if = {
-		limit = { check_variable = { volatility_target > volatility } }
-		add_to_temp_variable = { chance_to_change_positive = 10 }
-		add_to_temp_variable = { chance_to_change_negative = -10 }
-	}
-	else = {
-		add_to_temp_variable = { chance_to_change_positive = -10 }
-		add_to_temp_variable = { chance_to_change_negative = 10 }
+		limit = { check_variable = { loop_counter > 4 } }
+		remove_from_array = { year_quarter_inflation_tracker = 0 }
+		set_temp_variable = { loop_counter = 4 }
 	}
 
-	if = {
-		limit = { has_war = yes }
-		add_to_temp_variable = { chance_to_change_positive = 5 }
-		add_to_temp_variable = { chance_to_change_target_positive = 2 }
+	set_temp_variable = { inflation_rate_adjuster = 0 }
+
+	#Add up all array elements to create the average
+	for_each_loop = {
+		array = year_quarter_inflation_tracker
+		value = v
+
+		add_to_temp_variable = { inflation_rate_adjuster = v }
 	}
 
-	random_list = {
-		50 = { }
-		chance_to_change_positive = {
-			add_to_variable = { volatility = 5 }
-		}
-		chance_to_change_negative = {
-			add_to_variable = { volatility = -5 }
-		}
-	}
+	#Divide to get the average number
+	divide_temp_variable = { inflation_rate_adjuster = loop_counter }
 
-	random_list = {
-		90 = { }
-		chance_to_change_target_positive = {
-			add_to_variable = { volatility_target = 5 }
-		}
-		chance_to_change_target_negative = {
-			add_to_variable = { volatility_target = -5 }
-		}
-	}
-
-	# Instability
-	set_temp_variable = { chance_to_change_target_positive = 5 }
-	set_temp_variable = { chance_to_change_target_negative = 5 }
-	set_temp_variable = { chance_to_change_positive = 25 }
-	set_temp_variable = { chance_to_change_negative = 25 }
-
-	if = {
-		limit = { check_variable = { instability_target > instability } }
-		add_to_temp_variable = { chance_to_change_positive = 10 }
-		add_to_temp_variable = { chance_to_change_negative = -10 }
-	}
-	else = {
-		add_to_temp_variable = { chance_to_change_positive = -10 }
-		add_to_temp_variable = { chance_to_change_negative = 10 }
-	}
-
-	if = {
-		limit = { has_war = yes }
-		add_to_temp_variable = { chance_to_change_positive = 5 }
-		add_to_temp_variable = { chance_to_change_target_positive = 2 }
-	}
-
-	random_list = {
-		50 = { }
-		chance_to_change_positive = {
-			add_to_variable = { instability = 5 }
-		}
-		chance_to_change_negative = {
-			add_to_variable = { instability = -5 }
-		}
-	}
-
-	random_list = {
-		90 = { }
-		chance_to_change_target_positive = {
-			add_to_variable = { instability_target = 5 }
-		}
-		chance_to_change_target_negative = {
-			add_to_variable = { instability_target = -5 }
-		}
-	}
-
-	# Clamping
-	clamp_variable = {
-		var = volatility
-		min = 50
-		max = 150
-	}
-
-	clamp_variable = {
-		var = instability
-		min = 50
-		max = 150
-	}
-
-	# Cycle offset based on volatility
-	set_temp_variable = { cycle_inrease = volatility }
-	set_temp_variable = { cycle_decrease = volatility }
-
-	if = {
-		limit = {
-			check_variable = { instability > 125 }
-		}
-
-		add_to_temp_variable = { cycle_decrease = 50 }
-	}
-	else_if = {
-		limit = {
-			check_variable = { instability > 75 }
-		}
-
-		add_to_temp_variable = { cycle_decrease = 25 }
-	}
-
-	if = {
-		limit = { has_war = yes }
-		add_to_temp_variable = { cycle_decrease = 50 }
-	}
-
-	random_list = {
-		1000 = { }
-		cycle_inrease = {
-			add_to_variable = { cycle_target = 0.25 }
-		}
-		cycle_decrease = {
-			add_to_variable = { cycle_target = -0.25 }
-		}
-	}
-
-	# Inflation
-	set_temp_variable = { chance_to_change_target_positive = 5 }
-	set_temp_variable = { chance_to_change_target_negative = 5 }
-	set_temp_variable = { chance_to_change_positive = 25 }
-	set_temp_variable = { chance_to_change_negative = 25 }
-
-	if = {
-		limit = { check_variable = { inflation_target > inflation_rate } }
-		add_to_temp_variable = { chance_to_change_positive = 10 }
-		add_to_temp_variable = { chance_to_change_negative = -10 }
-	}
-	else = {
-		add_to_temp_variable = { chance_to_change_positive = -10 }
-		add_to_temp_variable = { chance_to_change_negative = 10 }
-	}
-
-	if = {
-		limit = { has_war = yes }
-		add_to_temp_variable = { chance_to_change_positive = 5 }
-		add_to_temp_variable = { chance_to_change_target_positive = 2 }
-	}
-
-	random_list = {
-		50 = { }
-		chance_to_change_positive = {
-			add_to_variable = { inflation_rate = 0.1 }
-		}
-		chance_to_change_negative = {
-			add_to_variable = { inflation_rate = -0.1 }
-		}
-	}
-
-	random_list = {
-		90 = { }
-		chance_to_change_target_positive = {
-			add_to_variable = { inflation_target = 0.1 }
-		}
-		chance_to_change_target_negative = {
-			add_to_variable = { instability_target = -0.1 }
-		}
-	}
-}
-
-monthly_inflation_effect = {
-	set_temp_variable = { buf = inflation_rate }
-	divide_temp_variable = { buf = 12 }
-	# otherwise, accuracy is lost
-	set_temp_variable = { inflation_mod = 100 }
-	subtract_from_temp_variable = { inflation_mod = buf }
-	multiply_temp_variable = { inflation_mod = 0.01 }
-
-	multiply_variable = { treasury = inflation_mod }
-	if = {
-		limit = { check_variable = { scalable_debt > 1 } }
-		multiply_variable = { scalable_debt = inflation_mod }
-	}
-	if = {
-		limit = { check_variable = { scalable_investments > 1 } }
-		multiply_variable = { scalable_investments = inflation_mod }
-	}
-}
-
-monthly_economy_params_effect = {
-	set_temp_variable = { bad_probability = 100 }
-	set_temp_variable = { good_probability = 100 }
-	add_to_temp_variable = { good_probability = volatility }
-	add_to_temp_variable = { bad_probability = volatility }
-	add_to_temp_variable = { bad_probability = instability }
-
-	# I am not sure what I was doing here
-	# set_temp_variable = { diff = 0 }
-	# apply_economic_diff_to_probability = yes
-
-	# add_to_temp_variable = { good_probability = diff }
-	# add_to_temp_variable = { bad_probability = diff }
-
-	random_list = {
-		1500 = {
-			# nothing
-		}
-		good_probability = {
-			# good event
-		}
-		bad_probability = {
-			# bad event
-		}
-	}
-}
-
-# diff variable as input
-apply_economic_diff_to_probability = {
-	if = {
-		limit = { has_idea = depression }
-		set_temp_variable = { cycle_id = 1 }
-	}
-	else_if = {
-		limit = { has_idea = recession }
-		set_temp_variable = { cycle_id = 2 }
-	}
-	else_if = {
-		limit = { has_idea = stagnation }
-		set_temp_variable = { cycle_id = 3 }
-	}
-	else_if = {
-		limit = { has_idea = stable_growth }
-		set_temp_variable = { cycle_id = 4 }
-	}
-	else_if = {
-		limit = { has_idea = fast_growth }
-		set_temp_variable = { cycle_id = 5 }
-	}
-	else = {
-		set_temp_variable = { cycle_id = 6 }
-	}
-
-	set_temp_variable = { diff = cycle_target }
-	subtract_from_temp_variable = { diff = cycle_id }
-	multiply_temp_variable = { diff = 10 }
-}
-
-calculate_inflation_modifier_effect = {
-	set_variable = { inflation_construction_speed_var = 0 }
-	set_variable = { inflation_factory_output_var = 0 }
-	set_variable = { inlfation_dockyard_output_var = 0 }
-	set_variable = { country_productivity_growth_var = 0 }
-
-	if = {
-		limit = {
-			check_variable = { inflation_rate > 4 }
-		}
-
-		set_temp_variable = { buf = inflation_rate }
-		subtract_from_temp_variable = { buf = 4 }
-		multiply_temp_variable = { buf = -0.1 }
-		set_variable = { country_productivity_growth_var = buf }
-	}
-	else_if = {
-		limit = {
-			check_variable = { inflation_rate < 2 }
-		}
-
-		set_temp_variable = { buf = 2 }
-		subtract_from_temp_variable = { buf = inflation_rate }
-		multiply_temp_variable = { buf = -0.1 }
-
-		set_variable = { inflation_factory_output_var = buf }
-		set_variable = { inlfation_dockyard_output_var = buf }
-
-		multiply_temp_variable = { buf = 2 }
-		set_variable = { inflation_construction_speed_var = buf }
-	}
+	set_variable = { inflation_rate_var = inflation_rate_adjuster }
 }
