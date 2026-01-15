@@ -12576,26 +12576,26 @@ focus_tree = {
 					is_ai = yes
 				}
 				hidden_trigger = {
-					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+					NOT = { has_country_flag = ENG_charles_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
 				}
 			}
 
 			has_country_flag = ENG_elisabeth_ruling_monarch
 			if = {
 				limit = {
-					has_country_flag = GER_inner_circle_event_pending_flag
+					has_country_flag = ENG_inner_circle_event_pending_flag
 				}
-				NOT = { has_country_flag = GER_inner_circle_event_pending_flag }
+				NOT = { has_country_flag = ENG_inner_circle_event_pending_flag }
 			}
 
-			GER_inner_circle_is_ascension_cd_over = yes
+			ENG_inner_circle_is_ascension_cd_over = yes
 			if = {
 				limit = {
-					has_country_flag = GER_inner_circle_cd_flag
+					has_country_flag = ENG_inner_circle_cd_flag
 				}
 				custom_trigger_tooltip = {
-					tooltip = GER_inner_circle_cd_days_tt
-					NOT = {	has_country_flag = GER_inner_circle_cd_flag }
+					tooltip = ENG_inner_circle_cd_days_tt
+					NOT = {	has_country_flag = ENG_inner_circle_cd_flag }
 				}
 			}
 		}
@@ -12606,91 +12606,91 @@ focus_tree = {
 		search_filters = { }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
-			set_country_flag = GER_todt_ascension_flag
+			set_country_flag = ENG_charles_ascension_flag
 		}
 
 		completion_reward = {
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_tt
-				CHARACTER = GER_fritz_todt
+				localization_key = ENG_ascension_of_character_tt
+				CHARACTER = ENG_prince_charles
 			}
-			show_ideas_tooltip = GER_todt_reich_engineer
+			show_ideas_tooltip = ENG_charles_1_idea
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_focus_tt
-				CHARACTER = GER_fritz_todt
+				localization_key = ENG_ascension_of_character_focus_tt
+				CHARACTER = ENG_prince_charles
 			}
 
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
 					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
+						check_variable = { ENG_ascended_advisor_1 = 1 }
+						check_variable = { ENG_ascended_advisor_2 = 1 }
+						check_variable = { ENG_ascended_advisor_3 = 1 }
 					}
 				}
 				log = "Advisor was already there. STOP CHEATING!"
 			}
 			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
 				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_3 = 0 compare = not_equals }
 				}
 				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
-					country_event = GER_inner_circle.01
+					set_variable = { ENG_ascending_advisor = 1 }
+					country_event = ENG_inner_circle.01
 				}
 
 				custom_effect_tooltip = generic_skip_one_line_tt
 				custom_effect_tooltip = {
-					localization_key = GER_event_to_replace_ascended_advisor_tt
-					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
+					localization_key = ENG_event_to_replace_ascended_advisor_tt
+					EVENT = ENG_inner_circle.01.t
+					CHARACTER = ENG_prince_charles
 				}
 			}
 			else = {
 				hidden_effect = {
-					add_ideas = GER_todt_reich_engineer
+					add_ideas = ENG_charles_1_idea
 				}
 				if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
+						check_variable = { ENG_ascended_advisor_1 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
+					set_variable = { ENG_ascended_advisor_1 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
+						check_variable = { ENG_ascended_advisor_2 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
+					set_variable = { ENG_ascended_advisor_2 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
+						check_variable = { ENG_ascended_advisor_3 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
+					set_variable = { ENG_ascended_advisor_3 = 1 }
 				}
 			}
 
 			hidden_effect = {
-				country_event = { id = GER_inner_circle_todt.01 days = GER_inner_circle_days_to_start_focus random_days = GER_inner_circle_random_days }
+				country_event = { id = ENG_inner_circle_charles.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
 
-				clr_country_flag = GER_todt_ascension_flag
+				clr_country_flag = ENG_charles_ascension_flag
 
-				GER_inner_circle_set_ascension_cd = yes
+				ENG_inner_circle_set_ascension_cd = yes
 
 				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
 					limit = {
 						GER_is_historical_ai = yes
 					}
-					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+					set_country_flag = ENG_charles_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
 				}
 				else = {
 					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
-						flag = GER_todt_was_ascended_flag
+						flag = ENG_charles_was_ascended_flag
 						days = 1500 # Clear after ~4 years
 						value = 1
 					}
@@ -13069,7 +13069,7 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_tt
+				localization_key = ENG_ascension_of_character_tt
 				CHARACTER = GER_fritz_todt
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
@@ -13084,21 +13084,21 @@ focus_tree = {
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
 					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
+						check_variable = { ENG_ascended_advisor_1 = 1 }
+						check_variable = { ENG_ascended_advisor_2 = 1 }
+						check_variable = { ENG_ascended_advisor_3 = 1 }
 					}
 				}
 				log = "Advisor was already there. STOP CHEATING!"
 			}
 			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
 				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_3 = 0 compare = not_equals }
 				}
 				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
+					set_variable = { ENG_ascending_advisor = 1 }
 					country_event = GER_inner_circle.01
 				}
 
@@ -13115,21 +13115,21 @@ focus_tree = {
 				}
 				if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
+						check_variable = { ENG_ascended_advisor_1 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
+					set_variable = { ENG_ascended_advisor_1 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
+						check_variable = { ENG_ascended_advisor_2 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
+					set_variable = { ENG_ascended_advisor_2 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
+						check_variable = { ENG_ascended_advisor_3 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
+					set_variable = { ENG_ascended_advisor_3 = 1 }
 				}
 			}
 
@@ -13535,7 +13535,7 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_tt
+				localization_key = ENG_ascension_of_character_tt
 				CHARACTER = GER_fritz_todt
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
@@ -13550,21 +13550,21 @@ focus_tree = {
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
 					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
+						check_variable = { ENG_ascended_advisor_1 = 1 }
+						check_variable = { ENG_ascended_advisor_2 = 1 }
+						check_variable = { ENG_ascended_advisor_3 = 1 }
 					}
 				}
 				log = "Advisor was already there. STOP CHEATING!"
 			}
 			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
 				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_3 = 0 compare = not_equals }
 				}
 				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
+					set_variable = { ENG_ascending_advisor = 1 }
 					country_event = GER_inner_circle.01
 				}
 
@@ -13581,21 +13581,21 @@ focus_tree = {
 				}
 				if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
+						check_variable = { ENG_ascended_advisor_1 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
+					set_variable = { ENG_ascended_advisor_1 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
+						check_variable = { ENG_ascended_advisor_2 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
+					set_variable = { ENG_ascended_advisor_2 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
+						check_variable = { ENG_ascended_advisor_3 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
+					set_variable = { ENG_ascended_advisor_3 = 1 }
 				}
 			}
 
@@ -14064,7 +14064,7 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_tt
+				localization_key = ENG_ascension_of_character_tt
 				CHARACTER = GER_fritz_todt
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
@@ -14079,21 +14079,21 @@ focus_tree = {
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
 					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
+						check_variable = { ENG_ascended_advisor_1 = 1 }
+						check_variable = { ENG_ascended_advisor_2 = 1 }
+						check_variable = { ENG_ascended_advisor_3 = 1 }
 					}
 				}
 				log = "Advisor was already there. STOP CHEATING!"
 			}
 			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
 				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_3 = 0 compare = not_equals }
 				}
 				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
+					set_variable = { ENG_ascending_advisor = 1 }
 					country_event = GER_inner_circle.01
 				}
 
@@ -14110,21 +14110,21 @@ focus_tree = {
 				}
 				if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
+						check_variable = { ENG_ascended_advisor_1 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
+					set_variable = { ENG_ascended_advisor_1 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
+						check_variable = { ENG_ascended_advisor_2 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
+					set_variable = { ENG_ascended_advisor_2 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
+						check_variable = { ENG_ascended_advisor_3 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
+					set_variable = { ENG_ascended_advisor_3 = 1 }
 				}
 			}
 
@@ -14530,7 +14530,7 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_tt
+				localization_key = ENG_ascension_of_character_tt
 				CHARACTER = GER_fritz_todt
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
@@ -14545,21 +14545,21 @@ focus_tree = {
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
 					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
+						check_variable = { ENG_ascended_advisor_1 = 1 }
+						check_variable = { ENG_ascended_advisor_2 = 1 }
+						check_variable = { ENG_ascended_advisor_3 = 1 }
 					}
 				}
 				log = "Advisor was already there. STOP CHEATING!"
 			}
 			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
 				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_3 = 0 compare = not_equals }
 				}
 				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
+					set_variable = { ENG_ascending_advisor = 1 }
 					country_event = GER_inner_circle.01
 				}
 
@@ -14576,21 +14576,21 @@ focus_tree = {
 				}
 				if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
+						check_variable = { ENG_ascended_advisor_1 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
+					set_variable = { ENG_ascended_advisor_1 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
+						check_variable = { ENG_ascended_advisor_2 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
+					set_variable = { ENG_ascended_advisor_2 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
+						check_variable = { ENG_ascended_advisor_3 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
+					set_variable = { ENG_ascended_advisor_3 = 1 }
 				}
 			}
 
@@ -14996,7 +14996,7 @@ focus_tree = {
 
 		completion_reward = {
 			custom_effect_tooltip = {
-				localization_key = GER_ascension_of_character_tt
+				localization_key = ENG_ascension_of_character_tt
 				CHARACTER = GER_fritz_todt
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
@@ -15011,21 +15011,21 @@ focus_tree = {
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
 					OR = {
-						check_variable = { GER_ascended_advisor_1 = 1 }
-						check_variable = { GER_ascended_advisor_2 = 1 }
-						check_variable = { GER_ascended_advisor_3 = 1 }
+						check_variable = { ENG_ascended_advisor_1 = 1 }
+						check_variable = { ENG_ascended_advisor_2 = 1 }
+						check_variable = { ENG_ascended_advisor_3 = 1 }
 					}
 				}
 				log = "Advisor was already there. STOP CHEATING!"
 			}
 			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
 				limit = {
-					check_variable = { GER_ascended_advisor_1 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_2 = 0 compare = not_equals }
-					check_variable = { GER_ascended_advisor_3 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { ENG_ascended_advisor_3 = 0 compare = not_equals }
 				}
 				hidden_effect = {
-					set_variable = { GER_ascending_advisor = 1 }
+					set_variable = { ENG_ascending_advisor = 1 }
 					country_event = GER_inner_circle.01
 				}
 
@@ -15042,21 +15042,21 @@ focus_tree = {
 				}
 				if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_1 = 0 }
+						check_variable = { ENG_ascended_advisor_1 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_1 = 1 }
+					set_variable = { ENG_ascended_advisor_1 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_2 = 0 }
+						check_variable = { ENG_ascended_advisor_2 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_2 = 1 }
+					set_variable = { ENG_ascended_advisor_2 = 1 }
 				}
 				else_if = {
 					limit = {
-						check_variable = { GER_ascended_advisor_3 = 0 }
+						check_variable = { ENG_ascended_advisor_3 = 0 }
 					}
-					set_variable = { GER_ascended_advisor_3 = 1 }
+					set_variable = { ENG_ascended_advisor_3 = 1 }
 				}
 			}
 

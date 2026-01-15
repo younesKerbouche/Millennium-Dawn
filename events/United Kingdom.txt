@@ -3,6 +3,26 @@ add_namespace = britain_md
 add_namespace = United_Kingdom_News
 add_namespace = devolution
 add_namespace = ENG_military
+
+
+
+#### Inner Circle
+# CONSTANT FOR INNER CIRCLE TIMES (These needs to be x7 compared to the Focus cost in the focus file) - NEEDS TO MATCH THE SAME CONSTANTS USED IN THE FOCUS FILE x7
+@inner_circle_time_tier_1 = 140
+@inner_circle_time_tier_2 = 280
+@inner_circle_time_tier_3 = 560
+@inner_circle_time_tier_4 = 700
+# FLAG CONSTANTS (It is 1 day more so the tooltip and days shown in the focus about Focus Progress match exactly the moment when the focus is completed)
+@inner_circle_time_tier_1_flag = 141
+@inner_circle_time_tier_2_flag = 281
+@inner_circle_time_tier_3_flag = 561
+@inner_circle_time_tier_4_flag = 701
+
+add_namespace = ENG_inner_circle
+add_namespace = ENG_inner_circle_charles
+
+
+
 ########################## Asteroid Mining Event Chain #########################
 #Launching the Asteroid Mining Initiative
 country_event = {
@@ -1921,6 +1941,326 @@ country_event = {
 		# Increases agitation on Wales
 		ai_chance = {
 			base = 1
+		}
+	}
+}
+
+######### Inner Circle
+# ADVISOR ORDER
+# 1 = Charles
+# 2 = Andrew
+# 3 = Anne
+# 4 = Edward
+# 5 = Phillip
+# 6 = William
+
+country_event = {
+	id = ENG_inner_circle.01
+	title = ENG_inner_circle.01.t
+	desc = ENG_inner_circle.01.desc
+	picture = "[GetAscendingAdvisorPortrait]"
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = ENG_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Replace Ascended Advisor 1
+		name = ENG_inner_circle.01.a
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler should replace Bormann on Historical when he ascends
+				factor = 100
+				ENG_is_historical_ai = yes
+				check_variable = { ENG_ascending_advisor = 4 } #Himmler Ascending
+				check_variable = { ENG_ascended_advisor_1 = 7 } #Bormann ascended in this slot
+			}
+		}
+		
+		GER_remove_replaced_advisor_1_effects = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_variable = { GER_ascended_advisor_1 = GER_ascending_advisor }
+		GER_add_replacing_advisor_effects = yes
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Replace Ascended Advisor 2
+		name = ENG_inner_circle.01.b
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler should replace Bormann on Historical when he ascends
+				factor = 100
+				ENG_is_historical_ai = yes
+				check_variable = { GER_ascending_advisor = 4 } #Himmler Ascending
+				check_variable = { GER_ascended_advisor_2 = 7 } #Bormann ascended in this slot
+			}
+		}
+
+		GER_remove_replaced_advisor_2_effects = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_variable = { GER_ascended_advisor_2 = GER_ascending_advisor }
+		GER_add_replacing_advisor_effects = yes
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { #Replace Ascended Advisor 3
+		name = ENG_inner_circle.01.c
+
+		ai_chance = {
+			base = 1
+			modifier = { #Himmler should replace Bormann on Historical when he ascends
+				factor = 100
+				ENG_is_historical_ai = yes
+				check_variable = { GER_ascending_advisor = 4 } #Himmler Ascending
+				check_variable = { GER_ascended_advisor_3 = 7 } #Bormann ascended in this slot
+			}
+		}
+
+		GER_remove_replaced_advisor_3_effects = yes
+
+		custom_effect_tooltip = generic_skip_one_line_tt
+
+		set_variable = { GER_ascended_advisor_3 = GER_ascending_advisor }
+		GER_add_replacing_advisor_effects = yes
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+		}
+	}
+
+	option = { # Abort - Ditch this advisor
+		name = ENG_inner_circle.01.d
+
+		ai_chance = { #AI "knows" what its doing (pffff)
+			base = 0
+		}
+
+		if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 1 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_todt
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 2 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_speer
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 3 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_goring
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 4 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_himmler
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 5 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_ascension_of_goebbels
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 6 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_party_chancellor_hess
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { GER_ascending_advisor = 7 }
+			}
+			uncomplete_national_focus = {
+				focus = GER_party_chancellor_bormann
+				uncomplete_children = no
+				refund_political_power = yes
+			}
+		}
+		else = {
+			log = "Something went terribly wrong with your nazis (no wonder)"
+		}
+
+		hidden_effect = {
+			#Cleaning vars / flags / etc
+			clear_variable = GER_ascending_advisor
+			clr_country_flag = GER_inner_circle_event_pending_flag
+
+			clr_country_flag = GER_inner_circle_cd_flag
+		}
+	}
+}
+
+country_event = {
+	id = ENG_inner_circle_charles.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_the_prince_trust
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 1 }
+			check_variable = { ENG_ascended_advisor_2 = 1 }
+			check_variable = { ENG_ascended_advisor_3 = 1 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_harmony_doctrine }
+			}
+			activate_shine_on_focus = ENG_harmony_doctrine
+			set_country_flag = { flag = ENG_harmony_doctrine_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = ENG_inner_circle_charles.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_climate_alarm_bell }
+			}
+			activate_shine_on_focus = ENG_climate_alarm_bell
+			set_country_flag = { flag = ENG_climate_alarm_bell_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = ENG_inner_circle_charles.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_duchy_originals }
+				NOT = { has_shine_effect_on_focus = ENG_duchy_originals } #Speer is working on this already
+			}
+			activate_shine_on_focus = ENG_duchy_originals
+			set_country_flag = { flag = ENG_duchy_originals_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = ENG_inner_circle_charles.02 days = @inner_circle_time_tier_3 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_heir_of_the_realm }
+			}
+			activate_shine_on_focus = ENG_heir_of_the_realm
+			set_country_flag = { flag = ENG_heir_of_the_realm_in_progress_flag days = @inner_circle_time_tier_4_flag value = 1 }
+			country_event = { id = ENG_inner_circle_charles.02 days = @inner_circle_time_tier_4 }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH TODT's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+country_event = {
+	id = ENG_inner_circle_charles.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_the_prince_trust
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 1 }
+			check_variable = { ENG_ascended_advisor_2 = 1 }
+			check_variable = { ENG_ascended_advisor_3 = 1 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_harmony_doctrine
+			}
+			complete_national_focus = {
+				focus = ENG_harmony_doctrine
+				use_side_message = yes
+				originator_name = ENG_prince_charles
+			}
+			clr_country_flag = ENG_harmony_doctrine_in_progress_flag
+			country_event = { id = ENG_inner_circle_charles.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_climate_alarm_bell
+			}
+			complete_national_focus = {
+				focus = ENG_climate_alarm_bell
+				use_side_message = yes
+				originator_name = ENG_prince_charles
+			}
+			clr_country_flag = ENG_climate_alarm_bell_in_progress_flag
+			country_event = { id = ENG_inner_circle_charles.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_duchy_originals
+			}
+			complete_national_focus = {
+				focus = ENG_duchy_originals
+				use_side_message = yes
+				originator_name = ENG_prince_charles
+			}
+			clr_country_flag = ENG_duchy_originals_in_progress_flag
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_heir_of_the_realm
+			}
+			complete_national_focus = {
+				focus = ENG_heir_of_the_realm
+				use_side_message = yes
+				originator_name = ENG_prince_charles
+			}
+			clr_country_flag = ENG_heir_of_the_realm_in_progress_flag
+			country_event = { id = ENG_inner_circle_charles.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH TODT's FOCUS BRANCH - Cannot complete focus"
 		}
 	}
 }
