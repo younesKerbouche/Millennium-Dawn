@@ -2123,6 +2123,14 @@ update_military_rate = {
 	multiply_variable = { array_defence_spend^8 = 0.063 }
 	multiply_variable = { array_defence_spend^9 = 0.1 }
 
+	#increase the defence industry cost via inflation
+	for_each_loop = {
+		array = array_defence_spend
+		value = v
+		index = i
+		multiply_variable = { array_defence_spend^i = inflation_multiplier }
+	}
+
 	#Update each item in the defence spending array based on your gdp/c, having a higher GDP/c makes defence more expensive
 	set_temp_variable = { gdp_defence_modifier_industry = gdp_per_capita }
 	if = {		#Linear approximation -0.007 * gdp/c + 2.333
@@ -2547,6 +2555,7 @@ update_military_rate = {
 	multiply_temp_variable = { airforce_count = airforce_personnel_cost_multiplier }
 	#Modify equipment cost with modifier
 	multiply_variable = { equipment_operative_cost = equipment_cost_multiplier }
+	multiply_variable = { equipment_operative_cost = inflation_multiplier }
 
 	#Multiply personnel costs basde on GDP/c, higher GDP makes things more expensive (linear approximation 0.003 * gdp/c + 0.129)
 	set_temp_variable = { gdp_defence_modifier_personnel = gdp_per_capita }
@@ -2732,7 +2741,7 @@ update_police_rate = {
 		value = v
 		add_to_variable = { array_security_spend^i = population_total }	#Unit 100 000
 		multiply_variable = { array_security_spend^i = police_cost_multiplier }
-
+		multiply_variable = { array_security_spend^i = inflation_multiplier }
 		multiply_variable = { array_security_spend^i = gdp_police_cost_modifier }
 		multiply_variable = { array_security_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { array_security_spend^i = police_base_cost }
@@ -2869,6 +2878,7 @@ update_education_rate = {
 		add_to_variable = { array_education_spend^i = population_total }	#Unit 100 000
 		multiply_variable = { array_education_spend^i = gdp_education_cost_modifier }
 		multiply_variable = { array_education_spend^i = education_cost_multiplier }
+		multiply_variable = { array_education_spend^i = inflation_multiplier }
 		multiply_variable = { array_education_spend^i = 0.01 }	#Unit 10 000 000
 		multiply_variable = { array_education_spend^i = education_base_cost }
 
@@ -2945,6 +2955,7 @@ update_health_rate = {
 		add_to_variable = { var = array_health_spend^i value = population_total }	#Unit 100 000
 		multiply_variable = { array_health_spend^i = gdp_health_cost_modifier }
 		multiply_variable = { var = array_health_spend^i value = health_cost_multiplier }
+		multiply_variable = { array_health_spend^i = inflation_multiplier }
 		multiply_variable = { array_health_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { var = array_health_spend^i value = health_base_cost }
 		clamp_variable = { var = array_health_spend^i min = 0 }
@@ -3016,6 +3027,7 @@ update_social_rate = {
 		add_to_variable = { var = array_social_spend^i value = population_total }	#Unit 100 000
 		multiply_variable = { var = array_social_spend^i value = gdp_social_cost_modifier }
 		multiply_variable = { var = array_social_spend^i value = social_cost_multiplier }
+		multiply_variable = { var = array_social_spend^i value = inflation_multiplier }
 		multiply_variable = { array_social_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { var = array_social_spend^i value = social_base_cost }
 		clamp_variable = { var = array_social_spend^i min = 0 }
@@ -5342,6 +5354,7 @@ calculate_migration_mechanic_values = {
 		value = v
 		add_to_variable = { array_border_control_spend^i = population_total }	#Unit 100 000
 		multiply_variable = { array_border_control_spend^i = border_cost_multiplier }
+		multiply_variable = { array_border_control_spend^i = inflation_multiplier }
 		multiply_variable = { array_border_control_spend^i = gdp_border_cost_modifier }
 		multiply_variable = { array_border_control_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { array_border_control_spend^i = border_control_base_cost }
