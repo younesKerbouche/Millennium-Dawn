@@ -234,3 +234,96 @@ randomly_increase_radicalisation = {
 
 	clamp_variable = { var = protest_radicalisation min = 0 max = 10 }
 }
+
+calculate_unrest_growth = {
+	#Grab our old protest strength
+	set_temp_variable = { start_protest_str = protest_strength }
+	#Calculate based off economics how much the protests should drift
+	calculate_protest_drift = yes
+	add_to_variable = { protest_strength = protest_drift }
+
+	#low stability in elected government = unrest
+	if = {
+		limit = {
+			has_stability < 0.2
+			has_elections = yes
+		}
+		set_temp_variable = { stab_hold = stability }
+		set_temp_variable = { protest_add = 0.2 }
+		subtract_from_temp_variable = { protest_add = stab_hold }
+		multiply_temp_variable = { protest_add = 10 }
+		add_to_variable = { protest_strength = protest_add }
+	}
+	#High interest = unrest
+	if = {
+		limit = { interest_rate > 7 }
+		set_temp_variable = { rate_hold = interest_rate }
+		subtract_from_temp_variable = { rate_hold = interest_rate }
+		add_to_variable = { protest_strength = protest_drift }
+	}
+	#Bad econ = unrest
+	if = {
+		limit = { has_idea = stagnation }
+		set_temp_variable_to_random = { var = protest_drift min = 1 max = 2 }
+		add_to_variable = { protest_strength = protest_drift }
+	}
+
+	if = {
+		limit = { has_idea = recession }
+		set_temp_variable_to_random = { var = protest_drift min = 1 max = 3 }
+		add_to_variable = { protest_strength = protest_drift }
+	}
+
+	if = {
+		limit = { has_idea = depression }
+		set_temp_variable_to_random = { var = protest_drift min = 1 max = 4 }
+		add_to_variable = { protest_strength = protest_drift }
+	}
+
+	#Long wars = unrest
+	if = {
+		limit = { check_variable = { months_at_war > 36 } }
+		set_temp_variable = { months_hold = months_at_war }
+		divide_temp_variable = { months_hold = 24 }
+		add_to_variable = { protest_strength = months_hold }
+	}
+
+	#If goverment popularity is less than 30%, check for needing elections or corruption
+	if = {
+		limit = {
+			check_variable = { government_coalition_strength < 0.3 }
+			OR = {
+				has_elections = no
+				OR = {
+					has_idea = paralyzing_corruption
+					has_idea = crippling_corruption
+					has_idea = rampant_corruption
+					has_idea = unrestrained_corruption
+					has_idea = systematic_corruption
+				}
+			}
+		}
+
+		set_temp_variable = { protest_drift = 0.3 }
+		set_temp_variable = { gov_pop_hold = government_coalition_strength }
+		subtract_from_temp_variable = { protest_drift = government_coalition_strength }
+		multiply_temp_variable = { protest_drift = 10 }
+		add_to_variable = { protest_strength = protest_drift }
+	}
+
+	if = {
+		limit = {
+			check_variable = { protest_strength > 0 }
+			check_variable = { start_protest_str = protest_strength }
+		}
+
+		set_temp_variable_to_random = { var = protest_reduction min = 1 max = 3 integer = yes }
+
+		subtract_from_variable = { protest_strength = protest_reduction }
+
+		clamp_variable = {
+			var = protest_strength
+			min = 0
+		}
+	}
+}
