@@ -946,6 +946,13 @@ country_event = { # Protests Erupt in Capital
 
 	is_triggered_only = yes
 
+	trigger = {
+		NOT = {
+			has_country_flag = MD_protest_cooldown
+			has_country_flag = MD_protests_began
+		}
+	}
+
 	option = {
 		name = protests.100.a
 		log = "[GetDateText]: [This.GetName]: protests.100.a executed"
@@ -980,6 +987,7 @@ country_event = { # Protests Spread
 
 	trigger = {
 		NOT = {
+			has_country_flag = MD_protest_cooldown
 			all_core_state = {
 				has_resistance = yes
 			}
@@ -989,11 +997,12 @@ country_event = { # Protests Spread
 	immediate = {
 		hidden_effect = {
 			random_core_state = {
-			limit = {
-				has_resistance = no
-				NOT = { has_state_flag = MD_dont_protest_again }
+				limit = {
+					has_resistance = no
+					NOT = { has_state_flag = MD_dont_protest_again }
+				}
+				set_state_flag = MD_protests_are_here
 			}
-			set_state_flag = MD_protests_are_here }
 		}
 	}
 
@@ -1008,7 +1017,7 @@ country_event = { # Protests Spread
 				}
 				is_core_of = ROOT
 				has_resistance = no
-				has_state_flag = MD_protests_are_here
+				NOT = { has_state_flag = MD_protests_are_here }
 			}
 			clr_state_flag = MD_protests_are_here
 			force_enable_resistance = ROOT
@@ -1031,6 +1040,7 @@ country_event = { # Regional Protests Put Down
 	is_triggered_only = yes
 
 	trigger = {
+		has_country_flag = MD_protest_cooldown
 		any_owned_state = {
 			is_core_of = ROOT
 			compliance > 69
@@ -1067,6 +1077,7 @@ country_event = { # Protests Die Down Nation-wide
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { has_country_flag = MD_protest_cooldown }
 		any_owned_state = {
 			has_resistance = yes
 		}
@@ -1083,6 +1094,11 @@ country_event = { # Protests Die Down Nation-wide
 			clr_state_flag = MD_dont_protest_again
 		}
 		clr_country_flag = MD_protests_began
+		set_country_flag = {
+			flag = MD_protest_cooldown
+			days = 1000
+			value = 1
+		}
 		ai_chance = { base = 10 }
 	}
 }
@@ -1097,6 +1113,7 @@ country_event = { # Protesters Set Industrial Assets Ablaze
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { has_country_flag = MD_protest_cooldown }
 		any_owned_state = {
 			industrial_complex > 0
 		}
@@ -1155,6 +1172,7 @@ country_event = { # Protesters Set Business Parks
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { has_country_flag = MD_protest_cooldown }
 		any_owned_state = {
 			offices > 0
 		}
@@ -1213,6 +1231,7 @@ country_event = { # Protesters Set Arms Factories
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { has_country_flag = MD_protest_cooldown }
 		any_owned_state = {
 			arms_factory > 0
 			has_resistance = yes
@@ -1268,6 +1287,10 @@ country_event = {
 	title = protests.200.t
 	desc = protests.200.d
 	picture = GFX_politics_demands
+
+	trigger = {
+		NOT = { has_country_flag = MD_protest_cooldown }
+	}
 
 	is_triggered_only = yes
 
