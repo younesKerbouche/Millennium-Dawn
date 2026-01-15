@@ -548,23 +548,49 @@ set_improved_trade_agreement = {
 }
 
 quarterly_inflation_calculation = {
-	#Get and set the basic civilian economic growth for this quarter, as a basic percentage now
-	set_temp_variable = { gdpc_inflation_adjuster = last_quarter_gdpc_growth_rate }
-	log = "Starting GDPC - [?gdpc_inflation_adjuster]"
+	#Get and set the basic civilian economic growth for this quarter
+	set_temp_variable = { gdpc_growth_inflation_adjuster = last_quarter_gdpc_growth_rate }
 
 	#Grab the tax rate, and shift it to where it'll do the math right for us
 	set_temp_variable = { tax_rate_modifier = tax_rate }
-	log = "Starting Tax Adjuster - [?tax_rate_modifier]"
 	multiply_temp_variable = { tax_rate_modifier = 0.01 }
-	log = "Adjuster Tax Adjuster - [?tax_rate_modifier]"
 
 	#Adjust the inflation rate based on GDP/C + Taxes
-	set_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
-	multiply_temp_variable = { gdpc_inflation_adjuster = tax_rate_modifier }
-	log = "Tax Modified Inflation Adjuster - [?gdpc_inflation_adjuster]"
-	subtract_from_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
+	set_temp_variable = { inflation_rate_adjuster = gdpc_growth_inflation_adjuster }
+	multiply_temp_variable = { gdpc_growth_inflation_adjuster = tax_rate_modifier }
+	subtract_from_temp_variable = { inflation_rate_adjuster = gdpc_growth_inflation_adjuster }
 
-	log = "Final Inflation Rate Adjuster Pre Average - [?inflation_rate_adjuster]"
+	#Adjust inflation further by the base GDP/C Amount
+	#Balancing mechanic for rich nations; nations that have more money per person can afford to spend more
+	#Spending more can lead to higher inflation as inflation goes up. Testing for starting balance, can be tweaked more
+	set_temp_variable = { gdpc_inflation_adjuster = gdp_per_capita }
+	multiply_temp_variable = { gdpc_inflation_adjuster = 0.01 }
+	add_to_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
+
+	#Adjust inflation by economic cycle
+	#Higher and faster production and growth means higher inflation
+	if = {
+		limit = { has_idea = depression }
+		set_temp_variable = { cycle_inflation_adjustment = -0.1 }
+	}else_if = {
+		limit = { has_idea = recession }
+		set_temp_variable = { cycle_inflation_adjustment = -0.05 }
+	}else_if = {
+		limit = { has_idea = stagnation }
+		set_temp_variable = { cycle_inflation_adjustment = -0.025 }
+	}else_if = {
+		limit = { has_idea = stable_growth }
+		set_temp_variable = { cycle_inflation_adjustment = 0 }
+	}else_if = {
+		limit = { has_idea = fast_growth }
+		set_temp_variable = { cycle_inflation_adjustment = 0.035 }
+	}else = {
+		set_temp_variable = { cycle_inflation_adjustment = 0.065 }
+	}
+
+	multiply_temp_variable = { cycle_inflation_adjustment = gdp_per_capita }
+
+	add_to_temp_variable = { inflation_rate_adjuster = cycle_inflation_adjustment }
 
 	#Add this to the array, so we can average yearly inflation. this should stop rapid swings up and down, slowing movement
 	add_to_array = { year_quarter_inflation_tracker = inflation_rate_adjuster }
