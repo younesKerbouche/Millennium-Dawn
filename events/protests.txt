@@ -953,9 +953,7 @@ country_event = { # Protests Erupt in Capital
 		set_country_flag = MD_protests_began
 		set_temp_variable = { temp_productivity_change = -100 }
 		every_owned_state = {
-			limit = {
-				is_capital = yes
-			}
+			is_capital = yes
 			force_enable_resistance = ROOT
 			start_resistance = yes
 			set_compliance = 30
@@ -1003,9 +1001,7 @@ country_event = { # Protests Spread
 		set_temp_variable = { temp_productivity_change = -50 }
 		every_owned_state = {
 			limit = {
-				NOT = {
-					is_capital = yes
-				}
+				is_capital = no
 				is_core_of = ROOT
 				has_resistance = no
 				has_state_flag = MD_protests_are_here
@@ -1013,8 +1009,8 @@ country_event = { # Protests Spread
 			clr_state_flag = MD_protests_are_here
 			force_enable_resistance = ROOT
 			start_resistance = yes
-			set_compliance = 10
-			set_resistance = 70
+			set_compliance = 20
+			set_resistance = 60
 			newline = yes
 			state_flat_productivity_change_effect = yes
 		}
@@ -1033,8 +1029,8 @@ country_event = { # Regional Protests Put Down
 	trigger = {
 		any_owned_state = {
 			is_core_of = ROOT
-			compliance > 69
-			resistance < 20
+			compliance > 49
+			resistance < 40
 		}
 	}
 
@@ -1043,13 +1039,11 @@ country_event = { # Regional Protests Put Down
 		log = "[GetDateText]: [This.GetName]: protests.102.a executed"
 		every_owned_state = {
 			limit = {
-				NOT = {
-					is_capital = yes
-				}
+				is_capital = no
 				has_resistance = yes
 				is_core_of = ROOT
-				compliance > 69
-				resistance < 20
+				compliance > 49
+				resistance < 40
 			}
 			cancel_resistance = yes
 			set_state_flag = MD_dont_protest_again
@@ -1269,6 +1263,16 @@ country_event = {
 	desc = protests.200.d
 	picture = GFX_politics_demands
 
+<<<<<<< Updated upstream
+=======
+	trigger = {
+		NOT = {
+			has_country_flag = MD_protest_cooldown
+			has_country_flag = MD_protests_began
+		}
+	}
+
+>>>>>>> Stashed changes
 	is_triggered_only = yes
 
 	option = {
