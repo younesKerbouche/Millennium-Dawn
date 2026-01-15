@@ -111,6 +111,7 @@
 	# Cartel System
 	set_variable = { cartel_political_influence = 35 }
 	set_variable = { strength_of_cartels = 20 }
+	calculate_cartel_penalty = yes
 
 	set_variable = { var = debt value = 77.514 }
 	set_variable = { var = treasury value = 5 }
@@ -190,11 +191,13 @@
 		relation = military_access
 		active = yes
 	}
-	#Cyber
-	add_to_array = { cyber_targets = CHI }
-	add_to_array = { cyber_targets = JAP }
-	add_to_array = { cyber_targets = PHI }
-	add_to_array = { cyber_targets = SIN }
+
+	if = { limit = { NOT = { has_dlc = "La Resistance" } }
+		add_to_array = { cyber_targets = CHI }
+		add_to_array = { cyber_targets = JAP }
+		add_to_array = { cyber_targets = PHI }
+		add_to_array = { cyber_targets = SIN }
+	}
 
 	# Starting tech
 	set_technology = {

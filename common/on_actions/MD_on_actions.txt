@@ -1834,6 +1834,35 @@ on_actions = {
 					}
 				}
 
+				# Arabic Country has form the UAR
+				if = {
+					limit = {
+						any_arabic_country_formed_the_uar = yes
+					}
+					random_country = {
+						limit = {
+							OR = {
+								is_neo_baathist_uar = yes
+								is_baathist_uar = yes
+							}
+							NOT = { has_country_flag = united_neo_baathist_uar }
+							NOT = { has_country_flag = united_baathist_uar }
+						}
+						#Calculate the total GDP of all Arabic countries
+						set_variable = { total_arabic_gdp = 0 }
+						for_each_scope_loop = {
+							array = global.arabic_countries
+							add_to_variable = { ROOT.total_arabic_gdp = THIS.gdp_total }
+						}
+						#Calculate the GDP of UAR and their puppets
+						set_variable = { total_uar_gdp = gdp_total }
+						for_each_scope_loop = {
+							array = ROOT.subjects
+							add_to_variable = { ROOT.total_uar_gdp = THIS.gdp_total }
+						}
+					}
+				}
+
 				# On Monthly Flag:
 				# Set this to 27 days to time out so that way February isn't missed
 				set_global_flag = { flag = on_monthly_done value = 1 days = 27 }

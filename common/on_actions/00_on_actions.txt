@@ -2858,7 +2858,9 @@ on_actions = {
 			set_variable = { global.update_monie_ui = 1 }
 			set_variable = { global.update_influence_ui = 1 }
 			ABK = {
-				log = "[GetDateText]: [THIS.GetName]: on_startup setup missile global arrays"
+				if = { limit = { is_debug = yes }
+					log = "[GetDateText]: [THIS.GetName]: on_startup setup missile global arrays"
+				}
 				set_all_missile_tech = yes
 				set_all_prod_arrays = yes
 				set_all_sat_system_tech = yes
@@ -2868,34 +2870,18 @@ on_actions = {
 				set_all_sat_mass = yes
 				set_all_spp_mass = yes
 				set_missile_display_stats = yes
-
 				market_set_starting_values = yes
-				# Expected spending levels
 				setup_initial_expected_spending_by_party = yes
-				# Using Simone's Shit as a Utility to config this
 				initialize_state_provincial_images = yes
-				# Set Law Attitudes
 				set_law_attitudes = yes
-				# Init Global Variables
 				setup_global_arrays = yes
-
-				# PMC Setup
 				pmc_variables_setup = yes
-
-				# Missile Configuration
 				missile_ui_update = yes
-
 				set_up_starting_missile_configurations = yes
-
-				#Trigger on Startup Events
 				MD_event_on_startup_events = yes
-
-				# Renewable Randomization Variable Calculations
 				random_renewable_variable_calculation = yes
 			}
-			# Custom Startup Content
 			FRA = {
-				# NEPAD Setup Used Later
 				set_variable = { FRA_nepad_sponsor_weekly_cost = 0.450 }
 				set_variable = { global.africa_nepad_building_construction_modifier = 0.05 }
 				set_variable = { global.africa_nepad_education_modifier = -0.05 }
@@ -2905,12 +2891,6 @@ on_actions = {
 			LBA = {
 				update_gaddafi_family_ideas = yes
 			}
-
-			# Cleanup for Some WArs
-			LIB = { if = { limit = { NOT = { country_exists = LUR } } white_peace = GUI white_peace = SIE } }
-			DRC = { if = { limit = { NOT = { country_exists = MLC } } white_peace = UGA white_peace = RWA } }
-
-			#The price of replenishment is several years. Fuck it. We will later build new divisions and more effective
 			CHI = {
 				if = {
 					limit = {
@@ -2923,15 +2903,11 @@ on_actions = {
 					}
 				}
 			}
-
 			ITA = {
 				if = { limit = { is_ai = no }
 					country_event = italy_md.23
 				}
-				resize_array = {
-  					array = abandon_coalition_threshold
- 					size = 24
-				}
+				resize_array = { array = abandon_coalition_threshold size = 24 }
 				calculate_abandon_coalition_threshold = yes
 				reform_expectance_from_situation = yes
 
@@ -2949,7 +2925,7 @@ on_actions = {
 				set_variable = { global.var_missiles_button_x = -57 }
 			}
 
-			# Initialize On Startup
+			# Main On Startup Logic
 			set_variable = { global.average_world_productivity = 650 }
 
 			every_country = {
@@ -3000,16 +2976,6 @@ on_actions = {
 				if = { limit = { has_idea = NATO_member }
 					add_to_tech_sharing_group = NATO_Tech_Share
 				}
-				# La Resistance Variable Configuration
-				if = { limit = { has_dlc = "La Resistance" has_variable = cyber_targets^0 }
-					log = "[GetDateText]: [THIS.GetName]: Cleared Cyber Targets Array due to having the LAR DLC"
-					clear_array = cyber_targets
-				}
-
-				# Implemented Cartel Nations
-				if = { limit = { is_cartel_nation = yes }
-					calculate_cartel_penalty = yes
-				}
 
 				# AI Configuration
 				if = {
@@ -3023,23 +2989,6 @@ on_actions = {
 						set_variable = { population_tax_rate = 35 }
 						set_variable = { corporate_tax_rate = 20 }
 						add_ideas = MICROSTATE_fix
-					}
-				}
-
-				# Is Arabic Country
-				if = {
-					limit = { is_in_array = { global.arabic_countries = THIS.id } }
-					#Calculate the total GDP of all Arabic countries
-					set_variable = { total_arabic_gdp = 0 }
-					for_each_scope_loop = {
-						array = global.arabic_countries
-						add_to_variable = { ROOT.total_arabic_gdp = THIS.gdp_total }
-					}
-					#Calculate the GDP of UAR and their puppets
-					set_variable = { total_uar_gdp = gdp_total }
-					for_each_scope_loop = {
-						array = ROOT.subjects
-						add_to_variable = { ROOT.total_uar_gdp = THIS.gdp_total }
 					}
 				}
 
@@ -3368,20 +3317,32 @@ on_actions = {
 				}
 			}
 
-			# FIXME: circular dependency here. We need to execute the power ranking ideas in a tag, but we need to be after the above block which means we have a nested series of every countries here
+			# Set the GDP of Arabic Countries
 			random_country = {
-				set_power_ranking_ideas_for_every_country = yes
-
-				every_country = {
-					calculate_starting_mio_size = yes
+				limit = { is_in_array = { global.arabic_countries = THIS.id } }
+				# Calculate the total GDP of all Arabic countries
+				set_variable = { total_arabic_gdp = 0 }
+				for_each_scope_loop = {
+					array = global.arabic_countries
+					add_to_variable = { ROOT.total_arabic_gdp = THIS.gdp_total }
+				}
+				# Calculate the GDP of UAR and their puppets
+				set_variable = { total_uar_gdp = gdp_total }
+				for_each_scope_loop = {
+					array = ROOT.subjects
+					add_to_variable = { ROOT.total_uar_gdp = THIS.gdp_total }
 				}
 			}
 
+			set_power_ranking_ideas_for_every_country = yes
+
 			every_country = {
-				limit = {
-					is_ai = no
+				calculate_starting_mio_size = yes
+
+				# Initialize the GDP Graph
+				if = { limit = { is_ai = no }
+					graph_initial_setup = yes
 				}
-				graph_initial_setup = yes
 			}
 
 			if = { limit = { is_debug = yes }

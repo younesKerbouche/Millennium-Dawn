@@ -201,11 +201,13 @@
 	set_variable = { wahabi_ulema_opinion = 60 }
 
 	#Cyber
-	add_to_array = { cyber_targets = USA }
-	add_to_array = { cyber_targets = ISR }
-	add_to_array = { cyber_targets = PER }
-	add_to_array = { cyber_targets = SOV }
-	add_to_array = { cyber_targets = TUR }
+	if = { limit = { NOT = { has_dlc = "La Resistance" } }
+		add_to_array = { cyber_targets = USA }
+		add_to_array = { cyber_targets = ISR }
+		add_to_array = { cyber_targets = PER }
+		add_to_array = { cyber_targets = SOV }
+		add_to_array = { cyber_targets = TUR }
+	}
 
 	#CT
 	set_country_flag = threat_level_substantial

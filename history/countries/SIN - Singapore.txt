@@ -65,6 +65,7 @@
 	# Cartel System
 	set_variable = { cartel_political_influence = 10 }
 	set_variable = { strength_of_cartels = 15 }
+	calculate_cartel_penalty = yes
 	add_dynamic_modifier = { modifier = singapore_military }
 
 	530 = { add_dynamic_modifier = { modifier = SIN_singapore_problem } }
@@ -532,10 +533,11 @@
 		}
 	}
 
-	#Cyber
-	add_to_array = { cyber_targets = CHI }
-	add_to_array = { cyber_targets = JAP }
-	add_to_array = { cyber_targets = VIE }
+	if = { limit = { NOT = { has_dlc = "La Resistance" } }
+		add_to_array = { cyber_targets = CHI }
+		add_to_array = { cyber_targets = JAP }
+		add_to_array = { cyber_targets = VIE }
+	}
 
 	set_variable = { maritime_industry_opinion = 80 }
 	set_variable = { international_bankers_opinion = 80 }
