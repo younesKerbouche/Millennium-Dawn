@@ -326,4 +326,23 @@ calculate_unrest_growth = {
 			min = 0
 		}
 	}
+
+	check_protest_trigger = yes
+}
+
+check_protest_trigger = {
+	if = {
+		limit = { NOT = { has_country_flag = md_protests_began } check_variable = { protest_strength > 49 } }
+
+		set_temp_variable = { protest_roll = protest_strength }
+		round_temp_variable = protest_roll
+		subtract_from_temp_variable = { protest_roll = 30 }
+
+		clamp_variable = { var = protest_roll max = 100 }
+
+		random = {
+			chance = var:protest_roll
+			country_event = { id = protests.100 days = 1 }
+		}
+	}
 }
