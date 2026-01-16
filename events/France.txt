@@ -9098,5 +9098,182 @@ country_event = {
 	}
 }
 
+###################################
+# Joint Weapon Projects
+# france_md.335 - france_md.338
+###################################
+
+# Germany receives Franco-German joint project proposal (FCAS/MGCS)
+country_event = {
+	id = france_md.335
+	title = france_md.335.t
+	desc = france_md.335.d
+	picture = GFX_message_signing
+	is_triggered_only = yes
+	trigger = {
+		original_tag = GER
+		country_exists = FRA
+	}
+
+	# Accept the proposal
+	option = {
+		name = france_md.335.a
+		log = "[GetDateText]: [This.GetName]: france_md.335.a executed"
+		FRA = { set_country_flag = FRA_germany_accepted_joint_project }
+		add_tech_bonus = {
+			name = FRA_joint_project_germany
+			bonus = 0.25
+			uses = 2
+			category = CAT_mbt
+		}
+		add_tech_bonus = {
+			name = FRA_joint_project_germany
+			bonus = 0.25
+			uses = 2
+			category = CAT_jet_fighter
+		}
+		add_ideas = GER_FCAS_MGCS_project
+		add_opinion_modifier = {
+			target = FRA
+			modifier = FRA_joint_project_opinion
+		}
+		FRA = { country_event = { id = france_md.336 days = 1 } }
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 2
+				has_opinion = { target = FRA value > 50 }
+			}
+			modifier = {
+				factor = 0.5
+				has_war = yes
+			}
+		}
+	}
+
+	# Decline the proposal
+	option = {
+		name = france_md.335.b
+		log = "[GetDateText]: [This.GetName]: france_md.335.b executed"
+		add_political_power = 25
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 5
+				has_war = yes
+			}
+		}
+	}
+}
+
+# France receives notification of German acceptance
+country_event = {
+	id = france_md.336
+	title = france_md.336.t
+	desc = france_md.336.d
+	picture = GFX_message_signing
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+		country_exists = GER
+	}
+
+	option = {
+		name = france_md.336.a
+		log = "[GetDateText]: [This.GetName]: france_md.336.a executed"
+		add_opinion_modifier = {
+			target = GER
+			modifier = FRA_joint_project_opinion
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# Russia receives Franco-Russian joint project proposal
+country_event = {
+	id = france_md.337
+	title = france_md.337.t
+	desc = france_md.337.d
+	picture = GFX_message_signing
+	is_triggered_only = yes
+	trigger = {
+		original_tag = RUS
+		country_exists = FRA
+	}
+
+	# Accept the proposal
+	option = {
+		name = france_md.337.a
+		log = "[GetDateText]: [This.GetName]: france_md.337.a executed"
+		FRA = { set_country_flag = FRA_russia_accepted_joint_project }
+		add_tech_bonus = {
+			name = FRA_joint_project_russia
+			bonus = 0.25
+			uses = 2
+			category = CAT_mbt
+		}
+		add_tech_bonus = {
+			name = FRA_joint_project_russia
+			bonus = 0.25
+			uses = 2
+			category = CAT_jet_fighter
+		}
+		add_ideas = RUS_FRA_joint_project
+		add_opinion_modifier = {
+			target = FRA
+			modifier = FRA_joint_project_opinion
+		}
+		FRA = { country_event = { id = france_md.338 days = 1 } }
+		ai_chance = {
+			base = 5
+			modifier = {
+				factor = 2
+				has_opinion = { target = FRA value > 50 }
+			}
+			modifier = {
+				factor = 0.1
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	# Decline the proposal
+	option = {
+		name = france_md.337.b
+		log = "[GetDateText]: [This.GetName]: france_md.337.b executed"
+		add_political_power = 25
+		ai_chance = {
+			base = 5
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+# France receives notification of Russian acceptance
+country_event = {
+	id = france_md.338
+	title = france_md.338.t
+	desc = france_md.338.d
+	picture = GFX_message_signing
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+		country_exists = RUS
+	}
+
+	option = {
+		name = france_md.338.a
+		log = "[GetDateText]: [This.GetName]: france_md.338.a executed"
+		add_opinion_modifier = {
+			target = RUS
+			modifier = FRA_joint_project_opinion
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
 
 
