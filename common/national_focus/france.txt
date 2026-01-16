@@ -4727,6 +4727,132 @@ focus_tree = {
 			factor = 1
 		}
 	}
+
+	# National Rally Path - End the Republic
+	focus = {
+		id = FRA_question_republic_fn
+		icon = NFA_france_first
+
+		x = 28
+		y = 11
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_long_travel }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				nationalist_right_wing_populists_are_in_power = yes
+				nationalist_monarchists_are_in_power = yes
+			}
+			NOT = { has_idea = EU_member }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_question_republic_fn"
+			country_event = { id = france_md.350 days = 5 }
+			add_stability = -0.05
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	focus = {
+		id = FRA_referendum_republic
+		icon = election3
+
+		x = 28
+		y = 12
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_question_republic_fn }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				nationalist_right_wing_populists_are_in_power = yes
+				nationalist_monarchists_are_in_power = yes
+			}
+			has_country_flag = FRA_questioned_republic
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_referendum_republic"
+			country_event = { id = france_md.352 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	focus = {
+		id = FRA_restore_kingdom_fn
+		icon = french_monarchy
+
+		x = 26
+		y = 13
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_referendum_republic }
+		mutually_exclusive = { focus = FRA_restore_empire_fn }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				nationalist_right_wing_populists_are_in_power = yes
+				nationalist_monarchists_are_in_power = yes
+			}
+			has_country_flag = FRA_referendum_passed
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_restore_kingdom_fn"
+			country_event = { id = france_md.354 days = 1 }
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+	focus = {
+		id = FRA_restore_empire_fn
+		icon = napoleon_dream
+
+		x = 30
+		y = 13
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_referendum_republic }
+		mutually_exclusive = { focus = FRA_restore_kingdom_fn }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				nationalist_right_wing_populists_are_in_power = yes
+				nationalist_monarchists_are_in_power = yes
+			}
+			has_country_flag = FRA_referendum_passed
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_restore_empire_fn"
+			country_event = { id = france_md.357 days = 1 }
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
 	#LFI NeutralSoc branch
 	focus = {
 		id = FRA_grand_alliance
@@ -6996,6 +7122,138 @@ focus_tree = {
 			factor = 1
 		}
 	}
+
+	# Communist Path - End the Republic (Peaceful)
+	focus = {
+		id = FRA_constitutional_crisis_pcf
+		icon = neutrality_focus2
+
+		x = -35
+		y = 11
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_struggle_end }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				emerging_communist_state_are_in_power = yes
+				neutrality_neutral_communism_are_in_power = yes
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_constitutional_crisis_pcf"
+			country_event = { id = france_md.340 days = 5 }
+			add_stability = -0.1
+			add_political_power = -100
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	focus = {
+		id = FRA_abolish_fifth_republic_pcf
+		icon = Generic_Coup02
+
+		x = -35
+		y = 12
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_constitutional_crisis_pcf }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				emerging_communist_state_are_in_power = yes
+				neutrality_neutral_communism_are_in_power = yes
+			}
+			has_country_flag = FRA_constitutional_crisis_started
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_abolish_fifth_republic_pcf"
+			country_event = { id = france_md.342 days = 3 }
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	focus = {
+		id = FRA_sixth_republic
+		icon = workers_of_the_world
+
+		x = -33
+		y = 13
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_abolish_fifth_republic_pcf }
+		mutually_exclusive = { focus = FRA_french_commune_peaceful }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				emerging_communist_state_are_in_power = yes
+				neutrality_neutral_communism_are_in_power = yes
+			}
+			has_country_flag = FRA_republic_abolished
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_sixth_republic"
+			country_event = { id = france_md.344 days = 1 }
+			add_stability = 0.1
+			add_political_power = 150
+			add_ideas = FRA_sixth_republic_idea
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	focus = {
+		id = FRA_french_commune_peaceful
+		icon = red_star
+
+		x = -37
+		y = 13
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_abolish_fifth_republic_pcf }
+		mutually_exclusive = { focus = FRA_sixth_republic }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			OR = {
+				emerging_communist_state_are_in_power = yes
+				neutrality_neutral_communism_are_in_power = yes
+			}
+			has_country_flag = FRA_republic_abolished
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_french_commune_peaceful"
+			country_event = { id = france_md.345 days = 1 }
+			add_stability = -0.05
+			add_war_support = 0.1
+			add_ideas = FRA_commune_reborn_idea
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
 	#civil war ending common path to monarchy
 	focus = {
 		id = FRA_civil_war_end

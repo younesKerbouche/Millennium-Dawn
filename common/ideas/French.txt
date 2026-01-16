@@ -2658,5 +2658,75 @@ local_resources_chromium_factor = 0.15
 				production_speed_arms_factory_factor = 0.03
 			}
 		}
+
+		# Communist Path - End the Republic Ideas
+		FRA_general_strike = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_general_strike" }
+			picture = workers_of_the_world
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = -0.15
+				production_speed_buildings_factor = -0.2
+				industrial_capacity_factory = -0.15
+				political_power_gain = 0.25
+			}
+		}
+
+		FRA_sixth_republic_idea = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_sixth_republic_idea" }
+			picture = workers_of_the_world
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.1
+				political_power_gain = 0.15
+				production_speed_buildings_factor = 0.05
+				consumer_goods_factor = -0.03
+				monthly_population = 0.05
+			}
+		}
+
+		FRA_commune_reborn_idea = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_commune_reborn_idea" }
+			picture = red_star
+			allowed = { always = no }
+
+			modifier = {
+				war_support_factor = 0.15
+				army_morale_factor = 0.1
+				industrial_capacity_factory = 0.1
+				stability_factor = -0.1
+				political_power_gain = 0.1
+			}
+		}
+
+		# National Rally Path - End the Republic Ideas
+		FRA_kingdom_restored_idea = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_kingdom_restored_idea" }
+			picture = french_monarchy
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.1
+				political_power_gain = 0.1
+				drift_defence_factor = 0.25
+				consumer_goods_factor = -0.02
+			}
+		}
+
+		FRA_empire_restored_idea = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_empire_restored_idea" }
+			picture = napoleon_dream
+			allowed = { always = no }
+
+			modifier = {
+				war_support_factor = 0.1
+				army_org_factor = 0.05
+				army_morale_factor = 0.05
+				political_power_gain = 0.15
+				justify_war_goal_time = -0.15
+			}
+		}
 	}
 }

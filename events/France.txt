@@ -9343,5 +9343,422 @@ country_event = {
 	}
 }
 
+### Communist Path - End the Republic Events ###
+
+# Constitutional Crisis Erupts
+country_event = {
+	id = france_md.340
+	title = france_md.340.t
+	desc = france_md.340.d
+	picture = GFX_french_riot
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Mass mobilization begins
+	option = {
+		name = france_md.340.a
+		log = "[GetDateText]: [This.GetName]: france_md.340.a executed"
+		set_country_flag = FRA_constitutional_crisis_started
+		add_timed_idea = {
+			idea = FRA_general_strike
+			days = 180
+		}
+		country_event = { id = france_md.341 days = 30 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Mass Mobilization - Workers Take to the Streets
+country_event = {
+	id = france_md.341
+	title = france_md.341.t
+	desc = france_md.341.d
+	picture = GFX_french_riot
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The CGT leads the charge
+	option = {
+		name = france_md.341.a
+		log = "[GetDateText]: [This.GetName]: france_md.341.a executed"
+		add_stability = -0.05
+		add_political_power = 50
+		set_temp_variable = { temp_opinion = 20 }
+		change_labour_unions_opinion = yes
+		ai_chance = { base = 1 }
+	}
+}
+
+# Constituent Assembly Convenes
+country_event = {
+	id = france_md.342
+	title = france_md.342.t
+	desc = france_md.342.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Abolish the Fifth Republic
+	option = {
+		name = france_md.342.a
+		log = "[GetDateText]: [This.GetName]: france_md.342.a executed"
+		set_country_flag = FRA_republic_abolished
+		remove_ideas = FRA_general_strike
+		add_stability = 0.05
+		country_event = { id = france_md.343 days = 5 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# The Republic Falls - A New Dawn
+country_event = {
+	id = france_md.343
+	title = france_md.343.t
+	desc = france_md.343.d
+	picture = GFX_french_riot
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The old order crumbles
+	option = {
+		name = france_md.343.a
+		log = "[GetDateText]: [This.GetName]: france_md.343.a executed"
+		add_political_power = 100
+		every_other_country = {
+			limit = {
+				OR = {
+					has_idea = EU_member
+					is_in_faction_with = USA
+				}
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = recent_actions_negative
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# Proclaim the Sixth Republic
+country_event = {
+	id = france_md.344
+	title = france_md.344.t
+	desc = france_md.344.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# A democratic socialist France is born
+	option = {
+		name = france_md.344.a
+		log = "[GetDateText]: [This.GetName]: france_md.344.a executed"
+		set_cosmetic_tag = FRA_sixth_republic
+		add_stability = 0.1
+		add_political_power = 200
+		set_temp_variable = { party_index = 14 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		add_relative_party_popularity = yes
+		every_other_country = {
+			limit = {
+				OR = {
+					emerging_communist_state_are_in_power = yes
+					neutrality_neutral_communism_are_in_power = yes
+				}
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = supports_us
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# Proclaim the French Commune
+country_event = {
+	id = france_md.345
+	title = france_md.345.t
+	desc = france_md.345.d
+	picture = GFX_french_riot
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The Commune rises again!
+	option = {
+		name = france_md.345.a
+		log = "[GetDateText]: [This.GetName]: france_md.345.a executed"
+		set_cosmetic_tag = FRA_commune
+		add_war_support = 0.15
+		add_stability = -0.1
+		set_temp_variable = { party_index = 15 }
+		set_temp_variable = { party_popularity_increase = 0.15 }
+		add_relative_party_popularity = yes
+		swap_ideas = {
+			remove_idea = small_medium_business_owners
+			add_idea = labour_unions
+		}
+		set_temp_variable = { temp_opinion = 30 }
+		change_labour_unions_opinion = yes
+		every_other_country = {
+			limit = {
+				OR = {
+					has_idea = EU_member
+					is_in_faction_with = USA
+				}
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = major_breach_of_trust
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+### National Rally Path - End the Republic Events ###
+
+# Question the Republic's Legitimacy
+country_event = {
+	id = france_md.350
+	title = france_md.350.t
+	desc = france_md.350.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The Republic has failed France
+	option = {
+		name = france_md.350.a
+		log = "[GetDateText]: [This.GetName]: france_md.350.a executed"
+		set_country_flag = FRA_questioned_republic
+		add_stability = -0.05
+		add_political_power = -50
+		country_event = { id = france_md.351 days = 20 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# The Movement Grows - Calls for Restoration
+country_event = {
+	id = france_md.351
+	title = france_md.351.t
+	desc = france_md.351.d
+	picture = GFX_fra_coronation
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Traditionalists rally to the cause
+	option = {
+		name = france_md.351.a
+		log = "[GetDateText]: [This.GetName]: france_md.351.a executed"
+		add_stability = 0.03
+		set_temp_variable = { party_index = 20 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		add_relative_party_popularity = yes
+		ai_chance = { base = 1 }
+	}
+}
+
+# Referendum on the Republic's Future
+country_event = {
+	id = france_md.352
+	title = france_md.352.t
+	desc = france_md.352.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The people vote to restore the monarchy/empire
+	option = {
+		name = france_md.352.a
+		log = "[GetDateText]: [This.GetName]: france_md.352.a executed"
+		set_country_flag = FRA_referendum_passed
+		add_stability = 0.05
+		add_political_power = 100
+		country_event = { id = france_md.353 days = 3 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# The People Have Spoken
+country_event = {
+	id = france_md.353
+	title = france_md.353.t
+	desc = france_md.353.d
+	picture = GFX_fra_coronation
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The Fifth Republic ends
+	option = {
+		name = france_md.353.a
+		log = "[GetDateText]: [This.GetName]: france_md.353.a executed"
+		add_stability = 0.05
+		every_other_country = {
+			limit = { has_idea = EU_member }
+			add_opinion_modifier = {
+				target = FRA
+				modifier = recent_actions_negative
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# Choose the Pretender - Monarchy Path
+country_event = {
+	id = france_md.354
+	title = france_md.354.t
+	desc = france_md.354.d
+	picture = GFX_fra_coronation
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Crown Jean d'Orléans (Orleanist - King of the French)
+	option = {
+		name = france_md.354.a
+		log = "[GetDateText]: [This.GetName]: france_md.354.a executed"
+		set_cosmetic_tag = FRA_kingdom_orleans
+		add_ideas = FRA_kingdom_restored_idea
+		add_stability = 0.1
+		add_political_power = 150
+		set_temp_variable = { party_index = 21 }
+		set_temp_variable = { party_popularity_increase = 0.2 }
+		add_relative_party_popularity = yes
+		# Good relations with European monarchies
+		if = { limit = { country_exists = ENG }
+			ENG = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = supports_us
+				}
+			}
+		}
+		if = { limit = { country_exists = SPA }
+			SPA = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = supports_us
+				}
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Crown Louis de Bourbon (Legitimist - King of France)
+	option = {
+		name = france_md.354.b
+		log = "[GetDateText]: [This.GetName]: france_md.354.b executed"
+		set_cosmetic_tag = FRA_kingdom_bourbon
+		add_ideas = FRA_kingdom_restored_idea
+		add_stability = 0.05
+		add_political_power = 100
+		set_temp_variable = { party_index = 21 }
+		set_temp_variable = { party_popularity_increase = 0.2 }
+		add_relative_party_popularity = yes
+		# Tensions with Spain over the claim
+		if = { limit = { country_exists = SPA }
+			SPA = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = recent_actions_negative
+				}
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# The Bonaparte Returns - Empire Path
+country_event = {
+	id = france_md.357
+	title = france_md.357.t
+	desc = france_md.357.d
+	picture = GFX_fra_coronation
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Crown Jean-Christophe Napoléon as Napoleon VII
+	option = {
+		name = france_md.357.a
+		log = "[GetDateText]: [This.GetName]: france_md.357.a executed"
+		set_cosmetic_tag = FRA_empire
+		add_ideas = FRA_empire_restored_idea
+		add_stability = 0.05
+		add_war_support = 0.15
+		add_political_power = 100
+		set_temp_variable = { party_index = 21 }
+		set_temp_variable = { party_popularity_increase = 0.15 }
+		add_relative_party_popularity = yes
+		swap_ideas = {
+			remove_idea = small_medium_business_owners
+			add_idea = the_military
+		}
+		set_temp_variable = { temp_opinion = 30 }
+		change_the_military_opinion = yes
+		# Military-focused empire
+		army_experience = 25
+		air_experience = 25
+		navy_experience = 25
+		ai_chance = { base = 1 }
+	}
+}
+
+# European Reactions to French Restoration
+country_event = {
+	id = france_md.358
+	title = france_md.358.t
+	desc = france_md.358.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		NOT = { original_tag = FRA }
+		has_idea = EU_member
+	}
+
+	# Condemn this regression
+	option = {
+		name = france_md.358.a
+		log = "[GetDateText]: [This.GetName]: france_md.358.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = major_breach_of_trust
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# This is an internal French matter
+	option = {
+		name = france_md.358.b
+		log = "[GetDateText]: [This.GetName]: france_md.358.b executed"
+		add_political_power = -25
+		ai_chance = { base = 1 }
+	}
+}
 
 
