@@ -557,15 +557,22 @@ quarterly_inflation_calculation = {
 
 	#Adjust the inflation rate based on GDP/C + Taxes
 	set_temp_variable = { inflation_rate_adjuster = gdpc_growth_inflation_adjuster }
+	log = "Pre Tax Rate Inflation Adjusted [?inflation_rate_adjuster]"
 	multiply_temp_variable = { gdpc_growth_inflation_adjuster = tax_rate_modifier }
 	subtract_from_temp_variable = { inflation_rate_adjuster = gdpc_growth_inflation_adjuster }
+	log = "Post Tax Rate Inflation Adjusted [?inflation_rate_adjuster]"
 
 	#Adjust inflation further by the base GDP/C Amount
 	#Balancing mechanic for rich nations; nations that have more money per person can afford to spend more
 	#Spending more can lead to higher inflation as inflation goes up. Testing for starting balance, can be tweaked more
 	set_temp_variable = { gdpc_inflation_adjuster = gdp_per_capita }
+	log = "Pre GPD/C Adjuster Modified [?gdpc_inflation_adjuster]"
 	multiply_temp_variable = { gdpc_inflation_adjuster = 0.01 }
-	add_to_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
+	log = "Post GPD/C Adjuster Modified [?gdpc_inflation_adjuster]"
+
+	log = "Pre GDP/C Inflation Adjusted - [?inflation_rate_adjuster]"
+	multiply_temp_variable = { inflation_rate_adjuster = gdpc_inflation_adjuster }
+	log = "Post GDP/C Inflation Adjusted - [?inflation_rate_adjuster]"
 
 	#Adjust inflation by economic cycle
 	#Higher and faster production and growth means higher inflation
@@ -588,9 +595,15 @@ quarterly_inflation_calculation = {
 		set_temp_variable = { cycle_inflation_adjustment = 0.065 }
 	}
 
-	multiply_temp_variable = { cycle_inflation_adjustment = gdp_per_capita }
+	log = "Pre GDP/C Econ Adjuster [?cycle_inflation_adjustment]"
 
+	multiply_temp_variable = { cycle_inflation_adjustment = gdpc_inflation_adjuster }
+
+	log = "Post GPD/C Econ Adjuster [?cycle_inflation_adjustment]"
+
+	log = "Pre Econ Cycle Inflation Adjustment [?inflation_rate_adjuster]"
 	add_to_temp_variable = { inflation_rate_adjuster = cycle_inflation_adjustment }
+	log = "Post Econ Cycle Inflation Adjustment [?inflation_rate_adjuster]"
 
 	#Add this to the array, so we can average yearly inflation. this should stop rapid swings up and down, slowing movement
 	add_to_array = { year_quarter_inflation_tracker = inflation_rate_adjuster }
@@ -625,4 +638,7 @@ quarterly_inflation_calculation = {
 	divide_temp_variable = { inflation_rate_adjuster = loop_counter }
 
 	set_variable = { inflation_rate_var = inflation_rate_adjuster }
+	if = { limit = { is_debug = yes }
+		log = "[GetDateText]: [THIS.GetName]: Inflation Update: Current Inflation Rate: [?THIS.inflation_rate_var|%] - Last Four Quarters: [?THIS.year_quarter_inflation_tracker^0|%] - [?THIS.year_quarter_inflation_tracker^1|%] - [?THIS.year_quarter_inflation_tracker^2|%] - [?THIS.year_quarter_inflation_tracker^3|%]"
+	}
 }
