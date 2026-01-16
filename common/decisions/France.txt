@@ -2084,16 +2084,18 @@ FRA_3rd_empire_decision_category = {
 			}
 		}
 	}
-	FRA_crush_coalition = {#claim Rheinland
+	FRA_crush_coalition = {#claim north of italy
 		fire_only_once = yes
 		days_remove = 35
 		cost = 50
 		visible = {
-			country_exists = AUS
-			country_exists = HUN
-			country_exists = ITA
-			country_exists = SLO
-			country_exists = CZE
+			OR = {
+				country_exists = AUS
+				country_exists = HUN
+				country_exists = ITA
+				country_exists = SLO
+				country_exists = CZE
+			}
 
 		}
 		remove_effect = {
@@ -2141,11 +2143,13 @@ FRA_3rd_empire_decision_category = {
 		days_remove = 35
 		cost = 50
 		visible = {
-			country_exists = POL
-			country_exists = ROM
-			country_exists = LAT
-			country_exists = EST
-			country_exists = LIT
+			OR = {
+				country_exists = POL
+				country_exists = ROM
+				country_exists = LAT
+				country_exists = EST
+				country_exists = LIT
+			}
 
 		}
 		remove_effect = {
@@ -2266,6 +2270,113 @@ FRA_3rd_empire_decision_category = {
 					country_event = france_md.321
 				}
 			}
+		}
+	}
+	FRA_no_more_berezina = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			OR = {
+				country_exists = SOV
+				country_exists = UKR
+				country_exists = BLR
+			}
+
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_no_more_berezina"
+			country_event = france_md.323
+			if = {
+				limit = {country_exists = SOV}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = SOV
+				}
+			}
+			if = {
+				limit = {country_exists = UKR}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = UKR
+				}
+			}
+			if = {
+				limit = {country_exists = BLR}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = BLR
+				}
+			}
+		}
+	}
+	FRA_the_Foe = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			country_exists = ENG
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_the_Foe"
+			country_event = france_md.324
+			if = {
+				limit = {country_exists = ENG}
+				create_wargoal = {
+						type = puppet_wargoal_focus
+						target = ENG
+				}
+			}
+		}
+	}
+	FRA_new_order = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			OR = {
+				SOV = { is_subject_of = FRA }
+				GER = { is_subject_of = FRA }
+				ENG = { is_subject_of = FRA }
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_new_order"
+			country_event = france_md.325
+			every_other_country = {
+				limit = { is_subject_of = FRA }
+				add_ideas = FRA_exploitation
+			}
+		}
+	}
+}
+FRA_royalist_expansion_decision_category = {
+	FRA_European_crusade = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			NOT = {
+				has_idea = FRA_expansion_crusades
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_European_crusade"
+			add_ideas = FRA_expansion_europe
+		}
+	}
+	FRA_Christian_crusade = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			NOT = {
+				has_idea = FRA_expansion_europe
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_Christian_crusade"
+			add_ideas = FRA_expansion_crusades
 		}
 	}
 }
