@@ -7899,6 +7899,9 @@ focus_tree = {
 			every_country = {
 				limit = {
 					is_european_nation = yes
+					NOT = {
+						original_tag = ENG
+					}
 				}
 				set_temp_variable = { percent_change = 2 }
 				set_temp_variable = { tag_index = ENG }
@@ -8997,6 +9000,9 @@ focus_tree = {
 			every_country = {
 				limit = {
 					has_war = yes
+					NOT = {
+						original_tag = ENG
+					}
 				}
 				set_temp_variable = { percent_change = 2 }
 				set_temp_variable = { tag_index = ENG }
@@ -9073,6 +9079,9 @@ focus_tree = {
 			every_country = {
 				limit = {
 					has_government = democratic
+					NOT = {
+						original_tag = ENG
+					}
 				}
 				set_temp_variable = { percent_change = 2 }
 				set_temp_variable = { tag_index = ENG }
@@ -10045,7 +10054,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_a_stronger_society
-		icon = winston_churchill
+		icon = grey_market_sheep
 
 		x = 0
 		y = 2
@@ -10065,6 +10074,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_stronger_society"
+			set_temp_variable = { party_index = 1 }
+			set_temp_variable = { party_popularity_increase = 0.055 }
+			set_temp_variable = { temp_outlook_increase = 0.035 }
+			add_relative_party_popularity = yes
+			newline = yes
+			set_temp_variable = { temp_opinion = 10 }
+			change_defense_industry_opinion = yes
+			change_fossil_fuel_industry_opinion = yes
+			change_labour_unions_opinion = yes
 		}
 
 		ai_will_do = {
@@ -10103,6 +10121,9 @@ focus_tree = {
 			every_country = {
 				limit = {
 					has_idea = EU_member
+					NOT = {
+						original_tag = ENG
+					}
 				}
 				add_opinion_modifier = { target = ENG modifier = recent_actions_negative }
 			}
@@ -10115,7 +10136,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_a_more_flexible_europe
-		icon = winston_churchill
+		icon = EU_Army_1
 
 		x = 3
 		y = 3
@@ -10143,7 +10164,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_a_staunch_ally
-		icon = winston_churchill
+		icon = nato_nation
 
 		x = 1
 		y = 3
@@ -10158,10 +10179,32 @@ focus_tree = {
 
 		available = {
 			western_conservatism_are_in_power = yes
+			has_idea = NATO_member
+		}
+
+		bypass = {
+			NOT = {
+				has_idea = NATO_member
+			}
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_fighting_the_power_of_brussels"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_staunch_ally"
+			set_temp_variable = { ENG_trade_opinion_factor_change = 0.15 }
+			update_ENG_trade_opinion_factor = yes
+			newline = yes
+			every_country = {
+				limit = {
+					has_idea = NATO_member
+					NOT = {
+						original_tag = ENG
+					}
+				}
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = ENG }
+				set_temp_variable = { influence_target = THIS }
+				change_influence_percentage = yes
+			}
 		}
 
 		ai_will_do = {
@@ -10292,7 +10335,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_town_and_country
-		icon = winston_churchill
+		icon = focus_generic_agricultural_subsidies
 
 		x = -1
 		y = 3
@@ -10312,6 +10355,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_town_and_country"
+			set_temp_variable = { ENG_agriculture_workers_modifier_change = 0.10 }
+			update_ENG_agriculture_workers_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_agriculture_district_income_tax_modifier_change = 0.1 }
+			update_ENG_agriculture_district_income_tax_modifier = yes
+			newline = yes
+			add_stability = 0.03
 		}
 
 		ai_will_do = {
@@ -13813,7 +13863,7 @@ focus_tree = {
 						CHARACTER = GER_heinrich_himmler
 						FLAG_DAYS = [?GER_expand_gestapo_in_progress_flag:days]
 					}
-					always = no 
+					always = no
 				}
 			}
 			else = { #NOT BEEN WORKED ON (Just Explain)
@@ -13836,21 +13886,21 @@ focus_tree = {
 				limit = {
 					has_dlc = "La Resistance"
 				}
-				add_to_variable = { 
+				add_to_variable = {
 					GER_military_intelligence_service_intelligence_agency_defense = 0.15
 					tooltip = intelligence_agency_defense_tt
 				}
-				add_to_variable = { 
+				add_to_variable = {
 					GER_military_intelligence_service_agency_upgrade_time = -0.2
 					tooltip = agency_upgrade_time_tt
 				}
-				add_to_variable = { 
+				add_to_variable = {
 					GER_military_intelligence_root_out_resistance_effectiveness_factor = 0.2
 					tooltip = root_out_resistance_effectiveness_factor_tt
 				}
 			}
 			else = {
-				add_to_variable = { 
+				add_to_variable = {
 					GER_military_intelligence_service_encryption_factor = 0.1
 					tooltip = encryption_factor_tt
 				}
@@ -13870,7 +13920,7 @@ focus_tree = {
 		y = 1
 		relative_position_id = ENG_discipline_service
 		cost = @inner_circle_time_tier_3
-		
+
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
@@ -13884,7 +13934,7 @@ focus_tree = {
 						CHARACTER = GER_heinrich_himmler
 						FLAG_DAYS = [?GER_expand_ss_security_duties_in_progress_flag:days]
 					}
-					always = no 
+					always = no
 				}
 			}
 			else = { #NOT BEEN WORKED ON (Just Explain)
