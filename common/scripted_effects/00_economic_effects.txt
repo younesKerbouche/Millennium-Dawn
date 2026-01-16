@@ -548,7 +548,8 @@ set_improved_trade_agreement = {
 }
 
 quarterly_inflation_calculation = {
-	#Get and set the basic civilian economic growth for this quarter
+	#Get and set the basic civilian economic growth for this quarter, and grab our old inflation rate
+	set_temp_variable = { last_inflation_rate = inflation_rate_var }
 	set_temp_variable = { gdpc_growth_inflation_adjuster = last_quarter_gdpc_growth_rate }
 
 	#Grab the tax rate, and shift it to where it'll do the math right for us
@@ -636,6 +637,17 @@ quarterly_inflation_calculation = {
 
 	#Divide to get the average number
 	divide_temp_variable = { inflation_rate_adjuster = loop_counter }
+
+	set_temp_variable = { inflation_rate_max = last_inflation_rate }
+	add_to_temp_variable = { inflation_rate_max = 0.1 }
+	set_temp_variable = { inflation_rate_min = last_inflation_rate }
+	add_to_temp_variable = { inflation_rate_min = -0.1 }
+
+	clamp_temp_variable = {
+		var = inflation_rate_adjuster
+		min = inflation_rate_min
+		max = inflation_rate_max
+	}
 
 	set_variable = { inflation_rate_var = inflation_rate_adjuster }
 	if = { limit = { is_debug = yes }
