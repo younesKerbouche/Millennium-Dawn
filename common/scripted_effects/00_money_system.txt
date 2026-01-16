@@ -2064,6 +2064,10 @@ update_military_rate = {
 	# Recreate the Array
 	resize_array = { array = array_defence_spend size = 10 value = 0 }
 
+	#Inflation additive modifier
+	set_temp_variable = { inflation_multiplier = 1 }
+	add_to_temp_variable = { inflation_multiplier = modifier@inflation_cost_multiplier_modifier }
+
 	#A variable that stores the current military law the player has
 	if = { limit = { has_idea = defence_00 }
 		set_temp_variable = { def_index = 0 }
@@ -2118,6 +2122,14 @@ update_military_rate = {
 	multiply_variable = { array_defence_spend^7 = 0.05 }
 	multiply_variable = { array_defence_spend^8 = 0.063 }
 	multiply_variable = { array_defence_spend^9 = 0.1 }
+
+	#increase the defence industry cost via inflation
+	for_each_loop = {
+		array = array_defence_spend
+		value = v
+		index = i
+		multiply_variable = { array_defence_spend^i = inflation_multiplier }
+	}
 
 	#Update each item in the defence spending array based on your gdp/c, having a higher GDP/c makes defence more expensive
 	set_temp_variable = { gdp_defence_modifier_industry = gdp_per_capita }
@@ -2543,6 +2555,7 @@ update_military_rate = {
 	multiply_temp_variable = { airforce_count = airforce_personnel_cost_multiplier }
 	#Modify equipment cost with modifier
 	multiply_variable = { equipment_operative_cost = equipment_cost_multiplier }
+	multiply_variable = { equipment_operative_cost = inflation_multiplier }
 
 	#Multiply personnel costs basde on GDP/c, higher GDP makes things more expensive (linear approximation 0.003 * gdp/c + 0.129)
 	set_temp_variable = { gdp_defence_modifier_personnel = gdp_per_capita }
@@ -2645,6 +2658,10 @@ update_bureaucracy_rate = {
 	set_variable = { bureaucracy_cost_multiplier_display = bureaucracy_cost_multiplier }
 	subtract_from_variable = { bureaucracy_cost_multiplier_display = 1 }
 
+	#Inflation additive modifier
+	set_temp_variable = { inflation_multiplier = 1 }
+	add_to_temp_variable = { inflation_multiplier = modifier@inflation_cost_multiplier_modifier }
+
 	#Set the base cost of bureaucracy (billion $ per 10 000 000 people)
 	set_temp_variable = { bureaucracy_base_cost = 0.010 }
 
@@ -2658,6 +2675,7 @@ update_bureaucracy_rate = {
 		value = v
 		add_to_variable = { var = array_bureaucracy_spend^i value = population_total }	#Unit 100 000
 		multiply_variable = { array_bureaucracy_spend^i = bureaucracy_cost_multiplier }
+		multiply_variable = { array_bureaucracy_spend^i = inflation_multiplier }
 		multiply_variable = { array_bureaucracy_spend^i = gdp_bureaucracy_cost_modifier }
 		multiply_variable = { array_bureaucracy_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { var = array_bureaucracy_spend^i value = bureaucracy_base_cost }
@@ -2710,6 +2728,9 @@ update_police_rate = {
 	set_variable = { police_cost_multiplier_display = police_cost_multiplier }
 	subtract_from_variable = { police_cost_multiplier_display = 1 }
 
+	set_temp_variable = { inflation_multiplier = 1 }
+	add_to_temp_variable = { inflation_multiplier = modifier@inflation_cost_multiplier_modifier }
+
 	# Recreate the Array
 	resize_array = { array = array_security_spend size = 5 value = 0 }
 
@@ -2720,6 +2741,7 @@ update_police_rate = {
 		value = v
 		add_to_variable = { array_security_spend^i = population_total }	#Unit 100 000
 		multiply_variable = { array_security_spend^i = police_cost_multiplier }
+		multiply_variable = { array_security_spend^i = inflation_multiplier }
 		multiply_variable = { array_security_spend^i = gdp_police_cost_modifier }
 		multiply_variable = { array_security_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { array_security_spend^i = police_base_cost }
@@ -2761,6 +2783,10 @@ update_education_rate = {
 
 	#Set the base cost of education (billion $ per 10 000 000 people)
 	set_temp_variable = { education_base_cost = 0.036 }
+
+	#Inflation additive modifier
+	set_temp_variable = { inflation_multiplier = 1 }
+	add_to_temp_variable = { inflation_multiplier = modifier@inflation_cost_multiplier_modifier }
 
 	#Education spending is more expensive the more research slots a country has
 	set_temp_variable = { research_slot_initial = -0.2 }
@@ -2852,6 +2878,7 @@ update_education_rate = {
 		add_to_variable = { array_education_spend^i = population_total }	#Unit 100 000
 		multiply_variable = { array_education_spend^i = gdp_education_cost_modifier }
 		multiply_variable = { array_education_spend^i = education_cost_multiplier }
+		multiply_variable = { array_education_spend^i = inflation_multiplier }
 		multiply_variable = { array_education_spend^i = 0.01 }	#Unit 10 000 000
 		multiply_variable = { array_education_spend^i = education_base_cost }
 
@@ -2902,6 +2929,10 @@ update_health_rate = {
 	#Set the base cost of health (billion $ per 10 000 000 people)
 	set_temp_variable = { health_base_cost = 0.01 }
 
+	#Inflation additive modifier
+	set_temp_variable = { inflation_multiplier = 1 }
+	add_to_temp_variable = { inflation_multiplier = modifier@inflation_cost_multiplier_modifier }
+
 	# # Bird Note: Ported Education Spending Logic 07-14
 	set_temp_variable = { gdp_health_cost_modifier = gdp_per_capita }
 	multiply_temp_variable = { gdp_health_cost_modifier = @spending_laws_gdp_scaling }
@@ -2924,6 +2955,7 @@ update_health_rate = {
 		add_to_variable = { var = array_health_spend^i value = population_total }	#Unit 100 000
 		multiply_variable = { array_health_spend^i = gdp_health_cost_modifier }
 		multiply_variable = { var = array_health_spend^i value = health_cost_multiplier }
+		multiply_variable = { array_health_spend^i = inflation_multiplier }
 		multiply_variable = { array_health_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { var = array_health_spend^i value = health_base_cost }
 		clamp_variable = { var = array_health_spend^i min = 0 }
@@ -2969,6 +3001,10 @@ update_social_rate = {
 	#Set the base cost of welfare (billion $ per 10 000 000 people)
 	set_temp_variable = { social_base_cost = 0.019 }
 
+	#Inflation additive modifier
+	set_temp_variable = { inflation_multiplier = 1 }
+	add_to_temp_variable = { inflation_multiplier = modifier@inflation_cost_multiplier_modifier }
+
 	# # Bird Note: Ported Education Spending Logic 07-14
 	set_temp_variable = { gdp_social_cost_modifier = gdp_per_capita }
 	multiply_temp_variable = { gdp_social_cost_modifier = @spending_laws_gdp_scaling }
@@ -2991,6 +3027,7 @@ update_social_rate = {
 		add_to_variable = { var = array_social_spend^i value = population_total }	#Unit 100 000
 		multiply_variable = { var = array_social_spend^i value = gdp_social_cost_modifier }
 		multiply_variable = { var = array_social_spend^i value = social_cost_multiplier }
+		multiply_variable = { var = array_social_spend^i value = inflation_multiplier }
 		multiply_variable = { array_social_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { var = array_social_spend^i value = social_base_cost }
 		clamp_variable = { var = array_social_spend^i min = 0 }
@@ -3143,6 +3180,8 @@ calculate_additional_expense_rate = {
 	# Generic Economic Decisions
 	set_temp_variable = { gdp_per_capita_leasing_multiplier = gdp_per_capita }
 	multiply_temp_variable = { gdp_per_capita_leasing_multiplier = 0.001 }
+	set_temp_variable = { inflation_on_leases = 1 }
+	add_to_temp_variable = { inflation_on_leases = modifier@inflation_cost_multiplier_modifier }
 	if = {
 		limit = {
 			check_variable = { leased_civilian_factories > 0 }
@@ -3151,6 +3190,7 @@ calculate_additional_expense_rate = {
 		multiply_temp_variable = { lease_civilian_factories_cost = gdp_per_capita_leasing_multiplier }
 		set_temp_variable = { lease_civilian_factories_base_cost = lease_factories_cumulative_cost }
 		multiply_temp_variable = { lease_civilian_factories_base_cost = 0.1 }
+		multiply_temp_variable = { lease_civilian_factores_base_cost = inflation_on_leases }
 		add_to_temp_variable = { lease_civilian_factories_cost = lease_civilian_factories_base_cost }
 		multiply_temp_variable = { lease_civilian_factories_cost = leased_civilian_factories }
 		divide_temp_variable = { lease_civilian_factories_cost = leased_factories }
@@ -3162,6 +3202,7 @@ calculate_additional_expense_rate = {
 		multiply_temp_variable = { lease_military_factories_cost = gdp_per_capita_leasing_multiplier }
 		set_temp_variable = { lease_military_factories_base_cost = lease_factories_cumulative_cost }
 		multiply_temp_variable = { lease_military_factories_base_cost = 0.1 }
+		multiply_temp_variable = { lease_military_factories_base_cost = inflation_on_leases }
 		add_to_temp_variable = { lease_military_factories_cost = lease_military_factories_base_cost }
 		multiply_temp_variable = { lease_military_factories_cost = leased_military_factories }
 		divide_temp_variable = { lease_military_factories_cost = leased_factories }
@@ -3173,6 +3214,7 @@ calculate_additional_expense_rate = {
 		multiply_temp_variable = { lease_naval_factories_cost = gdp_per_capita_leasing_multiplier }
 		set_temp_variable = { lease_naval_factories_base_cost = lease_factories_cumulative_cost }
 		multiply_temp_variable = { lease_naval_factories_base_cost = 0.1 }
+		multiply_temp_variable = { lease_naval_factories_base_cost = inflation_on_leases }
 		add_to_temp_variable = { lease_naval_factories_cost = lease_naval_factories_base_cost }
 		multiply_temp_variable = { lease_naval_factories_cost = leased_dockyards }
 		divide_temp_variable = { lease_naval_factories_cost = leased_factories }
@@ -3725,6 +3767,11 @@ calculate_additional_expense_rate = {
 		set_variable = { energy_load_sharing_payment_var = payment_from_gw_bought }
 		add_to_variable = { additional_expenses_rate = energy_load_sharing_payment_var }
 	}
+
+	#Compensate for inflation on the final value
+	set_temp_variable = { additional_expenses_inflation = 1 }
+	add_to_temp_variable = { additional_expenses_inflation = modifier@inflation_cost_multiplier_modifier }
+	multiply_variable = { additional_expenses_rate = addition_expenses_inflation }
 }
 
 #Income Related Stuff --- International Investments and Calculated Resource Sale Rate
@@ -4252,8 +4299,19 @@ update_state_variables = {
 	calculate_gdp = yes
 }
 
+set_starting_gdp_gdpc = {
+	set_variable = { last_quarter_gdp_total = gdp_total }
+	set_variable = { last_quarter_gdpc_total = gdp_per_capita }
+}
+
 #Calculate GDP/C
 calculate_gdp = {
+	if = {
+		limit = { check_variable = { starting_gdp_week_ticker < 9 } }
+		set_starting_gdp_gdpc = yes
+		add_to_variable = { starting_gdp_week_ticker = 1 }
+	}
+
 	# Calculate Last Quarter's GDP
 	if = {
 		limit = {
@@ -4275,7 +4333,22 @@ calculate_gdp = {
 
 		set_variable = { last_quarter_gdp_total = gdp_total }
 		add_to_array = { quarterly_gdp_growth_rate = last_quarter_gdp_growth_rate }
+
+		#GDP/C Quarterly Growth
+		set_temp_variable = { last_quarter_gdpc_total_temp = last_quarter_gdpc_total }
+		set_temp_variable = { this_quarter_gdpc_total_temp = gdp_per_capita }
+
+		set_variable = { last_quarter_gdpc_growth_rate = this_quarter_gdpc_total_temp }
+		divide_variable = { last_quarter_gdpc_growth_rate = last_quarter_gdpc_total_temp }
+		add_to_variable = { last_quarter_gdpc_growth_rate = -1 }
+		clamp_variable = { var = last_quarter_gdpc_growth_rate min = -1 }
+
+		set_variable = { last_quarter_gdpc_total = gdp_per_capita }
+		add_to_array = { quarterly_gdpc_growth_rate = last_quarter_gdpc_growth_rate }
+
 		set_country_flag = { flag = calculated_quarterly_gdp days = 85 value = 1 }
+
+		quarterly_inflation_calculation = yes
 	}
 
 	# Reset the Gross Domestic Payment
@@ -5281,6 +5354,7 @@ calculate_migration_mechanic_values = {
 		value = v
 		add_to_variable = { array_border_control_spend^i = population_total }	#Unit 100 000
 		multiply_variable = { array_border_control_spend^i = border_cost_multiplier }
+		multiply_variable = { array_border_control_spend^i = inflation_multiplier }
 		multiply_variable = { array_border_control_spend^i = gdp_border_cost_modifier }
 		multiply_variable = { array_border_control_spend^i = 0.07 } #Multiply each index by 7 days #Unit 10 000 000
 		multiply_variable = { array_border_control_spend^i = border_control_base_cost }
