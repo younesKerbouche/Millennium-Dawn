@@ -13,6 +13,10 @@ decisions_ENG = {
 
 		fire_only_once = no
 
+		visible = {
+			is_debug = yes
+		}
+
 		activation = {
 			has_completed_focus = ENG_found_invest_northern_ireland
 			NOT = {
@@ -1179,12 +1183,15 @@ decisions_ENG = {
 ENG_monarchy_decision_category = {
 	ENG_charles_harmony_tour_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 100
 
 		visible = {
-			has_completed_focus = ENG_harmony_doctrine
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_harmony_doctrine
+			}
 		}
 
 		available = {
@@ -1197,7 +1204,12 @@ ENG_monarchy_decision_category = {
 			}
 		}
 
+		complete_effect = {
+			set_country_flag = ENG_charles_harmony_tour_decision_activated
+		}
+
 		remove_effect = {
+			clr_country_flag = ENG_charles_harmony_tour_decision_activated
 			random_country = {
 				limit = {
 					NOT = { tag = ENG }
@@ -1240,14 +1252,17 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_charles_charities_network_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
 
 		days_re_enable = 180
 
 		visible = {
-			has_completed_focus = ENG_the_prince_trust
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_the_prince_trust
+			}
 		}
 
 		available = {
@@ -1258,6 +1273,14 @@ ENG_monarchy_decision_category = {
 				}
 				always = no
 			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_charles_charities_network_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_charles_charities_network_decision_activated
 		}
 
 		modifier = {
@@ -1272,14 +1295,17 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_charles_rainforest_help_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
 
 		days_re_enable = 180
 
 		visible = {
-			has_completed_focus = ENG_climate_alarm_bell
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_climate_alarm_bell
+			}
 		}
 
 		available = {
@@ -1292,11 +1318,16 @@ ENG_monarchy_decision_category = {
 			}
 		}
 
+		complete_effect = {
+			set_country_flag = ENG_charles_rainforest_help_decision_activated
+		}
+
 		modifier = {
 			consumer_goods_expected_value = 0.05
 		}
 
 		remove_effect = {
+			clr_country_flag = ENG_charles_rainforest_help_decision_activated
 			random_country = {
 				limit = {
 					NOT = { tag = ENG }
@@ -1332,14 +1363,17 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_charles_environmental_diplomacy_tour_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
 
 		days_re_enable = 180
 
 		visible = {
-			has_completed_focus = ENG_harmony_doctrine
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_harmony_doctrine
+			}
 		}
 
 		available = {
@@ -1352,11 +1386,16 @@ ENG_monarchy_decision_category = {
 			}
 		}
 
+		complete_effect = {
+			set_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
+		}
+
 		modifier = {
 			consumer_goods_expected_value = 0.05
 		}
 
 		remove_effect = {
+			clr_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
 			random_country = {
 				limit = {
 					NOT = { tag = ENG }
@@ -1391,14 +1430,17 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_charles_organic_agriculture_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
 
 		days_re_enable = 180
 
 		visible = {
-			has_completed_focus = ENG_duchy_originals
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_duchy_originals
+			}
 		}
 
 		available = {
@@ -1417,7 +1459,12 @@ ENG_monarchy_decision_category = {
 			production_speed_agriculture_district_factor = -0.10
 		}
 
+		complete_effect = {
+			set_country_flag = ENG_charles_organic_agriculture_decision_activated
+		}
+
 		remove_effect = {
+			clr_country_flag = ENG_charles_organic_agriculture_decision_activated
 			random_country = {
 				limit = {
 					NOT = { tag = ENG }
@@ -1446,14 +1493,17 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_charles_sustainable_urban_planning_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
 
 		days_re_enable = 180
 
 		visible = {
-			has_completed_focus = ENG_climate_alarm_bell
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_climate_alarm_bell
+			}
 		}
 
 		available = {
@@ -1470,7 +1520,12 @@ ENG_monarchy_decision_category = {
 			production_speed_buildings_factor = -0.05
 		}
 
+		complete_effect = {
+			set_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
+		}
+
 		remove_effect = {
+			clr_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
 			random_owned_state = {
 				add_extra_state_shared_building_slots = 1
 			}
@@ -1482,14 +1537,17 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_charles_youth_sustainability_decision = {
 		allowed = { always = yes }
-		icon = x
+		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
 
 		days_re_enable = 180
 
 		visible = {
-			has_completed_focus = ENG_climate_alarm_bell
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_climate_alarm_bell
+			}
 		}
 
 		available = {
@@ -1500,6 +1558,14 @@ ENG_monarchy_decision_category = {
 				}
 				always = no
 			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_charles_youth_sustainability_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_charles_youth_sustainability_decision_activated
 		}
 
 		modifier = {

@@ -12695,6 +12695,12 @@ focus_tree = {
 				}
 				NOT = { has_country_flag = ENG_inner_circle_event_pending_flag }
 			}
+			if = {
+				limit = {
+					has_country_flag = ENG_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = ENG_inner_circle_event_pending_flag }
+			}
 
 			ENG_inner_circle_is_ascension_cd_over = yes
 			if = {
@@ -12710,6 +12716,7 @@ focus_tree = {
 
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
+		continue_if_invalid = no
 
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE  FOCUS_FILTER_POLITICAL }
 
@@ -12724,7 +12731,8 @@ focus_tree = {
 			}
 			show_ideas_tooltip = ENG_charles_1_idea
 
-			unlock_decision_tooltip = ENG_charles_charities_network
+			unlock_decision_tooltip = ENG_charles_charities_network_decision
+			set_country_flag = ENG_charles_charities_network_decision_activated
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -12752,6 +12760,11 @@ focus_tree = {
 				hidden_effect = {
 					set_variable = { ENG_ascending_advisor = 1 }
 					country_event = ENG_inner_circle.01
+					country_event ={
+						id = ENG_inner_circle_charles.07
+						days = 50
+						random_days = 25
+					}
 				}
 
 				custom_effect_tooltip = generic_skip_one_line_tt
@@ -12832,7 +12845,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = ENG_prince_charles
-						FLAG_DAYS = [?ENG_harmony_doctrine:days]
+						FLAG_DAYS = [?ENG_harmony_doctrine_in_progress_flag:days]
 					}
 					always = no
 				}
