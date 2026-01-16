@@ -2380,3 +2380,142 @@ FRA_royalist_expansion_decision_category = {
 		}
 	}
 }
+
+# Joint Weapon Projects Category
+FRA_joint_weapon_projects_category = {
+
+	# FCAS/MGCS - Joint Franco-German weapon project (Socialists)
+	FRA_joint_project_germany = {
+		icon = GFX_decision_generic_air_naval_exercise
+
+		cost = 150
+		days_remove = 180
+		fire_only_once = yes
+
+		visible = {
+			country_exists = GER
+			NOT = { has_war_with = GER }
+			OR = {
+				western_social_democrats_are_in_power = yes
+				emerging_communist_state_are_in_power = yes
+			}
+		}
+
+		available = {
+			GER = { is_subject = no }
+			NOT = { has_war_with = GER }
+			custom_trigger_tooltip = {
+				tooltip = FRA_socialist_government_required_tt
+				OR = {
+					western_social_democrats_are_in_power = yes
+					emerging_communist_state_are_in_power = yes
+				}
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_joint_project_germany"
+			set_country_flag = FRA_proposed_joint_project_germany
+			GER = { country_event = { id = france_md.335 days = 5 } }
+		}
+
+		remove_effect = {
+			if = {
+				limit = { has_country_flag = FRA_germany_accepted_joint_project }
+				add_tech_bonus = {
+					name = FRA_joint_project_germany
+					bonus = 0.25
+					uses = 2
+					category = CAT_mbt
+				}
+				add_tech_bonus = {
+					name = FRA_joint_project_germany
+					bonus = 0.25
+					uses = 2
+					category = CAT_jet_fighter
+				}
+				add_ideas = FRA_FCAS_MGCS_project
+				clr_country_flag = FRA_germany_accepted_joint_project
+			}
+			clr_country_flag = FRA_proposed_joint_project_germany
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				has_opinion = { target = GER value > 50 }
+			}
+		}
+	}
+
+	# Joint Franco-Russian weapon project (National Rally/Nationalists)
+	FRA_joint_project_russia = {
+		icon = GFX_decision_generic_air_naval_exercise
+
+		cost = 150
+		days_remove = 180
+		fire_only_once = yes
+
+		visible = {
+			country_exists = RUS
+			NOT = { has_war_with = RUS }
+			OR = {
+				nationalist_right_wing_populists_are_in_power = yes
+				nationalist_monarchists_are_in_power = yes
+			}
+		}
+
+		available = {
+			RUS = { is_subject = no }
+			NOT = { has_war_with = RUS }
+			NOT = { has_idea = EU_member }
+			custom_trigger_tooltip = {
+				tooltip = FRA_nationalist_government_required_tt
+				OR = {
+					nationalist_right_wing_populists_are_in_power = yes
+					nationalist_monarchists_are_in_power = yes
+				}
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_joint_project_russia"
+			set_country_flag = FRA_proposed_joint_project_russia
+			RUS = { country_event = { id = france_md.337 days = 5 } }
+		}
+
+		remove_effect = {
+			if = {
+				limit = { has_country_flag = FRA_russia_accepted_joint_project }
+				add_tech_bonus = {
+					name = FRA_joint_project_russia
+					bonus = 0.25
+					uses = 2
+					category = CAT_mbt
+				}
+				add_tech_bonus = {
+					name = FRA_joint_project_russia
+					bonus = 0.25
+					uses = 2
+					category = CAT_jet_fighter
+				}
+				add_ideas = FRA_RUS_joint_project
+				clr_country_flag = FRA_russia_accepted_joint_project
+			}
+			clr_country_flag = FRA_proposed_joint_project_russia
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				has_opinion = { target = RUS value > 50 }
+			}
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
