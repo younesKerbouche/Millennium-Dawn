@@ -1235,62 +1235,91 @@ ENG_add_replacing_advisor_effects = {
 ENG_add_charles_effects = {
 	if = {
 		limit = {
-			has_completed_focus = GER_autonomous_organization_todt
+			has_completed_focus = ENG_the_prince_trust
 		}
-		add_ideas = GER_todt_reich_minister_of_armaments
+		add_ideas = ENG_charles_1_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_ascension_of_todt
+			has_completed_focus = ENG_climate_alarm_bell
 		}
-		add_ideas = GER_todt_reich_engineer
+		add_ideas = ENG_charles_2_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_duchy_originals
+		}
+		add_ideas = ENG_charles_3_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_heir_of_the_realm
+		}
+		add_ideas = ENG_charles_4_idea
 	}
 }
 
 ENG_remove_charles_effects = {
 	if = {
 		limit = {
-			has_idea = GER_todt_reich_minister_of_armaments
+			has_idea = ENG_charles_1_idea
 		}
-		remove_ideas = GER_todt_reich_minister_of_armaments
+		remove_ideas = ENG_charles_1_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_todt_reich_engineer
+			has_idea = ENG_charles_2_idea
 		}
-		remove_ideas = GER_todt_reich_engineer
+		remove_ideas = ENG_charles_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_charles_3_idea
+		}
+		remove_ideas = ENG_charles_3_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_charles_4_idea
+		}
+		remove_ideas = ENG_charles_4_idea
 	}
 	else = {
-		log = "NOTHING TO REMOVE FROM TODT"
+		log = "NOTHING TO REMOVE FROM CHARLES"
 	}
 
 	if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
 		limit = {
-			has_shine_effect_on_focus = GER_form_organization_todt
+			has_shine_effect_on_focus = ENG_harmony_doctrine
 		}
-		deactivate_shine_on_focus = GER_form_organization_todt
-		clr_country_flag = GER_form_organization_todt_in_progress_flag
+		deactivate_shine_on_focus = ENG_harmony_doctrine
+		clr_country_flag = ENG_harmony_doctrine_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_autonomous_organization_todt
+			has_shine_effect_on_focus = ENG_climate_alarm_bell
 		}
-		deactivate_shine_on_focus = GER_autonomous_organization_todt
-		clr_country_flag = GER_autonomous_organization_todt_in_progress_flag
+		deactivate_shine_on_focus = ENG_climate_alarm_bell
+		clr_country_flag = ENG_climate_alarm_bell_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_wunderwaffe
-			check_variable = { GER_wonder_weapons_focus_advisor = 1 }
+			has_shine_effect_on_focus = ENG_duchy_originals
 		}
-		deactivate_shine_on_focus = GER_wunderwaffe
-		clr_country_flag = GER_wunderwaffe_in_progress_flag
-		set_variable = { GER_wonder_weapons_focus_advisor = 0 }
+		deactivate_shine_on_focus = ENG_duchy_originals
+		clr_country_flag = ENG_duchy_originals_in_progress_flag
+	}
+	else_if = {
+		limit = {
+			has_shine_effect_on_focus = ENG_heir_of_the_realm
+		}
+		deactivate_shine_on_focus = ENG_heir_of_the_realm
+		clr_country_flag = ENG_heir_of_the_realm_in_progress_flag
 	}
 
 	#Uncomplete Ascension focus so that he can be picked later on
 	uncomplete_national_focus = {
-		focus = GER_ascension_of_todt
+		focus = ENG_the_prince_trust
 		uncomplete_children = no
 		refund_political_power = no
 	}

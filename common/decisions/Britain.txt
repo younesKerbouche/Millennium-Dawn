@@ -1176,3 +1176,340 @@ decisions_ENG = {
 		}
 	}
 }
+ENG_monarchy_decision_category = {
+	ENG_charles_harmony_tour_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 100
+
+		visible = {
+			has_completed_focus = ENG_harmony_doctrine
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					NOT = { tag = ENG }
+					war_with_us = no
+					has_opinion = {
+						target = ENG
+						value > 0
+					}
+					NOT = { has_opinion_modifier = ENG_charles_harmony }
+					OR = {
+						is_african_nation = yes
+						is_caribbean_nation = yes
+						is_oceania_nation = yes
+						has_dynamic_modifier = { modifier = Commonwealth_member_modifier }
+					}
+				}
+				country_event = ENG_inner_circle_charles.03
+				effect_tooltip = {
+					THIS = {
+						add_opinion_modifier = {
+							target = ENG
+							modifier = ENG_charles_harmony
+						}
+						reverse_add_opinion_modifier = {
+							target = THIS
+							modifier = ENG_charles_harmony
+						}
+						set_temp_variable = { percent_change = 5 }
+						set_temp_variable = { tag_index = ENG }
+						set_temp_variable = { influence_target = THIS }
+						change_influence_percentage = yes
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_charles_charities_network_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 30
+
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = ENG_the_prince_trust
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		modifier = {
+			stability_weekly = 0.01
+			consumer_goods_factor = -0.05
+			population_tax_income_multiplier_modifier = -0.05
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_charles_rainforest_help_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 30
+
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = ENG_climate_alarm_bell
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		modifier = {
+			consumer_goods_expected_value = 0.05
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					NOT = { tag = ENG }
+					war_with_us = no
+					has_opinion = {
+						target = ENG
+						value > 0
+					}
+					has_terrain = jungle
+					NOT = { has_opinion_modifier = ENG_charles_rainforest }
+				}
+				country_event = ENG_inner_circle_charles.04
+				effect_tooltip = {
+					random_owned_state = {
+						add_resource = {
+							type = rubber
+							amount = 1
+						}
+					}
+				}
+			}
+			random_owned_state = {
+				add_resource = {
+					type = rubber
+					amount = 1
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_charles_environmental_diplomacy_tour_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 30
+
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = ENG_harmony_doctrine
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		modifier = {
+			consumer_goods_expected_value = 0.05
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					NOT = { tag = ENG }
+					war_with_us = no
+					has_opinion = {
+						target = ENG
+						value > 0
+					}
+					NOT = { has_opinion_modifier = ENG_charles_environmental_tour }
+				}
+				country_event = ENG_inner_circle_charles.05
+				effect_tooltip = {
+					add_tech_bonus = {
+						name = ENG_charles_environmental_diplomacy_tour_decision
+						uses = 1
+						bonus = 0.10
+						category = CAT_renewable
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = ENG_charles_environmental_diplomacy_tour_decision
+				uses = 1
+				bonus = 0.10
+				category = CAT_renewable
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_charles_organic_agriculture_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 30
+
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = ENG_duchy_originals
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		modifier = {
+			monthly_population = 0.05
+			agricolture_productivity_modifier = 0.10
+			production_speed_agriculture_district_factor = -0.10
+		}
+
+		remove_effect = {
+			random_country = {
+				limit = {
+					NOT = { tag = ENG }
+					war_with_us = no
+					has_opinion = {
+						target = ENG
+						value > 0
+					}
+					NOT = { has_opinion_modifier = ENG_charles_agriculture_development }
+				}
+				country_event = ENG_inner_circle_charles.06
+				effect_tooltip = {
+					add_tech_bonus = {
+						name = ENG_charles_organic_agriculture_decision
+						uses = 1
+						bonus = 0.10
+						category = CAT_agriculture_tech
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_charles_sustainable_urban_planning_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 30
+
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = ENG_climate_alarm_bell
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		modifier = {
+			production_speed_buildings_factor = -0.05
+		}
+
+		remove_effect = {
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_charles_youth_sustainability_decision = {
+		allowed = { always = yes }
+		icon = x
+
+		days_remove = 30
+
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = ENG_climate_alarm_bell
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_charles
+				}
+				always = no
+			}
+		}
+
+		modifier = {
+			research_speed_factor = 0.025
+			scientist_xp_gain_factor = 0.15
+			scientist_breakthrough_bonus_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}

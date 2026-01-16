@@ -25,6 +25,30 @@ focus_tree = {
 		id = eng_inner_circle_inlay_window
 		position = { x = 10500 y = 200 }
 	}
+
+	shortcut = {
+		name = ENG_military_shortcut
+		target = ENG_strategic_defence_review
+		scroll_wheel_factor = 1.0
+	}
+	shortcut = {
+		name = ENG_economy_shortcut
+		target = ENG_acknowledge_industrial_collapse
+		scroll_wheel_factor = 1.0
+	}
+	shortcut = {
+		name = ENG_political_shortcut
+		target = ENG_britain_forward_not_back
+		scroll_wheel_factor = 1.0
+	}
+	shortcut = {
+		name = ENG_monarchy_shortcut
+		target = ENG_triumph_of_the_crown
+		scroll_wheel_factor = 1.0
+	}
+
+
+
 	# Military
 	focus = {
 		id = ENG_strategic_defence_review
@@ -12610,15 +12634,49 @@ focus_tree = {
 		}
 	}
 
+	##### Inner Circle
+
 	focus = {
-		id = ENG_the_prince_trust
+		id = ENG_the_queens_family
 		icon = god_save_the_king
 
-		x = -26
+		x = 91
+		y = 0
+
+		cost = 5
+		available = {
+			has_country_flag = ENG_elisabeth_ruling_monarch
+		}
+
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE  FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_the_queens_family"
+			custom_effect_tooltip = ENG_queen_family_inner_circle_tt
+			add_political_power = 50
+			custom_effect_tooltip = generic_skip_one_line_tt
+			unlock_decision_category_tooltip = ENG_monarchy_decision_category
+			hidden_effect = {
+				add_dynamic_modifier = {
+					modifier = ENG_the_inner_circle_dm
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = ENG_the_prince_trust
+		icon = ENG_charles_2000
+
+		x = -5
 		y = 1
-		relative_position_id = ENG_triumph_of_the_crown
+		relative_position_id = ENG_the_queens_family
 		text_icon = GER_inner_circle_focus_style
 		cost = 2
+
+		prerequisite = {
+			focus = ENG_the_queens_family
+		}
 
 		available = {
 			if = {
@@ -12653,7 +12711,7 @@ focus_tree = {
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
 
-		search_filters = { }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE  FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
 			set_country_flag = ENG_charles_ascension_flag
@@ -12665,6 +12723,8 @@ focus_tree = {
 				CHARACTER = ENG_prince_charles
 			}
 			show_ideas_tooltip = ENG_charles_1_idea
+
+			unlock_decision_tooltip = ENG_charles_charities_network
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
@@ -12750,7 +12810,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_harmony_doctrine
-		icon = god_save_the_king
+		icon = tree_focus
 
 		prerequisite = { focus = ENG_the_prince_trust }
 
@@ -12764,15 +12824,15 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_form_organization_todt_in_progress_flag
+					has_country_flag = ENG_harmony_doctrine_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_fritz_todt
-						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+						localization_key = ENG_inner_circle_focus_in_progress_tt
+						CHARACTER = ENG_prince_charles
+						FLAG_DAYS = [?ENG_harmony_doctrine:days]
 					}
 					always = no
 				}
@@ -12780,57 +12840,36 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_fritz_todt
-						FOCUS = GER_ascension_of_todt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = ENG_prince_charles
+						FOCUS = ENG_the_prince_trust
 					}
 					always = no
 				}
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE  FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 3
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
+			add_timed_idea = {
+				idea = ENG_harmony_doctrine_idea
+				years = 2
 			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
-				limit = {
-					has_idea = GER_philipp_holzmann
-				}
-				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_organization_todt
-				}
-			}
-			else = {
-				effect_tooltip = {
-					custom_effect_tooltip = available_designer
-					show_ideas_tooltip = GER_organization_todt
-				}
-			}
+			newline = yes
+			unlock_decision_tooltip = ENG_charles_harmony_tour_decision
+			unlock_decision_tooltip = ENG_charles_environmental_diplomacy_tour_decision
+			unlock_decision_tooltip = ENG_charles_sustainable_urban_planning_decision
+			newline = yes
+			set_temp_variable = { party_index = 17 }
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.05 }
+			add_relative_party_popularity = yes
 		}
 	}
 	focus = {
 		id = ENG_climate_alarm_bell
-		icon = god_save_the_king
+		icon = protect_parks
 
 		prerequisite = { focus = ENG_harmony_doctrine }
 
@@ -12844,15 +12883,15 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_form_organization_todt_in_progress_flag
+					has_country_flag = ENG_climate_alarm_bell_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_fritz_todt
-						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+						localization_key = ENG_inner_circle_focus_in_progress_tt
+						CHARACTER = ENG_prince_charles
+						FLAG_DAYS = [?ENG_climate_alarm_bell_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -12860,57 +12899,45 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_fritz_todt
-						FOCUS = GER_ascension_of_todt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = ENG_prince_charles
+						FOCUS = ENG_harmony_doctrine
 					}
 					always = no
 				}
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = ENG_charles_1_idea
+				add_idea = ENG_charles_2_idea
+			}
+			unlock_decision_tooltip = ENG_charles_rainforest_help_decision
+			unlock_decision_tooltip = ENG_charles_youth_sustainability_decision
 			every_core_state = {
 				limit = {
 					is_fully_controlled_by = ROOT
 					free_building_slots = {
-						building = arms_factory
+						building = renewable_energy_infra
 						size > 0
 						include_locked = yes
 					}
 				}
 				random_select_amount = 3
-				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = arms_factory
+					type = renewable_energy_infra
 					level = 1
 					instant_build = yes
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
-				limit = {
-					has_idea = GER_philipp_holzmann
-				}
-				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_organization_todt
-				}
-			}
-			else = {
-				effect_tooltip = {
-					custom_effect_tooltip = available_designer
-					show_ideas_tooltip = GER_organization_todt
 				}
 			}
 		}
 	}
 	focus = {
 		id = ENG_duchy_originals
-		icon = god_save_the_king
+		icon = focus_BRA_support_sugar_barons
 
 		prerequisite = { focus = ENG_climate_alarm_bell }
 
@@ -12924,15 +12951,15 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_form_organization_todt_in_progress_flag
+					has_country_flag = ENG_duchy_originals_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_fritz_todt
-						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+						localization_key = ENG_inner_circle_focus_in_progress_tt
+						CHARACTER = ENG_prince_charles
+						FLAG_DAYS = [?ENG_duchy_originals_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -12940,57 +12967,55 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_fritz_todt
-						FOCUS = GER_ascension_of_todt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = ENG_prince_charles
+						FOCUS = ENG_climate_alarm_bell
 					}
 					always = no
 				}
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
+			random_core_state = {
 				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
+					is_controlled_by = ROOT
 				}
-				random_select_amount = 3
-				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
-					type = arms_factory
+					type = industrial_complex
 					level = 1
 					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 1
 			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
+			random_core_state = {
 				limit = {
-					has_idea = GER_philipp_holzmann
+					is_controlled_by = ROOT
 				}
-				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_organization_todt
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
 				}
+				add_extra_state_shared_building_slots = 1
 			}
-			else = {
-				effect_tooltip = {
-					custom_effect_tooltip = available_designer
-					show_ideas_tooltip = GER_organization_todt
-				}
+			newline = yes
+			swap_ideas = {
+				remove_idea = ENG_charles_2_idea
+				add_idea = ENG_charles_3_idea
 			}
+			unlock_decision_tooltip = ENG_charles_organic_agriculture_decision
+			newline = yes
+			set_temp_variable = { treasury_change = -21.50 }
+			modify_treasury_effect = yes
+
 		}
 	}
 	focus = {
 		id = ENG_heir_of_the_realm
-		icon = god_save_the_king
+		icon = ENG_charles_2020
 
 		prerequisite = { focus = ENG_duchy_originals }
 
@@ -13004,15 +13029,15 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_form_organization_todt_in_progress_flag
+					has_country_flag = ENG_heir_of_the_realm_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_fritz_todt
-						FLAG_DAYS = [?GER_form_organization_todt_in_progress_flag:days]
+						localization_key = ENG_inner_circle_focus_in_progress_tt
+						CHARACTER = ENG_prince_charles
+						FLAG_DAYS = [?ENG_heir_of_the_realm:days]
 					}
 					always = no
 				}
@@ -13020,63 +13045,37 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_fritz_todt
-						FOCUS = GER_ascension_of_todt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = ENG_prince_charles
+						FOCUS = ENG_duchy_originals
 					}
 					always = no
 				}
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 3
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
-				limit = {
-					has_idea = GER_philipp_holzmann
-				}
-				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_organization_todt
-				}
-			}
-			else = {
-				effect_tooltip = {
-					custom_effect_tooltip = available_designer
-					show_ideas_tooltip = GER_organization_todt
-				}
+			swap_ideas = {
+				remove_idea = ENG_charles_3_idea
+				add_idea = ENG_charles_4_idea
 			}
 		}
 	}
 	focus = {
 		id = ENG_naval_prince
-		icon = god_save_the_king
+		icon = ENG_andrew_2000
 
-		x = -24
+		x = -3
 		y = 1
-		relative_position_id = ENG_triumph_of_the_crown
+		relative_position_id = ENG_the_queens_family
 		text_icon = GER_inner_circle_focus_style
 		cost = 2
+
+		prerequisite = {
+			focus = ENG_the_queens_family
+		}
 
 		available = {
 			if = {
@@ -13111,7 +13110,7 @@ focus_tree = {
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
 
-		search_filters = { }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
 			set_country_flag = GER_todt_ascension_flag
@@ -13120,7 +13119,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
 
@@ -13128,7 +13127,7 @@ focus_tree = {
 
 			custom_effect_tooltip = {
 				localization_key = GER_ascension_of_character_focus_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -13156,7 +13155,7 @@ focus_tree = {
 				custom_effect_tooltip = {
 					localization_key = GER_event_to_replace_ascended_advisor_tt
 					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
+					CHARACTER = ENG_prince_charles
 				}
 			}
 			else = {
@@ -13228,7 +13227,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -13238,7 +13237,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -13247,7 +13246,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -13310,7 +13309,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -13320,7 +13319,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -13329,7 +13328,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -13392,7 +13391,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -13402,7 +13401,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -13411,7 +13410,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -13454,7 +13453,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_duty_of_the_crown
-		icon = god_save_the_king
+		icon = ENG_andrew_2020
 
 		prerequisite = { focus = ENG_digital_enterprise_patronage }
 
@@ -13474,7 +13473,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -13484,7 +13483,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -13493,7 +13492,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -13536,13 +13535,17 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_workhorse_of_the_crown
-		icon = god_save_the_king
+		icon = ENG_anne_2000
 
-		x = -21
+		x = 0
 		y = 1
-		relative_position_id = ENG_triumph_of_the_crown
+		relative_position_id = ENG_the_queens_family
 		text_icon = GER_inner_circle_focus_style
 		cost = 2
+
+		prerequisite = {
+			focus = ENG_the_queens_family
+		}
 
 		available = {
 			if = {
@@ -13577,7 +13580,7 @@ focus_tree = {
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
 
-		search_filters = { }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
 			set_country_flag = GER_todt_ascension_flag
@@ -13586,7 +13589,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
 
@@ -13594,7 +13597,7 @@ focus_tree = {
 
 			custom_effect_tooltip = {
 				localization_key = GER_ascension_of_character_focus_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -13622,7 +13625,7 @@ focus_tree = {
 				custom_effect_tooltip = {
 					localization_key = GER_event_to_replace_ascended_advisor_tt
 					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
+					CHARACTER = ENG_prince_charles
 				}
 			}
 			else = {
@@ -13694,7 +13697,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -13704,7 +13707,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -13713,7 +13716,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -13776,7 +13779,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -13786,7 +13789,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -13795,7 +13798,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -13859,7 +13862,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_heinrich_himmler
 						FLAG_DAYS = [?GER_expand_gestapo_in_progress_flag:days]
 					}
@@ -13869,7 +13872,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_heinrich_himmler
 						FOCUS = GER_ascension_of_himmler
 					}
@@ -13878,7 +13881,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			GER_add_or_modify_military_intelligence_service = yes
@@ -13930,7 +13933,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_heinrich_himmler
 						FLAG_DAYS = [?GER_expand_ss_security_duties_in_progress_flag:days]
 					}
@@ -13940,7 +13943,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_heinrich_himmler
 						FOCUS = GER_ascension_of_himmler
 					}
@@ -13949,7 +13952,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_RESEARCH }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			custom_effect_tooltip = {
@@ -13980,7 +13983,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_quiet_professionalism
-		icon = god_save_the_king
+		icon = ENG_anne_2020
 
 		prerequisite = {
 			focus = ENG_princess_admiral_royal_navy
@@ -14003,7 +14006,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14013,7 +14016,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14022,7 +14025,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14065,13 +14068,17 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_chairman_international_award
-		icon = god_save_the_king
+		icon = ENG_edward_2000
 
-		x = -18
+		x = 3
 		y = 1
-		relative_position_id = ENG_triumph_of_the_crown
+		relative_position_id = ENG_the_queens_family
 		text_icon = GER_inner_circle_focus_style
 		cost = 2
+
+		prerequisite = {
+			focus = ENG_the_queens_family
+		}
 
 		available = {
 			if = {
@@ -14106,7 +14113,7 @@ focus_tree = {
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
 
-		search_filters = { }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
 			set_country_flag = GER_todt_ascension_flag
@@ -14115,7 +14122,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
 
@@ -14123,7 +14130,7 @@ focus_tree = {
 
 			custom_effect_tooltip = {
 				localization_key = GER_ascension_of_character_focus_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -14151,7 +14158,7 @@ focus_tree = {
 				custom_effect_tooltip = {
 					localization_key = GER_event_to_replace_ascended_advisor_tt
 					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
+					CHARACTER = ENG_prince_charles
 				}
 			}
 			else = {
@@ -14223,7 +14230,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14233,7 +14240,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14242,7 +14249,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14305,7 +14312,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14315,7 +14322,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14324,7 +14331,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14387,7 +14394,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14397,7 +14404,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14406,7 +14413,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14449,7 +14456,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_steady_hand
-		icon = god_save_the_king
+		icon = ENG_edward_2020
 
 		prerequisite = { focus = ENG_production_guild_patronage }
 
@@ -14469,7 +14476,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14479,7 +14486,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14488,7 +14495,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14531,13 +14538,17 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_duke_charities
-		icon = god_save_the_king
+		icon = ENG_phillip_2000
 
-		x = -16
+		x = 5
 		y = 1
-		relative_position_id = ENG_triumph_of_the_crown
+		relative_position_id = ENG_the_queens_family
 		text_icon = GER_inner_circle_focus_style
 		cost = 2
+
+		prerequisite = {
+			focus = ENG_the_queens_family
+		}
 
 		available = {
 			if = {
@@ -14572,7 +14583,7 @@ focus_tree = {
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
 
-		search_filters = { }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
 			set_country_flag = GER_todt_ascension_flag
@@ -14581,7 +14592,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
 
@@ -14589,7 +14600,7 @@ focus_tree = {
 
 			custom_effect_tooltip = {
 				localization_key = GER_ascension_of_character_focus_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -14617,7 +14628,7 @@ focus_tree = {
 				custom_effect_tooltip = {
 					localization_key = GER_event_to_replace_ascended_advisor_tt
 					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
+					CHARACTER = ENG_prince_charles
 				}
 			}
 			else = {
@@ -14689,7 +14700,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14699,7 +14710,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14708,7 +14719,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14771,7 +14782,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14781,7 +14792,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14790,7 +14801,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14853,7 +14864,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14863,7 +14874,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14872,7 +14883,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14915,7 +14926,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_strength_and_stay
-		icon = god_save_the_king
+		icon = ENG_phillip_2020
 
 		prerequisite = { focus = ENG_prince_phillip_medal }
 
@@ -14935,7 +14946,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -14945,7 +14956,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -14954,7 +14965,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -14997,13 +15008,17 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_from_sandhurst_to_service
-		icon = god_save_the_king
+		icon = ENG_william_2000
 
-		x = -14
+		x = 7
 		y = 1
-		relative_position_id = ENG_triumph_of_the_crown
+		relative_position_id = ENG_the_queens_family
 		text_icon = GER_inner_circle_focus_style
 		cost = 2
+
+		prerequisite = {
+			focus = ENG_the_queens_family
+		}
 
 		available = {
 			if = {
@@ -15038,7 +15053,7 @@ focus_tree = {
 		#Focus will need to pause while events are pending
 		cancel_if_invalid = no
 
-		search_filters = { }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
 			set_country_flag = GER_todt_ascension_flag
@@ -15047,7 +15062,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 			show_ideas_tooltip = GER_todt_reich_engineer
 
@@ -15055,7 +15070,7 @@ focus_tree = {
 
 			custom_effect_tooltip = {
 				localization_key = GER_ascension_of_character_focus_tt
-				CHARACTER = GER_fritz_todt
+				CHARACTER = ENG_prince_charles
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -15083,7 +15098,7 @@ focus_tree = {
 				custom_effect_tooltip = {
 					localization_key = GER_event_to_replace_ascended_advisor_tt
 					EVENT = GER_inner_circle.01.t
-					CHARACTER = GER_fritz_todt
+					CHARACTER = ENG_prince_charles
 				}
 			}
 			else = {
@@ -15155,7 +15170,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_albert_speer
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
@@ -15165,7 +15180,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_albert_speer
 						FOCUS = GER_ascension_of_speer
 					}
@@ -15174,7 +15189,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			every_core_state = {
@@ -15237,7 +15252,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_joseph_goebbels
 						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
 					}
@@ -15247,7 +15262,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_joseph_goebbels
 						FOCUS = GER_ascension_of_goebbels
 					}
@@ -15256,7 +15271,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			add_popularity = {
@@ -15298,7 +15313,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_joseph_goebbels
 						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
 					}
@@ -15308,7 +15323,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_joseph_goebbels
 						FOCUS = GER_ascension_of_goebbels
 					}
@@ -15317,7 +15332,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			add_popularity = {
@@ -15339,7 +15354,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_bridge_to_the_future
-		icon = god_save_the_king
+		icon = ENG_william_2020
 
 		prerequisite = { focus = ENG_veteran_armed_forces_support }
 
@@ -15359,7 +15374,7 @@ focus_tree = {
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_inner_circle_focus_in_progress_tt
+						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = GER_joseph_goebbels
 						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
 					}
@@ -15369,7 +15384,7 @@ focus_tree = {
 			else = { #NOT BEEN WORKED ON (Just Explain)
 				custom_override_tooltip = {
 					tooltip = {
-						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = GER_joseph_goebbels
 						FOCUS = GER_ascension_of_goebbels
 					}
@@ -15378,7 +15393,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL_CHARACTER FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
 			add_popularity = {
