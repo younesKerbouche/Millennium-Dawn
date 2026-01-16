@@ -614,15 +614,15 @@ quarterly_inflation_calculation = {
 	for_each_loop = {
 		array = year_quarter_inflation_tracker
 		value = v
+		index = i
 
-		add_to_temp_variable = { loop_counter = 1 }
+		set_temp_variable = { loop_counter = i }
 	}
 
 	#If more than 4 items, remove the oldest, so it keeps the yearly average
 	if = {
-		limit = { check_variable = { loop_counter > 4 } }
+		limit = { check_variable = { loop_counter > 3 } }
 		remove_from_array = { year_quarter_inflation_tracker = 0 }
-		set_temp_variable = { loop_counter = 4 }
 	}
 
 	set_temp_variable = { inflation_rate_adjuster = 0 }
@@ -635,9 +635,13 @@ quarterly_inflation_calculation = {
 		add_to_temp_variable = { inflation_rate_adjuster = v }
 	}
 
+	#If the counter wasn't at 4 already due to the 5th index, add 1 to it so it gets the right number of variables in the math
+	if = { limit = { NOT = { check_variable = { loop_counter = 4 } } } add_to_temp_variable = { loop_counter = 1 } }
 	#Divide to get the average number
 	divide_temp_variable = { inflation_rate_adjuster = loop_counter }
 
+	#Maximum inflation movement per quarter of 10%. This means that the max you can move in a year is 40% in either direction
+	#This is a balance mechanic, both for gameplay, and for when you eat a whole country and your finances go crazy
 	set_temp_variable = { inflation_rate_max = last_inflation_rate }
 	add_to_temp_variable = { inflation_rate_max = 0.1 }
 	set_temp_variable = { inflation_rate_min = last_inflation_rate }
