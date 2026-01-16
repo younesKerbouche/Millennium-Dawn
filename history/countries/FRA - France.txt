@@ -6,7 +6,14 @@ capital = 56
 
 	set_variable = { gdp_per_capita = 39.726 }
 	add_to_tech_sharing_group = volkswagen_group_Tech_Share
+
 	complete_special_project = sp:sp_aircraft_project
+	complete_special_project = sp:sp_composite_production
+	complete_special_project = sp:sp_naval_vessel_project
+	complete_special_project = sp:sp_medium_naval_nuclear_engines
+
+	#This needs to be one less than the starting number to work properly
+	set_variable = { startup_composite_fac_needed = 2 }
 
 	if = { limit = { has_dlc = "No Step Back" }
 
@@ -15,23 +22,29 @@ capital = 56
 			set_oob = "FRA_2000_nonnsb"
 		}
 	}
-	set_naval_oob = "FRA_2000_naval_mtg"
 	if = { limit = { has_dlc = "By Blood Alone" }
 		set_air_oob = "FRA_2000_bba"
 		else = {
 			set_air_oob = "FRA_2000_nonbba"
 		}
 	}
-
-	if = {
-		limit = {
-			has_dlc = "La Resistance"
-		}
+	if = { limit = { has_dlc = "La Resistance" }
 		create_intelligence_agency = {
 			name = "Directorate-General for External Security (DGSE)"
 			icon = GFX_intelligence_agency_logo_fra
 		}
+
+		else = {
+			add_to_array = { cyber_targets = ENG }
+			add_to_array = { cyber_targets = CHI }
+			add_to_array = { cyber_targets = GER }
+			add_to_array = { cyber_targets = PER }
+			add_to_array = { cyber_targets = NKO }
+			add_to_array = { cyber_targets = SOV }
+			add_to_array = { cyber_targets = USA }
+		}
 	}
+	set_naval_oob = "FRA_2000_naval_mtg"
 
 	add_ideas = {
 		medium_corruption
@@ -60,7 +73,11 @@ capital = 56
 		FRA_cfa_franc_custodian
 	}
 
+	complete_special_project = sp:sp_microchip_production
+
 	set_technology = {
+		microchip_production_two = 1
+		microchip_production_three = 1
 
 		GNSS1 = 1
 		GNSS2 = 1
@@ -1478,7 +1495,7 @@ capital = 56
 			parent_version = 0
 			modules = {
 				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+				fixed_ship_fire_control_system_slot = module_capital_advanced_integrated_missile_radar_control
 				fixed_ship_radar_slot = module_radar_4
 				fixed_ship_auxillary_slot_3 = module_torpedoes_2
 				fixed_ship_auxillary_slot_2 = module_vls_sam_3
@@ -1501,7 +1518,7 @@ capital = 56
 			role_icon_index = 4
 			modules = {
 				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_1
 				fixed_ship_auxillary_slot_3 = module_fuel_tank
 				fixed_ship_auxillary_slot_2 = module_aa_missiles_1
@@ -1523,7 +1540,7 @@ capital = 56
 			role_icon_index = 4
 			modules = {
 				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot_3 = module_torpedoes_1
 				fixed_ship_auxillary_slot_2 = module_ciws_1
@@ -1545,7 +1562,7 @@ capital = 56
 			role_icon_index = 4
 			modules = {
 				fixed_ship_engine_slot = module_surface_diesel_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot_3 = module_ram_2
 				fixed_ship_auxillary_slot_2 = module_asm_2
@@ -1567,7 +1584,7 @@ capital = 56
 			role_icon_index = 4
 			modules = {
 				fixed_ship_engine_slot = module_surface_diesel_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot_3 = module_chain_gun
 				fixed_ship_auxillary_slot_2 = module_asm_2
@@ -1795,19 +1812,6 @@ capital = 56
 			}
 		}
 
-		complete_special_project = sp:sp_naval_vessel_project
-		complete_special_project = sp:sp_medium_naval_nuclear_engines
-
-	if = { limit = { NOT = { has_dlc = "La Resistance" } }
-		add_to_array = { cyber_targets = ENG }
-		add_to_array = { cyber_targets = CHI }
-		add_to_array = { cyber_targets = GER }
-		add_to_array = { cyber_targets = PER }
-		add_to_array = { cyber_targets = NKO }
-		add_to_array = { cyber_targets = SOV }
-		add_to_array = { cyber_targets = USA }
-	}
-
 	# Influence system
 	init_influence = yes
 	set_variable = { domestic_influence_amount = 613 }
@@ -1840,36 +1844,6 @@ capital = 56
 	set_variable = { enrichment_facilities = 2 }
 	add_to_array = { global.enrichment_countries = THIS.id }
 
-	# France Starting Productivity
-	56 = { set_variable = { productivity_state_var = 1775 } } # Paris/Ile-de-France
-	54 = { set_variable = { productivity_state_var = 1020 } } # Haut-de-France
-	55 = { set_variable = { productivity_state_var = 1063 } } # Normandie
-	57 = { set_variable = { productivity_state_var = 1025 } } # Alsace-Lorraine
- 	305 = { set_variable = { productivity_state_var = 1040 } } # Champagne-Ardenne
-	58 = { set_variable = { productivity_state_var = 994 } } # Bourgogne
- 	963 = { set_variable = { productivity_state_var = 995 } }
-	62 = { set_variable = { productivity_state_var = 995 } }
-	962 = { set_variable = { productivity_state_var = 1175 } }
-	857 = { set_variable = { productivity_state_var = 990 } }
-	1000 = { set_variable = { productivity_state_var = 960 } }
-	63 = { set_variable = { productivity_state_var = 940 } }
-	961 = { set_variable = { productivity_state_var = 920 } }
-	61 = { set_variable = { productivity_state_var = 1035 } }
-	60 = { set_variable = { productivity_state_var = 1035 } }
-	958 = { set_variable = { productivity_state_var = 925 } }
-	59 = { set_variable = { productivity_state_var = 925 } }
-	959 = { set_variable = { productivity_state_var = 875 } }
-	64 = { set_variable = { productivity_state_var = 875 } }
-	65 = { set_variable = { productivity_state_var = 875 } }
-	67 = { set_variable = { productivity_state_var = 675 } } # French Guyana
-	940 = { set_variable = { productivity_state_var = 725 } }
-	66 = { set_variable = { productivity_state_var = 725 } }
-	70 = { set_variable = { productivity_state_var = 725 } }
-	71 = { set_variable = { productivity_state_var = 725 } }
-	68 = { set_variable = { productivity_state_var = 725 } }
-	441 = { set_variable = { productivity_state_var = 675 } } # St. Pierre
-	1009 = { set_variable = { productivity_state_var = 725 } }
-	69 = { set_variable = { productivity_state_var = 720 } }
 	set_variable = { overall_productivity = 1084 }
 
 	# French Space
@@ -2161,6 +2135,18 @@ capital = 56
 	recruit_character = FRA_yann_tainguy
 	recruit_character = FRA_stephane_abrial
 	recruit_character = FRA_jean_paul_palomeros
+
+	#intelligence agency advisors
+	recruit_character = FRA_nicolas_lerner
+	recruit_character = FRA_bernard_emie
+	recruit_character = FRA_thierry_delville
+	recruit_character = FRA_guillaume_poupard
+
+	#auto-activate intelligence advisors for faction intelligence
+	activate_advisor = FRA_nicolas_lerner_intel
+	activate_advisor = FRA_bernard_emie_intel
+	activate_advisor = FRA_thierry_delville_intel
+	activate_advisor = FRA_guillaume_poupard_intel
 
 	if = {
 		limit = { has_dlc = "By Blood Alone" }
