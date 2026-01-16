@@ -4650,3 +4650,86 @@ country_event = {
 		ai_chance = { base = 1 }
 	}
 }
+
+country_event = {
+	id = korea.135  #Operation Succeeded hack
+	title = korea.135.t
+	desc = korea.135.d
+	picture = GFX_computer
+	is_triggered_only = yes
+
+	option = {
+		name = korea.135.a #Great Job
+		log = "[GetDateText]: [This.GetName]: korea.135.a executed"
+		add_political_power = 10
+	}
+}
+
+country_event = {
+	id = korea.136  #Hacking
+	title = korea.136.t
+	desc = korea.136.d
+	picture = GFX_economy_crisis
+	is_triggered_only = yes
+
+	option = {
+		name = korea.136.a #Unexpected
+		log = "[GetDateText]: [This.GetName]: korea.136.a executed"
+		ROOT = {
+			add_opinion_modifier = {
+				target = NKO
+				modifier = recent_actions_negative
+			}
+		}
+	}
+}
+
+country_event = {
+	id = korea.137   #drugs
+	title = korea.137.t
+	desc = korea.137.d
+	picture = GFX_bar
+	is_triggered_only = yes
+
+	option = {
+		name = korea.137.a #Unexpected
+		log = "[GetDateText]: [This.GetName]: korea.137.a executed"
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+			add_stability = 0.01
+	}
+	option = {
+		name = korea.137.b #Unexpected
+		log = "[GetDateText]: [This.GetName]: korea.137.a executed"
+			add_political_power = -10
+			add_stability = -0.01
+	}
+}
+
+country_event = {
+	id = korea.138  #Operation Succeeded drugs
+	title = korea.138.t
+	desc = korea.138.d
+	picture = GFX_computer
+	is_triggered_only = yes
+
+	option = {
+		name = korea.138.a #Well Done!!
+		log = "[GetDateText]: [This.GetName]: korea.138.a executed"
+		add_political_power = 10
+	}
+}
+
+country_event = {
+	id = korea.139  #Money Printing operation
+	title = korea.139.t
+	desc = korea.139.d
+	picture = GFX_invetsments_in_eastern_europe
+	is_triggered_only = yes
+
+	option = {
+		name = korea.139.a #Well Done!!
+		log = "[GetDateText]: [This.GetName]: korea.139.a executed"
+		add_political_power = 10
+	}
+}
