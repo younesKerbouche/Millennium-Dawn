@@ -813,7 +813,6 @@ EU_voting_category = {
 		}
 		ai_will_do = {
 			factor = 1
-
 		}
 	}
 
@@ -856,7 +855,14 @@ EU_voting_category = {
 				EUXXX = "EU[?global.EUXXX_council_agenda]"
 			}
 		}
-		ai_will_do = { factor = -1000 }
+		ai_will_do = { 
+			base = -1
+
+			modifier = {
+				add = 100
+				check_variable = { global.EU_pop_ratio_yes > 0.95 }
+			}
+		}
 	}
 
 	EU_voting_mission_focus_EUXXX_QMV_result_timer = {

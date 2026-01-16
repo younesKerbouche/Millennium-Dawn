@@ -4171,6 +4171,16 @@ scripted_gui = {
 				}
 			}
 
+			pass_vote_button_click = {
+				ai_will_do = {
+					base = 0
+					modifier = {
+						add = 100
+						check_variable = { global.active_MEP_Support = global.MEP_Total }
+					}
+				}
+			}
+
 			# European budget Buttons
 			EU_min_call_rate_click = {
 				ai_will_do = {
@@ -5114,6 +5124,15 @@ scripted_gui = {
 								date > 2013.1.1
 								check_variable = { v = 603 }
 							}
+							
+							# EU Expansion Focus
+							modifier = {
+								add = 20
+								OR = {
+									is_in_array = { global.EU_expansion_laws = v }
+								}
+							}
+
 							# Do not immediately retry the same vote twice in a row
 							modifier = {
 								factor = 0
@@ -5443,7 +5462,7 @@ scripted_gui = {
 				else_if = {
 					limit = { check_variable = { v = 601 } }
 					has_political_power > 300
-					date > 2002.1.1
+				#	date > 2002.1.1
 				}
 				else_if = {
 					limit = { check_variable = { v = 602 } }
@@ -5579,6 +5598,55 @@ scripted_gui = {
 					custom_trigger_tooltip = {
 						tooltip = eu_russia_treaty_pass_tt
 						is_in_array = { global.EU_passed_votes = 652 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 654 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 655 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 656 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 657 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 658 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 659 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
+					}
+				}
+				else_if = { limit = { check_variable = { v = 660 } }
+					has_political_power > 300
+					custom_trigger_tooltip = {
+						tooltip = lisbon_treaty_amendment_pass_tt
+						is_in_array = { global.EU_passed_votes = 651 }
 					}
 				}
 				else_if = { limit = { check_variable = { v = 110 } }
@@ -5737,6 +5805,27 @@ scripted_gui = {
 				else_if = { limit = { check_variable = { v = 653 } }
 					hidden_effect = { add_political_power = -300 }
 				}
+				else_if = { limit = { check_variable = { v = 654 } }
+					hidden_effect = { add_political_power = -300 }
+				}
+				else_if = { limit = { check_variable = { v = 655 } }
+					hidden_effect = { add_political_power = -300 }
+				}
+				else_if = { limit = { check_variable = { v = 656 } }
+					hidden_effect = { add_political_power = -300 }
+				}
+				else_if = { limit = { check_variable = { v = 657 } }
+					hidden_effect = { add_political_power = -300 }
+				}
+				else_if = { limit = { check_variable = { v = 658 } }
+					hidden_effect = { add_political_power = -300 }
+				}
+				else_if = { limit = { check_variable = { v = 659 } }
+					hidden_effect = { add_political_power = -300 }
+				}
+				else_if = { limit = { check_variable = { v = 660 } }
+					hidden_effect = { add_political_power = -300 }
+				}
 				else_if = { limit = { check_variable = { v = 112 } }
 					hidden_effect = { add_political_power = -300 }
 				}
@@ -5851,12 +5940,12 @@ scripted_gui = {
 								is_in_array = { global.EU_military_laws = v }
 								is_communist_block = yes
 							}
-							#Socalist Block
+							#Socialist Block
 							modifier = {
 								add = 25
 								is_socialist_block = yes
 							}
-							#Facist Block
+							#Fascist Block
 							modifier = {
 								add = -30
 								OR = {
@@ -5929,20 +6018,7 @@ scripted_gui = {
 							modifier = {
 								add = 200
 								OR = {
-									check_variable = { v = 601 }
-									check_variable = { v = 602 }
-									check_variable = { v = 603 }
-									check_variable = { v = 605 }
-									check_variable = { v = 606 }
-									check_variable = { v = 607 }
-									check_variable = { v = 608 }
-									check_variable = { v = 609 }
-									check_variable = { v = 610 }
-									check_variable = { v = 611 }
-									check_variable = { v = 650 }
-									check_variable = { v = 651 }
-									check_variable = { v = 652 }
-									check_variable = { v = 653 }
+									is_in_array = { global.EU_expansion_laws = v }
 								}
 							}
 							# Killswitch
