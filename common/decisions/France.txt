@@ -2875,3 +2875,46 @@ FRA_extremist_foreign_policy_category = {
 		}
 	}
 }
+
+# Environmental Policy Decisions
+FRA_environmental_policy_decisions = {
+	# Decision to reverse the extraction ban
+	FRA_reverse_extraction_ban = {
+		icon = generic_industry
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			has_idea = FRA_green_extraction_ban
+			NOT = { neutrality_neutral_green_in_power_or_coalition = yes }
+		}
+
+		visible = {
+			has_idea = FRA_green_extraction_ban
+		}
+
+		cost = 100
+		days_remove = 180
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_reverse_extraction_ban"
+			remove_ideas = FRA_green_extraction_ban
+			add_stability = -0.05
+			# Greens lose support
+			set_temp_variable = { party_index = 17 }
+			set_temp_variable = { party_popularity_increase = -0.10 }
+			set_temp_variable = { temp_outlook_increase = -0.10 }
+			add_relative_party_popularity = yes
+			# Economic boost from reopening extraction
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 5
+				has_war = yes
+			}
+		}
+	}
+}

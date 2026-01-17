@@ -6259,6 +6259,43 @@ focus_tree = {
 			factor = 1
 		}
 	}
+	# Greens End Extraction - Removes ~1/3 of mainland resources
+	focus = {
+		id = FRA_end_extraction
+		icon = generic_resource_extraction_ban
+
+		x = -22
+		y = 7
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_end_fossile }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_end_extraction"
+			# Add permanent national spirit that removes resources
+			add_ideas = FRA_green_extraction_ban
+			# Greens gain popularity from environmental victory
+			set_temp_variable = { party_index = 17 }
+			set_temp_variable = { party_popularity_increase = 0.10 }
+			set_temp_variable = { temp_outlook_increase = 0.10 }
+			add_relative_party_popularity = yes
+			# Economic impact from closing mines
+			set_temp_variable = { temp_change = -0.05 }
+			FRA_decrease_growth = yes
+			# Notify EU about France's radical environmental policy
+			every_other_country = {
+				limit = { has_idea = EU_member }
+				country_event = { id = france_md.960 days = 5 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
 	focus = {
 		id = FRA_opti_indus
 		icon = production2

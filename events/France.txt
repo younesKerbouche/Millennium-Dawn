@@ -11549,3 +11549,54 @@ country_event = {
 	}
 }
 
+####################################
+# GREEN EXTRACTION BAN EVENTS (960)
+####################################
+
+# Event for EU members when France bans resource extraction
+country_event = {
+	id = france_md.960
+	title = france_md.960.t
+	desc = france_md.960.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+
+	# Support France's environmental leadership
+	option = {
+		name = france_md.960.a
+		log = "[GetDateText]: [This.GetName]: france_md.960.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = great_trade_positive
+		}
+		if = {
+			limit = { neutrality_neutral_green_in_power_or_coalition = yes }
+			add_political_power = 25
+		}
+		ai_chance = {
+			base = 2
+			modifier = {
+				factor = 3
+				neutrality_neutral_green_in_power_or_coalition = yes
+			}
+		}
+	}
+
+	# Express concern about economic impact
+	option = {
+		name = france_md.960.b
+		log = "[GetDateText]: [This.GetName]: france_md.960.b executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = recent_actions_negative
+		}
+		ai_chance = {
+			base = 3
+			modifier = {
+				factor = 0.5
+				neutrality_neutral_green_in_power_or_coalition = yes
+			}
+		}
+	}
+}
+
