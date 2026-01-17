@@ -1691,10 +1691,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus FRA_increase_pension_age"
-			add_ideas = FRA_pension_reform
-			set_temp_variable = { party_index = 2 }
-			set_temp_variable = { party_popularity_increase = -0.1 }
-			add_relative_party_popularity = yes
+			country_event = { id = france_md.930 days = 5 }
 		}
 
 		ai_will_do = {
@@ -4100,6 +4097,79 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 1
+		}
+	}
+	# Immigration Wave - NR support increases with high immigration
+	focus = {
+		id = FRA_immigration_wave
+		icon = anti_immigration2
+
+		x = 32
+		y = 3
+		relative_position_id = FRA_state_of_french_politics
+
+		cost = 10
+
+		prerequisite = { focus = FRA_FN }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = FRA_high_immigration_tooltip
+				OR = {
+					has_idea = open_borders
+					has_idea = slightly_regulated_immigration
+				}
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_immigration_wave"
+			# Variable boost based on immigration level
+			if = {
+				limit = { has_idea = open_borders }
+				# Maximum boost with open borders
+				set_temp_variable = { temp_change = 0.08 }
+				FRA_change_politics_nationalist = yes
+				set_temp_variable = { party_index = 20 }
+				set_temp_variable = { party_popularity_increase = 0.15 }
+				set_temp_variable = { temp_outlook_increase = 0.15 }
+				add_relative_party_popularity = yes
+				set_temp_variable = { temp_change = 0.05 }
+				FRA_unstab = yes
+				add_timed_idea = {
+					idea = FRA_immigration_backlash
+					days = 730
+				}
+			}
+			else_if = {
+				limit = { has_idea = slightly_regulated_immigration }
+				# Moderate boost with slightly regulated immigration
+				set_temp_variable = { temp_change = 0.05 }
+				FRA_change_politics_nationalist = yes
+				set_temp_variable = { party_index = 20 }
+				set_temp_variable = { party_popularity_increase = 0.10 }
+				set_temp_variable = { temp_outlook_increase = 0.10 }
+				add_relative_party_popularity = yes
+				set_temp_variable = { temp_change = 0.03 }
+				FRA_unstab = yes
+				add_timed_idea = {
+					idea = FRA_immigration_backlash
+					days = 365
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 2
+				has_idea = open_borders
+			}
+			modifier = {
+				factor = 1.5
+				has_idea = slightly_regulated_immigration
+			}
 		}
 	}
 	focus = {

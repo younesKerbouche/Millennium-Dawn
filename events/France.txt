@@ -11282,16 +11282,16 @@ country_event = {
 	}
 }
 
-# Terror Attack Response
+# Terrorist Attack on French Soil
 country_event = {
-	id = france_md.951
-	title = france_md.951.t
-	desc = france_md.951.d
-	picture = GFX_generic_parliament
+	id = france_md.949
+	title = france_md.949.t
+	desc = france_md.949.d
+	picture = GFX_generic_riots
 
 	trigger = {
 		original_tag = FRA
-		NOT = { has_country_flag = FRA_terror_attack_response }
+		NOT = { has_country_flag = FRA_terror_attack_occurred }
 		date > 2005.1.1
 		OR = {
 			has_war = yes
@@ -11303,11 +11303,36 @@ country_event = {
 
 	mean_time_to_happen = {
 		months = 600
+		modifier = {
+			factor = 0.5
+			has_war = yes
+		}
 	}
 
 	immediate = {
-		set_country_flag = FRA_terror_attack_response
+		set_country_flag = FRA_terror_attack_occurred
 	}
+
+	# The attack shocks the nation
+	option = {
+		name = france_md.949.a
+		log = "[GetDateText]: [This.GetName]: france_md.949.a executed"
+		add_stability = -0.15
+		add_war_support = 0.05
+		add_political_power = -75
+		add_manpower = -500
+		country_event = { id = france_md.951 days = 3 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Terror Attack Response
+country_event = {
+	id = france_md.951
+	title = france_md.951.t
+	desc = france_md.951.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
 
 	# National unity and enhanced security
 	option = {
