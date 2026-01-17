@@ -3511,6 +3511,11 @@ focus_tree = {
 			FRA_infdef = yes
 			set_temp_variable = { temp_change = 0.1 }
 			FRA_BP_change = yes
+			# Set RPF Gaullist path flag and add foreign policy idea
+			hidden_effect = {
+				set_country_flag = FRA_rpf_path
+			}
+			add_ideas = FRA_gaullist_foreign_policy
 		}
 
 		ai_will_do = {
@@ -3609,6 +3614,16 @@ focus_tree = {
 			FRA_change_politics_neutral= yes
 			set_temp_variable = { temp_change = 0.02 }
 			FRA_change_politics_nationalist= yes
+			# Add sovereigntist EU policy idea
+			add_ideas = FRA_sovereigntist_eu_policy
+			# Trigger EU reaction
+			every_country = {
+				limit = {
+					has_idea = EU_member
+					NOT = { tag = FRA }
+				}
+				country_event = { id = france_md.808 days = 14 }
+			}
 		}
 
 		ai_will_do = {
@@ -3630,23 +3645,35 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus FRA_anti_usa"
+			# Add anti-American stance idea
+			add_ideas = FRA_anti_american_stance
 			USA = {
 				add_opinion_modifier = {
 					modifier = recent_actions_negative
 					target = FRA
 				}
+				# Trigger USA reaction event
+				country_event = { id = france_md.800 days = 5 }
 			}
 			CHI = {
 				add_opinion_modifier = {
 					modifier = recent_actions_positive
 					target = FRA
 				}
+				# Trigger China welcome event
+				country_event = { id = france_md.811 days = 15 }
 			}
 			SOV = {
 				add_opinion_modifier = {
 					modifier = recent_actions_positive
 					target = FRA
 				}
+				# Trigger Russia welcome event
+				country_event = { id = france_md.802 days = 10 }
+			}
+			# Trigger German concern event
+			GER = {
+				country_event = { id = france_md.810 days = 7 }
 			}
 		}
 
@@ -3784,9 +3811,21 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus FRA_leave_nato"
 			NATO_leave = yes
-			add_timed_idea = {
-				idea = FRA_left_nato
-				days = 365
+			add_ideas = FRA_left_nato
+			# Set permanent NATO exit flag
+			hidden_effect = {
+				set_country_flag = FRA_left_nato_permanently
+			}
+			# Trigger NATO exit consequences event
+			country_event = { id = france_md.812 days = 3 }
+			# Notify NATO allies
+			every_country = {
+				limit = {
+					has_idea = NATO_member
+					NOT = { tag = FRA }
+					NOT = { tag = USA }
+				}
+				country_event = { id = france_md.804 days = 7 }
 			}
 		}
 
@@ -4383,9 +4422,17 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_distance_nato"
-			add_timed_idea = {
-				idea = FRA_distance_nato
-				days = 365
+			add_ideas = FRA_distance_nato
+			# Add strategic independence idea
+			add_ideas = FRA_strategic_independance
+			# Notify NATO allies about French distance from alliance
+			every_country = {
+				limit = {
+					has_idea = NATO_member
+					NOT = { tag = FRA }
+					NOT = { tag = USA }
+				}
+				country_event = { id = france_md.804 days = 10 }
 			}
 		}
 
@@ -4449,6 +4496,10 @@ focus_tree = {
 			set_temp_variable = { party_popularity_increase = -0.1 }
 			set_temp_variable = { temp_outlook_increase = -0.1 }
 			add_relative_party_popularity = yes
+			# Set National Rally path flag
+			hidden_effect = {
+				set_country_flag = FRA_national_rally_path
+			}
 		}
 
 		ai_will_do = {
@@ -4499,15 +4550,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_pro_russian_fn"
+			# Add National Rally-Russia alignment idea (cancels after Ukraine invasion)
+			add_ideas = FRA_fn_russia_alignment_idea
 			set_temp_variable = { percent_change = 5 }
 			set_temp_variable = { tag_index = SOV.id }
 			set_temp_variable = { influence_target = FRA.id }
 			change_influence_percentage = yes
 			SOV = {
-					add_opinion_modifier = {
-						target = ROOT
-						modifier = great_trade_positive
-					}
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = great_trade_positive
+				}
+				# Trigger Russia welcome event
+				country_event = { id = france_md.802 days = 5 }
 			}
 			USA = {
 				add_opinion_modifier = {
@@ -4721,6 +4776,7 @@ focus_tree = {
 		completion_reward = {#not sure about the name but that shall do
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_long_travel"
 			add_ideas = FRA_france_for_french
+			country_event = { id = france_md.371 days = 30 }
 		}
 
 		ai_will_do = {
@@ -4748,21 +4804,23 @@ focus_tree = {
 				nationalist_monarchists_are_in_power = yes
 			}
 			NOT = { has_idea = EU_member }
+			has_country_flag = FRA_allowed_extremists_right
+			NOT = { has_idea = FRA_traditionalist_infiltration }
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus FRA_question_republic_fn"
-			country_event = { id = france_md.350 days = 5 }
-			add_stability = -0.05
+			country_event = { id = france_md.375 days = 5 }
 		}
 
 		ai_will_do = {
 			factor = 3
 		}
 	}
+	# Republic is Safe - Nationalist crackdown path
 	focus = {
-		id = FRA_referendum_republic
-		icon = election3
+		id = FRA_republic_safe_fn
+		icon = national_unity
 
 		x = 28
 		y = 12
@@ -4778,16 +4836,19 @@ focus_tree = {
 				nationalist_right_wing_populists_are_in_power = yes
 				nationalist_monarchists_are_in_power = yes
 			}
-			has_country_flag = FRA_questioned_republic
+			has_country_flag = FRA_crackdown_extremists_right
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus FRA_referendum_republic"
-			country_event = { id = france_md.352 days = 10 }
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_republic_safe_fn"
+			add_stability = 0.1
+			add_political_power = 150
+			add_war_support = 0.05
+			country_event = { id = france_md.373 days = 1 }
 		}
 
 		ai_will_do = {
-			factor = 3
+			factor = 5
 		}
 	}
 	focus = {
@@ -4795,13 +4856,14 @@ focus_tree = {
 		icon = french_monarchy
 
 		x = 26
-		y = 13
+		y = 12
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_referendum_republic }
+		prerequisite = { focus = FRA_question_republic_fn }
 		mutually_exclusive = { focus = FRA_restore_empire_fn }
+		mutually_exclusive = { focus = FRA_republic_safe_fn }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		available = {
@@ -4809,7 +4871,7 @@ focus_tree = {
 				nationalist_right_wing_populists_are_in_power = yes
 				nationalist_monarchists_are_in_power = yes
 			}
-			has_country_flag = FRA_referendum_passed
+			has_country_flag = FRA_monarchists_won_coup
 		}
 
 		completion_reward = {
@@ -4826,13 +4888,14 @@ focus_tree = {
 		icon = napoleon_dream
 
 		x = 30
-		y = 13
+		y = 12
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_referendum_republic }
+		prerequisite = { focus = FRA_question_republic_fn }
 		mutually_exclusive = { focus = FRA_restore_kingdom_fn }
+		mutually_exclusive = { focus = FRA_republic_safe_fn }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		available = {
@@ -4840,7 +4903,7 @@ focus_tree = {
 				nationalist_right_wing_populists_are_in_power = yes
 				nationalist_monarchists_are_in_power = yes
 			}
-			has_country_flag = FRA_referendum_passed
+			has_country_flag = FRA_bonapartists_won_coup
 		}
 
 		completion_reward = {
@@ -5061,10 +5124,26 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_distance_nato_lfi"
-			add_timed_idea = {
-				idea = FRA_distance_nato
-				days = 365
+			add_ideas = FRA_distance_nato
+			# Add LFI non-aligned foreign policy
+			add_ideas = FRA_lfi_non_aligned_policy
+			# Set LFI path flag
+			hidden_effect = {
+				set_country_flag = FRA_lfi_path
 			}
+			# Notify NATO allies
+			every_country = {
+				limit = {
+					has_idea = NATO_member
+					NOT = { tag = FRA }
+					NOT = { tag = USA }
+				}
+				country_event = { id = france_md.804 days = 10 }
+			}
+			# Trigger non-aligned initiative event
+			country_event = { id = france_md.809 days = 30 }
+			# Palestine recognition event
+			country_event = { id = france_md.805 days = 60 }
 		}
 
 		ai_will_do = {
@@ -6496,7 +6575,35 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_leave_nato"
+			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_leave_nato_PCF"
+			# Leave NATO
+			NATO_leave = yes
+			add_ideas = FRA_left_nato
+			# Add Communist foreign policy idea
+			add_ideas = FRA_communist_foreign_policy
+			# Set Communist path flags
+			hidden_effect = {
+				set_country_flag = FRA_communist_path
+				set_country_flag = FRA_pcf_path
+				set_country_flag = FRA_left_nato_permanently
+			}
+			# Trigger USA reaction
+			USA = {
+				country_event = { id = france_md.800 days = 5 }
+			}
+			# Trigger communist foreign policy consequences
+			country_event = { id = france_md.803 days = 30 }
+			# Palestine recognition event
+			country_event = { id = france_md.805 days = 60 }
+			# Notify NATO allies
+			every_country = {
+				limit = {
+					has_idea = NATO_member
+					NOT = { tag = FRA }
+					NOT = { tag = USA }
+				}
+				country_event = { id = france_md.804 days = 7 }
+			}
 		}
 
 		ai_will_do = {
@@ -7116,6 +7223,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus id = FRA_foreign_recognition_pcf"
 			add_ideas= FRA_international_will_be_humankind
+			country_event = { id = france_md.370 days = 30 }
 		}
 
 		ai_will_do = {
@@ -7142,22 +7250,23 @@ focus_tree = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
+			has_country_flag = FRA_allowed_extremists_left
+			NOT = { has_idea = FRA_radical_infiltration }
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus FRA_constitutional_crisis_pcf"
 			country_event = { id = france_md.340 days = 5 }
-			add_stability = -0.1
-			add_political_power = -100
 		}
 
 		ai_will_do = {
 			factor = 5
 		}
 	}
+	# Republic is Safe - Communist crackdown path
 	focus = {
-		id = FRA_abolish_fifth_republic_pcf
-		icon = Generic_Coup02
+		id = FRA_republic_safe_pcf
+		icon = national_unity
 
 		x = -35
 		y = 12
@@ -7173,12 +7282,14 @@ focus_tree = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
-			has_country_flag = FRA_constitutional_crisis_started
+			has_country_flag = FRA_crackdown_extremists_left
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus FRA_abolish_fifth_republic_pcf"
-			country_event = { id = france_md.342 days = 3 }
+			log = "[GetDateText]: [THIS.GetName]: Focus FRA_republic_safe_pcf"
+			add_stability = 0.1
+			add_political_power = 100
+			country_event = { id = france_md.372 days = 1 }
 		}
 
 		ai_will_do = {
@@ -7186,51 +7297,17 @@ focus_tree = {
 		}
 	}
 	focus = {
-		id = FRA_sixth_republic
-		icon = workers_of_the_world
-
-		x = -33
-		y = 13
-		relative_position_id = FRA_state_of_french_politics
-
-		cost = 10
-
-		prerequisite = { focus = FRA_abolish_fifth_republic_pcf }
-		mutually_exclusive = { focus = FRA_french_commune_peaceful }
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
-
-		available = {
-			OR = {
-				emerging_communist_state_are_in_power = yes
-				neutrality_neutral_communism_are_in_power = yes
-			}
-			has_country_flag = FRA_republic_abolished
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus FRA_sixth_republic"
-			country_event = { id = france_md.344 days = 1 }
-			add_stability = 0.1
-			add_political_power = 150
-			add_ideas = FRA_sixth_republic_idea
-		}
-
-		ai_will_do = {
-			factor = 3
-		}
-	}
-	focus = {
 		id = FRA_french_commune_peaceful
 		icon = red_star
 
-		x = -37
-		y = 13
+		x = -33
+		y = 12
 		relative_position_id = FRA_state_of_french_politics
 
 		cost = 10
 
-		prerequisite = { focus = FRA_abolish_fifth_republic_pcf }
-		mutually_exclusive = { focus = FRA_sixth_republic }
+		prerequisite = { focus = FRA_constitutional_crisis_pcf }
+		mutually_exclusive = { focus = FRA_republic_safe_pcf }
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
 		available = {
@@ -7238,7 +7315,7 @@ focus_tree = {
 				emerging_communist_state_are_in_power = yes
 				neutrality_neutral_communism_are_in_power = yes
 			}
-			has_country_flag = FRA_republic_abolished
+			has_country_flag = FRA_coup_by_extremists_left
 		}
 
 		completion_reward = {

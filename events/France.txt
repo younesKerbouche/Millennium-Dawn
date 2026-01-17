@@ -4066,8 +4066,8 @@ country_event = {
 		}
 	}
 	option = {
-		name = france_md.218.d
-		log = "[GetDateText]: [This.GetName]: france_md.218.d executed"
+		name = france_md.218.e
+		log = "[GetDateText]: [This.GetName]: france_md.218.e executed"
 		if = {
 			limit = { check_variable = { party_pop_array^2 > 0.2 } }
 			country_event = { id = france_md.221 days = 5 }
@@ -8288,8 +8288,8 @@ country_event = {
 
 	# Decline
 	option = {
-		name = france_md.323.d
-		log = "[GetDateText]: [This.GetName]: france_md.323.d executed"
+		name = france_md.323.e
+		log = "[GetDateText]: [This.GetName]: france_md.323.e executed"
 		add_political_power = 25
 		ai_chance = { base = 0 }
 	}
@@ -8447,8 +8447,8 @@ country_event = {
 
 	# Decline
 	option = {
-		name = france_md.325.d
-		log = "[GetDateText]: [This.GetName]: france_md.325.d executed"
+		name = france_md.325.e
+		log = "[GetDateText]: [This.GetName]: france_md.325.e executed"
 		add_political_power = 25
 		ai_chance = { base = 0 }
 	}
@@ -8606,8 +8606,8 @@ country_event = {
 
 	# Decline
 	option = {
-		name = france_md.327.d
-		log = "[GetDateText]: [This.GetName]: france_md.327.d executed"
+		name = france_md.327.e
+		log = "[GetDateText]: [This.GetName]: france_md.327.e executed"
 		add_political_power = 25
 		ai_chance = { base = 0 }
 	}
@@ -8765,8 +8765,8 @@ country_event = {
 
 	# Decline
 	option = {
-		name = france_md.329.d
-		log = "[GetDateText]: [This.GetName]: france_md.329.d executed"
+		name = france_md.329.e
+		log = "[GetDateText]: [This.GetName]: france_md.329.e executed"
 		add_political_power = 25
 		ai_chance = { base = 0 }
 	}
@@ -8924,8 +8924,8 @@ country_event = {
 
 	# Decline
 	option = {
-		name = france_md.331.d
-		log = "[GetDateText]: [This.GetName]: france_md.331.d executed"
+		name = france_md.331.e
+		log = "[GetDateText]: [This.GetName]: france_md.331.e executed"
 		add_political_power = 25
 		ai_chance = { base = 0 }
 	}
@@ -9083,8 +9083,8 @@ country_event = {
 
 	# Decline
 	option = {
-		name = france_md.333.d
-		log = "[GetDateText]: [This.GetName]: france_md.333.d executed"
+		name = france_md.333.e
+		log = "[GetDateText]: [This.GetName]: france_md.333.e executed"
 		add_political_power = 25
 		ai_chance = { base = 0 }
 	}
@@ -9345,7 +9345,158 @@ country_event = {
 
 ### Communist Path - End the Republic Events ###
 
-# Constitutional Crisis Erupts
+### New Extremist Infiltration System Events (france_md.370-374) ###
+
+# Communist Path - Allow Extremists?
+country_event = {
+	id = france_md.370
+	title = france_md.370.t
+	desc = france_md.370.d
+	picture = GFX_french_riot
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Allow the radical faction to organize
+	option = {
+		name = france_md.370.a
+		log = "[GetDateText]: [This.GetName]: france_md.370.a executed"
+		set_country_flag = FRA_allowed_extremists_left
+		add_ideas = FRA_extremist_paramilitary_left
+		add_timed_idea = {
+			idea = FRA_radical_infiltration
+			days = 730
+		}
+		add_stability = -0.05
+		ai_chance = { base = 1 }
+	}
+
+	# Reject the radicals - maintain democratic principles
+	option = {
+		name = france_md.370.b
+		log = "[GetDateText]: [This.GetName]: france_md.370.b executed"
+		add_political_power = 50
+		add_stability = 0.05
+		ai_chance = { base = 2 }
+	}
+}
+
+# Nationalist Path - Allow Extremists?
+country_event = {
+	id = france_md.371
+	title = france_md.371.t
+	desc = france_md.371.d
+	picture = GFX_fra_coronation
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Allow the traditionalist faction to organize
+	option = {
+		name = france_md.371.a
+		log = "[GetDateText]: [This.GetName]: france_md.371.a executed"
+		set_country_flag = FRA_allowed_extremists_right
+		add_ideas = FRA_extremist_paramilitary_right
+		add_timed_idea = {
+			idea = FRA_traditionalist_infiltration
+			days = 730
+		}
+		add_stability = -0.05
+		ai_chance = { base = 1 }
+	}
+
+	# Reject the traditionalists - maintain republican values
+	option = {
+		name = france_md.371.b
+		log = "[GetDateText]: [This.GetName]: france_md.371.b executed"
+		add_political_power = 50
+		add_stability = 0.05
+		ai_chance = { base = 2 }
+	}
+}
+
+# Republic is Safe - Communist Crackdown
+country_event = {
+	id = france_md.372
+	title = france_md.372.t
+	desc = france_md.372.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	option = {
+		name = france_md.372.a
+		log = "[GetDateText]: [This.GetName]: france_md.372.a executed"
+		add_ideas = FRA_republic_stabilized_left
+		add_political_power = 100
+		ai_chance = { base = 1 }
+	}
+}
+
+# Republic is Safe - Nationalist Crackdown
+country_event = {
+	id = france_md.373
+	title = france_md.373.t
+	desc = france_md.373.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	option = {
+		name = france_md.373.a
+		log = "[GetDateText]: [This.GetName]: france_md.373.a executed"
+		add_ideas = FRA_republic_stabilized_right
+		add_political_power = 100
+		ai_chance = { base = 1 }
+	}
+}
+
+# Nationalist Factions Fight for Power
+country_event = {
+	id = france_md.374
+	title = france_md.374.t
+	desc = france_md.374.d
+	picture = GFX_fra_coronation
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# The Monarchists prevail - restore the Kingdom
+	option = {
+		name = france_md.374.a
+		log = "[GetDateText]: [This.GetName]: france_md.374.a executed"
+		set_country_flag = FRA_monarchists_won_coup
+		add_stability = -0.1
+		set_temp_variable = { party_index = 21 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		add_relative_party_popularity = yes
+		ai_chance = { base = 1 }
+	}
+
+	# The Bonapartists prevail - restore the Empire
+	option = {
+		name = france_md.374.b
+		log = "[GetDateText]: [This.GetName]: france_md.374.b executed"
+		set_country_flag = FRA_bonapartists_won_coup
+		add_stability = -0.1
+		add_war_support = 0.1
+		set_temp_variable = { party_index = 21 }
+		set_temp_variable = { party_popularity_increase = 0.1 }
+		add_relative_party_popularity = yes
+		ai_chance = { base = 1 }
+	}
+}
+
+### Constitutional Crisis Events (Crackdown vs Let Them Be) ###
+
+# Constitutional Crisis - Communist Path
 country_event = {
 	id = france_md.340
 	title = france_md.340.t
@@ -9356,21 +9507,29 @@ country_event = {
 		original_tag = FRA
 	}
 
-	# Mass mobilization begins
+	# Crackdown on the radicals
 	option = {
 		name = france_md.340.a
 		log = "[GetDateText]: [This.GetName]: france_md.340.a executed"
-		set_country_flag = FRA_constitutional_crisis_started
-		add_timed_idea = {
-			idea = FRA_general_strike
-			days = 180
-		}
-		country_event = { id = france_md.341 days = 30 }
+		set_country_flag = FRA_crackdown_extremists_left
+		remove_ideas = FRA_extremist_paramilitary_left
+		add_stability = 0.05
+		add_political_power = -50
+		ai_chance = { base = 2 }
+	}
+
+	# Let them be - the revolution continues
+	option = {
+		name = france_md.340.b
+		log = "[GetDateText]: [This.GetName]: france_md.340.b executed"
+		set_country_flag = FRA_coup_by_extremists_left
+		add_stability = -0.15
+		country_event = { id = france_md.341 days = 10 }
 		ai_chance = { base = 1 }
 	}
 }
 
-# Mass Mobilization - Workers Take to the Streets
+# The Radicals Seize Power - Communist Coup
 country_event = {
 	id = france_md.341
 	title = france_md.341.t
@@ -9381,57 +9540,14 @@ country_event = {
 		original_tag = FRA
 	}
 
-	# The CGT leads the charge
+	# The coup succeeds
 	option = {
 		name = france_md.341.a
 		log = "[GetDateText]: [This.GetName]: france_md.341.a executed"
-		add_stability = -0.05
-		add_political_power = 50
+		add_stability = -0.1
+		add_political_power = -100
 		set_temp_variable = { temp_opinion = 20 }
 		change_labour_unions_opinion = yes
-		ai_chance = { base = 1 }
-	}
-}
-
-# Constituent Assembly Convenes
-country_event = {
-	id = france_md.342
-	title = france_md.342.t
-	desc = france_md.342.d
-	picture = GFX_generic_parliament
-	is_triggered_only = yes
-	trigger = {
-		original_tag = FRA
-	}
-
-	# Abolish the Fifth Republic
-	option = {
-		name = france_md.342.a
-		log = "[GetDateText]: [This.GetName]: france_md.342.a executed"
-		set_country_flag = FRA_republic_abolished
-		remove_ideas = FRA_general_strike
-		add_stability = 0.05
-		country_event = { id = france_md.343 days = 5 }
-		ai_chance = { base = 1 }
-	}
-}
-
-# The Republic Falls - A New Dawn
-country_event = {
-	id = france_md.343
-	title = france_md.343.t
-	desc = france_md.343.d
-	picture = GFX_french_riot
-	is_triggered_only = yes
-	trigger = {
-		original_tag = FRA
-	}
-
-	# The old order crumbles
-	option = {
-		name = france_md.343.a
-		log = "[GetDateText]: [This.GetName]: france_md.343.a executed"
-		add_political_power = 100
 		every_other_country = {
 			limit = {
 				OR = {
@@ -9442,43 +9558,6 @@ country_event = {
 			add_opinion_modifier = {
 				target = FRA
 				modifier = recent_actions_negative
-			}
-		}
-		ai_chance = { base = 1 }
-	}
-}
-
-# Proclaim the Sixth Republic
-country_event = {
-	id = france_md.344
-	title = france_md.344.t
-	desc = france_md.344.d
-	picture = GFX_generic_parliament
-	is_triggered_only = yes
-	trigger = {
-		original_tag = FRA
-	}
-
-	# A democratic socialist France is born
-	option = {
-		name = france_md.344.a
-		log = "[GetDateText]: [This.GetName]: france_md.344.a executed"
-		set_cosmetic_tag = FRA_sixth_republic
-		add_stability = 0.1
-		add_political_power = 200
-		set_temp_variable = { party_index = 14 }
-		set_temp_variable = { party_popularity_increase = 0.1 }
-		add_relative_party_popularity = yes
-		every_other_country = {
-			limit = {
-				OR = {
-					emerging_communist_state_are_in_power = yes
-					neutrality_neutral_communism_are_in_power = yes
-				}
-			}
-			add_opinion_modifier = {
-				target = FRA
-				modifier = supports_us
 			}
 		}
 		ai_chance = { base = 1 }
@@ -9530,91 +9609,58 @@ country_event = {
 
 ### National Rally Path - End the Republic Events ###
 
-# Question the Republic's Legitimacy
+# Question the Republic - Nationalist Path
 country_event = {
-	id = france_md.350
-	title = france_md.350.t
-	desc = france_md.350.d
+	id = france_md.375
+	title = france_md.375.t
+	desc = france_md.375.d
 	picture = GFX_generic_parliament
 	is_triggered_only = yes
 	trigger = {
 		original_tag = FRA
 	}
 
-	# The Republic has failed France
+	# Crackdown on the traditionalists
 	option = {
-		name = france_md.350.a
-		log = "[GetDateText]: [This.GetName]: france_md.350.a executed"
-		set_country_flag = FRA_questioned_republic
-		add_stability = -0.05
+		name = france_md.375.a
+		log = "[GetDateText]: [This.GetName]: france_md.375.a executed"
+		set_country_flag = FRA_crackdown_extremists_right
+		remove_ideas = FRA_extremist_paramilitary_right
+		add_stability = 0.05
 		add_political_power = -50
-		country_event = { id = france_md.351 days = 20 }
+		ai_chance = { base = 2 }
+	}
+
+	# Let them be - the restoration continues
+	option = {
+		name = france_md.375.b
+		log = "[GetDateText]: [This.GetName]: france_md.375.b executed"
+		add_stability = -0.15
+		country_event = { id = france_md.376 days = 10 }
 		ai_chance = { base = 1 }
 	}
 }
 
-# The Movement Grows - Calls for Restoration
+# The Traditionalists Seize Power - Nationalist Coup
 country_event = {
-	id = france_md.351
-	title = france_md.351.t
-	desc = france_md.351.d
+	id = france_md.376
+	title = france_md.376.t
+	desc = france_md.376.d
 	picture = GFX_fra_coronation
 	is_triggered_only = yes
 	trigger = {
 		original_tag = FRA
 	}
 
-	# Traditionalists rally to the cause
+	# The coup succeeds - now the factions fight for control
 	option = {
-		name = france_md.351.a
-		log = "[GetDateText]: [This.GetName]: france_md.351.a executed"
-		add_stability = 0.03
-		set_temp_variable = { party_index = 20 }
-		set_temp_variable = { party_popularity_increase = 0.05 }
+		name = france_md.376.a
+		log = "[GetDateText]: [This.GetName]: france_md.376.a executed"
+		add_stability = -0.1
+		add_political_power = -100
+		set_temp_variable = { party_index = 21 }
+		set_temp_variable = { party_popularity_increase = 0.15 }
 		add_relative_party_popularity = yes
-		ai_chance = { base = 1 }
-	}
-}
-
-# Referendum on the Republic's Future
-country_event = {
-	id = france_md.352
-	title = france_md.352.t
-	desc = france_md.352.d
-	picture = GFX_generic_parliament
-	is_triggered_only = yes
-	trigger = {
-		original_tag = FRA
-	}
-
-	# The people vote to restore the monarchy/empire
-	option = {
-		name = france_md.352.a
-		log = "[GetDateText]: [This.GetName]: france_md.352.a executed"
-		set_country_flag = FRA_referendum_passed
-		add_stability = 0.05
-		add_political_power = 100
-		country_event = { id = france_md.353 days = 3 }
-		ai_chance = { base = 1 }
-	}
-}
-
-# The People Have Spoken
-country_event = {
-	id = france_md.353
-	title = france_md.353.t
-	desc = france_md.353.d
-	picture = GFX_fra_coronation
-	is_triggered_only = yes
-	trigger = {
-		original_tag = FRA
-	}
-
-	# The Fifth Republic ends
-	option = {
-		name = france_md.353.a
-		log = "[GetDateText]: [This.GetName]: france_md.353.a executed"
-		add_stability = 0.05
 		every_other_country = {
 			limit = { has_idea = EU_member }
 			add_opinion_modifier = {
@@ -9622,6 +9668,7 @@ country_event = {
 				modifier = recent_actions_negative
 			}
 		}
+		country_event = { id = france_md.374 days = 5 }
 		ai_chance = { base = 1 }
 	}
 }
@@ -9761,4 +9808,1719 @@ country_event = {
 	}
 }
 
+
+#################################################
+# Extremist Faction Foreign Policy Events
+# IDs: france_md.800 - france_md.815
+# Author: Claude Code
+#################################################
+
+# USA Reaction to French Anti-American Policy
+country_event = {
+	id = france_md.800
+	title = france_md.800.t
+	desc = france_md.800.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = USA
+	}
+
+	# Condemn this hostile shift
+	option = {
+		name = france_md.800.a
+		log = "[GetDateText]: [This.GetName]: france_md.800.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = FRA_anti_american_policy
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = USA_condemns_policy
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Attempt diplomatic outreach
+	option = {
+		name = france_md.800.b
+		log = "[GetDateText]: [This.GetName]: france_md.800.b executed"
+		add_political_power = -50
+		FRA = {
+			country_event = { id = france_md.801 days = 5 }
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# French Response to US Diplomatic Outreach
+country_event = {
+	id = france_md.801
+	title = france_md.801.t
+	desc = france_md.801.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+	}
+
+	# Reject American overtures
+	option = {
+		name = france_md.801.a
+		log = "[GetDateText]: [This.GetName]: france_md.801.a executed"
+		trigger = {
+			FRA_on_anti_american_path = yes
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		USA = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = diplomatic_rejection
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Consider limited cooperation
+	option = {
+		name = france_md.801.b
+		log = "[GetDateText]: [This.GetName]: france_md.801.b executed"
+		trigger = {
+			NOT = { FRA_on_far_left_path = yes }
+		}
+		add_political_power = -25
+		USA = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# Russia Welcomes French Realignment (for Gaullist/FN paths)
+country_event = {
+	id = france_md.802
+	title = france_md.802.t
+	desc = france_md.802.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = SOV
+	}
+
+	# Strengthen ties with France
+	option = {
+		name = france_md.802.a
+		log = "[GetDateText]: [This.GetName]: france_md.802.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = improved_relations
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = improved_relations
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Cautious approach
+	option = {
+		name = france_md.802.b
+		log = "[GetDateText]: [This.GetName]: france_md.802.b executed"
+		add_political_power = 10
+		ai_chance = { base = 1 }
+	}
+}
+
+# Communist Foreign Policy Consequences
+country_event = {
+	id = france_md.803
+	title = france_md.803.t
+	desc = france_md.803.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+		FRA_on_far_left_path = yes
+	}
+
+	# Embrace socialist solidarity
+	option = {
+		name = france_md.803.a
+		log = "[GetDateText]: [This.GetName]: france_md.803.a executed"
+		add_political_power = 50
+		add_stability = -0.03
+		# Improved relations with socialist countries
+		CUB = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = improved_relations
+			}
+		}
+		VEN = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = improved_relations
+			}
+		}
+		ai_chance = { base = 2 }
+	}
+
+	# Moderate our approach
+	option = {
+		name = france_md.803.b
+		log = "[GetDateText]: [This.GetName]: france_md.803.b executed"
+		add_political_power = -25
+		add_stability = 0.02
+		ai_chance = { base = 1 }
+	}
+}
+
+# NATO Allies React to French Distance from Alliance
+country_event = {
+	id = france_md.804
+	title = france_md.804.t
+	desc = france_md.804.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		has_idea = NATO_member
+		NOT = { original_tag = FRA }
+		NOT = { original_tag = USA }
+	}
+
+	# Express concern
+	option = {
+		name = france_md.804.a
+		log = "[GetDateText]: [This.GetName]: france_md.804.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = FRA_nato_distance_concern
+		}
+		ai_chance = { base = 2 }
+	}
+
+	# Remain neutral
+	option = {
+		name = france_md.804.b
+		log = "[GetDateText]: [This.GetName]: france_md.804.b executed"
+		add_political_power = -10
+		ai_chance = { base = 1 }
+	}
+}
+
+# Palestine Recognition Event (Far-Left paths)
+country_event = {
+	id = france_md.805
+	title = france_md.805.t
+	desc = france_md.805.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+		FRA_on_far_left_path = yes
+	}
+
+	# Recognize Palestine
+	option = {
+		name = france_md.805.a
+		log = "[GetDateText]: [This.GetName]: france_md.805.a executed"
+		set_country_flag = FRA_supports_two_state_solution
+		add_political_power = 25
+		add_stability = 0.01
+		# Trigger Israeli reaction
+		ISR = {
+			country_event = { id = france_md.806 days = 3 }
+		}
+		# Arab states approve
+		every_country = {
+			limit = {
+				OR = {
+					tag = EGY
+					tag = JOR
+					tag = SAU
+					tag = UAE
+				}
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Delay recognition
+	option = {
+		name = france_md.805.b
+		log = "[GetDateText]: [This.GetName]: france_md.805.b executed"
+		add_political_power = -50
+		add_stability = -0.02
+		ai_chance = { base = 1 }
+	}
+}
+
+# Israeli Reaction to French Palestine Recognition
+country_event = {
+	id = france_md.806
+	title = france_md.806.t
+	desc = france_md.806.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = ISR
+	}
+
+	# Condemn France
+	option = {
+		name = france_md.806.a
+		log = "[GetDateText]: [This.GetName]: france_md.806.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = major_breach_of_trust
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = ISR
+				modifier = diplomatic_rejection
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Measured response
+	option = {
+		name = france_md.806.b
+		log = "[GetDateText]: [This.GetName]: france_md.806.b executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = small_decrease
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# Ukraine War Dilemma for Pro-Russia French Factions
+country_event = {
+	id = france_md.807
+	title = france_md.807.t
+	desc = france_md.807.d
+	picture = GFX_generic_parliament
+	fire_only_once = yes
+	trigger = {
+		original_tag = FRA
+		date > 2022.2.24
+		OR = {
+			FRA_on_gaullist_path = yes
+			FRA_on_far_right_path = yes
+		}
+		SOV = { has_war_with = UKR }
+	}
+
+	mean_time_to_happen = { days = 30 }
+
+	# Condemn Russian aggression (pivot away)
+	option = {
+		name = france_md.807.a
+		log = "[GetDateText]: [This.GetName]: france_md.807.a executed"
+		add_political_power = -75
+		add_stability = -0.05
+		if = {
+			limit = { has_idea = FRA_fn_russia_alignment_idea }
+			remove_ideas = FRA_fn_russia_alignment_idea
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = major_breach_of_trust
+			}
+		}
+		USA = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+		}
+		ai_chance = { base = 2 }
+	}
+
+	# Maintain neutrality
+	option = {
+		name = france_md.807.b
+		log = "[GetDateText]: [This.GetName]: france_md.807.b executed"
+		add_political_power = -100
+		add_stability = -0.08
+		add_war_support = -0.10
+		every_country = {
+			limit = { has_idea = NATO_member }
+			add_opinion_modifier = {
+				target = FRA
+				modifier = FRA_ukraine_neutrality
+			}
+		}
+		ai_chance = { base = 1 }
+	}
+
+	# Support Russian position (extreme)
+	option = {
+		name = france_md.807.c
+		log = "[GetDateText]: [This.GetName]: france_md.807.c executed"
+		trigger = {
+			has_government = nationalist
+		}
+		add_political_power = 50
+		add_stability = -0.15
+		add_war_support = -0.20
+		every_country = {
+			limit = { has_idea = NATO_member }
+			add_opinion_modifier = {
+				target = FRA
+				modifier = major_breach_of_trust
+			}
+		}
+		every_country = {
+			limit = { has_idea = EU_member }
+			add_opinion_modifier = {
+				target = FRA
+				modifier = major_breach_of_trust
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = improved_relations
+			}
+		}
+		ai_chance = { base = 0 }
+	}
+}
+
+# EU Reaction to French Sovereigntist Policy
+country_event = {
+	id = france_md.808
+	title = france_md.808.t
+	desc = france_md.808.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		has_idea = EU_member
+		NOT = { original_tag = FRA }
+	}
+
+	# Oppose French obstructionism
+	option = {
+		name = france_md.808.a
+		log = "[GetDateText]: [This.GetName]: france_md.808.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = FRA_eu_obstruction
+		}
+		ai_chance = { base = 2 }
+	}
+
+	# Sympathize with sovereignty concerns
+	option = {
+		name = france_md.808.b
+		log = "[GetDateText]: [This.GetName]: france_md.808.b executed"
+		add_political_power = -25
+		add_opinion_modifier = {
+			target = FRA
+			modifier = small_increase
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+# LFI Non-Aligned Movement Initiative
+country_event = {
+	id = france_md.809
+	title = france_md.809.t
+	desc = france_md.809.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+		has_idea = FRA_lfi_non_aligned_policy
+	}
+
+	# Pursue non-aligned leadership
+	option = {
+		name = france_md.809.a
+		log = "[GetDateText]: [This.GetName]: france_md.809.a executed"
+		add_political_power = 75
+		add_stability = 0.02
+		# Improved relations with non-aligned nations
+		IND = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+		}
+		BRA = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+		}
+		ai_chance = { base = 2 }
+	}
+
+	# Focus on domestic issues
+	option = {
+		name = france_md.809.b
+		log = "[GetDateText]: [This.GetName]: france_md.809.b executed"
+		add_political_power = 25
+		ai_chance = { base = 1 }
+	}
+}
+
+# German Reaction to French Strategic Independence
+country_event = {
+	id = france_md.810
+	title = france_md.810.t
+	desc = france_md.810.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = GER
+	}
+
+	# Express concern about Franco-German axis
+	option = {
+		name = france_md.810.a
+		log = "[GetDateText]: [This.GetName]: france_md.810.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = FRA_strategic_independence_concern
+		}
+		ai_chance = { base = 2 }
+	}
+
+	# Respect French sovereignty
+	option = {
+		name = france_md.810.b
+		log = "[GetDateText]: [This.GetName]: france_md.810.b executed"
+		add_political_power = 10
+		ai_chance = { base = 1 }
+	}
+}
+
+# China Welcomes French Multipolarity Stance
+country_event = {
+	id = france_md.811
+	title = france_md.811.t
+	desc = france_md.811.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = CHI
+	}
+
+	# Strengthen ties with France
+	option = {
+		name = france_md.811.a
+		log = "[GetDateText]: [This.GetName]: france_md.811.a executed"
+		add_opinion_modifier = {
+			target = FRA
+			modifier = improved_relations
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = improved_relations
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Cautious engagement
+	option = {
+		name = france_md.811.b
+		log = "[GetDateText]: [This.GetName]: france_md.811.b executed"
+		add_political_power = 10
+		ai_chance = { base = 1 }
+	}
+}
+
+# NATO Exit Consequences
+country_event = {
+	id = france_md.812
+	title = france_md.812.t
+	desc = france_md.812.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		original_tag = FRA
+		has_idea = FRA_left_nato
+	}
+
+	# Embrace strategic independence
+	option = {
+		name = france_md.812.a
+		log = "[GetDateText]: [This.GetName]: france_md.812.a executed"
+		add_political_power = 100
+		add_stability = -0.05
+		add_war_support = 0.10
+		set_country_flag = FRA_left_nato_permanently
+		ai_chance = { base = 2 }
+	}
+
+	# Seek new alliances
+	option = {
+		name = france_md.812.b
+		log = "[GetDateText]: [This.GetName]: france_md.812.b executed"
+		add_political_power = 50
+		add_stability = -0.03
+		set_country_flag = FRA_left_nato_permanently
+		# Trigger Russia and China events
+		SOV = {
+			country_event = { id = france_md.802 days = 10 }
+		}
+		CHI = {
+			country_event = { id = france_md.811 days = 15 }
+		}
+		ai_chance = { base = 1 }
+	}
+}
+
+###################################
+# FRENCH POLITICAL FLAVOR EVENTS #
+###################################
+
+# Budget Minister Tax Evasion Scandal (inspired by Cahuzac affair)
+country_event = {
+	id = france_md.900
+	title = france_md.900.t
+	desc = france_md.900.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_budget_scandal_happened }
+		date > 2001.1.1
+		OR = {
+			has_idea = democratic_conservative
+			has_idea = democratic_liberal
+			has_idea = democratic_socialist
+			has_idea = social_democratic
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 360
+		modifier = {
+			factor = 0.5
+			has_stability < 0.5
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_budget_scandal_happened
+	}
+
+	# Immediate dismissal and prosecution
+	option = {
+		name = france_md.900.a
+		log = "[GetDateText]: [This.GetName]: france_md.900.a executed"
+		add_stability = -0.03
+		add_political_power = -50
+		add_popularity = { ideology = ruling_party popularity = -0.02 }
+		set_country_flag = FRA_handled_scandal_well
+		ai_chance = { base = 5 }
+	}
+
+	# Force resignation only - quick fix
+	option = {
+		name = france_md.900.b
+		log = "[GetDateText]: [This.GetName]: france_md.900.b executed"
+		add_stability = -0.05
+		add_political_power = -25
+		add_popularity = { ideology = ruling_party popularity = -0.03 }
+		country_event = { id = france_md.901 days = 60 }
+		ai_chance = { base = 3 }
+	}
+
+	# Defend the minister initially
+	option = {
+		name = france_md.900.c
+		log = "[GetDateText]: [This.GetName]: france_md.900.c executed"
+		add_stability = -0.08
+		add_political_power = -100
+		add_popularity = { ideology = ruling_party popularity = -0.05 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Scandal fallout - transparency reforms
+country_event = {
+	id = france_md.901
+	title = france_md.901.t
+	desc = france_md.901.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+
+	# Implement transparency reforms
+	option = {
+		name = france_md.901.a
+		log = "[GetDateText]: [This.GetName]: france_md.901.a executed"
+		add_stability = 0.02
+		add_political_power = 25
+		add_ideas = FRA_idea_transparency_reforms
+		ai_chance = { base = 5 }
+	}
+
+	# Minimal changes
+	option = {
+		name = france_md.901.b
+		log = "[GetDateText]: [This.GetName]: france_md.901.b executed"
+		add_stability = -0.02
+		ai_chance = { base = 2 }
+	}
+}
+
+# Presidential Candidate Employment Scandal (inspired by Fillon Penelopegate)
+country_event = {
+	id = france_md.902
+	title = france_md.902.t
+	desc = france_md.902.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_candidate_scandal_happened }
+		date > 2005.1.1
+		OR = {
+			has_idea = democratic_conservative
+			has_idea = democratic_liberal
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 480
+		modifier = {
+			factor = 0.5
+			has_country_flag = FRA_lr_path
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_candidate_scandal_happened
+	}
+
+	# The accused withdraws from race
+	option = {
+		name = france_md.902.a
+		log = "[GetDateText]: [This.GetName]: france_md.902.a executed"
+		add_stability = -0.02
+		add_political_power = -75
+		add_popularity = { ideology = conservatism popularity = -0.05 }
+		ai_chance = { base = 3 }
+	}
+
+	# Continue despite scandal
+	option = {
+		name = france_md.902.b
+		log = "[GetDateText]: [This.GetName]: france_md.902.b executed"
+		add_stability = -0.05
+		add_political_power = -50
+		add_popularity = { ideology = ruling_party popularity = -0.03 }
+		ai_chance = { base = 2 }
+	}
+
+	# Attack media as biased
+	option = {
+		name = france_md.902.c
+		log = "[GetDateText]: [This.GetName]: france_md.902.c executed"
+		add_stability = -0.03
+		add_political_power = 25
+		add_popularity = { ideology = nationalism popularity = 0.02 }
+		add_popularity = { ideology = ruling_party popularity = -0.02 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Former President Legal Troubles (inspired by Sarkozy convictions)
+country_event = {
+	id = france_md.903
+	title = france_md.903.t
+	desc = france_md.903.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_former_president_trial }
+		date > 2010.1.1
+		OR = {
+			has_country_flag = FRA_budget_scandal_happened
+			has_country_flag = FRA_candidate_scandal_happened
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		set_country_flag = FRA_former_president_trial
+	}
+
+	# Justice must be served
+	option = {
+		name = france_md.903.a
+		log = "[GetDateText]: [This.GetName]: france_md.903.a executed"
+		add_stability = 0.02
+		add_political_power = 50
+		set_country_flag = FRA_rule_of_law_upheld
+		ai_chance = { base = 5 }
+	}
+
+	# This is a political witch hunt
+	option = {
+		name = france_md.903.b
+		log = "[GetDateText]: [This.GetName]: france_md.903.b executed"
+		add_stability = -0.02
+		add_political_power = -25
+		add_popularity = { ideology = nationalism popularity = 0.02 }
+		ai_chance = { base = 2 }
+	}
+}
+
+# Yellow Vests Movement Begins
+country_event = {
+	id = france_md.910
+	title = france_md.910.t
+	desc = france_md.910.d
+	picture = GFX_generic_riots
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_yellow_vests_started }
+		date > 2010.1.1
+		OR = {
+			has_idea = democratic_conservative
+			has_idea = democratic_liberal
+			has_idea = democratic_socialist
+		}
+		OR = {
+			has_stability < 0.6
+			check_variable = { gdp_per_capita < 35000 }
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 300
+		modifier = {
+			factor = 0.5
+			has_stability < 0.5
+		}
+		modifier = {
+			factor = 0.7
+			check_variable = { unemployment_rate > 0.08 }
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_yellow_vests_started
+	}
+
+	# Cancel fuel tax increases
+	option = {
+		name = france_md.910.a
+		log = "[GetDateText]: [This.GetName]: france_md.910.a executed"
+		add_stability = 0.02
+		add_political_power = -100
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		set_country_flag = FRA_yellow_vests_conceded
+		ai_chance = { base = 3 }
+	}
+
+	# Maintain the tax but increase dialogue
+	option = {
+		name = france_md.910.b
+		log = "[GetDateText]: [This.GetName]: france_md.910.b executed"
+		add_stability = -0.03
+		add_political_power = -50
+		country_event = { id = france_md.911 days = 30 }
+		ai_chance = { base = 3 }
+	}
+
+	# Stand firm - the reforms are necessary
+	option = {
+		name = france_md.910.c
+		log = "[GetDateText]: [This.GetName]: france_md.910.c executed"
+		add_stability = -0.08
+		add_political_power = 25
+		add_war_support = -0.05
+		country_event = { id = france_md.912 days = 14 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Yellow Vests - Protests Escalate
+country_event = {
+	id = france_md.911
+	title = france_md.911.t
+	desc = france_md.911.d
+	picture = GFX_generic_riots
+	is_triggered_only = yes
+
+	# Launch Grand National Debate
+	option = {
+		name = france_md.911.a
+		log = "[GetDateText]: [This.GetName]: france_md.911.a executed"
+		add_stability = 0.03
+		add_political_power = -75
+		set_temp_variable = { treasury_change = -2 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_idea_national_debate
+		ai_chance = { base = 4 }
+	}
+
+	# Offer economic concessions
+	option = {
+		name = france_md.911.b
+		log = "[GetDateText]: [This.GetName]: france_md.911.b executed"
+		add_stability = 0.05
+		add_political_power = -100
+		set_temp_variable = { treasury_change = -10 }
+		modify_treasury_effect = yes
+		set_country_flag = FRA_yellow_vests_economic_package
+		ai_chance = { base = 3 }
+	}
+
+	# Crack down on protests
+	option = {
+		name = france_md.911.c
+		log = "[GetDateText]: [This.GetName]: france_md.911.c executed"
+		add_stability = -0.05
+		add_political_power = 50
+		add_war_support = 0.02
+		add_popularity = { ideology = nationalism popularity = 0.03 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Yellow Vests - Crisis Point
+country_event = {
+	id = france_md.912
+	title = france_md.912.t
+	desc = france_md.912.d
+	picture = GFX_generic_riots
+	is_triggered_only = yes
+
+	# Major concessions package
+	option = {
+		name = france_md.912.a
+		log = "[GetDateText]: [This.GetName]: france_md.912.a executed"
+		add_stability = 0.05
+		add_political_power = -150
+		set_temp_variable = { treasury_change = -15 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_idea_social_emergency_measures
+		ai_chance = { base = 3 }
+	}
+
+	# State of emergency
+	option = {
+		name = france_md.912.b
+		log = "[GetDateText]: [This.GetName]: france_md.912.b executed"
+		add_stability = -0.08
+		add_political_power = 100
+		add_war_support = 0.05
+		add_popularity = { ideology = nationalism popularity = 0.05 }
+		add_popularity = { ideology = ruling_party popularity = -0.05 }
+		ai_chance = { base = 2 }
+	}
+}
+
+# Socialist Party Internal Crisis
+country_event = {
+	id = france_md.920
+	title = france_md.920.t
+	desc = france_md.920.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_socialist_crisis_happened }
+		date > 2005.1.1
+		OR = {
+			has_idea = democratic_socialist
+			has_idea = social_democratic
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 360
+		modifier = {
+			factor = 0.5
+			has_stability < 0.5
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_socialist_crisis_happened
+	}
+
+	# Rally the party around core values
+	option = {
+		name = france_md.920.a
+		log = "[GetDateText]: [This.GetName]: france_md.920.a executed"
+		add_stability = 0.02
+		add_political_power = -50
+		add_popularity = { ideology = socialism popularity = 0.02 }
+		ai_chance = { base = 3 }
+	}
+
+	# Accept modernization - move to center
+	option = {
+		name = france_md.920.b
+		log = "[GetDateText]: [This.GetName]: france_md.920.b executed"
+		add_stability = -0.02
+		add_political_power = 25
+		add_popularity = { ideology = socialism popularity = -0.03 }
+		add_popularity = { ideology = liberalism popularity = 0.03 }
+		ai_chance = { base = 3 }
+	}
+
+	# Party splits between factions
+	option = {
+		name = france_md.920.c
+		log = "[GetDateText]: [This.GetName]: france_md.920.c executed"
+		add_stability = -0.05
+		add_political_power = -100
+		add_popularity = { ideology = socialism popularity = -0.05 }
+		add_popularity = { ideology = communism popularity = 0.02 }
+		add_popularity = { ideology = liberalism popularity = 0.02 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# National Rally De-demonization Debate
+country_event = {
+	id = france_md.921
+	title = france_md.921.t
+	desc = france_md.921.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_rn_dedemonization }
+		has_country_flag = FRA_national_rally_path
+		date > 2000.1.1
+	}
+
+	mean_time_to_happen = {
+		months = 120
+	}
+
+	immediate = {
+		set_country_flag = FRA_rn_dedemonization
+	}
+
+	# Embrace moderate image
+	option = {
+		name = france_md.921.a
+		log = "[GetDateText]: [This.GetName]: france_md.921.a executed"
+		add_stability = 0.03
+		add_political_power = 50
+		add_popularity = { ideology = nationalism popularity = 0.03 }
+		add_popularity = { ideology = conservatism popularity = 0.02 }
+		set_country_flag = FRA_rn_moderated
+		ai_chance = { base = 4 }
+	}
+
+	# Maintain hardline positions
+	option = {
+		name = france_md.921.b
+		log = "[GetDateText]: [This.GetName]: france_md.921.b executed"
+		add_stability = -0.02
+		add_political_power = 25
+		add_popularity = { ideology = nationalism popularity = 0.02 }
+		add_popularity = { ideology = fascism popularity = 0.01 }
+		ai_chance = { base = 2 }
+	}
+
+	# Internal family conflict erupts
+	option = {
+		name = france_md.921.c
+		log = "[GetDateText]: [This.GetName]: france_md.921.c executed"
+		add_stability = -0.03
+		add_political_power = -50
+		country_event = { id = france_md.922 days = 30 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# National Rally Family Conflict
+country_event = {
+	id = france_md.922
+	title = france_md.922.t
+	desc = france_md.922.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+
+	# New generation takes control
+	option = {
+		name = france_md.922.a
+		log = "[GetDateText]: [This.GetName]: france_md.922.a executed"
+		add_stability = 0.02
+		add_political_power = 75
+		add_popularity = { ideology = nationalism popularity = 0.03 }
+		set_country_flag = FRA_rn_new_generation
+		ai_chance = { base = 4 }
+	}
+
+	# Founder expelled from party
+	option = {
+		name = france_md.922.b
+		log = "[GetDateText]: [This.GetName]: france_md.922.b executed"
+		add_stability = 0.01
+		add_political_power = 50
+		add_popularity = { ideology = nationalism popularity = 0.02 }
+		add_popularity = { ideology = fascism popularity = -0.02 }
+		ai_chance = { base = 3 }
+	}
+}
+
+# Republican Party Alliance Crisis
+country_event = {
+	id = france_md.923
+	title = france_md.923.t
+	desc = france_md.923.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_republican_alliance_crisis }
+		date > 2015.1.1
+		OR = {
+			has_idea = democratic_conservative
+			has_idea = democratic_liberal
+		}
+		has_country_flag = FRA_rn_moderated
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		set_country_flag = FRA_republican_alliance_crisis
+	}
+
+	# Reject alliance with far-right
+	option = {
+		name = france_md.923.a
+		log = "[GetDateText]: [This.GetName]: france_md.923.a executed"
+		add_stability = 0.02
+		add_political_power = -50
+		add_popularity = { ideology = conservatism popularity = -0.02 }
+		set_country_flag = FRA_maintained_cordon_sanitaire
+		ai_chance = { base = 4 }
+	}
+
+	# Form tactical alliance
+	option = {
+		name = france_md.923.b
+		log = "[GetDateText]: [This.GetName]: france_md.923.b executed"
+		add_stability = -0.03
+		add_political_power = 75
+		add_popularity = { ideology = conservatism popularity = -0.03 }
+		add_popularity = { ideology = nationalism popularity = 0.04 }
+		set_country_flag = FRA_broke_cordon_sanitaire
+		ai_chance = { base = 2 }
+	}
+
+	# Party leader acts unilaterally - party splits
+	option = {
+		name = france_md.923.c
+		log = "[GetDateText]: [This.GetName]: france_md.923.c executed"
+		add_stability = -0.05
+		add_political_power = -100
+		add_popularity = { ideology = conservatism popularity = -0.05 }
+		add_popularity = { ideology = nationalism popularity = 0.03 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Pension Reform Crisis
+country_event = {
+	id = france_md.930
+	title = france_md.930.t
+	desc = france_md.930.d
+	picture = GFX_generic_riots
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_pension_reform_crisis }
+		date > 2010.1.1
+		NOT = {
+			has_country_flag = FRA_communist_path
+			has_country_flag = FRA_lfi_path
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 300
+		modifier = {
+			factor = 0.5
+			check_variable = { debt_ratio > 1.0 }
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_pension_reform_crisis
+	}
+
+	# Push through with Article 49.3
+	option = {
+		name = france_md.930.a
+		log = "[GetDateText]: [This.GetName]: france_md.930.a executed"
+		add_stability = -0.08
+		add_political_power = -100
+		add_popularity = { ideology = ruling_party popularity = -0.05 }
+		set_temp_variable = { treasury_change = 5 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_idea_pension_reform_passed
+		set_country_flag = FRA_used_article_49_3
+		ai_chance = { base = 2 }
+	}
+
+	# Negotiate with unions
+	option = {
+		name = france_md.930.b
+		log = "[GetDateText]: [This.GetName]: france_md.930.b executed"
+		add_stability = 0.02
+		add_political_power = -75
+		country_event = { id = france_md.931 days = 45 }
+		ai_chance = { base = 3 }
+	}
+
+	# Withdraw the reform
+	option = {
+		name = france_md.930.c
+		log = "[GetDateText]: [This.GetName]: france_md.930.c executed"
+		add_stability = 0.05
+		add_political_power = -50
+		add_popularity = { ideology = ruling_party popularity = -0.02 }
+		add_popularity = { ideology = socialism popularity = 0.02 }
+		ai_chance = { base = 2 }
+	}
+}
+
+# Pension Reform Negotiations
+country_event = {
+	id = france_md.931
+	title = france_md.931.t
+	desc = france_md.931.d
+	picture = GFX_generic_parliament
+	is_triggered_only = yes
+
+	# Compromise reached
+	option = {
+		name = france_md.931.a
+		log = "[GetDateText]: [This.GetName]: france_md.931.a executed"
+		add_stability = 0.03
+		add_political_power = 25
+		set_temp_variable = { treasury_change = 2 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_idea_pension_compromise
+		ai_chance = { base = 4 }
+	}
+
+	# Negotiations break down
+	option = {
+		name = france_md.931.b
+		log = "[GetDateText]: [This.GetName]: france_md.931.b executed"
+		add_stability = -0.05
+		add_political_power = -50
+		add_popularity = { ideology = socialism popularity = 0.02 }
+		add_popularity = { ideology = communism popularity = 0.01 }
+		ai_chance = { base = 2 }
+	}
+}
+
+# Student and Youth Uprising
+country_event = {
+	id = france_md.932
+	title = france_md.932.t
+	desc = france_md.932.d
+	picture = GFX_generic_riots
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_student_uprising }
+		date > 2000.1.1
+		has_stability < 0.6
+	}
+
+	mean_time_to_happen = {
+		months = 480
+		modifier = {
+			factor = 0.5
+			check_variable = { unemployment_rate > 0.10 }
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_student_uprising
+	}
+
+	# Withdraw controversial policy
+	option = {
+		name = france_md.932.a
+		log = "[GetDateText]: [This.GetName]: france_md.932.a executed"
+		add_stability = 0.05
+		add_political_power = -100
+		add_popularity = { ideology = ruling_party popularity = -0.03 }
+		ai_chance = { base = 3 }
+	}
+
+	# Negotiate with student unions
+	option = {
+		name = france_md.932.b
+		log = "[GetDateText]: [This.GetName]: france_md.932.b executed"
+		add_stability = 0.02
+		add_political_power = -50
+		ai_chance = { base = 4 }
+	}
+
+	# Clear occupied universities
+	option = {
+		name = france_md.932.c
+		log = "[GetDateText]: [This.GetName]: france_md.932.c executed"
+		add_stability = -0.05
+		add_political_power = 50
+		add_popularity = { ideology = nationalism popularity = 0.02 }
+		add_popularity = { ideology = communism popularity = 0.02 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# Shocking Election Upset
+country_event = {
+	id = france_md.940
+	title = france_md.940.t
+	desc = france_md.940.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_election_upset }
+		date > 2000.1.1
+		has_stability < 0.5
+	}
+
+	mean_time_to_happen = {
+		months = 600
+	}
+
+	immediate = {
+		set_country_flag = FRA_election_upset
+	}
+
+	# Call for Republican Front against extremism
+	option = {
+		name = france_md.940.a
+		log = "[GetDateText]: [This.GetName]: france_md.940.a executed"
+		add_stability = 0.05
+		add_political_power = 100
+		add_popularity = { ideology = ruling_party popularity = 0.05 }
+		add_popularity = { ideology = nationalism popularity = -0.03 }
+		set_country_flag = FRA_republican_front_formed
+		ai_chance = { base = 4 }
+	}
+
+	# Let voters decide without intervention
+	option = {
+		name = france_md.940.b
+		log = "[GetDateText]: [This.GetName]: france_md.940.b executed"
+		add_stability = -0.02
+		add_political_power = -25
+		add_popularity = { ideology = nationalism popularity = 0.03 }
+		ai_chance = { base = 2 }
+	}
+
+	# This is a wake-up call for reform
+	option = {
+		name = france_md.940.c
+		log = "[GetDateText]: [This.GetName]: france_md.940.c executed"
+		add_stability = 0.02
+		add_political_power = 50
+		add_ideas = FRA_idea_political_renewal
+		ai_chance = { base = 3 }
+	}
+}
+
+# New Political Movement Emerges
+country_event = {
+	id = france_md.941
+	title = france_md.941.t
+	desc = france_md.941.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_new_movement_emerged }
+		date > 2005.1.1
+		has_stability < 0.55
+		OR = {
+			has_country_flag = FRA_socialist_crisis_happened
+			has_country_flag = FRA_republican_alliance_crisis
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 240
+	}
+
+	immediate = {
+		set_country_flag = FRA_new_movement_emerged
+	}
+
+	# Support the new movement
+	option = {
+		name = france_md.941.a
+		log = "[GetDateText]: [This.GetName]: france_md.941.a executed"
+		add_stability = 0.03
+		add_political_power = 75
+		add_popularity = { ideology = liberalism popularity = 0.05 }
+		add_popularity = { ideology = socialism popularity = -0.02 }
+		add_popularity = { ideology = conservatism popularity = -0.02 }
+		ai_chance = { base = 3 }
+	}
+
+	# Oppose it as a flash in the pan
+	option = {
+		name = france_md.941.b
+		log = "[GetDateText]: [This.GetName]: france_md.941.b executed"
+		add_stability = -0.02
+		add_political_power = -25
+		add_popularity = { ideology = liberalism popularity = 0.03 }
+		ai_chance = { base = 2 }
+	}
+
+	# Traditional parties must adapt
+	option = {
+		name = france_md.941.c
+		log = "[GetDateText]: [This.GetName]: france_md.941.c executed"
+		add_stability = 0.01
+		add_political_power = 25
+		add_popularity = { ideology = ruling_party popularity = 0.02 }
+		ai_chance = { base = 3 }
+	}
+}
+
+# Suburban Riots
+country_event = {
+	id = france_md.950
+	title = france_md.950.t
+	desc = france_md.950.d
+	picture = GFX_generic_riots
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_banlieue_riots }
+		date > 2000.1.1
+		has_stability < 0.6
+	}
+
+	mean_time_to_happen = {
+		months = 480
+		modifier = {
+			factor = 0.5
+			check_variable = { unemployment_rate > 0.09 }
+		}
+	}
+
+	immediate = {
+		set_country_flag = FRA_banlieue_riots
+	}
+
+	# Declare state of emergency
+	option = {
+		name = france_md.950.a
+		log = "[GetDateText]: [This.GetName]: france_md.950.a executed"
+		add_stability = -0.03
+		add_political_power = 75
+		add_war_support = 0.03
+		add_popularity = { ideology = nationalism popularity = 0.03 }
+		set_country_flag = FRA_state_of_emergency_declared
+		ai_chance = { base = 3 }
+	}
+
+	# Launch integration and social programs
+	option = {
+		name = france_md.950.b
+		log = "[GetDateText]: [This.GetName]: france_md.950.b executed"
+		add_stability = 0.02
+		add_political_power = -75
+		set_temp_variable = { treasury_change = -8 }
+		modify_treasury_effect = yes
+		add_ideas = FRA_idea_urban_renewal
+		ai_chance = { base = 3 }
+	}
+
+	# Hardline crackdown rhetoric
+	option = {
+		name = france_md.950.c
+		log = "[GetDateText]: [This.GetName]: france_md.950.c executed"
+		add_stability = -0.05
+		add_political_power = 50
+		add_popularity = { ideology = nationalism popularity = 0.05 }
+		add_popularity = { ideology = fascism popularity = 0.02 }
+		ai_chance = { base = 2 }
+	}
+}
+
+# Terror Attack Response
+country_event = {
+	id = france_md.951
+	title = france_md.951.t
+	desc = france_md.951.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_terror_attack_response }
+		date > 2005.1.1
+		OR = {
+			has_war = yes
+			any_country = {
+				has_war_with = ROOT
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 600
+	}
+
+	immediate = {
+		set_country_flag = FRA_terror_attack_response
+	}
+
+	# National unity and enhanced security
+	option = {
+		name = france_md.951.a
+		log = "[GetDateText]: [This.GetName]: france_md.951.a executed"
+		add_stability = 0.05
+		add_war_support = 0.10
+		add_political_power = 100
+		add_ideas = FRA_idea_national_unity
+		ai_chance = { base = 5 }
+	}
+
+	# Military response abroad
+	option = {
+		name = france_md.951.b
+		log = "[GetDateText]: [This.GetName]: france_md.951.b executed"
+		add_stability = 0.02
+		add_war_support = 0.15
+		add_political_power = 50
+		army_experience = 25
+		ai_chance = { base = 3 }
+	}
+
+	# Focus on civil liberties concerns
+	option = {
+		name = france_md.951.c
+		log = "[GetDateText]: [This.GetName]: france_md.951.c executed"
+		add_stability = -0.02
+		add_political_power = -25
+		add_popularity = { ideology = socialism popularity = 0.02 }
+		ai_chance = { base = 1 }
+	}
+}
+
+# EU Constitution Referendum
+country_event = {
+	id = france_md.952
+	title = france_md.952.t
+	desc = france_md.952.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_eu_referendum }
+		date > 2000.1.1
+		is_in_faction_with = EUF
+	}
+
+	mean_time_to_happen = {
+		months = 360
+	}
+
+	immediate = {
+		set_country_flag = FRA_eu_referendum
+	}
+
+	# Campaign vigorously for Yes
+	option = {
+		name = france_md.952.a
+		log = "[GetDateText]: [This.GetName]: france_md.952.a executed"
+		random_list = {
+			60 = {
+				add_stability = 0.03
+				add_political_power = 50
+				set_country_flag = FRA_eu_referendum_yes
+			}
+			40 = {
+				add_stability = -0.05
+				add_political_power = -100
+				set_country_flag = FRA_eu_referendum_no
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Let the campaign unfold naturally
+	option = {
+		name = france_md.952.b
+		log = "[GetDateText]: [This.GetName]: france_md.952.b executed"
+		random_list = {
+			40 = {
+				add_stability = 0.02
+				set_country_flag = FRA_eu_referendum_yes
+			}
+			60 = {
+				add_stability = -0.03
+				add_political_power = -50
+				set_country_flag = FRA_eu_referendum_no
+			}
+		}
+		ai_chance = { base = 3 }
+	}
+
+	# Don't risk a referendum
+	option = {
+		name = france_md.952.c
+		log = "[GetDateText]: [This.GetName]: france_md.952.c executed"
+		add_stability = -0.02
+		add_political_power = -25
+		ai_chance = { base = 2 }
+	}
+}
+
+# Left-Wing Coalition Forms
+country_event = {
+	id = france_md.953
+	title = france_md.953.t
+	desc = france_md.953.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_left_coalition_formed }
+		date > 2010.1.1
+		has_country_flag = FRA_socialist_crisis_happened
+		OR = {
+			has_idea = democratic_socialist
+			has_idea = social_democratic
+		}
+	}
+
+	mean_time_to_happen = {
+		months = 180
+	}
+
+	immediate = {
+		set_country_flag = FRA_left_coalition_formed
+	}
+
+	# Unite under pragmatic leadership
+	option = {
+		name = france_md.953.a
+		log = "[GetDateText]: [This.GetName]: france_md.953.a executed"
+		add_stability = 0.03
+		add_political_power = 75
+		add_popularity = { ideology = socialism popularity = 0.03 }
+		add_popularity = { ideology = communism popularity = 0.02 }
+		ai_chance = { base = 3 }
+	}
+
+	# Let radical wing lead
+	option = {
+		name = france_md.953.b
+		log = "[GetDateText]: [This.GetName]: france_md.953.b executed"
+		add_stability = -0.02
+		add_political_power = 50
+		add_popularity = { ideology = communism popularity = 0.04 }
+		add_popularity = { ideology = socialism popularity = -0.01 }
+		ai_chance = { base = 2 }
+	}
+
+	# Coalition collapses over disagreements
+	option = {
+		name = france_md.953.c
+		log = "[GetDateText]: [This.GetName]: france_md.953.c executed"
+		add_stability = -0.03
+		add_political_power = -50
+		add_popularity = { ideology = socialism popularity = -0.02 }
+		add_popularity = { ideology = communism popularity = -0.02 }
+		ai_chance = { base = 2 }
+	}
+}
+
+# Hung Parliament Crisis
+country_event = {
+	id = france_md.954
+	title = france_md.954.t
+	desc = france_md.954.d
+	picture = GFX_generic_parliament
+
+	trigger = {
+		original_tag = FRA
+		NOT = { has_country_flag = FRA_hung_parliament }
+		date > 2015.1.1
+		has_stability < 0.5
+	}
+
+	mean_time_to_happen = {
+		months = 360
+	}
+
+	immediate = {
+		set_country_flag = FRA_hung_parliament
+	}
+
+	# Form technocratic government
+	option = {
+		name = france_md.954.a
+		log = "[GetDateText]: [This.GetName]: france_md.954.a executed"
+		add_stability = 0.02
+		add_political_power = -50
+		add_ideas = FRA_idea_technocratic_government
+		ai_chance = { base = 3 }
+	}
+
+	# Call snap elections
+	option = {
+		name = france_md.954.b
+		log = "[GetDateText]: [This.GetName]: france_md.954.b executed"
+		add_stability = -0.05
+		add_political_power = -100
+		country_event = { id = france_md.940 days = 60 }
+		ai_chance = { base = 2 }
+	}
+
+	# Attempt grand coalition
+	option = {
+		name = france_md.954.c
+		log = "[GetDateText]: [This.GetName]: france_md.954.c executed"
+		add_stability = 0.01
+		add_political_power = 25
+		add_popularity = { ideology = ruling_party popularity = -0.02 }
+		ai_chance = { base = 3 }
+	}
+}
 

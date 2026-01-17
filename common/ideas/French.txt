@@ -2728,5 +2728,576 @@ local_resources_chromium_factor = 0.15
 				justify_war_goal_time = -0.15
 			}
 		}
+
+		# Extremist Paramilitary and Infiltration Ideas
+		# These are gained when allowing extremist factions within your party
+
+		FRA_extremist_paramilitary_left = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_extremist_paramilitary_left" }
+			name = FRA_extremist_paramilitary_left
+			picture = GFX_idea_soviet_union_in_chaos
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = -0.05
+				resistance_damage_to_garrison = -0.15
+				resistance_target = -0.1
+				political_power_factor = 0.05
+			}
+		}
+
+		FRA_extremist_paramilitary_right = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_extremist_paramilitary_right" }
+			name = FRA_extremist_paramilitary_right
+			picture = GFX_idea_soviet_union_in_chaos
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = -0.05
+				resistance_damage_to_garrison = -0.15
+				resistance_target = -0.1
+				political_power_factor = 0.05
+			}
+		}
+
+		FRA_radical_infiltration = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_radical_infiltration" }
+			name = FRA_radical_infiltration
+			picture = GFX_idea_terrorism_icon
+			allowed = { always = no }
+
+			modifier = {
+				emerging_communism_drift = 0.02
+				stability_weekly = -0.001
+			}
+		}
+
+		FRA_traditionalist_infiltration = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_traditionalist_infiltration" }
+			name = FRA_traditionalist_infiltration
+			picture = GFX_idea_terrorism_icon
+			allowed = { always = no }
+
+			modifier = {
+				nationalist_monarchism_drift = 0.02
+				stability_weekly = -0.001
+			}
+		}
+
+		FRA_republic_stabilized_left = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_republic_stabilized_left" }
+			name = FRA_republic_stabilized_left
+			picture = generic_constitutional_guarantees
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.1
+				political_power_gain = 0.1
+				drift_defence_factor = 0.2
+			}
+		}
+
+		FRA_republic_stabilized_right = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_republic_stabilized_right" }
+			name = FRA_republic_stabilized_right
+			picture = generic_constitutional_guarantees
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.1
+				political_power_gain = 0.15
+				drift_defence_factor = 0.25
+				resistance_damage_to_garrison = -0.1
+				foreign_influence_defense_modifier = 0.15
+				resistance_target = -0.05
+			}
+		}
+
+		# ===========================================
+		# EXTREMIST FACTION FOREIGN POLICY IDEAS
+		# Author(s): Claude Code
+		# Historically accurate diplomatic restrictions for RPF, National Rally, PCF, and LFI paths
+		# ===========================================
+
+		# RPF/Gaullist Path - Strategic Independence from USA (De Gaulle's Legacy)
+		# Based on: France's 1966 withdrawal from NATO integrated command
+		FRA_gaullist_foreign_policy = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_gaullist_foreign_policy"
+				hidden_effect = {
+					set_country_flag = FRA_rpf_path
+				}
+			}
+			name = FRA_gaullist_foreign_policy
+			picture = france_diplomatic
+			allowed = { always = no }
+
+			modifier = {
+				foreign_influence_defense_modifier = 0.20
+				drift_defence_factor = 0.15
+				political_power_gain = 0.10
+				justify_war_goal_time = -0.10
+				custom_modifier_tooltip = FRA_cannot_host_american_bases_tt
+			}
+
+			targeted_modifier = {
+				tag = USA
+				attack_opinion_modifier = -0.25
+				defense_opinion_modifier = -0.25
+				trade_opinion_modifier = -0.15
+			}
+		}
+
+		# RPF - Anti-American Stance
+		# Based on: De Gaulle's criticism of American "hegemony" and pursuit of "third way"
+		FRA_anti_american_stance = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_anti_american_stance"
+				hidden_effect = {
+					USA = {
+						add_opinion_modifier = { target = FRA modifier = recent_actions_negative }
+					}
+				}
+			}
+			name = FRA_anti_american_stance
+			picture = attack_america
+			allowed = { always = no }
+
+			modifier = {
+				foreign_influence_defense_modifier = 0.15
+				drift_defence_factor = 0.20
+				political_power_gain = 0.05
+				custom_modifier_tooltip = FRA_usa_relations_penalty_tt
+			}
+
+			targeted_modifier = {
+				tag = USA
+				attack_opinion_modifier = -0.35
+				defense_opinion_modifier = -0.35
+			}
+		}
+
+		# RPF - Sovereigntist EU Policy (Europe of Nations)
+		# Based on: De Gaulle's opposition to supranationalism, preference for confederal Europe
+		FRA_sovereigntist_eu_policy = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_sovereigntist_eu_policy" }
+			name = FRA_sovereigntist_eu_policy
+			picture = euroscepticism
+			allowed = { always = no }
+
+			modifier = {
+				foreign_influence_defense_modifier = 0.10
+				political_power_gain = 0.05
+				custom_modifier_tooltip = FRA_blocks_eu_federalization_tt
+			}
+		}
+
+		# National Rally Path - Pro-Russia Alignment (Pre-2022)
+		# Based on: Marine Le Pen's visits to Moscow, 2014 loan from First Czech Russian Bank
+		FRA_fn_russia_alignment_idea = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_fn_russia_alignment_idea"
+				hidden_effect = {
+					SOV = {
+						add_opinion_modifier = { target = FRA modifier = recent_actions_positive }
+					}
+				}
+			}
+			name = FRA_fn_russia_alignment_idea
+			picture = SOV_russia_flag_new
+			allowed = { always = no }
+
+			cancel = {
+				date > 2022.2.24
+			}
+
+			modifier = {
+				fuel_gain_factor = 0.10
+				production_speed_nuclear_reactor_factor = 0.10
+				custom_modifier_tooltip = FRA_improved_russia_relations_tt
+			}
+
+			targeted_modifier = {
+				tag = SOV
+				attack_opinion_modifier = 0.25
+				defense_opinion_modifier = 0.25
+				trade_opinion_modifier = 0.20
+			}
+		}
+
+		# National Rally - Anti-Immigration Nationalism
+		# Based on: Core FN/RN platform since Jean-Marie Le Pen era
+		FRA_fn_nationalist_policy = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_fn_nationalist_policy"
+				hidden_effect = {
+					set_country_flag = FRA_national_rally_path
+				}
+			}
+			name = FRA_fn_nationalist_policy
+			picture = anti_immigration1
+			allowed = { always = no }
+
+			modifier = {
+				nationalist_drift = 0.05
+				MONTHLY_POPULATION = -0.15
+				stability_factor = 0.05
+				drift_defence_factor = 0.10
+				foreign_influence_defense_modifier = 0.15
+				custom_modifier_tooltip = FRA_immigration_restrictions_tt
+			}
+		}
+
+		# National Rally - Economic Protectionism
+		# Based on: RN's "economic patriotism" platform
+		FRA_fn_protectionism = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_fn_protectionism" }
+			name = FRA_fn_protectionism
+			picture = protectionist_economics
+			allowed = { always = no }
+
+			modifier = {
+				production_factory_max_efficiency_factor = 0.10
+				civilian_factories_productivity = 0.05
+				industrial_capacity_factory = 0.05
+				min_export = 0.10
+				trade_opinion_modifier = -0.20
+				custom_modifier_tooltip = FRA_trade_protectionism_tt
+			}
+		}
+
+		# PCF/Communist Path - Anti-Imperialist Foreign Policy
+		# Based on: PCF's historical anti-NATO, anti-American positions
+		FRA_communist_foreign_policy = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_communist_foreign_policy"
+				hidden_effect = {
+					set_country_flag = FRA_communist_path
+					set_country_flag = FRA_pcf_path
+					CUB = {
+						add_opinion_modifier = { target = FRA modifier = recent_actions_positive }
+					}
+					VEN = {
+						add_opinion_modifier = { target = FRA modifier = recent_actions_positive }
+					}
+					USA = {
+						add_opinion_modifier = { target = FRA modifier = recent_actions_negative }
+						add_opinion_modifier = { target = FRA modifier = recent_actions_negative }
+					}
+				}
+			}
+			name = FRA_communist_foreign_policy
+			picture = communism5
+			allowed = { always = no }
+
+			modifier = {
+				communism_drift = 0.05
+				political_power_gain = 0.10
+				drift_defence_factor = 0.15
+				custom_modifier_tooltip = FRA_cannot_ally_usa_hard_tt
+				custom_modifier_tooltip = FRA_socialist_solidarity_tt
+			}
+
+			targeted_modifier = {
+				tag = USA
+				attack_opinion_modifier = -0.50
+				defense_opinion_modifier = -0.50
+				trade_opinion_modifier = -0.30
+			}
+
+			targeted_modifier = {
+				tag = CUB
+				attack_opinion_modifier = 0.30
+				defense_opinion_modifier = 0.30
+				trade_opinion_modifier = 0.30
+			}
+		}
+
+		# PCF - Worker Internationalism
+		# Based on: PCF's membership in Party of the European Left
+		FRA_worker_internationalism = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_worker_internationalism" }
+			name = FRA_worker_internationalism
+			picture = communism2
+			allowed = { always = no }
+
+			modifier = {
+				communism_drift = 0.03
+				industrial_capacity_factory = 0.10
+				consumer_goods_factor = -0.05
+				opinion_gain_monthly_same_ideology_factor = 0.15
+				custom_modifier_tooltip = FRA_worker_solidarity_tt
+			}
+		}
+
+		# PCF/LFI - Recognize Palestine
+		# Based on: Both parties' strong support for Palestinian statehood
+		FRA_recognize_palestine = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_recognize_palestine"
+				hidden_effect = {
+					set_country_flag = FRA_recognized_palestine
+					every_country = {
+						limit = {
+							OR = {
+								tag = PAL
+								tag = SYR
+								tag = LEB
+								tag = JOR
+								tag = EGY
+								tag = IRQ
+							}
+						}
+						add_opinion_modifier = { target = FRA modifier = recent_actions_positive }
+					}
+					ISR = {
+						add_opinion_modifier = { target = FRA modifier = recent_actions_negative }
+					}
+				}
+			}
+			name = FRA_recognize_palestine
+			picture = palestine_flag
+			allowed = { always = no }
+
+			modifier = {
+				political_power_gain = 0.05
+				stability_factor = -0.03
+				custom_modifier_tooltip = FRA_arab_solidarity_tt
+				custom_modifier_tooltip = FRA_israel_relations_penalty_tt
+			}
+
+			targeted_modifier = {
+				tag = ISR
+				attack_opinion_modifier = -0.40
+				defense_opinion_modifier = -0.40
+			}
+		}
+
+		# La France Insoumise - Non-Aligned Policy
+		# Based on: Melenchon's "non-campisme" (non-alignment) doctrine
+		FRA_lfi_non_aligned_policy = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_lfi_non_aligned_policy"
+				hidden_effect = {
+					set_country_flag = FRA_lfi_path
+				}
+			}
+			name = FRA_lfi_non_aligned_policy
+			picture = neutrality_idea
+			allowed = { always = no }
+
+			modifier = {
+				neutrality_drift = 0.05
+				political_power_gain = 0.10
+				foreign_influence_defense_modifier = 0.15
+				drift_defence_factor = 0.10
+				custom_modifier_tooltip = FRA_non_aligned_policy_tt
+				custom_modifier_tooltip = FRA_cannot_join_american_coalitions_tt
+			}
+
+			targeted_modifier = {
+				tag = USA
+				attack_opinion_modifier = -0.30
+				defense_opinion_modifier = -0.30
+			}
+		}
+
+		# LFI - Anti-NATO Stance
+		# Based on: Melenchon's 2026 draft resolution for France to withdraw from NATO
+		FRA_lfi_anti_nato = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_lfi_anti_nato" }
+			name = FRA_lfi_anti_nato
+			picture = NATO_on_fire_new5
+			allowed = { always = no }
+
+			modifier = {
+				neutrality_drift = 0.03
+				political_power_gain = 0.05
+				drift_defence_factor = 0.10
+				custom_modifier_tooltip = FRA_opposes_nato_expansion_tt
+			}
+		}
+
+		# LFI - Social Europe Agenda
+		# Based on: LFI's demands for EU social reform vs neoliberal policies
+		FRA_lfi_social_europe = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_lfi_social_europe" }
+			name = FRA_lfi_social_europe
+			picture = welfare_state
+			allowed = { always = no }
+
+			modifier = {
+				neutrality_drift = 0.02
+				stability_factor = 0.05
+				social_cost_multiplier_modifier = 0.15
+				health_cost_multiplier_modifier = 0.10
+				education_cost_multiplier_modifier = 0.10
+				custom_modifier_tooltip = FRA_demands_eu_social_reform_tt
+			}
+		}
+
+		# Global South Solidarity (Left paths)
+		# Based on: PCF/LFI support for debt forgiveness and development cooperation
+		FRA_global_south_solidarity = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_global_south_solidarity" }
+			name = FRA_global_south_solidarity
+			picture = african_union_flag
+			allowed = { always = no }
+
+			modifier = {
+				political_power_gain = 0.05
+				foreign_influence_modifier = 0.10
+				opinion_gain_monthly_same_ideology_factor = 0.10
+				custom_modifier_tooltip = FRA_debt_forgiveness_tt
+			}
+		}
+
+		# Distance from NATO (Integrated Command Exit)
+		# Based on: De Gaulle's 1966 withdrawal from NATO integrated command
+		FRA_distance_nato = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_distance_nato" }
+			name = FRA_distance_nato
+			picture = nato_on_fire
+			allowed = { always = no }
+
+			modifier = {
+				army_org_factor = -0.05
+				max_planning = -0.05
+				political_power_gain = 0.10
+				foreign_influence_defense_modifier = 0.10
+				custom_modifier_tooltip = FRA_left_nato_command_tt
+			}
+		}
+
+		###################################
+		# FRENCH POLITICAL FLAVOR IDEAS #
+		###################################
+
+		# Transparency Reforms (post-scandal)
+		FRA_idea_transparency_reforms = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_transparency_reforms" }
+			name = FRA_idea_transparency_reforms
+			picture = political_power_bonus
+			allowed = { always = no }
+
+			modifier = {
+				political_power_factor = 0.05
+				drift_defence_factor = 0.10
+				stability_weekly = 0.001
+			}
+		}
+
+		# Grand National Debate
+		FRA_idea_national_debate = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_national_debate" }
+			name = FRA_idea_national_debate
+			picture = political_power_bonus
+			allowed = { always = no }
+
+			modifier = {
+				political_power_factor = -0.10
+				stability_factor = 0.05
+				drift_defence_factor = 0.15
+			}
+		}
+
+		# Social Emergency Measures
+		FRA_idea_social_emergency_measures = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_social_emergency_measures" }
+			name = FRA_idea_social_emergency_measures
+			picture = welfare_state
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.10
+				consumer_goods_factor = 0.03
+				social_cost_multiplier_modifier = 0.20
+			}
+		}
+
+		# Pension Reform Passed (Article 49.3)
+		FRA_idea_pension_reform_passed = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_pension_reform_passed" }
+			name = FRA_idea_pension_reform_passed
+			picture = economic_bonus
+			allowed = { always = no }
+
+			modifier = {
+				social_cost_multiplier_modifier = -0.15
+				stability_factor = -0.05
+				political_power_factor = -0.10
+			}
+		}
+
+		# Pension Reform Compromise
+		FRA_idea_pension_compromise = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_pension_compromise" }
+			name = FRA_idea_pension_compromise
+			picture = economic_bonus
+			allowed = { always = no }
+
+			modifier = {
+				social_cost_multiplier_modifier = -0.08
+				stability_factor = 0.03
+			}
+		}
+
+		# Political Renewal Movement
+		FRA_idea_political_renewal = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_political_renewal" }
+			name = FRA_idea_political_renewal
+			picture = political_power_bonus
+			allowed = { always = no }
+
+			modifier = {
+				political_power_factor = 0.15
+				drift_defence_factor = 0.10
+				stability_weekly = 0.001
+			}
+		}
+
+		# Urban Renewal Programs
+		FRA_idea_urban_renewal = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_urban_renewal" }
+			name = FRA_idea_urban_renewal
+			picture = construction
+			allowed = { always = no }
+
+			modifier = {
+				production_speed_infrastructure_factor = 0.10
+				stability_factor = 0.05
+				MONTHLY_POPULATION = 0.02
+			}
+		}
+
+		# National Unity (post-attack)
+		FRA_idea_national_unity = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_national_unity" }
+			name = FRA_idea_national_unity
+			picture = volunteer_defenders2
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.10
+				war_support_factor = 0.10
+				drift_defence_factor = 0.25
+				conscription_factor = 0.05
+			}
+		}
+
+		# Technocratic Government
+		FRA_idea_technocratic_government = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_idea_technocratic_government" }
+			name = FRA_idea_technocratic_government
+			picture = political_power_bonus
+			allowed = { always = no }
+
+			modifier = {
+				political_power_factor = -0.15
+				stability_factor = 0.05
+				production_speed_buildings_factor = 0.05
+				bureaucracy_cost_multiplier_modifier = -0.10
+			}
+		}
 	}
 }

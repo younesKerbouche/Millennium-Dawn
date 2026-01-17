@@ -2519,3 +2519,359 @@ FRA_joint_weapon_projects_category = {
 		}
 	}
 }
+
+#################################################
+# Extremist Foreign Policy Decisions
+# Author: Claude Code
+#################################################
+
+FRA_extremist_foreign_policy_category = {
+	icon = generic_nationalism
+
+	allowed = { original_tag = FRA }
+
+	visible = {
+		OR = {
+			FRA_on_extremist_path = yes
+			FRA_on_gaullist_path = yes
+		}
+	}
+
+	# Rejoin NATO Integrated Command (reversal decision for Gaullist path)
+	FRA_rejoin_nato_command = {
+		icon = GFX_decision_generic_military_parade
+
+		cost = 100
+		days_remove = 90
+		fire_only_once = yes
+
+		visible = {
+			has_idea = FRA_distance_nato
+			NOT = { has_idea = FRA_left_nato }
+		}
+
+		available = {
+			has_war = no
+			NOT = { has_idea = FRA_anti_american_stance }
+			USA = { is_subject = no }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_rejoin_nato_command"
+			add_political_power = -75
+		}
+
+		remove_effect = {
+			remove_ideas = FRA_distance_nato
+			remove_ideas = FRA_strategic_independance
+			USA = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+			}
+			every_country = {
+				limit = {
+					has_idea = NATO_member
+					NOT = { tag = FRA }
+				}
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 5
+				date > 2022.2.24
+				SOV = { has_war_with = UKR }
+			}
+		}
+	}
+
+	# Seek Russian Partnership (for Gaullist/FN paths)
+	FRA_seek_russian_partnership = {
+		icon = GFX_decision_generic_operation
+
+		cost = 75
+		days_remove = 60
+		fire_only_once = yes
+
+		visible = {
+			OR = {
+				FRA_on_gaullist_path = yes
+				FRA_on_far_right_path = yes
+			}
+			NOT = { has_country_flag = FRA_sought_russian_partnership }
+			date < 2022.2.24
+		}
+
+		available = {
+			NOT = { has_war_with = SOV }
+			SOV = { is_subject = no }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_seek_russian_partnership"
+			set_country_flag = FRA_sought_russian_partnership
+			SOV = {
+				country_event = { id = france_md.802 days = 5 }
+			}
+		}
+
+		remove_effect = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = improved_relations
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_decrease
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	# Recognize Palestine (for far-left paths)
+	FRA_recognize_palestine = {
+		icon = GFX_decision_generic_agreement
+
+		cost = 50
+		fire_only_once = yes
+
+		visible = {
+			FRA_on_far_left_path = yes
+			NOT = { has_country_flag = FRA_supports_two_state_solution }
+		}
+
+		available = {
+			has_political_power > 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_recognize_palestine"
+			set_country_flag = FRA_supports_two_state_solution
+			add_stability = 0.02
+			ISR = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = diplomatic_rejection
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						tag = EGY
+						tag = JOR
+						tag = SAU
+						tag = UAE
+					}
+				}
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	# Condemn Russian Aggression (reversal for Ukraine War)
+	FRA_condemn_russia_ukraine = {
+		icon = GFX_decision_generic_military_parade
+
+		cost = 100
+		fire_only_once = yes
+
+		visible = {
+			date > 2022.2.24
+			SOV = { has_war_with = UKR }
+			OR = {
+				has_idea = FRA_fn_russia_alignment_idea
+				has_idea = FRA_gaullist_foreign_policy
+			}
+		}
+
+		available = {
+			has_political_power > 100
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_condemn_russia_ukraine"
+			add_political_power = -100
+			add_stability = -0.05
+			if = {
+				limit = { has_idea = FRA_fn_russia_alignment_idea }
+				remove_ideas = FRA_fn_russia_alignment_idea
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = major_breach_of_trust
+				}
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+			}
+			every_country = {
+				limit = { has_idea = NATO_member }
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# Pursue Non-Aligned Leadership (for LFI)
+	FRA_non_aligned_initiative = {
+		icon = GFX_decision_generic_nationalism
+
+		cost = 100
+		days_remove = 180
+		fire_only_once = yes
+
+		visible = {
+			has_idea = FRA_lfi_non_aligned_policy
+			NOT = { has_country_flag = FRA_leading_non_aligned }
+		}
+
+		available = {
+			has_political_power > 100
+			NOT = { has_idea = NATO_member }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_non_aligned_initiative"
+			set_country_flag = FRA_leading_non_aligned
+		}
+
+		remove_effect = {
+			add_political_power = 100
+			add_stability = 0.03
+			IND = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = improved_relations
+				}
+			}
+			BRA = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = improved_relations
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	# Strengthen Socialist Solidarity (for PCF)
+	FRA_socialist_solidarity = {
+		icon = GFX_decision_generic_propaganda
+
+		cost = 75
+		days_remove = 90
+		fire_only_once = yes
+
+		visible = {
+			has_idea = FRA_communist_foreign_policy
+			NOT = { has_country_flag = FRA_socialist_solidarity_active }
+		}
+
+		available = {
+			has_political_power > 75
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_socialist_solidarity"
+			set_country_flag = FRA_socialist_solidarity_active
+		}
+
+		remove_effect = {
+			add_political_power = 50
+			CUB = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = improved_relations
+				}
+			}
+			VEN = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = improved_relations
+				}
+			}
+			# Boost communist popularity
+			set_temp_variable = { party_index = 18 }
+			set_temp_variable = { party_popularity_increase = 0.02 }
+			add_relative_party_popularity = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	# Block EU Federalization (for sovereigntist paths)
+	FRA_veto_eu_federalization = {
+		icon = GFX_decision_generic_nationalism
+
+		cost = 50
+		fire_only_once = no
+		days_re_enable = 365
+
+		visible = {
+			has_idea = FRA_sovereigntist_eu_policy
+			has_idea = EU_member
+		}
+
+		available = {
+			has_political_power > 50
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_veto_eu_federalization"
+			add_political_power = 25
+			add_stability = 0.01
+			every_country = {
+				limit = {
+					has_idea = EU_member
+					NOT = { tag = FRA }
+				}
+				add_opinion_modifier = {
+					target = FRA
+					modifier = FRA_eu_obstruction
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+}
