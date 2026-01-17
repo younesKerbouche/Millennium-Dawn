@@ -2882,8 +2882,6 @@ FRA_environmental_policy_decisions = {
 	FRA_reverse_extraction_ban = {
 		icon = generic_industry
 
-		allowed = { original_tag = FRA }
-
 		available = {
 			has_idea = FRA_green_extraction_ban
 			NOT = { neutrality_neutral_green_in_power_or_coalition = yes }
@@ -2914,6 +2912,528 @@ FRA_environmental_policy_decisions = {
 			modifier = {
 				add = 5
 				has_war = yes
+			}
+		}
+	}
+}
+
+# Counter-Terrorism Decisions
+# Author: Claude Code
+FRA_counter_terrorism_category = {
+
+	# Activate Vigipirate security plan
+	FRA_activate_vigipirate = {
+		icon = GFX_decision_generic_military_parade
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			NOT = { has_idea = FRA_heightened_security }
+			NOT = { has_idea = FRA_state_of_emergency_terrorism }
+		}
+
+		visible = {
+			OR = {
+				FRA_vulnerable_to_terrorism = yes
+				has_country_flag = FRA_terror_level_1
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+				has_idea = FRA_terror_threat_elevated
+				has_idea = FRA_terror_threat_critical
+			}
+		}
+
+		cost = 50
+		days_remove = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_activate_vigipirate"
+			add_ideas = FRA_heightened_security
+			custom_effect_tooltip = FRA_vigipirate_activated_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_activate_vigipirate"
+			if = {
+				limit = {
+					NOT = { has_idea = FRA_state_of_emergency_terrorism }
+				}
+				remove_ideas = FRA_heightened_security
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				add = 20
+				has_country_flag = FRA_terror_level_2
+			}
+			modifier = {
+				add = 30
+				has_country_flag = FRA_terror_level_3
+			}
+			modifier = {
+				add = 50
+				has_idea = FRA_terror_threat_critical
+			}
+		}
+	}
+
+	# Declare state of emergency (stronger protection)
+	FRA_declare_state_of_emergency = {
+		icon = GFX_decision_generic_civil_war
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			OR = {
+				has_idea = FRA_terror_threat_critical
+				has_country_flag = FRA_terror_level_3
+				has_country_flag = FRA_major_terror_attack
+			}
+		}
+
+		visible = {
+			OR = {
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+				has_idea = FRA_terror_threat_critical
+				has_idea = FRA_terror_threat_elevated
+			}
+		}
+
+		cost = 100
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_declare_state_of_emergency"
+			if = {
+				limit = { has_idea = FRA_heightened_security }
+				remove_ideas = FRA_heightened_security
+			}
+			add_ideas = FRA_state_of_emergency_terrorism
+			add_stability = -0.02
+			custom_effect_tooltip = FRA_state_of_emergency_declared_tt
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				add = 50
+				has_country_flag = FRA_terror_level_3
+			}
+			modifier = {
+				add = 100
+				has_country_flag = FRA_major_terror_attack
+			}
+		}
+	}
+
+	# End state of emergency
+	FRA_end_state_of_emergency = {
+		icon = GFX_decision_generic_political_discourse
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			has_idea = FRA_state_of_emergency_terrorism
+			NOT = { has_country_flag = FRA_terror_level_3 }
+			has_stability > 0.35
+		}
+
+		visible = {
+			has_idea = FRA_state_of_emergency_terrorism
+		}
+
+		cost = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_end_state_of_emergency"
+			remove_ideas = FRA_state_of_emergency_terrorism
+			add_stability = 0.03
+			add_political_power = 50
+			custom_effect_tooltip = FRA_state_of_emergency_ended_tt
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				add = 20
+				has_stability > 0.50
+				NOT = { has_country_flag = FRA_terror_level_2 }
+			}
+		}
+	}
+
+	# Increase intelligence funding
+	FRA_intelligence_surge = {
+		icon = GFX_decision_generic_intelligence_operation
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			NOT = { has_country_flag = FRA_intelligence_surge }
+		}
+
+		visible = {
+			OR = {
+				FRA_vulnerable_to_terrorism = yes
+				has_country_flag = FRA_terror_level_1
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+			}
+		}
+
+		cost = 75
+		days_remove = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_intelligence_surge"
+			set_country_flag = FRA_intelligence_surge
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+			custom_effect_tooltip = FRA_intelligence_surge_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_intelligence_surge"
+			clr_country_flag = FRA_intelligence_surge
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				add = 20
+				has_country_flag = FRA_terror_level_2
+			}
+			modifier = {
+				add = 30
+				has_country_flag = FRA_terror_level_3
+			}
+		}
+	}
+
+	# Secure critical infrastructure
+	FRA_secure_critical_infrastructure = {
+		icon = GFX_decision_generic_construction
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			NOT = { has_country_flag = FRA_infrastructure_secured }
+		}
+
+		visible = {
+			OR = {
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+				has_idea = FRA_terror_threat_critical
+			}
+		}
+
+		cost = 100
+		days_remove = 270
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_secure_critical_infrastructure"
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+			custom_effect_tooltip = FRA_securing_infrastructure_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_secure_critical_infrastructure"
+			set_country_flag = FRA_infrastructure_secured
+			add_stability = 0.02
+			custom_effect_tooltip = FRA_infrastructure_secured_tt
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				add = 30
+				has_country_flag = FRA_terror_level_3
+			}
+		}
+	}
+
+	# Deploy military for domestic security (Sentinelle)
+	FRA_operation_sentinelle = {
+		icon = GFX_decision_generic_military_buildup
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			NOT = { has_country_flag = FRA_sentinelle_active }
+			has_manpower > 10000
+		}
+
+		visible = {
+			OR = {
+				has_country_flag = FRA_terror_level_1
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+				has_idea = FRA_heightened_security
+				has_idea = FRA_state_of_emergency_terrorism
+			}
+		}
+
+		cost = 50
+		days_remove = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_operation_sentinelle"
+			set_country_flag = FRA_sentinelle_active
+			add_manpower = -7000
+			custom_effect_tooltip = FRA_sentinelle_deployed_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_operation_sentinelle"
+			clr_country_flag = FRA_sentinelle_active
+			add_manpower = 7000
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				add = 15
+				has_country_flag = FRA_terror_level_2
+			}
+			modifier = {
+				add = 25
+				has_country_flag = FRA_terror_level_3
+			}
+		}
+	}
+
+	# Conduct anti-terror raid
+	FRA_anti_terror_raid = {
+		icon = GFX_decision_generic_breakthrough
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			OR = {
+				has_idea = FRA_heightened_security
+				has_idea = FRA_state_of_emergency_terrorism
+			}
+			has_country_flag = FRA_intelligence_surge
+		}
+
+		visible = {
+			OR = {
+				has_country_flag = FRA_terror_level_1
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+			}
+		}
+
+		cost = 25
+		days_remove = 30
+		days_re_enable = 90
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_anti_terror_raid"
+			custom_effect_tooltip = FRA_conducting_raid_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_anti_terror_raid"
+			random_list = {
+				70 = {
+					# Success
+					add_stability = 0.02
+					add_political_power = 25
+					custom_effect_tooltip = FRA_raid_success_tt
+					if = {
+						limit = { has_country_flag = FRA_terror_level_3 }
+						clr_country_flag = FRA_terror_level_3
+						set_country_flag = FRA_terror_level_2
+					}
+					else_if = {
+						limit = { has_country_flag = FRA_terror_level_2 }
+						clr_country_flag = FRA_terror_level_2
+						set_country_flag = FRA_terror_level_1
+					}
+					else_if = {
+						limit = { has_country_flag = FRA_terror_level_1 }
+						clr_country_flag = FRA_terror_level_1
+					}
+				}
+				30 = {
+					# Failure
+					add_stability = -0.01
+					custom_effect_tooltip = FRA_raid_failure_tt
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				add = 20
+				has_country_flag = FRA_terror_level_2
+			}
+			modifier = {
+				add = 40
+				has_country_flag = FRA_terror_level_3
+			}
+		}
+	}
+
+	# Clear terror flags after long period of stability
+	FRA_terrorism_defeated = {
+		icon = GFX_decision_generic_peaceful_annexation
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			NOT = { has_country_flag = FRA_recent_terror_attack }
+			NOT = { has_idea = FRA_terror_threat_elevated }
+			NOT = { has_idea = FRA_terror_threat_critical }
+			has_stability > 0.50
+		}
+
+		visible = {
+			OR = {
+				has_country_flag = FRA_terror_level_1
+				has_country_flag = FRA_terror_level_2
+				has_country_flag = FRA_terror_level_3
+			}
+			NOT = { has_country_flag = FRA_recent_terror_attack }
+		}
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_terrorism_defeated"
+			clr_country_flag = FRA_terror_level_1
+			clr_country_flag = FRA_terror_level_2
+			clr_country_flag = FRA_terror_level_3
+			add_stability = 0.05
+			add_political_power = 100
+			custom_effect_tooltip = FRA_terrorism_defeated_tt
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+	}
+
+	# Rebuild after major attack
+	FRA_rebuild_after_attack = {
+		icon = GFX_decision_generic_construction
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			has_idea = FRA_damaged_infrastructure
+		}
+
+		visible = {
+			has_idea = FRA_damaged_infrastructure
+		}
+
+		cost = 75
+		days_remove = 180
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_rebuild_after_attack"
+			set_temp_variable = { treasury_change = -15 }
+			modify_treasury_effect = yes
+			custom_effect_tooltip = FRA_rebuilding_infrastructure_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_rebuild_after_attack"
+			remove_ideas = FRA_damaged_infrastructure
+			add_stability = 0.03
+			custom_effect_tooltip = FRA_infrastructure_rebuilt_tt
+		}
+
+		ai_will_do = {
+			factor = 30
+		}
+	}
+
+	# Boost tourism after crisis
+	FRA_tourism_recovery_campaign = {
+		icon = GFX_decision_generic_political_discourse
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			has_idea = FRA_tourism_crisis
+		}
+
+		visible = {
+			has_idea = FRA_tourism_crisis
+		}
+
+		cost = 50
+		days_remove = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_tourism_recovery_campaign"
+			set_temp_variable = { treasury_change = -8 }
+			modify_treasury_effect = yes
+			custom_effect_tooltip = FRA_tourism_campaign_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove FRA_tourism_recovery_campaign"
+			remove_ideas = FRA_tourism_crisis
+			add_stability = 0.02
+			custom_effect_tooltip = FRA_tourism_recovered_tt
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	# Dismantle terror networks - breaks the terror wave
+	FRA_dismantle_terror_networks = {
+		icon = GFX_decision_generic_break_treaty
+
+		allowed = { original_tag = FRA }
+
+		available = {
+			FRA_has_strong_intelligence = yes
+			FRA_has_high_police_budget = yes
+			has_stability > 0.35
+			NOT = { has_country_flag = FRA_recent_terror_attack }
+		}
+
+		visible = {
+			has_country_flag = FRA_terror_wave_active
+		}
+
+		cost = 150
+		days_remove = 365
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_dismantle_terror_networks started"
+			set_temp_variable = { treasury_change = -15 }
+			modify_treasury_effect = yes
+			custom_effect_tooltip = FRA_dismantling_networks_tt
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_dismantle_terror_networks completed"
+			set_country_flag = FRA_terror_networks_dismantled
+			clr_country_flag = FRA_terror_wave_active
+			add_stability = 0.05
+			add_political_power = 75
+			custom_effect_tooltip = FRA_terror_networks_dismantled_tt
+		}
+
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				factor = 0
+				NOT = { has_country_flag = FRA_terror_wave_active }
 			}
 		}
 	}

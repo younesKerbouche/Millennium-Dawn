@@ -3302,10 +3302,8 @@ local_resources_chromium_factor = 0.15
 
 		# Immigration Backlash - Timed idea from Immigration Wave focus
 		FRA_immigration_backlash = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_immigration_backlash" }
 			name = FRA_immigration_backlash
 			picture = anti_immigration3
-			allowed = { always = no }
 
 			modifier = {
 				nationalist_drift = 0.02
@@ -3317,10 +3315,8 @@ local_resources_chromium_factor = 0.15
 
 		# Green Extraction Ban - Reduces extraction by ~1/3 (reversible via decision)
 		FRA_green_extraction_ban = {
-			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_green_extraction_ban" }
 			name = FRA_green_extraction_ban
 			picture = green_biomass_plant
-			allowed = { always = no }
 
 			modifier = {
 				# Reduce resource extraction by approximately 1/3
@@ -3335,6 +3331,137 @@ local_resources_chromium_factor = 0.15
 				# Economic costs
 				production_speed_buildings_factor = -0.05
 				industrial_capacity_factory = -0.05
+			}
+		}
+
+		#################################################
+		# Counter-Terrorism Security Ideas
+		#################################################
+
+		# Vigipirate - French national security alert system
+		FRA_heightened_security = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_heightened_security"
+				hidden_effect = {
+					set_country_flag = FRA_vigipirate_active
+				}
+			}
+			on_remove = {
+				hidden_effect = {
+					clr_country_flag = FRA_vigipirate_active
+				}
+			}
+			name = FRA_heightened_security
+			picture = generic_pp_unity_bonus
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.05
+				war_support_factor = 0.05
+				consumer_goods_expected_value = 0.02
+				political_power_factor = -0.05
+				democratic_drift = -0.01
+			}
+		}
+
+		# State of Emergency - Declared after major terrorist attacks
+		FRA_state_of_emergency_terrorism = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea FRA_state_of_emergency_terrorism"
+				hidden_effect = {
+					set_country_flag = FRA_etat_urgence_active
+				}
+			}
+			on_remove = {
+				hidden_effect = {
+					clr_country_flag = FRA_etat_urgence_active
+				}
+			}
+			name = FRA_state_of_emergency_terrorism
+			picture = generic_spy_coup
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = 0.10
+				war_support_factor = 0.10
+				democratic_drift = -0.03
+				consumer_goods_expected_value = 0.03
+				political_power_factor = -0.10
+				conscription_factor = 0.10
+			}
+		}
+
+		# Terror Threat Level Elevated
+		FRA_terror_threat_elevated = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_terror_threat_elevated" }
+			name = FRA_terror_threat_elevated
+			picture = terrorism
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = -0.05
+				war_support_factor = 0.03
+				political_power_factor = -0.05
+				nationalist_drift = 0.02
+			}
+		}
+
+		# Terror Threat Level Critical
+		FRA_terror_threat_critical = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_terror_threat_critical" }
+			name = FRA_terror_threat_critical
+			picture = terrorism
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = -0.10
+				war_support_factor = 0.05
+				political_power_factor = -0.10
+				nationalist_drift = 0.05
+				consumer_goods_expected_value = 0.02
+			}
+		}
+
+		# National Mourning - After major attacks
+		FRA_national_mourning = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_national_mourning" }
+			name = FRA_national_mourning
+			picture = generic_civil_support
+			allowed = { always = no }
+
+			modifier = {
+				stability_factor = -0.03
+				war_support_factor = 0.08
+				political_power_factor = 0.05
+				drift_defence_factor = 0.10
+			}
+		}
+
+		# Damaged Infrastructure - After attacks on infrastructure
+		FRA_damaged_infrastructure = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_damaged_infrastructure" }
+			name = FRA_damaged_infrastructure
+			picture = infra_damaged
+			allowed = { always = no }
+
+			modifier = {
+				production_speed_buildings_factor = -0.05
+				consumer_goods_expected_value = 0.02
+				stability_factor = -0.03
+			}
+		}
+
+		# Tourism Crisis - After high-profile attacks
+		FRA_tourism_crisis = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea FRA_tourism_crisis" }
+			name = FRA_tourism_crisis
+			picture = generic_goods_red_bonus
+			allowed = { always = no }
+
+			modifier = {
+				consumer_goods_expected_value = 0.03
+				gdp_modifier = -0.02
+				stability_factor = -0.02
 			}
 		}
 	}
