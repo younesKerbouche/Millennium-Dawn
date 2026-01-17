@@ -1,4 +1,4 @@
-v1.12.4
+v2.0.0
 
  AI:
   - Moved more add_ai_strategy to the ai_strategy file for better performances
@@ -33,11 +33,15 @@ v1.12.4
   - The USA should no longer deploy the the Enhanced Forward Brigade and the S Brigade to Turkey well before the Russians have caused any tension
   - The USA should be more likely to guarantee South Korea assuming they are democratic
   - If the GFC has reached the USA the European Union AI will start working more actively towards economic reforms to better support all EU member states
+  - Added designed naval taskforce AI. This should get the AI to design better task forces, and deploy them in ways that make more sense, and avoid deathstacking
+  - Added new naval AI strategies for the AI, based around establishing naval dominance and performing more convoy raiding
+  - Adjust microchip production strategies
 
  Balance:
   - Adjusted some ideas in Germany which was giving a pointless < 0.01 democratic drift causing no actual impact or change
   - Reduced the penalties from the starting spirit "American Militarism"
   - Fixed an influence exploit by proposing, the AI accepting, then canceling the trade agreement giving you near infinite influence
+  - Fixed F-35 program still requiring NATO/MNNA status when opened to the world (Issue #286)
   - Fixed coalition party removal exploit that allowed gaining infinite political power by spamming remove decisions (Issue #285)
   - Significantly reduced the "The Green Card Program" productivity growth factor from 50% to 15%
   - North korea Land Facility Was Swapped for a Nuclear facility
@@ -66,11 +70,26 @@ v1.12.4
   - Adjusted IC cost of electrical infrastructure and industrial complexes
   - Slightly reduced the lower bound and increased upper bound of political power to -300 and 2500 respectively
   - Increased the political power cost for putting supportive scientists in place to 50 from 25
+  - Reduced the likelihood of generals dying in combat significantly
+  - Significantly buffed naval dominance across all ship hulls. It should be far easier to obtain naval dominance with smaller fleets now, and as a bonus, they AI should play smarter now
   - Gave the "Rubber Baron of Africa" idea for the Ivory Coast additional rubber generation
   - Provided additional Militias to the Syrian side of the conflict in the Arab Spring Civil War to slow the conflict
   - Gave the Civil War debuff to the Arab Spring Civil War to help slow the conflict
   - Increased MIO fund size requirement from 500 to 800 and increased the factor from 50 to 75 to make it slower (this is also topair with the QOL implementation of Vanilla's update automagically)
   - Increased the build time of infrastructure to make it harder to get to level 5
+  - Adjusted application of stats from naval modules. Majority of stats will now come off add_average, with lower amounts coming off add
+	NOTE: This will result in ships needing to upgrade weapons generationally for the best effects, while also allowing single module upgrades to still have a decent effect
+  - Tweaked naval combat defines further for balance (Bird is a nerd for making me do this, <3 bird!)
+  - Adjusted naval engines. Turbine engines now have the highest fuel consumption, while Diesel engines consume a lesser amount, to better balance the engine choices.
+  - Turbine engines speed buffed to match nuclear engines; nuclear engines biggest advantage is now range and fuel consumption
+  - Reduced the cost of internal investments so they're more likely to be taken
+  - Increased the research costs for missiles across the board and satellites
+  - Economic cycle productivity modifiers change from -3/+3 to -4/+3.5
+  - Rentier State modifier now gives -1.5 productivity nerf to reflect how oil-based economies struggle to invest in other sectors
+  - Each renewable tech now multiplies power output by 130% instead of adding 30%, boosting power output into the late game
+  - Africa literacy rate debuffs strengthened (productivity 4x, education costs 2x), so AI needs more time to develop
+  - African Union reforms strengthened to offset the literacy debuffs, allowing player to still achieve rapid development of African nations
+  - Technology productivity bonuses reduced by 50%, AI and late-game computing tech bonuses massively buffed
 
  Bugfix:
   - [BLR] Fixed factory locations in Belarus focuses - factories now build in correct provinces (Issue #236):
@@ -87,6 +106,9 @@ v1.12.4
   - Added missing intelligence agency advisors for spymaster role (Issue #110)
   - Fixed SAM missile icons not matching their equipment variants in deployment UI (Issue #218)
   - Fixed Linux runtime crashes caused by parsing errors (Issue #176)
+  - Fixed configurable display showing 0 for all resources and added microchips/composites support (Issue #288)
+    - Net resource calculation now properly uses produced + imported - exported - consumed
+    - Added microchips and advanced composites as new resource options in the topbar counter
   - [ARM] Fixed Active Diplomacy focus auto-bypassing when in any faction instead of only when faction leader (Issue #203)
   - [ARM] Fixed Embrace Left-Wing Origins focus not adding labour_unions if Bosses Elimination was completed first (Issue #203)
   - Renamed "special forces" subdoctrine directory to "special_forces" to fix Linux path parsing
@@ -150,8 +172,21 @@ v1.12.4
   - Fixed an improper check in the on actions when declaring war to properly setup the Iraq War
   - Fixed several events in Singapore not being localized or functioning as correct due to typoes in the variant names
   - Fixed being able to do the Internal Investments for Local Conservation Efforts in any state as Brazil even though it should've been limited to the Amazon states
+  - Fixed the ability of Israel to influence nations that are being boycotting them fully or politically
+  - [HOL/LIC] Fixed missing portrait texture errors (Issue #333)
+    - HOL: Fixed case mismatch in Wim Kok portrait reference (wim_kok.dds → Wim_Kok.dds)
+  - [PER/SER/BOL] Fixed create_unit parsing errors (Issue #331)
+    - Iran decisions: Added missing space in division template strings
+    - Serbia/Bolivia focuses: Changed invalid start_experience_base to start_experience_factor
+  - [BUL] Fixed border training event having no valid options during civil wars (Issue #332)
+    - Changed event option triggers from tag to original_tag to match decision's allowed block
 
  Content:
+  - [SOV] Added decision for Russia to transform CSTO into offensive alliance (Issue #269)
+    - Allows Russia to call CSTO members (including puppets) into offensive wars
+    - New decision category "CSTO Management" for Russia when leading CSTO
+    - News event notifies all countries of the alliance restructuring
+  - [GENERIC] Renamed North American formable from "United States of North America" to "North American Federation" (Issue #268)
   - [BUL] Enhanced "Embracing Orthodoxy" focus to add Anti-LGBTQ Stance national spirit (Issue #284)
   - [BUL] Added nationalist drift bonus to Orthodox National Values national spirit
   - [BUL] Added Dobruja (state 284) to The Fourth Bulgarian Kingdom integration decisions
@@ -175,14 +210,15 @@ v1.12.4
   - Refactored the Global Financial Crisis and added additional content to the War on Terror
   - Added additional economic events to the United States
   - Added 2 new internal investments options in "Local Coastal Infrastructure" and "Local Fortification Efforts"
+  - Add Civilian Population & Offices consumption of microchips
+  - Added designer hints to all naval modules, to assist with naval ship design.
+  - Added dynamic resource pricing for exported resources. Resource value will now change based on the available resources exported for trade.
 
  Database:
   - Land drone technologies now properly give the Ranger Light Recce company recon bonuses like all other recon units
   - Added 160 Scud GLCMs to Ukraine
   - China now starts with the "Microprocessor" tech
-  - [UZB] Rebalanced the starting economy of Uzbekistan
-    - Reduced starting productivity to 626
-	- Gave Uzbekistan an additional civilian industry as compensation for the nerf of productivity
+  - Adjusted productivity for nations to be more accurate to the development of regions and GDP as a percentage of their national GDP
 
  Factions:
   - Added a new faction goal "Establish an Airborne Corps"
@@ -203,6 +239,7 @@ v1.12.4
   - Fixed a portrait error for Cuba's "Alvaro Lopez Miera" when promoting them to an advisor
   - Fixed a portrait error for Izzat Ibrahim al-Douri when creating the country leader
   - Fixed Erna Solberg sometimes being a man instead of her expected portrait
+  - Adjusted the F4 models so that they aren't the same size as aircraft carriers
 
  Game Rules:
   - Added a new game rule for Enabling/Disabling Energy Load Sharing system
@@ -240,7 +277,10 @@ v1.12.4
   - Shifted the renewable energy calculation to the monthly tick for better performance
   - Shifted the Ideological Power subsystem to on demand updates rather than weekly checks and a fallback for monthly
   - Removed the final batch of Mean Time to Happen legacy events to optimize the game better during runtime
-  - Removed logging that was not useful to reduce the amount of information being rendered and output to the game log
+  - Removed logging that was not useful to reduce the amount of information being rendered and output to the game
+  - Removed and reduced significant numbers of any_country/every_country calls in the mod in various places
+  - Moved all productivity state variables into the history/states so as to not do additional scope expansion
+  - Removed logs for unneeded functions such as news events, technologies, and other redundant logging
 
  Quality of Life:
   - You can now push your Election Threshold to 0% instead of the minimum 1% in the Subideology screen
@@ -254,7 +294,7 @@ v1.12.4
   - Fixed the doctrine's text being unreadable due to a black font on a black interface
   - Fixed the Faction Goal popup being off center and weird in the UI
 
-v1.12.3b
+v2.0.0
 
  AI:
   - The Zombie AI should now properly build Zombie units ontop of their spawning numbers
