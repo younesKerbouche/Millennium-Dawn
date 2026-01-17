@@ -1256,8 +1256,6 @@ ENG_monarchy_decision_category = {
 
 		days_remove = 30
 
-		days_re_enable = 180
-
 		visible = {
 			OR = {
 				is_debug = yes
@@ -1298,8 +1296,6 @@ ENG_monarchy_decision_category = {
 		icon = GFX_ENG_decision_charles
 
 		days_remove = 30
-
-		days_re_enable = 180
 
 		visible = {
 			OR = {
@@ -1367,8 +1363,6 @@ ENG_monarchy_decision_category = {
 
 		days_remove = 30
 
-		days_re_enable = 180
-
 		visible = {
 			OR = {
 				is_debug = yes
@@ -1434,8 +1428,6 @@ ENG_monarchy_decision_category = {
 
 		days_remove = 30
 
-		days_re_enable = 180
-
 		visible = {
 			OR = {
 				is_debug = yes
@@ -1497,8 +1489,6 @@ ENG_monarchy_decision_category = {
 
 		days_remove = 30
 
-		days_re_enable = 180
-
 		visible = {
 			OR = {
 				is_debug = yes
@@ -1541,8 +1531,6 @@ ENG_monarchy_decision_category = {
 
 		days_remove = 30
 
-		days_re_enable = 180
-
 		visible = {
 			OR = {
 				is_debug = yes
@@ -1572,6 +1560,105 @@ ENG_monarchy_decision_category = {
 			research_speed_factor = 0.025
 			scientist_xp_gain_factor = 0.15
 			scientist_breakthrough_bonus_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_andrew_naval_haritage_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_andrew
+
+		days_remove = 60
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_naval_prince
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_andrew
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_andrew_naval_haritage_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_andrew_naval_haritage_decision_activated
+		}
+
+		modifier = {
+			experience_gain_navy = 0.05
+			experience_gain_carrier_training_factor = 0.10
+			experience_gain_destroyer_training_factor = 0.10
+			experience_gain_frigate_training_factor = 0.10
+			experience_gain_cruiser_training_factor = 0.10
+			experience_gain_submarine_training_factor = 0.10
+			experience_gain_corvette_training_factor = 0.10
+			experience_gain_helicopter_operator_training_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	ENG_andrew_trade_representive_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_andrew
+
+		days_remove = 30
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_appoint_trade_representative
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_andrew
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_andrew_trade_representive_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_andrew_trade_representive_decision_activated
+			random_country = {
+				limit = {
+					NOT = { tag = ENG }
+					war_with_us = no
+					has_opinion = {
+						target = ENG
+						value > 0
+					}
+					NOT = { has_opinion_modifier = ENG_andrew_trade_representative }
+				}
+			}
+			set_temp_variable = { int_investment_change = gdp_per_capita }
+			multiply_temp_variable = { int_investment_change = 0.05 }
+			modify_international_investment_effect = yes
+		}
+
+		modifier = {
+			bureaucracy_cost_multiplier_modifier = 0.10
 		}
 
 		ai_will_do = {

@@ -2524,3 +2524,311 @@ country_event = {
 		}
 	}
 }
+country_event = {
+	id = ENG_inner_circle_andrew.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_naval_prince
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 1 }
+			check_variable = { ENG_ascended_advisor_2 = 1 }
+			check_variable = { ENG_ascended_advisor_3 = 1 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_appoint_trade_representative }
+			}
+			activate_shine_on_focus = ENG_appoint_trade_representative
+			set_country_flag = { flag = ENG_appoint_trade_representative_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = ENG_inner_circle_andrew.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_emerging_markets_circuit }
+			}
+			activate_shine_on_focus = ENG_emerging_markets_circuit
+			set_country_flag = { flag = ENG_emerging_markets_circuit_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = ENG_inner_circle_andrew.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_digital_enterprise_patronage }
+			}
+			activate_shine_on_focus = ENG_digital_enterprise_patronage
+			set_country_flag = { flag = ENG_digital_enterprise_patronage_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = ENG_inner_circle_andrew.02 days = @inner_circle_time_tier_3 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_duty_of_the_crown }
+			}
+			activate_shine_on_focus = ENG_duty_of_the_crown
+			set_country_flag = { flag = ENG_duty_of_the_crown_in_progress_flag days = @inner_circle_time_tier_4_flag value = 1 }
+			country_event = { id = ENG_inner_circle_andrew.02 days = @inner_circle_time_tier_4 }
+		}
+		else = { #Debug logs
+			log = "SOMETHING WENT WRONG WITH ANDREW's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+country_event = {
+	id = ENG_inner_circle_andrew.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_naval_prince
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 1 }
+			check_variable = { ENG_ascended_advisor_2 = 1 }
+			check_variable = { ENG_ascended_advisor_3 = 1 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_appoint_trade_representative
+			}
+			complete_national_focus = {
+				focus = ENG_appoint_trade_representative
+				use_side_message = yes
+				originator_name = ENG_prince_andrew
+			}
+			clr_country_flag = ENG_appoint_trade_representative_in_progress_flag
+			country_event = { id = ENG_inner_circle_andrew.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_emerging_markets_circuit
+			}
+			complete_national_focus = {
+				focus = ENG_emerging_markets_circuit
+				use_side_message = yes
+				originator_name = ENG_prince_andrew
+			}
+			clr_country_flag = ENG_emerging_markets_circuit_in_progress_flag
+			country_event = { id = ENG_inner_circle_andrew.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_digital_enterprise_patronage
+			}
+			complete_national_focus = {
+				focus = ENG_digital_enterprise_patronage
+				use_side_message = yes
+				originator_name = ENG_prince_andrew
+			}
+			clr_country_flag = ENG_digital_enterprise_patronage_in_progress_flag
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_duty_of_the_crown
+			}
+			complete_national_focus = {
+				focus = ENG_duty_of_the_crown
+				use_side_message = yes
+				originator_name = ENG_prince_andrew
+			}
+			clr_country_flag = ENG_duty_of_the_crown_in_progress_flag
+			country_event = { id = ENG_inner_circle_andrew.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else = { #Debug logs
+			#log = "SOMETHING WENT WRONG WITH TODT's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+country_event = {
+    id = ENG_inner_circle_andrew.03
+    hidden = yes
+
+    is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_naval_prince
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 1 }
+			check_variable = { ENG_ascended_advisor_2 = 1 }
+			check_variable = { ENG_ascended_advisor_3 = 1 }
+		}
+	}
+
+    immediate = {
+		if = {
+			limit = {
+				has_completed_focus = ENG_naval_prince
+			}
+			activate_decision = ENG_andrew_naval_haritage_decision
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = ENG_appoint_trade_representative
+			}
+			random_list = {
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_andrew_naval_haritage_decision_activated
+					}
+					activate_decision = ENG_andrew_naval_haritage_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_andrew_trade_representive_decision_activated
+					}
+					activate_decision = ENG_andrew_trade_representive_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
+					}
+					activate_decision = ENG_charles_environmental_diplomacy_tour_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
+					}
+					activate_decision = ENG_charles_sustainable_urban_planning_decision
+				}
+			}
+		}
+		else_if = {
+			limit = { has_completed_focus = ENG_climate_alarm_bell }
+			random_list = {
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_charities_network_decision_activated
+					}
+					activate_decision = ENG_charles_charities_network_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_harmony_tour_decision_activated
+					}
+					activate_decision = ENG_charles_harmony_tour_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
+					}
+					activate_decision = ENG_charles_environmental_diplomacy_tour_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
+					}
+					activate_decision = ENG_charles_sustainable_urban_planning_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_rainforest_help_decision_activated
+					}
+					activate_decision = ENG_charles_rainforest_help_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_youth_sustainability_decision_activated
+					}
+					activate_decision = ENG_charles_youth_sustainability_decision
+				}
+			}
+		}
+		else_if = {
+			limit = { has_completed_focus = ENG_duchy_originals }
+			random_list = {
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_charities_network_decision_activated
+					}
+					activate_decision = ENG_charles_charities_network_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_harmony_tour_decision_activated
+					}
+					activate_decision = ENG_charles_harmony_tour_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
+					}
+					activate_decision = ENG_charles_environmental_diplomacy_tour_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
+					}
+					activate_decision = ENG_charles_sustainable_urban_planning_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_rainforest_help_decision_activated
+					}
+					activate_decision = ENG_charles_rainforest_help_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_youth_sustainability_decision_activated
+					}
+					activate_decision = ENG_charles_youth_sustainability_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_charles_organic_agriculture_decision_activated
+					}
+					activate_decision = ENG_charles_organic_agriculture_decision
+				}
+			}
+		}
+		country_event = {
+			id = ENG_inner_circle_andrew.03
+			days = 150
+			random_days = 50
+		}
+	}
+}
+country_event = {
+    id = ENG_inner_circle_andrew.04
+    title = ENG_inner_circle_andrew.04.t
+    desc = ENG_inner_circle_andrew.04.desc
+    picture = x
+
+    is_triggered_only = yes
+
+    option = {
+        name = ENG_inner_circle_andrew.04.a
+        add_opinion_modifier = {
+			target = ENG
+			modifier = ENG_andrew_trade_representative
+		}
+		reverse_add_opinion_modifier = {
+			target = THIS
+			modifier = ENG_andrew_trade_representative
+		}
+    }
+}
