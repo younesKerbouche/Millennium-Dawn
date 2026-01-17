@@ -12422,15 +12422,23 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.06.b executed"
 		add_political_power = -50
 		ai_chance = {
-			base = 0
+			base = 1
+
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = JAP
+					value > -60
+				}
+			}
 		}
 	}
 }
 
 country_event = {
 	id = JAP_diplomacy.07
-	title = JAP_diplomacy.07.t
-	desc = JAP_diplomacy.07.d
+	title = JAP_diplomacy.06.t
+	desc = JAP_diplomacy.06.d
 	#picture
 	is_triggered_only = yes
 
@@ -12442,8 +12450,8 @@ country_event = {
 	}
 	
 	option = {
-		name = JAP_diplomacy.07.a
-		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.07.a executed"
+		name = JAP_diplomacy.06.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.06.a executed"
 		JAP = {
 			set_country_flag = "JAP_chi_accept_intellectual_platform"
 		}
@@ -12454,11 +12462,19 @@ country_event = {
 	}
 
 	option = {
-		name = JAP_diplomacy.07.b
-		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.07.b executed"
+		name = JAP_diplomacy.06.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.06.b executed"
 		add_political_power = -50
 		ai_chance = {
-			base = 0
+			base = 1
+
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = JAP
+					value > -60
+				}
+			}
 		}
 	}
 }
