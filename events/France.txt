@@ -8141,13 +8141,13 @@ country_event = {#attack eastern
 	}
 }
 country_event = {#attack russia and neightbor
-	id = france_md.323
-	title = france_md.323.t
-	desc = france_md.323.d
+	id = france_md.475
+	title = france_md.475.t
+	desc = france_md.475.d
 	is_triggered_only = yes
 	option = {
-		name = france_md.323.a
-		log = "[GetDateText]: [This.GetName]: france_md.323.a executed"
+		name = france_md.475.a
+		log = "[GetDateText]: [This.GetName]: france_md.475.a executed"
 		add_manpower = 50000
 		add_war_support = 0.15
 		add_timed_idea = { idea = FRA_attack_russia_fast days = 150 }
@@ -8156,8 +8156,8 @@ country_event = {#attack russia and neightbor
 		}
 	}
 	option = {
-		name = france_md.323.b
-		log = "[GetDateText]: [This.GetName]: france_md.323.b executed"
+		name = france_md.475.b
+		log = "[GetDateText]: [This.GetName]: france_md.475.b executed"
 		add_manpower = 50000
 		add_war_support = 0.15
 		add_timed_idea = { idea = FRA_attack_russia_slow days = 365 }
@@ -8167,13 +8167,13 @@ country_event = {#attack russia and neightbor
 	}
 }
 country_event = {#attack UK
-	id = france_md.324
-	title = france_md.324.t
-	desc = france_md.324.d
+	id = france_md.476
+	title = france_md.476.t
+	desc = france_md.476.d
 	is_triggered_only = yes
 	option = {
-		name = france_md.324.a
-		log = "[GetDateText]: [This.GetName]: france_md.324.a executed"
+		name = france_md.476.a
+		log = "[GetDateText]: [This.GetName]: france_md.476.a executed"
 		add_manpower = 20000
 		add_war_support = 0.1
 		add_timed_idea = { idea = FRA_attack_UK_naval days = 130 }
@@ -8182,8 +8182,8 @@ country_event = {#attack UK
 		}
 	}
 	option = {
-		name = france_md.324.b
-		log = "[GetDateText]: [This.GetName]: france_md.324.b executed"
+		name = france_md.476.b
+		log = "[GetDateText]: [This.GetName]: france_md.476.b executed"
 		add_manpower = 20000
 		add_war_support = 0.1
 		add_timed_idea = { idea = FRA_attack_UK_air days = 130 }
@@ -8193,16 +8193,216 @@ country_event = {#attack UK
 	}
 }
 country_event = {#victory over foe
-	id = france_md.325
-	title = france_md.325.t
-	desc = france_md.325.d
+	id = france_md.477
+	title = france_md.477.t
+	desc = france_md.477.d
 	is_triggered_only = yes
 	option = {
-		name = france_md.325.a
-		log = "[GetDateText]: [This.GetName]: france_md.325.a executed"
+		name = france_md.477.a
+		log = "[GetDateText]: [This.GetName]: france_md.477.a executed"
 		add_stability = 0.3
 		add_war_support = 0.2
 		add_ideas = FRA_BON_victory
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#choose expansion policy
+	id = france_md.478
+	title = france_md.478.t
+	desc = france_md.478.d
+	is_triggered_only = yes
+	option = {#become charlemagne attack europe
+		name = france_md.478.a
+		log = "[GetDateText]: [This.GetName]: france_md.478.a executed"
+		add_ideas = FRA_expansion_europe
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#become saint louis start crusadind around
+		name = france_md.478.b
+		log = "[GetDateText]: [This.GetName]: france_md.478.b executed"
+		add_ideas = FRA_expansion_crusades
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#france demand annexation
+	id = france_md.479
+	title = france_md.479.t
+	desc = france_md.479.d
+	is_triggered_only = yes
+	option = {#yes
+		name = france_md.479.a
+		log = "[GetDateText]: [This.GetName]: france_md.479.a executed"
+		FRA= {
+			country_event = france_md.480
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#no
+		name = france_md.479.b
+		log = "[GetDateText]: [This.GetName]: france_md.479.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
+		set_temp_variable = { temp_outlook_increase = -0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.15
+		add_war_support = 0.1
+		FRA= {
+			country_event = france_md.481
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#target accept
+	id = france_md.480
+	title = france_md.480.t
+	desc = france_md.480.d
+	is_triggered_only = yes
+	option = {#cool
+		name = france_md.480.a
+		log = "[GetDateText]: [This.GetName]: france_md.480.a executed"
+			annex_country = {
+				target = FROM
+				transfer_troops = yes
+			}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#target said no
+	id = france_md.481
+	title = france_md.481.t
+	desc = france_md.481.d
+	is_triggered_only = yes
+	option = {#wargoal
+		name = france_md.481.a
+		log = "[GetDateText]: [This.GetName]: france_md.481.a executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+		add_war_support = 0.05
+		create_wargoal = {
+			type = annex_everything
+			target = FROM
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#nothing
+		name = france_md.481.b
+		log = "[GetDateText]: [This.GetName]: france_md.481.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.05}
+		set_temp_variable = { temp_outlook_increase = -0.05}
+		add_relative_party_popularity = yes
+		add_political_power = -50
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#france demand we fold italy
+	id = france_md.482
+	title = france_md.482.t
+	desc = france_md.482.d
+	is_triggered_only = yes
+	option = {#yes
+		name = france_md.482.a
+		log = "[GetDateText]: [This.GetName]: france_md.482.a executed"
+		effect_tooltip = {
+			1060 = {  transfer_state_to = FRA }
+			1059 = { transfer_state_to = FRA }
+			77 = { transfer_state_to = FRA }
+			80 = { transfer_state_to = FRA }
+			78 = { transfer_state_to = FRA }
+			285 = { transfer_state_to = FRA }
+			265 = { transfer_state_to = FRA }
+			1061 = { transfer_state_to = FRA }
+			79 = { transfer_state_to = FRA }
+		}
+		FRA= {
+			if = {
+				limit = { NOT = { ITA = { is_subject_of = FRA } } }
+				puppet = ITA
+			}
+
+		}
+		hidden_effect = {
+			clear_array = ruling_party
+			clear_array = gov_coalition_array
+			add_to_array = { ruling_party = 23 }
+			update_government_coalition_strength = yes
+			set_coalition_drift = yes
+			set_ruling_leader = yes
+			set_leader = yes
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+				}
+			}
+		ai_chance = {
+			base = 1
+		}
+
+	}
+	option = {#no
+		name = france_md.482.b
+		log = "[GetDateText]: [This.GetName]: france_md.482.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
+		set_temp_variable = { temp_outlook_increase = -0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.15
+		add_war_support = 0.1
+		FRA= {
+			country_event = france_md.483
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#target said no fold
+	id = france_md.483
+	title = france_md.483.t
+	desc = france_md.483.d
+	is_triggered_only = yes
+	option = {#wargoal
+		name = france_md.483.a
+		log = "[GetDateText]: [This.GetName]: france_md.483.a executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = 0.05 }
+		set_temp_variable = { temp_outlook_increase = 0.05 }
+		add_relative_party_popularity = yes
+		add_war_support = 0.05
+		create_wargoal = {
+			target = FROM
+			type = puppet_wargoal_focus
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#nothing
+		name = france_md.483.b
+		log = "[GetDateText]: [This.GetName]: france_md.483.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.05}
+		set_temp_variable = { temp_outlook_increase = -0.05}
+		add_relative_party_popularity = yes
+		add_political_power = -50
 		ai_chance = {
 			base = 1
 		}

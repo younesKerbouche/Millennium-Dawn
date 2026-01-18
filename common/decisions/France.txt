@@ -1998,7 +1998,7 @@ FRA_french_communism_expansionism_decision_category = {
 		}
 	}
 }
-FRA_3rd_empire_decision_category = {
+FRA_3rd_empire_decision_category = {#TODO add claim for all
 	FRA_reunionism = {#claim belgium holland luxembourg
 		fire_only_once = yes
 		days_remove = 35
@@ -2034,6 +2034,15 @@ FRA_3rd_empire_decision_category = {
 						target = LUX
 				}
 			}
+			965 = {add_claim_by = FRA}
+			52 = {add_claim_by = FRA}
+			51 = {add_claim_by = FRA}
+			50 = {add_claim_by = FRA}
+			53 = {add_claim_by = FRA}
+			47 = {add_claim_by = FRA}
+			46 = {add_claim_by = FRA}
+			48 = {add_claim_by = FRA}
+			1169 = {add_claim_by = FRA}
 		}
 	}
 	FRA_Never_another_guerilla = {#claim catalogna
@@ -2286,7 +2295,7 @@ FRA_3rd_empire_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_no_more_berezina"
-			country_event = france_md.323
+			country_event = france_md.475
 			if = {
 				limit = {country_exists = SOV}
 				create_wargoal = {
@@ -2319,7 +2328,7 @@ FRA_3rd_empire_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_the_Foe"
-			country_event = france_md.324
+			country_event = france_md.476
 			if = {
 				limit = {country_exists = ENG}
 				create_wargoal = {
@@ -2342,7 +2351,7 @@ FRA_3rd_empire_decision_category = {
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_new_order"
-			country_event = france_md.325
+			country_event = france_md.477
 			every_other_country = {
 				limit = { is_subject_of = FRA }
 				add_ideas = FRA_exploitation
@@ -2350,33 +2359,156 @@ FRA_3rd_empire_decision_category = {
 		}
 	}
 }
-FRA_royalist_expansion_decision_category = {
-	FRA_European_crusade = {
+FRA_royalist_expansion_decision_category = {#TODO add claim for all
+	FRA_Expansion_policy = {
 		fire_only_once = yes
 		days_remove = 35
 		cost = 50
 		visible = {
 			NOT = {
-				has_idea = FRA_expansion_crusades
+				OR = {
+					has_idea = FRA_expansion_crusades
+					has_idea = FRA_expansion_europe
+				}
 			}
 		}
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision FRA_European_crusade"
-			add_ideas = FRA_expansion_europe
+			country_event = france_md.478
 		}
 	}
-	FRA_Christian_crusade = {
+	FRA_frankish_nest = {#claim belgium holland luxembourg
 		fire_only_once = yes
 		days_remove = 35
 		cost = 50
 		visible = {
-			NOT = {
-				has_idea = FRA_expansion_europe
+			AND = {
+				FRA_expansion_europe
+				OR = {
+					country_exists = BEL
+					country_exists = HOL
+					country_exists = LUX
+				}
 			}
 		}
 		remove_effect = {
-			log = "[GetDateText]: [Root.GetName]: Decision FRA_Christian_crusade"
-			add_ideas = FRA_expansion_crusades
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_frankish_nest"
+			if = {
+				limit = {country_exists = BEL}
+				BEL = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = HOL}
+				HOL = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = LUX}
+				LUX = {
+					country_event = france_md.479
+				}
+			}
+			965 = {add_claim_by = FRA}
+			52 = {add_claim_by = FRA}
+			51 = {add_claim_by = FRA}
+			50 = {add_claim_by = FRA}
+			53 = {add_claim_by = FRA}
+			47 = {add_claim_by = FRA}
+			46 = {add_claim_by = FRA}
+			48 = {add_claim_by = FRA}
+			1169 = {add_claim_by = FRA}
+		}
+	}
+	FRA_heir_of_charles_le_chauve = {#claim germany
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_europe
+				country_exists = GER
+
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_heir_of_charles_le_chauve"
+			if = {
+				limit = {country_exists = GER}
+				GER = {
+					country_event = france_md.479
+				}
+			}
+			967 = {add_claim_by = FRA}
+			40 = {add_claim_by = FRA}
+			42 = {add_claim_by = FRA}
+			41 = {add_claim_by = FRA}
+			43 = {add_claim_by = FRA}
+			964 = {add_claim_by = FRA}
+			966 = {add_claim_by = FRA}
+			39 = {add_claim_by = FRA}
+			38 = {add_claim_by = FRA}
+			1080 = {add_claim_by = FRA}
+			37 = {add_claim_by = FRA}
+			539 = {add_claim_by = FRA}
+			45 = {add_claim_by = FRA}
+			1079 = {add_claim_by = FRA}
+			44 = {add_claim_by = FRA}
+			545 = {add_claim_by = FRA}
+			972 = {add_claim_by = FRA}
+		}
+	}
+	FRA_protect_papacy = {#claim northern italy switzerland and austria
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_europe
+				OR = {
+					country_exists = ITA
+					country_exists = SWI
+					country_exists = AUS
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_protect_papacy"
+			if = {
+				limit = {country_exists = SWI}
+				SWI = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = AUS}
+				AUS = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = ITA}
+				ITA = {
+					country_event = france_md.482
+				}
+			}
+			72 = {add_claim_by = FRA}
+			74 = {add_claim_by = FRA}
+			73 = {add_claim_by = FRA}
+			76 = {add_claim_by = FRA}
+			75 = {add_claim_by = FRA}
+			286 = {add_claim_by = FRA}
+			1060 = {add_claim_by = FRA}
+			1059 = {add_claim_by = FRA}
+			77 = {add_claim_by = FRA}
+			80 = {add_claim_by = FRA}
+			78 = {add_claim_by = FRA}
+			285 = {add_claim_by = FRA}
+			265 = {add_claim_by = FRA}
+			1061 = {add_claim_by = FRA}
+			79 = {add_claim_by = FRA}
 		}
 	}
 }
