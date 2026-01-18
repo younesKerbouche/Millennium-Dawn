@@ -2665,12 +2665,6 @@ country_event = {
     immediate = {
 		if = {
 			limit = {
-				has_completed_focus = ENG_naval_prince
-			}
-			activate_decision = ENG_andrew_naval_haritage_decision
-		}
-		else_if = {
-			limit = {
 				has_completed_focus = ENG_appoint_trade_representative
 			}
 			random_list = {
@@ -2679,6 +2673,10 @@ country_event = {
 						factor = 0
 						has_country_flag = ENG_andrew_naval_haritage_decision_activated
 					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_naval_prince }
+					}
 					activate_decision = ENG_andrew_naval_haritage_decision
 				}
 				25 = {
@@ -2686,122 +2684,33 @@ country_event = {
 						factor = 0
 						has_country_flag = ENG_andrew_trade_representive_decision_activated
 					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_appoint_trade_representative }
+					}
 					activate_decision = ENG_andrew_trade_representive_decision
 				}
 				25 = {
 					modifier = {
 						factor = 0
-						has_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
+						has_country_flag = ENG_andrew_emerging_trade_agreement_decision_activated
 					}
-					activate_decision = ENG_charles_environmental_diplomacy_tour_decision
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_emerging_markets_circuit }
+					}
+					activate_decision = ENG_andrew_emerging_trade_agreement_decision
 				}
 				25 = {
 					modifier = {
 						factor = 0
 						has_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
 					}
-					activate_decision = ENG_charles_sustainable_urban_planning_decision
-				}
-			}
-		}
-		else_if = {
-			limit = { has_completed_focus = ENG_climate_alarm_bell }
-			random_list = {
-				25 = {
 					modifier = {
 						factor = 0
-						has_country_flag = ENG_charles_charities_network_decision_activated
-					}
-					activate_decision = ENG_charles_charities_network_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_harmony_tour_decision_activated
-					}
-					activate_decision = ENG_charles_harmony_tour_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
-					}
-					activate_decision = ENG_charles_environmental_diplomacy_tour_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
+						NOT = { has_completed_focus = ENG_appoint_trade_representative }
 					}
 					activate_decision = ENG_charles_sustainable_urban_planning_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_rainforest_help_decision_activated
-					}
-					activate_decision = ENG_charles_rainforest_help_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_youth_sustainability_decision_activated
-					}
-					activate_decision = ENG_charles_youth_sustainability_decision
-				}
-			}
-		}
-		else_if = {
-			limit = { has_completed_focus = ENG_duchy_originals }
-			random_list = {
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_charities_network_decision_activated
-					}
-					activate_decision = ENG_charles_charities_network_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_harmony_tour_decision_activated
-					}
-					activate_decision = ENG_charles_harmony_tour_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_environmental_diplomacy_tour_decision_activated
-					}
-					activate_decision = ENG_charles_environmental_diplomacy_tour_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_sustainable_urban_planning_decision_activated
-					}
-					activate_decision = ENG_charles_sustainable_urban_planning_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_rainforest_help_decision_activated
-					}
-					activate_decision = ENG_charles_rainforest_help_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_youth_sustainability_decision_activated
-					}
-					activate_decision = ENG_charles_youth_sustainability_decision
-				}
-				25 = {
-					modifier = {
-						factor = 0
-						has_country_flag = ENG_charles_organic_agriculture_decision_activated
-					}
-					activate_decision = ENG_charles_organic_agriculture_decision
 				}
 			}
 		}
@@ -2829,6 +2738,49 @@ country_event = {
 		reverse_add_opinion_modifier = {
 			target = THIS
 			modifier = ENG_andrew_trade_representative
+		}
+    }
+}
+country_event = {
+    id = ENG_inner_circle_andrew.05
+    title = ENG_inner_circle_andrew.05.t
+    desc = ENG_inner_circle_andrew.05.desc
+    picture = x
+
+    is_triggered_only = yes
+
+    option = {
+        name = ENG_inner_circle_andrew.04.a
+		custom_effect_tooltip = ENG_inner_circle_andrew.05_tt
+		hidden_effect = {
+			set_country_flag = trade_agreement@ROOT
+			ROOT = {
+				clear_variable = pending_trade_offer_country
+				set_country_flag = trade_agreement@PREV
+			}
+			THIS = {
+				add_opinion_modifier = { target = ROOT modifier = mutual_trade_agreement }
+				add_opinion_modifier = { target = ROOT modifier = mutual_trade_opinion }
+				reverse_add_opinion_modifier = { target = ROOT modifier = mutual_trade_opinion }
+				reverse_add_opinion_modifier = { target = ROOT modifier = mutual_trade_agreement }
+				set_temp_variable = { percent_change = 1 }
+				set_temp_variable = { tag_index = ROOT.id }
+				set_temp_variable = { influence_target = THIS.id }
+				change_influence_percentage = yes
+				add_to_variable = { signed_trade_agreements = 1 }
+				ROOT = {
+					set_temp_variable = { percent_change = 1 }
+					set_temp_variable = { tag_index = PREV.id }
+					set_temp_variable = { influence_target = THIS.id }
+					change_influence_percentage = yes
+					add_to_variable = { signed_trade_agreements = 1 }
+
+					if = {
+						limit = { ROOT = { original_tag = SIN } }
+						SIN_calculate_singaporean_trade_agreements = yes
+					}
+				}
+			}
 		}
     }
 }

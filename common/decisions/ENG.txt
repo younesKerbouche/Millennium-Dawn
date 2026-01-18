@@ -1676,4 +1676,62 @@ ENG_monarchy_decision_category = {
 			factor = 10
 		}
 	}
+	ENG_andrew_emerging_trade_agreement_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_andrew
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_emerging_markets_circuit
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_andrew
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_andrew_emerging_trade_agreement_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_andrew_emerging_trade_agreement_decision_activated
+			random_country = {
+				limit = {
+					NOT = { tag = ENG }
+					war_with_us = no
+					has_opinion = {
+						target = ENG
+						value > 0
+					}
+					has_emerging_aligned_government = yes
+					NOT = { has_opinion_modifier = mutual_trade_agreement }
+				}
+				country_event = ENG_inner_circle_andrew.05
+				effect_tooltip = {
+					custom_effect_tooltip = ENG_inner_circle_andrew.05_tt
+				}
+			}
+			set_temp_variable = { int_investment_change = gdp_per_capita }
+			multiply_temp_variable = { int_investment_change = 0.05 }
+			modify_international_investment_effect = yes
+		}
+
+		modifier = {
+			bureaucracy_cost_multiplier_modifier = 0.10
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
 }
