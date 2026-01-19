@@ -1,6 +1,10 @@
 v2.0.0
 
  AI:
+  - [RAJ] Added AI behavior for handling Naxalite-Maoist insurgency (Issue #330)
+    - AI India now prioritizes insurgency suppression decisions
+    - AI escalates priority when multiple states reach Severe level
+    - AI unlocks Operation Green Hunt after 2009
   - Moved more add_ai_strategy to the ai_strategy file for better performances
   - AI USA should no longer send volunteers to Somalia outside of their civil war
   - Fixed a broken AI strategy for Egypt which was incorrectly referencing LBA instead of EGY
@@ -36,8 +40,17 @@ v2.0.0
   - Added designed naval taskforce AI. This should get the AI to design better task forces, and deploy them in ways that make more sense, and avoid deathstacking
   - Added new naval AI strategies for the AI, based around establishing naval dominance and performing more convoy raiding
   - Adjust microchip production strategies
+  - Encouraged the AI to be more likely to build fuel silos to increase their fuel storage
+  - Hid the European Union from the AI who are not likely to ever interact with it helping some of the tick rate/speed
+  - The AI for the European Union GUI should now only check the menu every 3 days to help prioritize performance
 
  Balance:
+  - [RAJ] Complete rework of Naxalite-Maoist insurgency system (Issue #330)
+    - Renamed all "hoxaists" references to historically accurate "naxalite" terminology
+    - Rebalanced initial state severities for 2000 start (pre-PWG-MCC merger period)
+    - Reduced modifier penalties: Severe now -35% recruitable/-40% resources (was -50%/-60%)
+    - Removed insurgency from non-historical states (Karnataka, Uttaranchal, Gorkhaland)
+    - Core states (Chhattisgarh, Jharkhand, Telangana) now start at Moderate instead of Severe
   - Adjusted some ideas in Germany which was giving a pointless < 0.01 democratic drift causing no actual impact or change
   - Reduced the penalties from the starting spirit "American Militarism"
   - Fixed an influence exploit by proposing, the AI accepting, then canceling the trade agreement giving you near infinite influence
@@ -58,6 +71,13 @@ v2.0.0
     Albania, Algeria, Armenia, Austria, Azerbaijan, Belarus, Belgium, Bulgaria, Cuba, Czech Republic, Denmark, Estonia,
     Finland, Georgia, Greece, Hungary, Iraq, Kazakhstan, Latvia, Lithuania, Malaysia, Moldova, Netherlands, Norway,
     Romania, Serbia, Slovakia, Syria, Switzerland, Thailand, Turkmenistan, Uzbekistan, Vietnam, South Africa
+  - Added pre-existing intelligence agency upgrades for major powers reflecting their Y2K capabilities (Issue #120):
+    USA (CIA/NSA): World-leading cryptography and decryption, strong military intelligence, operative training
+    UK (MI6/GCHQ): Excellent cryptography, good HUMINT and military intelligence
+    Russia (FSB/SVR): Strong counter-intelligence and HUMINT (inherited KGB), commando training
+    Israel (Mossad/Unit 8200): Strong HUMINT and covert operations, good cryptography
+    France (DGSE/DST): World-leading economic intelligence, good counter-intelligence
+    China (MSS): Developing agency with focus on counter-intelligence and economic espionage
   - Nerfed the amount of economic bonuses you could get as Iran
   - Extended the time you have the "Recently Joined the WTO" idea for China
   - Increased the trade opinion, political power gain and gave a little bit of emerging drift to the SCO member ideas
@@ -92,6 +112,12 @@ v2.0.0
   - Technology productivity bonuses reduced by 50%, AI and late-game computing tech bonuses massively buffed
 
  Bugfix:
+  - [JAP] Fixed missing interface files for Japan in the Tank Designer - created new _jap.gui files for all tank chassis types using USA layout (Issue #349)
+  - Fixed ship experience gain modifiers not showing ship type in tooltips (Issue #354)
+    - All naval unit experience modifiers now display their ship type (e.g., "Destroyer Training Experience Gain")
+    - Added missing submarine training/combat experience gain modifiers
+    - Affected ships: submarines, carriers, cruisers, destroyers, frigates, corvettes, battleships, etc.
+  - Fixed broken variant upgrade for Artillery 2005 by renaming non-NSB artillery technologies to avoid name collision with equipment (Issue #334)
   - [BLR] Fixed factory locations in Belarus focuses - factories now build in correct provinces (Issue #236):
     - Pinskdrev now builds civilian factory in Brest oblast (was random)
     - Hi-Tech Park now builds office in Minsk (was random)
@@ -157,6 +183,7 @@ v2.0.0
   - Fixed the tax cost modifier missing from the Iranian Economy Spirit
   - [PER] Fixed Kermanshah's Oxygen mission checking wrong province (12773 instead of city province 16155) (Issue #234)
   - [PER] Fixed "General Max Army Size" modifier from Concessions to the Army focus not working (Issue #235)
+  - [PER] Added distinct color to Axis of Resistance faction to differentiate from CSTO on F10 map mode (Issue #342)
   - Removed the double definition of support in Motorized Recon Company
   - Fixed Dutch Focus "Modernize MRAD" not being available while having the tech that was needed. Also added a bypass when all you states are maxed out on Anti-Air
   - Fixed an issue where an internal faction check in various nations (most noticeable in China) would allow you to take a decision or focus despite it not having enough opinion
@@ -173,6 +200,8 @@ v2.0.0
   - Fixed several events in Singapore not being localized or functioning as correct due to typoes in the variant names
   - Fixed being able to do the Internal Investments for Local Conservation Efforts in any state as Brazil even though it should've been limited to the Amazon states
   - Fixed the ability of Israel to influence nations that are being boycotting them fully or politically
+  - [HOL/LIC] Fixed missing portrait texture errors (Issue #333)
+    - HOL: Fixed case mismatch in Wim Kok portrait reference (wim_kok.dds → Wim_Kok.dds)
   - [PER/SER/BOL] Fixed create_unit parsing errors (Issue #331)
     - Iran decisions: Added missing space in division template strings
     - Serbia/Bolivia focuses: Changed invalid start_experience_base to start_experience_factor
@@ -180,6 +209,16 @@ v2.0.0
     - Changed event option triggers from tag to original_tag to match decision's allowed block
 
  Content:
+  - [RAJ] Added new Naxalite-Maoist insurgency mechanics (Issue #330)
+    - New focus: Counter-Insurgency Operations in military branch
+    - New decisions: Integrated Development Initiative, Surrender & Rehabilitation Program
+    - New decisions: Operation Green Hunt (unlocks after 2009), SAMADHAN Doctrine (unlocks after 2017)
+    - New decisions: Salwa Judum (2005-2011), Red Corridor Road Connectivity
+    - 9 new events: PWG-MCC Merger, Major Maoist Attack, Mass Surrender, Leadership Elimination,
+      Tribal Displacement Protests, Operation Green Hunt Success, Naxal-Free Milestone,
+      Dantewada Ambush (2010), Sukma Attack (2017)
+    - 5 new national ideas: Red Corridor Crisis, Operation Green Hunt Active, SAMADHAN Doctrine,
+      Naxal-Free India, Salwa Judum Active
   - [SOV] Added decision for Russia to transform CSTO into offensive alliance (Issue #269)
     - Allows Russia to call CSTO members (including puppets) into offensive wars
     - New decision category "CSTO Management" for Russia when leading CSTO
@@ -238,6 +277,8 @@ v2.0.0
   - Fixed a portrait error for Izzat Ibrahim al-Douri when creating the country leader
   - Fixed Erna Solberg sometimes being a man instead of her expected portrait
   - Adjusted the F4 models so that they aren't the same size as aircraft carriers
+  - Integrated the colored railways for the supply map mode so they're easier to discern the railways
+    - Credits to jumpropeTravesty1974 for their mod that we integrated.
 
  Game Rules:
   - Added a new game rule for Enabling/Disabling Energy Load Sharing system
