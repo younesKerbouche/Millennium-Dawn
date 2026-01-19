@@ -1,4 +1,4 @@
-capital = 652
+﻿capital = 652
 
 2000.1.1 = {
 	set_cosmetic_tag = SOV
@@ -116,6 +116,17 @@ capital = 652
 			name = "Federal Security Service (FSB)"
 			icon = GFX_intelligence_agency_logo_sov
 		}
+
+		# Pre-existing agency upgrades (FSB/SVR inherited KGB capabilities)
+		upgrade_intelligence_agency = upgrade_form_department
+		upgrade_intelligence_agency = upgrade_crypto_strength
+		upgrade_intelligence_agency = upgrade_passive_defense
+		upgrade_intelligence_agency = upgrade_passive_defense
+		upgrade_intelligence_agency = upgrade_invisible_ink
+		upgrade_intelligence_agency = upgrade_invisible_ink
+		upgrade_intelligence_agency = upgrade_training_centers
+		upgrade_intelligence_agency = upgrade_commando_training
+
 		create_operative_leader = {
 			name = "Anna Chapman"
 			GFX = GFX_portrait_Anna_Vasilyevna_Chapman_Russia_Spy
@@ -3820,11 +3831,11 @@ capital = 652
 				IFV_2 = 1
 				IFV_3 = 1
 				IFV_4 = 1
-				artillery_0 = 1
+				tech_arty_0 = 1
 				Arty_upgrade_1 = 1
 				SP_arty_0 = 1
 				SP_R_arty_0 = 1
-				artillery_1 = 1
+				tech_arty_1 = 1
 				SP_arty_1 = 1
 				SP_R_arty_1 = 1
 				SP_R_arty_2 = 1
@@ -4374,17 +4385,10 @@ capital = 652
 	set_variable = { var = int_investments value = 12 }
 	set_variable = { var = npp_completed value = 0 }
 	set_variable = { var = from_center_completed value = 0 }
-	every_controlled_state = {
-		set_variable = { productivity_state_var = 570 }
-	}
 	set_variable = { overall_productivity = 570 }
 
 	set_variable = { enrichment_facilities = 7 }
 	add_to_array = { global.enrichment_countries = THIS.id }
-
-	#Moscow and Saint Petersburg
-	652 = { set_variable = { productivity_state_var = 850 } }
-	644 = { set_variable = { productivity_state_var = 670 } }
 
 	# Investment Targets
 	add_to_array = { SOV.investment_targets = KAZ } # Kazakhstan
