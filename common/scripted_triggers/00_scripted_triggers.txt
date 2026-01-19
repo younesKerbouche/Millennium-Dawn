@@ -36,7 +36,7 @@ no_building_slots = {
 				}
 				any_owned_state = {
 					free_building_slots = {
-						building = synthetic_refinery
+						building = renewable_energy_infra
 						size > 0
 						include_locked = no
 					}
@@ -88,7 +88,7 @@ max_1_building_slots = {
 				}
 				any_owned_state = {
 					free_building_slots = {
-						building = synthetic_refinery
+						building = renewable_energy_infra
 						size > 1
 						include_locked = no
 					}
@@ -429,6 +429,7 @@ country_can_be_reasonable_target_of_wargoal = {
 # Inputs:
 # - input_cost: The additional cost to incur
 # - interest_rate_check: The interest rate to check against
+
 calculate_ai_interest = {
 	# Even if the country has treasury, we want to add the input cost to the debt to ensure we are getting the right end interest rate
 	set_temp_variable = { debt_temp = debt }
@@ -469,6 +470,22 @@ not_locked_faction = {
 				has_idea = CSTO_member
 				has_idea = faction_resistance_axis_member
 			}
+		}
+	}
+}
+
+currently_has_a_5_year_plan_selected = {
+	custom_override_tooltip = {
+		tooltip = TT_CURRENT_HAS_A_5_YEAR_PLAN
+		OR = {
+			has_decision = generic_initiate_primary_sector_5_year_plan
+			has_decision = generic_initiate_secondary_sector_5_year_plan
+			has_decision = generic_initiate_tertiary_sector_5_year_plan
+			has_decision = generic_initiate_infrastructure_5_year_plan
+			has_decision = generic_initiate_military_5_year_plan
+			has_decision = generic_initiate_naval_5_year_plan
+			has_decision = generic_initiate_technology_5_year_plan
+			has_decision = generic_initiate_energy_5_year_plan
 		}
 	}
 }

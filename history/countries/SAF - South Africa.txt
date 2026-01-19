@@ -1,5 +1,7 @@
 ﻿capital = 275
 2000.1.1 = {
+
+	complete_special_project = sp:sp_composite_production
 	set_cosmetic_tag = SAF
 	set_country_flag = dynamic_flag
 	set_country_flag = dynamic_rebel_flag
@@ -127,7 +129,12 @@
 		land_fort_building_1 = 1
 		construction2 = 1
 	}
-
+	if = { limit = { has_dlc = "Gotterdammerung" }
+		set_technology = {
+			SAM = 1
+			SAM0 = 1
+		}
+	}
 
 	complete_special_project = sp:sp_aircraft_project
 	complete_special_project = sp:sp_helicopter_project
@@ -436,9 +443,9 @@
 				IFV_2 = 1
 				IFV_3 = 1
 				IFV_4 = 1
-				artillery_0 = 1
+				tech_arty_0 = 1
 				Arty_upgrade_1 = 1
-				artillery_1 = 1 #G5
+				tech_arty_1 = 1 #G5
 				SP_arty_0 = 1
 				SP_arty_1 = 1
 				SP_R_arty_0 = 1
@@ -755,8 +762,6 @@
 
 	set_variable = { literacy_rate = 0.847 }
 
-	every_controlled_state = {
-		set_variable = { productivity_state_var = 591 }
-	}
 	set_variable = { overall_productivity = 591 }
+
 }
