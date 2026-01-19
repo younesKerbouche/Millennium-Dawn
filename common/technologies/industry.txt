@@ -1011,7 +1011,13 @@ technologies = {
 	}
 
 	nanocellulose_in_medicine = {
-		productivity_growth_modifier = 0.1
+		allow = {
+			is_special_project_completed = sp:sp_robotic_surgery
+		}
+
+		is_special_project_tech = yes
+
+		productivity_growth_modifier = 0.2
 		health_cost_multiplier_modifier = -0.10
 		combat_service_support_company = {
 			casualty_trickleback = 0.025
@@ -4133,6 +4139,10 @@ technologies = {
 
 	# Nuclear Reactor Technology
 	nuclear_technology = {
+		allow = {
+			is_special_project_completed = sp:sp_nuclear_energy
+		}
+		is_special_project_tech = yes
 		on_research_complete = {
 
 			custom_effect_tooltip = nuclear_technology_techtree_effect_TT
@@ -4187,6 +4197,7 @@ technologies = {
 	}
 
 	reactor1 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 			if = {
 				limit = {
@@ -4269,6 +4280,7 @@ technologies = {
 	}
 
 	reactor2 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 			if = {
 				limit = {
@@ -4328,6 +4340,7 @@ technologies = {
 	}
 
 	reactor3 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 			custom_effect_tooltip = {
 				localization_key = SP_UNLOCK_PROJECT
@@ -4393,6 +4406,7 @@ technologies = {
 	}
 
 	reactor4 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 			if = {
 				limit = {
@@ -4452,6 +4466,7 @@ technologies = {
 		}
 	}
 	reactor5 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 			if = {
 				limit = {
@@ -4510,6 +4525,7 @@ technologies = {
 		}
 	}
 	reactor6 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 
 			if = {
@@ -4569,6 +4585,7 @@ technologies = {
 		}
 	}
 	reactor7 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 
 			if = {
@@ -4628,6 +4645,7 @@ technologies = {
 		}
 	}
 	reactor8 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 
 			if = {
@@ -4687,6 +4705,7 @@ technologies = {
 		}
 	}
 	reactor9 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 
 			custom_effect_tooltip = {
@@ -4751,6 +4770,7 @@ technologies = {
 	}
 
 	reactor10 = {
+		is_special_project_tech = yes
 		on_research_complete = {
 
 			if = {
@@ -5533,7 +5553,19 @@ technologies = {
 		local_resources_chromium_factor = 0.075
 		on_research_complete = {
 			add_to_variable = { country_excavation_production_var = 0.075 }
+			if = {
+				limit = {
+					any_owned_state = {
+						is_coastal = yes
+					}
+				}
+				custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_deep_sea_mining
+				}
+			}
 		}
+		local_resources_factor = 0.075
 
 		path = {
 			research_cost_coeff = 1
@@ -5619,6 +5651,12 @@ technologies = {
 		}
 	}
 	construction7 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_smart_grid
+			}
+		}
 		production_speed_buildings_factor = 0.075
 		industry_repair_factor = 0.075
 		global_building_slots_factor = 0.075
@@ -5667,6 +5705,10 @@ technologies = {
 		local_resources_chromium_factor = 0.075
 		on_research_complete = {
 			add_to_variable = { country_excavation_production_var = 0.075 }
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_smart_grid
+			}
 		}
 
 		path = {
@@ -5952,6 +5994,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		enable_building = {
+			building = infrastructure
+			level = 5
+		}
+
 		production_speed_buildings_factor = 0.02
 
 		research_cost = 2
@@ -6164,6 +6211,12 @@ technologies = {
 	}
 	early_maglev_rail = {
 
+		allow = {
+			is_special_project_completed = sp:sp_improved_maglev_trains
+		}
+
+		is_special_project_tech = yes
+
 		path = {
 			leads_to_tech = standardised_maglev_rail
 			research_cost_coeff = 1
@@ -6195,6 +6248,7 @@ technologies = {
 		}
 	}
 	standardised_maglev_rail = {
+		is_special_project_tech = yes
 
 		path = {
 			leads_to_tech = modern_freight_locomotive
@@ -6227,6 +6281,7 @@ technologies = {
 		}
 	}
 	modern_freight_locomotive = {
+		is_special_project_tech = yes
 
 		enable_equipments = {
 			train_equipment_3
@@ -6556,6 +6611,13 @@ technologies = {
 		research_cost = 1.75
 		start_year = 2010
 
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_agriculture_drone
+			}
+		}
+
 		agricolture_productivity_modifier = 0.025
 		agriculture_workers_modifier = -0.05
 		agriculture_district_worker_requirement_modifier = -0.05
@@ -6710,6 +6772,13 @@ technologies = {
 		research_cost = 1.75
 		start_year = 2020
 
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_vertical_farming
+			}
+		}
+
 		agricolture_productivity_modifier = 0.03
 		agriculture_workers_modifier = -0.03
 		agriculture_district_worker_requirement_modifier = -0.03
@@ -6783,6 +6852,12 @@ technologies = {
 	}
 
 	robotic_harvesters = {
+
+		allow = {
+			is_special_project_completed = sp:sp_agriculture_drone
+		}
+
+		is_special_project_tech = yes
 
 
 		research_cost = 2
@@ -6862,6 +6937,8 @@ technologies = {
 
 	agi_maintained_agricultural_developments = {
 
+		is_special_project_tech = yes
+
 		research_cost = 1.75
 		start_year = 2035
 
@@ -6934,6 +7011,7 @@ technologies = {
 	}
 
 	early_composite_production = {
+		is_special_project_tech = yes
 
 		research_cost = 1.75
 		start_year = 1990
@@ -6986,6 +7064,7 @@ technologies = {
 	}
 
 	composite_production_two = {
+		is_special_project_tech = yes
 
 		research_cost = 1.75
 		start_year = 2000
@@ -7046,6 +7125,7 @@ technologies = {
 	}
 
 	composite_production_three = {
+		is_special_project_tech = yes
 
 		research_cost = 1.75
 		start_year = 2005
@@ -7106,6 +7186,7 @@ technologies = {
 	}
 
 	composite_production_four = {
+		is_special_project_tech = yes
 
 		research_cost = 1.75
 		start_year = 2015
@@ -7161,6 +7242,7 @@ technologies = {
 	}
 
 	composite_production_five = {
+		is_special_project_tech = yes
 
 		research_cost = 1.75
 		start_year = 2030

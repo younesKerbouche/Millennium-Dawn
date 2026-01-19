@@ -3411,6 +3411,10 @@ technologies = {
 			leads_to_tech = tech_nuclear_power_systems_3
 			research_cost_coeff = 1
 		}
+		path = {
+			leads_to_tech = tech_fusion_power_systems_1
+			research_cost_coeff = 1
+		}
 
 		research_cost = 1.25
 		start_year = 2015
@@ -3782,6 +3786,10 @@ technologies = {
 			leads_to_tech = tech_combat_radar_3
 			research_cost_coeff = 1
 		}
+		path = {
+			leads_to_tech = tech_naval_recon_drones_1
+			research_cost_coeff = 1
+		}
 
 		research_cost = 1
 		start_year = 2005
@@ -3967,6 +3975,44 @@ technologies = {
 			CAT_naval_all
 			CAT_naval_electronics
 			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+	}
+
+	tech_naval_recon_drones_1 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			module_naval_recon_drone_2
+		}
+
+		research_cost = 1
+		start_year = 2005
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = 21 y = @2015 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2004.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_electronics
+			CAT_naval_modules
+			CAT_drones
 		}
 		special_project_specialization = { specialization_naval }
 	}
@@ -4510,6 +4556,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = tech_rail_battery_1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 1.25
 		start_year = 2025
 
@@ -4614,6 +4665,42 @@ technologies = {
 			CAT_naval_cannons
 			CAT_naval_modules
 			CAT_naval_railgun
+		}
+		special_project_specialization = { specialization_naval }
+	}
+
+	tech_rail_battery_1 = {
+
+		is_special_project_tech = yes
+
+		enable_equipment_modules = {
+			module_naval_railgun_battery_2
+		}
+
+		research_cost = 1.25
+		start_year = 2025
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = 25 y = @2030 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_armament
+			CAT_naval_cannons
+			CAT_naval_modules
 		}
 		special_project_specialization = { specialization_naval }
 	}
@@ -4780,6 +4867,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = tech_anti_drone_laser1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 1.25
 		start_year = 2020
 
@@ -4861,6 +4953,43 @@ technologies = {
 		folder = {
 			name = naval_folder
 			position = { x = @row31 y = @2045 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_armament
+			CAT_pds
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+	}
+
+	tech_anti_drone_laser1 = {
+		allow = {
+			is_special_project_completed = sp:sp_anti_drone_laser_modules
+		}
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			module_naval_adl_2
+		}
+
+		research_cost = 1.25
+		start_year = 2045
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = 27 y = @2025 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5945,6 +6074,12 @@ technologies = {
 	}
 
 	tech_torpedoes_2 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_anti_torpedo_module
+			}
+		}
 		enable_equipment_modules = {
 			module_torpedoes_3
 			module_anti_ship_torpedoes_3
@@ -5989,6 +6124,13 @@ technologies = {
 	}
 
 	tech_torpedoes_3 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_drone_torpedoes
+			}
+		}
+
 		enable_equipment_modules = {
 			module_torpedoes_4
 			module_anti_ship_torpedoes_4
@@ -5996,6 +6138,11 @@ technologies = {
 
 		path = {
 			leads_to_tech = tech_torpedoes_4
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = tech_drone_torpedoes_1
 			research_cost_coeff = 1
 		}
 
@@ -6113,9 +6260,12 @@ technologies = {
 	}
 
 	tech_drone_torpedoes_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_drone_torpedoes
+		}
+
 		enable_equipment_modules = {
-			module_drone_torpedoes_1
-			module_anti_ship_drone_torpedoes_1
+			module_naval_anti_ship_drone_torpedoes_2
 		}
 
 		path = {
@@ -6126,6 +6276,7 @@ technologies = {
 		research_cost = 1.25
 		start_year = 2020
 
+		is_special_project_tech = yes
 		xp_research_type = navy
 		xp_boost_cost = 50
 		xp_research_bonus = 1.00
@@ -6157,8 +6308,7 @@ technologies = {
 	}
 	tech_drone_torpedoes_2 = {
 		enable_equipment_modules = {
-			module_drone_torpedoes_2
-			module_anti_ship_drone_torpedoes_2
+			module_naval_anti_ship_drone_torpedoes_3
 		}
 
 		path = {
@@ -6200,8 +6350,7 @@ technologies = {
 	}
 	tech_drone_torpedoes_3 = {
 		enable_equipment_modules = {
-			module_drone_torpedoes_3
-			module_anti_ship_drone_torpedoes_3
+			module_naval_anti_ship_drone_torpedoes_4
 		}
 
 		path = {

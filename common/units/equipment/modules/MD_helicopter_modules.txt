@@ -30,7 +30,7 @@ equipment_modules = {
 		allowed_module_categories = {
 			nose_gun_type_slot = { helicopter_light_nose_gun helicopter_medium_nose_gun helicopter_heavy_nose_gun }
 			helicopter_body_layout = { light_gunship_layout gunship_layout gunship_transport_layout transport_layout }
-			engine_type_slot = { helicopter_turbine_engine_type helicopter_piston_engine_type helicopter_coaxial_engine_type }
+			engine_type_slot = { helicopter_turbine_engine_type helicopter_piston_engine_type helicopter_coaxial_engine_type helicopter_hover_engine_type }
 			armor_type_slot = { helicopter_armor_type_light helicopter_armor_type }
 			top_mount_type_slot = { helicopter_mast_mounted_camera helicopter_mast_mounted_radar }
 		}
@@ -54,7 +54,7 @@ equipment_modules = {
 
 		allowed_module_categories = {
 			helicopter_body_layout = { transport_layout heavy_transport_layout }
-			engine_type_slot = { helicopter_turbine_engine_type helicopter_piston_engine_type helicopter_coaxial_engine_type helicopter_twin_engine_type }
+			engine_type_slot = { helicopter_turbine_engine_type helicopter_piston_engine_type helicopter_coaxial_engine_type helicopter_twin_engine_type helicopter_hover_engine_type }
 			armor_type_slot = { helicopter_armor_type_light helicopter_armor_type }
 		}
 	}
@@ -648,6 +648,34 @@ equipment_modules = {
 		}
 		build_cost_resources = {
 			aluminium = 2
+		}
+		xp_cost = 3
+	}
+	helicopter_module_hover_engine_gen1 = {
+		abbreviation = "hpe1"
+		category = helicopter_hover_engine_type
+		sfx = sfx_ui_sd_module_engine
+
+		add_stats = {
+			build_cost_ic = 4
+			fuel_consumption = 7
+			maximum_speed = 30
+			reliability = -0.2
+		}
+		multiply_stats = {
+			breakthrough = -0.3
+			defense = -0.3
+		}
+		can_convert_from = {
+			module_category = helicopter_turbine_engine_type
+			convert_cost_ic = 0.75
+		}
+		can_convert_from = {
+			module_category = helicopter_piston_engine_type
+			convert_cost_ic = 0.75
+		}
+		build_cost_resources = {
+			aluminium = 1
 		}
 		xp_cost = 3
 	}
@@ -1462,6 +1490,20 @@ equipment_modules = {
 			build_cost_ic = 8
 			soft_attack = 17
 			hard_attack = 8
+			maximum_speed = -4
+		}
+		xp_cost = 3
+	}
+	#Railguns
+	helicopter_railgun_nose_gun_gen1 = {
+		abbreviation = "rng1"
+		category = helicopter_railgun_nose_gun_category
+		sfx = sfx_ui_sd_module_turret
+
+		add_stats = {
+			build_cost_ic = 8.5
+			ap_attack = 6.5
+			hard_attack = 5
 			maximum_speed = -4
 		}
 		xp_cost = 3

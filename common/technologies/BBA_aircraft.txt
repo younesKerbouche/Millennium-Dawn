@@ -817,6 +817,13 @@ technologies = {
 	}
 	avionics_1 = {
 
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_awacs_project
+			}
+		}
+
 		enable_equipment_modules = {
 			avionics_manned_2
 			em_lock_detection_system_gen1
@@ -960,6 +967,16 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	awacs_1 = {
+		is_special_project_tech = yes
+
+		allow = {
+			is_special_project_completed = sp:sp_awacs_project
+		}
+
+		path = {
+			leads_to_tech = awacs_2
+			research_cost_coeff = 1
+		}
 
 		enable_equipment_modules = {
 			weap_buff_awacs_1
@@ -982,9 +999,20 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	awacs_2 = {
+		is_special_project_tech = yes
 
 		enable_equipment_modules = {
 			weap_buff_awacs_2
+		}
+
+		path = {
+			leads_to_tech = awacs_3
+			research_cost_coeff = 1
+		}
+
+		dependencies = {
+			awacs_1 = 1
+			avionics_2 = 1
 		}
 
 		research_cost = 3
@@ -1013,6 +1041,11 @@ technologies = {
 
 		enable_equipment_modules = {
 			weap_buff_awacs_3
+		}
+
+		dependencies = {
+			awacs_2 = 1
+			avionics_3 = 1
 		}
 
 		research_cost = 3.5
@@ -2133,6 +2166,18 @@ technologies = {
 			helicopter_aa_missile_gen4
 		}
 
+		on_research_complete = {
+			if = {
+				limit = {
+					is_special_project_completed = sp:sp_railgun_cannon
+				  }
+				  custom_effect_tooltip = {
+					localization_key = SP_UNLOCK_PROJECT
+					PROJECT = sp_air_railguns
+				  }
+			}
+		}
+
 		research_cost = 6
 		start_year = 2040
 		folder = {
@@ -2208,6 +2253,13 @@ technologies = {
 		#		is_special_project_completed = sp:sp_modern_air_electronics
 		#	}
 		#}
+
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_air_pdl
+			}
+		}
 
 		enable_equipment_modules = {
 			spec_countermeasures_3
