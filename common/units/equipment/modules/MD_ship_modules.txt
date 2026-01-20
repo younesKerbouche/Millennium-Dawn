@@ -62,7 +62,7 @@ equipment_modules = {
 		}
 	}
 
-	module_surface_diesel_power = {
+	module_surface_diesel_power_1 = {
 		category = module_surface_power_source_category
 		parent = module_surface_oil_power
 		sfx = sfx_ui_sd_module_engine
@@ -89,9 +89,89 @@ equipment_modules = {
 		}
 	}
 
+	module_surface_diesel_power_2 = {
+		category = module_surface_power_source_category
+		parent = module_surface_diesel_power_1
+		sfx = sfx_ui_sd_module_engine
+		add_stats = {
+			naval_speed = 17
+			naval_range = 3000
+		}
+
+		multiply_stats = {
+			build_cost_ic = 0.09
+			surface_visibility = 0.25
+			fuel_consumption = 0.1
+		}
+
+		dismantle_cost_ic = 180
+
+		can_convert_from = {
+			module_category = module_surface_power_source_category
+			convert_cost_ic = 1800
+		}
+		can_convert_from = {
+			module = module_surface_oil_power
+			convert_cost_ic = 1200
+		}
+	}
+
+	module_surface_diesel_power_3 = {
+		category = module_surface_power_source_category
+		parent = module_surface_diesel_power_2
+		sfx = sfx_ui_sd_module_engine
+		add_stats = {
+			naval_speed = 17
+			naval_range = 3000
+		}
+
+		multiply_stats = {
+			build_cost_ic = 0.09
+			surface_visibility = 0.25
+			fuel_consumption = 0.1
+		}
+
+		dismantle_cost_ic = 180
+
+		can_convert_from = {
+			module_category = module_surface_power_source_category
+			convert_cost_ic = 1800
+		}
+		can_convert_from = {
+			module = module_surface_oil_power
+			convert_cost_ic = 1200
+		}
+	}
+	module_surface_diesel_power_4 = {
+		category = module_surface_power_source_category
+		parent = module_surface_diesel_power_3
+		sfx = sfx_ui_sd_module_engine
+		add_stats = {
+			naval_speed = 17
+			naval_range = 3000
+		}
+
+		multiply_stats = {
+			build_cost_ic = 0.09
+			surface_visibility = 0.25
+			fuel_consumption = 0.1
+		}
+
+		dismantle_cost_ic = 180
+
+		can_convert_from = {
+			module_category = module_surface_power_source_category
+			convert_cost_ic = 1800
+		}
+		can_convert_from = {
+			module = module_surface_oil_power
+			convert_cost_ic = 1200
+		}
+	}
+
 	module_surface_jet_turbine_power = {
 		category = module_surface_power_source_category
-		parent = module_surface_diesel_power
+		parent = module_surface_diesel_power_1
 		sfx = sfx_ui_sd_module_engine
 		add_stats = {
 			naval_speed = 21
@@ -111,7 +191,7 @@ equipment_modules = {
 			convert_cost_ic = 2400
 		}
 		can_convert_from = {
-			module = module_surface_diesel_power
+			module = module_surface_diesel_power_1
 			convert_cost_ic = 1500
 		}
 	}
@@ -170,8 +250,30 @@ equipment_modules = {
 		}
 	}
 #LIGHT CONVENTIONAL SHIP ENGINES
-	module_light_surface_diesel_power = {
+	module_light_surface_diesel_power_1 = {
 		category = module_light_surface_power_source_category
+		sfx = sfx_ui_sd_module_engine
+		add_stats = {
+			naval_speed = 17
+			naval_range = 1250
+		}
+
+		multiply_stats = {
+			build_cost_ic = 0.09
+			surface_visibility = 0.25
+			fuel_consumption = 0.1
+		}
+
+		dismantle_cost_ic = 45
+
+		can_convert_from = {
+			module_category = module_light_surface_power_source_category
+			convert_cost_ic = 450
+		}
+	}
+	module_light_surface_diesel_power_2 = {
+		category = module_light_surface_power_source_category
+		parent = module_light_surface_diesel_power_1
 		sfx = sfx_ui_sd_module_engine
 		add_stats = {
 			naval_speed = 17
@@ -193,7 +295,7 @@ equipment_modules = {
 	}
 	module_light_surface_jet_turbine_power = {
 		category = module_light_surface_power_source_category
-		parent = module_light_surface_diesel_power
+		parent = module_light_surface_diesel_power_1
 		sfx = sfx_ui_sd_module_engine
 		add_stats = {
 			naval_speed = 21
@@ -213,7 +315,7 @@ equipment_modules = {
 			convert_cost_ic = 600
 		}
 		can_convert_from = {
-			module = module_light_surface_diesel_power
+			module = module_light_surface_diesel_power_1
 			convert_cost_ic = 375
 		}
 	}
@@ -4520,6 +4622,33 @@ equipment_modules = {
 			build_cost_ic = 1200
 			surface_detection = 60
 			sub_detection = 13.5
+		}
+
+		dismantle_cost_ic = 105
+
+		multiply_stats = {
+			hg_attack = 0.5
+			torpedo_attack = 0.5
+			anti_air_attack = 1.4
+		}
+
+		can_convert_from = {
+			module_category = module_drone_radar_category
+			convert_cost_ic = 525
+		}
+
+		build_cost_resources = {
+			microchips = 3
+		}
+	}
+	module_naval_recon_drone_5 = {
+		category = module_drone_radar_category
+		parent = module_naval_recon_drone_4
+
+		add_stats = {
+			build_cost_ic = 1200
+			surface_detection = 65
+			sub_detection = 15.5
 		}
 
 		dismantle_cost_ic = 105
