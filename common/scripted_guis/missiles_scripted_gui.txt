@@ -52,21 +52,21 @@ scripted_gui = {
 			# Missile Production
 			missiles_gui_ledger_btn_1_click = {
 				set_variable = { var_open_MD_missiles_gui_ledger_1 = 2 }
-				clear_variable = var_open_MD_missiles_gui_ledger_2
-				clear_variable = var_open_MD_missiles_gui_ledger_3
 				clear_variable = var_open_MD_missiles_gui_ledger_4
 				clear_variable = var_open_MD_missiles_gui_ledger_5
-				clear_variable = var_open_MD_missiles_gui_ledger_6
+				clear_variable = var_open_MD_CT_gui
+				clear_variable = var_open_MD_PMC_gui
+				clear_variable = var_open_MD_UN_gui
 				missile_ui_update = yes
 			}
 			# Space Center and Orbit
 			missiles_gui_ledger_btn_4_click = {
 				set_variable = { var_open_MD_missiles_gui_ledger_4 = 2 }
 				clear_variable = var_open_MD_missiles_gui_ledger_1
-				clear_variable = var_open_MD_missiles_gui_ledger_2
-				clear_variable = var_open_MD_missiles_gui_ledger_3
 				clear_variable = var_open_MD_missiles_gui_ledger_5
-				clear_variable = var_open_MD_missiles_gui_ledger_6
+				clear_variable = var_open_MD_CT_gui
+				clear_variable = var_open_MD_PMC_gui
+				clear_variable = var_open_MD_UN_gui
 				set_satellites_gui = yes
 				missile_ui_update = yes
 			}
@@ -74,11 +74,38 @@ scripted_gui = {
 			missiles_gui_ledger_btn_5_click = {
 				set_variable = { var_open_MD_missiles_gui_ledger_5 = 2 }
 				clear_variable = var_open_MD_missiles_gui_ledger_1
-				clear_variable = var_open_MD_missiles_gui_ledger_2
-				clear_variable = var_open_MD_missiles_gui_ledger_3
 				clear_variable = var_open_MD_missiles_gui_ledger_4
-				clear_variable = var_open_MD_missiles_gui_ledger_6
+				clear_variable = var_open_MD_CT_gui
+				clear_variable = var_open_MD_PMC_gui
+				clear_variable = var_open_MD_UN_gui
 				set_satellites_gui = yes
+				missile_ui_update = yes
+			}
+			ct_gui_ledger_button_click = {
+				set_variable = { var_open_MD_CT_gui = 2 }
+				clear_variable = var_open_MD_missiles_gui_ledger_1
+				clear_variable = var_open_MD_missiles_gui_ledger_4
+				clear_variable = var_open_MD_missiles_gui_ledger_5
+				clear_variable = var_open_MD_PMC_gui
+				clear_variable = var_open_MD_UN_gui
+				missile_ui_update = yes
+			}
+			pmc_gui_ledger_button_click = {
+				set_variable = { var_open_MD_PMC_gui = 2 }
+				clear_variable = var_open_MD_missiles_gui_ledger_1
+				clear_variable = var_open_MD_missiles_gui_ledger_4
+				clear_variable = var_open_MD_missiles_gui_ledger_5
+				clear_variable = var_open_MD_CT_gui
+				clear_variable = var_open_MD_UN_gui
+				missile_ui_update = yes
+			}
+			un_gui_ledger_button_click = {
+				set_variable = { var_open_MD_UN_gui = 2 }
+				clear_variable = var_open_MD_missiles_gui_ledger_1
+				clear_variable = var_open_MD_missiles_gui_ledger_4
+				clear_variable = var_open_MD_missiles_gui_ledger_5
+				clear_variable = var_open_MD_PMC_gui
+				clear_variable = var_open_MD_CT_gui
 				missile_ui_update = yes
 			}
 		}
@@ -92,6 +119,15 @@ scripted_gui = {
 			}
 			missiles_gui_ledger_btn_5 = {
 				frame = var_open_MD_missiles_gui_ledger_5
+			}
+			ct_gui_ledger_button = {
+				frame = var_open_MD_CT_gui
+			}
+			pmc_gui_ledger_button = {
+				frame = var_open_MD_PMC_gui
+			}
+			un_gui_ledger_button = {
+				frame = var_open_MD_UN_gui
 			}
 		}
 	}
@@ -2549,6 +2585,81 @@ scripted_gui = {
 			country_list_flag_button = {
 				image = "[?ROOT.temp_countries^i.GetFlag]"
 			}
+		}
+	}
+
+	MD_CT_system_gui = {
+		window_name = MD_CT_system_window
+		context_type = player_context
+		parent_window_name = MD_countrymissilesview
+
+		dirty = global.missile_ui_updated
+
+		visible = {
+			check_variable = { var_open_MD_CT_gui = 2 }
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		effects = {
+
+		}
+
+		properties = {
+
+		}
+
+		dynamic_lists = {
+
+		}
+	}
+
+	MD_PMC_system_gui = {
+		window_name = MD_PMC_system_window
+		context_type = player_context
+		parent_window_name = MD_countrymissilesview
+
+		dirty = global.missile_ui_updated
+
+		visible = {
+			check_variable = { var_open_MD_PMC_gui = 2 }
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		effects = {
+
+		}
+
+		properties = {
+
+		}
+
+		dynamic_lists = {
+
+		}
+	}
+
+	MD_UN_system_gui = {
+		window_name = MD_UN_system_window
+		context_type = player_context
+		parent_window_name = MD_countrymissilesview
+
+		dirty = global.missile_ui_updated
+
+		visible = {
+			check_variable = { var_open_MD_UN_gui = 2 }
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		effects = {
+
+		}
+
+		properties = {
+
+		}
+
+		dynamic_lists = {
+
 		}
 	}
 }
