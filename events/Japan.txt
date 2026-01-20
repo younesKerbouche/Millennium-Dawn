@@ -12551,6 +12551,356 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = JAP_diplomacy.34
+	title = JAP_diplomacy.34.t
+	desc = JAP_diplomacy.34.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.34.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.34.a executed"
+		add_ideas = JAP_chiang_mai_initiative
+		JAP = {
+			country_event = JAP_diplomacy.35
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = {
+		name = JAP_diplomacy.34.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.34.b executed"
+		JAP = {
+			country_event = JAP_diplomacy.36
+		}
+
+		ai_chance = {
+			base = 1
+
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = JAP
+					value > -50
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.35
+	title = JAP_diplomacy.35.t
+	desc = JAP_diplomacy.35.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.35.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.35.a executed"
+		FROM = {
+			add_opinion_modifier = {
+				target = JAP
+				modifier = diplomatic_support
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.36
+	title = JAP_diplomacy.36.t
+	desc = JAP_diplomacy.36.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.36.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.36.a executed"
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.37
+	title = JAP_diplomacy.37.t
+	desc = JAP_diplomacy.37.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.37.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.37.a executed"
+		add_timed_idea = {
+			idea = JAP_quantitative_oda_idea
+			days = 730
+		}
+		JAP = {
+			country_event = JAP_diplomacy.38
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = {
+		name = JAP_diplomacy.37.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.37.b executed"
+		JAP = {
+			country_event = JAP_diplomacy.39
+		}
+
+		ai_chance = {
+			base = 1
+
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = JAP
+					value > -50
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.38
+	title = JAP_diplomacy.38.t
+	desc = JAP_diplomacy.38.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.38.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.38.a executed"
+		set_temp_variable = { percent_change = 2.5 }
+		set_temp_variable = { tag_index = JAP }
+		set_temp_variable = { influence_target = FROM }
+		change_influence_percentage = yes
+		set_temp_variable = { treasury_change = -3.5 } 
+		modify_treasury_effect = yes
+		if = {
+			limit = {
+				FROM = {
+					NOT = {
+						has_country_flag = JAP_development_aid_flag
+					}
+				}
+			}
+			FROM = {
+				add_opinion_modifier = {
+					target = JAP
+					modifier = development_aid
+				}
+				set_country_flag = JAP_development_aid_flag
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.39
+	title = JAP_diplomacy.39.t
+	desc = JAP_diplomacy.39.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.39.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.39.a executed"
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.40
+	title = JAP_diplomacy.40.t
+	desc = JAP_diplomacy.40.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.40.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.40.a executed"
+		add_ideas = JAP_qualitative_oda_idea
+		JAP = {
+			country_event = JAP_diplomacy.41
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = {
+		name = JAP_diplomacy.40.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.40.b executed"
+		JAP = {
+			country_event = JAP_diplomacy.42
+		}
+
+		ai_chance = {
+			base = 1
+
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = JAP
+					value > -50
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.41
+	title = JAP_diplomacy.41.t
+	desc = JAP_diplomacy.41.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.41.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.41.a executed"
+		set_temp_variable = { percent_change = 2.5 }
+		set_temp_variable = { tag_index = JAP }
+		set_temp_variable = { influence_target = FROM }
+		change_influence_percentage = yes
+		if = {
+			limit = {
+				FROM = {
+					NOT = {
+						has_country_flag = JAP_development_aid_flag
+					}
+				}
+			}
+			FROM = {
+				add_opinion_modifier = {
+					target = JAP
+					modifier = development_aid
+				}
+				set_country_flag = JAP_development_aid_flag
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.42
+	title = JAP_diplomacy.42.t
+	desc = JAP_diplomacy.42.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.42.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.42.a executed"
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.43
+	title = JAP_diplomacy.43.t
+	desc = JAP_diplomacy.43.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.43.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.43.a executed"
+		add_ideas = JAP_security_south_china_sea_idea
+		JAP = {
+			country_event = JAP_diplomacy.44
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+
+	option = {
+		name = JAP_diplomacy.43.b
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.43.b executed"
+		JAP = {
+			country_event = JAP_diplomacy.45
+		}
+
+		ai_chance = {
+			base = 1
+
+			modifier = {
+				factor = 0
+				has_opinion = {
+					target = JAP
+					value > -50
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.44
+	title = JAP_diplomacy.44.t
+	desc = JAP_diplomacy.44.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.44.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.44.a executed"
+		set_temp_variable = { percent_change = 2.5 }
+		set_temp_variable = { tag_index = JAP }
+		set_temp_variable = { influence_target = FROM }
+		change_influence_percentage = yes
+		FROM = {
+			add_opinion_modifier = {
+				target = JAP
+				modifier = trade_security
+			}
+		}
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	id = JAP_diplomacy.45
+	title = JAP_diplomacy.45.t
+	desc = JAP_diplomacy.45.d
+	#picture
+	is_triggered_only = yes
+
+	option = {
+		name = JAP_diplomacy.45.a
+		log = "[GetDateText]: [This.GetName]: JAP_diplomacy.45.a executed"
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
 country_event = {
 	id = JAP_diplomacy.11
 	title = JAP_diplomacy.11.t

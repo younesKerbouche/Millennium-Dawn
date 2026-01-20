@@ -3328,12 +3328,9 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_chiang_mai"
 		every_country = {
 			limit = { has_idea = ASEAN_member }
-			add_ideas = JAP_chiang_mai_initiative
-			add_opinion_modifier = {
-				target = JAP
-				modifier = diplomatic_support
-			}
+			country_event = JAP_diplomacy.34
 		}
+		custom_effect_tooltip = JAP_diplomacy_34_TT
 	}
 
 	ai_will_do = {
@@ -3373,28 +3370,9 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_quantitative_oda"
 		every_country = {
 			limit = { has_idea = ASEAN_member }
-			add_timed_idea = {
-				idea = JAP_quantitative_oda_idea
-				days = 730
-			}
-			set_temp_variable = { percent_change = 2.5 }
-			set_temp_variable = { tag_index = JAP }
-			set_temp_variable = { influence_target = THIS }
-			change_influence_percentage = yes
-			if = {
-				limit = {
-					NOT = {
-						has_opinion_modifier = development_aid
-					}
-				}
-				add_opinion_modifier = {
-				target = JAP
-				modifier = development_aid
-				}
-			}
+			country_event = JAP_diplomacy.37
 		}
-		set_temp_variable = { treasury_change = -35.00 } #3.5*10 ASEAN members*Infrastructure
-		modify_treasury_effect = yes
+		custom_effect_tooltip = JAP_diplomacy_37_TT
 	}
 
 	ai_will_do = {
@@ -3434,23 +3412,9 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_qualitative_oda"
 		every_country = {
 			limit = { has_idea = ASEAN_member }
-			add_ideas = JAP_qualitative_oda_idea
-			set_temp_variable = { percent_change = 2.5 }
-			set_temp_variable = { tag_index = JAP }
-			set_temp_variable = { influence_target = THIS }
-			change_influence_percentage = yes
-			if = {
-				limit = {
-					NOT = {
-						has_opinion_modifier = development_aid
-					}
-				}
-				add_opinion_modifier = {
-				target = JAP
-				modifier = development_aid
-				}
-			}
+			country_event = JAP_diplomacy.40
 		}
+		custom_effect_tooltip = JAP_diplomacy_40_TT
 	}
 
 	ai_will_do = {
@@ -3491,16 +3455,9 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_security_south_china_sea"
 		every_country = {
 			limit = { has_idea = ASEAN_member }
-			add_ideas = JAP_security_south_china_sea_idea
-			set_temp_variable = { percent_change = 2.5 }
-			set_temp_variable = { tag_index = JAP }
-			set_temp_variable = { influence_target = THIS }
-			change_influence_percentage = yes
-			add_opinion_modifier = {
-				target = JAP
-				modifier = trade_security
-			}
+			country_event = JAP_diplomacy.43
 		}
+		custom_effect_tooltip = JAP_diplomacy_43_TT
 	}
 
 	ai_will_do = {
@@ -3746,7 +3703,7 @@ focus = {
 		update_JAP_diplomacy_production_speed_industrial_complex_factor = yes
 		USA = {
 			add_ideas = JAP_jap_education
-	    }
+		}
 	}
 
 	ai_will_do = {
@@ -4098,14 +4055,14 @@ focus = {
 			modifier = refuse_to_apologize_for_warcrimes
 		   }
 		   news_event = { id = JAP_news.01 days = 1 }
-	    }
+		}
 		KOR = {
 			remove_opinion_modifier = {
 			target = JAP
 			modifier = refuse_to_apologize_for_warcrimes
 		   }
 		   news_event = { id = JAP_news.01 days = 1 }
-	    }
+		}
 		news_event = { id = JAP_news.01 days = 1 }
 	}
 
