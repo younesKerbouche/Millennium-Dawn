@@ -28,50 +28,179 @@ technologies = {
 	@2080 = 49
 
 	#Rows (y-axis)
-	@row0 = -2
-	@row1 = -1
+	@row1 = -2
 	@row2 = 0
 	@row3 = 1
-	@row4 = 2
 	@row5 = 3
 	@row6 = 4
 	@row7 = 5
-	@row8 = 6
-	@row9 = 7
-	@row10 = 8
-	@row11 = 9
-	@row12 = 11
-	@row13 = 13
-	@row14 = 14
-	@row15 = 16
-	@row16 = 18
-	@row17 = 20
-	@row18 = 22
-	@row19 = 23
-	@row20 = 24
-	@row21 = 26
-	@row22 = 28
-	@row23 = 30
-	@row24 = 32
-	@row25 = 34
-	@row26 = 36
-	@row27 = 37
-	@row28 = 39
-	@row29 = 41
-	@row30 = 43
-	@row31 = 45
-	@row32 = 47
-	@row33 = 49
-	@row34 = 51
-	@row35 = 53
-	@row36 = 55
-	@row37 = 57
-	@row38 = 59
-	@row39 = 61
-	@row40 = 63
-	@row41 = 65
-	@row42 = 67
-	@row43 = 69
+	@row8 = 7
+	@row9 = 8
+	@row10 = 118
+	@row11 = 119
+	@row12 = 111
+	@row13 = 113
+	@row14 = 114
+	@row15 = 116
+	@row16 = 118
+	@row17 = 120
+	@row18 = 122
+	@row19 = 123
+	@row20 = 124
+	@row21 = 126
+	@row22 = 128
+	@row23 = 130
+	@row24 = 131
+	@row25 = 134
+	@row26 = 136
+	@row27 = 137
+	@row28 = 139
+	@row29 = 141
+	@row30 = 143
+	@row31 = 145
+	@row32 = 147
+	@row33 = 149
+	@row34 = 151
+	@row35 = 153
+	@row36 = 155
+	@row37 = 157
+	@row38 = 159
+	@row39 = 161
+	@row40 = 163
+	@row41 = 165
+	@row42 = 167
+
+
+	#Patrol Boat hull
+	patrol_boat_hull_1 = {
+
+		allow = {
+			has_doctrine = jeune_ecole
+		}
+		enable_equipments = {
+			patrol_boat_hull_1
+		}
+
+		path = {
+			leads_to_tech = patrol_boat_hull_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3.1
+
+		start_year = 1985
+
+		folder = {
+			name = naval_folder
+			position = { x = @row1 y = @1985 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_surface_ship
+			CAT_patrolboat
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0.01
+				date < 2009.1.1
+			}
+		}
+	}
+	patrol_boat_hull_2 = {
+
+		is_special_project_tech = yes
+
+		allow = {
+			has_doctrine = jeune_ecole
+		}
+		enable_equipments = {
+			patrol_boat_hull_2
+		}
+
+		path = {
+			leads_to_tech = patrol_boat_hull_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3.1
+
+		start_year = 2005
+
+		folder = {
+			name = naval_folder
+			position = { x = @row1 y = @2005 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_surface_ship
+			CAT_patrolboat
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0.01
+				date < 2009.1.1
+			}
+		}
+	}
+
+	patrol_boat_hull_3 = {
+
+		is_special_project_tech = yes
+
+		allow = {
+			has_doctrine = jeune_ecole
+		}
+		enable_equipments = {
+			patrol_boat_hull_3
+		}
+
+		research_cost = 3.1
+
+		start_year = 2030
+
+		folder = {
+			name = naval_folder
+			position = { x = @row1 y = @2030 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_surface_ship
+			CAT_patrolboat
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0.01
+				date < 2009.1.1
+			}
+		}
+	}
 
 	#Corvette Hulls
 	corvette_hull_1 = {
@@ -615,6 +744,16 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = stealth_frigate_hull_1
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = heavy_frigate_hull_1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 2
 
 		start_year = 1995
@@ -780,6 +919,132 @@ technologies = {
 			modifier = {
 				factor = 0.01
 				date < 2039.1.1
+			}
+		}
+	}
+
+	heavy_frigate_hull_1 = {
+
+		allow = {
+			has_subdoctrine = heavy_frigate
+		}
+		enable_equipments = {
+			heavy_frigate_hull_2
+		}
+
+		path = {
+			leads_to_tech = heavy_frigate_hull_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3.1
+
+		start_year = 2005
+
+		folder = {
+			name = naval_folder
+			position = { x = @row7 y = @2005 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_surface_ship
+			CAT_frigate
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0.01
+				date < 2009.1.1
+			}
+		}
+	}
+	heavy_frigate_hull_2 = {
+
+		allow = {
+			has_subdoctrine = heavy_frigate
+		}
+		enable_equipments = {
+			heavy_frigate_hull_3
+		}
+
+		path = {
+			leads_to_tech = heavy_frigate_hull_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3.1
+
+		start_year = 2025
+
+		folder = {
+			name = naval_folder
+			position = { x = @row7 y = @2025 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_surface_ship
+			CAT_frigate
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0.01
+				date < 2009.1.1
+			}
+		}
+	}
+
+	heavy_frigate_hull_3 = {
+
+		allow = {
+			has_subdoctrine = heavy_frigate
+		}
+		enable_equipments = {
+			heavy_frigate_hull_4
+		}
+
+		research_cost = 3.1
+
+		start_year = 2045
+
+		folder = {
+			name = naval_folder
+			position = { x = @row7 y = @2045 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_surface_ship
+			CAT_frigate
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0.01
+				date < 2009.1.1
 			}
 		}
 	}
@@ -1028,6 +1293,11 @@ technologies = {
 
 		path = {
 			leads_to_tech = destroyer_hull_4
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = stealth_destroyer_hull_1
 			research_cost_coeff = 1
 		}
 
@@ -1833,11 +2103,11 @@ technologies = {
 
 		research_cost = 2.5
 
-		start_year = 1970
+		start_year = 1975
 
 		folder = {
 			name = naval_folder
-			position = { x = @row12 y = @1970 }
+			position = { x = @row12 y = @1975 }
 		}
 
 		ai_will_do = {
@@ -3104,6 +3374,11 @@ technologies = {
 		}
 
 		path = {
+			leads_to_tech = tech_diesel_power_systems
+			research_cost_coeff = 1
+		}
+
+		path = {
 			leads_to_tech = tech_nuclear_power_systems
 			research_cost_coeff = 1
 		}
@@ -3122,7 +3397,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row19 y = @1945 }
+			position = { x = @row22 y = @1945 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3138,6 +3413,171 @@ technologies = {
 			CAT_naval_modules
 		}
 		special_project_specialization = { specialization_naval }
+	}
+
+	tech_diesel_power_systems = {
+		enable_equipment_modules = {
+			module_surface_diesel_power
+			module_light_surface_diesel_power
+		}
+		path = {
+			leads_to_tech = tech_diesel_power_systems_1
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		start_year = 1965
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row20 y = @1965 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_engine
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+	}
+	tech_diesel_power_systems_1 = {
+		enable_equipment_modules = {
+			module_surface_diesel_power_2
+			module_light_surface_diesel_power_2
+		}
+		path = {
+			leads_to_tech = tech_diesel_power_systems_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		start_year = 1985
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row20 y = @1990 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_engine
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+	}
+	tech_diesel_power_systems_2 = {
+		enable_equipment_modules = {
+			module_surface_diesel_power_3
+			module_light_surface_diesel_power_3
+		}
+		path = {
+			leads_to_tech = tech_diesel_power_systems_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1
+		start_year = 1985
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row20 y = @2015 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_engine
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+	}
+	tech_diesel_power_systems_3 = {
+		enable_equipment_modules = {
+			module_surface_diesel_power_4
+			module_light_surface_diesel_power_4
+		}
+
+		research_cost = 1
+		start_year = 2040
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row20 y = @2040 }
+		}
+
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_engine
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
 	}
 
 	tech_power_systems = {
@@ -3159,7 +3599,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row19 y = @1965 }
+			position = { x = @row21 y = @1965 }
 		}
 
 		categories = {
@@ -3202,7 +3642,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row19 y = @1990 }
+			position = { x = @row21 y = @1990 }
 		}
 
 		categories = {
@@ -3241,7 +3681,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row19 y = @2015 }
+			position = { x = @row21 y = @2015 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3279,7 +3719,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row19 y = @2040 }
+			position = { x = @row21 y = @2040 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3295,6 +3735,88 @@ technologies = {
 		categories = {
 			CAT_Military
 			CAT_naval_all
+			CAT_naval_engine
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+
+	}
+
+	tech_fusion_power_systems_1 = {
+		enable_equipment_modules = {
+			module_surface_early_reactor_power
+			module_sub_early_reactor_power
+		}
+
+		is_special_project_tech = yes
+
+		allow = {
+			is_special_project_completed = sp:sp_fusion_reactors
+		}
+
+		path = {
+			leads_to_tech = tech_fusion_power_systems_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		start_year = 2035
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row23 y = @2025 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_reactors
+			CAT_naval_engine
+			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+
+	}
+	tech_fusion_power_systems_2 = {
+		enable_equipment_modules = {
+			module_surface_early_reactor_power
+			module_sub_early_reactor_power
+		}
+
+		is_special_project_tech = yes
+
+		research_cost = 1.25
+		start_year = 2045
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row23 y = @2045 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_reactors
 			CAT_naval_engine
 			CAT_naval_modules
 		}
@@ -3328,7 +3850,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row20 y = @1965 }
+			position = { x = @row22 y = @1965 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3374,7 +3896,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row20 y = @1990 }
+			position = { x = @row22 y = @1990 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3425,7 +3947,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row20 y = @2015 }
+			position = { x = @row22 y = @2015 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3470,7 +3992,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row20 y = @2040 }
+			position = { x = @row22 y = @2040 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3522,7 +4044,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row25 y = @1965 }
+			position = { x = @row26 y = @1965 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3560,7 +4082,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @1965 }
+			position = { x = @row28 y = @1965 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3602,7 +4124,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @1990 }
+			position = { x = @row28 y = @1990 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3644,7 +4166,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @2015 }
+			position = { x = @row28 y = @2015 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3686,7 +4208,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @2040 }
+			position = { x = @row28 y = @2040 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3748,6 +4270,11 @@ technologies = {
 		}
 		path = {
 			leads_to_tech = tech_combat_radar_2
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = tech_radar_jammer_1
 			research_cost_coeff = 1
 		}
 
@@ -3942,6 +4469,81 @@ technologies = {
 		special_project_specialization = { specialization_naval }
 	}
 
+		tech_radar_jammer_1 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			module_naval_radar_jammer_2
+		}
+
+		research_cost = 1
+		start_year = 2005
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row26 y = @2005 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2004.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_electronics
+			CAT_naval_modules
+			CAT_drones
+		}
+		special_project_specialization = { specialization_naval }
+	}
+	tech_naval_recon_drones_1 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			module_naval_recon_drone_2
+		}
+
+		research_cost = 1
+		start_year = 2005
+
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row25 y = @2015 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2004.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_electronics
+			CAT_naval_modules
+			CAT_drones
+		}
+		special_project_specialization = { specialization_naval }
+	}
+
 	tech_combat_sonar = {
 		enable_equipment_modules = {
 			module_sonar_2
@@ -3961,7 +4563,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @1980 }
+			position = { x = @row27 y = @1980 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -3975,44 +4577,6 @@ technologies = {
 			CAT_naval_all
 			CAT_naval_electronics
 			CAT_naval_modules
-		}
-		special_project_specialization = { specialization_naval }
-	}
-
-	tech_naval_recon_drones_1 = {
-		is_special_project_tech = yes
-		enable_equipment_modules = {
-			module_naval_recon_drone_2
-		}
-
-		research_cost = 1
-		start_year = 2005
-
-		xp_research_type = navy
-		xp_boost_cost = 50
-		xp_research_bonus = 1.00
-
-		folder = {
-			name = naval_folder
-			position = { x = 21 y = @2015 }
-		}
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0.01
-				date < 2004.1.1
-			}
-			modifier = {
-				factor = 0
-				num_of_naval_factories < 1
-			}
-		}
-		categories = {
-			CAT_Military
-			CAT_naval_all
-			CAT_naval_electronics
-			CAT_naval_modules
-			CAT_drones
 		}
 		special_project_specialization = { specialization_naval }
 	}
@@ -4037,7 +4601,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @1995 }
+			position = { x = @row27 y = @1995 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4075,7 +4639,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @2005 }
+			position = { x = @row27 y = @2005 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4115,7 +4679,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @2020 }
+			position = { x = @row27 y = @2020 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4155,7 +4719,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @2035 }
+			position = { x = @row27 y = @2035 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4191,7 +4755,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row26 y = @2045 }
+			position = { x = @row27 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4243,7 +4807,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row34 y = @1945 }
+			position = { x = @row35 y = @1945 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4317,7 +4881,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @1965 }
+			position = { x = @row35 y = @1965 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4357,7 +4921,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row28 y = @1975 }
+			position = { x = @row29 y = @1975 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4404,7 +4968,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row28 y = @2000 }
+			position = { x = @row29 y = @2000 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4444,7 +5008,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row28 y = @2025 }
+			position = { x = @row29 y = @2025 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4479,7 +5043,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row28 y = @2045 }
+			position = { x = @row29 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4523,7 +5087,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row29 y = @2015 }
+			position = { x = @row30 y = @2015 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4570,7 +5134,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row29 y = @2025 }
+			position = { x = @row30 y = @2025 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4612,7 +5176,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row29 y = @2035 }
+			position = { x = @row30 y = @2035 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4649,7 +5213,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row29 y = @2045 }
+			position = { x = @row30 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4686,7 +5250,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = 25 y = @2030 }
+			position = { x = @row31 y = @2030 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4724,7 +5288,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @1970 }
+			position = { x = @row32 y = @1970 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4762,7 +5326,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @1975 }
+			position = { x = @row32 y = @1975 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4800,7 +5364,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @1990 }
+			position = { x = @row32 y = @1990 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4838,7 +5402,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @2005 }
+			position = { x = @row32 y = @2005 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4881,7 +5445,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @2020 }
+			position = { x = @row32 y = @2020 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4919,7 +5483,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @2035 }
+			position = { x = @row32 y = @2035 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4952,7 +5516,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row31 y = @2045 }
+			position = { x = @row32 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -4989,7 +5553,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = 27 y = @2025 }
+			position = { x = @row33 y = @2025 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5028,7 +5592,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @1975 }
+			position = { x = @row34 y = @1975 }
 		}
 
 		categories = {
@@ -5069,7 +5633,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @1985 }
+			position = { x = @row34 y = @1985 }
 		}
 
 		categories = {
@@ -5110,7 +5674,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @2000 }
+			position = { x = @row34 y = @2000 }
 		}
 
 		categories = {
@@ -5151,7 +5715,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @2015 }
+			position = { x = @row34 y = @2015 }
 		}
 
 		categories = {
@@ -5192,7 +5756,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @2030 }
+			position = { x = @row34 y = @2030 }
 		}
 
 		categories = {
@@ -5228,7 +5792,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row33 y = @2045 }
+			position = { x = @row34 y = @2045 }
 		}
 
 		categories = {
@@ -5269,7 +5833,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row35 y = @1975 }
+			position = { x = @row36 y = @1975 }
 		}
 
 		categories = {
@@ -5310,7 +5874,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row35 y = @1985 }
+			position = { x = @row36 y = @1985 }
 		}
 
 		categories = {
@@ -5351,7 +5915,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row35 y = @2000 }
+			position = { x = @row36 y = @2000 }
 		}
 
 		categories = {
@@ -5392,7 +5956,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row35 y = @2015 }
+			position = { x = @row36 y = @2015 }
 		}
 
 		categories = {
@@ -5433,7 +5997,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row35 y = @2030 }
+			position = { x = @row36 y = @2030 }
 		}
 
 		categories = {
@@ -5469,7 +6033,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row35 y = @2045 }
+			position = { x = @row36 y = @2045 }
 		}
 
 		categories = {
@@ -5512,7 +6076,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row36 y = @1975 }
+			position = { x = @row37 y = @1975 }
 		}
 
 		categories = {
@@ -5555,7 +6119,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row36 y = @1985 }
+			position = { x = @row37 y = @1985 }
 		}
 
 		categories = {
@@ -5599,7 +6163,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row36 y = @2000 }
+			position = { x = @row37 y = @2000 }
 		}
 
 		categories = {
@@ -5643,7 +6207,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row36 y = @2015 }
+			position = { x = @row37 y = @2015 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5689,7 +6253,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row36 y = @2030 }
+			position = { x = @row37 y = @2030 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5730,7 +6294,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row36 y = @2045 }
+			position = { x = @row37 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5773,7 +6337,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row37 y = @1975 }
+			position = { x = @row38 y = @1975 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5812,7 +6376,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row37 y = @1985 }
+			position = { x = @row38 y = @1985 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5851,7 +6415,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row37 y = @2000 }
+			position = { x = @row38 y = @2000 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5890,7 +6454,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row37 y = @2015 }
+			position = { x = @row38 y = @2015 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5933,7 +6497,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row37 y = @2030 }
+			position = { x = @row38 y = @2030 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -5971,7 +6535,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row37 y = @2045 }
+			position = { x = @row38 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6015,7 +6579,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row39 y = @1975 }
+			position = { x = @row40 y = @1975 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6054,7 +6618,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row39 y = @1990 }
+			position = { x = @row40 y = @1990 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6100,7 +6664,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row39 y = @2010 }
+			position = { x = @row40 y = @2010 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6142,6 +6706,11 @@ technologies = {
 		}
 
 		path = {
+			leads_to_tech = tech_nuclear_torpedoes_1
+			research_cost_coeff = 1
+		}
+
+		path = {
 			leads_to_tech = tech_drone_torpedoes_1
 			research_cost_coeff = 1
 		}
@@ -6155,7 +6724,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row39 y = @2020 }
+			position = { x = @row40 y = @2020 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6198,7 +6767,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row39 y = @2035 }
+			position = { x = @row40 y = @2035 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6236,7 +6805,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row39 y = @2045 }
+			position = { x = @row40 y = @2045 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6255,6 +6824,54 @@ technologies = {
 			CAT_naval_armament
 			CAT_torpedoes
 			CAT_naval_modules
+		}
+		special_project_specialization = { specialization_naval }
+	}
+	tech_nuclear_torpedoes_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_nuclear_torpedoes
+		}
+
+		enable_equipment_modules = {
+			module_naval_asw_nuclear_torpedoes_2
+			module_naval_anti_ship_nuclear_torpedo_2
+		}
+
+		path = {
+			leads_to_tech = tech_nuclear_torpedoes_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 1.25
+		start_year = 2020
+
+		is_special_project_tech = yes
+		xp_research_type = navy
+		xp_boost_cost = 50
+		xp_research_bonus = 1.00
+
+		folder = {
+			name = naval_folder
+			position = { x = @row41 y = @2020 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2019.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_naval_factories < 1
+			}
+		}
+		categories = {
+			CAT_Military
+			CAT_naval_all
+			CAT_naval_armament
+			CAT_torpedoes
+			CAT_naval_modules
+			CAT_drones
 		}
 		special_project_specialization = { specialization_naval }
 	}
@@ -6283,7 +6900,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row38 y = @2020 }
+			position = { x = @row39 y = @2020 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6325,7 +6942,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row38 y = @2030 }
+			position = { x = @row39 y = @2030 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6366,7 +6983,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row38 y = @2040 }
+			position = { x = @row39 y = @2040 }
 		}
 		ai_will_do = {
 			factor = 1
@@ -6418,10 +7035,11 @@ technologies = {
 		xp_research_type = navy
 		xp_boost_cost = 50
 		xp_research_bonus = 1.00
+		show_equipment_icon = yes
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @1965 }
+			position = { x = @row42 y = @1965 }
 		}
 
 		ai_will_do = {
@@ -6463,7 +7081,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @1985 }
+			position = { x = @row42 y = @1985 }
 		}
 
 		ai_will_do = {
@@ -6503,7 +7121,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @1990 }
+			position = { x = @row42 y = @1990 }
 		}
 
 		ai_will_do = {
@@ -6547,9 +7165,11 @@ technologies = {
 		xp_boost_cost = 50
 		xp_research_bonus = 1.00
 
+		show_equipment_icon = yes
+
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @2000 }
+			position = { x = @row42 y = @2000 }
 		}
 
 		categories = {
@@ -6589,7 +7209,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @2015 }
+			position = { x = @row42 y = @2015 }
 		}
 
 		categories = {
@@ -6634,7 +7254,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @2025 }
+			position = { x = @row42 y = @2025 }
 		}
 
 		categories = {
@@ -6683,7 +7303,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @2035 }
+			position = { x = @row42 y = @2035 }
 		}
 
 		categories = {
@@ -6724,7 +7344,7 @@ technologies = {
 
 		folder = {
 			name = naval_folder
-			position = { x = @row41 y = @2045 }
+			position = { x = @row42 y = @2045 }
 		}
 
 		categories = {
