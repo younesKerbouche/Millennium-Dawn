@@ -8,6 +8,10 @@
 
 	complete_special_project = sp:sp_aircraft_project
 
+	complete_special_project = sp:sp_composite_production
+	#This needs to be one less than the starting number to work properly
+	set_variable = { startup_composite_fac_needed = 1 }
+
 	set_naval_oob = "BRA_2000_naval_mtg"
 
 	if = { limit = { has_dlc = "No Step Back" }
@@ -425,7 +429,7 @@
 				APC_3 = 1
 				APC_4 = 1
 				IFV_1 = 1
-				artillery_0 = 1
+				tech_arty_0 = 1
 				SP_arty_0 = 1
 				Arty_upgrade_1 = 1
 				SP_R_arty_0 = 1
@@ -762,13 +766,6 @@
 	1023 = { add_dynamic_modifier = { modifier = BRA_amazon_modifier } }
 	1024 = { add_dynamic_modifier = { modifier = BRA_amazon_modifier } }
 
-	# Create Amaozn State
-	every_controlled_state = {
-		set_variable = { productivity_state_var = 591 }
-		if = { limit = { has_dynamic_modifier = { modifier = BRA_amazon_modifier } }
-			add_to_array = { BRA.amazon_states = THIS.id }
-		}
-	}
 	set_variable = { overall_productivity = 591 }
 
 	# Internal Faction
@@ -923,4 +920,5 @@
 	recruit_character = BRA_marcelo_arantes_guedon
 	recruit_character = BRA_victor_cardoso_gomes
 	recruit_character = BRA_liseo_zampronio
+
 }

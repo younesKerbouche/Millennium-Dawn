@@ -19,10 +19,10 @@
 	set_country_flag = GER_panavia
 	set_country_flag = GER_eng_bases
 	set_country_flag = GER_usa_bases
-	#set_country_flag = GER_SFOR
-	#set_country_flag = GER_KFOR
-	#set_country_flag = balkan_activity
 
+	complete_special_project = sp:sp_composite_production
+	#This needs to be one less than the starting number to work properly
+	set_variable = { startup_composite_fac_needed = 6 }
 	complete_special_project = sp:sp_aircraft_project
 
 	if = {
@@ -130,7 +130,6 @@
 		GER_idea_bfv_islamist_low
 		GER_idea_bfv_rightwing_med
 		GER_idea_bfv_leftwing_med
-		GER_idea_Cold_War_Army
 		GER_idea_Peace_dividende
 		GER_neuer_markt_idea
 		GER_idea_BND
@@ -161,11 +160,20 @@
 	#Bundeswehr Modifier
 	add_dynamic_modifier = { modifier = GER_Bundeswehr_modifier }
 
-	set_variable = { GER_military_cost2 = 0.1 }
+	set_variable = { GER_personnel_cost_multiplier_modifier_heer = 0.1 }
 	set_variable = { GER_initiative_factor = -0.1 }
 	set_variable = { GER_planning_speed = -0.1 }
 	set_variable = { GER_supply_factor = -0.1 }
 	set_variable = { GER_training_time_factor = 0.1 }
+	set_variable = { GER_army_personnel_cost_multiplier_modifier_heer = 0.6 }
+	set_variable = { GER_experience_gain_army = -0.05 }
+	set_variable = { GER_army_org_factor = -0.05 }
+	set_variable = { GER_army_morale_factor = -0.1 }
+	set_variable = { GER_army_core_defence_factor = 0.2 }
+	set_variable = { GER_army_core_attack_factor = 0.2 }
+	set_variable = { GER_max_planning_modifier = 0.01 }
+	set_variable = { GER_supply_combat_penalties_on_core_factor_heer = -0.10 }
+	set_variable = { GER_send_volunteer_size = 1 }
 
 	set_variable = { GER_river_crossing_factor = -0.1 }
 	set_variable = { GER_experience_loss_factor = 0.1 }
@@ -173,7 +181,7 @@
 
 	add_dynamic_modifier = { modifier = GER_Deutsche_Marine_modifier }
 
-	set_variable = { GER_navy_personnel_cost_multiplier_modifier = 0.1 }
+	set_variable = { GER_navy_personnel_cost_multiplier_modifier_marine = 0.4 }
 	set_variable = { GER_navy_max_range_factor = -0.1 }
 
 	set_variable = { GER_screening_without_screens = 0.1 }
@@ -182,7 +190,7 @@
 
 	add_dynamic_modifier = { modifier = GER_Luftwaffe_modifier }
 
-	set_variable = { GER_airforce_personnel_cost_multiplier_modifier = 0.1 }
+	set_variable = { GER_airforce_personnel_cost_multiplier_modifier_luftwaffe = 0.4 }
 	set_variable = { GER_air_range_factor = -0.1 }
 	set_variable = { GER_air_mission_efficiency = -0.1 }
 	set_variable = { GER_air_agility = -0.1 }
@@ -253,29 +261,7 @@
 	set_variable = { var = corporate_tax_rate value = 35 }
 	set_variable = { var = population_tax_rate value = 44 }
 	set_variable = { var = int_investments value = 112 }
-	#
 	set_variable = { overall_productivity = 1091 }
-	# EAST v WEST STATE PRODUCTIVITY
-	#ost
-	539 = { set_variable = { productivity_state_var = 904 } } #mecklemburg
-	1079 = { set_variable = { productivity_state_var = 897 } } #brandenburg
-	44 = { set_variable = { productivity_state_var = 900 } } #sachsen
-	972 = { set_variable = { productivity_state_var = 921 } } #sachsen-anhalt
-	545 = { set_variable = { productivity_state_var = 919 } } #thüringen
-	45 = { set_variable = { productivity_state_var = 1107 } } #Berlin
-	37 = { set_variable = { productivity_state_var = 1089 } } #schleswig-holstein
-	#west
-	1080 = { set_variable = { productivity_state_var = 1320 } } #Hamburg
-	38 = { set_variable = { productivity_state_var = 1092 } } #Niedersachsen
-	964 = { set_variable = { productivity_state_var = 1139 } } #franken
-	43 = { set_variable = { productivity_state_var = 1249 } } #Bayern
-	42 = { set_variable = { productivity_state_var = 1246 } } #Baden-Württemberg
-	41 = { set_variable = { productivity_state_var = 1243 } } #Hessen
-	39 = { set_variable = { productivity_state_var = 1080 } } #NRW
-	966 = { set_variable = { productivity_state_var = 1203 } } #Köln-Bonn
-	40 = { set_variable = { productivity_state_var = 1134 } } #Rheinland-Pfalz
-	967 = { set_variable = { productivity_state_var = 1104 } } #Saarland
-
 
 	# Investment Targets
 	add_to_array = { GER.investment_targets = AUS } # Austria
@@ -381,6 +367,11 @@
 	add_opinion_modifier = { target = SWI modifier = large_commercial_relations }
 	reverse_add_opinion_modifier = { target = SWI modifier = large_commercial_relations }
 
+	add_opinion_modifier = { target = FRA modifier = franco_german_friendship }
+	reverse_add_opinion_modifier = { target = FRA modifier = franco_german_friendship }
+	add_opinion_modifier = { target = HOL modifier = german_dutch_military_cooperation }
+	reverse_add_opinion_modifier = { target = HOL modifier = german_dutch_military_cooperation }
+
 	if = {
 		limit = {
 			has_dlc = "La Resistance"
@@ -397,7 +388,12 @@
 		GER_create_operative_Erich_schmidt_eenboom = yes
 	}
 
+	complete_special_project = sp:sp_microchip_production
+
 	set_technology = {
+		microchip_production_two = 1
+		microchip_production_three = 1
+
 		nuclear_technology = 1
 		reactor1 = 1
 		reactor2 = 1
@@ -461,8 +457,8 @@
 		decryption2 = 1
 		encryption2 = 1
 		radar = 1
-		internet1 = 1 	#1G
-		internet2 = 1 	#2G
+		internet1 = 1
+		internet2 = 1
 		gprs = 1
 		fuel_silos = 1
 
@@ -512,6 +508,7 @@
 	}
 
 	complete_special_project = sp:sp_helicopter_project
+	set_variable = { country_excavation_production_var = 0.075 }
 
 	#############################################
 	# Missiles - GTD Variants
@@ -1846,9 +1843,9 @@
 				APC_3 = 1
 				APC_4 = 1
 				APC_5 = 1
-				artillery_0 = 1
+				tech_arty_0 = 1
 				Arty_upgrade_1 = 1
-				artillery_1 = 1
+				tech_arty_1 = 1
 				Arty_upgrade_2 = 1
 				Arty_upgrade_3 = 1
 				SP_arty_0 = 1
@@ -2005,6 +2002,18 @@
 		recruit_character = GER_Hans_Henning
 		recruit_character = GER_Ralf_Ketzel
 		recruit_character = GER_Armin_papperger
+
+		#intelligence agency advisors
+		recruit_character = GER_bruno_kahl
+		recruit_character = GER_thomas_haldenwang
+		recruit_character = GER_sinan_selen
+		recruit_character = GER_arne_schonbohm
+
+		#auto-activate intelligence advisors for faction intelligence
+		activate_advisor = GER_bruno_kahl_intel
+		activate_advisor = GER_thomas_haldenwang_intel
+		activate_advisor = GER_sinan_selen_intel
+		activate_advisor = GER_arne_schonbohm_intel
 	}
 
 	#############################################
@@ -2084,7 +2093,7 @@
 			parent_version = 0
 			modules = {
 				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_1
 				fixed_ship_auxillary_slot_3 = module_aa_missiles_1
 				fixed_ship_auxillary_slot_2 = module_anti_submarine_missile_1
@@ -2170,7 +2179,7 @@
 			parent_version = 0
 			modules = {
 				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot_3 = module_torpedoes_2
 				fixed_ship_auxillary_slot_2 = module_ciws_2
@@ -2191,7 +2200,7 @@
 			parent_version = 1
 			modules = {
 				fixed_ship_engine_slot = module_surface_jet_turbine_power
-				fixed_ship_fire_control_system_slot = module_analog_fire_control
+				fixed_ship_fire_control_system_slot = module_capital_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot_3 = module_torpedoes_2
 				fixed_ship_auxillary_slot_2 = module_ciws_2
