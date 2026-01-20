@@ -3234,13 +3234,14 @@ focus_tree = {
 		x = 47
 		y = 0
 
-		cost = 5
+		cost = 0
 
 		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_diplomacy"
 			add_dynamic_modifier = { modifier = JAP_diplomacy_modifier }
+			custom_effect_tooltip = JAP_diplomacy_idea_TT
 		}
 
 		ai_will_do = {
@@ -3702,8 +3703,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_production_speed_industrial_complex_factor_change = 0.05 }
 		update_JAP_diplomacy_production_speed_industrial_complex_factor = yes
 		USA = {
-			add_ideas = JAP_jap_education
+			country_event = JAP_diplomacy.46
 		}
+		custom_effect_tooltip = JAP_diplomacy_46_TT
 	}
 
 	ai_will_do = {
@@ -3734,9 +3736,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_offices_productivity_change = 0.1 }
 		update_JAP_diplomacy_offices_productivity = yes
 		USA = {
-			remove_ideas = JAP_jap_education
-			add_ideas = JAP_jap_education_culture
+			country_event = JAP_diplomacy.47
 		}
+		custom_effect_tooltip = JAP_diplomacy_46_TT
 	}
 
 	ai_will_do = {
@@ -3767,8 +3769,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_research_speed_factor_change = 0.05 }
 		update_JAP_diplomacy_research_speed_factor = yes
 		USA = {
-			add_ideas = JAP_dual_use_idea
+			country_event = JAP_diplomacy.48
 		}
+		custom_effect_tooltip = JAP_diplomacy_48_TT
 	}
 
 	ai_will_do = {
@@ -3878,8 +3881,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_repair_speed_industrial_complex_factor_change = 0.3 }
 		update_JAP_diplomacy_repair_speed_industrial_complex_factor = yes
 		TAI = {
-			add_ideas = JAP_disaster_countermeasure_cooperation_idea
+			country_event = JAP_diplomacy.49
 		}
+		custom_effect_tooltip = JAP_diplomacy_49_TT
 	}
 
 	ai_will_do = {
@@ -3910,8 +3914,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.02 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
 		TAI = {
-			add_ideas = JAP_tai_high_technology_idea
+			country_event = JAP_diplomacy.50
 		}
+		custom_effect_tooltip = JAP_diplomacy_49_TT
 		add_opinion_modifier = {
 				target = TAI
 				modifier = economic_cooperation
@@ -3979,8 +3984,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_research_speed_factor_change = 0.03 }
 		update_JAP_diplomacy_research_speed_factor = yes
 		TAI = {
-			add_ideas = JAP_tai_international_student_idea
+			country_event = JAP_diplomacy.51
 		}
+		custom_effect_tooltip = JAP_diplomacy_49_TT
 		add_opinion_modifier = {
 				target = TAI
 				modifier = human_interaction
@@ -4032,7 +4038,7 @@ focus = {
 	y = 1
 	relative_position_id = JAP_history_education
 
-	cost = 1
+	cost = 10
 
 	prerequisite = { focus = JAP_history_education }
 	search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
@@ -4079,7 +4085,7 @@ focus = {
 	y = 1
 	relative_position_id = JAP_statement
 
-	cost = 1
+	cost = 10
 
 	prerequisite = { focus = JAP_statement }
 	search_filters = { FOCUS_FILTER_FOREIGN_POLICY 	FOCUS_FILTER_STABILITY }
@@ -4166,12 +4172,9 @@ focus = {
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_chi_trade_support"
 		CHI = {
-			add_ideas = JAP_chi_trade_support_idea
+			country_event = JAP_diplomacy.52
 		}
-		set_temp_variable = { percent_change = 2.0 }
-		set_temp_variable = { tag_index = JAP }
-		set_temp_variable = { influence_target = CHI }
-		change_influence_percentage = yes
+		custom_effect_tooltip = JAP_diplomacy_52_TT
 	}
 
 	ai_will_do = {
@@ -4202,8 +4205,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.02 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
 		CHI = {
-			add_ideas = JAP_chi_advancement_companies_idea
+			country_event = JAP_diplomacy.55
 		}
+		custom_effect_tooltip = JAP_diplomacy_55_TT
 		add_opinion_modifier = {
 				target = CHI
 				modifier = economic_cooperation
@@ -4242,8 +4246,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_foreign_influence_defense_modifier_change = 0.1 }
 		update_JAP_diplomacy_foreign_influence_defense_modifier = yes
 		CHI = {
-			add_ideas = JAP_chi_kanji_idea
+			country_event = JAP_diplomacy.56
 		}
+		custom_effect_tooltip = JAP_diplomacy_55_TT
 	}
 
 	ai_will_do = {
@@ -4274,8 +4279,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_tax_gain_multiplier_modifier_change = 0.015 }
 		update_JAP_diplomacy_tax_gain_multiplier_modifier = yes
 		CHI = {
-			add_ideas = JAP_chi_temple_idea
+			country_event = JAP_diplomacy.57
 		}
+		custom_effect_tooltip = JAP_diplomacy_55_TT
 		add_opinion_modifier = {
 				target = CHI
 				modifier = opinion_cultural_exchange
@@ -4307,6 +4313,7 @@ focus = {
 	available = {
 		country_exists = KOR
 		NOT = { has_war_with = KOR }
+		has_country_flag = JAP_kor_accept_intellectual_platform
 	}
 
 	completion_reward = {
@@ -4351,8 +4358,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_production_speed_offices_factor_change = 0.1 }
 		update_JAP_diplomacy_production_speed_offices_factor = yes
 		KOR = {
-			add_ideas = JAP_kor_accelerator_idea
+			country_event = JAP_diplomacy.58
 		}
+		custom_effect_tooltip = JAP_diplomacy_58_TT
 	}
 
 	ai_will_do = {
@@ -4383,8 +4391,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_production_speed_industrial_complex_factor_change = 0.1 }
 		update_JAP_diplomacy_production_speed_industrial_complex_factor = yes
 		KOR = {
-			add_ideas = JAP_kor_local_companies_idea
+			country_event = JAP_diplomacy.59
 		}
+		custom_effect_tooltip = JAP_diplomacy_58_TT
 		add_opinion_modifier = {
 				target = KOR
 				modifier = economic_cooperation
@@ -4420,22 +4429,10 @@ focus = {
 
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_kor_cultural_exchange"
-		add_opinion_modifier = {
-				target = KOR
-				modifier = opinion_cultural_exchange
+		KOR = {
+			country_event = JAP_diplomacy.60
 		}
-		reverse_add_opinion_modifier = {
-				target = KOR
-				modifier = opinion_cultural_exchange
-		}
-		set_temp_variable = { percent_change = 2.0 }
-		set_temp_variable = { tag_index = JAP }
-		set_temp_variable = { influence_target = KOR }
-		change_influence_percentage = yes
-		set_temp_variable = { percent_change = 2.0 }
-		set_temp_variable = { tag_index = KOR }
-		set_temp_variable = { influence_target = JAP }
-		change_influence_percentage = yes
+		custom_effect_tooltip = JAP_diplomacy_60_TT
 	}
 
 	ai_will_do = {
@@ -4479,8 +4476,9 @@ focus = {
 		}
 
 		KOR = {
-			add_ideas = JAP_kor_aging_idea
+			country_event = JAP_diplomacy.63
 		}
+		custom_effect_tooltip = JAP_diplomacy_63_TT
 	}
 
 	ai_will_do = {
@@ -4569,6 +4567,9 @@ focus = {
 				instant_build = yes
 			}
 		}
+		SOV = {
+			country_event = JAP_diplomacy.64
+		}
 	}
 
 	ai_will_do = {
@@ -4617,6 +4618,9 @@ focus = {
 				target = SOV
 				modifier = development_aid
 		}
+		SOV = {
+			country_event = JAP_diplomacy.65
+		}
 	}
 
 	ai_will_do = {
@@ -4648,11 +4652,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.04 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
 		SOV = {
-			add_timed_idea = {
-				idea = JAP_sov_logistics_corridor_idea
-				days = 730
-			}
+			country_event = JAP_diplomacy.66
 	  	}
+		custom_effect_tooltip = JAP_diplomacy_66_TT
 		set_temp_variable = { treasury_change = gdp_total }
 		multiply_temp_variable = { treasury_change = -0.005 }
 		modify_treasury_effect = yes
@@ -4687,11 +4689,9 @@ focus = {
 		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.02 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
 		SOV = {
-			add_timed_idea = {
-				idea = JAP_sov_it_corridor_idea
-				days = 730
-			}
+			country_event = JAP_diplomacy.67
 	  	}
+		custom_effect_tooltip = JAP_diplomacy_67_TT
 		add_opinion_modifier = {
 				target = SOV
 				modifier = economic_cooperation
