@@ -52,7 +52,7 @@ scripted_gui = {
 				check_variable = { CAC_companies_selected_ceo^i = -1 }
 			}
 		}
-		
+
 		effects = {
 			companies_details_button_click = {
 				for_each_loop = {
@@ -362,7 +362,7 @@ scripted_gui = {
 			}
 		}
 
-		triggers = {			
+		triggers = {
 			country_action_1_visible = {
 				has_country_flag = country_actions_ui
 			}
@@ -388,18 +388,18 @@ scripted_gui = {
 			company_action_2_visible = {
 				NOT = {
 					has_country_flag = country_actions_ui
-				}	
+				}
 			}
 
 			company_action_3_visible = {
 				NOT = {
 					has_country_flag = country_actions_ui
-				}	
+				}
 			}
 			company_action_4_visible = {
 				NOT = {
 					has_country_flag = country_actions_ui
-				}	
+				}
 			}
 
 			company_action_1_click_enabled = {
@@ -424,7 +424,7 @@ scripted_gui = {
 			company_action_2_click_enabled = {
 				set_temp_variable = { cac_needed_money_base = 2.5 }
 				set_temp_variable = { cac_slot = opened_company_details }
-				
+
 				set_temp_variable = { cac_less_than_or_equals_income_per_factory = 0.5 }
 				AND = {
 					cac_needed_money_for_action = yes
@@ -551,7 +551,7 @@ scripted_gui = {
 			company_action_switch_page_country_click = {
 				set_country_flag = country_actions_ui
 			}
-			
+
 			company_action_1_click = {
 				set_country_flag = {
 					flag = company_action_1_timeout
@@ -578,7 +578,7 @@ scripted_gui = {
                 set_temp_variable = { cac_money_change = -2.5 }
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_money_effect = yes
-				
+
 				set_temp_variable = { cac_income_per_factory_change = 0.02 }
 				set_temp_variable = { cac_slot = opened_company_details }
 				CAC_modify_income_per_factory_effect = yes
@@ -634,7 +634,7 @@ scripted_gui = {
 				}
 
 				set_temp_variable = { cac_money_change = -2 }
-				
+
 				set_temp_variable = { cac_money_change_modifier = 1 }
 				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
 				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
@@ -648,7 +648,7 @@ scripted_gui = {
 				CAC_modify_money_effect = yes
 
 				add_political_power = -100
-				
+
 				ROOT = {
 					if = {
 						limit = { check_variable = { CAC_companies_type^opened_company_details = 0 } }
@@ -761,7 +761,7 @@ scripted_gui = {
 				}
 
 				set_temp_variable = { cac_money_change = -3 }
-				
+
 				set_temp_variable = { cac_money_change_modifier = 1 }
 				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
 				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
@@ -796,7 +796,7 @@ scripted_gui = {
 						add_tech_bonus = {
 							bonus = 0.1
 							uses = 2
-							category = CAT_energy
+							category = CAT_energy_tech
 						}
 					}
 					else_if = {
@@ -868,7 +868,7 @@ scripted_gui = {
 				}
 
 				set_temp_variable = { cac_money_change = -5 }
-				
+
 				set_temp_variable = { cac_money_change_modifier = 1 }
 				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
 				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
@@ -893,7 +893,7 @@ scripted_gui = {
 				}
 
 				set_temp_variable = { cac_money_change = -8 }
-				
+
 				set_temp_variable = { cac_money_change_modifier = 1 }
 				add_to_temp_variable = { cac_money_change_modifier = CAC_companies_modifier_from_size^opened_company_details }
 				multiply_temp_variable = { cac_money_change = cac_money_change_modifier }
@@ -1067,7 +1067,7 @@ scripted_gui = {
 							array = ROOT.CAC_foreign_companies
 							index = index
 							value = company_id
-							
+
 							AND = {
 								check_variable = { company_id = v }
 								check_variable = { ROOT.CAC_foreign_companies_countries^index = THIS }
@@ -1081,7 +1081,7 @@ scripted_gui = {
 					array = ROOT.CAC_foreign_companies
 					index = index
 					value = company_id
-					
+
 					AND = {
 						check_variable = { company_id = v }
 						check_variable = { ROOT.CAC_foreign_companies_countries^index = THIS }
@@ -1325,7 +1325,7 @@ scripted_gui = {
 					}
 				}
 			}
-			
+
 			foreign_available_companies_select_click = {
 				for_each_loop = {
 					array = THIS.CAC_companies
