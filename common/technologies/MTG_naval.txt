@@ -940,7 +940,7 @@ technologies = {
 		}
 
 		path = {
-			leads_to_tech = heavy_frigate_hull_2
+			leads_to_tech = heavy_frigate_hull_2_tech
 			research_cost_coeff = 1
 		}
 
@@ -983,7 +983,7 @@ technologies = {
 		}
 
 		path = {
-			leads_to_tech = heavy_frigate_hull_3
+			leads_to_tech = heavy_frigate_hull_3_tech
 			research_cost_coeff = 1
 		}
 
@@ -3595,8 +3595,8 @@ technologies = {
 
 	tech_power_systems = {
 		enable_equipment_modules = {
-			module_surface_diesel_power_1
-			module_light_surface_diesel_power_1
+			module_surface_jet_turbine_power
+			module_light_surface_jet_turbine_power
 		}
 		path = {
 			leads_to_tech = tech_power_systems_1
@@ -3638,8 +3638,8 @@ technologies = {
 
 	tech_power_systems_1 = {
 		enable_equipment_modules = {
-			module_surface_jet_turbine_power
-			module_light_surface_jet_turbine_power
+			module_surface_jet_turbine_power2
+			module_light_surface_jet_turbine_power2
 		}
 		path = {
 			leads_to_tech = tech_power_systems_2
@@ -3677,8 +3677,8 @@ technologies = {
 
 	tech_power_systems_2 = {
 		enable_equipment_modules = {
-			module_surface_jet_turbine_power2
-			module_light_surface_jet_turbine_power2
+			module_surface_jet_turbine_power3
+			module_light_surface_jet_turbine_power3
 		}
 		path = {
 			leads_to_tech = tech_power_systems_3
@@ -3719,8 +3719,8 @@ technologies = {
 
 	tech_power_systems_3 = {
 		enable_equipment_modules = {
-			module_surface_jet_turbine_power3
-			module_light_surface_jet_turbine_power3
+			module_surface_jet_turbine_power4
+			module_light_surface_jet_turbine_power4
 		}
 
 		research_cost = 1
@@ -3955,6 +3955,13 @@ technologies = {
 		path = {
 			leads_to_tech = tech_fusion_power_systems_1
 			research_cost_coeff = 1
+		}
+
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp:sp_fusion_reactor_engine
+			}
 		}
 
 		research_cost = 1.25
@@ -4653,6 +4660,11 @@ technologies = {
 	}
 	tech_naval_recon_drones_1 = {
 		is_special_project_tech = yes
+
+		allow = {
+			is_special_project_completed = sp:sp_naval_recon_drone
+		}
+
 		enable_equipment_modules = {
 			module_naval_recon_drone_2
 		}
@@ -5108,11 +5120,6 @@ technologies = {
 
 		path = {
 			leads_to_tech = tech_light_guns
-			research_cost_coeff = 1
-		}
-
-		path = {
-			leads_to_tech = tech_anti_torpedoes_1
 			research_cost_coeff = 1
 		}
 
@@ -5579,7 +5586,7 @@ technologies = {
 		is_special_project_tech = yes
 
 		enable_equipment_modules = {
-			module_naval_railgun_battery_2
+			module_naval_railgun_battery_3
 		}
 
 		research_cost = 1.25
@@ -7200,6 +7207,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = tech_anti_torpedoes_1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 1.25
 		start_year = 2010
 
@@ -7519,7 +7531,7 @@ technologies = {
 		}
 
 		enable_equipment_modules = {
-			module_naval_anti_ship_drone_torpedoes_2
+			module_anti_ship_drone_torpedoes_2
 		}
 
 		path = {
@@ -7562,7 +7574,7 @@ technologies = {
 	}
 	tech_drone_torpedoes_2 = {
 		enable_equipment_modules = {
-			module_naval_anti_ship_drone_torpedoes_3
+			module_anti_ship_drone_torpedoes_3
 		}
 
 		path = {
