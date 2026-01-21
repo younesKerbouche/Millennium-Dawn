@@ -5626,7 +5626,7 @@ focus_tree = {
 	focus = {
 		id = POL_high_tech_industry
 		
-		x = 4
+		x = 3
 		y = 1
 		relative_position_id = POL_industrial_policy
 		cost = 5
@@ -5637,6 +5637,149 @@ focus_tree = {
 		
 		completion_reward = {
 			one_random_renewable_energy_infra = yes
+		}
+	}
+	
+	focus = {
+		id = POL_invite_siemens
+		
+		x = -2
+		y = 1
+		relative_position_id = POL_high_tech_industry
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_invite_intel
+			focus = POL_invite_samsung
+		}
+		
+		prerequisite = {
+			focus = POL_high_tech_industry
+		}
+		
+		completion_reward = {
+			GER = {
+				set_temp_variable = { percent_change = 4 }
+				set_temp_variable = { tag_index = THIS.id }
+				set_temp_variable = { influence_target = ROOT.id }
+				change_influence_percentage = yes
+			}
+		}
+	}
+
+	focus = {
+		id = POL_invite_intel
+		
+		x = 0
+		y = 1
+		relative_position_id = POL_high_tech_industry
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_invite_siemens
+			focus = POL_invite_samsung
+		}
+		
+		prerequisite = {
+			focus = POL_high_tech_industry
+		}
+		
+		completion_reward = {
+			USA = {
+				set_temp_variable = { percent_change = 4 }
+				set_temp_variable = { tag_index = THIS.id }
+				set_temp_variable = { influence_target = ROOT.id }
+				change_influence_percentage = yes
+			}
+		}
+	}
+
+	focus = {
+		id = POL_invite_samsung
+		
+		x = 2
+		y = 1
+		relative_position_id = POL_high_tech_industry
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_invite_intel
+			focus = POL_invite_siemens
+		}
+		
+		prerequisite = {
+			focus = POL_high_tech_industry
+		}
+		
+		completion_reward = {
+			KOR = {
+				set_temp_variable = { percent_change = 4 }
+				set_temp_variable = { tag_index = THIS.id }
+				set_temp_variable = { influence_target = ROOT.id }
+				change_influence_percentage = yes
+			}
+		}
+	}
+
+	focus = {
+		id = POL_start_microchip_production
+		
+		x = 2
+		y = 1
+		relative_position_id = POL_invite_siemens
+		cost = 10
+
+		prerequisite = {
+			focus = POL_invite_siemens
+			focus = POL_invite_intel
+			focus = POL_invite_samsung
+		}
+		
+		completion_reward = {
+			complete_special_project = sp_microchip_production
+			if = {
+				limit = { has_completed_focus = POL_invite_siemens }
+				set_temp_variable = { treasury_change = -25 }
+				modify_treasury_effect = yes
+				random_owned_state = {
+					add_building_construction = {
+						type = microchip_plant level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}			
+			}
+			else_if = {
+				limit = { has_completed_focus = POL_invite_intel }
+				set_temp_variable = { treasury_change = -20 }
+				modify_treasury_effect = yes
+				random_owned_state = {
+					add_building_construction = {
+						type = microchip_plant level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			else_if = {
+				limit = { has_completed_focus = POL_invite_samsung }
+				set_temp_variable = { treasury_change = -30 }
+				modify_treasury_effect = yes
+				random_owned_state = {
+					add_building_construction = {
+						type = microchip_plant level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+				random_owned_state = {
+					add_building_construction = {
+						type = microchip_plant level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
 		}
 	}
 	
@@ -5713,7 +5856,7 @@ focus_tree = {
 		}
 		
 		completion_reward = {
-			# +25% infra build
+			# add_ideas = { POL_gddkia }
 		}
 	}
 
