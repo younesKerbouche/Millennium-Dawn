@@ -1,4 +1,4 @@
-#Written by Hiddengearz, Bird
+#Written by Hiddengearz, Bird, TheGeneral
 ##Improvements in Unit Technologies
 technologies = {
 
@@ -28,11 +28,6 @@ technologies = {
 	@row13 = 19
 	@row14 = 21
 	@row15 = 23
-	@row16 = 25
-	@row17 = 27
-	@row18 = 29
-	@row19 = 31
-	@row20 = 33
 
 	#1965
 	nsb_attack_helicopter_tech_1 = {
@@ -1592,6 +1587,12 @@ technologies = {
 				is_special_project_completed = sp:sp_helicopter_project
 			}
 		}
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_hover_helicopter_engine
+			}
+		}
 		enable_equipment_modules = {
 			helicopter_turbine_engine_gen4
 			helicopter_piston_engine_gen4
@@ -1600,6 +1601,10 @@ technologies = {
 		}
 		path = {
 			leads_to_tech = nsb_engine_tech_5
+			research_cost_coeff = 1
+		}
+		path = {
+			leads_to_tech = tech_helicopter_hover_engine_1
 			research_cost_coeff = 1
 		}
 		research_cost = 1.7
@@ -1649,15 +1654,112 @@ technologies = {
 		}
 	}
 
-	#1965 ATGM Tech
-	nsb_atgm_tech_1 = {
+	tech_helicopter_hover_engine_1 = {
 		allow = {
-			ROOT = {
-				is_special_project_completed = sp:sp_helicopter_project
+			is_special_project_completed = sp:sp_hover_helicopter_engine
+		}
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			helicopter_module_hover_engine_gen2
+		}
+
+		path = {
+			leads_to_tech = tech_helicopter_hover_engine_2
+			research_cost_coeff = 1
+		}
+		research_cost = 1.7
+		start_year = 2035
+		folder = {
+			name = air_techs_folder
+			position = { x = @row7 y = @2035 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2034.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_military_factories < 1
 			}
 		}
+	}
+	tech_helicopter_hover_engine_2 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			helicopter_module_hover_engine_gen3
+		}
+
+		path = {
+			leads_to_tech = tech_helicopter_hover_engine_3
+			research_cost_coeff = 1
+		}
+		research_cost = 1.7
+		start_year = 2055
+		folder = {
+			name = air_techs_folder
+			position = { x = @row7 y = @2055 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2054.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_military_factories < 1
+			}
+		}
+	}
+	tech_helicopter_hover_engine_3 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			helicopter_module_hover_engine_gen4
+		}
+
+		research_cost = 1.7
+		start_year = 2075
+		folder = {
+			name = air_techs_folder
+			position = { x = @row7 y = @2075 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.01
+				date < 2074.1.1
+			}
+			modifier = {
+				factor = 0
+				num_of_military_factories < 1
+			}
+		}
+	}
+
+	#1965 ATGM Tech
+	nsb_atgm_tech_1 = {
 		allow_branch = {
-		has_dlc = "No Step Back"
+			has_dlc = "No Step Back"
 		}
 
 		dependencies = {
@@ -1683,7 +1785,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = air_techs_folder
-			position = { x = @row8 y = @1965 }
+			position = { x = @row9 y = @1965 }
 		}
 		categories = {
 			CAT_heli
@@ -1723,7 +1825,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row8 y = @1985 }
+			position = { x = @row9 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -1766,7 +1868,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row8 y = @2005 }
+			position = { x = @row9 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -1805,7 +1907,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row8 y = @2015 }
+			position = { x = @row9 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -1844,7 +1946,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row8 y = @2035 }
+			position = { x = @row9 y = @2035 }
 		}
 		categories = {
 			CAT_heli
@@ -1874,7 +1976,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = air_techs_folder
-			position = { x = @row7 y = @1965 }
+			position = { x = @row8 y = @1965 }
 		}
 		categories = {
 			CAT_heli
@@ -1898,7 +2000,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row7 y = @1985 }
+			position = { x = @row8 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -1925,7 +2027,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row7 y = @2005 }
+			position = { x = @row8 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -1952,7 +2054,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row7 y = @2015 }
+			position = { x = @row8 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -1979,7 +2081,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row7 y = @2035 }
+			position = { x = @row8 y = @2035 }
 		}
 		categories = {
 			CAT_heli
@@ -2009,7 +2111,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = air_techs_folder
-			position = { x = @row9 y = @1965 }
+			position = { x = @row10 y = @1965 }
 		}
 		categories = {
 			CAT_heli
@@ -2033,7 +2135,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row9 y = @1985 }
+			position = { x = @row10 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -2060,7 +2162,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row9 y = @2005 }
+			position = { x = @row10 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -2087,7 +2189,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row9 y = @2015 }
+			position = { x = @row10 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -2114,7 +2216,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row9 y = @2035 }
+			position = { x = @row10 y = @2035 }
 		}
 		categories = {
 			CAT_heli
@@ -2148,7 +2250,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = air_techs_folder
-			position = { x = @row10 y = @1965 }
+			position = { x = @row11 y = @1965 }
 		}
 		categories = {
 			CAT_heli
@@ -2176,7 +2278,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row10 y = @1985 }
+			position = { x = @row11 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -2207,7 +2309,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row10 y = @2005 }
+			position = { x = @row11 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -2238,7 +2340,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row10 y = @2015 }
+			position = { x = @row11 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -2265,7 +2367,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row10 y = @2035 }
+			position = { x = @row11 y = @2035 }
 		}
 		categories = {
 			CAT_heli
@@ -2299,7 +2401,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = air_techs_folder
-			position = { x = @row11 y = @1965 }
+			position = { x = @row12 y = @1965 }
 		}
 		categories = {
 			CAT_heli
@@ -2327,7 +2429,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row11 y = @1985 }
+			position = { x = @row12 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -2358,7 +2460,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row11 y = @2005 }
+			position = { x = @row12 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -2389,7 +2491,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row11 y = @2015 }
+			position = { x = @row12 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -2416,7 +2518,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row11 y = @2035 }
+			position = { x = @row12 y = @2035 }
 		}
 		categories = {
 			CAT_heli
@@ -2452,7 +2554,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = air_techs_folder
-			position = { x = @row12 y = @1965 }
+			position = { x = @row13 y = @1965 }
 		}
 		categories = {
 			CAT_heli
@@ -2482,7 +2584,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row12 y = @1985 }
+			position = { x = @row13 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -2512,7 +2614,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row12 y = @2005 }
+			position = { x = @row13 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -2542,7 +2644,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = air_techs_folder
-			position = { x = @row13 y = @1985 }
+			position = { x = @row14 y = @1985 }
 		}
 		categories = {
 			CAT_heli
@@ -2576,7 +2678,7 @@ technologies = {
 		start_year = 2000
 		folder = {
 			name = air_techs_folder
-			position = { x = @row13 y = @2005 }
+			position = { x = @row14 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -2607,7 +2709,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row13 y = @2015 }
+			position = { x = @row14 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -2633,7 +2735,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row13 y = @2035 }
+			position = { x = @row14 y = @2035 }
 		}
 		categories = {
 			CAT_heli
@@ -2664,7 +2766,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = air_techs_folder
-			position = { x = @row14 y = @2005 }
+			position = { x = @row15 y = @2005 }
 		}
 		categories = {
 			CAT_heli
@@ -2695,7 +2797,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = air_techs_folder
-			position = { x = @row14 y = @2015 }
+			position = { x = @row15 y = @2015 }
 		}
 		categories = {
 			CAT_heli
@@ -2722,7 +2824,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = air_techs_folder
-			position = { x = @row14 y = @2035 }
+			position = { x = @row15 y = @2035 }
 		}
 		categories = {
 			CAT_heli

@@ -4144,7 +4144,6 @@ technologies = {
 		}
 		is_special_project_tech = yes
 		on_research_complete = {
-
 			custom_effect_tooltip = nuclear_technology_techtree_effect_TT
 			if = {
 				limit = {
@@ -5958,13 +5957,6 @@ technologies = {
 
 	# Infrastructure tree
 	integrated_transportation_system = {
-		on_research_complete = {
-
-			custom_effect_tooltip = {
-				localization_key = SP_UNLOCK_PROJECT
-				PROJECT = sp_improved_maglev_trains
-			}
-		}
 
 		path = {
 			leads_to_tech = post_conventional_rail
@@ -6086,6 +6078,12 @@ technologies = {
 		}
 	}
 	high_speed_rail = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_improved_maglev_trains
+			}
+		}
 
 		path = {
 			leads_to_tech = modern_high_speed_rail
@@ -6508,6 +6506,13 @@ technologies = {
 
 	limited_automated_harvesting_software = {
 
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_agriculture_drone
+			}
+		}
+
 		research_cost = 1.75
 		start_year = 2005
 
@@ -6588,13 +6593,6 @@ technologies = {
 		research_cost = 1.75
 		start_year = 2010
 
-		on_research_complete = {
-			custom_effect_tooltip = {
-				localization_key = SP_UNLOCK_PROJECT
-				PROJECT = sp_agriculture_drone
-			}
-		}
-
 		agricolture_productivity_modifier = 0.025
 		agriculture_workers_modifier = -0.05
 		agriculture_district_worker_requirement_modifier = -0.05
@@ -6668,6 +6666,12 @@ technologies = {
 	}
 
 	programmable_harvesters = {
+
+		is_special_project_tech = yes
+
+		allow = {
+			is_special_project_completed = sp:sp_agriculture_drone
+		}
 
 		research_cost = 1.75
 		start_year = 2015
@@ -6745,7 +6749,7 @@ technologies = {
 	}
 
 	improved_harvesting_automation = {
-
+		is_special_project_tech = yes
 		research_cost = 1.75
 		start_year = 2020
 
@@ -6829,11 +6833,6 @@ technologies = {
 	}
 
 	robotic_harvesters = {
-
-		allow = {
-			is_special_project_completed = sp:sp_agriculture_drone
-		}
-
 		is_special_project_tech = yes
 
 
