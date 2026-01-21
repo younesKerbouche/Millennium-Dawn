@@ -2601,13 +2601,19 @@ technologies = {
 				is_special_project_completed = sp:sp_helicopter_project
 			}
 		}
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_air_railguns_helicopter
+			}
+		}
 		enable_equipment_modules = {
 			helicopter_light_nose_gun_gen3
 			helicopter_medium_nose_gun_gen3
 			helicopter_heavy_nose_gun_gen3
 		}
 		path = {
-			leads_to_tech = nsb_light_nose_gun_tech_3
+			leads_to_tech = nsb_light_nose_gun_tech_4
 			research_cost_coeff = 1
 		}
 		research_cost = 1.7
@@ -2615,6 +2621,76 @@ technologies = {
 		folder = {
 			name = air_techs_folder
 			position = { x = @row13 y = @2005 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	#2025 Railgun Nose Gun Tech
+	nsb_light_nose_gun_tech_4 = {
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_air_railguns_helicopter
+			}
+		}
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			helicopter_railgun_nose_gun_gen2
+		}
+		path = {
+			leads_to_tech = nsb_light_nose_gun_tech_5
+			research_cost_coeff = 1
+		}
+		research_cost = 1.7
+		start_year = 2035
+		folder = {
+			name = air_techs_folder
+			position = { x = @row13 y = @2035 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	#2055 Railgun Nose Gun Tech
+	nsb_light_nose_gun_tech_5 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			helicopter_railgun_nose_gun_gen3
+		}
+		path = {
+			leads_to_tech = nsb_light_nose_gun_tech_6
+			research_cost_coeff = 1
+		}
+		research_cost = 1.7
+		start_year = 2055
+		folder = {
+			name = air_techs_folder
+			position = { x = @row13 y = @2055 }
+		}
+		categories = {
+			CAT_heli
+			CAT_atk_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	#2075 Railgun Nose Gun Tech
+	nsb_light_nose_gun_tech_6 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			helicopter_railgun_nose_gun_gen4
+		}
+		research_cost = 1.7
+		start_year = 2075
+		folder = {
+			name = air_techs_folder
+			position = { x = @row13 y = @2075 }
 		}
 		categories = {
 			CAT_heli
@@ -2812,6 +2888,12 @@ technologies = {
 		allow = {
 			ROOT = {
 				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_air_helicopter_drone_control
 			}
 		}
 		allow_branch = {

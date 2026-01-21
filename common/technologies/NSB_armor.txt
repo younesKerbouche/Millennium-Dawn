@@ -16,37 +16,43 @@ technologies = {
 	@2025 = 10
 	@2030 = 11
 	@2035 = 12
+	@2045 = 13
+	@2055 = 14
+	@2065 = 15
+	@2075 = 16
+	@2085 = 17
 
 	@row1 = -4
 	@row2 = 0
-	@row3 = 3
-	@row4 = 5
-	@row5 = 7
-	@row6 = 9
-	@row7 = 9
-	@row8 = 11
-	@row9 = 13
-	@row10 = 15
-	@row11b = 17
-	@row112 = 19
-	@row113 = 21
-	@row11 = 23
-	@row115 = 25
-	@row12 = 28
-	@row13 = 31
-	@row14 = 33
-	@row15 = 35
-	@row16 = 37
-	@row17 = 39
-	@row18 = 41
-	@row19 = 42
-	@row19b = 43
-	@row20 = 44
-	@row20b = 45
-	@row21 = 46
-	@row22 = 49
-	@row23 = 51
-	@row24 = 53
+	@row2a = 2
+	@row3 = 4
+	@row4 = 6
+	@row5 = 8
+	@row6 = 10
+	@row7 = 11
+	@row8 = 12
+	@row9 = 14
+	@row10 = 16
+	@row11b = 18
+	@row112 = 20
+	@row113 = 22
+	@row11 = 24
+	@row115 = 26
+	@row12 = 29
+	@row13 = 32
+	@row14 = 34
+	@row15 = 36
+	@row16 = 38
+	@row17 = 40
+	@row18 = 42
+	@row19 = 43
+	@row19b = 44
+	@row20 = 45
+	@row20b = 46
+	@row21 = 47
+	@row22 = 50
+	@row23 = 52
+	@row24 = 54
 
 	mbt_tech_ops = {
 		enable_equipments = {
@@ -96,7 +102,7 @@ technologies = {
 		start_year = 1945
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1945 y = @row1 }
+			position = { x = @1945 y = @row2 }
 		}
 
 		ai_will_do = { factor = 5 }
@@ -172,7 +178,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1965 y = @row1 }
+			position = { x = @1965 y = @row2 }
 		}
 
 		ai_will_do = { factor = 5 }
@@ -221,7 +227,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row1 }
+			position = { x = @1975 y = @row2 }
 		}
 
 		ai_will_do = { factor = 5 }
@@ -267,7 +273,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row1 }
+			position = { x = @1995 y = @row2 }
 		}
 
 		ai_will_do = { factor = 5 }
@@ -318,7 +324,7 @@ technologies = {
 		start_year = 2020
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2020 y = @row1 }
+			position = { x = @2020 y = @row2 }
 		}
 
 		ai_will_do = { factor = 5 }
@@ -338,6 +344,100 @@ technologies = {
 				localization_key = SP_UNLOCK_PROJECT
 				PROJECT = sp_tank_chameleon_camo
 			}
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_walker_tank_chassis
+			}
+		}
+
+		path = {
+			leads_to_tech = mbt_tech_5
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = tech_tank_walker_chassis_1
+			research_cost_coeff = 1
+		}
+
+		enable_equipments = {
+			medium_tank_chassis_4
+			medium_tank_aa_chassis_4
+			medium_tank_artillery_chassis_4
+			medium_tank_rocket_chassis_4
+			medium_tank_destroyer_chassis_4
+			medium_tank_flame_chassis_4
+			medium_tank_amphibious_chassis_4
+		}
+
+		research_cost = 5.2
+		start_year = 2035
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2035 y = @row2 }
+		}
+
+		ai_will_do = { factor = 5 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+		}
+		special_project_specialization = { specialization_land }
+	}
+
+	mbt_tech_5 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_tank_chameleon_camo
+			}
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_walker_tank_chassis
+			}
+		}
+
+		enable_equipments = {
+			medium_tank_chassis_4
+			medium_tank_aa_chassis_4
+			medium_tank_artillery_chassis_4
+			medium_tank_rocket_chassis_4
+			medium_tank_destroyer_chassis_4
+			medium_tank_flame_chassis_4
+			medium_tank_amphibious_chassis_4
+		}
+
+		research_cost = 5.2
+		start_year = 2065
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2065 y = @row2 }
+		}
+
+		ai_will_do = { factor = 5 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+		}
+		special_project_specialization = { specialization_land }
+	}
+
+	tech_tank_walker_chassis_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_walker_tank_chassis
+		}
+
+		is_special_project_tech = yes
+
+		path = {
+			leads_to_tech = tech_tank_walker_chassis_2
+			research_cost_coeff = 1
 		}
 
 		enable_equipments = {
@@ -383,7 +483,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1965 y = @row2 }
+			position = { x = @1965 y = @row3 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -414,7 +514,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row2 }
+			position = { x = @1975 y = @row3 }
 		}
 
 		categories = {
@@ -455,7 +555,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row2 }
+			position = { x = @1995 y = @row3 }
 		}
 
 		categories = {
@@ -487,7 +587,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row2 }
+			position = { x = @2015 y = @row3 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -512,7 +612,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row2 }
+			position = { x = @2035 y = @row3 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -541,7 +641,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row7 }
+			position = { x = @1975 y = @row8 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -570,7 +670,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row7 }
+			position = { x = @1985 y = @row8 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -599,7 +699,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row7 }
+			position = { x = @2005 y = @row8 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -623,7 +723,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2025 y = @row7 }
+			position = { x = @2025 y = @row8 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -653,7 +753,7 @@ technologies = {
 		start_year = 1970
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1970 y = @row10 }
+			position = { x = @1970 y = @row11 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -682,7 +782,7 @@ technologies = {
 		start_year = 1980
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1980 y = @row10 }
+			position = { x = @1980 y = @row11 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -711,7 +811,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row10 }
+			position = { x = @1995 y = @row11 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -755,7 +855,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row10 }
+			position = { x = @2015 y = @row11 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -786,7 +886,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row10 }
+			position = { x = @2035 y = @row11 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -827,7 +927,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1965 y = @row8 }
+			position = { x = @1965 y = @row9 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -868,7 +968,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row8 }
+			position = { x = @1985 y = @row9 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -899,7 +999,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row8 }
+			position = { x = @2005 y = @row9 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -924,7 +1024,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row8 }
+			position = { x = @2035 y = @row9 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -955,7 +1055,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row9 }
+			position = { x = @1985 y = @row10 }
 		}
 
 		path = {
@@ -984,7 +1084,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row9 }
+			position = { x = @2005 y = @row10 }
 		}
 
 		path = {
@@ -1013,7 +1113,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row9 }
+			position = { x = @2035 y = @row10 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1048,7 +1148,7 @@ technologies = {
 		start_year = 1970
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1970 y = @row112 }
+			position = { x = @1970 y = @row12 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1082,7 +1182,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row112 }
+			position = { x = @1985 y = @row12 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1116,7 +1216,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row112 }
+			position = { x = @2005 y = @row12 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1150,7 +1250,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2025 y = @row112 }
+			position = { x = @2025 y = @row12 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1179,7 +1279,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row112 }
+			position = { x = @2035 y = @row12 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1216,7 +1316,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1965 y = @row3 }
+			position = { x = @1965 y = @row5 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1246,7 +1346,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row3 }
+			position = { x = @1975 y = @row5 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1276,7 +1376,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row3 }
+			position = { x = @1985 y = @row5 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1305,7 +1405,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row3 }
+			position = { x = @1995 y = @row5 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1334,7 +1434,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row3 }
+			position = { x = @2005 y = @row5 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1359,11 +1459,16 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = tech_tank_nuclear_engine_1
+			research_cost_coeff = 1
+		}
+
 		research_cost = 3.5
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row3 }
+			position = { x = @2015 y = @row5 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1387,7 +1492,64 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row3 }
+			position = { x = @2035 y = @row5 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+			CAT_armor_engines
+		}
+		special_project_specialization = { specialization_land }
+	}
+
+	tech_tank_nuclear_engine_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_nuclear_engine_tank
+		}
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			module_tank_nuclear_engine_gen2
+		}
+
+		path = {
+			leads_to_tech = tech_tank_nuclear_engine_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 3.5
+		start_year = 2025
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2025 y = @row4 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+			CAT_armor_engines
+		}
+		special_project_specialization = { specialization_land }
+	}
+	tech_tank_nuclear_engine_2 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			module_tank_nuclear_engine_gen3
+		}
+
+		research_cost = 3.5
+		start_year = 2045
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2045 y = @row4 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1417,7 +1579,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row4 }
+			position = { x = @1975 y = @row6 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1446,7 +1608,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row4 }
+			position = { x = @1985 y = @row6 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1475,7 +1637,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row4 }
+			position = { x = @1995 y = @row6 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1504,7 +1666,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row4 }
+			position = { x = @2005 y = @row6 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1520,6 +1682,12 @@ technologies = {
 	}
 
 	turbine_engine_tech_5 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_exoskeletal_engine_tank
+			}
+		}
 		enable_equipment_modules = {
 			tank_gas_turbine_engine_gen5
 		}
@@ -1533,7 +1701,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row4 }
+			position = { x = @2015 y = @row6 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1549,15 +1717,16 @@ technologies = {
 	}
 
 	turbine_engine_tech_6 = {
+		is_special_project_tech = yes
 		enable_equipment_modules = {
-			tank_gas_turbine_engine_gen6
+			module_tank_exoskeletal_engine_gen2
 		}
 
 		research_cost = 4.5
-		start_year = 2025
+		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2025 y = @row4 }
+			position = { x = @2035 y = @row6 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1586,7 +1755,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row5 }
+			position = { x = @1975 y = @row7 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1623,7 +1792,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row5 }
+			position = { x = @1995 y = @row7 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1661,7 +1830,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2025 y = @row5 }
+			position = { x = @2025 y = @row7 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1693,7 +1862,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row5 }
+			position = { x = @2035 y = @row7 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1727,7 +1896,7 @@ technologies = {
 		start_year = 1945
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1945 y = @row12 }
+			position = { x = @1945 y = @row15 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1757,7 +1926,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row12 }
+			position = { x = @1985 y = @row15 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1794,7 +1963,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2005 y = @row12 }
+			position = { x = @2005 y = @row15 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1819,7 +1988,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2025 y = @row12 }
+			position = { x = @2025 y = @row15 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1854,7 +2023,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1965 y = @row13 }
+			position = { x = @1965 y = @row16 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1887,7 +2056,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1985 y = @row13 }
+			position = { x = @1985 y = @row16 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1923,7 +2092,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row13 }
+			position = { x = @2015 y = @row16 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1947,7 +2116,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row13 }
+			position = { x = @2035 y = @row16 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -1987,7 +2156,7 @@ technologies = {
 		start_year = 1995
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1995 y = @row14 }
+			position = { x = @1995 y = @row17 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2015,7 +2184,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row14 }
+			position = { x = @2015 y = @row17 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2039,7 +2208,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row14 }
+			position = { x = @2035 y = @row17 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2074,7 +2243,7 @@ technologies = {
 		start_year = 1945
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1945 y = @row11 }
+			position = { x = @1945 y = @row13 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2104,7 +2273,7 @@ technologies = {
 		start_year = 1975
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row11 }
+			position = { x = @1975 y = @row13 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2133,7 +2302,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row11 }
+			position = { x = @2015 y = @row13 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2158,7 +2327,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row11 }
+			position = { x = @2035 y = @row13 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2187,7 +2356,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1945 y = @row115 }
+			position = { x = @1945 y = @row14 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2216,7 +2385,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row115 }
+			position = { x = @1975 y = @row14 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2244,7 +2413,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2015 y = @row115 }
+			position = { x = @2015 y = @row14 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2268,7 +2437,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row115 }
+			position = { x = @2035 y = @row14 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2297,7 +2466,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1975 y = @row14 }
+			position = { x = @1975 y = @row17 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2326,7 +2495,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @1990 y = @row16 }
+			position = { x = @1990 y = @row18 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2354,7 +2523,7 @@ technologies = {
 		start_year = 2015
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2010 y = @row16 }
+			position = { x = @2010 y = @row18 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -2378,7 +2547,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row16 }
+			position = { x = @2035 y = @row18 }
 		}
 
 		ai_will_do = { factor = 1 }
