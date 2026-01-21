@@ -1283,7 +1283,7 @@ CZE_skoda_superb_cars_export_category = {
 			log = "[GetDateText]: [Root.GetName]: Decision CZE_pay_bills"
 			if = {
 				limit = {
-					check_variable = { CZE_skoda_superb_cars_treasury > 4.99 }
+					check_variable = { CZE_skoda_superb_cars_treasury > CZE_skoda_bills_gain }
 				}
 				add_to_variable = { CZE_skoda_superb_cars_treasury = CZE_skoda_bills_cost }
 				add_to_variable = { CZE_skoda_superb_cars_bill_fail = -0.2 }
@@ -1294,43 +1294,15 @@ CZE_skoda_superb_cars_export_category = {
 				custom_effect_tooltip = CZE_remove_5_skoda_superb_cars_treasury
 				set_temp_variable = { treasury_change = CZE_skoda_bills_gain }
 				modify_treasury_effect = yes
-				if = {
-					limit = {
-						has_idea = CZE_skoda_unpaid_bills_idea
-					}
-					remove_ideas = CZE_skoda_unpaid_bills_idea
-				}
-			}
-			else_if = {
-				limit = {
-					check_variable = { CZE_skoda_superb_cars_bill_fail > 0.9 }
-					check_variable = { CZE_skoda_superb_cars_bill_fail < 2.1 }
-				}
-				add_ideas = CZE_skoda_unpaid_bills_idea
-				add_to_variable = { CZE_skoda_superb_cars_bill_fail = 1 }
-			}
-			else_if = {
-				limit = {
-					check_variable = { CZE_skoda_superb_cars_bill_fail > 2 }
-					check_variable = { CZE_skoda_superb_cars_bill_fail < 5.1 }
-				}
-				swap_ideas = {
-					remove_idea = CZE_skoda_unpaid_bills_idea
-					add_idea = CZE_skoda_unpaid_bills2_idea
-				}
-				add_to_variable = { CZE_skoda_superb_cars_bill_fail = 1 }
-			}
-			else_if = {
-				limit = {
-					check_variable = { CZE_skoda_superb_cars_bill_fail > 5 }
-				}
-				swap_ideas = {
-					remove_idea = CZE_skoda_unpaid_bills2_idea
-					add_idea = CZE_skoda_unpaid_bills3_idea
-				}
+				CZE_skoda_bills_success_effect = yes
 			}
 			else = {
 				add_to_variable = { CZE_skoda_superb_cars_bill_fail = 1 }
+				clamp_variable = {
+					var = CZE_skoda_superb_cars_bill_fail
+					max = 3
+				}
+				CZE_skoda_bills_fail_effect = yes
 				custom_effect_tooltip = CZE_skoda_superb_cars_bill_fail_tooltip
 				country_event = CZE_czech.1
 				custom_effect_tooltip = CZE_skoda_superb_cars_debt_decrease_tooltip
@@ -6481,14 +6453,6 @@ CZE_the_prague_conference_category = {
 		}
 
 		complete_effect = {
-			every_country = {
-				limit = {
-					OR = {
-						original_tag = AUS
-						original_tag = HUN
-					}
-				}
-			}
 			CZE_prague_conference_decision_ongoing = yes
 			log = "[GetDateText]: [Root.GetName]: Decision CZE_joint_foreing_embassies"
 		}
@@ -6530,15 +6494,6 @@ CZE_the_prague_conference_category = {
 		}
 
 		complete_effect = {
-			every_country = {
-				limit = {
-					OR = {
-						original_tag = AUS
-						original_tag = HUN
-					}
-				}
-
-			}
 			CZE_prague_conference_decision_ongoing = yes
 			log = "[GetDateText]: [Root.GetName]: Decision CZE_joint_foreing_embassies"
 
@@ -6578,20 +6533,6 @@ CZE_the_prague_conference_category = {
 		}
 
 		complete_effect = {
-			every_country = {
-				limit = {
-					OR = {
-						original_tag = AUS
-						original_tag = HUN
-					}
-				}
-				every_country = {
-					limit = {
-						capital_scope = { is_on_continent = europe }
-						nationalist_monarchists_are_in_power = yes
-					}
-				}
-			}
 			CZE_prague_conference_decision_ongoing = yes
 			log = "[GetDateText]: [Root.GetName]: Decision CZE_joint_foreing_embassies"
 		}
@@ -6963,15 +6904,6 @@ CZE_the_prague_conference_category = {
 		}
 
 		complete_effect = {
-			every_country = {
-				limit = {
-					OR = {
-						original_tag = AUS
-						original_tag = HUN
-					}
-				}
-
-			}
 			CZE_prague_conference_decision_ongoing = yes
 			custom_effect_tooltip = CZE_debt_unification
 			log = "[GetDateText]: [Root.GetName]: Decision CZE_joint_foreing_embassies"
@@ -7018,16 +6950,6 @@ CZE_the_prague_conference_category = {
 		}
 
 		complete_effect = {
-			every_country = {
-				limit = {
-					OR = {
-						original_tag = AUS
-						original_tag = HUN
-					}
-				}
-
-			}
-
 			set_temp_variable = { treasury_change = -25 }
 			modify_treasury_effect = yes
 
@@ -7074,15 +6996,6 @@ CZE_the_prague_conference_category = {
 		}
 
 		complete_effect = {
-			every_country = {
-				limit = {
-					OR = {
-						original_tag = AUS
-						original_tag = HUN
-					}
-				}
-			}
-
 			set_temp_variable = { treasury_change = -5 }
 			modify_treasury_effect = yes
 
@@ -7184,8 +7097,6 @@ CZE_the_prague_conference_category = {
 					modify_treasury_effect = yes
 				}
 			}
-
-
 			CZE_prague_conference_decision_ongoing = yes
 			log = "[GetDateText]: [Root.GetName]: Decision CZE_infrastCZE_skoda_learnings"
 		}
