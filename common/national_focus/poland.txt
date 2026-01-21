@@ -5488,11 +5488,287 @@ focus_tree = {
 
 #################################################################### [HERE LIES OLD COMMUNIST TREE BY ROSERU] ##################################################################################
 
+
+########################################################################## Economy tree by Maja Budziak ########################################################################################
+	
+	focus = {
+		id = POL_economy_initial_idea
+		
+		x = 85
+		y = 0
+		cost = 5
+		
+		offset = {
+			x = -40
+			trigger = {
+				has_completed_focus = POL_stay_on_track
+			}
+		}
+		
+		completion_reward = {
+			add_political_power = 10
+		}
+	}
+	
+	
+	### industrial policy sub-branch
+	
+	focus = {
+		id = POL_industrial_policy
+		
+		x = -10
+		y = 1
+		relative_position_id = POL_economy_initial_idea
+		cost = 2
+		
+		prerequisite = {
+			focus = POL_economy_initial_idea
+		}
+		
+		completion_reward = {
+			set_temp_variable = { treasury_change = 2.5 }
+			modify_treasury_effect = yes
+			
+		}
+	}
+	
+	focus = {
+		id = POL_construction_industry
+		
+		x = -4
+		y = 1
+		relative_position_id = POL_industrial_policy
+		cost = 5
+		
+		prerequisite = {
+			focus = POL_industrial_policy
+		}
+		
+		completion_reward = {
+			one_random_industrial_complex = yes
+		}
+	}
+	
+	focus = {
+		id = POL_cop_revival
+		
+		x = -2
+		y = 1
+		relative_position_id = POL_construction_industry
+		cost = 10
+		
+		prerequisite = {
+			focus = POL_construction_industry
+		}
+		
+		completion_reward = {
+			one_random_industrial_complex = yes
+			one_random_industrial_complex = yes
+		}
+	}
+
+	focus = {
+		id = POL_korean_housing_expertise
+		
+		x = 1
+		y = 1
+		relative_position_id = POL_construction_industry
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_dutch_housing_expertise
+		}
+
+		
+		prerequisite = {
+			focus = POL_construction_industry
+		}
+		
+		completion_reward = {
+			KOR = {
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = THIS.id }
+				set_temp_variable = { influence_target = ROOT.id }
+				change_influence_percentage = yes
+			}
+
+		}
+	}
+
+	focus = {
+		id = POL_dutch_housing_expertise
+		
+		x = 3
+		y = 1
+		relative_position_id = POL_construction_industry
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_korean_housing_expertise
+		}
+		
+		prerequisite = {
+			focus = POL_construction_industry
+		}
+		
+		completion_reward = {
+			HOL = {
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = THIS.id }
+				set_temp_variable = { influence_target = ROOT.id }
+				change_influence_percentage = yes
+			}
+			
+		}
+	}
+
+	
+	focus = {
+		id = POL_high_tech_industry
+		
+		x = 4
+		y = 1
+		relative_position_id = POL_industrial_policy
+		cost = 5
+		
+		prerequisite = {
+			focus = POL_industrial_policy
+		}
+		
+		completion_reward = {
+			one_random_renewable_energy_infra = yes
+		}
+	}
+	
+	
+	### infrastructure policy sub-branch
+	
+	focus = {
+		id = POL_infrastructure_policy
+		
+		x = 0
+		y = 1
+		relative_position_id = POL_economy_initial_idea
+		cost = 2
+		
+		prerequisite = {
+			focus = POL_economy_initial_idea
+		}
+		
+		completion_reward = {
+			add_political_power = 10
+		}
+	}
+
+	focus = {
+		id = POL_pkp_restructuring
+		
+		x = -3
+		y = 1
+		relative_position_id = POL_infrastructure_policy
+		cost = 5
+
+		
+		prerequisite = {
+			focus = POL_infrastructure_policy
+		}
+		
+		completion_reward = {
+			# restructure PKP
+		}
+	}
+
+	focus = {
+		id = POL_road_construction_policy
+		
+		x = 3
+		y = 1
+		relative_position_id = POL_infrastructure_policy
+		cost = 5
+
+		
+		prerequisite = {
+			focus = POL_infrastructure_policy
+		}
+		
+		completion_reward = {
+			# restructure PKP
+		}
+	}
+
+	focus = {
+		id = POL_establish_gddkia
+		
+		x = -1
+		y = 1
+		relative_position_id = POL_road_construction_policy
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_public_private_partnership
+		}
+		
+		prerequisite = {
+			focus = POL_road_construction_policy
+		}
+		
+		completion_reward = {
+			# +25% infra build
+		}
+	}
+
+	focus = {
+		id = POL_public_private_partnership
+		
+		x = 1
+		y = 1
+		relative_position_id = POL_road_construction_policy
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_establish_gddkia
+		}
+		
+		prerequisite = {
+			focus = POL_road_construction_policy
+		}
+		
+		completion_reward = {
+			# -25% infra build, corporations can build highways from their own money
+		}
+	}
+	
+	
+	
+	### financial policy sub-branch
+	
+	focus = {
+		id = POL_financial_policy
+		
+		x = 10
+		y = 1
+		relative_position_id = POL_economy_initial_idea
+		cost = 2
+		
+		prerequisite = {
+			focus = POL_economy_initial_idea
+		}
+		
+		completion_reward = {
+			set_temp_variable = { treasury_change = -2.5 }
+			modify_treasury_effect = yes
+			set_temp_variable = { int_investment_change = 2.5 }
+			modify_international_investment_effect = yes
+		}
+	}
+
+
+
 ################################################################ Military tree by XCezor (focus ideas by Black_176): ###########################################################################
 	focus = {
 		id = POL_sily_zbrojne_rzeczypospolitej_polskiej
 		icon = Sily_Zbrojne_Rzeczypospolitej_Polskiej
-		x = 95
+		x = 135
 		y = 0
 		cost = 5
 
