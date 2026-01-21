@@ -155,6 +155,54 @@ country_event = {
 	}
 }
 
+#News Events that Get Sent to Everyone
+
+news_event = {
+
+	id = radicalization.135
+	title = radicalization.135.t
+	desc = radicalization.135.d
+
+	picture = GFX_CTN.5
+
+	is_triggered_only = yes
+
+	#major = yes    #use this if you need to Trigger it to only Major
+
+	option = {
+		name = radicalization.135.a #We Mourn the Losses
+		if = {
+			limit = {
+				is_major = yes
+			}
+			country_event = {
+				id = radicalization.136
+			}
+		}
+	}
+}
+
+#Country Events
+
+country_event = {
+
+	id = radicalization.136
+	title = radicalization.136.t
+	desc = radicalization.136.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = radicalization.136.a #Send our Best to help
+	}
+
+	option = {
+		name = radicalization.136.b #Focus Locally
+	}
+}
+
 #terror threat decreases due to low radicalization
 country_event = {
 	id = radicalization.9
