@@ -2806,6 +2806,822 @@ scripted_gui = {
 	MD_UN_system_gui = {
 		window_name = MD_UN_system_window
 		context_type = player_context
+		parent_window_name = MD_UN_main_gui
+
+		dirty = global.missile_ui_updated
+
+		visible = {
+			check_variable = { var_open_MD_state_recog = 2 }
+			check_variable = { var_open_MD_UN_gui = 2 }
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		triggers = {
+			switch_recog_button_click_enabled = {
+				NOT = {
+					has_idea = Non_State_Actor
+					has_idea = Lacks_International_Recognition
+					has_idea = Lacks_International_Recognition_Taiwan
+					has_idea = rival_government
+				}
+				if = {
+					limit = { original_tag = SWI }
+					has_completed_focus = SWI_join_the_united_nations
+				}
+				country_exists = var:open_state
+				var:open_state = {
+					is_subject = no
+				}
+				meta_trigger = {
+					text = {
+						custom_trigger_tooltip = {
+							tooltip = not_is_a_rival_government_tt
+							NOT = { has_country_flag = rival_government_[stname] }
+						}
+						OR = {
+							AND = {
+								custom_trigger_tooltip = {
+									tooltip = not_recognized_this_nation_tt
+									NOT = { has_country_flag = Recognised_[stname] }
+								}
+								var:open_state = { has_idea = rival_government }
+							}
+							var:open_state = {
+								custom_trigger_tooltip = {
+									tooltip = not_recognized_the_opponent_nation_tt
+									has_country_flag = recognised_opponent_[stroot]
+								}
+							}
+						}
+						any_country = {
+							exists = yes
+							custom_trigger_tooltip = {
+								tooltip = is_a_rival_government_tt
+								has_country_flag = rival_government_[stname]
+							}
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+					stroot = "[?ROOT.GetTag]"
+				}
+			}
+			pressure_countries_recog_button_click_enabled = {
+				var:open_state = { has_idea = Lacks_International_Recognition }
+				country_exists = var:open_state
+				is_full_state = yes
+				meta_trigger = {
+					text = {
+						custom_trigger_tooltip = {
+							tooltip = has_recog_tt
+							has_country_flag = Recognised_[stname]
+						}
+						custom_trigger_tooltip = {
+							tooltip = recent_pressure_tt
+							NOT = { has_country_flag = pressure_timer_[stname] }
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+				}
+				if = {
+					limit = { original_tag = SWI }
+					has_completed_focus = SWI_join_the_united_nations
+				}
+
+				has_political_power > 100
+			}
+			grant_recog_button_click_enabled = {
+				var:open_state = { has_idea = Lacks_International_Recognition }
+				country_exists = var:open_state
+				is_full_state = yes
+				meta_trigger = {
+					text = {
+						custom_trigger_tooltip = {
+							tooltip = not_recog_tt
+							NOT = { has_country_flag = Recognised_[stname] }
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+				}
+
+				has_political_power > 25
+			}
+			rescind_recog_button_click_enabled = {
+				var:open_state = { has_idea = Lacks_International_Recognition }
+				country_exists = var:open_state
+				is_full_state = yes
+				if = {
+					limit = { original_tag = SWI }
+					has_completed_focus = SWI_join_the_united_nations
+				}
+				meta_trigger = {
+					text = {
+						custom_trigger_tooltip = {
+							tooltip = has_recog_tt
+							has_country_flag = Recognised_[stname]
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+				}
+				has_political_power > 25
+			}
+			move_embassy_ISR_button_visible = {
+				NOT = {
+					original_tag = ISR
+					original_tag = PAL
+					AND = {
+						original_tag = HEZ
+						OR = {
+							emerging_hardline_shiite_are_in_power = yes
+							emerging_moderate_shiite_are_in_power = yes
+						}
+					}
+				}
+				NOT = { has_country_flag = moved_ISR_embassy }
+			}
+			move_embassy_ISR_button_click_enabled = {
+				country_exists = PAL
+				country_exists = ISR
+				ISR = {
+					owns_state = 207
+				}
+				NOT = { has_country_flag = moved_ISR_embassy }
+			}
+			campaign_USA_button_visible = {
+				OR = {
+					has_idea = Lacks_International_Recognition
+					has_idea = rival_government
+				}
+			}
+			campaign_USA_button_click_enabled = {
+				USA = {
+					has_opinion = {
+						target = ROOT
+						value > 49
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							original_tag = KAC
+							original_tag = KAR
+							original_tag = SHN
+							original_tag = NHN
+							original_tag = WAA
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = USA_recognition_BRM_tt
+						USA = {
+							if = {
+								limit = {
+									BRM = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@BRM }
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = { original_tag = TAI }
+					custom_trigger_tooltip = {
+						tooltip = USA_recognition_CHI_tt
+						USA = {
+							if = {
+								limit = {
+									CHI = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@CHI }
+							}
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { CHI = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = CHI_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = CHI } }
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = SOV_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = SOV } }
+					}
+				}
+				has_elections = yes
+
+				has_political_power > 200
+			}
+			campaign_SOV_button_visible = {
+				OR = {
+					has_idea = Lacks_International_Recognition
+					has_idea = rival_government
+				}
+			}
+			campaign_SOV_button_click_enabled = {
+				SOV = {
+					has_opinion = {
+						target = ROOT
+						value > 49
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							original_tag = KAC
+							original_tag = KAR
+							original_tag = SHN
+							original_tag = NHN
+							original_tag = WAA
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = SOV_recognition_BRM_tt
+						SOV = {
+							if = {
+								limit = {
+									BRM = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@BRM }
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = { original_tag = TAI }
+					custom_trigger_tooltip = {
+						tooltip = SOV_recognition_CHI_tt
+						SOV = {
+							if = {
+								limit = {
+									CHI = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@CHI }
+							}
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = USA_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = USA } }
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = ENG_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = ENG } }
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = FRA_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = FRA } }
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = GER_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = GER } }
+					}
+				}
+
+				has_political_power > 200
+			}
+			campaign_CHI_button_visible = {
+				OR = {
+					has_idea = Lacks_International_Recognition
+					has_idea = rival_government
+				}
+			}
+			campaign_CHI_button_click_enabled = {
+				CHI = {
+					has_opinion = {
+						target = ROOT
+						value > 49
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							original_tag = KAC
+							original_tag = KAR
+							original_tag = SHN
+							original_tag = NHN
+							original_tag = WAA
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = CHI_recognition_BRM_tt
+						CHI = {
+							if = {
+								limit = {
+									BRM = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@BRM }
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = { original_tag = TAI }
+					CHI = {
+						NOT = {
+							has_opinion_modifier = declared_independence
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { CHI = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = USA_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = USA } }
+					}
+				}
+				if = {
+					limit = { NOT = { CHI = { has_completed_focus = CHI_Sign_Strategic_Partnership_Agreement } } }
+					custom_trigger_tooltip = {
+						tooltip = JAP_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = JAP } }
+					}
+				}
+				if = {
+					limit = { NOT = { CHI = { has_completed_focus = CHI_Sino_Indian_Treaty_of_Friendship } } }
+					custom_trigger_tooltip = {
+						tooltip = RAJ_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = RAJ } }
+					}
+				}
+
+				has_political_power > 200
+			}
+			campaign_ENG_button_visible = {
+				OR = {
+					has_idea = Lacks_International_Recognition
+					has_idea = rival_government
+				}
+			}
+			campaign_ENG_button_click_enabled = {
+				ENG = {
+					has_opinion = {
+						target = ROOT
+						value > 49
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							original_tag = KAC
+							original_tag = KAR
+							original_tag = SHN
+							original_tag = NHN
+							original_tag = WAA
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = ENG_recognition_BRM_tt
+						ENG = {
+							if = {
+								limit = {
+									BRM = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@BRM }
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = { original_tag = TAI }
+					custom_trigger_tooltip = {
+						tooltip = ENG_recognition_CHI_tt
+						ENG = {
+							if = {
+								limit = {
+									CHI = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@CHI }
+							}
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { CHI = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = CHI_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = CHI } }
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = SOV_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = SOV } }
+					}
+				}
+				has_elections = yes
+
+				has_political_power > 200
+			}
+			campaign_FRA_button_visible = {
+				OR = {
+					has_idea = Lacks_International_Recognition
+					has_idea = rival_government
+				}
+			}
+			campaign_FRA_button_click_enabled = {
+				FRA = {
+					has_opinion = {
+						target = ROOT
+						value > 49
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							original_tag = KAC
+							original_tag = KAR
+							original_tag = SHN
+							original_tag = NHN
+							original_tag = WAA
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = FRA_recognition_BRM_tt
+						FRA = {
+							if = {
+								limit = {
+									BRM = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@BRM }
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = { original_tag = TAI }
+					custom_trigger_tooltip = {
+						tooltip = FRA_recognition_CHI_tt
+						FRA = {
+							if = {
+								limit = {
+									CHI = {
+										has_opinion_modifier = declared_independence
+									}
+								}
+								check_variable = { opinion@ROOT > opinion@CHI }
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = { CHI = { has_government = democratic } }
+					}
+					custom_trigger_tooltip = {
+						tooltip = CHI_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = CHI } }
+					}
+				}
+				if = {
+					limit = { NOT = { SOV = { has_government = democratic } } }
+					custom_trigger_tooltip = {
+						tooltip = SOV_influence_below_tt
+						NOT = { check_variable = { influence_array^0 = SOV } }
+					}
+				}
+				has_elections = yes
+
+				has_political_power > 200
+			}
+			un_ascension_button_visible = {
+				OR = {
+					has_idea = Lacks_International_Recognition
+					has_idea = rival_government
+				}
+			}
+			un_ascension_button_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = two_thirds_tt
+					check_variable = {
+						var = Granted_Recognition
+						value = 120
+						compare = greater_than
+					}
+				}
+				meta_trigger = {
+					text = {
+						custom_trigger_tooltip = {
+							tooltip = security_council_support_tt
+							USA = {
+								has_country_flag = Recognised_[thname]
+							}
+							ENG = {
+								has_country_flag = Recognised_[thname]
+							}
+							FRA = {
+								has_country_flag = Recognised_[thname]
+							}
+							SOV = {
+								has_country_flag = Recognised_[thname]
+							}
+							CHI = {
+								has_country_flag = Recognised_[thname]
+							}
+						}
+					}
+					thname = "[?THIS.GetTag]"
+				}
+
+				has_political_power > 100
+			}
+		}
+
+		effects = {
+			move_embassy_ISR_button_click = {
+				if = {
+					limit = {
+						OR = {
+							has_idea = superpower
+							has_idea = great_power
+							has_idea = large_power
+						}
+					}
+					ISR = { add_political_power = 50 }
+				}
+				else_if = {
+					limit = { has_idea = regional_power }
+					ISR = { add_political_power = 35 }
+				}
+				else = { ISR = { add_political_power = 20 } }
+				set_country_flag = moved_ISR_embassy
+				update_international_system_gui = yes
+			}
+			# International System
+			grant_recog_button_click = {
+				add_political_power = -25
+				meta_effect = {
+					text = {
+						THIS = { set_country_flag = Recognised_[stname] }
+
+						if = {
+							limit = {
+								NOT = { has_country_flag = original_owner_[stname] }
+							}
+							every_country = {
+								limit = {
+									has_country_flag = original_owner_[stname]
+									NOT = { has_country_flag = Recognised_[stname] }
+								}
+								add_opinion_modifier = {
+									target = ROOT
+									modifier = recognises_them
+								}
+								news_event = { id = recognition.1 }
+							}
+						}
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = original_owner_[stname]
+									has_country_flag = supports_original_owner_[stname]
+								}
+							}
+							every_country = {
+								limit = {
+									has_country_flag = supports_original_owner_[stname]
+									NOT = { has_country_flag = Recognised_[stname] }
+								}
+								add_opinion_modifier = {
+									target = ROOT
+									modifier = recognises_them
+								}
+							}
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+				}
+				var:open_state = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = recognises_us
+					}
+					news_event = { id = recognition.2 }
+					add_to_variable = { Granted_Recognition = 1 }
+				}
+				update_international_system_gui = yes
+			}
+			pressure_countries_recog_button_click = {
+				meta_effect = {
+					text = {
+						every_country = {
+							limit = {
+								is_influencer = yes
+								NOT = { has_country_flag = Recognised_[stname] }
+								NOT = { tag = ROOT }
+								is_full_state = yes
+							}
+							set_country_flag = pressured_to_recognize_[stname]
+							country_event = { id = recognition.8 }
+						}
+						set_country_flag = {
+							flag = pressure_timer_[stname]
+							days = 180
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+				}
+				add_political_power = -100
+				update_international_system_gui = yes
+			}
+			rescind_recog_button_click = {
+				meta_effect = {
+					text = {
+						clr_country_flag = Recognised_[stname]
+
+						every_country = {
+							limit = {
+								has_country_flag = original_owner_[stname]
+								NOT = { has_country_flag = Recognised_[stname] }
+							}
+							add_opinion_modifier = {
+								target = ROOT
+								modifier = withdrew_recognition_them
+							}
+							news_event = { id = recognition.4 }
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+				}
+				var:open_state = {
+					add_opinion_modifier = { modifier = withdrew_recognition target = ROOT }
+					subtract_from_variable = { var = Granted_Recognition value = 1 }
+					news_event = { id = recognition.3 }
+				}
+				update_international_system_gui = yes
+			}
+			switch_recog_button_click = {
+				if = {
+					limit = { FROM = { has_idea = rival_government } }
+					set_country_flag = Recognised_@FROM
+				}
+				var:open_state = {
+					add_opinion_modifier = { target = ROOT modifier = recognises_us }
+					if = {
+						limit = { original_tag = CHI }
+						CHI = {
+							remove_opinion_modifier = { target = ROOT modifier = recognize_taiwan_chi }
+						}
+					}
+					if = {
+						limit = {
+							original_tag = CHI
+							ROOT = { has_country_flag = loyal_to_ROC }
+						}
+						CHI = {
+							remove_opinion_modifier = { target = ROOT modifier = harsh_sanctions }
+						}
+						ROOT = { clr_country_flag = loyal_to_ROC }
+					}
+					news_event = { id = recognition.5 }
+					clr_country_flag = recognised_opponent_@ROOT
+				}
+				meta_effect = {
+					text = {
+						every_country = {
+							limit = { has_country_flag = rival_government_[stname] }
+							if = {
+								limit = { original_tag = TAI }
+								remove_opinion_modifier = { target = ROOT modifier = recognize_taiwan }
+							}
+							add_opinion_modifier = { target = ROOT modifier = recognises_them_rival }
+							subtract_from_variable = { var = Granted_Recognition value = 1 }
+							set_country_flag = recognised_opponent_[rname]
+							news_event = { id = recognition.6 }
+						}
+					}
+					stname = "[?var:open_state.GetTag]"
+					rname = "[?ROOT.GetTag]"
+				}
+				add_to_variable = {
+					var = var:open_state.Granted_Recognition
+					value = 1
+				}
+				update_international_system_gui = yes
+			}
+			campaign_USA_button_click = {
+				set_country_flag = USA_recognition_campaign
+				USA = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = is_trying_to_win_our_favour
+					}
+				}
+
+				add_political_power = -200
+				update_international_system_gui = yes
+			}
+			campaign_SOV_button_click = {
+				log = "[GetDateText]: [Root.GetName]: Decision campaign_for_recognition_SOV"
+				set_country_flag = SOV_recognition_campaign
+				SOV = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = is_trying_to_win_our_favour
+					}
+				}
+
+				add_political_power = -200
+				update_international_system_gui = yes
+			}
+			campaign_CHI_button_click = {
+				log = "[GetDateText]: [Root.GetName]: Decision campaign_for_recognition_CHI"
+				set_country_flag = CHI_recognition_campaign
+				CHI = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = is_trying_to_win_our_favour
+					}
+				}
+
+				add_political_power = -200
+			}
+			campaign_ENG_button_click = {
+				set_country_flag = ENG_recognition_campaign
+				ENG = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = is_trying_to_win_our_favour
+					}
+				}
+
+				add_political_power = -200
+				update_international_system_gui = yes
+			}
+			campaign_FRA_button_click = {
+				set_country_flag = FRA_recognition_campaign
+				FRA = {
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = is_trying_to_win_our_favour
+					}
+				}
+
+				add_political_power = -200
+				update_international_system_gui = yes
+			}
+			un_ascension_button_click = {
+				log = "[GetDateText]: [Root.GetName]: Decision un_ascension_button_click"
+				remove_ideas = Lacks_International_Recognition
+				if = { limit = { has_idea = rival_government }
+					remove_ideas = rival_government
+				}
+				remove_from_array = {
+					global.Unrecognised_States = THIS
+				}
+				set_temp_variable = { percent_change = 5 }
+				change_domestic_influence_percentage = yes
+				every_country = {
+					news_event = { id = recognition.7 }
+				}
+
+				add_political_power = -100
+				update_international_system_gui = yes
+			}
+		}
+
+		properties = {
+
+		}
+
+		dynamic_lists = {
+
+		}
+	}
+
+	MD_UN_main_gui = {
+		window_name = MD_UN_main_window
+		context_type = player_context
 		parent_window_name = MD_countrymissilesview
 
 		dirty = global.missile_ui_updated
@@ -2816,15 +3632,24 @@ scripted_gui = {
 		}
 
 		effects = {
-
-		}
-
-		properties = {
-
-		}
-
-		dynamic_lists = {
-
+			un_state_recog_btn_click = {
+				set_variable = { var_open_MD_state_recog = 2 }
+				clear_variable = var_open_MD_un_aid
+				clear_variable = var_open_MD_un_council
+				missile_ui_update = yes
+			}
+			un_human_aid_btn_click = {
+				set_variable = { var_open_MD_un_aid = 2 }
+				clear_variable = var_open_MD_state_recog
+				clear_variable = var_open_MD_un_council
+				missile_ui_update = yes
+			}
+			un_sec_con_btn_click = {
+				set_variable = { var_open_MD_un_council = 2 }
+				clear_variable = var_open_MD_state_recog
+				clear_variable = var_open_MD_un_aid
+				missile_ui_update = yes
+			}
 		}
 	}
 
@@ -4805,6 +5630,79 @@ scripted_gui = {
 				if = { limit = { is_ai = yes }
 					set_country_flag = {
 						flag = ai_recent_pmc_select
+						days = 120
+					}
+				}
+				missile_ui_update = yes
+			}
+		}
+	}
+
+	international_state_unrecognized_countries_dynamic_lists = {
+		context_type = player_context
+		parent_scripted_gui = MD_UN_system_gui
+		window_name = "IS_unrecognized_states_container"
+
+		dirty = global.missile_ui_updated
+		ai_test_interval = 168
+		ai_max_weight_taken_per_test = 1
+
+		visible = {
+			check_variable = { var_open_MD_UN_gui = 2 }
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		dynamic_lists = {
+			list_of_unrecognized_states = {
+				array = global.Unrecognised_States
+				entry_container = IS_states_to_recognize_list
+				ai_weights = {
+					name_of_state_button_click = {
+						ai_will_do = {
+							factor = 1
+
+							modifier = {
+								add = 25
+								var:ct_state_selected = { ROOT = { has_opinion = { target = PREV value  > 10 } } }
+							}
+							modifier = {
+								add = 50
+								var:ct_state_selected = { ROOT = { has_opinion = { target = PREV value  > 25 } } }
+							}
+							modifier = {
+								add = 100
+								var:ct_state_selected = { ROOT = { has_opinion = { target = PREV value  > 50 } } }
+							}
+							#dont select them if there is negative opinion
+							modifier = {
+								add = -100
+								var:ct_state_selected = { ROOT = { has_opinion = { target = PREV value  < 0 } } }
+							}
+							#killswitch if a nation has recently picked a nation
+							modifier = {
+								factor = 0
+								has_country_flag = state_swap_slow_flag
+							}
+						}
+					}
+				}
+			}
+
+		}
+
+		triggers = {
+			name_of_state_button_click_enabled = {
+				NOT = { has_war_with = var:v }
+			}
+		}
+
+		effects = {
+			name_of_state_button_click = {
+				set_variable = { open_state = v }
+				set_country_flag = has_nation_selected
+				if = { limit = { is_ai = yes }
+					set_country_flag = {
+						flag = state_swap_slow_flag
 						days = 120
 					}
 				}
