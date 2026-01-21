@@ -1530,12 +1530,20 @@ focus_tree = {
 				PAL = { release = HAM }
 				hidden_effect = {
 					every_state = {
-						limit = { is_core_of = PAL }
-						add_core_of = HAM
-					}
-					every_state = {
-						limit = { is_claimed_by = PAL }
-						add_claim_by = HAM
+						limit = {
+							OR = {
+								is_core_of = PAL
+								is_claimed_by = PAL
+							}
+						}
+						if = {
+							limit = { is_core_of = PAL }
+							add_core_of = HAM
+						}
+						if = {
+							limit = { is_claimed_by = PAL }
+							add_claim_by = HAM
+						}
 					}
 					HAM = { load_oob = HAM_2017 }
 					ISR = {
@@ -3509,7 +3517,6 @@ focus_tree = {
 				limit = { NOT = { is_in_array = { ruling_party = 0 } } }
 				set_temp_variable = { rul_party_temp = 0 }
 				set_temp_variable = { col_one = 22 }
-				set_temp_variable = { enable_elections = 0 }
 				change_ruling_party_effect = yes
 			}
 
@@ -4741,12 +4748,20 @@ focus_tree = {
 				PAL = { release = HAM }
 				hidden_effect = {
 					every_state = {
-						limit = { is_core_of = PAL }
-						add_core_of = HAM
-					}
-					every_state = {
-						limit = { is_claimed_by = PAL }
-						add_claim_by = HAM
+						limit = {
+							OR = {
+								is_core_of = PAL
+								is_claimed_by = PAL
+							}
+						}
+						if = {
+							limit = { is_core_of = PAL }
+							add_core_of = HAM
+						}
+						if = {
+							limit = { is_claimed_by = PAL }
+							add_claim_by = HAM
+						}
 					}
 					HAM = { load_oob = HAM_2017 }
 					ISR = {

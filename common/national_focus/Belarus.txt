@@ -1700,8 +1700,7 @@ focus_tree = {
 					}
 				}
 				set_province_name = { id = 11370 name = mensk }
-				set_province_name = { id = 3293 name = shatilki }
-				set_province_name = { id = 3392 name = berestye }
+				set_province_name = { id = 3392 name = bierascie }
 			}
 		}
 	}
@@ -4863,16 +4862,11 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus BLR_Credit_tec2"
 			set_temp_variable = { treasury_change = -0.50 }
 			modify_treasury_effect = yes
-			custom_effect_tooltip = BLR_energy_1_TT
-			hidden_effect = {
 			703 = {
-				set_variable = { hydroelectric_energy_production_var = 0.430 }
-				set_variable = { hydroelectric_energy_storage_var = 0 }
-				add_dynamic_modifier = {
-					modifier = hydroelectric_infrastructure_in_state
-				}
+				set_temp_variable = { electric_addition = 0.430 }
+				add_hydroelectric_energy_production_effect = yes
 			}
-			}
+			newline = yes
 			set_temp_variable = { percent_change = 3 }
 			set_temp_variable = { tag_index = CHI }
 			set_temp_variable = { influence_target = BLR }
@@ -7519,10 +7513,6 @@ focus_tree = {
 				if = { limit = { NOT = { is_in_array = { ruling_party = 6 } } }
 					set_temp_variable = { rul_party_temp = 6 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = communism
-						elections_allowed = yes
-					}
 				}
 			}
 			set_temp_variable = { party_index = 6 }
@@ -9028,9 +9018,7 @@ focus_tree = {
 			add_relative_party_popularity = yes
 			every_country = {
 				limit = {
-					OR = {
-						has_idea = EU_member
-					}
+					has_idea = EU_member
 				}
 				add_opinion_modifier = { target = BLR modifier = supports_us }
 			}
@@ -10137,10 +10125,6 @@ focus_tree = {
 					limit = { NOT = { is_in_array = { ruling_party = 4 } } }
 					set_temp_variable = { rul_party_temp = 4 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = communism
-						elections_allowed = no
-					}
 				}
 				set_temp_variable = { party_index = 4 }
 				set_temp_variable = { party_popularity_increase = 0.45 }
@@ -11223,10 +11207,10 @@ local_resources_chromium_factor = 0.05 }
 					set_temp_variable = { rul_party_temp = 4 }
 					if = {
 						limit = { has_elections = no }
-						set_temp_variable = { enable_elections = 1 }
+						set_temp_variable = { disable_elections = 1 }
 					}
 					else = {
-						set_temp_variable = { enable_elections = 0 }
+						set_temp_variable = { disable_elections = 0 }
 					}
 					change_ruling_party_effect = yes
 				}
@@ -11388,10 +11372,6 @@ local_resources_chromium_factor = 0.05 }
 				if = { limit = { NOT = { is_in_array = { ruling_party = 15 } } }
 					set_temp_variable = { rul_party_temp = 15 }
 					change_ruling_party_effect = yes
-					set_politics = {
-						ruling_party = neutrality
-						elections_allowed = yes
-					}
 				}
 				set_temp_variable = { party_index = 15 }
 				set_temp_variable = { party_popularity_increase = 0.20 }
