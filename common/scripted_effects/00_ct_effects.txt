@@ -9,6 +9,11 @@ counter_terror_core = {
 	if = {
 		limit = {
 			has_variable = social_conservatism_government
+			OR = {
+				check_variable = { global.month = 4 }
+				check_variable = { global.month = 8 }
+				check_variable = { global.month = 12 }
+			}
 		}
 		social_conservatism_adjust = yes
 	}
@@ -26,9 +31,7 @@ social_conservatism_adjust = {
 		if = {
 			limit = {
 				OR = {
-					check_variable = { global.month = 4 }
-					check_variable = { global.month = 8 }
-					check_variable = { global.month = 12 }
+
 				}
 			}
 			random_list = {
@@ -88,7 +91,7 @@ social_conservatism_adjust = {
 	}else = {
 		add_to_variable = { social_conservatism_society = 1 }
 		clamp_variable = { var = social_conservatism_society min = 0 max = social_conservatism_government }
-		update_social_conservatism_idea = yes
+
 
 		if = {
 			limit = {
@@ -153,4 +156,5 @@ social_conservatism_adjust = {
 			}
 		}
 	}
+	update_social_conservatism_idea = yes
 }
