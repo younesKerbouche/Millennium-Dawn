@@ -16,11 +16,16 @@ technologies = {
 	@2025 = 10
 	@2030 = 11
 	@2035 = 12
-	@2045 = 13
-	@2055 = 14
-	@2065 = 15
-	@2075 = 16
-	@2085 = 17
+	@2040 = 13
+	@2045 = 14
+	@2050 = 15
+	@2055 = 16
+	@2060 = 17
+	@2065 = 18
+	@2070 = 19
+	@2075 = 20
+	@2080 = 21
+	@2085 = 22
 
 	@row1 = -4
 	@row2 = 0
@@ -355,6 +360,11 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = tech_tank_hover_suspension_1
+			research_cost_coeff = 1
+		}
+
 		enable_equipments = {
 			medium_tank_chassis_4
 			medium_tank_aa_chassis_4
@@ -436,20 +446,122 @@ technologies = {
 		}
 
 		enable_equipments = {
-			medium_tank_chassis_4
-			medium_tank_aa_chassis_4
-			medium_tank_artillery_chassis_4
-			medium_tank_rocket_chassis_4
-			medium_tank_destroyer_chassis_4
-			medium_tank_flame_chassis_4
-			medium_tank_amphibious_chassis_4
+			super_heavy_tank_chassis_1klio
 		}
 
 		research_cost = 5.2
-		start_year = 2035
+		start_year = 2045
 		folder = {
 			name = nsb_armour_folder
-			position = { x = @2035 y = @row1 }
+			position = { x = @2045 y = @row1 }
+		}
+
+		ai_will_do = { factor = 5 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+		}
+		special_project_specialization = { specialization_land }
+	}
+	tech_tank_walker_chassis_2 = {
+		is_special_project_tech = yes
+
+		enable_equipments = {
+			super_heavy_tank_chassis_2
+		}
+
+		research_cost = 5.2
+		start_year = 2080
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2080 y = @row1 }
+		}
+
+		ai_will_do = { factor = 5 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+		}
+		special_project_specialization = { specialization_land }
+	}
+
+	tech_tank_hover_suspension_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_hover_suspension
+		}
+		is_special_project_tech = yes
+
+		path = {
+			leads_to_tech = tech_tank_hover_suspension_2
+			research_cost_coeff = 1
+		}
+
+		enable_equipment_modules = {
+			afv_hover_suspension_2
+		}
+
+		research_cost = 5.2
+		start_year = 2050
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2050 y = @row3 }
+		}
+
+		ai_will_do = { factor = 5 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+		}
+		special_project_specialization = { specialization_land }
+	}
+	tech_tank_hover_suspension_2 = {
+		is_special_project_tech = yes
+		path = {
+			leads_to_tech = tech_tank_hover_suspension_3
+			research_cost_coeff = 1
+		}
+
+		enable_equipment_modules = {
+			afv_hover_suspension_3
+		}
+
+		research_cost = 5.2
+		start_year = 2050
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2065 y = @row3 }
+		}
+
+		ai_will_do = { factor = 5 }
+
+		categories = {
+			CAT_Military
+			CAT_armor
+			CAT_tanks
+			CAT_mbt
+		}
+		special_project_specialization = { specialization_land }
+	}
+	tech_tank_hover_suspension_3 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			afv_hover_suspension_4
+		}
+
+		research_cost = 5.2
+		start_year = 2050
+		folder = {
+			name = nsb_armour_folder
+			position = { x = @2080 y = @row3 }
 		}
 
 		ai_will_do = { factor = 5 }
@@ -575,6 +687,11 @@ technologies = {
 
 		path = {
 			leads_to_tech = tank_components_tech_5
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = tech_tank_nuclear_engine_1
 			research_cost_coeff = 1
 		}
 
