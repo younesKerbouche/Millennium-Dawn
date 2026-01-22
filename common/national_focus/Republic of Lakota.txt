@@ -5148,6 +5148,155 @@ focus_tree = {
 		ai_will_do = { base = 100 }
 	}
 
+	focus = {
+		id = LKT_focus_sponsored_immigration
+		icon = play_our_hand
+		x = -1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_YIP_political_plan
+		prerequisite = { focus = LKT_focus_YIP_political_plan }
+		available = { neutrality_neutral_autocracy_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_sponsored_immigration"
+
+			784 = { add_manpower = 1000 }
+			785 = { add_manpower = 1000 }
+			786 = { add_manpower = 1000 }
+			787 = { add_manpower = 1000 }
+			788 = { add_manpower = 1000 }
+			789 = { add_manpower = 1000 }
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.10 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_tax_population_tax_collection_efficiency_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.08 }
+			LKT_change_domestic_monthly_pop_change = yes
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_domestic_communist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_factory_output_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_recruiting_talent
+		icon = research3
+		x = 1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_YIP_political_plan
+		prerequisite = { focus = LKT_focus_YIP_political_plan }
+		available = { neutrality_neutral_autocracy_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_EXPENDITURE }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_recruiting_talent"
+
+			784 = { add_manpower = 1000 }
+			785 = { add_manpower = 1000 }
+			786 = { add_manpower = 1000 }
+			787 = { add_manpower = 1000 }
+			788 = { add_manpower = 1000 }
+			789 = { add_manpower = 1000 }
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_tax_corporate_tax_collection_efficiency_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_domestic_political_power_change = yes
+			LKT_change_domestic_research_speed_change = yes
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_domestic_communist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_factory_output_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+	focus = {
+		id = LKT_focus_south_munitions
+		icon = army_equipn
+		x = -1
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_sponsored_immigration
+		prerequisite = { focus = LKT_focus_sponsored_immigration }
+		prerequisite = { focus = LKT_focus_recruiting_talent }
+		available = { neutrality_neutral_autocracy_are_in_power = yes }
+		search_filters = { FOCUS_FILTER_ECONOMY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_south_munitions"
+			set_temp_variable = { treasury_change = -15.00 }
+			modify_treasury_effect = yes
+
+			784 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			786 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_federal_budgets_tooltip
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_budget_bureaucracy_cost_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_tax_policies_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_tax_military_tax_collection_efficiency_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_industrial_factory_output_change = yes
+			LKT_change_industrial_dockyard_output_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
 
 	#############
 	#### CDS Tree
