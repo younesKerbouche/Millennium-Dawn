@@ -1,0 +1,2047 @@
+# Chad Events - Second Chadian Civil War
+
+add_namespace = chad
+
+#####################################
+# PRE-WAR POLITICS (2000-2005)
+#####################################
+
+# Tensions with Sudan Rise
+country_event = {
+	id = chad.1
+	title = chad.1.t
+	desc = chad.1.d
+	picture = GFX_african_demonstration
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_sudan_tensions_started }
+		date > 2003.1.1
+	}
+
+	option = {
+		name = chad.1.a
+		log = "[GetDateText]: [This.GetName]: chad.1.a executed"
+		set_country_flag = CHA_sudan_tensions_started
+		set_country_flag = CHA_sudan_tensions
+		add_opinion_modifier = {
+			target = SUD
+			modifier = border_tensions
+		}
+		reverse_add_opinion_modifier = {
+			target = SUD
+			modifier = border_tensions
+		}
+		add_to_variable = { CHA_civil_war_tension = 10 }
+
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.1.b
+		log = "[GetDateText]: [This.GetName]: chad.1.b executed"
+		set_country_flag = CHA_sudan_tensions_started
+		add_political_power = -25
+
+		ai_chance = { base = 20 }
+	}
+}
+
+# Chad Supports Darfur Rebels
+country_event = {
+	id = chad.5
+	title = chad.5.t
+	desc = chad.5.d
+	picture = GFX_african_rebels
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_sudan_tensions
+		NOT = { has_country_flag = CHA_supports_darfur }
+		date > 2003.6.1
+	}
+
+	option = {
+		name = chad.5.a
+		log = "[GetDateText]: [This.GetName]: chad.5.a executed"
+		set_country_flag = CHA_supports_darfur
+		add_opinion_modifier = {
+			target = SUD
+			modifier = supports_rebels
+		}
+		reverse_add_opinion_modifier = {
+			target = SUD
+			modifier = supports_rebels
+		}
+		add_to_variable = { CHA_civil_war_tension = 20 }
+		SUD = {
+			set_country_flag = SUD_supports_chadian_rebels
+		}
+
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.5.b
+		log = "[GetDateText]: [This.GetName]: chad.5.b executed"
+		add_stability = 0.02
+
+		ai_chance = { base = 20 }
+	}
+}
+
+# Constitutional Referendum (2005)
+country_event = {
+	id = chad.10
+	title = chad.10.t
+	desc = chad.10.d
+	picture = GFX_politics_dictatorship
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+		NOT = { has_country_flag = CHA_term_limits_removed }
+		date > 2005.5.1
+	}
+
+	option = {
+		name = chad.10.a
+		log = "[GetDateText]: [This.GetName]: chad.10.a executed"
+		set_country_flag = CHA_term_limits_removed
+		add_ideas = CHA_term_limits_removed
+		add_political_power = 100
+		add_stability = -0.05
+		add_to_variable = { CHA_civil_war_tension = 20 }
+
+		hidden_effect = {
+			country_event = { id = chad.15 days = 30 random_days = 60 }
+		}
+
+		ai_chance = { base = 90 }
+	}
+
+	option = {
+		name = chad.10.b
+		log = "[GetDateText]: [This.GetName]: chad.10.b executed"
+		add_stability = 0.05
+		add_political_power = -50
+		subtract_from_variable = { CHA_civil_war_tension = 10 }
+
+		ai_chance = { base = 10 }
+	}
+}
+
+# Opposition Protests
+country_event = {
+	id = chad.15
+	title = chad.15.t
+	desc = chad.15.d
+	picture = GFX_african_demonstration
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_term_limits_removed
+	}
+
+	option = {
+		name = chad.15.a
+		log = "[GetDateText]: [This.GetName]: chad.15.a executed"
+		add_stability = -0.05
+		add_political_power = -25
+		add_to_variable = { CHA_civil_war_tension = 10 }
+
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.15.b
+		log = "[GetDateText]: [This.GetName]: chad.15.b executed"
+		add_stability = -0.02
+		add_political_power = 25
+		add_to_variable = { CHA_civil_war_tension = 5 }
+
+		ai_chance = { base = 40 }
+	}
+}
+
+#####################################
+# CIVIL WAR OUTBREAK (2005-2006)
+#####################################
+
+# Attack on Adré (December 18, 2005)
+country_event = {
+	id = chad.20
+	title = chad.20.t
+	desc = chad.20.d
+	picture = GFX_african_combat
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_global_flag = CHA_second_civil_war }
+		date > 2005.12.1
+		OR = {
+			has_country_flag = CHA_sudan_tensions
+			has_country_flag = CHA_supports_darfur
+			check_variable = { CHA_civil_war_tension > 50 }
+		}
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_global_flag = CHA_second_civil_war
+		}
+	}
+
+	option = {
+		name = chad.20.a
+		log = "[GetDateText]: [This.GetName]: chad.20.a executed"
+		add_war_support = 0.15
+		add_stability = -0.10
+
+		hidden_effect = {
+			country_event = { id = chad.41 days = 12 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Formation of the FUC (December 30, 2005)
+country_event = {
+	id = chad.41
+	title = chad.41.t
+	desc = chad.41.d
+	picture = GFX_african_rebels
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		NOT = { country_exists = FUC }
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = CHA_fuc_rebellion_active
+		}
+	}
+
+	option = {
+		name = chad.41.a
+		log = "[GetDateText]: [This.GetName]: chad.41.a executed"
+
+		add_ideas = CHA_second_civil_war
+		add_war_support = 0.10
+
+		# Spawn FUC
+		FUC = {
+			set_variable = { gdp_per_capita = 0.908 }
+			set_cosmetic_tag = FUC
+			set_country_flag = dynamic_flag
+			set_country_flag = dynamic_rebel_flag
+			set_country_flag = is_civil_war_faction
+			set_variable = { civil_war_original_tag = CHA.id }
+
+			transfer_state = 327
+
+			add_state_core = 327
+			add_state_core = 328
+			add_state_core = 326
+
+			declare_war_on = {
+				target = CHA
+				type = annex_everything
+			}
+
+			load_oob = "CHA_FUC_rebels"
+
+			add_ideas = CHA_rebel_momentum
+		}
+
+		# News event
+		hidden_effect = {
+			news_event = { id = chad.1001 days = 1 }
+		}
+	}
+}
+
+# Sudan Arms the Rebels
+country_event = {
+	id = chad.45
+	title = chad.45.t
+	desc = chad.45.d
+	picture = GFX_african_weapons
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		country_exists = FUC
+		SUD = { has_country_flag = SUD_supports_chadian_rebels }
+	}
+
+	option = {
+		name = chad.45.a
+		log = "[GetDateText]: [This.GetName]: chad.45.a executed"
+		add_opinion_modifier = {
+			target = SUD
+			modifier = arms_enemy_rebels
+		}
+
+		FUC = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = SUD
+			}
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Rebel Advance
+country_event = {
+	id = chad.50
+	title = chad.50.t
+	desc = chad.50.d
+	picture = GFX_african_combat
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		OR = {
+			country_exists = FUC
+			country_exists = UFD
+		}
+	}
+
+	option = {
+		name = chad.50.a
+		log = "[GetDateText]: [This.GetName]: chad.50.a executed"
+		add_war_support = 0.05
+		add_stability = -0.05
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# FIRST BATTLE OF N'DJAMENA (April 2006)
+#####################################
+
+# First Battle of N'Djamena
+country_event = {
+	id = chad.71
+	title = chad.71.t
+	desc = chad.71.d
+	picture = GFX_african_urban_combat
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		country_exists = FUC
+		controls_state = 328
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = CHA_first_battle_ndjamena
+		}
+	}
+
+	option = {
+		name = chad.71.a
+		log = "[GetDateText]: [This.GetName]: chad.71.a executed"
+		add_ideas = CHA_battle_for_ndjamena
+		add_war_support = 0.10
+
+		hidden_effect = {
+			country_event = { id = chad.75 days = 3 random_days = 4 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Battle Outcome - Government Victory
+country_event = {
+	id = chad.75
+	title = chad.75.t
+	desc = chad.75.d
+	picture = GFX_african_victory
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_first_battle_ndjamena
+		controls_state = 328
+	}
+
+	option = {
+		name = chad.75.a
+		log = "[GetDateText]: [This.GetName]: chad.75.a executed"
+		remove_ideas = CHA_battle_for_ndjamena
+		add_stability = 0.05
+		add_war_support = 0.05
+		army_experience = 25
+
+		# FUC suffers losses
+		FUC = {
+			add_manpower = -2000
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# UFDD FORMATION (October 2006)
+#####################################
+
+# FUC Dissolution / UFDD Formation
+country_event = {
+	id = chad.101
+	title = chad.101.t
+	desc = chad.101.d
+	picture = GFX_african_rebels
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		date > 2006.10.1
+		NOT = { country_exists = UFD }
+	}
+
+	option = {
+		name = chad.101.a
+		log = "[GetDateText]: [This.GetName]: chad.101.a executed"
+
+		clr_country_flag = CHA_fuc_rebellion_active
+		set_country_flag = CHA_ufdd_rebellion_active
+
+		# Remove FUC if exists
+		if = {
+			limit = { country_exists = FUC }
+			FUC = {
+				every_owned_state = {
+					CHA = { transfer_state = PREV }
+				}
+			}
+		}
+
+		# Spawn UFDD
+		UFD = {
+			set_variable = { gdp_per_capita = 0.908 }
+			set_cosmetic_tag = UFD
+			set_country_flag = dynamic_flag
+			set_country_flag = dynamic_rebel_flag
+			set_country_flag = is_civil_war_faction
+			set_variable = { civil_war_original_tag = CHA.id }
+
+			transfer_state = 327
+
+			add_state_core = 327
+			add_state_core = 328
+			add_state_core = 326
+			add_state_core = 580
+
+			declare_war_on = {
+				target = CHA
+				type = annex_everything
+			}
+
+			load_oob = "CHA_UFDD_rebels"
+
+			add_ideas = CHA_rebel_momentum
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Tripoli Peace Talks (2007)
+country_event = {
+	id = chad.110
+	title = chad.110.t
+	desc = chad.110.d
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		date > 2007.6.1
+	}
+
+	option = {
+		name = chad.110.a
+		log = "[GetDateText]: [This.GetName]: chad.110.a executed"
+		add_political_power = 25
+
+		hidden_effect = {
+			country_event = { id = chad.115 days = 60 random_days = 30 }
+		}
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.110.b
+		log = "[GetDateText]: [This.GetName]: chad.110.b executed"
+		add_war_support = 0.05
+
+		ai_chance = { base = 30 }
+	}
+}
+
+# Sirte Agreement Collapse
+country_event = {
+	id = chad.115
+	title = chad.115.t
+	desc = chad.115.d
+	picture = GFX_politics_failed_negotiations
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+	}
+
+	option = {
+		name = chad.115.a
+		log = "[GetDateText]: [This.GetName]: chad.115.a executed"
+		add_stability = -0.05
+		add_war_support = 0.05
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# SECOND BATTLE OF N'DJAMENA (February 2008)
+#####################################
+
+# Second Battle of N'Djamena
+country_event = {
+	id = chad.131
+	title = chad.131.t
+	desc = chad.131.d
+	picture = GFX_african_urban_combat
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		country_exists = UFD
+		controls_state = 328
+		date > 2008.1.1
+	}
+
+	immediate = {
+		hidden_effect = {
+			set_country_flag = CHA_second_battle_ndjamena
+		}
+	}
+
+	option = {
+		name = chad.131.a
+		log = "[GetDateText]: [This.GetName]: chad.131.a executed"
+		add_ideas = CHA_battle_for_ndjamena
+		add_war_support = 0.15
+
+		hidden_effect = {
+			country_event = { id = chad.135 days = 2 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Death of Daoud Soumain
+country_event = {
+	id = chad.135
+	title = chad.135.t
+	desc = chad.135.d
+	picture = GFX_african_mourning
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_second_battle_ndjamena
+	}
+
+	option = {
+		name = chad.135.a
+		log = "[GetDateText]: [This.GetName]: chad.135.a executed"
+		add_stability = -0.03
+
+		# Remove Daoud Soumain if recruited
+		if = {
+			limit = { has_character = CHA_daoud_soumain }
+			retire_character = CHA_daoud_soumain
+		}
+
+		hidden_effect = {
+			country_event = { id = chad.140 days = 1 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# French Air Strikes
+country_event = {
+	id = chad.140
+	title = chad.140.t
+	desc = chad.140.d
+	picture = GFX_french_jets
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_second_battle_ndjamena
+		NOT = { has_war_with = FRA }
+	}
+
+	option = {
+		name = chad.140.a
+		log = "[GetDateText]: [This.GetName]: chad.140.a executed"
+		set_country_flag = CHA_french_intervened
+		add_ideas = CHA_french_air_support
+
+		UFD = {
+			add_manpower = -1500
+		}
+
+		hidden_effect = {
+			country_event = { id = chad.145 days = 2 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+
+	option = {
+		name = chad.140.b
+		log = "[GetDateText]: [This.GetName]: chad.140.b executed"
+		add_war_support = 0.10
+
+		ai_chance = { base = 0 }
+	}
+}
+
+# Rebel Withdrawal
+country_event = {
+	id = chad.145
+	title = chad.145.t
+	desc = chad.145.d
+	picture = GFX_african_retreat
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_second_battle_ndjamena
+		has_country_flag = CHA_french_intervened
+	}
+
+	option = {
+		name = chad.145.a
+		log = "[GetDateText]: [This.GetName]: chad.145.a executed"
+		remove_ideas = CHA_battle_for_ndjamena
+		add_stability = 0.10
+		add_war_support = 0.05
+		army_experience = 30
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# WAR CONCLUSION (2009-2010)
+#####################################
+
+# Path to Reconciliation
+country_event = {
+	id = chad.191
+	title = chad.191.t
+	desc = chad.191.d
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		date > 2009.1.1
+	}
+
+	option = {
+		name = chad.191.a
+		log = "[GetDateText]: [This.GetName]: chad.191.a executed"
+		add_political_power = 50
+
+		hidden_effect = {
+			country_event = { id = chad.195 days = 60 random_days = 120 }
+		}
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.191.b
+		log = "[GetDateText]: [This.GetName]: chad.191.b executed"
+		add_war_support = 0.10
+
+		ai_chance = { base = 30 }
+	}
+}
+
+# Chad-Sudan Normalization
+country_event = {
+	id = chad.195
+	title = chad.195.t
+	desc = chad.195.d
+	picture = GFX_politics_handshake
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+	}
+
+	option = {
+		name = chad.195.a
+		log = "[GetDateText]: [This.GetName]: chad.195.a executed"
+
+		CHA_normalize_sudan_relations = yes
+
+		hidden_effect = {
+			country_event = { id = chad.200 days = 30 random_days = 60 }
+		}
+
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.195.b
+		log = "[GetDateText]: [This.GetName]: chad.195.b executed"
+		add_opinion_modifier = {
+			target = SUD
+			modifier = refused_peace
+		}
+
+		ai_chance = { base = 20 }
+	}
+}
+
+# End of Civil War
+country_event = {
+	id = chad.200
+	title = chad.200.t
+	desc = chad.200.d
+	picture = GFX_african_peace
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+	}
+
+	option = {
+		name = chad.200.a
+		log = "[GetDateText]: [This.GetName]: chad.200.a executed"
+
+		CHA_end_civil_war = yes
+
+		# Annex remaining rebels
+		if = {
+			limit = { country_exists = FUC }
+			annex_country = {
+				target = FUC
+				transfer_troops = no
+			}
+		}
+		if = {
+			limit = { country_exists = UFD }
+			annex_country = {
+				target = UFD
+				transfer_troops = no
+			}
+		}
+
+		# News event
+		hidden_effect = {
+			news_event = { id = chad.1002 days = 1 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Post-War Recovery
+country_event = {
+	id = chad.205
+	title = chad.205.t
+	desc = chad.205.d
+	picture = GFX_african_reconstruction
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_civil_war_ended
+		NOT = { has_country_flag = CHA_post_war_recovery_started }
+	}
+
+	option = {
+		name = chad.205.a
+		log = "[GetDateText]: [This.GetName]: chad.205.a executed"
+		set_country_flag = CHA_post_war_recovery_started
+		add_stability = 0.05
+		add_political_power = 50
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# DEBY SUCCESSION (2021)
+#####################################
+
+# FACT Rebellion
+country_event = {
+	id = chad.221
+	title = chad.221.t
+	desc = chad.221.d
+	picture = GFX_african_rebels
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+		date > 2021.4.1
+	}
+
+	option = {
+		name = chad.221.a
+		log = "[GetDateText]: [This.GetName]: chad.221.a executed"
+		add_war_support = 0.10
+
+		hidden_effect = {
+			country_event = { id = chad.225 days = 10 random_days = 10 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Death of Idriss Déby
+country_event = {
+	id = chad.225
+	title = chad.225.t
+	desc = chad.225.d
+	picture = GFX_african_mourning
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+	}
+
+	option = {
+		name = chad.225.a
+		log = "[GetDateText]: [This.GetName]: chad.225.a executed"
+
+		hidden_effect = {
+			country_event = { id = chad.230 days = 1 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Mahamat Déby Takes Power
+country_event = {
+	id = chad.230
+	title = chad.230.t
+	desc = chad.230.d
+	picture = GFX_politics_succession
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+	}
+
+	option = {
+		name = chad.230.a
+		log = "[GetDateText]: [This.GetName]: chad.230.a executed"
+
+		CHA_deby_succession = yes
+
+		hidden_effect = {
+			news_event = { id = chad.1003 days = 1 }
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Transitional Military Council
+country_event = {
+	id = chad.235
+	title = chad.235.t
+	desc = chad.235.d
+	picture = GFX_politics_military_council
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_leader = { name = "Mahamat Idriss Déby" ruling_only = yes }
+	}
+
+	option = {
+		name = chad.235.a
+		log = "[GetDateText]: [This.GetName]: chad.235.a executed"
+		add_stability = 0.03
+		add_political_power = 25
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.235.b
+		log = "[GetDateText]: [This.GetName]: chad.235.b executed"
+		add_stability = -0.05
+		add_political_power = 50
+
+		ai_chance = { base = 30 }
+	}
+}
+
+#####################################
+# ALTERNATIVE PATHS
+#####################################
+
+# Civil War Prevented
+country_event = {
+	id = chad.251
+	title = chad.251.t
+	desc = chad.251.d
+	picture = GFX_african_peace
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_civil_war_prevented
+		NOT = { has_global_flag = CHA_second_civil_war }
+	}
+
+	option = {
+		name = chad.251.a
+		log = "[GetDateText]: [This.GetName]: chad.251.a executed"
+		add_stability = 0.10
+		add_political_power = 100
+		add_ideas = CHA_peaceful_development
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Rebel Victory - Déby Flees
+country_event = {
+	id = chad.260
+	title = chad.260.t
+	desc = chad.260.d
+	picture = GFX_politics_coup
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_global_flag = CHA_second_civil_war
+		NOT = { controls_state = 328 }
+	}
+
+	option = {
+		name = chad.260.a
+		log = "[GetDateText]: [This.GetName]: chad.260.a executed"
+
+		# Déby government collapses
+		retire_country_leader = yes
+
+		# Rebels take over
+		if = {
+			limit = { country_exists = FUC }
+			create_country_leader = {
+				name = "Mahamat Nour Abdelkerim"
+				picture = "mahamat_nour.dds"
+				ideology = Neutral_Autocracy
+				traits = {
+					neutrality_Neutral_Autocracy
+				}
+			}
+		}
+		else_if = {
+			limit = { country_exists = UFD }
+			create_country_leader = {
+				name = "Mahamat Nouri"
+				picture = "mahamat_nouri.dds"
+				ideology = Neutral_Autocracy
+				traits = {
+					neutrality_Neutral_Autocracy
+				}
+			}
+		}
+
+		# End the civil war with rebel victory
+		clr_global_flag = CHA_second_civil_war
+		set_country_flag = CHA_rebel_victory
+
+		if = {
+			limit = { country_exists = FUC }
+			annex_country = { target = FUC transfer_troops = yes }
+		}
+		if = {
+			limit = { country_exists = UFD }
+			annex_country = { target = UFD transfer_troops = yes }
+		}
+
+		add_stability = -0.20
+		add_political_power = -100
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Democratic Transition
+country_event = {
+	id = chad.270
+	title = chad.270.t
+	desc = chad.270.d
+	picture = GFX_politics_election
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_democratic_path
+		has_government = democratic
+	}
+
+	option = {
+		name = chad.270.a
+		log = "[GetDateText]: [This.GetName]: chad.270.a executed"
+
+		# New democratic leader
+		create_country_leader = {
+			name = "Saleh Kebzabo"
+			picture = "saleh_kebzabo.dds"
+			ideology = liberalism
+			traits = {
+				democratic_reformer
+			}
+		}
+
+		add_stability = 0.10
+		add_political_power = 50
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# NEWS EVENTS
+#####################################
+
+# Civil War Breaks Out
+news_event = {
+	id = chad.1001
+	title = chad.1001.t
+	desc = chad.1001.d
+	picture = GFX_news_african_conflict
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1001.a
+		log = "[GetDateText]: [This.GetName]: chad.1001.a executed"
+	}
+}
+
+# Civil War Ends
+news_event = {
+	id = chad.1002
+	title = chad.1002.t
+	desc = chad.1002.d
+	picture = GFX_news_african_peace
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1002.a
+		log = "[GetDateText]: [This.GetName]: chad.1002.a executed"
+	}
+}
+
+# Déby Dies, Son Takes Power
+news_event = {
+	id = chad.1003
+	title = chad.1003.t
+	desc = chad.1003.d
+	picture = GFX_news_succession
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1003.a
+		log = "[GetDateText]: [This.GetName]: chad.1003.a executed"
+	}
+}
+
+# French Intervention
+news_event = {
+	id = chad.1004
+	title = chad.1004.t
+	desc = chad.1004.d
+	picture = GFX_news_french_military
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1004.a
+		log = "[GetDateText]: [This.GetName]: chad.1004.a executed"
+	}
+}
+
+#####################################
+# ECONOMIC EVENTS
+#####################################
+
+# Oil Production Milestone
+country_event = {
+	id = chad.301
+	title = chad.301.t
+	desc = chad.301.d
+	picture = GFX_oil_production
+
+	is_triggered_only = yes
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_oil_economy
+		NOT = { has_country_flag = CHA_oil_milestone_event }
+	}
+
+	option = {
+		name = chad.301.a
+		log = "[GetDateText]: [This.GetName]: chad.301.a executed"
+		set_country_flag = CHA_oil_milestone_event
+		set_temp_variable = { treasury_change = 2 }
+		modify_treasury_effect = yes
+		add_stability = 0.02
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# World Bank Corruption Concerns
+country_event = {
+	id = chad.302
+	title = chad.302.t
+	desc = chad.302.d
+	picture = GFX_corruption
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		has_idea = CHA_oil_boom
+		date > 2008.1.1
+		NOT = { has_idea = CHA_managed_oil_economy }
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.302.a
+		log = "[GetDateText]: [This.GetName]: chad.302.a executed"
+		add_stability = -0.03
+		set_temp_variable = { treasury_change = -0.5 }
+		modify_treasury_effect = yes
+		add_ideas = CHA_managed_oil_economy
+
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.302.b
+		log = "[GetDateText]: [This.GetName]: chad.302.b executed"
+		add_political_power = -50
+		USA = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_decrease
+			}
+		}
+
+		ai_chance = { base = 40 }
+	}
+}
+
+# Lake Chad Shrinking Crisis
+country_event = {
+	id = chad.303
+	title = chad.303.t
+	desc = chad.303.d
+	picture = GFX_environmental_crisis
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2005.1.1
+	}
+
+	mean_time_to_happen = {
+		days = 730
+	}
+
+	option = {
+		name = chad.303.a
+		log = "[GetDateText]: [This.GetName]: chad.303.a executed"
+		add_stability = -0.02
+		set_temp_variable = { treasury_change = -1 }
+		modify_treasury_effect = yes
+		set_country_flag = CHA_lake_chad_crisis
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.303.b
+		log = "[GetDateText]: [This.GetName]: chad.303.b executed"
+		add_stability = -0.05
+
+		ai_chance = { base = 30 }
+	}
+}
+
+# Cotton Harvest Results
+country_event = {
+	id = chad.304
+	title = chad.304.t
+	desc = chad.304.d
+	picture = GFX_agriculture
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_cotton_development
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.304.a
+		log = "[GetDateText]: [This.GetName]: chad.304.a executed"
+		set_temp_variable = { treasury_change = 0.5 }
+		modify_treasury_effect = yes
+		add_stability = 0.01
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Drought and Food Security Crisis
+country_event = {
+	id = chad.305
+	title = chad.305.t
+	desc = chad.305.d
+	picture = GFX_famine
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_recent_drought }
+		NOT = { has_idea = CHA_food_security_program }
+	}
+
+	mean_time_to_happen = {
+		days = 1095
+		modifier = {
+			factor = 0.5
+			has_country_flag = CHA_lake_chad_crisis
+		}
+	}
+
+	option = {
+		name = chad.305.a
+		log = "[GetDateText]: [This.GetName]: chad.305.a executed"
+		set_country_flag = CHA_recent_drought
+		add_stability = -0.05
+		add_political_power = -25
+		set_temp_variable = { treasury_change = -0.5 }
+		modify_treasury_effect = yes
+
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.305.b
+		log = "[GetDateText]: [This.GetName]: chad.305.b executed"
+		set_country_flag = CHA_recent_drought
+		add_stability = -0.10
+
+		ai_chance = { base = 40 }
+	}
+}
+
+# Chinese Investment Offer
+country_event = {
+	id = chad.306
+	title = chad.306.t
+	desc = chad.306.d
+	picture = GFX_chinese_investment
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2007.1.1
+		NOT = { has_war_with = CHI }
+		CHI = { exists = yes }
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.306.a
+		log = "[GetDateText]: [This.GetName]: chad.306.a executed"
+		set_temp_variable = { treasury_change = 3 }
+		modify_treasury_effect = yes
+		set_temp_variable = { percent_change = 5 }
+		set_temp_variable = { tag_index = CHI.id }
+		set_temp_variable = { influence_target = CHA.id }
+		change_influence_percentage = yes
+		CHI = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = medium_increase
+			}
+		}
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.306.b
+		log = "[GetDateText]: [This.GetName]: chad.306.b executed"
+		add_political_power = 25
+		USA = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+
+		ai_chance = { base = 30 }
+	}
+}
+
+#####################################
+# FOREIGN POLICY EVENTS
+#####################################
+
+# Libyan Refugees Arrive
+country_event = {
+	id = chad.311
+	title = chad.311.t
+	desc = chad.311.d
+	picture = GFX_refugees
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		LBA = { has_civil_war = yes }
+		date > 2011.1.1
+	}
+
+	mean_time_to_happen = {
+		days = 60
+	}
+
+	option = {
+		name = chad.311.a
+		log = "[GetDateText]: [This.GetName]: chad.311.a executed"
+		add_manpower = 5000
+		add_stability = -0.02
+		set_temp_variable = { treasury_change = -0.25 }
+		modify_treasury_effect = yes
+
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.311.b
+		log = "[GetDateText]: [This.GetName]: chad.311.b executed"
+		add_stability = 0.01
+		LBA = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_decrease
+			}
+		}
+
+		ai_chance = { base = 20 }
+	}
+}
+
+# CEMAC Integration Proposal
+country_event = {
+	id = chad.312
+	title = chad.312.t
+	desc = chad.312.d
+	picture = GFX_african_union
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2004.1.1
+		CMR = { exists = yes }
+		CAR = { exists = yes }
+	}
+
+	mean_time_to_happen = {
+		days = 730
+	}
+
+	option = {
+		name = chad.312.a
+		log = "[GetDateText]: [This.GetName]: chad.312.a executed"
+		add_political_power = 25
+		CMR = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+		CAR = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+		GAB = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.312.b
+		log = "[GetDateText]: [This.GetName]: chad.312.b executed"
+		add_political_power = -10
+
+		ai_chance = { base = 20 }
+	}
+}
+
+# CAR Instability - Border Concerns
+country_event = {
+	id = chad.313
+	title = chad.313.t
+	desc = chad.313.d
+	picture = GFX_border_crisis
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		CAR = {
+			OR = {
+				has_civil_war = yes
+				has_war = yes
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	option = {
+		name = chad.313.a
+		log = "[GetDateText]: [This.GetName]: chad.313.a executed"
+		add_command_power = -10
+		add_stability = 0.02
+		set_country_flag = CHA_secured_car_border
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.313.b
+		log = "[GetDateText]: [This.GetName]: chad.313.b executed"
+		add_stability = -0.02
+
+		ai_chance = { base = 30 }
+	}
+}
+
+# French Military Cooperation Request
+country_event = {
+	id = chad.314
+	title = chad.314.t
+	desc = chad.314.d
+	picture = GFX_french_military_cooperation
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_war_with = FRA }
+		FRA = { exists = yes }
+		NOT = { has_country_flag = CHA_french_coop_cooldown }
+	}
+
+	mean_time_to_happen = {
+		days = 1460
+	}
+
+	option = {
+		name = chad.314.a
+		log = "[GetDateText]: [This.GetName]: chad.314.a executed"
+		set_country_flag = CHA_french_coop_cooldown
+		army_experience = 15
+		FRA = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+
+		ai_chance = { base = 90 }
+	}
+
+	option = {
+		name = chad.314.b
+		log = "[GetDateText]: [This.GetName]: chad.314.b executed"
+		set_country_flag = CHA_french_coop_cooldown
+		add_political_power = 10
+
+		ai_chance = { base = 10 }
+	}
+}
+
+# AU Peacekeeping Mission Request
+country_event = {
+	id = chad.315
+	title = chad.315.t
+	desc = chad.315.d
+	picture = GFX_peacekeeping
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2013.1.1
+		has_army_manpower = { size > 5000 }
+		CAR = {
+			OR = {
+				has_civil_war = yes
+				has_war = yes
+			}
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 180
+	}
+
+	option = {
+		name = chad.315.a
+		log = "[GetDateText]: [This.GetName]: chad.315.a executed"
+		add_political_power = 50
+		add_command_power = -15
+		army_experience = 10
+		set_country_flag = CHA_au_peacekeeping_contributor
+
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.315.b
+		log = "[GetDateText]: [This.GetName]: chad.315.b executed"
+
+		ai_chance = { base = 30 }
+	}
+}
+
+#####################################
+# COUNTER-TERRORISM EVENTS
+#####################################
+
+# Boko Haram Border Attacks
+country_event = {
+	id = chad.321
+	title = chad.321.t
+	desc = chad.321.d
+	picture = GFX_terrorism
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2014.1.1
+		NIG = { exists = yes }
+	}
+
+	mean_time_to_happen = {
+		days = 180
+	}
+
+	option = {
+		name = chad.321.a
+		log = "[GetDateText]: [This.GetName]: chad.321.a executed"
+		add_war_support = 0.05
+		add_stability = -0.03
+		set_country_flag = CHA_boko_haram_threat
+		add_command_power = -10
+
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.321.b
+		log = "[GetDateText]: [This.GetName]: chad.321.b executed"
+		add_stability = -0.05
+		set_country_flag = CHA_boko_haram_threat
+
+		ai_chance = { base = 20 }
+	}
+}
+
+# Joint Counter-Terror Operation Success
+country_event = {
+	id = chad.322
+	title = chad.322.t
+	desc = chad.322.d
+	picture = GFX_military_victory
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_boko_haram_threat
+		has_completed_focus = CHA_anti_boko_haram_operations
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.322.a
+		log = "[GetDateText]: [This.GetName]: chad.322.a executed"
+		add_stability = 0.03
+		add_war_support = 0.02
+		army_experience = 15
+		NIG = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# G5 Sahel Formation
+country_event = {
+	id = chad.323
+	title = chad.323.t
+	desc = chad.323.d
+	picture = GFX_african_coalition
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2014.2.1
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.323.a
+		log = "[GetDateText]: [This.GetName]: chad.323.a executed"
+		add_ideas = CHA_sahel_force_member
+		add_political_power = 25
+		MLI = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+		NIG = {
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+
+		ai_chance = { base = 90 }
+	}
+
+	option = {
+		name = chad.323.b
+		log = "[GetDateText]: [This.GetName]: chad.323.b executed"
+
+		ai_chance = { base = 10 }
+	}
+}
+
+# Suicide Bombing in N'Djamena
+country_event = {
+	id = chad.324
+	title = chad.324.t
+	desc = chad.324.d
+	picture = GFX_terrorist_attack
+
+	trigger = {
+		original_tag = CHA
+		has_country_flag = CHA_boko_haram_threat
+		NOT = { has_idea = CHA_counter_terrorism_training }
+		NOT = { has_country_flag = CHA_recent_terror_attack }
+	}
+
+	mean_time_to_happen = {
+		days = 730
+	}
+
+	option = {
+		name = chad.324.a
+		log = "[GetDateText]: [This.GetName]: chad.324.a executed"
+		set_country_flag = CHA_recent_terror_attack
+		add_stability = -0.05
+		add_war_support = 0.05
+		add_political_power = -25
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# SOCIAL & DEVELOPMENT EVENTS
+#####################################
+
+# Ethnic Tensions in the North
+country_event = {
+	id = chad.331
+	title = chad.331.t
+	desc = chad.331.d
+	picture = GFX_ethnic_tensions
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_completed_focus = CHA_address_ethnic_grievances }
+		NOT = { has_country_flag = CHA_ethnic_event_cooldown }
+	}
+
+	mean_time_to_happen = {
+		days = 1095
+	}
+
+	option = {
+		name = chad.331.a
+		log = "[GetDateText]: [This.GetName]: chad.331.a executed"
+		set_country_flag = CHA_ethnic_event_cooldown
+		add_stability = -0.02
+		set_temp_variable = { treasury_change = -0.25 }
+		modify_treasury_effect = yes
+
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.331.b
+		log = "[GetDateText]: [This.GetName]: chad.331.b executed"
+		set_country_flag = CHA_ethnic_event_cooldown
+		add_stability = -0.05
+
+		ai_chance = { base = 40 }
+	}
+}
+
+# Healthcare Initiative Success
+country_event = {
+	id = chad.332
+	title = chad.332.t
+	desc = chad.332.d
+	picture = GFX_healthcare
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_ndjamena_modernization
+	}
+
+	mean_time_to_happen = {
+		days = 730
+	}
+
+	option = {
+		name = chad.332.a
+		log = "[GetDateText]: [This.GetName]: chad.332.a executed"
+		add_stability = 0.02
+		add_political_power = 15
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Education Reform Progress
+country_event = {
+	id = chad.333
+	title = chad.333.t
+	desc = chad.333.d
+	picture = GFX_education
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_multiparty_competition
+		OR = {
+			has_completed_focus = CHA_free_press
+			has_completed_focus = CHA_anti_corruption_commission
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.333.a
+		log = "[GetDateText]: [This.GetName]: chad.333.a executed"
+		add_stability = 0.03
+		add_political_power = 25
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Infrastructure Project Completed
+country_event = {
+	id = chad.334
+	title = chad.334.t
+	desc = chad.334.d
+	picture = GFX_infrastructure
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_road_network
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.334.a
+		log = "[GetDateText]: [This.GetName]: chad.334.a executed"
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_stability = 0.01
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Electricity Grid Expansion
+country_event = {
+	id = chad.335
+	title = chad.335.t
+	desc = chad.335.d
+	picture = GFX_electricity
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_electricity_grid
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.335.a
+		log = "[GetDateText]: [This.GetName]: chad.335.a executed"
+		add_stability = 0.02
+		set_temp_variable = { treasury_change = 0.25 }
+		modify_treasury_effect = yes
+
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# MILITARY EVENTS
+#####################################
+
+# Desert Warfare Training Exercise
+country_event = {
+	id = chad.341
+	title = chad.341.t
+	desc = chad.341.d
+	picture = GFX_military_training
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_desert_warfare_doctrine
+		NOT = { has_country_flag = CHA_training_cooldown }
+	}
+
+	mean_time_to_happen = {
+		days = 730
+	}
+
+	option = {
+		name = chad.341.a
+		log = "[GetDateText]: [This.GetName]: chad.341.a executed"
+		set_country_flag = CHA_training_cooldown
+		army_experience = 20
+		add_command_power = 10
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Toyota War Veterans
+country_event = {
+	id = chad.342
+	title = chad.342.t
+	desc = chad.342.d
+	picture = GFX_veterans
+
+	fire_only_once = yes
+
+	trigger = {
+		original_tag = CHA
+		date > 2000.1.1
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.342.a
+		log = "[GetDateText]: [This.GetName]: chad.342.a executed"
+		add_ideas = CHA_desert_warriors
+		army_experience = 10
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Air Force Modernization Progress
+country_event = {
+	id = chad.343
+	title = chad.343.t
+	desc = chad.343.d
+	picture = GFX_air_force
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_fighter_acquisition
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.343.a
+		log = "[GetDateText]: [This.GetName]: chad.343.a executed"
+		air_experience = 15
+		add_equipment_to_stockpile = {
+			type = fighter_equipment
+			amount = 10
+			producer = FRA
+		}
+
+		ai_chance = { base = 100 }
+	}
+}
+
+# Republican Guard Expansion
+country_event = {
+	id = chad.344
+	title = chad.344.t
+	desc = chad.344.d
+	picture = GFX_presidential_guard
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_republican_guard
+		NOT = { has_idea = CHA_presidential_guard }
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.344.a
+		log = "[GetDateText]: [This.GetName]: chad.344.a executed"
+		add_ideas = CHA_presidential_guard
+		add_political_power = 25
+
+		ai_chance = { base = 100 }
+	}
+}
