@@ -1,0 +1,192 @@
+# Chad Scripted Triggers
+
+# Check if the Second Chadian Civil War is active
+CHA_civil_war_active = {
+	has_global_flag = CHA_second_civil_war
+}
+
+# Check if Chad is at peace (no civil war)
+CHA_at_peace = {
+	NOT = { has_global_flag = CHA_second_civil_war }
+	NOT = { has_war = yes }
+}
+
+# Check if Chad can start the civil war
+CHA_can_trigger_civil_war = {
+	original_tag = CHA
+	NOT = { has_global_flag = CHA_second_civil_war }
+	NOT = { has_country_flag = CHA_civil_war_ended }
+	date > 2005.12.1
+	OR = {
+		has_country_flag = CHA_sudan_tensions
+		has_country_flag = CHA_supports_darfur
+		check_variable = { CHA_civil_war_tension > 50 }
+	}
+}
+
+# Check if tensions with Sudan are high
+CHA_high_sudan_tensions = {
+	OR = {
+		has_country_flag = CHA_sudan_tensions
+		has_war_with = SUD
+		AND = {
+			has_opinion = {
+				target = SUD
+				value < -50
+			}
+		}
+	}
+}
+
+# Check if Chad prevented the civil war
+CHA_prevented_civil_war = {
+	original_tag = CHA
+	date > 2010.1.1
+	NOT = { has_global_flag = CHA_second_civil_war }
+	NOT = { has_country_flag = CHA_civil_war_ended }
+	has_country_flag = CHA_addressed_grievances
+}
+
+# Check if Déby is still in power
+CHA_deby_in_power = {
+	original_tag = CHA
+	has_country_leader = {
+		name = "Idriss Déby"
+		ruling_only = yes
+	}
+}
+
+# Check if Chad has international support
+CHA_has_international_support = {
+	OR = {
+		has_country_flag = CHA_french_intervened
+		has_country_flag = CHA_minurcat_deployed
+		has_country_flag = CHA_eufor_deployed
+	}
+}
+
+# Check if rebel factions exist
+CHA_rebels_exist = {
+	OR = {
+		country_exists = FUC
+		country_exists = UFD
+	}
+}
+
+# Check if FUC is active
+CHA_fuc_active = {
+	country_exists = FUC
+	FUC = { has_war_with = CHA }
+}
+
+# Check if UFDD is active
+CHA_ufdd_active = {
+	country_exists = UFD
+	UFD = { has_war_with = CHA }
+}
+
+# Check if Chad can request French support
+CHA_can_request_french_support = {
+	original_tag = CHA
+	has_global_flag = CHA_second_civil_war
+	NOT = { has_country_flag = CHA_french_intervened }
+	NOT = { has_war_with = FRA }
+	FRA = {
+		has_opinion = {
+			target = CHA
+			value > -20
+		}
+	}
+}
+
+# Check if Chad is winning the civil war
+CHA_winning_civil_war = {
+	original_tag = CHA
+	has_global_flag = CHA_second_civil_war
+	OR = {
+		AND = {
+			country_exists = FUC
+			FUC = {
+				surrender_progress > 0.5
+			}
+		}
+		AND = {
+			country_exists = UFD
+			UFD = {
+				surrender_progress > 0.5
+			}
+		}
+	}
+}
+
+# Check if Chad is losing the civil war
+CHA_losing_civil_war = {
+	original_tag = CHA
+	has_global_flag = CHA_second_civil_war
+	surrender_progress > 0.3
+}
+
+# Check if the battle for N'Djamena is happening
+CHA_battle_for_ndjamena = {
+	original_tag = CHA
+	has_global_flag = CHA_second_civil_war
+	328 = {
+		is_controlled_by = CHA
+		any_neighbor_state = {
+			OR = {
+				is_controlled_by = FUC
+				is_controlled_by = UFD
+			}
+		}
+	}
+}
+
+# Check if Chad can reconcile
+CHA_can_reconcile = {
+	original_tag = CHA
+	has_global_flag = CHA_second_civil_war
+	date > 2009.1.1
+	OR = {
+		CHA_winning_civil_war = yes
+		has_country_flag = CHA_french_intervened
+	}
+	NOT = { has_country_flag = CHA_reconciliation_failed }
+}
+
+# Check if democratic path is available
+CHA_democratic_path_available = {
+	original_tag = CHA
+	NOT = { has_country_flag = CHA_term_limits_removed }
+	OR = {
+		has_elections = yes
+		has_government = democratic
+	}
+}
+
+# Check if authoritarian path is available
+CHA_authoritarian_path_available = {
+	original_tag = CHA
+	OR = {
+		has_government = neutrality
+		has_government = nationalist
+		has_country_flag = CHA_term_limits_removed
+	}
+}
+
+# Check if oil economy is developed
+CHA_oil_economy_developed = {
+	original_tag = CHA
+	OR = {
+		has_completed_focus = CHA_doba_basin_expansion
+		has_completed_focus = CHA_chinese_oil_investment
+		326 = {
+			infrastructure > 3
+		}
+	}
+}
+
+# Tibesti autonomy trigger
+CHA_tibesti_autonomous = {
+	original_tag = CHA
+	has_country_flag = CHA_granted_tibesti_autonomy
+}
