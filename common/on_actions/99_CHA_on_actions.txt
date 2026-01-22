@@ -1,0 +1,315 @@
+on_actions = {
+	on_monthly_CHA = {
+		effect = {
+			# Pre-war tension buildup with Sudan
+			if = {
+				limit = {
+					date > 2003.1.1
+					date < 2005.12.1
+					NOT = { has_country_flag = CHA_sudan_tensions_started }
+				}
+				random_list = {
+					70 = { }
+					30 = {
+						country_event = { id = chad.1 days = 30 random_days = 60 }
+						set_country_flag = CHA_sudan_tensions_started
+					}
+				}
+			}
+
+			# Support for Darfur rebels chain
+			if = {
+				limit = {
+					date > 2003.6.1
+					date < 2005.12.1
+					has_country_flag = CHA_sudan_tensions
+					NOT = { has_country_flag = CHA_darfur_support_offered }
+				}
+				random_list = {
+					60 = { }
+					40 = {
+						country_event = { id = chad.5 days = 30 random_days = 90 }
+						set_country_flag = CHA_darfur_support_offered
+					}
+				}
+			}
+
+			# Constitutional referendum 2005
+			if = {
+				limit = {
+					date > 2005.4.1
+					date < 2005.8.1
+					NOT = { has_country_flag = CHA_constitutional_referendum_held }
+				}
+				random_list = {
+					50 = { }
+					50 = {
+						country_event = { id = chad.10 days = 14 random_days = 30 }
+						set_country_flag = CHA_constitutional_referendum_held
+					}
+				}
+			}
+
+			# Opposition protests after referendum
+			if = {
+				limit = {
+					date > 2005.7.1
+					has_country_flag = CHA_term_limits_removed
+					NOT = { has_country_flag = CHA_opposition_protests_occurred }
+				}
+				random_list = {
+					60 = { }
+					40 = {
+						country_event = { id = chad.15 days = 14 random_days = 45 }
+						set_country_flag = CHA_opposition_protests_occurred
+					}
+				}
+			}
+
+			# Civil war outbreak - Attack on Adré (December 2005)
+			if = {
+				limit = {
+					date > 2005.12.1
+					date < 2006.3.1
+					has_country_flag = CHA_sudan_tensions
+					NOT = { has_global_flag = CHA_second_civil_war }
+					NOT = { has_country_flag = CHA_civil_war_averted }
+				}
+				random_list = {
+					30 = { }
+					70 = {
+						country_event = { id = chad.20 days = 7 random_days = 30 }
+					}
+				}
+			}
+
+			# FUC Formation after war starts
+			if = {
+				limit = {
+					date > 2005.12.15
+					has_global_flag = CHA_second_civil_war
+					NOT = { has_global_flag = CHA_fuc_formed }
+				}
+				country_event = { id = chad.41 days = 7 random_days = 14 }
+				set_global_flag = CHA_fuc_formed
+			}
+
+			# Sudan arms the rebels
+			if = {
+				limit = {
+					date > 2006.1.1
+					has_global_flag = CHA_second_civil_war
+					has_global_flag = CHA_fuc_formed
+					NOT = { has_country_flag = CHA_sudan_arms_rebels_event }
+				}
+				random_list = {
+					50 = { }
+					50 = {
+						country_event = { id = chad.45 days = 14 random_days = 30 }
+						set_country_flag = CHA_sudan_arms_rebels_event
+					}
+				}
+			}
+
+			# Rebel advance
+			if = {
+				limit = {
+					date > 2006.2.1
+					date < 2006.4.1
+					has_global_flag = CHA_second_civil_war
+					has_global_flag = CHA_fuc_formed
+					NOT = { has_country_flag = CHA_rebel_advance_event }
+				}
+				random_list = {
+					40 = { }
+					60 = {
+						country_event = { id = chad.50 days = 7 random_days = 21 }
+						set_country_flag = CHA_rebel_advance_event
+					}
+				}
+			}
+
+			# First Battle of N'Djamena (April 2006)
+			if = {
+				limit = {
+					date > 2006.4.1
+					date < 2006.5.1
+					has_global_flag = CHA_second_civil_war
+					has_global_flag = CHA_fuc_formed
+					NOT = { has_country_flag = CHA_first_battle_ndjamena }
+				}
+				country_event = { id = chad.71 days = 3 random_days = 10 }
+				set_country_flag = CHA_first_battle_ndjamena
+			}
+
+			# UFDD formation after FUC defeat (October 2006)
+			if = {
+				limit = {
+					date > 2006.10.1
+					has_global_flag = CHA_second_civil_war
+					has_country_flag = CHA_first_battle_ndjamena
+					NOT = { has_global_flag = CHA_ufdd_formed }
+				}
+				random_list = {
+					30 = { }
+					70 = {
+						country_event = { id = chad.101 days = 7 random_days = 21 }
+						set_global_flag = CHA_ufdd_formed
+					}
+				}
+			}
+
+			# Tripoli Peace Talks (2007)
+			if = {
+				limit = {
+					date > 2007.3.1
+					date < 2007.12.1
+					has_global_flag = CHA_second_civil_war
+					has_global_flag = CHA_ufdd_formed
+					NOT = { has_country_flag = CHA_tripoli_talks }
+				}
+				random_list = {
+					50 = { }
+					50 = {
+						country_event = { id = chad.110 days = 14 random_days = 60 }
+						set_country_flag = CHA_tripoli_talks
+					}
+				}
+			}
+
+			# Sirte Agreement collapse
+			if = {
+				limit = {
+					date > 2007.10.1
+					has_country_flag = CHA_tripoli_talks
+					NOT = { has_country_flag = CHA_sirte_collapsed }
+				}
+				random_list = {
+					40 = { }
+					60 = {
+						country_event = { id = chad.115 days = 14 random_days = 30 }
+						set_country_flag = CHA_sirte_collapsed
+					}
+				}
+			}
+
+			# Second Battle of N'Djamena (February 2008)
+			if = {
+				limit = {
+					date > 2008.2.1
+					date < 2008.3.1
+					has_global_flag = CHA_second_civil_war
+					has_global_flag = CHA_ufdd_formed
+					NOT = { has_country_flag = CHA_second_battle_ndjamena }
+				}
+				country_event = { id = chad.131 days = 1 random_days = 7 }
+				set_country_flag = CHA_second_battle_ndjamena
+			}
+
+			# Path to reconciliation (2009)
+			if = {
+				limit = {
+					date > 2009.1.1
+					has_global_flag = CHA_second_civil_war
+					NOT = { has_country_flag = CHA_reconciliation_path }
+				}
+				random_list = {
+					50 = { }
+					50 = {
+						country_event = { id = chad.191 days = 30 random_days = 90 }
+						set_country_flag = CHA_reconciliation_path
+					}
+				}
+			}
+
+			# War cleanup - if rebels no longer exist
+			if = {
+				limit = {
+					has_global_flag = CHA_second_civil_war
+					NOT = { has_war = yes }
+					NOT = {
+						any_country = {
+							OR = {
+								tag = FUC
+								tag = UFD
+							}
+							exists = yes
+							has_war_with = CHA
+						}
+					}
+					NOT = { has_country_flag = CHA_war_cleanup_done }
+				}
+				country_event = { id = chad.200 days = 7 }
+				set_country_flag = CHA_war_cleanup_done
+			}
+
+			# FACT Rebellion and Déby succession (April 2021)
+			if = {
+				limit = {
+					date > 2021.4.1
+					date < 2021.5.1
+					has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+					NOT = { has_country_flag = CHA_fact_rebellion_occurred }
+				}
+				country_event = { id = chad.221 days = 1 random_days = 14 }
+				set_country_flag = CHA_fact_rebellion_occurred
+			}
+		}
+	}
+
+	on_startup = {
+		effect = {
+			# Initialize Chad civil war variables
+			CHA = {
+				if = {
+					limit = {
+						NOT = { has_variable = CHA_sudan_tension_level }
+					}
+					set_variable = { CHA_sudan_tension_level = 0 }
+				}
+			}
+		}
+	}
+
+	on_civil_war_end = {
+		effect = {
+			# Handle Chad civil war ending
+			if = {
+				limit = {
+					OR = {
+						ROOT = { original_tag = CHA }
+						FROM = { original_tag = CHA }
+					}
+					has_global_flag = CHA_second_civil_war
+				}
+				CHA = {
+					if = {
+						limit = { exists = yes }
+						country_event = { id = chad.200 days = 7 }
+					}
+				}
+			}
+		}
+	}
+
+	on_annex = {
+		effect = {
+			# Handle rebel annexation
+			if = {
+				limit = {
+					ROOT = { original_tag = CHA }
+					FROM = {
+						OR = {
+							tag = FUC
+							tag = UFD
+						}
+					}
+				}
+				ROOT = {
+					add_stability = 0.05
+					add_war_support = 0.10
+				}
+			}
+		}
+	}
+}
