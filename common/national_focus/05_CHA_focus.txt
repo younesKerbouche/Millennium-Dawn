@@ -1,0 +1,2129 @@
+# Chad Focus Tree - Second Chadian Civil War
+
+focus_tree = {
+	id = chad_focus
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			original_tag = CHA
+		}
+	}
+
+	default = no
+
+	shared_focus = AFRICAN_UNION_shared_focus
+
+	continuous_focus_position = { x = 525 y = 850 }
+
+	# Shortcuts for navigation
+	shortcut = {
+		name = CHA_new_millennium
+		target = CHA_new_millennium
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = CHA_political_consolidation
+		target = CHA_political_consolidation
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = CHA_economic_development
+		target = CHA_economic_development
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = CHA_armed_forces
+		target = CHA_armed_forces
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = CHA_foreign_relations
+		target = CHA_foreign_relations
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = CHA_internal_stability
+		target = CHA_internal_stability
+		scroll_wheel_factor = 0.80
+	}
+
+	#####################################
+	# ROOT FOCUS
+	#####################################
+	focus = {
+		id = CHA_new_millennium
+		icon = africa_guy_shield
+		x = 0
+		y = 0
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_new_millennium"
+			add_political_power = 100
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	#####################################
+	# POLITICAL BRANCH (x=-8)
+	#####################################
+	focus = {
+		id = CHA_political_consolidation
+		icon = focus_generic_africa_politics
+		x = -8
+		y = 1
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_new_millennium }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_political_consolidation"
+			add_political_power = 75
+			set_temp_variable = { temp_opinion = 10 }
+			change_fossil_fuel_industry_opinion = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# Authoritarian Path
+	focus = {
+		id = CHA_deby_dynasty
+		icon = focus_generic_military_dictatorship
+		x = -1
+		y = 1
+		relative_position_id = CHA_political_consolidation
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_political_consolidation }
+
+		mutually_exclusive = { focus = CHA_political_reform }
+
+		available = {
+			has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_deby_dynasty"
+			add_political_power = 50
+			set_country_flag = CHA_authoritarian_path
+			add_popularity = { ideology = neutrality popularity = 0.05 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_remove_term_limits
+		icon = focus_generic_oppression
+		x = 0
+		y = 1
+		relative_position_id = CHA_deby_dynasty
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_deby_dynasty }
+
+		available = {
+			date > 2005.1.1
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_remove_term_limits"
+			add_ideas = CHA_term_limits_removed
+			set_country_flag = CHA_term_limits_removed
+			add_stability = -0.05
+			add_political_power = 100
+			# Increases civil war tension
+			add_to_variable = { CHA_civil_war_tension = 20 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_zaghawa_patronage
+		icon = focus_generic_clan_politics
+		x = -1
+		y = 1
+		relative_position_id = CHA_remove_term_limits
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_remove_term_limits }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_zaghawa_patronage"
+			add_ideas = CHA_zaghawa_dominance
+			add_political_power = 50
+			add_stability = -0.03
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_security_apparatus
+		icon = focus_generic_secret_police
+		x = 1
+		y = 1
+		relative_position_id = CHA_remove_term_limits
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_remove_term_limits }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_security_apparatus"
+			add_ideas = CHA_expanded_security_services
+			swap_ideas = {
+				remove_idea = fossil_fuel_industry
+				add_idea = intelligence_community
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				has_global_flag = CHA_second_civil_war
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_mahamat_succession
+		icon = focus_generic_family_dynasty
+		x = 0
+		y = 1
+		relative_position_id = CHA_zaghawa_patronage
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_zaghawa_patronage }
+		prerequisite = { focus = CHA_security_apparatus }
+
+		available = {
+			date > 2015.1.1
+			has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_mahamat_succession"
+			set_country_flag = CHA_succession_prepared
+			add_political_power = 75
+			# Recruit Mahamat Déby as a general
+			create_corps_commander = {
+				name = "Mahamat Idriss Déby"
+				picture = "mahamat_deby.dds"
+				skill = 3
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 2
+				logistics_skill = 2
+				traits = { desert_fox }
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	# Democratic Path
+	focus = {
+		id = CHA_political_reform
+		icon = focus_generic_democracy
+		x = 1
+		y = 1
+		relative_position_id = CHA_political_consolidation
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_political_consolidation }
+
+		mutually_exclusive = { focus = CHA_deby_dynasty }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_political_reform"
+			set_country_flag = CHA_democratic_path
+			add_popularity = { ideology = democratic popularity = 0.05 }
+			recalculate_party = yes
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_multiparty_competition
+		icon = focus_generic_election
+		x = 0
+		y = 1
+		relative_position_id = CHA_political_reform
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_political_reform }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_multiparty_competition"
+			add_ideas = CHA_competitive_politics
+			add_popularity = { ideology = democratic popularity = 0.10 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_free_press
+		icon = focus_generic_press_freedom
+		x = -1
+		y = 1
+		relative_position_id = CHA_multiparty_competition
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_multiparty_competition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_free_press"
+			add_stability = 0.05
+			add_political_power = -25
+			# Reduces civil war tension
+			subtract_from_variable = { CHA_civil_war_tension = 10 }
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_anti_corruption_commission
+		icon = focus_generic_anti_corruption
+		x = 1
+		y = 1
+		relative_position_id = CHA_multiparty_competition
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_multiparty_competition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_anti_corruption_commission"
+			swap_ideas = {
+				remove_idea = crippling_corruption
+				add_idea = declining_corruption
+			}
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_peaceful_transition
+		icon = focus_generic_peaceful_change
+		x = 0
+		y = 1
+		relative_position_id = CHA_free_press
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_free_press }
+		prerequisite = { focus = CHA_anti_corruption_commission }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_peaceful_transition"
+			add_ideas = CHA_democratic_transition
+			add_stability = 0.10
+			# Prevents civil war
+			set_country_flag = CHA_civil_war_prevented
+			clr_global_flag = CHA_second_civil_war
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# ECONOMIC BRANCH (x=-4)
+	#####################################
+	focus = {
+		id = CHA_economic_development
+		icon = focus_generic_africa_economy
+		x = -4
+		y = 1
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_new_millennium }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_economic_development"
+			add_political_power = 50
+			set_temp_variable = { treasury_change = 5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# Oil Economy Path
+	focus = {
+		id = CHA_oil_economy
+		icon = focus_generic_oil_well
+		x = -1
+		y = 1
+		relative_position_id = CHA_economic_development
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_economic_development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_oil_economy"
+			add_ideas = CHA_oil_boom
+			326 = {
+				add_resource = { type = oil amount = 3 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_doba_basin_expansion
+		icon = focus_generic_oil_rig
+		x = 0
+		y = 1
+		relative_position_id = CHA_oil_economy
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_oil_economy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_doba_basin_expansion"
+			set_temp_variable = { treasury_change = -15 }
+			modify_treasury_effect = yes
+			326 = {
+				add_resource = { type = oil amount = 5 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { treasury < 20 }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_cameroon_pipeline_upgrade
+		icon = focus_generic_pipeline
+		x = -1
+		y = 1
+		relative_position_id = CHA_doba_basin_expansion
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_doba_basin_expansion }
+
+		available = {
+			CAM = {
+				has_opinion = { target = CHA value > 0 }
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_cameroon_pipeline_upgrade"
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+			add_opinion_modifier = {
+				target = CAM
+				modifier = trade_agreement
+			}
+			reverse_add_opinion_modifier = {
+				target = CAM
+				modifier = trade_agreement
+			}
+			# Increase oil income
+			set_temp_variable = { temp_opinion = 5 }
+			change_fossil_fuel_industry_opinion = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_chinese_oil_investment
+		icon = focus_generic_chinese_investment
+		x = 1
+		y = 1
+		relative_position_id = CHA_doba_basin_expansion
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_doba_basin_expansion }
+
+		available = {
+			NOT = { has_war_with = CHI }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_chinese_oil_investment"
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = CHI.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = CHI
+				modifier = foreign_investment
+			}
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = foreign_investment
+			}
+			set_temp_variable = { treasury_change = 20 }
+			modify_treasury_effect = yes
+			326 = {
+				add_resource = { type = oil amount = 3 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_oil_revenue_management
+		icon = focus_generic_treasury
+		x = 0
+		y = 2
+		relative_position_id = CHA_doba_basin_expansion
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = {
+			focus = CHA_cameroon_pipeline_upgrade
+			focus = CHA_chinese_oil_investment
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_oil_revenue_management"
+			swap_ideas = {
+				remove_idea = CHA_oil_boom
+				add_idea = CHA_managed_oil_economy
+			}
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	# Agricultural Diversification Path
+	focus = {
+		id = CHA_agricultural_diversification
+		icon = focus_generic_agriculture
+		x = 1
+		y = 1
+		relative_position_id = CHA_economic_development
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_economic_development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_agricultural_diversification"
+			one_random_agriculture_district = yes
+			add_stability = 0.02
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_cotton_development
+		icon = focus_generic_cotton
+		x = 0
+		y = 1
+		relative_position_id = CHA_agricultural_diversification
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_agricultural_diversification }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_cotton_development"
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+			one_random_agriculture_district = yes
+			add_ideas = CHA_cotton_exports
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_gum_arabic_exports
+		icon = focus_generic_forest_industry
+		x = -1
+		y = 1
+		relative_position_id = CHA_cotton_development
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_cotton_development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_gum_arabic_exports"
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+			add_stability = 0.02
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_lake_chad_irrigation
+		icon = focus_generic_water_management
+		x = 1
+		y = 1
+		relative_position_id = CHA_cotton_development
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_cotton_development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_lake_chad_irrigation"
+			set_temp_variable = { treasury_change = -12 }
+			modify_treasury_effect = yes
+			328 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			one_random_agriculture_district = yes
+			add_ideas = CHA_improved_irrigation
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_food_security
+		icon = focus_generic_food_security
+		x = 0
+		y = 1
+		relative_position_id = CHA_gum_arabic_exports
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_gum_arabic_exports }
+		prerequisite = { focus = CHA_lake_chad_irrigation }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_food_security"
+			add_stability = 0.05
+			add_ideas = CHA_food_security_program
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	# Infrastructure
+	focus = {
+		id = CHA_road_network
+		icon = focus_generic_road_network
+		x = -3
+		y = 3
+		relative_position_id = CHA_economic_development
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = {
+			focus = CHA_oil_economy
+			focus = CHA_agricultural_diversification
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_road_network"
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+			two_random_infrastructure = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_ndjamena_modernization
+		icon = focus_generic_city_development
+		x = 0
+		y = 1
+		relative_position_id = CHA_road_network
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_road_network }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_ndjamena_modernization"
+			set_temp_variable = { treasury_change = -15 }
+			modify_treasury_effect = yes
+			capital_scope = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_electricity_grid
+		icon = focus_generic_electricity
+		x = 0
+		y = 1
+		relative_position_id = CHA_ndjamena_modernization
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_ndjamena_modernization }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_electricity_grid"
+			set_temp_variable = { treasury_change = -20 }
+			modify_treasury_effect = yes
+			capital_scope = {
+				add_building_construction = {
+					type = fossil_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	#####################################
+	# MILITARY BRANCH (x=0)
+	#####################################
+	focus = {
+		id = CHA_armed_forces
+		icon = Generic_African_Soldier
+		x = 0
+		y = 1
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_new_millennium }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_armed_forces"
+			army_experience = 25
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# Army Modernization
+	focus = {
+		id = CHA_army_modernization
+		icon = focus_generic_modern_army
+		x = -1
+		y = 1
+		relative_position_id = CHA_armed_forces
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_armed_forces }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_army_modernization"
+			army_experience = 15
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_french_military_training
+		icon = focus_generic_foreign_training
+		x = 0
+		y = 1
+		relative_position_id = CHA_army_modernization
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_army_modernization }
+
+		available = {
+			NOT = { has_war_with = FRA }
+			FRA = { has_opinion = { target = CHA value > -20 } }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_french_military_training"
+			army_experience = 25
+			add_ideas = CHA_french_trained_army
+			add_opinion_modifier = {
+				target = FRA
+				modifier = military_cooperation
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_desert_warfare_doctrine
+		icon = desert_warfare
+		x = -1
+		y = 1
+		relative_position_id = CHA_french_military_training
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_french_military_training }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_desert_warfare_doctrine"
+			add_ideas = CHA_desert_warriors
+			add_doctrine_cost_reduction = {
+				name = CHA_desert_warfare_doctrine
+				cost_reduction = 0.5
+				uses = 2
+				category = land_doctrine
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_motorized_forces
+		icon = focus_generic_mechanized
+		x = 1
+		y = 1
+		relative_position_id = CHA_french_military_training
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_french_military_training }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_motorized_forces"
+			set_temp_variable = { treasury_change = -8 }
+			modify_treasury_effect = yes
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 200
+				producer = FRA
+			}
+			add_tech_bonus = {
+				name = CHA_motorized_forces
+				bonus = 1.0
+				uses = 1
+				category = motorized_equipment
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_republican_guard
+		icon = focus_generic_elite_guard
+		x = 0
+		y = 1
+		relative_position_id = CHA_desert_warfare_doctrine
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_desert_warfare_doctrine }
+		prerequisite = { focus = CHA_motorized_forces }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_republican_guard"
+			add_ideas = CHA_presidential_guard
+			division_template = {
+				name = "Garde Républicaine"
+				regiments = {
+					elite_infantry = { x = 0 y = 0 }
+					elite_infantry = { x = 0 y = 1 }
+					elite_infantry = { x = 0 y = 2 }
+					elite_infantry = { x = 1 y = 0 }
+					elite_infantry = { x = 1 y = 1 }
+					elite_infantry = { x = 1 y = 2 }
+				}
+				support = {
+					artillery_support = { x = 0 y = 0 }
+					anti_tank_support = { x = 0 y = 1 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Garde Républicaine\" division_template = \"Garde Républicaine\" start_experience_factor = 0.5"
+					owner = CHA
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				has_global_flag = CHA_second_civil_war
+			}
+		}
+	}
+
+	# Air Force
+	focus = {
+		id = CHA_air_force_development
+		icon = focus_generic_air_force
+		x = 1
+		y = 1
+		relative_position_id = CHA_armed_forces
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_armed_forces }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_air_force_development"
+			air_experience = 25
+			capital_scope = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_helicopter_fleet
+		icon = focus_generic_helicopter
+		x = 0
+		y = 1
+		relative_position_id = CHA_air_force_development
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_air_force_development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_helicopter_fleet"
+			set_temp_variable = { treasury_change = -12 }
+			modify_treasury_effect = yes
+			add_equipment_to_stockpile = {
+				type = transport_plane_equipment
+				amount = 20
+				producer = FRA
+			}
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_fighter_acquisition
+		icon = focus_generic_fighter_jets
+		x = 0
+		y = 1
+		relative_position_id = CHA_helicopter_fleet
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_helicopter_fleet }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_fighter_acquisition"
+			set_temp_variable = { treasury_change = -20 }
+			modify_treasury_effect = yes
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 12
+				producer = FRA
+			}
+			air_experience = 15
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	# Counter-Terrorism
+	focus = {
+		id = CHA_counter_terrorism
+		icon = focus_generic_counter_terrorism
+		x = 3
+		y = 2
+		relative_position_id = CHA_armed_forces
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_army_modernization }
+
+		available = {
+			date > 2009.1.1
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_counter_terrorism"
+			add_ideas = CHA_counter_terrorism_training
+			army_experience = 15
+		}
+
+		ai_will_do = {
+			factor = 8
+			modifier = {
+				factor = 2
+				date > 2014.1.1
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_anti_boko_haram_operations
+		icon = focus_generic_special_forces
+		x = 0
+		y = 1
+		relative_position_id = CHA_counter_terrorism
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_counter_terrorism }
+
+		available = {
+			date > 2014.1.1
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_anti_boko_haram_operations"
+			add_war_support = 0.10
+			add_stability = 0.03
+			add_opinion_modifier = {
+				target = NIG
+				modifier = military_cooperation
+			}
+			reverse_add_opinion_modifier = {
+				target = NIG
+				modifier = military_cooperation
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_sahel_coalition
+		icon = focus_generic_military_alliance
+		x = 0
+		y = 1
+		relative_position_id = CHA_anti_boko_haram_operations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_anti_boko_haram_operations }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sahel_coalition"
+			add_ideas = CHA_sahel_force_member
+			add_opinion_modifier = { target = NGR modifier = military_cooperation }
+			add_opinion_modifier = { target = MAL modifier = military_cooperation }
+			add_opinion_modifier = { target = MAU modifier = military_cooperation }
+			add_opinion_modifier = { target = BFA modifier = military_cooperation }
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	#####################################
+	# DIPLOMACY BRANCH (x=4)
+	#####################################
+	focus = {
+		id = CHA_foreign_relations
+		icon = focus_generic_africa_diplomacy
+		x = 4
+		y = 1
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_new_millennium }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_foreign_relations"
+			add_political_power = 50
+			add_stability = 0.02
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# French Relations
+	focus = {
+		id = CHA_french_partnership
+		icon = focus_generic_france_relations
+		x = -2
+		y = 1
+		relative_position_id = CHA_foreign_relations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_foreign_relations }
+
+		available = {
+			NOT = { has_war_with = FRA }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_french_partnership"
+			add_opinion_modifier = {
+				target = FRA
+				modifier = foreign_alliance
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = foreign_alliance
+			}
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_operation_epervier
+		icon = focus_generic_foreign_military_base
+		x = 0
+		y = 1
+		relative_position_id = CHA_french_partnership
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_french_partnership }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_operation_epervier"
+			add_ideas = CHA_french_military_presence
+			add_opinion_modifier = {
+				target = FRA
+				modifier = military_access_agreement
+			}
+			FRA = {
+				give_military_access = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_francophonie_leadership
+		icon = focus_generic_diplomatic_influence
+		x = 0
+		y = 1
+		relative_position_id = CHA_operation_epervier
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_operation_epervier }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_francophonie_leadership"
+			add_political_power = 75
+			add_stability = 0.03
+			every_country = {
+				limit = {
+					has_opinion_modifier = french_speaking
+				}
+				add_opinion_modifier = {
+					target = CHA
+					modifier = francophonie_leader
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	# African Union
+	focus = {
+		id = CHA_african_union_engagement
+		icon = focus_generic_african_union
+		x = 0
+		y = 1
+		relative_position_id = CHA_foreign_relations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_foreign_relations }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_african_union_engagement"
+			add_political_power = 50
+			add_opinion_modifier = {
+				target = ETH
+				modifier = au_cooperation
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_au_peacekeeping
+		icon = focus_generic_peacekeeping
+		x = 0
+		y = 1
+		relative_position_id = CHA_african_union_engagement
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_african_union_engagement }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_au_peacekeeping"
+			army_experience = 20
+			add_war_support = 0.05
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_lake_chad_commission
+		icon = focus_generic_regional_cooperation
+		x = 0
+		y = 1
+		relative_position_id = CHA_au_peacekeeping
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_au_peacekeeping }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_lake_chad_commission"
+			add_opinion_modifier = { target = NIG modifier = regional_cooperation }
+			add_opinion_modifier = { target = NGR modifier = regional_cooperation }
+			add_opinion_modifier = { target = CAM modifier = regional_cooperation }
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	# Great Powers
+	focus = {
+		id = CHA_great_power_relations
+		icon = focus_generic_world_diplomacy
+		x = 2
+		y = 1
+		relative_position_id = CHA_foreign_relations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_foreign_relations }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_great_power_relations"
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_western_alignment
+		icon = focus_generic_western_alliance
+		x = -1
+		y = 1
+		relative_position_id = CHA_great_power_relations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_great_power_relations }
+
+		mutually_exclusive = { focus = CHA_pivot_to_east }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_western_alignment"
+			add_opinion_modifier = {
+				target = USA
+				modifier = western_ally
+			}
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = western_ally
+			}
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = USA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_pivot_to_east
+		icon = focus_generic_eastern_alliance
+		x = 1
+		y = 1
+		relative_position_id = CHA_great_power_relations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_great_power_relations }
+
+		mutually_exclusive = { focus = CHA_western_alignment }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_pivot_to_east"
+			add_opinion_modifier = {
+				target = CHI
+				modifier = eastern_partner
+			}
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = eastern_partner
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = eastern_partner
+			}
+			reverse_add_opinion_modifier = {
+				target = SOV
+				modifier = eastern_partner
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	# Sudan Question
+	focus = {
+		id = CHA_sudan_question
+		icon = focus_generic_sudan_relations
+		x = 4
+		y = 2
+		relative_position_id = CHA_foreign_relations
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_foreign_relations }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sudan_question"
+			set_country_flag = CHA_sudan_tensions_started
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_support_darfur_rebels
+		icon = focus_generic_rebel_support
+		x = -1
+		y = 1
+		relative_position_id = CHA_sudan_question
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_sudan_question }
+
+		mutually_exclusive = { focus = CHA_sudan_normalization }
+
+		available = {
+			NOT = { has_country_flag = CHA_sudan_normalized }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_support_darfur_rebels"
+			set_country_flag = CHA_supports_darfur
+			set_country_flag = CHA_sudan_tensions
+			add_opinion_modifier = {
+				target = SUD
+				modifier = supports_rebels
+			}
+			reverse_add_opinion_modifier = {
+				target = SUD
+				modifier = supports_rebels
+			}
+			# Greatly increases civil war risk
+			add_to_variable = { CHA_civil_war_tension = 30 }
+			# Sudan will support Chadian rebels
+			SUD = {
+				set_country_flag = SUD_supports_chadian_rebels
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_sudan_normalization
+		icon = focus_generic_peace_treaty
+		x = 1
+		y = 1
+		relative_position_id = CHA_sudan_question
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sudan_question }
+
+		mutually_exclusive = { focus = CHA_support_darfur_rebels }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sudan_normalization"
+			set_country_flag = CHA_sudan_normalized
+			clr_country_flag = CHA_sudan_tensions
+			CHA_normalize_sudan_relations = yes
+			# Reduces civil war tension
+			subtract_from_variable = { CHA_civil_war_tension = 20 }
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_arm_jem_forces
+		icon = focus_generic_arm_rebels
+		x = 0
+		y = 1
+		relative_position_id = CHA_support_darfur_rebels
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_support_darfur_rebels }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_arm_jem_forces"
+			add_war_support = 0.05
+			add_opinion_modifier = {
+				target = SUD
+				modifier = arms_rebels
+			}
+			# Escalates proxy war
+			CHA_escalate_sudan_proxy_war = yes
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_joint_border_patrol
+		icon = focus_generic_border_cooperation
+		x = 0
+		y = 1
+		relative_position_id = CHA_sudan_normalization
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_sudan_normalization }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_joint_border_patrol"
+			add_opinion_modifier = {
+				target = SUD
+				modifier = border_cooperation
+			}
+			reverse_add_opinion_modifier = {
+				target = SUD
+				modifier = border_cooperation
+			}
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# CIVIL WAR BRANCH (x=8)
+	#####################################
+	focus = {
+		id = CHA_internal_stability
+		icon = focus_generic_internal_affairs
+		x = 8
+		y = 1
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_new_millennium }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_internal_stability"
+			add_stability = 0.05
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# Conflict Prevention Path
+	focus = {
+		id = CHA_address_ethnic_grievances
+		icon = focus_generic_ethnic_reconciliation
+		x = -1
+		y = 1
+		relative_position_id = CHA_internal_stability
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_internal_stability }
+
+		available = {
+			NOT = { has_global_flag = CHA_second_civil_war }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_address_ethnic_grievances"
+			set_country_flag = CHA_addressed_grievances
+			add_stability = 0.05
+			subtract_from_variable = { CHA_civil_war_tension = 15 }
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_inclusive_government
+		icon = focus_generic_power_sharing
+		x = 0
+		y = 1
+		relative_position_id = CHA_address_ethnic_grievances
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_address_ethnic_grievances }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_inclusive_government"
+			add_ideas = CHA_broad_coalition
+			add_stability = 0.05
+			subtract_from_variable = { CHA_civil_war_tension = 10 }
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_amnesty_program
+		icon = focus_generic_amnesty
+		x = 0
+		y = 1
+		relative_position_id = CHA_inclusive_government
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_inclusive_government }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_amnesty_program"
+			add_stability = 0.03
+			add_political_power = -50
+			# Can prevent or help end civil war
+			if = {
+				limit = { NOT = { has_global_flag = CHA_second_civil_war } }
+				set_country_flag = CHA_civil_war_prevented
+			}
+			else = {
+				country_event = { id = chad.191 days = 30 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	# Civil War Management Path
+	focus = {
+		id = CHA_prepare_for_conflict
+		icon = focus_generic_prepare_for_war
+		x = 1
+		y = 1
+		relative_position_id = CHA_internal_stability
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_internal_stability }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_prepare_for_conflict"
+			add_war_support = 0.10
+			army_experience = 15
+		}
+
+		ai_will_do = {
+			factor = 8
+			modifier = {
+				factor = 2
+				check_variable = { CHA_civil_war_tension > 50 }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_crush_the_fuc
+		icon = focus_generic_military_offensive
+		x = 0
+		y = 1
+		relative_position_id = CHA_prepare_for_conflict
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_prepare_for_conflict }
+
+		available = {
+			has_global_flag = CHA_second_civil_war
+			OR = {
+				has_war_with = FUC
+				has_war_with = UFD
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_crush_the_fuc"
+			add_war_support = 0.10
+			army_experience = 25
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				factor = 0
+				NOT = { has_global_flag = CHA_second_civil_war }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_defend_ndjamena
+		icon = focus_generic_defend_capital
+		x = 0
+		y = 1
+		relative_position_id = CHA_crush_the_fuc
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_crush_the_fuc }
+
+		available = {
+			has_global_flag = CHA_second_civil_war
+			controls_state = 328
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_defend_ndjamena"
+			add_ideas = CHA_battle_for_ndjamena
+			328 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = 2081
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	focus = {
+		id = CHA_request_french_support
+		icon = focus_generic_foreign_intervention
+		x = -1
+		y = 1
+		relative_position_id = CHA_defend_ndjamena
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_defend_ndjamena }
+
+		available = {
+			has_global_flag = CHA_second_civil_war
+			NOT = { has_country_flag = CHA_french_intervened }
+			NOT = { has_war_with = FRA }
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_request_french_support"
+			CHA_french_intervention = yes
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	focus = {
+		id = CHA_minurcat_deployment
+		icon = focus_generic_un_peacekeeping
+		x = 1
+		y = 1
+		relative_position_id = CHA_defend_ndjamena
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_defend_ndjamena }
+
+		available = {
+			date > 2007.9.1
+			has_global_flag = CHA_second_civil_war
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_minurcat_deployment"
+			CHA_deploy_minurcat = yes
+		}
+
+		ai_will_do = {
+			factor = 50
+		}
+	}
+
+	focus = {
+		id = CHA_reconciliation_process
+		icon = focus_generic_peace_negotiations
+		x = 0
+		y = 1
+		relative_position_id = CHA_request_french_support
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_request_french_support }
+		prerequisite = { focus = CHA_minurcat_deployment }
+
+		available = {
+			date > 2009.1.1
+			has_global_flag = CHA_second_civil_war
+			OR = {
+				has_country_flag = CHA_french_intervened
+				has_country_flag = CHA_minurcat_deployed
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_reconciliation_process"
+			country_event = { id = chad.195 days = 30 }
+		}
+
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	# Tibesti Question
+	focus = {
+		id = CHA_tibesti_question
+		icon = focus_generic_regional_autonomy
+		x = 3
+		y = 2
+		relative_position_id = CHA_internal_stability
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_internal_stability }
+
+		available = {
+			owns_state = 327
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tibesti_question"
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_tibesti_autonomy
+		icon = focus_generic_autonomy_grant
+		x = -1
+		y = 1
+		relative_position_id = CHA_tibesti_question
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tibesti_question }
+
+		mutually_exclusive = { focus = CHA_suppress_tibesti }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tibesti_autonomy"
+			set_country_flag = CHA_granted_tibesti_autonomy
+			add_stability = 0.03
+			add_political_power = -25
+			327 = {
+				add_compliance = 20
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_suppress_tibesti
+		icon = focus_generic_military_crackdown
+		x = 1
+		y = 1
+		relative_position_id = CHA_tibesti_question
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_tibesti_question }
+
+		mutually_exclusive = { focus = CHA_tibesti_autonomy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_suppress_tibesti"
+			add_war_support = 0.05
+			add_stability = -0.03
+			327 = {
+				add_resistance = 10
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_integrate_toubou
+		icon = focus_generic_ethnic_integration
+		x = 0
+		y = 1
+		relative_position_id = CHA_tibesti_autonomy
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = CHA_tibesti_autonomy
+			focus = CHA_suppress_tibesti
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_integrate_toubou"
+			add_stability = 0.05
+			327 = {
+				add_compliance = 15
+			}
+			# Recruit Toubou general
+			create_corps_commander = {
+				name = "Goukouni Guet"
+				skill = 2
+				attack_skill = 2
+				defense_skill = 2
+				planning_skill = 1
+				logistics_skill = 2
+				traits = { desert_fox }
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+}
