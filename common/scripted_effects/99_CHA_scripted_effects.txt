@@ -1,0 +1,320 @@
+# Chad Second Civil War Scripted Effects
+
+# Spawns the FUC (United Front for Democratic Change) rebel faction
+CHA_spawn_fuc_rebels = {
+	log = "[GetDateText]: [Root.GetName]: Spawning FUC rebels"
+
+	# Set global war flag
+	set_global_flag = CHA_second_civil_war
+	set_country_flag = CHA_fuc_rebellion_active
+
+	# Create FUC rebel state
+	FUC = {
+		# Set starting variables
+		set_variable = { gdp_per_capita = 0.908 }
+		set_cosmetic_tag = FUC
+		set_country_flag = dynamic_flag
+		set_country_flag = dynamic_rebel_flag
+
+		# Transfer eastern border region (Kanem)
+		transfer_state = 327
+
+		# Add cores
+		add_state_core = 327
+		add_state_core = 328
+		add_state_core = 326
+
+		# Declare war on Chad
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+
+		# Create rebel divisions
+		division_template = {
+			name = "FUC Quwwat Mutamarrida"
+			regiments = {
+				Militia_Bat = { x = 0 y = 0 }
+				Militia_Bat = { x = 0 y = 1 }
+				Militia_Bat = { x = 1 y = 0 }
+				Militia_Bat = { x = 1 y = 1 }
+			}
+		}
+
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1st FUC Brigade\" division_template = \"FUC Quwwat Mutamarrida\" start_experience_factor = 0.3"
+				owner = FUC
+				count = 3
+			}
+		}
+
+		# Add war-related ideas
+		add_ideas = CHA_rebel_momentum
+	}
+
+	# Chad gets defensive ideas
+	add_ideas = CHA_second_civil_war
+}
+
+# Spawns the UFDD (Union of Forces for Democracy and Development) rebel faction
+CHA_spawn_ufdd_rebels = {
+	log = "[GetDateText]: [Root.GetName]: Spawning UFDD rebels"
+
+	# Set flags
+	set_country_flag = CHA_ufdd_rebellion_active
+	clr_country_flag = CHA_fuc_rebellion_active
+
+	# Remove FUC if they exist
+	if = {
+		limit = { country_exists = FUC }
+		FUC = {
+			every_owned_state = {
+				CHA = { transfer_state = PREV }
+			}
+		}
+	}
+
+	# Create UFDD rebel state
+	UFD = {
+		set_variable = { gdp_per_capita = 0.908 }
+		set_cosmetic_tag = UFD
+		set_country_flag = dynamic_flag
+		set_country_flag = dynamic_rebel_flag
+
+		# Transfer territory
+		transfer_state = 327
+
+		# Add cores
+		add_state_core = 327
+		add_state_core = 328
+		add_state_core = 326
+		add_state_core = 580
+
+		# Declare war on Chad
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+
+		# Create rebel divisions
+		division_template = {
+			name = "UFDD Quwwat Mutamarrida"
+			regiments = {
+				Militia_Bat = { x = 0 y = 0 }
+				Militia_Bat = { x = 0 y = 1 }
+				Militia_Bat = { x = 1 y = 0 }
+				Militia_Bat = { x = 1 y = 1 }
+			}
+		}
+
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1st UFDD Brigade\" division_template = \"UFDD Quwwat Mutamarrida\" start_experience_factor = 0.3"
+				owner = UFD
+				count = 3
+			}
+		}
+
+		add_ideas = CHA_rebel_momentum
+	}
+}
+
+# End the Second Chadian Civil War
+CHA_end_civil_war = {
+	log = "[GetDateText]: [Root.GetName]: Ending Second Chadian Civil War"
+
+	# Remove war flags
+	clr_global_flag = CHA_second_civil_war
+	clr_country_flag = CHA_fuc_rebellion_active
+	clr_country_flag = CHA_ufdd_rebellion_active
+	set_country_flag = CHA_civil_war_ended
+
+	# Remove civil war idea
+	remove_ideas = CHA_second_civil_war
+
+	# Add post-war recovery idea
+	add_ideas = CHA_post_war_recovery
+
+	# Increase stability
+	add_stability = 0.10
+	add_war_support = -0.10
+}
+
+# French military intervention effect
+CHA_french_intervention = {
+	log = "[GetDateText]: [Root.GetName]: France intervenes in Chad"
+
+	set_country_flag = CHA_french_intervened
+
+	# Add French support ideas
+	add_ideas = CHA_french_air_support
+
+	# France sends equipment
+	FRA = {
+		send_equipment = {
+			target = CHA
+			type = infantry_equipment
+			amount = 2000
+		}
+	}
+
+	# News event
+	news_event = { id = chad.1001 }
+}
+
+# MINURCAT deployment effect
+CHA_deploy_minurcat = {
+	log = "[GetDateText]: [Root.GetName]: MINURCAT deployed"
+
+	set_country_flag = CHA_minurcat_deployed
+
+	add_ideas = CHA_minurcat_presence
+
+	# Stability boost
+	add_stability = 0.05
+}
+
+# EUFOR deployment effect
+CHA_deploy_eufor = {
+	log = "[GetDateText]: [Root.GetName]: EUFOR deployed"
+
+	set_country_flag = CHA_eufor_deployed
+
+	add_ideas = CHA_eufor_presence
+
+	# Military support
+	add_equipment_to_stockpile = {
+		type = infantry_equipment
+		amount = 1000
+		producer = FRA
+	}
+}
+
+# Update civil war tension variable
+CHA_update_tension = {
+	if = {
+		limit = {
+			has_country_flag = CHA_sudan_tensions
+		}
+		add_to_variable = { CHA_civil_war_tension = 5 }
+	}
+	if = {
+		limit = {
+			has_country_flag = CHA_supports_darfur
+		}
+		add_to_variable = { CHA_civil_war_tension = 10 }
+	}
+	if = {
+		limit = {
+			has_country_flag = CHA_term_limits_removed
+		}
+		add_to_variable = { CHA_civil_war_tension = 15 }
+	}
+	clamp_variable = {
+		var = CHA_civil_war_tension
+		min = 0
+		max = 100
+	}
+}
+
+# Chad-Sudan proxy war escalation
+CHA_escalate_sudan_proxy_war = {
+	log = "[GetDateText]: [Root.GetName]: Chad-Sudan proxy war escalates"
+
+	add_opinion_modifier = {
+		target = SUD
+		modifier = proxy_war_enemy
+	}
+	reverse_add_opinion_modifier = {
+		target = SUD
+		modifier = proxy_war_enemy
+	}
+
+	# Sudan supports Chadian rebels
+	SUD = {
+		set_country_flag = SUD_supports_chadian_rebels
+		# Inform Sudan of Chad's support for Darfur rebels
+		country_event = { id = Sudan.51 days = 7 random_days = 14 }
+	}
+
+	# Chad supports Darfur rebels
+	set_country_flag = CHA_supports_darfur
+
+	CHA_update_tension = yes
+}
+
+# Notify Sudan of Chad's Darfur support
+CHA_notify_sudan_darfur_support = {
+	log = "[GetDateText]: [Root.GetName]: Notifying Sudan of Darfur support"
+
+	SUD = {
+		country_event = { id = Sudan.50 days = 3 random_days = 7 }
+	}
+}
+
+# Notify Sudan of Chad civil war
+CHA_notify_sudan_civil_war = {
+	log = "[GetDateText]: [Root.GetName]: Notifying Sudan of Chad civil war"
+
+	SUD = {
+		country_event = { id = Sudan.53 days = 1 random_days = 3 }
+	}
+}
+
+# Chad-Sudan normalization
+CHA_normalize_sudan_relations = {
+	log = "[GetDateText]: [Root.GetName]: Chad-Sudan relations normalized"
+
+	clr_country_flag = CHA_supports_darfur
+	clr_country_flag = CHA_sudan_tensions
+	set_country_flag = CHA_normalized_sudan_relations
+
+	remove_opinion_modifier = {
+		target = SUD
+		modifier = proxy_war_enemy
+	}
+	SUD = {
+		remove_opinion_modifier = {
+			target = CHA
+			modifier = proxy_war_enemy
+		}
+		clr_country_flag = SUD_supports_chadian_rebels
+		# Send normalization event to Sudan
+		country_event = { id = Sudan.52 days = 3 }
+	}
+
+	add_opinion_modifier = {
+		target = SUD
+		modifier = improving_relations
+	}
+	reverse_add_opinion_modifier = {
+		target = SUD
+		modifier = improving_relations
+	}
+}
+
+# Déby succession event (2021)
+CHA_deby_succession = {
+	log = "[GetDateText]: [Root.GetName]: Déby succession triggered"
+
+	# Remove old leader
+	retire_country_leader = yes
+
+	# Add Mahamat Déby as new leader
+	create_country_leader = {
+		name = "Mahamat Idriss Déby"
+		picture = "mahamat_deby.dds"
+		ideology = Neutral_Autocracy
+		traits = {
+			neutrality_Neutral_Autocracy
+		}
+	}
+
+	# Add transitional government idea
+	add_ideas = CHA_transitional_military_council
+
+	# Political instability
+	add_stability = -0.15
+	add_political_power = -100
+}
