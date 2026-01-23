@@ -15,7 +15,7 @@ guiTypes = {
 			shortcut = "shift+m"
 		}
 	}
-
+	#Hide Missile View
 	containerWindowType = {
 		name = "MD_countrymissilesview"
 		position = { x=-606 y=78 }
@@ -181,7 +181,7 @@ guiTypes = {
 			pdx_tooltip = "CLOSE"
 		}
 	}
-
+	#Missile Production
 	containerWindowType = {
 		name = "MD_countrymissilesview_production"
 		position = { x = 0 y = 87 }
@@ -1236,7 +1236,7 @@ guiTypes = {
 			}
 		}
 	}
-
+	#Production Windows
 	containerWindowType = {
 		name = "MD_missile_production_type_window"
 		position = { x=-356 y=78}
@@ -4517,11 +4517,58 @@ guiTypes = {
 	#Counter-Terror System
 	containerWindowType = {
 		name = "MD_CT_system_window"
-		position = { x=546 y=90 }
-		size = { width=1300 height=995 } #size = { width=1300 height=870 } ### size = { width=550 height=100%% } #87%%
-		moveable = yes
-		show_sound = menu_open_window
+		position = { x=-606 y=78 }
+		show_position = { x=-6 y =78 }
+		show_animation_type = decelerated
+		hide_animation_type = accelerated
+		animation_time = 1
+		size = { width=550 height=850 }
 
+		containerWindowType = {
+			name = "un_main_gui_ledger_menu"
+			position = { x = 7 y = 55 }
+			size = { width = 75 height = 50 }
+			clipping = no
+
+			iconType = {
+				name ="trade_divider"
+				spriteType = "GFX_divider"
+				position = { x= 2 y = -8 }
+				Orientation = "UPPER_LEFT"
+			}
+			#TODO: All these need renames to work
+			buttonType = {
+				name = "domestic_terror_btn"
+				position = { x = 5 y = -40 }
+				quadTextureSprite ="GFX_missiles_gui_ledger_btn"
+				pdx_tooltip = "IS_domestic_terror_prevention_text"
+				pdx_tooltip_delayed = "IS_domestic_terror_prevention_text_tt"
+				clicksound = click_checkbox
+			}
+
+			iconType = {
+				name ="icon_ct_btn_1"
+				spriteType = "GFX_ledger_icon_small_production"
+				position = { x = 36 y = -28 }
+				alwaystransparent = yes
+			}
+
+			buttonType = {
+				name = "international_terror_hunt_btn"
+				position = { x = 87 y = -40 }
+				quadTextureSprite ="GFX_missiles_gui_ledger_btn"
+				pdx_tooltip = "IS_international_terror_hunt_text"
+				pdx_tooltip_delayed = "IS_international_terror_hunt_text_tt"
+				clicksound = click_checkbox
+			}
+
+			iconType = {
+				name ="icon_ct_btn_3"
+				spriteType = "GFX_ledger_icon_small_production"
+				position = { x = 112 y = -28 }
+				alwaystransparent = yes
+			}
+		}
 	}
 
 	#PMC System
