@@ -1697,6 +1697,19 @@ CHA_tribal_politics_category = {
 
 		ai_will_do = {
 			factor = 10
+			modifier = {
+				factor = 2
+				OR = {
+					check_variable = { CHA_zaghawa_loyalty < 40 }
+					check_variable = { CHA_arab_loyalty < 40 }
+					check_variable = { CHA_sara_loyalty < 40 }
+					check_variable = { CHA_toubou_loyalty < 40 }
+				}
+			}
+			modifier = {
+				factor = 0
+				has_war = yes
+			}
 		}
 	}
 
@@ -1735,8 +1748,20 @@ CHA_tribal_politics_category = {
 		ai_will_do = {
 			factor = 5
 			modifier = {
+				factor = 3
+				check_variable = { CHA_zaghawa_loyalty < 30 }
+			}
+			modifier = {
 				factor = 2
 				check_variable = { CHA_zaghawa_loyalty < 40 }
+			}
+			modifier = {
+				factor = 1.5
+				has_country_flag = CHA_authoritarian_path
+			}
+			modifier = {
+				factor = 0.5
+				check_variable = { CHA_zaghawa_loyalty > 70 }
 			}
 		}
 	}
@@ -1776,8 +1801,20 @@ CHA_tribal_politics_category = {
 		ai_will_do = {
 			factor = 5
 			modifier = {
+				factor = 3
+				check_variable = { CHA_arab_loyalty < 30 }
+			}
+			modifier = {
 				factor = 2
 				check_variable = { CHA_arab_loyalty < 40 }
+			}
+			modifier = {
+				factor = 1.5
+				has_country_flag = CHA_islamist_path
+			}
+			modifier = {
+				factor = 0.5
+				check_variable = { CHA_arab_loyalty > 70 }
 			}
 		}
 	}
@@ -1817,8 +1854,20 @@ CHA_tribal_politics_category = {
 		ai_will_do = {
 			factor = 5
 			modifier = {
+				factor = 3
+				check_variable = { CHA_sara_loyalty < 30 }
+			}
+			modifier = {
 				factor = 2
 				check_variable = { CHA_sara_loyalty < 40 }
+			}
+			modifier = {
+				factor = 1.5
+				has_country_flag = CHA_democratic_path
+			}
+			modifier = {
+				factor = 0.5
+				check_variable = { CHA_sara_loyalty > 70 }
 			}
 		}
 	}
@@ -1858,8 +1907,20 @@ CHA_tribal_politics_category = {
 		ai_will_do = {
 			factor = 5
 			modifier = {
+				factor = 3
+				check_variable = { CHA_toubou_loyalty < 30 }
+			}
+			modifier = {
 				factor = 2
 				check_variable = { CHA_toubou_loyalty < 40 }
+			}
+			modifier = {
+				factor = 0.5
+				check_variable = { CHA_toubou_loyalty > 70 }
+			}
+			modifier = {
+				factor = 1.3
+				has_war_with = LBA
 			}
 		}
 	}
