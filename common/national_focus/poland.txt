@@ -5516,7 +5516,7 @@ focus_tree = {
 	focus = {
 		id = POL_industrial_policy
 		
-		x = -10
+		x = -14
 		y = 1
 		relative_position_id = POL_economy_initial_idea
 		cost = 2
@@ -5642,7 +5642,7 @@ focus_tree = {
 	
 	focus = {
 		id = POL_invite_siemens
-		
+		icon = align_to_germany
 		x = -2
 		y = 1
 		relative_position_id = POL_high_tech_industry
@@ -5669,7 +5669,7 @@ focus_tree = {
 
 	focus = {
 		id = POL_invite_intel
-		
+		icon = align_to_america
 		x = 0
 		y = 1
 		relative_position_id = POL_high_tech_industry
@@ -5696,7 +5696,7 @@ focus_tree = {
 
 	focus = {
 		id = POL_invite_samsung
-		
+		icon = align_to_south_korea
 		x = 2
 		y = 1
 		relative_position_id = POL_high_tech_industry
@@ -5737,6 +5737,10 @@ focus_tree = {
 		
 		completion_reward = {
 			complete_special_project = sp_microchip_production
+			set_technology = {
+				microchip_production_one = 1
+				popup = no
+			}
 			if = {
 				limit = { has_completed_focus = POL_invite_siemens }
 				set_temp_variable = { treasury_change = -25 }
@@ -5821,6 +5825,25 @@ focus_tree = {
 		}
 	}
 
+	focus = {
+		id = POL_cpk_planning
+		
+		x = 0
+		y = 1
+		relative_position_id = POL_pkp_restructuring
+		cost = 5
+
+		
+		prerequisite = {
+			focus = POL_pkp_restructuring
+		}
+		
+		completion_reward = {
+			# CPK planning start
+		}
+	}
+	
+	
 	focus = {
 		id = POL_road_construction_policy
 		
