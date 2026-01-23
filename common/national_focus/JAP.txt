@@ -13,6 +13,27 @@ focus_tree = {
 	default = no
 	continuous_focus_position = { x = 100 y = 3000 }
 
+	shortcut = {
+		name = JAP_diplomacy
+		target = JAP_diplomacy
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = JAP_domestic_policies
+		target = JAP_trinity_reform
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = JAP_military
+		target = JAP_defensive_foundations
+		scroll_wheel_factor = 0.80
+	}
+	shortcut = {
+		name = JAP_monarchism
+		target = JAP_restore_imperial_household
+		scroll_wheel_factor = 0.80
+	}
+
 	#----------------------------------------------------------------
 	#INTERNAL POLICIES
 	#----------------------------------------------------------------
@@ -8728,13 +8749,11 @@ focus = {
 				limit = { has_idea = defense_industry }
 				set_temp_variable = { temp_opinion = 5 }
 				change_defense_industry_opinion = yes
-				newline = yes
 			}
 			if = {
 				limit = { has_idea = maritime_industry }
 				set_temp_variable = { temp_opinion = 5 }
 				change_maritime_industry_opinion = yes
-				newline = yes
 			}
 		}
 
@@ -9247,7 +9266,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_restore_imperial_household
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_purge_the_kodoha_faction
 
 		x = 64
 		y = 0
@@ -9262,6 +9281,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_restore_imperial_household"
+			add_timed_idea = {
+				idea = JAP_resotring_imperial_household_idea
+				years = 1
+			}
 		}
 
 		ai_will_do = {
@@ -9270,7 +9293,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_reinstate_former_imperial_houses
-		icon = focus_JAP_empower_the_emperor
+		icon = spiritual_mobilization
 
 		x = -1
 		y = 1
@@ -9287,6 +9310,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_reinstate_former_imperial_houses"
+			add_ideas = JAP_monarchist_idea_1
 		}
 
 		ai_will_do = {
@@ -9295,7 +9319,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_male_line_succession_act
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_generic_population_growth
 
 		x = 1
 		y = 1
@@ -9312,6 +9336,24 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_male_line_succession_act"
+			if = {
+				limit = { has_idea = volunteer_women }
+				swap_ideas = {
+					remove_idea = volunteer_women
+					add_idea = no_women_in_military
+				}
+			}
+			else_if = {
+				limit = { has_idea = drafted_women }
+				swap_ideas = {
+					remove_idea = drafted_women
+					add_idea = no_women_in_military
+				}
+			}
+			swap_ideas = {
+				remove_idea = shinto
+				add_idea = shinto2
+			}
 		}
 
 		ai_will_do = {
@@ -9320,7 +9362,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_imperial_rites_restored
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_the_eternal_kingdom
 
 		x = 0
 		y = 2
@@ -9334,10 +9376,15 @@ focus = {
 
 		available = {
 			nationalist_monarchists_are_in_power = yes
+			NOT = { has_idea = JAP_resotring_imperial_household_idea }
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_rites_restored"
+			swap_ideas = {
+				remove_idea = JAP_monarchist_idea_1
+				add_idea = JAP_monarchist_idea_2
+			}
 		}
 
 		ai_will_do = {
@@ -9346,7 +9393,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_recall_privy_council
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_sea_the_showa_restoration
 
 		x = 0
 		y = 3
@@ -9364,6 +9411,32 @@ focus = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_recall_privy_council"
 			set_country_flag = JAP_reinstated_emperor
+			if = {
+				limit = { has_idea = idea_JAP_emperor_akihito }
+				add_country_leader_role = {
+					character = JAP_akihito
+					promote_leader = yes
+					country_leader = {
+						ideology = Monarchist
+					}
+				}
+				hidden_effect = {
+					remove_ideas = idea_JAP_emperor_akihito
+				}
+			}
+			else_if = {
+				limit = { has_idea = idea_JAP_emperor_naruhito }
+				add_country_leader_role = {
+					character = JAP_naruhito
+					promote_leader = yes
+					country_leader = {
+						ideology = Monarchist
+					}
+				}
+				hidden_effect = {
+					remove_ideas = idea_JAP_emperor_naruhito
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -9389,6 +9462,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_reform_commission"
+			#Unlock decisions for bonusses via the decisions
 		}
 
 		ai_will_do = {
@@ -9397,7 +9471,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_imperial_audience
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_empower_the_shogun
 
 		x = -2
 		y = 4
@@ -9415,6 +9489,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_audience"
+			swap_ideas = {
+				remove_idea = JAP_monarchist_idea_2
+				add_idea = JAP_monarchist_idea_3shogun
+			}
 		}
 
 		ai_will_do = {
@@ -9441,6 +9519,10 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_audience"
+			swap_ideas = {
+				remove_idea = JAP_monarchist_idea_2
+				add_idea = JAP_monarchist_idea_3emperor
+			}
 		}
 
 		ai_will_do = {
@@ -9470,6 +9552,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_unified_intelligence_secretariat"
+			#New idea for more intelligence, resistance surpression, sattelite construction speed
 		}
 
 		ai_will_do = {
@@ -9478,7 +9561,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_blue_water_navy
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_SMB_blue_water_fleet
 
 		x = -2
 		y = 6
@@ -9495,10 +9578,42 @@ focus = {
 
 		available = {
 			nationalist_monarchists_are_in_power = yes
+			has_completed_focus = JAP_formalize_national_defense
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_blue_water_navy"
+			if = {
+				limit = { has_doctrine = blue_water }
+				add_mastery = {
+					amount = 20
+					folder = naval
+				}
+			}
+			else = {
+				set_grand_doctrine = blue_water
+			}
+			set_temp_variable = { temp_opinion = 5 }
+			change_maritime_industry_opinion = yes
+			random_owned_state = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+			set_temp_variable = { treasury_change = -34.00 }
+			modify_treasury_effect = yes
+
 		}
 
 		ai_will_do = {
@@ -9528,6 +9643,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_defense_council"
+			#More war leaning monarchist idea
 		}
 
 		ai_will_do = {
@@ -9553,6 +9669,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_rare_earth_resilience"
+			#unlocks decisions (and claims) to improve resources or gain claims on states in Asia with lots of resources
 		}
 
 		ai_will_do = {
@@ -9561,15 +9678,14 @@ focus = {
 	}
 	focus = {
 		id = JAP_national_shipbuilding_plan
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_naval_armaments_program
 
-		x = -1
+		x = -2
 		y = 7
 		relative_position_id = JAP_restore_imperial_household
 
-		cost = 5
+		cost = 15
 
-		prerequisite = { focus = JAP_unified_intelligence_secretariat }
 		prerequisite = { focus = JAP_blue_water_navy }
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -9577,8 +9693,28 @@ focus = {
 			nationalist_monarchists_are_in_power = yes
 		}
 
+		bypass = {
+			has_idea = naval_power_of_the_continent
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_national_shipbuilding_plan"
+			add_ideas = JAP_monarchist_shipbuilding_idea
+			custom_effect_tooltip = JAP_monarchist_shipbuilding_idea_tt
+			set_temp_variable = { temp_opinion = 15 }
+			change_maritime_industry_opinion = yes
+			mio:JAP_mitsubishi_shipbuilding_naval_manufacturer = {
+				add_mio_industrial_manufacturer_assign_cost = -0.25
+			}
+			mio:JAP_kawasaki_shipbuilding_naval_manufacturer = {
+				add_mio_industrial_manufacturer_assign_cost = -0.25
+			}
+			mio:JAP_ihi_corporation_naval_manufacturer = {
+				add_mio_industrial_manufacturer_assign_cost = -0.25
+			}
+			mio:JAP_jmu_corporation_naval_manufacturer = {
+				add_mio_industrial_manufacturer_assign_cost = -0.25
+			}
 		}
 
 		ai_will_do = {
@@ -9595,8 +9731,10 @@ focus = {
 
 		cost = 5
 
-		prerequisite = { focus = JAP_national_shipbuilding_plan }
 		prerequisite = { focus = JAP_rare_earth_resilience }
+		prerequisite = { focus = JAP_unified_intelligence_secretariat }
+		prerequisite = { focus = JAP_blue_water_navy }
+
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -9605,6 +9743,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_war_cabinet"
+			#Combines all monarchist ideas into one. Improved combat capabilities and generals/leaders
 		}
 
 		ai_will_do = {
@@ -9630,6 +9769,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_russian_lost_territories"
+			#Gain decisions to gain claim on the lost territory and send a demand. When at war with Russia, use limited war mechanism
 		}
 
 		ai_will_do = {
@@ -9655,6 +9795,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_reclaim_pacific_rim"
+			#unlocks decisions to claim islands in the pacific to combat China and regain allies or territories
 		}
 
 		ai_will_do = {
@@ -9680,6 +9821,7 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_office_for_colonialism"
+			#Unlocks new occupation law for claimed states to improve compliance and resource gain but penalty on industry and manpower
 		}
 
 		ai_will_do = {
