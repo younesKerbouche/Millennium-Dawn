@@ -1905,4 +1905,436 @@ CHA_tribal_politics_category = {
 			}
 		}
 	}
+
+	# ========== HIGH LOYALTY BONUSES ==========
+
+	CHA_zaghawa_elite_guard = {
+		icon = generic_army_support
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 180
+		days_re_enable = 365
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_zaghawa_loyalty > 75 }
+		}
+
+		available = {
+			NOT = { has_idea = CHA_zaghawa_elite_guard_idea }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_zaghawa_elite_guard"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_zaghawa_elite_guard"
+			add_ideas = CHA_zaghawa_elite_guard_idea
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	CHA_arab_cavalry_auxiliaries = {
+		icon = generic_cavalry
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 180
+		days_re_enable = 365
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_arab_loyalty > 75 }
+		}
+
+		available = {
+			NOT = { has_idea = CHA_arab_cavalry_idea }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_arab_cavalry_auxiliaries"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_arab_cavalry_auxiliaries"
+			add_ideas = CHA_arab_cavalry_idea
+			add_manpower = 5000
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	CHA_sara_agricultural_boom = {
+		icon = generic_industry
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 180
+		days_re_enable = 365
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_sara_loyalty > 75 }
+		}
+
+		available = {
+			NOT = { has_idea = CHA_sara_prosperity_idea }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_sara_agricultural_boom"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_sara_agricultural_boom"
+			add_ideas = CHA_sara_prosperity_idea
+			set_temp_variable = { treasury_change = 5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	CHA_toubou_desert_guides = {
+		icon = generic_desert
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 180
+		days_re_enable = 365
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_toubou_loyalty > 75 }
+		}
+
+		available = {
+			NOT = { has_idea = CHA_toubou_guides_idea }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_toubou_desert_guides"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_toubou_desert_guides"
+			add_ideas = CHA_toubou_guides_idea
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	# ========== LOW LOYALTY PENALTIES ==========
+
+	CHA_address_zaghawa_grievances = {
+		icon = generic_crisis
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_zaghawa_loyalty < 26 }
+		}
+
+		modifier = {
+			stability_factor = -0.10
+			political_power_factor = -0.15
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_address_zaghawa_grievances"
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_address_zaghawa_grievances"
+			add_to_variable = { CHA_zaghawa_loyalty = 20 }
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	CHA_address_arab_grievances = {
+		icon = generic_crisis
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_arab_loyalty < 26 }
+		}
+
+		modifier = {
+			stability_factor = -0.10
+			war_support_factor = -0.10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_address_arab_grievances"
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_address_arab_grievances"
+			add_to_variable = { CHA_arab_loyalty = 20 }
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	CHA_address_sara_grievances = {
+		icon = generic_crisis
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_sara_loyalty < 26 }
+		}
+
+		modifier = {
+			stability_factor = -0.10
+			production_factory_efficiency_gain_factor = -0.10
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_address_sara_grievances"
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_address_sara_grievances"
+			add_to_variable = { CHA_sara_loyalty = 20 }
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	CHA_address_toubou_grievances = {
+		icon = generic_crisis
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_toubou_loyalty < 26 }
+		}
+
+		modifier = {
+			stability_factor = -0.10
+			army_org_factor = -0.05
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_address_toubou_grievances"
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_address_toubou_grievances"
+			add_to_variable = { CHA_toubou_loyalty = 20 }
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	# ========== TRIBAL MILITIA RECRUITMENT ==========
+
+	CHA_recruit_zaghawa_militia = {
+		icon = generic_army_support
+
+		cost = 25
+
+		fire_only_once = no
+		days_remove = 30
+		days_re_enable = 90
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_zaghawa_loyalty > 50 }
+		}
+
+		available = {
+			has_war = yes
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_recruit_zaghawa_militia"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_recruit_zaghawa_militia"
+			add_manpower = 2000
+			army_experience = 5
+			add_to_variable = { CHA_zaghawa_loyalty = -5 }
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 3
+				has_manpower < 10000
+			}
+		}
+	}
+
+	CHA_recruit_arab_militia = {
+		icon = generic_cavalry
+
+		cost = 25
+
+		fire_only_once = no
+		days_remove = 30
+		days_re_enable = 90
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_arab_loyalty > 50 }
+		}
+
+		available = {
+			has_war = yes
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_recruit_arab_militia"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_recruit_arab_militia"
+			add_manpower = 2000
+			army_experience = 5
+			add_to_variable = { CHA_arab_loyalty = -5 }
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 3
+				has_manpower < 10000
+			}
+		}
+	}
+
+	CHA_recruit_sara_militia = {
+		icon = generic_army_support
+
+		cost = 25
+
+		fire_only_once = no
+		days_remove = 30
+		days_re_enable = 90
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_sara_loyalty > 50 }
+		}
+
+		available = {
+			has_war = yes
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_recruit_sara_militia"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_recruit_sara_militia"
+			add_manpower = 3000
+			add_to_variable = { CHA_sara_loyalty = -5 }
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 3
+				has_manpower < 10000
+			}
+		}
+	}
+
+	CHA_recruit_toubou_scouts = {
+		icon = generic_desert
+
+		cost = 25
+
+		fire_only_once = no
+		days_remove = 30
+		days_re_enable = 90
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+			check_variable = { CHA_toubou_loyalty > 50 }
+		}
+
+		available = {
+			has_war = yes
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_recruit_toubou_scouts"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_recruit_toubou_scouts"
+			add_manpower = 1000
+			army_experience = 10
+			add_to_variable = { CHA_toubou_loyalty = -5 }
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 3
+				has_manpower < 10000
+			}
+		}
+	}
 }

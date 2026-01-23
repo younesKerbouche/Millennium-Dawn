@@ -1891,7 +1891,7 @@ focus_tree = {
 	focus = {
 		id = CHA_counter_terrorism
 		icon = generic_counter_insurgency_icon
-		x = 16
+		x = 6
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -1923,7 +1923,7 @@ focus_tree = {
 	focus = {
 		id = CHA_anti_boko_haram_operations
 		icon = generic_counter_insurgency_icon
-		x = 16
+		x = 6
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -1959,7 +1959,7 @@ focus_tree = {
 	focus = {
 		id = CHA_sahel_coalition
 		icon = align_to_african_union
-		x = 16
+		x = 6
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -2894,8 +2894,8 @@ focus_tree = {
 	focus = {
 		id = CHA_defense_industries
 		icon = industry_military
-		x = 18
-		y = 3
+		x = 14
+		y = 2
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
@@ -2919,8 +2919,8 @@ focus_tree = {
 	focus = {
 		id = CHA_ndjamena_armory
 		icon = production
-		x = 18
-		y = 4
+		x = 14
+		y = 3
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
@@ -2958,8 +2958,8 @@ focus_tree = {
 	focus = {
 		id = CHA_resource_development
 		icon = steel_production
-		x = 20
-		y = 5
+		x = 16
+		y = 4
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
@@ -2994,8 +2994,8 @@ focus_tree = {
 	focus = {
 		id = CHA_ammunition_production
 		icon = ammo_depot
-		x = 18
-		y = 5
+		x = 14
+		y = 4
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
@@ -3034,16 +3034,16 @@ focus_tree = {
 	focus = {
 		id = CHA_domestic_arms_production
 		icon = M16
-		x = 18
-		y = 6
+		x = 14
+		y = 5
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
 
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
-		prerequisite = { focus = CHA_resource_development }
 		prerequisite = { focus = CHA_ammunition_production }
+		prerequisite = { focus = CHA_resource_development }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_domestic_arms_production"
@@ -3313,19 +3313,19 @@ focus_tree = {
 		}
 	}
 
-	# Lake Chad Security - new column right of counter-terrorism
+	# Lake Chad Security
 	focus = {
 		id = CHA_lake_chad_patrol
 		icon = coastal_navy
-		x = 20
-		y = 4
+		x = 18
+		y = 3
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
 
 		search_filters = { FOCUS_FILTER_MILITARY }
 
-		prerequisite = { focus = CHA_air_force_development }
+		prerequisite = { focus = CHA_defense_industries }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_lake_chad_patrol"
@@ -3350,8 +3350,8 @@ focus_tree = {
 	focus = {
 		id = CHA_riverine_forces
 		icon = frigates
-		x = 20
-		y = 6
+		x = 18
+		y = 4
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
@@ -3380,8 +3380,8 @@ focus_tree = {
 	focus = {
 		id = CHA_joint_lake_operations
 		icon = naval_doctrine
-		x = 20
-		y = 7
+		x = 18
+		y = 5
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
@@ -3389,7 +3389,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_MILITARY }
 
 		prerequisite = { focus = CHA_riverine_forces }
-		prerequisite = { focus = CHA_anti_boko_haram_operations }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_joint_lake_operations"
@@ -3829,7 +3828,7 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
-		prerequisite = { focus = CHA_anti_corruption_commission }
+		prerequisite = { focus = CHA_constitutional_reform }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_strengthen_judiciary"
@@ -3965,6 +3964,7 @@ focus_tree = {
 			set_variable = { CHA_arab_loyalty = 40 }
 			set_variable = { CHA_sara_loyalty = 50 }
 			set_variable = { CHA_toubou_loyalty = 30 }
+			custom_effect_tooltip = CHA_tribal_balance_init_tt
 		}
 
 		ai_will_do = {
@@ -3991,6 +3991,9 @@ focus_tree = {
 			add_to_variable = { CHA_zaghawa_loyalty = 20 }
 			add_to_variable = { CHA_arab_loyalty = -10 }
 			add_to_variable = { CHA_sara_loyalty = -10 }
+			custom_effect_tooltip = CHA_zaghawa_loyalty_increase_20
+			custom_effect_tooltip = CHA_arab_loyalty_decrease_10
+			custom_effect_tooltip = CHA_sara_loyalty_decrease_10
 		}
 
 		ai_will_do = {
@@ -4013,9 +4016,40 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_zaghawa_militia"
+			custom_effect_tooltip = CHA_zaghawa_loyalty_increase_15
 			add_ideas = CHA_zaghawa_militia
 			add_to_variable = { CHA_zaghawa_loyalty = 15 }
 			army_experience = 15
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_zaghawa_officers
+		icon = focus_generic_military_mission
+		x = 22
+		y = 4
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_zaghawa_militia }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_zaghawa_officers"
+			custom_effect_tooltip = CHA_zaghawa_loyalty_increase_10
+			custom_effect_tooltip = CHA_arab_loyalty_decrease_5
+			custom_effect_tooltip = CHA_sara_loyalty_decrease_5
+			add_to_variable = { CHA_zaghawa_loyalty = 10 }
+			add_to_variable = { CHA_arab_loyalty = -5 }
+			add_to_variable = { CHA_sara_loyalty = -5 }
+			army_experience = 10
+			add_command_power = 25
 		}
 
 		ai_will_do = {
@@ -4038,6 +4072,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_arab_integration"
+			custom_effect_tooltip = CHA_arab_loyalty_increase_20
 			add_political_power = 50
 			add_to_variable = { CHA_arab_loyalty = 20 }
 			add_stability = 0.02
@@ -4063,6 +4098,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_chadian_arab_council"
+			custom_effect_tooltip = CHA_arab_loyalty_increase_15
 			add_ideas = CHA_arab_council
 			add_to_variable = { CHA_arab_loyalty = 15 }
 			add_political_power = 25
@@ -4076,18 +4112,20 @@ focus_tree = {
 	focus = {
 		id = CHA_arab_ministers
 		icon = focus_generic_government
-		x = 26
-		y = 3
+		x = 24
+		y = 4
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
-		prerequisite = { focus = CHA_arab_integration }
+		prerequisite = { focus = CHA_chadian_arab_council }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_arab_ministers"
+			custom_effect_tooltip = CHA_arab_loyalty_increase_10
+			custom_effect_tooltip = CHA_zaghawa_loyalty_decrease_5
 			add_to_variable = { CHA_arab_loyalty = 10 }
 			add_to_variable = { CHA_zaghawa_loyalty = -5 }
 			add_political_power = 50
@@ -4114,6 +4152,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_sara_reconciliation"
+			custom_effect_tooltip = CHA_sara_loyalty_increase_20
 			add_political_power = 50
 			add_to_variable = { CHA_sara_loyalty = 20 }
 			add_stability = 0.03
@@ -4127,7 +4166,7 @@ focus_tree = {
 	focus = {
 		id = CHA_southern_development_focus
 		icon = focus_generic_development
-		x = 28
+		x = 26
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -4139,6 +4178,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_southern_development_focus"
+			custom_effect_tooltip = CHA_sara_loyalty_increase_15
 			add_ideas = CHA_southern_development
 			add_to_variable = { CHA_sara_loyalty = 15 }
 			set_temp_variable = { treasury_change = -10 }
@@ -4160,7 +4200,7 @@ focus_tree = {
 	focus = {
 		id = CHA_sara_in_army
 		icon = focus_generic_military_training
-		x = 28
+		x = 26
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -4168,10 +4208,11 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
 
-		prerequisite = { focus = CHA_sara_reconciliation }
+		prerequisite = { focus = CHA_southern_development_focus }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_sara_in_army"
+			custom_effect_tooltip = CHA_sara_loyalty_increase_10
 			add_to_variable = { CHA_sara_loyalty = 10 }
 			army_experience = 20
 			add_manpower = 5000
@@ -4186,16 +4227,16 @@ focus_tree = {
 		id = CHA_national_unity
 		icon = focus_generic_unity
 		x = 24
-		y = 4
+		y = 5
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
 
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 
-		prerequisite = { focus = CHA_zaghawa_militia }
-		prerequisite = { focus = CHA_chadian_arab_council }
-		prerequisite = { focus = CHA_southern_development_focus }
+		prerequisite = { focus = CHA_zaghawa_officers }
+		prerequisite = { focus = CHA_arab_ministers }
+		prerequisite = { focus = CHA_sara_in_army }
 
 		available = {
 			check_variable = { CHA_zaghawa_loyalty > 50 }
@@ -4665,8 +4706,8 @@ focus_tree = {
 	focus = {
 		id = CHA_joint_boko_haram_ops
 		icon = generic_counter_insurgency_icon
-		x = 48
-		y = 4
+		x = 46
+		y = 3
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
@@ -4739,7 +4780,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 
 		prerequisite = { focus = CHA_pipeline_negotiations }
-		prerequisite = { focus = CHA_niger_partnership }
+		prerequisite = { focus = CHA_uranium_deal }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_trade_corridors"
