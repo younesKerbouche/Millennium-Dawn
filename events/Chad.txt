@@ -2045,3 +2045,835 @@ country_event = {
 		ai_chance = { base = 100 }
 	}
 }
+
+#####################################
+# TRIBAL EVENTS (chad.401-435)
+#####################################
+
+# Zaghawa Demands
+country_event = {
+	id = chad.401
+	title = chad.401.t
+	desc = chad.401.d
+	picture = GFX_generic_tribal
+
+	trigger = {
+		original_tag = CHA
+		has_idea = CHA_tribal_balance
+		check_variable = { CHA_zaghawa_loyalty < 40 }
+	}
+
+	mean_time_to_happen = {
+		days = 180
+	}
+
+	option = {
+		name = chad.401.a
+		log = "[GetDateText]: [This.GetName]: chad.401.a executed"
+		add_political_power = -50
+		add_to_variable = { CHA_zaghawa_loyalty = 15 }
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.401.b
+		log = "[GetDateText]: [This.GetName]: chad.401.b executed"
+		add_stability = -0.03
+		add_to_variable = { CHA_zaghawa_loyalty = -10 }
+		ai_chance = { base = 30 }
+	}
+}
+
+# Arab Tribal Leaders Meet
+country_event = {
+	id = chad.402
+	title = chad.402.t
+	desc = chad.402.d
+	picture = GFX_generic_tribal
+
+	trigger = {
+		original_tag = CHA
+		has_idea = CHA_tribal_balance
+		check_variable = { CHA_arab_loyalty < 40 }
+	}
+
+	mean_time_to_happen = {
+		days = 200
+	}
+
+	option = {
+		name = chad.402.a
+		log = "[GetDateText]: [This.GetName]: chad.402.a executed"
+		add_political_power = -75
+		add_to_variable = { CHA_arab_loyalty = 20 }
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.402.b
+		log = "[GetDateText]: [This.GetName]: chad.402.b executed"
+		add_war_support = 0.03
+		add_to_variable = { CHA_arab_loyalty = -15 }
+		ai_chance = { base = 40 }
+	}
+}
+
+# Sara Community Grievances
+country_event = {
+	id = chad.403
+	title = chad.403.t
+	desc = chad.403.d
+	picture = GFX_generic_tribal
+
+	trigger = {
+		original_tag = CHA
+		has_idea = CHA_tribal_balance
+		check_variable = { CHA_sara_loyalty < 40 }
+	}
+
+	mean_time_to_happen = {
+		days = 220
+	}
+
+	option = {
+		name = chad.403.a
+		log = "[GetDateText]: [This.GetName]: chad.403.a executed"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_sara_loyalty = 15 }
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.403.b
+		log = "[GetDateText]: [This.GetName]: chad.403.b executed"
+		add_stability = -0.05
+		add_to_variable = { CHA_sara_loyalty = -10 }
+		ai_chance = { base = 40 }
+	}
+}
+
+# Toubou Border Incident
+country_event = {
+	id = chad.404
+	title = chad.404.t
+	desc = chad.404.d
+	picture = GFX_generic_tribal
+
+	trigger = {
+		original_tag = CHA
+		has_idea = CHA_tribal_balance
+		check_variable = { CHA_toubou_loyalty < 30 }
+	}
+
+	mean_time_to_happen = {
+		days = 300
+	}
+
+	option = {
+		name = chad.404.a
+		log = "[GetDateText]: [This.GetName]: chad.404.a executed"
+		add_political_power = -50
+		add_to_variable = { CHA_toubou_loyalty = 10 }
+		ai_chance = { base = 50 }
+	}
+
+	option = {
+		name = chad.404.b
+		log = "[GetDateText]: [This.GetName]: chad.404.b executed"
+		army_experience = 10
+		add_to_variable = { CHA_toubou_loyalty = -15 }
+		add_stability = -0.02
+		ai_chance = { base = 50 }
+	}
+}
+
+# Tribal Congress Success
+country_event = {
+	id = chad.410
+	title = chad.410.t
+	desc = chad.410.d
+	picture = GFX_generic_tribal
+
+	trigger = {
+		original_tag = CHA
+		has_idea = CHA_tribal_balance
+		check_variable = { CHA_zaghawa_loyalty > 60 }
+		check_variable = { CHA_arab_loyalty > 60 }
+		check_variable = { CHA_sara_loyalty > 60 }
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	option = {
+		name = chad.410.a
+		log = "[GetDateText]: [This.GetName]: chad.410.a executed"
+		add_stability = 0.05
+		add_political_power = 75
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# CLIMATE EVENTS (chad.601-607)
+#####################################
+
+# Sahel Drought
+country_event = {
+	id = chad.601
+	title = chad.601.t
+	desc = chad.601.d
+	picture = GFX_generic_drought
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_recent_drought }
+	}
+
+	mean_time_to_happen = {
+		days = 1825
+		modifier = {
+			factor = 0.5
+			date > 2010.1.1
+		}
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_recent_drought days = 730 }
+	}
+
+	option = {
+		name = chad.601.a
+		log = "[GetDateText]: [This.GetName]: chad.601.a executed"
+		add_stability = -0.05
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		ai_chance = { base = 100 }
+	}
+}
+
+# Lake Chad Continues to Shrink
+country_event = {
+	id = chad.602
+	title = chad.602.t
+	desc = chad.602.d
+	picture = GFX_generic_lake
+
+	trigger = {
+		original_tag = CHA
+		date > 2008.1.1
+		NOT = { has_country_flag = CHA_lake_chad_event }
+	}
+
+	mean_time_to_happen = {
+		days = 1460
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_lake_chad_event days = 1825 }
+	}
+
+	option = {
+		name = chad.602.a
+		log = "[GetDateText]: [This.GetName]: chad.602.a executed"
+		add_stability = -0.03
+		327 = {
+			add_manpower = -5000
+		}
+		ai_chance = { base = 100 }
+	}
+}
+
+# Locust Swarm
+country_event = {
+	id = chad.603
+	title = chad.603.t
+	desc = chad.603.d
+	picture = GFX_generic_locust
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_locust_event }
+	}
+
+	mean_time_to_happen = {
+		days = 2555
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_locust_event days = 1095 }
+	}
+
+	option = {
+		name = chad.603.a
+		log = "[GetDateText]: [This.GetName]: chad.603.a executed"
+		add_stability = -0.03
+		set_temp_variable = { treasury_change = -2 }
+		modify_treasury_effect = yes
+		ai_chance = { base = 100 }
+	}
+}
+
+# Harmattan Dust Storm
+country_event = {
+	id = chad.605
+	title = chad.605.t
+	desc = chad.605.d
+	picture = GFX_generic_desert
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_dust_storm_event }
+	}
+
+	mean_time_to_happen = {
+		days = 1095
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_dust_storm_event days = 365 }
+	}
+
+	option = {
+		name = chad.605.a
+		log = "[GetDateText]: [This.GetName]: chad.605.a executed"
+		add_stability = -0.02
+		ai_chance = { base = 100 }
+	}
+}
+
+# N'Djamena Flooding
+country_event = {
+	id = chad.607
+	title = chad.607.t
+	desc = chad.607.d
+	picture = GFX_generic_flood
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_flood_event }
+	}
+
+	mean_time_to_happen = {
+		days = 2190
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_flood_event days = 730 }
+	}
+
+	option = {
+		name = chad.607.a
+		log = "[GetDateText]: [This.GetName]: chad.607.a executed"
+		add_stability = -0.03
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		capital_scope = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# HISTORICAL EVENTS (chad.701-707)
+#####################################
+
+# Independence Day Anniversary
+country_event = {
+	id = chad.701
+	title = chad.701.t
+	desc = chad.701.d
+	picture = GFX_generic_independence
+
+	trigger = {
+		original_tag = CHA
+		is_ai = no
+	}
+
+	fire_only_once = no
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.701.a
+		log = "[GetDateText]: [This.GetName]: chad.701.a executed"
+		add_stability = 0.02
+		add_political_power = 25
+		ai_chance = { base = 100 }
+	}
+}
+
+# Toyota War Veterans Meeting
+country_event = {
+	id = chad.702
+	title = chad.702.t
+	desc = chad.702.d
+	picture = GFX_generic_military
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_toyota_veterans_event }
+	}
+
+	mean_time_to_happen = {
+		days = 1825
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_toyota_veterans_event days = 1460 }
+	}
+
+	option = {
+		name = chad.702.a
+		log = "[GetDateText]: [This.GetName]: chad.702.a executed"
+		add_war_support = 0.03
+		army_experience = 10
+		ai_chance = { base = 100 }
+	}
+}
+
+# National Elections
+country_event = {
+	id = chad.703
+	title = chad.703.t
+	desc = chad.703.d
+	picture = GFX_generic_elections
+
+	trigger = {
+		original_tag = CHA
+		OR = {
+			date > 2006.4.1
+			date > 2011.4.1
+			date > 2016.4.1
+			date > 2021.4.1
+		}
+		NOT = { has_country_flag = CHA_recent_election }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_recent_election days = 1825 }
+	}
+
+	option = {
+		name = chad.703.a
+		log = "[GetDateText]: [This.GetName]: chad.703.a executed"
+		add_political_power = 50
+		if = {
+			limit = { has_country_flag = CHA_democratic_path }
+			add_stability = 0.05
+		}
+		else = {
+			add_stability = -0.02
+		}
+		ai_chance = { base = 100 }
+	}
+}
+
+# Chad Hosts Regional Summit
+country_event = {
+	id = chad.705
+	title = chad.705.t
+	desc = chad.705.d
+	picture = GFX_generic_summit
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_summit_event }
+		NOT = { has_war = yes }
+	}
+
+	mean_time_to_happen = {
+		days = 2190
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_summit_event days = 1095 }
+	}
+
+	option = {
+		name = chad.705.a
+		log = "[GetDateText]: [This.GetName]: chad.705.a executed"
+		add_political_power = 75
+		add_stability = 0.03
+		every_country = {
+			limit = {
+				is_in_africa = yes
+				NOT = { tag = CHA }
+				NOT = { has_war_with = CHA }
+			}
+			add_opinion_modifier = {
+				target = CHA
+				modifier = small_increase
+			}
+		}
+		ai_chance = { base = 100 }
+	}
+}
+
+# Oil Production Milestone
+country_event = {
+	id = chad.707
+	title = chad.707.t
+	desc = chad.707.d
+	picture = GFX_generic_oil
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_doba_basin_expansion
+		NOT = { has_country_flag = CHA_oil_milestone }
+	}
+
+	mean_time_to_happen = {
+		days = 730
+	}
+
+	immediate = {
+		set_country_flag = CHA_oil_milestone
+	}
+
+	option = {
+		name = chad.707.a
+		log = "[GetDateText]: [This.GetName]: chad.707.a executed"
+		set_temp_variable = { treasury_change = 10 }
+		modify_treasury_effect = yes
+		add_stability = 0.02
+		ai_chance = { base = 100 }
+	}
+}
+
+#####################################
+# SOCIAL EVENTS (chad.801-807)
+#####################################
+
+# Women's Rights Movement
+country_event = {
+	id = chad.801
+	title = chad.801.t
+	desc = chad.801.d
+	picture = GFX_generic_protest
+
+	trigger = {
+		original_tag = CHA
+		date > 2010.1.1
+		NOT = { has_country_flag = CHA_womens_rights_event }
+	}
+
+	mean_time_to_happen = {
+		days = 1825
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_womens_rights_event days = 1460 }
+	}
+
+	option = {
+		name = chad.801.a
+		log = "[GetDateText]: [This.GetName]: chad.801.a executed"
+		add_political_power = -25
+		add_stability = 0.03
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.801.b
+		log = "[GetDateText]: [This.GetName]: chad.801.b executed"
+		add_stability = -0.02
+		ai_chance = { base = 40 }
+	}
+}
+
+# Student Protests
+country_event = {
+	id = chad.802
+	title = chad.802.t
+	desc = chad.802.d
+	picture = GFX_generic_protest
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_student_protest_event }
+	}
+
+	mean_time_to_happen = {
+		days = 1460
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_student_protest_event days = 730 }
+	}
+
+	option = {
+		name = chad.802.a
+		log = "[GetDateText]: [This.GetName]: chad.802.a executed"
+		add_political_power = -50
+		add_stability = 0.02
+		ai_chance = { base = 50 }
+	}
+
+	option = {
+		name = chad.802.b
+		log = "[GetDateText]: [This.GetName]: chad.802.b executed"
+		add_stability = -0.05
+		add_war_support = 0.02
+		ai_chance = { base = 50 }
+	}
+}
+
+# Civil Service Strike
+country_event = {
+	id = chad.803
+	title = chad.803.t
+	desc = chad.803.d
+	picture = GFX_generic_strike
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_strike_event }
+	}
+
+	mean_time_to_happen = {
+		days = 1095
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_strike_event days = 365 }
+	}
+
+	option = {
+		name = chad.803.a
+		log = "[GetDateText]: [This.GetName]: chad.803.a executed"
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		add_stability = 0.02
+		ai_chance = { base = 60 }
+	}
+
+	option = {
+		name = chad.803.b
+		log = "[GetDateText]: [This.GetName]: chad.803.b executed"
+		add_stability = -0.05
+		ai_chance = { base = 40 }
+	}
+}
+
+# Cholera Outbreak
+country_event = {
+	id = chad.805
+	title = chad.805.t
+	desc = chad.805.d
+	picture = GFX_generic_disease
+
+	trigger = {
+		original_tag = CHA
+		NOT = { has_country_flag = CHA_cholera_event }
+	}
+
+	mean_time_to_happen = {
+		days = 2555
+	}
+
+	immediate = {
+		set_country_flag = { flag = CHA_cholera_event days = 1095 }
+	}
+
+	option = {
+		name = chad.805.a
+		log = "[GetDateText]: [This.GetName]: chad.805.a executed"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_stability = -0.03
+		ai_chance = { base = 100 }
+	}
+}
+
+# Gold Discovery in Tibesti
+country_event = {
+	id = chad.807
+	title = chad.807.t
+	desc = chad.807.d
+	picture = GFX_generic_mining
+
+	trigger = {
+		original_tag = CHA
+		owns_state = 580
+		NOT = { has_country_flag = CHA_gold_discovery }
+		date > 2012.1.1
+	}
+
+	mean_time_to_happen = {
+		days = 1460
+	}
+
+	immediate = {
+		set_country_flag = CHA_gold_discovery
+	}
+
+	option = {
+		name = chad.807.a
+		log = "[GetDateText]: [This.GetName]: chad.807.a executed"
+		set_temp_variable = { treasury_change = 10 }
+		modify_treasury_effect = yes
+		add_stability = 0.02
+		580 = {
+			add_extra_state_shared_building_slots = 1
+		}
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.807.b
+		log = "[GetDateText]: [This.GetName]: chad.807.b executed"
+		add_stability = -0.02
+		add_to_variable = { CHA_toubou_loyalty = -10 }
+		set_temp_variable = { treasury_change = 5 }
+		modify_treasury_effect = yes
+		ai_chance = { base = 30 }
+	}
+}
+
+#####################################
+# NEIGHBOR RELATIONS EVENTS
+#####################################
+
+# Weapons from Libya
+country_event = {
+	id = chad.901
+	title = chad.901.t
+	desc = chad.901.d
+	picture = GFX_generic_weapons
+
+	trigger = {
+		original_tag = CHA
+		date > 2011.6.1
+		NOT = { has_country_flag = CHA_libyan_weapons_event }
+	}
+
+	mean_time_to_happen = {
+		days = 365
+	}
+
+	immediate = {
+		set_country_flag = CHA_libyan_weapons_event
+	}
+
+	option = {
+		name = chad.901.a
+		log = "[GetDateText]: [This.GetName]: chad.901.a executed"
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+		}
+		add_stability = -0.02
+		ai_chance = { base = 100 }
+	}
+}
+
+# Libyan Refugees
+country_event = {
+	id = chad.902
+	title = chad.902.t
+	desc = chad.902.d
+	picture = GFX_generic_refugees
+
+	trigger = {
+		original_tag = CHA
+		date > 2011.3.1
+		NOT = { has_country_flag = CHA_libyan_refugees_event }
+	}
+
+	mean_time_to_happen = {
+		days = 180
+	}
+
+	immediate = {
+		set_country_flag = CHA_libyan_refugees_event
+	}
+
+	option = {
+		name = chad.902.a
+		log = "[GetDateText]: [This.GetName]: chad.902.a executed"
+		add_political_power = -25
+		add_stability = -0.02
+		add_manpower = 5000
+		ai_chance = { base = 70 }
+	}
+
+	option = {
+		name = chad.902.b
+		log = "[GetDateText]: [This.GetName]: chad.902.b executed"
+		if = {
+			limit = { LBA = { exists = yes } }
+			add_opinion_modifier = {
+				target = LBA
+				modifier = small_decrease
+			}
+		}
+		ai_chance = { base = 30 }
+	}
+}
+
+# CAR Requests Intervention
+country_event = {
+	id = chad.910
+	title = chad.910.t
+	desc = chad.910.d
+	picture = GFX_generic_intervention
+
+	trigger = {
+		original_tag = CHA
+		date > 2013.3.1
+		has_completed_focus = CHA_car_relations
+		NOT = { has_country_flag = CHA_car_intervention_request }
+	}
+
+	mean_time_to_happen = {
+		days = 180
+	}
+
+	immediate = {
+		set_country_flag = CHA_car_intervention_request
+	}
+
+	option = {
+		name = chad.910.a
+		log = "[GetDateText]: [This.GetName]: chad.910.a executed"
+		add_political_power = 50
+		army_experience = 15
+		if = {
+			limit = { CAR = { exists = yes } }
+			add_opinion_modifier = {
+				target = CAR
+				modifier = military_alliance
+			}
+		}
+		ai_chance = { base = 80 }
+	}
+
+	option = {
+		name = chad.910.b
+		log = "[GetDateText]: [This.GetName]: chad.910.b executed"
+		add_political_power = -25
+		if = {
+			limit = { CAR = { exists = yes } }
+			add_opinion_modifier = {
+				target = CAR
+				modifier = small_decrease
+			}
+		}
+		ai_chance = { base = 20 }
+	}
+}

@@ -1659,3 +1659,250 @@ CHA_reconciliation_category = {
 		}
 	}
 }
+
+CHA_tribal_politics_category = {
+
+	CHA_hold_tribal_congress = {
+		icon = generic_decision
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 30
+		days_re_enable = 365
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+		}
+
+		available = {
+			NOT = { has_war = yes }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_hold_tribal_congress"
+			add_political_power = -50
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_hold_tribal_congress"
+			add_stability = 0.03
+			# Reduce tensions with all tribes
+			add_to_variable = { CHA_zaghawa_loyalty = 5 }
+			add_to_variable = { CHA_arab_loyalty = 5 }
+			add_to_variable = { CHA_sara_loyalty = 5 }
+			add_to_variable = { CHA_toubou_loyalty = 5 }
+			country_event = { id = chad.405 days = 1 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	CHA_distribute_patronage_zaghawa = {
+		icon = generic_decision
+
+		cost = 75
+
+		fire_only_once = no
+		days_remove = 60
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+		}
+
+		available = {
+			NOT = { has_war = yes }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_distribute_patronage_zaghawa"
+			set_temp_variable = { treasury_change = -1 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_distribute_patronage_zaghawa"
+			add_to_variable = { CHA_zaghawa_loyalty = 15 }
+			add_to_variable = { CHA_arab_loyalty = -3 }
+			add_to_variable = { CHA_sara_loyalty = -3 }
+			add_to_variable = { CHA_toubou_loyalty = -3 }
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				check_variable = { CHA_zaghawa_loyalty < 40 }
+			}
+		}
+	}
+
+	CHA_distribute_patronage_arab = {
+		icon = generic_decision
+
+		cost = 75
+
+		fire_only_once = no
+		days_remove = 60
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+		}
+
+		available = {
+			NOT = { has_war = yes }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_distribute_patronage_arab"
+			set_temp_variable = { treasury_change = -1 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_distribute_patronage_arab"
+			add_to_variable = { CHA_arab_loyalty = 15 }
+			add_to_variable = { CHA_zaghawa_loyalty = -3 }
+			add_to_variable = { CHA_sara_loyalty = -3 }
+			add_to_variable = { CHA_toubou_loyalty = -3 }
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				check_variable = { CHA_arab_loyalty < 40 }
+			}
+		}
+	}
+
+	CHA_distribute_patronage_sara = {
+		icon = generic_decision
+
+		cost = 75
+
+		fire_only_once = no
+		days_remove = 60
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+		}
+
+		available = {
+			NOT = { has_war = yes }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_distribute_patronage_sara"
+			set_temp_variable = { treasury_change = -1 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_distribute_patronage_sara"
+			add_to_variable = { CHA_sara_loyalty = 15 }
+			add_to_variable = { CHA_zaghawa_loyalty = -3 }
+			add_to_variable = { CHA_arab_loyalty = -3 }
+			add_to_variable = { CHA_toubou_loyalty = -3 }
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				check_variable = { CHA_sara_loyalty < 40 }
+			}
+		}
+	}
+
+	CHA_distribute_patronage_toubou = {
+		icon = generic_decision
+
+		cost = 75
+
+		fire_only_once = no
+		days_remove = 60
+		days_re_enable = 180
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+		}
+
+		available = {
+			NOT = { has_war = yes }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_distribute_patronage_toubou"
+			set_temp_variable = { treasury_change = -1 }
+			modify_treasury_effect = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_distribute_patronage_toubou"
+			add_to_variable = { CHA_toubou_loyalty = 15 }
+			add_to_variable = { CHA_zaghawa_loyalty = -3 }
+			add_to_variable = { CHA_arab_loyalty = -3 }
+			add_to_variable = { CHA_sara_loyalty = -3 }
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				check_variable = { CHA_toubou_loyalty < 40 }
+			}
+		}
+	}
+
+	CHA_suppress_tribe = {
+		icon = generic_decision
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 365
+
+		visible = {
+			has_completed_focus = CHA_tribal_balance
+		}
+
+		available = {
+			has_army_manpower = { size > 2000 }
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision CHA_suppress_tribe"
+			add_command_power = -25
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove CHA_suppress_tribe"
+			# Suppression affects all tribes negatively but adds short-term stability
+			add_stability = -0.05
+			add_to_variable = { CHA_zaghawa_loyalty = -10 }
+			add_to_variable = { CHA_arab_loyalty = -10 }
+			add_to_variable = { CHA_sara_loyalty = -10 }
+			add_to_variable = { CHA_toubou_loyalty = -10 }
+			add_war_support = 0.05
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_stability > 0.5
+			}
+		}
+	}
+}
