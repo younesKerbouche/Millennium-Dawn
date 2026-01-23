@@ -301,7 +301,6 @@ technologies = {
 			}
 		}
 	}
-
 	#2055
 	nsb_attack_helicopter_tech_6 = {
 		allow = {
@@ -1059,6 +1058,11 @@ technologies = {
 			transport_helicopter5
 		}
 
+		path = {
+			leads_to_tech = nsb_transport_helicopter6
+			research_cost_coeff = 1
+		}
+
 		research_cost = 2
 		start_year = 2035
 
@@ -1100,7 +1104,125 @@ technologies = {
 				}
 			}
 		}
-	} #
+	}
+
+	nsb_transport_helicopter6 = {
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+
+		enable_equipments = {
+			transport_helicopter6
+		}
+
+		path = {
+			leads_to_tech = nsb_transport_helicopter7
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 2055
+
+		folder = {
+			name = air_techs_folder
+			position = { x = @row1 y = @2055 }
+		}
+
+		categories = {
+			CAT_heli
+			CAT_trans_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				date < 2055.01.01
+			}
+			modifier = {
+				factor = 0.2
+				date < 2050.01.01
+			}
+			modifier = {
+				factor = 2
+				check_variable = { gdp_per_capita > 59.999 }
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = { gdp_per_capita < 20 }
+				}
+			}
+		}
+	}
+
+	nsb_transport_helicopter7 = {
+		allow = {
+			ROOT = {
+				is_special_project_completed = sp:sp_helicopter_project
+			}
+		}
+
+		enable_equipments = {
+			transport_helicopter7
+		}
+
+		path = {
+			leads_to_tech = nsb_transport_helicopter8
+			research_cost_coeff = 1
+		}
+
+		research_cost = 2
+		start_year = 2075
+
+		folder = {
+			name = air_techs_folder
+			position = { x = @row1 y = @2075 }
+		}
+
+		categories = {
+			CAT_heli
+			CAT_trans_heli
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.5
+				date < 2075.01.01
+			}
+			modifier = {
+				factor = 0.2
+				date < 2070.01.01
+			}
+			modifier = {
+				factor = 2
+				check_variable = { gdp_per_capita > 59.999 }
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					NOT = {
+						original_tag = CHI
+						original_tag = SOV
+					}
+					check_variable = { gdp_per_capita < 20 }
+				}
+			}
+		}
+	}
 	transport_helicopter1 = {
 		allow = {
 			ROOT = {
@@ -1118,10 +1240,6 @@ technologies = {
 		enable_subunits = {
 			L_Air_assault_Bat
 			helicopter_combat_service_support
-		}
-		path = {
-			leads_to_tech = transport_helicopter2
-			research_cost_coeff = 1
 		}
 
 		research_cost = 2
