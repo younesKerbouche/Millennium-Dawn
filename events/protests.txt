@@ -955,7 +955,6 @@ country_event = { # Protests Erupt in Capital
 		log = "[GetDateText]: [This.GetName]: protests.100.a executed"
 		activate_mission = MD_incoming_revolt
 		set_country_flag = MD_protests_began
-		set_temp_variable = { temp_productivity_change = -100 }
 		every_owned_state = {
 			limit = {
 				is_capital = yes
@@ -965,8 +964,6 @@ country_event = { # Protests Erupt in Capital
 			set_compliance = 30
 			set_resistance = 50
 			set_garrison_strength = 1.0
-			newline = yes
-			state_flat_productivity_change_effect = yes
 		}
 		ai_chance = { base = 10 }
 	}
@@ -1020,11 +1017,6 @@ country_event = { # Protests Spread
 			set_resistance = 60
 			newline = yes
 			state_flat_productivity_change_effect = yes
-		}
-		set_country_flag = {
-			flag = MD_protest_cooldown
-			days = 1000
-			value = 1
 		}
 		ai_chance = { base = 10 }
 	}
@@ -1089,6 +1081,11 @@ country_event = { # Protests Die Down Nation-wide
 			}
 			cancel_resistance = yes
 			clr_state_flag = MD_dont_protest_again
+		}
+		set_country_flag = {
+			flag = MD_protest_cooldown
+			days = 1000
+			value = 1
 		}
 		clr_country_flag = MD_protests_began
 		ai_chance = { base = 10 }
