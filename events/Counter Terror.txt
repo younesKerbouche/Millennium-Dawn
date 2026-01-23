@@ -159,24 +159,24 @@ country_event = {
 
 news_event = {
 
-	id = radicalization.135
-	title = radicalization.135.t
-	desc = radicalization.135.d
+	id = terror.135
+	title = terror.135.t
+	desc = terror.135.d
 
-	picture = GFX_CTN.5
+	picture = GFX_CTN.8
 
 	is_triggered_only = yes
 
 	#major = yes    #use this if you need to Trigger it to only Major
 
 	option = {
-		name = radicalization.135.a #We Mourn the Losses
+		name = terror.135.a #We Mourn the Losses
 		if = {
 			limit = {
 				is_major = yes
 			}
 			country_event = {
-				id = radicalization.136
+				id = terror.170
 			}
 		}
 	}
@@ -186,20 +186,170 @@ news_event = {
 
 country_event = {
 
-	id = radicalization.136
-	title = radicalization.136.t
-	desc = radicalization.136.d
+	id = terror.170
+	title = terror.170.t
+	desc = terror.170.d
 
 	picture = GFX_CTC.1
 
 	is_triggered_only = yes
 
 	option = {
-		name = radicalization.136.a #Send our Best to help
+		name = terror.170.a #Send our Best to help
+		FROM = {
+			add_opinion_modifier = {
+				target = ROOT
+				modifier = cooperation
+			}
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = cooperation
+		}
 	}
 
 	option = {
-		name = radicalization.136.b #Focus Locally
+		name = terror.170.b #Focus Locally
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+
+	id = terror.171    #attack Terrorists Wepaon hideout
+	title = terror.171.t
+	desc = terror.171.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = terror.171.a #Heavy Focuses attack
+	}
+
+	option = {
+		name = terror.171.b #send intruders first
+	}
+}
+
+country_event = {
+
+	id = terror.172    #Strengthening the Police force
+	title = terror.172.t
+	desc = terror.172.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = terror.172.a #Increase Funding
+		increase_policing_budget = yes
+	}
+
+	option = {
+		name = terror.172.b #Improve the Garrisson
+		increase_military_spending = yes
+	}
+}
+
+country_event = {
+
+	id = terror.173    #Add more Security to infrastrucutre
+	title = terror.173.t
+	desc = terror.173.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = terror.173.a #Build more Checkpoints {Radar}
+		one_radar_station = yes
+	}
+
+	option = {
+		name = terror.173.b #Add More Communication Security
+		two_random_network_infrastructure = yes
+	}
+}
+
+country_event = {
+
+	id = terror.174   #Buy Weapons from Public
+	title = terror.174.t
+	desc = terror.174.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = terror.174.a #Buy as much as you can from the Public
+		set_temp_variable = { treasury_change = -10 }
+		modify_treasury_effect = yes
+		add_stability = 0.05
+		expected_police_modifier = -1
+	}
+
+	option = {
+		name = terror.174.b #Buy Small amount
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_stability = 0.01
+	}
+}
+
+country_event = {
+
+	id = terror.175   #Internet Monitoring
+	title = terror.175.t
+	desc = terror.175.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = terror.175.a #Yes Monitor
+		add_timed_idea = {
+				idea = CT_internet_montiering
+				days = 120
+			}
+	}
+
+	option = {
+		name = terror.175.b #No
+		#nothing happens
+	}
+}
+
+country_event = {
+
+	id = terror.176  #Add more Cameras to the Streets
+	title = terror.176.t
+	desc = terror.176.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = terror.176.a #Yes Monitor
+		add_stability = -0.05
+		expected_adm_modifier = 1
+		add_timed_idea = {
+				idea = CT_internet_montiering
+				days = 60
+			}
+	}
+
+	option = {
+		name = terror.176.b #No
+		#nothing happens
 	}
 }
 
