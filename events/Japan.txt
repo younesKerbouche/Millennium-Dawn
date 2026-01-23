@@ -2183,6 +2183,10 @@ country_event = {
 	#picture
 	is_triggered_only = yes
 
+	trigger = {
+		NOT = { has_idea = non_nuclear_power }
+	}
+
 	option = {
 		name = Japan.2011031150.a
 		log = "[GetDateText]: [This.GetName]: Japan.2011031150.a executed"
@@ -3857,7 +3861,7 @@ country_event = {
 	id = Japan_Demographic.100000103
 	title = Japan_Demographic.100000103.t
 	desc = Japan_Demographic.100000103.d
-	picture = GFX_JAP_labor_protest
+	#picture = GFX_JAP_labor_protest #not found
 
 	fire_only_once = yes
 
@@ -4503,7 +4507,7 @@ country_event = {
 	id = Japan.100001001
 	title = Japan.100001001.t
 	desc = Japan.100001001.d
-	picture = GFX_JAP_labor_protest
+	#picture = GFX_JAP_labor_protest #not found
 
 	fire_only_once = yes
 	is_triggered_only = yes
@@ -4645,13 +4649,19 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: Japan.100002001.oA executed"
 		set_temp_variable = { int_investment_change = 30 }
 		modify_international_investment_effect = yes
-		add_opinion_modifier = {
-			target = FROM
-			modifier = economic_mission
-		}
-		reverse_add_opinion_modifier = {
-			target = FROM
-			modifier = economic_mission
+		effect_tooltip = {
+			set_temp_variable = { percent_change = 0.5 }
+			set_temp_variable = { tag_index = JAP }
+			set_temp_variable = { influence_target = FROM.id }
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = FROM
+				modifier = economic_mission
+			}
+			reverse_add_opinion_modifier = {
+				target = FROM
+				modifier = economic_mission
+			}
 		}
 	}
 }
@@ -4877,7 +4887,7 @@ country_event = {
 		modify_treasury_effect = yes
 		add_timed_idea = {
 			idea = JAP_agriculture_free2
-			days = 365
+			days = 730
 		}
 		set_temp_variable = { temp_opinion = -5 }
 		change_farmers_opinion = yes
@@ -5913,7 +5923,7 @@ country_event = {
 	id = Japan.100004111
 	title = Japan.100004111.t
 	desc = Japan.100004111.d
-	picture = GFX_JAP_labor_protest
+	#picture = GFX_JAP_labor_protest #not found
 
 	is_triggered_only = yes
 
