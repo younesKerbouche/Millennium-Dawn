@@ -136,6 +136,18 @@ focus_tree = {
 				factor = 2
 				has_country_leader = { name = "Idriss Déby" ruling_only = yes }
 			}
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_AUTHORITARIAN }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_DEMOCRATIC }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_ISLAMIST }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_SOCIALIST }
+				}
+			}
 		}
 	}
 
@@ -153,7 +165,10 @@ focus_tree = {
 		prerequisite = { focus = CHA_deby_dynasty }
 
 		available = {
-			date > 2005.1.1
+			OR = {
+				date > 2005.1.1
+				has_political_power > 100  # Alternative: player has built up PP
+			}
 		}
 
 		completion_reward = {
@@ -242,8 +257,11 @@ focus_tree = {
 		prerequisite = { focus = CHA_security_apparatus }
 
 		available = {
-			date > 2015.1.1
 			has_country_leader = { name = "Idriss Déby" ruling_only = yes }
+			OR = {
+				date > 2015.1.1
+				has_political_power > 150  # Alternative: player has consolidated power
+			}
 		}
 
 		completion_reward = {
@@ -296,6 +314,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 5
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_DEMOCRATIC }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_AUTHORITARIAN }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_ISLAMIST }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_SOCIALIST }
+				}
+			}
 		}
 	}
 
@@ -440,6 +470,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 2
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_ISLAMIST }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_AUTHORITARIAN }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_DEMOCRATIC }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_SOCIALIST }
+				}
+			}
 		}
 	}
 
@@ -649,7 +691,10 @@ focus_tree = {
 		prerequisite = { focus = CHA_salafist_influence }
 
 		available = {
-			date > 2010.1.1
+			OR = {
+				date > 2010.1.1
+				has_completed_focus = CHA_salafist_influence  # Player progressed through islamist path
+			}
 		}
 
 		completion_reward = {
@@ -732,6 +777,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 2
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_SOCIALIST }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_AUTHORITARIAN }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_DEMOCRATIC }
+					has_game_rule = { rule = CHA_ai_behavior option = CHA_ISLAMIST }
+				}
+			}
 		}
 	}
 
@@ -1022,10 +1079,14 @@ focus_tree = {
 		prerequisite = { focus = CHA_mahamat_succession }
 
 		available = {
-			date > 2021.4.1
 			OR = {
 				has_country_leader = { name = "Mahamat Idriss Déby" ruling_only = yes }
 				has_idea = CHA_transitional_military_council
+				AND = {
+					date > 2021.4.1
+					has_completed_focus = CHA_mahamat_succession
+				}
+				has_country_flag = CHA_deby_dead  # Alternative: Deby dies early via event
 			}
 		}
 
@@ -1042,6 +1103,10 @@ focus_tree = {
 			modifier = {
 				factor = 2
 				date > 2021.4.1
+			}
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_MILITARY_JUNTA }
 			}
 		}
 	}
@@ -1902,7 +1967,10 @@ focus_tree = {
 		prerequisite = { focus = CHA_army_modernization }
 
 		available = {
-			date > 2009.1.1
+			OR = {
+				date > 2009.1.1
+				has_completed_focus = CHA_army_modernization
+			}
 		}
 
 		completion_reward = {
@@ -1934,7 +2002,10 @@ focus_tree = {
 		prerequisite = { focus = CHA_counter_terrorism }
 
 		available = {
-			date > 2014.1.1
+			OR = {
+				date > 2014.1.1
+				has_completed_focus = CHA_counter_terrorism
+			}
 		}
 
 		completion_reward = {
@@ -2248,6 +2319,14 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 8
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_foreign_policy option = CHA_PRO_WEST }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = CHA_foreign_policy option = CHA_PIVOT_EAST }
+			}
 		}
 	}
 
@@ -2288,6 +2367,18 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 4
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_foreign_policy option = CHA_PIVOT_EAST }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = CHA_foreign_policy option = CHA_PRO_WEST }
+			}
+			modifier = {
+				factor = 3
+				has_country_flag = CHA_socialist_path
+			}
 		}
 	}
 
@@ -2712,8 +2803,11 @@ focus_tree = {
 		prerequisite = { focus = CHA_defend_ndjamena }
 
 		available = {
-			date > 2007.9.1
 			has_global_flag = CHA_second_civil_war
+			OR = {
+				date > 2007.9.1
+				has_completed_focus = CHA_defend_ndjamena
+			}
 		}
 
 		completion_reward = {
@@ -2741,12 +2835,12 @@ focus_tree = {
 		prerequisite = { focus = CHA_minurcat_deployment }
 
 		available = {
-			date > 2009.1.1
 			has_global_flag = CHA_second_civil_war
 			OR = {
 				has_country_flag = CHA_french_intervened
 				has_country_flag = CHA_minurcat_deployed
 			}
+			# Date requirement removed - player can proceed after completing prerequisites
 		}
 
 		completion_reward = {
@@ -4388,7 +4482,12 @@ focus_tree = {
 		prerequisite = { focus = CHA_libyan_relations }
 
 		available = {
-			date > 2011.2.1
+			OR = {
+				date > 2011.2.1
+				LBA = { has_civil_war = yes }
+				LBA = { has_war = yes }
+				NOT = { LBA = { has_country_leader = { name = "Muammar al-Gaddafi" ruling_only = yes } } }
+			}
 		}
 
 		completion_reward = {
@@ -4457,7 +4556,10 @@ focus_tree = {
 		prerequisite = { focus = CHA_libyan_chaos }
 
 		available = {
-			date > 2011.6.1
+			OR = {
+				date > 2011.6.1
+				has_completed_focus = CHA_libyan_chaos
+			}
 		}
 
 		completion_reward = {
@@ -4525,7 +4627,11 @@ focus_tree = {
 		prerequisite = { focus = CHA_car_relations }
 
 		available = {
-			date > 2013.1.1
+			OR = {
+				date > 2013.1.1
+				has_completed_focus = CHA_car_relations
+				CAR = { has_civil_war = yes }
+			}
 		}
 
 		completion_reward = {
@@ -4589,7 +4695,11 @@ focus_tree = {
 		prerequisite = { focus = CHA_car_relations }
 
 		available = {
-			date > 2013.3.1
+			OR = {
+				date > 2013.3.1
+				has_completed_focus = CHA_car_relations
+				CAR = { has_civil_war = yes }
+			}
 		}
 
 		completion_reward = {
@@ -4716,7 +4826,10 @@ focus_tree = {
 		prerequisite = { focus = CHA_cameroon_cooperation }
 
 		available = {
-			date > 2014.1.1
+			OR = {
+				date > 2014.1.1
+				has_completed_focus = CHA_cameroon_cooperation
+			}
 		}
 
 		completion_reward = {
@@ -5103,6 +5216,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = 20 }
 			modify_treasury_effect = yes
 			capital_scope = {
+				add_extra_state_shared_building_slots = 1
 				add_building_construction = {
 					type = industrial_complex
 					level = 1
