@@ -1,18 +1,32 @@
 technologies = {
 	@1965 = 0
+	@1980 = 1
 	@1985 = 2
+	@2000 = 3
 	@2005 = 4
-	@2025 = 6
-	@2035 = 8
-
+	@2010 = 5
+	@2015 = 6
+	@2020 = 7
+	@2025 = 8
+	@2030 = 9
+	@2035 = 10
+	@2040 = 11
+	@2045 = 12
+	@2050 = 13
+	@2055 = 14
+	@2060 = 15
+	@2065 = 16
+	@2070 = 17
+	@2075 = 18
+	@2080 = 19
 	#Y Axis
-	@row1 = -4
-	@row2 = 0
-	@row3 = 4
-	@row4 = 8
-	@row5 = 12
-	@row6 = 16
-	@row7 = 20
+	@row1 = -6
+	@row2 = -4
+	@row3 = -2
+	@row4 = 2
+	@row5 = 4
+	@row6 = 6
+	@row7 = 8
 
 	#1965
 	nsb_artillery_ammo_1 = {
@@ -38,7 +52,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = artillery_folder
-			position = { x = 3 y = @1965 }
+			position = { x = @row5 y = @1965 }
 		}
 
 		categories = {
@@ -78,7 +92,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = artillery_folder
-			position = { x = 3 y = @1985 }
+			position = { x = 4 y = @1985 }
 		}
 
 		categories = {
@@ -118,7 +132,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = artillery_folder
-			position = { x = 3 y = @2005 }
+			position = { x = @row5 y = @2005 }
 		}
 
 		categories = {
@@ -136,6 +150,12 @@ technologies = {
 	nsb_artillery_ammo_4 = {
 		allow_branch = {
 			has_dlc = "No Step Back"
+		}
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_drone_lrs
+			}
 		}
 
 		enable_equipment_modules = {
@@ -158,7 +178,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = artillery_folder
-			position = { x = 3 y = @2025 }
+			position = { x = 4 y = @2025 }
 		}
 
 		categories = {
@@ -188,7 +208,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = artillery_folder
-			position = { x = 3 y = @2035 }
+			position = { x = @row5 y = @2035 }
 		}
 
 		categories = {
@@ -221,7 +241,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = artillery_folder
-			position = { x = 5 y = @1965 }
+			position = { x = @row6 y = @1965 }
 		}
 
 		categories = {
@@ -249,7 +269,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = artillery_folder
-			position = { x = 5 y = @1985 }
+			position = { x = @row6 y = @1985 }
 		}
 
 		categories = {
@@ -281,7 +301,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = artillery_folder
-			position = { x = 5 y = @2005 }
+			position = { x = @row6 y = @2005 }
 		}
 
 		categories = {
@@ -313,7 +333,112 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = artillery_folder
-			position = { x = 5 y = @2025 }
+			position = { x = @row6 y = @2025 }
+		}
+		path = {
+			leads_to_tech = nsb_drone_artillery_ammo_1
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			CAT_Military
+			CAT_artillery #Generic for all artillery
+			CAT_arty
+			CAT_art_ammo
+		}
+		special_project_specialization = { specialization_land }
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	nsb_drone_artillery_ammo_1 = {
+		allow_branch = {
+			has_dlc = "No Step Back"
+		}
+
+		allow = {
+			is_special_project_completed = sp:sp_drone_lrs
+		}
+
+		is_special_project_tech = yes
+		force_use_small_tech_layout = yes
+
+		enable_equipment_modules = {
+			land_module_drone_launcher_2
+		}
+
+		research_cost = 1.2
+		start_year = 2025
+		folder = {
+			name = artillery_folder
+			position = { x = @row7 y = @2025 }
+		}
+		path = {
+			leads_to_tech = nsb_drone_artillery_ammo_2
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			CAT_Military
+			CAT_artillery #Generic for all artillery
+			CAT_arty
+			CAT_art_ammo
+		}
+		special_project_specialization = { specialization_land }
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	nsb_drone_artillery_ammo_2 = {
+		is_special_project_tech = yes
+		force_use_small_tech_layout = yes
+
+		enable_equipment_modules = {
+			land_module_drone_launcher_3
+		}
+
+		research_cost = 1.2
+		start_year = 2045
+		folder = {
+			name = artillery_folder
+			position = { x = @row7 y = @2045 }
+		}
+		path = {
+			leads_to_tech = nsb_drone_artillery_ammo_3
+			research_cost_coeff = 1
+		}
+
+		categories = {
+			CAT_Military
+			CAT_artillery #Generic for all artillery
+			CAT_arty
+			CAT_art_ammo
+		}
+		special_project_specialization = { specialization_land }
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	nsb_drone_artillery_ammo_3 = {
+		is_special_project_tech = yes
+		force_use_small_tech_layout = yes
+
+		enable_equipment_modules = {
+			land_module_drone_launcher_4
+		}
+
+		research_cost = 1.2
+		start_year = 2065
+		folder = {
+			name = artillery_folder
+			position = { x = @row7 y = @2065 }
+		}
+		path = {
+			leads_to_tech = nsb_drone_artillery_ammo_3
+			research_cost_coeff = 1
 		}
 
 		categories = {
@@ -349,7 +474,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = artillery_folder
-			position = { x = 1 y = @1965 }
+			position = { x = @row4 y = @1965 }
 		}
 
 		categories = {
@@ -383,7 +508,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = artillery_folder
-			position = { x = 1 y = @1985 }
+			position = { x = @row4 y = @1985 }
 		}
 
 		categories = {
@@ -417,7 +542,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = artillery_folder
-			position = { x = 1 y = @2005 }
+			position = { x = @row4 y = @2005 }
 		}
 
 		categories = {
@@ -451,7 +576,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = artillery_folder
-			position = { x = 1 y = @2025 }
+			position = { x = @row4 y = @2025 }
 		}
 
 		categories = {
@@ -480,7 +605,7 @@ technologies = {
 		start_year = 2035
 		folder = {
 			name = artillery_folder
-			position = { x = 1 y = @2035 }
+			position = { x = @row4 y = @2035 }
 		}
 
 		categories = {
@@ -511,7 +636,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = artillery_folder
-			position = { x = -6 y = @1965 }
+			position = { x = @row1 y = @1965 }
 		}
 
 		categories = {
@@ -539,7 +664,7 @@ technologies = {
 		start_year = 1985
 		folder = {
 			name = artillery_folder
-			position = { x = -7 y = @1985 }
+			position = { x = @row1 y = @1985 }
 		}
 
 		categories = {
@@ -567,7 +692,7 @@ technologies = {
 		start_year = 2005
 		folder = {
 			name = artillery_folder
-			position = { x = -8 y = @2005 }
+			position = { x = @row1 y = @2005 }
 		}
 
 		categories = {
@@ -596,7 +721,7 @@ technologies = {
 		start_year = 2025
 		folder = {
 			name = artillery_folder
-			position = { x = -7 y = @2025 }
+			position = { x = @row1 y = @2025 }
 		}
 
 		categories = {
@@ -638,7 +763,7 @@ technologies = {
 		start_year = 1965
 		folder = {
 			name = artillery_folder
-			position = { x = -4 y = @1965 }
+			position = { x = @row2 y = @1965 }
 		}
 
 		categories = {
@@ -674,7 +799,7 @@ technologies = {
 
 		folder = {
 			name = artillery_folder
-			position = { x = -5 y = @1985 }
+			position = { x = @row2 y = @1985 }
 		}
 
 		categories = {
@@ -704,12 +829,17 @@ technologies = {
 			research_cost_coeff = 1
 		}
 
+		path = {
+			leads_to_tech = nsb_Arty_upgrade_3
+			research_cost_coeff = 1
+		}
+
 		research_cost = 1.4
 		start_year = 2005
 
 		folder = {
 			name = artillery_folder
-			position = { x = -6 y = @2005 }
+			position = { x = @row2 y = @2005 }
 		}
 
 		categories = {
@@ -752,7 +882,7 @@ technologies = {
 
 		folder = {
 			name = artillery_folder
-			position = { x = -5 y = @2025 }
+			position = { x = @row2 y = @2025 }
 		}
 
 		categories = {
@@ -786,10 +916,10 @@ technologies = {
 		}
 
 		research_cost = 1.6
-		start_year = 2035
+		start_year = 2045
 		folder = {
 			name = artillery_folder
-			position = { x = -5 y = @2035 }
+			position = { x = @row2 y = @2045 }
 		}
 
 		categories = {
@@ -838,7 +968,7 @@ technologies = {
 
 		folder = {
 			name = artillery_folder
-			position = { x = -2 y = @1985 }
+			position = { x = @row3 y = @1980 }
 		}
 
 		categories = {
@@ -853,11 +983,6 @@ technologies = {
 	nsb_Arty_upgrade_2 = {
 		path = {
 			leads_to_tech = nsb_artillery_2
-			research_cost_coeff = 1
-		}
-
-		path = {
-			leads_to_tech = nsb_Arty_upgrade_3
 			research_cost_coeff = 1
 		}
 
@@ -882,7 +1007,7 @@ technologies = {
 
 		folder = {
 			name = artillery_folder
-			position = { x = -3 y = @2005 }
+			position = { x = @row3 y = @2000 }
 		}
 
 		categories = {
@@ -918,14 +1043,14 @@ technologies = {
 		}
 
 		research_cost = 1
-		start_year = 2000
+		start_year = 2010
 		xp_research_type = army
 		xp_boost_cost = 50
 		xp_research_bonus = 1.50
 
 		folder = {
 			name = artillery_folder
-			position = { x = -1 y = @2005 }
+			position = { x = @row3 y = @2010 }
 		}
 
 		categories = {
@@ -962,14 +1087,14 @@ technologies = {
 		}
 
 		research_cost = 1
-		start_year = 2020
+		start_year = 2030
 		xp_research_type = army
 		xp_boost_cost = 50
 		xp_research_bonus = 1.50
 
 		folder = {
 			name = artillery_folder
-			position = { x = -2 y = @2025 }
+			position = { x = @row3 y = @2030 }
 		}
 
 		categories = {
@@ -1012,14 +1137,14 @@ technologies = {
 		}
 
 		research_cost = 1
-		start_year = 2030
+		start_year = 2045
 		xp_research_type = army
 		xp_boost_cost = 50
 		xp_research_bonus = 1.50
 
 		folder = {
 			name = artillery_folder
-			position = { x = -2 y = @2035 }
+			position = { x = @row3 y = @2045 }
 		}
 
 		categories = {

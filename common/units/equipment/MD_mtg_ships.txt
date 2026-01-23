@@ -217,12 +217,13 @@ equipments = {
 					module_point_defense_system_category
 					module_turret_missile_category
 					module_anti_submarine_mortar_category
+					module_light_helipad_category
 				}
 			}
 		}
 
 		default_modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_1
 			fixed_ship_auxillary_slot = module_mineclearing
@@ -289,7 +290,7 @@ equipments = {
 
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_light_surface_diesel_power
+				fixed_ship_engine_slot = module_light_surface_diesel_power_1
 				fixed_ship_fire_control_system_slot = module_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot = module_mineclearing
@@ -335,7 +336,7 @@ equipments = {
 
 		module_slots = inherit
 		default_modules = {
-				fixed_ship_engine_slot = module_light_surface_diesel_power
+				fixed_ship_engine_slot = module_light_surface_diesel_power_1
 				fixed_ship_fire_control_system_slot = module_digital_integrated_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot = module_aa_missiles_2
@@ -883,7 +884,7 @@ equipments = {
 		module_count_limit = { category = module_radar_jammer_category count < 3 }
 
 		default_modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_1
 			fixed_ship_auxillary_slot_2 = module_anti_submarine_missile_1
@@ -942,7 +943,7 @@ equipments = {
 		module_slots = inherit
 
 		default_modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 				fixed_ship_fire_control_system_slot = module_analog_fire_control
 				fixed_ship_radar_slot = module_radar_2
 				fixed_ship_auxillary_slot_2 = module_asm_1
@@ -992,7 +993,7 @@ equipments = {
 		module_slots = inherit
 
 		default_modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 				fixed_ship_fire_control_system_slot = module_analog_fire_control
 				fixed_ship_radar_slot = module_radar_3
 				fixed_ship_auxillary_slot_2 = module_asm_2
@@ -1650,6 +1651,198 @@ equipments = {
 		naval_dominance_factor = 65
 	}
 
+	heavy_frigate_hull_1 = {
+		year = 2005
+
+		archetype = heavy_frigate
+		priority = 9
+
+		module_slots = inherit
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot_2 = module_ram_3
+			fixed_ship_auxillary_slot_1 = module_asm_3
+			fixed_ship_auxillary_slot = module_vls_sam_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_torpedoes_2
+			rear_1_custom_slot = module_light_helipad_2
+		}
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 55
+
+		#Miscellanous Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 8.57
+		naval_speed = @frigate_speed
+		reliability = 0.90
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
+		resources = {
+			steel = 5
+			composites = 4
+		}
+	}
+	heavy_frigate_hull_2 = {
+		year = 2005
+
+		archetype = heavy_frigate
+		parent = heavy_frigate_hull_1
+		priority = 9
+
+		module_slots = inherit
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot_2 = module_ram_3
+			fixed_ship_auxillary_slot_1 = module_asm_3
+			fixed_ship_auxillary_slot = module_vls_sam_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_torpedoes_2
+			rear_1_custom_slot = module_light_helipad_2
+		}
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 55
+
+		#Miscellanous Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 8.57
+		naval_speed = @frigate_speed
+		reliability = 0.90
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
+		resources = {
+			steel = 5
+			composites = 4
+		}
+	}
+	heavy_frigate_hull_3 = {
+		year = 2005
+
+		archetype = heavy_frigate
+		parent = heavy_frigate_hull_2
+		priority = 9
+
+		module_slots = inherit
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot_2 = module_ram_3
+			fixed_ship_auxillary_slot_1 = module_asm_3
+			fixed_ship_auxillary_slot = module_vls_sam_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_torpedoes_2
+			rear_1_custom_slot = module_light_helipad_2
+		}
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 55
+
+		#Miscellanous Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 8.57
+		naval_speed = @frigate_speed
+		reliability = 0.90
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
+		resources = {
+			steel = 5
+			composites = 4
+		}
+	}
+	heavy_frigate_hull_4 = {
+		year = 2005
+
+		archetype = heavy_frigate
+		parent = heavy_frigate_hull_3
+		priority = 9
+
+		module_slots = inherit
+		default_modules = {
+			fixed_ship_engine_slot = module_light_surface_jet_turbine_power2
+			fixed_ship_fire_control_system_slot = module_advanced_integrated_missile_radar_control
+			fixed_ship_radar_slot = module_radar_4
+			fixed_ship_auxillary_slot_2 = module_ram_3
+			fixed_ship_auxillary_slot_1 = module_asm_3
+			fixed_ship_auxillary_slot = module_vls_sam_2
+			fixed_ship_battery_slot = module_76mm_gun_2
+			front_1_custom_slot = module_torpedoes_2
+			rear_1_custom_slot = module_light_helipad_2
+		}
+
+		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
+		lg_armor_piercing = 0
+		lg_attack = 0
+		hg_armor_piercing = 0
+		hg_attack = 0
+		torpedo_attack = 0
+		sub_attack = 0
+		anti_air_attack = 0
+		naval_dominance_factor = 55
+
+		#Miscellanous Stats
+		armor_value = @frigate_armor
+		surface_detection = 10
+		sub_detection = 0
+		surface_visibility = 8.57
+		naval_speed = @frigate_speed
+		reliability = 0.90
+		naval_range = @frigate_range
+		max_strength = @frigate_hp
+		max_organisation = @frigate_org
+		fuel_consumption = @frigate_fuel_consumption
+		build_cost_ic = 8960
+		manpower = @frigate_hp
+		resources = {
+			steel = 5
+			composites = 4
+		}
+	}
+
 # DESTROYERS
 	destroyer = {
 		year = 1965
@@ -1829,7 +2022,7 @@ equipments = {
 		module_count_limit = { category = module_radar_jammer_category count < 3 }
 
 		default_modules = {
-			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_engine_slot = module_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_screen_analog_fire_control
 			fixed_ship_radar_slot = module_radar_1
 			fixed_ship_auxillary_slot_3 = module_chain_gun
@@ -1889,7 +2082,7 @@ equipments = {
 		visual_level = 2
 		module_slots = inherit
 		default_modules = {
-			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_engine_slot = module_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_screen_digital_integrated_fire_control
 			fixed_ship_radar_slot = module_radar_2
 			fixed_ship_auxillary_slot_3 = module_vls_sam_1
@@ -3140,7 +3333,7 @@ equipments = {
 			fixed_ship_battery_slot_3 = empty
 			fixed_ship_battery_slot_4 = empty
 			fixed_ship_radar_slot = empty
-			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_engine_slot = module_surface_diesel_power_1
 		}
 
 		#Combat Stats --Hulls have no intrinsic combat stats. I don't see ship hulls firing cannons
@@ -3781,7 +3974,7 @@ equipments = {
 		module_count_limit = { category = module_radar_jammer_category count < 3 }
 
 		default_modules = {
-			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_engine_slot = module_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_2
 			fixed_ship_auxillary_slot_3 = module_ciws_1
@@ -4250,7 +4443,7 @@ equipments = {
 		module_slots = inherit
 
 		default_modules = {
-			fixed_ship_engine_slot = module_surface_diesel_power
+			fixed_ship_engine_slot = module_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_2
 			fixed_ship_auxillary_slot_2 = module_ciws_2
@@ -5260,7 +5453,7 @@ equipments = {
 
 #PATROL BOATS
 	patrol_boat = {
-		year = 1965
+		year = 1985
 		is_archetype = yes
 		is_buildable = no
 		type = screen_ship
@@ -5315,7 +5508,7 @@ equipments = {
 		}
 
 		default_modules = {
-			fixed_ship_engine_slot = module_light_surface_diesel_power
+			fixed_ship_engine_slot = module_light_surface_diesel_power_1
 			fixed_ship_fire_control_system_slot = module_analog_fire_control
 			fixed_ship_radar_slot = module_radar_1
 			fixed_ship_battery_slot = module_chain_gun
@@ -5355,11 +5548,158 @@ equipments = {
 
 		naval_dominance_factor = 10
 	}
-	patrol_boat_1 = {
-		year = 1965
+	patrol_boat_hull_1 = {
+		year = 2005
 		archetype = patrol_boat
 		priority = 100
 		module_slots = inherit
+
+		naval_dominance_factor = 10
+	}
+	patrol_boat_hull_2 = {
+		year = 2015
+		archetype = patrol_boat
+		priority = 100
+		module_slots = {
+			fixed_ship_battery_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_light_guns_category
+					module_point_defense_system_category
+					module_naval_adl_category
+					module_torpedoes_category
+					module_nuclear_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_anti_ship_drone_torpedoes_category
+					module_anti_ship_nuclear_torpedoes_category
+					module_anti_submarine_mortar_category
+					module_drone_radar_category
+					module_radar_jammer_category
+				}
+			}
+			fixed_ship_radar_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_radar_category
+					module_sonar_category
+				}
+			}
+			fixed_ship_fire_control_system_slot = {
+				required = no
+				allowed_module_categories = {
+					module_fire_control_system_category
+					module_patrol_boat_drone_control_category
+				}
+			}
+			fixed_ship_engine_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_light_surface_power_source_category
+				}
+			}
+			fixed_ship_auxillary_slot_1 = {
+				required = no
+				allowed_module_categories = {
+					module_light_helipad_category
+					module_fuel_tanks_category
+					module_fire_control_system_category
+					module_patrol_boat_drone_control_category
+					module_point_defense_system_category
+					module_naval_adl_category
+					module_light_guns_category
+					module_point_defense_system_category
+					module_radar_category
+					module_drone_radar_category
+					module_radar_jammer_category
+					module_sonar_category
+					module_minelaying_category
+					module_mineclearing_category
+				}
+			}
+		}
+
+		naval_dominance_factor = 10
+	}
+	patrol_boat_hull_3 = {
+		year = 2030
+		archetype = patrol_boat
+		priority = 100
+		module_slots = {
+			fixed_ship_battery_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_light_guns_category
+					module_point_defense_system_category
+					module_naval_adl_category
+					module_torpedoes_category
+					module_nuclear_torpedoes_category
+					module_anti_ship_torpedoes_category
+					module_anti_ship_drone_torpedoes_category
+					module_anti_ship_nuclear_torpedoes_category
+					module_anti_submarine_mortar_category
+					module_drone_radar_category
+					module_radar_jammer_category
+				}
+			}
+			fixed_ship_radar_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_radar_category
+					module_sonar_category
+				}
+			}
+			fixed_ship_fire_control_system_slot = {
+				required = no
+				allowed_module_categories = {
+					module_fire_control_system_category
+					module_patrol_boat_drone_control_category
+				}
+			}
+			fixed_ship_engine_slot = {
+				required = yes
+				allowed_module_categories = {
+					module_light_surface_power_source_category
+				}
+			}
+			fixed_ship_auxillary_slot_1 = {
+				required = no
+				allowed_module_categories = {
+					module_light_helipad_category
+					module_fuel_tanks_category
+					module_fire_control_system_category
+					module_patrol_boat_drone_control_category
+					module_point_defense_system_category
+					module_naval_adl_category
+					module_light_guns_category
+					module_point_defense_system_category
+					module_radar_category
+					module_drone_radar_category
+					module_radar_jammer_category
+					module_sonar_category
+					module_minelaying_category
+					module_mineclearing_category
+				}
+			}
+			fixed_ship_auxillary_slot_2 = {
+				required = no
+				allowed_module_categories = {
+					module_light_helipad_category
+					module_fuel_tanks_category
+					module_fire_control_system_category
+					module_patrol_boat_drone_control_category
+					module_point_defense_system_category
+					module_naval_adl_category
+					module_light_guns_category
+					module_point_defense_system_category
+					module_radar_category
+					module_drone_radar_category
+					module_radar_jammer_category
+					module_sonar_category
+					module_minelaying_category
+					module_mineclearing_category
+				}
+			}
+		}
 
 		naval_dominance_factor = 10
 	}

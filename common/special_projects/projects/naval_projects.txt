@@ -445,7 +445,7 @@ sp_rail_gun_naval_battery = {
 		country_effects = {
 			custom_effect_tooltip = {
 				localization_key = SP_UNLOCK_TECH
-				TECH = x
+				TECH = tech_rail_battery_1
 			}
 		}
 		enable_equipment_modules = {
@@ -603,7 +603,7 @@ sp_nuclear_torpedoes = {
 }
 sp_anti_torpedo_module = {
 	specialization = specialization_naval
-	icon = x
+	icon = GFX_sp_anti_torpedo_torpedo
 	project_tags = sp_tag_naval_vehicles
 
 	ai_will_do = {
@@ -637,7 +637,7 @@ sp_anti_torpedo_module = {
 		country_effects = {
 			custom_effect_tooltip = {
 				localization_key = SP_UNLOCK_TECH
-				TECH = x
+				TECH = tech_anti_torpedoes_1
 			}
 		}
 		enable_equipment_modules = {
@@ -1134,6 +1134,10 @@ sp_naval_swarm_module = {
 
 	special_project_parent = {
 		sp_anti_ship_drone_missile
+	}
+
+	available = {
+		FROM = { has_tech = tech_turret_missiles_surface_3 }
 	}
 
 	project_output = {

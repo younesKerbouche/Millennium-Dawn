@@ -1,4 +1,4 @@
-# Author(s): Kanthier, Doolittle
+# Author(s): Kanthier, Doolittle, TheGeneral
 technologies = {
 	@1955 = -1
 	@1960 = 2
@@ -50,6 +50,7 @@ technologies = {
 	@row18 = 13
 	@row19 = 14
 	@row21 = 16
+	@row22 = 18
 
 	early_airframe_designs = {
 
@@ -461,7 +462,6 @@ technologies = {
 			ROOT = {
 				is_special_project_completed = sp:sp_aircraft_project
 				is_special_project_completed = sp:sp_stealth_technology
-				#is_special_project_completed = sp:sp_5thgen_airframe
 			}
 		}
 
@@ -525,7 +525,6 @@ technologies = {
 			ROOT = {
 				is_special_project_completed = sp:sp_aircraft_project
 				is_special_project_completed = sp:sp_stealth_technology
-				#is_special_project_completed = sp:sp_5thgen_airframe
 			}
 		}
 
@@ -589,7 +588,6 @@ technologies = {
 			ROOT = {
 				is_special_project_completed = sp:sp_aircraft_project
 				is_special_project_completed = sp:sp_stealth_technology
-				#is_special_project_completed = sp:sp_5thgen_airframe
 			}
 		}
 
@@ -1243,18 +1241,6 @@ technologies = {
 		}
 	}
 	avionics_2 = {
-		on_research_complete = {
-			#custom_effect_tooltip = {
-			#	localization_key = SP_UNLOCK_PROJECT
-			#	PROJECT = sp_modern_air_electronics
-			#}
-			#custom_effect_tooltip = {
-			#	localization_key = SP_UNLOCK_PROJECT
-			#	PROJECT = sp_modern_air_weapons
-			#}
-		}
-		#is_special_project_tech = yes
-
 		enable_equipment_modules = {
 			avionics_manned_3
 			em_lock_detection_system_gen2
@@ -1295,23 +1281,6 @@ technologies = {
 		}
 	}
 	avionics_3 = {
-		on_research_complete = {
-			#custom_effect_tooltip = {
-			#	localization_key = SP_UNLOCK_PROJECT
-			#	PROJECT = sp_future_air_electronics
-			#}
-			#custom_effect_tooltip = {
-			#	localization_key = SP_UNLOCK_PROJECT
-			#	PROJECT = sp_future_air_weapons
-			#}
-		}
-
-		#is_special_project_tech = yes
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_modern_air_electronics
-		#	}
-		#}
 
 		enable_equipment_modules = {
 			avionics_manned_4
@@ -1488,12 +1457,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	awacs_3 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_future_air_electronics
-		#	}
-		#}
 
 		enable_equipment_modules = {
 			weap_buff_awacs_3
@@ -2652,6 +2615,11 @@ technologies = {
 
 		is_special_project_tech = yes
 
+		path = {
+			leads_to_tech = tech_air_hypersonic_engine_upgrade_1
+			research_cost_coeff = 1
+		}
+
 		enable_equipment_modules = {
 			engine_nuclear_eight_1
 		}
@@ -2665,6 +2633,36 @@ technologies = {
 		folder = {
 			name = bba_aircraft_folder
 			position = { x = @row7 y = @1985 }
+		}
+
+		ai_will_do = { factor = 0.01 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_engine
+			CAT_nuclear
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+
+	tech_air_hypersonic_engine_upgrade_1 = {
+
+		allow = {
+			is_special_project_completed = sp:sp_hypersonic_engine
+		}
+
+		is_special_project_tech = yes
+
+		enable_equipment_modules = {
+			air_module_hypersonic_engine_2
+		}
+
+		research_cost = 6
+		start_year = 2015
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row7 y = @2015 }
 		}
 
 		ai_will_do = { factor = 0.01 }
@@ -2998,12 +2996,6 @@ technologies = {
 	}
 	air_weapons_3 = {
 
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_modern_air_weapons
-		#	}
-		#}
-
 		enable_equipment_modules = {
 			weap_a2a_hardpoint_3
 			weap_mp_light_hardpoint_3
@@ -3023,6 +3015,11 @@ technologies = {
 		}
 
 		path = {
+			leads_to_tech = air_tech_railgun_cannons_1
+			research_cost_coeff = 1
+		}
+
+		path = {
 			leads_to_tech = air_weapons_4
 			research_cost_coeff = 1
 		}
@@ -3038,12 +3035,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	air_weapons_4 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_future_air_weapons
-		#	}
-		#}
 
 		enable_equipment_modules = {
 			weap_a2a_hardpoint_4
@@ -3117,6 +3108,7 @@ technologies = {
 		ai_will_do = {
 			factor = 2
 		}
+		
 		categories = {
 			CAT_air_eqp
 			CAT_air_wpn
@@ -3152,6 +3144,61 @@ technologies = {
 			Cat_AIR_EQP
 			Cat_AIR_WPN
 		}
+	}
+	air_tech_railgun_cannons_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_air_railguns
+		}
+
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_railgun_cannon_2
+		}
+
+		research_cost = 5
+		start_year = 2025
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row18 y = @2035 }
+		}
+
+		path = {
+			leads_to_tech = air_tech_railgun_cannons_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 2 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_wpn
+			CAT_air_to_air_weapons
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_railgun_cannons_2 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_railgun_cannon_3
+		}
+
+		research_cost = 5
+		start_year = 2055
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row18 y = @2055 }
+		}
+
+		ai_will_do = { factor = 2 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_wpn
+			CAT_air_to_air_weapons
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
 	}
 	countermeasures_1 = {
 
@@ -3201,12 +3248,6 @@ technologies = {
 	}
 	countermeasures_3 = {
 
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_modern_air_electronics
-		#	}
-		#}
-
 		on_research_complete = {
 			custom_effect_tooltip = {
 				localization_key = SP_UNLOCK_PROJECT
@@ -3216,6 +3257,10 @@ technologies = {
 
 		enable_equipment_modules = {
 			spec_countermeasures_3
+		}
+
+		path = {
+			leads_to_tech = air_tech_pdl_1
 		}
 
 		research_cost = 5
@@ -3236,13 +3281,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	countermeasures_4 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_future_air_electronics
-		#	}
-		#}
-
 		enable_equipment_modules = {
 			spec_countermeasures_4
 		}
@@ -3306,6 +3344,102 @@ technologies = {
 		ai_will_do = {
 			factor = 2
 		}
+		categories = {
+			CAT_air_eqp
+			CAT_air_spc
+			CAT_air_countermeasures
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_pdl_1 = {
+		is_special_project_tech = yes
+
+		allow = {
+			is_special_project_completed = sp:sp_air_pdl
+		}
+
+		enable_equipment_modules = {
+			air_module_pdl_2
+		}
+
+		path = {
+			leads_to_tech = air_tech_pdl_2
+		}
+
+		research_cost = 5
+		start_year = 2020
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row22 y = @2020 }
+		}
+
+		ai_will_do = { factor = 2 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_spc
+			CAT_air_countermeasures
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_pdl_2 = {
+		is_special_project_tech = yes
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_air_pdl
+			}
+		}
+
+		enable_equipment_modules = {
+			air_module_pdl_3
+		}
+
+		path = {
+			leads_to_tech = air_tech_pdl_3
+		}
+
+		research_cost = 5
+		start_year = 2035
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row22 y = @2035 }
+		}
+
+		ai_will_do = { factor = 2 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_spc
+			CAT_air_countermeasures
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_pdl_3 = {
+		is_special_project_tech = yes
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_air_pdl
+			}
+		}
+
+		enable_equipment_modules = {
+			air_module_pdl_4
+		}
+
+		research_cost = 5
+		start_year = 2050
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row22 y = @2050 }
+		}
+
+		ai_will_do = { factor = 2 }
+
 		categories = {
 			CAT_air_eqp
 			CAT_air_spc
@@ -3378,13 +3512,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	naval_weapons_3 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_modern_air_weapons
-		#	}
-		#}
-
 		enable_equipment_modules = {
 			weap_mp_heavy_hardpoint_3
 			weap_as_hardpoint_3
@@ -3413,12 +3540,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	naval_weapons_4 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_future_air_weapons
-		#	}
-		#}
 
 		enable_equipment_modules = {
 			weap_mp_heavy_hardpoint_4
@@ -3531,6 +3652,12 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	special_mad_2 = {
+		on_research_complete = {
+			custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_anti_ship_drone_missile
+			}
+		}
 
 		enable_equipment_modules = {
 			spec_mad_2
@@ -3545,6 +3672,11 @@ technologies = {
 
 		path = {
 			leads_to_tech = special_mad_3
+			research_cost_coeff = 1
+		}
+
+		path = {
+			leads_to_tech = tech_air_anti_ship_drone_1
 			research_cost_coeff = 1
 		}
 
@@ -3668,6 +3800,91 @@ technologies = {
 		}
 		special_project_specialization = { specialization_air }
 	}
+
+	tech_air_anti_ship_drone_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_anti_ship_drone_missile
+		}
+
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_anti_ship_drone_missile_2
+		}
+
+		research_cost = 4
+		start_year = 2015
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row12 y = @2015 }
+		}
+
+		path = {
+			leads_to_tech = tech_air_anti_ship_drone_2
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_spc
+			CAT_air_naval_weapons
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	tech_air_anti_ship_drone_2 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_anti_ship_drone_missile_3
+		}
+
+		research_cost = 4
+		start_year = 2030
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row12 y = @2030 }
+		}
+
+		path = {
+			leads_to_tech = tech_air_anti_ship_drone_3
+			research_cost_coeff = 1
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_spc
+			CAT_air_naval_weapons
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	tech_air_anti_ship_drone_3 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_anti_ship_drone_missile_4
+		}
+
+		research_cost = 4
+		start_year = 2050
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row12 y = @2050 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_spc
+			CAT_air_naval_weapons
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+
 	ag_weapons_1 = {
 
 		enable_equipment_modules = {
@@ -3740,13 +3957,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	ag_weapons_3 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_modern_air_weapons
-		#	}
-		#}
-
 		enable_equipment_modules = {
 			weap_mp_med_hardpoint_3
 			weap_ag_cas_hardpoint_3
@@ -3776,13 +3986,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	ag_weapons_4 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_future_air_weapons
-		#	}
-		#}
-
 		enable_equipment_modules = {
 			weap_mp_med_hardpoint_4
 			weap_ag_cas_hardpoint_4
@@ -3925,19 +4128,23 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	rapid_dragon = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_modern_air_weapons
-		#	}
-		#}
-
+		on_research_complete = {
+				custom_effect_tooltip = {
+				localization_key = SP_UNLOCK_PROJECT
+				PROJECT = sp_air_gunship_railcannons
+			}
+		}
 		enable_equipment_modules = {
 			weap_ag_rapid_dragon
 		}
 
 		dependencies = {
 			GLCM = 1
+		}
+
+		path = {
+			leads_to_tech = air_tech_gunship_railgun_1
+			research_cost_coeff = 1
 		}
 
 		research_cost = 5
@@ -3948,6 +4155,85 @@ technologies = {
 		folder = {
 			name = bba_aircraft_folder
 			position = { x = @row15 y = @2025 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_wpn
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_gunship_railgun_1 = {
+		allow = {
+			is_special_project_completed = sp:sp_air_railguns
+		}
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_railgun_gunship_2
+		}
+
+		path = {
+			leads_to_tech = air_tech_gunship_railgun_2
+			research_cost_coeff = 1
+		}
+
+		research_cost = 5
+		start_year = 2035
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row15 y = @2035 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_wpn
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_gunship_railgun_2 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_railgun_gunship_3
+		}
+
+		path = {
+			leads_to_tech = air_tech_gunship_railgun_3
+			research_cost_coeff = 1
+		}
+
+		research_cost = 5
+		start_year = 2045
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row15 y = @2045 }
+		}
+
+		ai_will_do = { factor = 1 }
+
+		categories = {
+			CAT_air_eqp
+			CAT_air_wpn
+			CAT_Military
+		}
+		special_project_specialization = { specialization_air }
+	}
+	air_tech_gunship_railgun_3 = {
+		is_special_project_tech = yes
+		enable_equipment_modules = {
+			air_module_railgun_gunship_4
+		}
+
+		research_cost = 5
+		start_year = 2055
+		folder = {
+			name = bba_aircraft_folder
+			position = { x = @row15 y = @2055 }
 		}
 
 		ai_will_do = { factor = 1 }
@@ -4024,12 +4310,6 @@ technologies = {
 		special_project_specialization = { specialization_air }
 	}
 	tgp_recon_3 = {
-
-		#allow = {
-		#	ROOT = {
-		#		is_special_project_completed = sp:sp_future_air_electronics
-		#	}
-		#}
 
 		enable_equipment_modules = {
 			spec_tgp_3
