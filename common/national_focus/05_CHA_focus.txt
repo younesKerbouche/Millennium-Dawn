@@ -363,7 +363,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_anti_corruption_commission"
 			swap_ideas = {
 				remove_idea = crippling_corruption
-				add_idea = declining_corruption
+				add_idea = medium_corruption
 			}
 			add_political_power = 50
 		}
@@ -669,7 +669,7 @@ focus_tree = {
 
 	focus = {
 		id = CHA_islamic_state_sahel
-		icon = islamic_militarism
+		icon = islamic_military_03
 		x = -25
 		y = 6
 		relative_position_id = CHA_new_millennium
@@ -690,13 +690,6 @@ focus_tree = {
 			add_stability = -0.15
 			add_war_support = 0.20
 			add_popularity = { ideology = islamism popularity = 0.15 }
-			# Relations with neighbors deteriorate
-			FRA = {
-				add_opinion_modifier = {
-					target = CHA
-					modifier = hostile_neighbour
-				}
-			}
 		}
 
 		ai_will_do = {
@@ -991,7 +984,7 @@ focus_tree = {
 			}
 			# Gaddafi provides weapons and funding
 			add_equipment_to_stockpile = {
-				type = infantry_equipment
+				type = infantry_weapons1
 				amount = 2000
 				producer = LBA
 			}
@@ -1634,7 +1627,7 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_army_modernization"
 			army_experience = 25
 			add_equipment_to_stockpile = {
-				type = infantry_equipment
+				type = infantry_weapons1
 				amount = 1500
 				producer = CHA
 			}
@@ -1698,7 +1691,7 @@ focus_tree = {
 				name = CHA_desert_warfare_doctrine
 				cost_reduction = 0.5
 				uses = 2
-				category = land_doctrine
+				category = CAT_land_doctrine
 			}
 			# Add desert fox trait to a random general
 			random_army_leader = {
@@ -1732,7 +1725,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -8 }
 			modify_treasury_effect = yes
 			add_equipment_to_stockpile = {
-				type = motorized_equipment
+				type = util_vehicle_0
 				amount = 200
 				producer = FRA
 			}
@@ -1740,7 +1733,7 @@ focus_tree = {
 				name = CHA_motorized_forces
 				bonus = 1.0
 				uses = 1
-				category = motorized_equipment
+				category = CAT_util
 			}
 		}
 
@@ -1769,16 +1762,16 @@ focus_tree = {
 			division_template = {
 				name = "Garde Républicaine"
 				regiments = {
-					elite_infantry = { x = 0 y = 0 }
-					elite_infantry = { x = 0 y = 1 }
-					elite_infantry = { x = 0 y = 2 }
-					elite_infantry = { x = 1 y = 0 }
-					elite_infantry = { x = 1 y = 1 }
-					elite_infantry = { x = 1 y = 2 }
+					Special_Forces = { x = 0 y = 0 }
+					Special_Forces = { x = 0 y = 1 }
+					Special_Forces = { x = 0 y = 2 }
+					Special_Forces = { x = 1 y = 0 }
+					Special_Forces = { x = 1 y = 1 }
+					Special_Forces = { x = 1 y = 2 }
 				}
 				support = {
-					artillery_support = { x = 0 y = 0 }
-					anti_tank_support = { x = 0 y = 1 }
+					Arty_Battery = { x = 0 y = 0 }
+					armor_Comp = { x = 0 y = 1 }
 				}
 			}
 			capital_scope = {
@@ -1847,7 +1840,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -10 }
 			modify_treasury_effect = yes
 			add_equipment_to_stockpile = {
-				type = transport_plane_equipment
+				type = transport_plane1
 				amount = 20
 				producer = FRA
 			}
@@ -1876,7 +1869,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -15 }
 			modify_treasury_effect = yes
 			add_equipment_to_stockpile = {
-				type = fighter_equipment
+				type = small_plane_airframe_1
 				amount = 12
 				producer = FRA
 			}
@@ -2619,7 +2612,7 @@ focus_tree = {
 			add_war_support = 0.10
 			army_experience = 25
 			add_equipment_to_stockpile = {
-				type = infantry_equipment
+				type = infantry_weapons1
 				amount = 2000
 				producer = CHA
 			}
@@ -3093,7 +3086,7 @@ focus_tree = {
 				name = CHA_apc_development
 				bonus = 0.75
 				uses = 1
-				category = tp_armored
+				category = CAT_apc
 			}
 		}
 
@@ -3120,7 +3113,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -12 }
 			modify_treasury_effect = yes
 			add_equipment_to_stockpile = {
-				type = light_tank_equipment
+				type = APC_1
 				amount = 30
 				producer = FRA
 			}
@@ -3128,7 +3121,7 @@ focus_tree = {
 				name = CHA_light_armor
 				bonus = 0.5
 				uses = 2
-				category = cat_light_armor
+				category = CAT_armor
 			}
 		}
 
@@ -3158,19 +3151,19 @@ focus_tree = {
 				name = CHA_special_operations_command
 				bonus = 1.0
 				uses = 2
-				category = special_forces_tech
+				category = CAT_inf
 			}
 			division_template = {
 				name = "Commandos du Désert"
 				regiments = {
-					special_forces = { x = 0 y = 0 }
-					special_forces = { x = 0 y = 1 }
-					special_forces = { x = 1 y = 0 }
-					special_forces = { x = 1 y = 1 }
+					Special_Forces = { x = 0 y = 0 }
+					Special_Forces = { x = 0 y = 1 }
+					Special_Forces = { x = 1 y = 0 }
+					Special_Forces = { x = 1 y = 1 }
 				}
 				support = {
-					recon_support = { x = 0 y = 0 }
-					logistics_support = { x = 0 y = 1 }
+					L_Recce_Comp = { x = 0 y = 0 }
+					L_Engi_Comp = { x = 0 y = 1 }
 				}
 			}
 		}
@@ -3200,7 +3193,7 @@ focus_tree = {
 				name = CHA_paratrooper_training
 				bonus = 1.0
 				uses = 1
-				category = cat_special_forces
+				category = CAT_special_forces
 			}
 			add_ideas = paratrooper_training_idea
 		}
@@ -3268,7 +3261,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = -10 }
 			modify_treasury_effect = yes
 			add_equipment_to_stockpile = {
-				type = transport_plane_equipment
+				type = transport_plane1
 				amount = 15
 				producer = FRA
 			}
@@ -3276,7 +3269,7 @@ focus_tree = {
 				name = CHA_transport_aircraft
 				bonus = 0.75
 				uses = 1
-				category = tp_transport_air
+				category = CAT_air_eqp
 			}
 		}
 
@@ -3367,7 +3360,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 			navy_experience = 15
 			add_equipment_to_stockpile = {
-				type = patrol_boat_equipment
+				type = patrol_boat_1
 				amount = 10
 				producer = FRA
 			}
@@ -3463,7 +3456,7 @@ focus_tree = {
 				name = CHA_telecommunications
 				bonus = 0.5
 				uses = 2
-				category = radar_tech
+				category = CAT_computing_tech
 			}
 			add_stability = 0.02
 			add_political_power = 25
@@ -3522,7 +3515,7 @@ focus_tree = {
 				name = CHA_solar_energy
 				bonus = 0.75
 				uses = 1
-				category = renewable_energy
+				category = CAT_renewable
 			}
 			328 = {
 				add_building_construction = {
@@ -3584,8 +3577,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_banking_sector"
 			add_political_power = 50
-			set_temp_variable = { interest_change = -0.5 }
-			modify_interest_rate_effect = yes
+			add_stability = 0.03
 		}
 
 		ai_will_do = {
@@ -3732,8 +3724,7 @@ focus_tree = {
 			set_temp_variable = { treasury_change = 3 }
 			modify_treasury_effect = yes
 			add_stability = 0.02
-			set_temp_variable = { temp_change = 0.02 }
-			agriculture_productivity_modifier = yes
+			add_ideas = CHA_agricultural_investment
 		}
 
 		ai_will_do = {
@@ -3924,8 +3915,7 @@ focus_tree = {
 			add_stability = 0.05
 			add_political_power = 50
 			# Improve agricultural productivity
-			set_temp_variable = { temp_change = 0.03 }
-			agriculture_productivity_modifier = yes
+			add_ideas = CHA_agricultural_investment
 			# Long-term environmental benefits
 			custom_effect_tooltip = CHA_great_green_wall_tooltip
 			hidden_effect = {
@@ -4318,12 +4308,12 @@ focus_tree = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_gaddafi_aid"
 			add_ideas = CHA_libyan_weapons
 			add_equipment_to_stockpile = {
-				type = infantry_equipment
+				type = infantry_weapons1
 				amount = 1500
 				producer = LBA
 			}
 			add_equipment_to_stockpile = {
-				type = motorized_equipment
+				type = util_vehicle_0
 				amount = 100
 				producer = LBA
 			}
@@ -4360,7 +4350,7 @@ focus_tree = {
 			add_war_support = 0.05
 			army_experience = 15
 			add_equipment_to_stockpile = {
-				type = infantry_equipment
+				type = infantry_weapons1
 				amount = 500
 				producer = LBA
 			}
@@ -4776,7 +4766,7 @@ focus_tree = {
 				name = CHA_uranium_deal
 				bonus = 0.5
 				uses = 1
-				category = nuclear
+				category = CAT_nuclear
 			}
 			add_opinion_modifier = {
 				target = NGR
@@ -4922,7 +4912,7 @@ focus_tree = {
 				name = CHA_fiber_optic_network
 				bonus = 0.5
 				uses = 2
-				category = electronics
+				category = CAT_computing_tech
 			}
 		}
 
@@ -4991,7 +4981,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 			580 = {
 				add_resource = {
-					type = uranium
+					type = tungsten
 					amount = 3
 				}
 			}

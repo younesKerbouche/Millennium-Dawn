@@ -420,6 +420,45 @@ ideas = {
 			}
 		}
 
+		CHA_agricultural_investment = {
+			name = CHA_agricultural_investment
+			picture = generic_agriculture
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_agricultural_investment" }
+
+			modifier = {
+				stability_factor = 0.03
+				consumer_goods_factor = -0.02
+				local_resources = 0.05
+			}
+		}
+
+		CHA_tribal_unity = {
+			name = CHA_tribal_unity
+			picture = generic_unity
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_unity" }
+
+			modifier = {
+				stability_factor = 0.15
+				political_power_factor = 0.10
+				war_support_factor = 0.10
+				conscription_factor = 0.05
+			}
+		}
+
 		CHA_reforestation_program = {
 			name = CHA_reforestation_program
 			picture = generic_reforestation
@@ -435,7 +474,7 @@ ideas = {
 			modifier = {
 				stability_factor = 0.03
 				consumer_goods_factor = -0.02
-				agriculture_productivity_modifier = 0.02
+				local_resources = 0.05
 			}
 		}
 
@@ -534,6 +573,25 @@ ideas = {
 			modifier = {
 				army_org_factor = 0.05
 				army_defence_factor = 0.05
+			}
+		}
+
+		CHA_military_offensive_idea = {
+			name = CHA_military_offensive_idea
+			picture = generic_military_mobilization
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_military_offensive_idea" }
+
+			modifier = {
+				army_attack_factor = 0.15
+				army_speed_factor = 0.10
+				army_org_factor = -0.05
 			}
 		}
 
