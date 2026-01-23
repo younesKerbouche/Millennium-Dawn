@@ -46,6 +46,9 @@ set_leader_ALG = {
 				ideology = liberalism
 				traits = {
 					western_liberalism
+					corruptible
+					popular_figurehead
+					career_politician
 				}
 			}
 
@@ -133,6 +136,9 @@ set_leader_ALG = {
 				ideology = Autocracy
 				traits = {
 					emerging_Autocracy
+					corruptible
+					popular_figurehead
+					career_politician
 				}
 			}
 
@@ -166,6 +172,8 @@ set_leader_ALG = {
 				ideology = Autocracy
 				traits = {
 					emerging_Autocracy
+					technocrat
+					career_politician
 				}
 			}
 
@@ -283,6 +291,8 @@ set_leader_ALG = {
 				ideology = Neutral_Muslim_Brotherhood
 				traits = {
 					neutrality_Neutral_Muslim_Brotherhood
+					cleric
+					political_dancer
 				}
 			}
 
@@ -368,6 +378,8 @@ set_leader_ALG = {
 				ideology = Neutral_Communism
 				traits = {
 					neutrality_Neutral_Communism
+					union_man
+					compassionate_gentleman
 				}
 			}
 
@@ -456,6 +468,10 @@ set_leader_ALG = {
 				ideology = Nat_Autocracy
 				traits = {
 					nationalist_Nat_Autocracy
+					military_career
+					army_general
+					staunch_personalist
+					dictator
 				}
 			}
 
@@ -471,10 +487,31 @@ set_leader_ALG = {
 				ideology = Nat_Autocracy
 				traits = {
 					nationalist_Nat_Autocracy
+					military_career
+					army_general
+					cautious
 				}
 			}
 
 			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Nat_Autocracy_leader = 1 } }
+			set_temp_variable = { b = 1 }
+		}
+	}
+	else_if = { limit = { has_country_flag = set_Western_Autocracy }
+		if = { limit = { check_variable = { Western_Autocracy_leader = 0 } }
+			add_to_variable = { Western_Autocracy_leader = 1 }
+			hidden_effect = { kill_country_leader = yes }
+
+			create_country_leader = {
+				name = "Noureddine Boukrou"
+				picture = "Noureddine_Boukrou.dds"
+				ideology = conservatism
+				traits = {
+					western_Western_Autocracy
+				}
+			}
+
+			if = { limit = { has_country_flag = do_not_retire } subtract_from_variable = { Western_Autocracy_leader = 1 } }
 			set_temp_variable = { b = 1 }
 		}
 	}

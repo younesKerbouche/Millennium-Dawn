@@ -91,14 +91,8 @@ types = {
 		target_icon = GFX_other_target_icon
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -380,7 +374,8 @@ types = {
 							var:actor_country = { has_war_with = var:ROOT.victim_country }
 						}
 						multiply_temp_variable = { raid_planes_lost = 1.25 }
-					} else = {
+					}
+					else = {
 						#50% chance on dead planes here, since raid was a limited success
 						set_temp_variable_to_random = {
 							var = random_chance_on_dead_planes
@@ -815,6 +810,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -856,10 +860,8 @@ types = {
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
 			}
 			modifier = {
-				NOT = {
-					has_country_flag = promised_retaliation_against@FROM
-				}
 				factor = 0
+				NOT = { has_country_flag = promised_retaliation_against@FROM }
 				FROM = {
 					has_idea = NATO_member
 				}
@@ -997,15 +999,8 @@ types = {
 
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -1548,6 +1543,15 @@ types = {
 				}
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -1672,7 +1676,7 @@ types = {
 				type = fossil_powerplant
 			}
 			building = {
-				type = synthetic_refinery
+				type = renewable_energy_infra
 			}
 		}
 
@@ -1684,16 +1688,11 @@ types = {
 
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
 			}
 		}
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
-			}
-		}
+
 		starting_point = {
 			types = { air_base carrier rocket_site submarine }
 		}
@@ -1895,7 +1894,7 @@ types = {
 						set_temp_variable = { ROOT.radar_mult = THIS.non_damaged_building_level@radar_station }
 						set_temp_variable = { ROOT.rocket_mult = THIS.non_damaged_building_level@rocket_site }
 						set_temp_variable = { num_power_plants = THIS.building_level@fossil_powerplant }
-						set_temp_variable = { num_synthetic_refinery = THIS.building_level@synthetic_refinery }
+						set_temp_variable = { num_renewable_energy_infra = THIS.building_level@renewable_energy_infra }
 					}
 
 					add_to_temp_variable = { radar_mult = 0.5 }
@@ -1938,13 +1937,13 @@ types = {
 					if = {
 						limit = {
 							check_variable = { num_power_plants > 0 }
-							check_variable = { num_synthetic_refinery > 0 }
+							check_variable = { num_renewable_energy_infra > 0 }
 						}
 						divide_temp_variable = { building_damage_by_missile = 2 }
 					}
 
 					set_temp_variable = { max_clamp = num_power_plants }
-					add_to_temp_variable = { max_clamp = num_synthetic_refinery }
+					add_to_temp_variable = { max_clamp = num_renewable_energy_infra }
 
 					clamp_temp_variable = {
 						var = building_damage_by_missile
@@ -1970,11 +1969,11 @@ types = {
 								DAM = "[?building_damage_by_missile]"
 							}
 						}
-						if = { limit = { synthetic_refinery > 0 }
+						if = { limit = { renewable_energy_infra > 0 }
 							meta_effect = {
 								text = {
 									damage_building = {
-										type = synthetic_refinery
+										type = renewable_energy_infra
 										damage = [DAM]
 									}
 								}
@@ -2101,7 +2100,7 @@ types = {
 						set_temp_variable = { ROOT.radar_mult = THIS.non_damaged_building_level@radar_station }
 						set_temp_variable = { ROOT.rocket_mult = THIS.non_damaged_building_level@rocket_site }
 						set_temp_variable = { num_power_plants = THIS.building_level@fossil_powerplant }
-						set_temp_variable = { num_synthetic_refinery = THIS.building_level@synthetic_refinery }
+						set_temp_variable = { num_renewable_energy_infra = THIS.building_level@renewable_energy_infra }
 					}
 
 					add_to_temp_variable = { radar_mult = 0.5 }
@@ -2144,13 +2143,13 @@ types = {
 					if = {
 						limit = {
 							check_variable = { num_power_plants > 0 }
-							check_variable = { num_synthetic_refinery > 0 }
+							check_variable = { num_renewable_energy_infra > 0 }
 						}
 						divide_temp_variable = { building_damage_by_missile = 2 }
 					}
 
 					set_temp_variable = { max_clamp = num_power_plants }
-					add_to_temp_variable = { max_clamp = num_synthetic_refinery }
+					add_to_temp_variable = { max_clamp = num_renewable_energy_infra }
 
 					clamp_temp_variable = {
 						var = building_damage_by_missile
@@ -2176,11 +2175,11 @@ types = {
 								DAM = "[?building_damage_by_missile]"
 							}
 						}
-						if = { limit = { synthetic_refinery > 0 }
+						if = { limit = { renewable_energy_infra > 0 }
 							meta_effect = {
 								text = {
 									damage_building = {
-										type = synthetic_refinery
+										type = renewable_energy_infra
 										damage = [DAM]
 									}
 								}
@@ -2308,7 +2307,7 @@ types = {
 						set_temp_variable = { ROOT.radar_mult = THIS.non_damaged_building_level@radar_station }
 						set_temp_variable = { ROOT.rocket_mult = THIS.non_damaged_building_level@rocket_site }
 						set_temp_variable = { num_power_plants = THIS.building_level@fossil_powerplant }
-						set_temp_variable = { num_synthetic_refinery = THIS.building_level@synthetic_refinery }
+						set_temp_variable = { num_renewable_energy_infra = THIS.building_level@renewable_energy_infra }
 					}
 
 					add_to_temp_variable = { radar_mult = 0.5 }
@@ -2351,13 +2350,13 @@ types = {
 					if = {
 						limit = {
 							check_variable = { num_power_plants > 0 }
-							check_variable = { num_synthetic_refinery > 0 }
+							check_variable = { num_renewable_energy_infra > 0 }
 						}
 						divide_temp_variable = { building_damage_by_missile = 2 }
 					}
 
 					set_temp_variable = { max_clamp = num_power_plants }
-					add_to_temp_variable = { max_clamp = num_synthetic_refinery }
+					add_to_temp_variable = { max_clamp = num_renewable_energy_infra }
 
 					clamp_temp_variable = {
 						var = building_damage_by_missile
@@ -2381,11 +2380,11 @@ types = {
 								DAM = "[?building_damage_by_missile]"
 							}
 						}
-						if = { limit = { synthetic_refinery > 0 }
+						if = { limit = { renewable_energy_infra > 0 }
 							meta_effect = {
 								text = {
 									damage_building = {
-										type = synthetic_refinery
+										type = renewable_energy_infra
 										damage = [DAM]
 									}
 								}
@@ -2575,6 +2574,15 @@ types = {
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -2671,15 +2679,8 @@ types = {
 
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -3592,6 +3593,15 @@ types = {
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 0
 				date < 2002.1.1
 				NOT = { has_country_flag = promised_retaliation_against@FROM }
@@ -3688,15 +3698,8 @@ types = {
 
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -4485,6 +4488,15 @@ types = {
 				threat < 0.10
 			}
 			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
+			}
+			modifier = {
 				factor = 100
 				has_country_flag = promised_retaliation_against@FROM
 			}
@@ -4618,14 +4630,8 @@ types = {
 
 		unit_requirements = {
 			equipment = {
-				type = { tactical_bomber cas strategic_bomber }
+				type = { tactical_bomber cas strategic_bomber guided_missile_equipment ballistic_missile_equipment hypersonic_missile_equipment }
 				amount = { min = 10 }
-			}
-		}
-		unit_requirements = {
-			equipment = {
-				type = { guided_missile_equipment }
-				amount = { min = 50 }
 			}
 		}
 
@@ -5278,6 +5284,15 @@ types = {
 			modifier = {
 				factor = 0.05
 				threat < 0.10
+			}
+			modifier = {
+				factor = 0.05
+				OR = {
+					has_government = democratic
+					has_government = neutrality
+					has_elections = yes
+				}
+				FROM = { has_added_tension_amount < 5 }
 			}
 			modifier = {
 				factor = 0

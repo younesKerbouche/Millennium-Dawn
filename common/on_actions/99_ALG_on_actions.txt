@@ -61,32 +61,35 @@ on_actions = {
 		}
 	}
 	on_monthly_ALG = {
-		if = {
-			limit = {
-				check_variable = { ALG_election_var > 0 }
+		effect = {
+			random_list = {
+				chance_to_kill_poachers = {
+					subtract_from_variable = { no_of_poachers = no_of_poachers_to_kill }
+					clamp_variable = { var = no_of_poachers min = 0 }
+				}
+				chance_to_not_kill_poachers = {
+					add_to_variable = { no_of_poachers = 15 }
+				}
 			}
-			add_to_variable = { var = ALG_election_var value = -1 }
-			clamp_variable = { var = ALG_election_var min = 0 max = 48 }
-		}
-
-		if = {
-			limit = {
-				check_variable = { ALG_election_var = 0 }
+			if = {
+				limit = {
+					NOT = { has_country_flag = on_yearly_done_ALG }
+					date > 2001.1.1
+				}
+				random_list = {
+					sahara_expands = {
+						country_event = { id = Algeria_pulse.1 }
+					}
+					sahara_steady = {
+						country_event = { id = Algeria_pulse.2 }
+					}
+					sahara_retreats = {
+						country_event = { id = Algeria_pulse.3 }
+					}
+				}
+				set_country_flag = { flag = on_yearly_done_ALG days = 350 value = 1 }
 			}
-			add_to_variable = { var = ALG_election_var value = 48 }
-			clamp_variable = { var = ALG_election_var min = 0 max = 48 }
-			country_event = { id = ALG_pm_elections.1 days = 3 }
 		}
-		if = {
-	 		limit = { check_variable = { ALG_pm_session_var > 0 } }
-				add_to_variable = { var = ALG_pm_session_var value = -1 }
-				clamp_variable = { var = ALG_pm_session_var min = 0 max = 48 }
-		}
-		if = {
-			limit = { check_variable = { ALG_pm_session_var = 0 } }
-				country_event = { id = ALG_pm.1 days = 1 }
-		}
-
-
 	}
+
 }

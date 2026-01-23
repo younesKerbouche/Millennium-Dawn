@@ -1250,10 +1250,7 @@ country_event = {
 						set_variable = { var = treasury value = 12 }
 						set_variable = { var = corporate_tax_rate value = 13 }
 						set_variable = { var = population_tax_rate value = 15 }
-						set_variable = { military_factory_employment_var = 1 }
-						set_variable = { civilian_factory_employment_var = 1 }
-						set_variable = { naval_factory_employment_var = 1 }
-						set_variable = { office_employment_var = 1 }
+						setup_employment_variables = yes
 						add_ideas = {
 							widespread_corruption
 							sunni
@@ -1505,10 +1502,7 @@ country_event = {
 						set_variable = { var = treasury value = 12 }
 						set_variable = { var = corporate_tax_rate value = 13 }
 						set_variable = { var = population_tax_rate value = 15 }
-						set_variable = { military_factory_employment_var = 1 }
-						set_variable = { civilian_factory_employment_var = 1 }
-						set_variable = { naval_factory_employment_var = 1 }
-						set_variable = { office_employment_var = 1 }
+						setup_employment_variables = yes
 						add_ideas = {
 							widespread_corruption
 							buddism
@@ -2042,9 +2036,9 @@ news_event = {
 		log = "[GetDateText]: [This.GetName]: china.20.a executed"
 		ai_chance = { base = 80 }
 		declare_war_on = {
-		 target = MON
-		 type = annex_everything
-	  }
+			target = MON
+			type = annex_everything
+		}
 	}
 
 	option = {
@@ -3969,6 +3963,42 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = china.65
+	title = china.65.t
+	desc = china.65.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = china.65.a
+		random_list = {
+			50 = {
+				add_tech_bonus = {
+					name = strategy_of_invigorating_through_STE
+					bonus = 0.3
+					uses = 1
+					category = CAT_internet_tech
+				}
+			}
+			50 = {
+				add_tech_bonus = {
+					name = strategy_of_invigorating_through_STE
+					bonus = 0.3
+					uses = 1
+					category = CAT_computing_tech
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = china.65
+				days = 365
+			}
+		}
+	}
+}
+
 
 ###CHINA regular news events
 
@@ -5670,6 +5700,7 @@ country_event = {
 		create_wargoal = {
 			type = topple_government
 			target = CHI
+			expire = 120
 		}
 		ai_chance = {
 			base = 20
@@ -7069,6 +7100,7 @@ country_event = {
 		create_wargoal = {
 			type = annex_everything
 			target = PREV
+			expire = 120
 		}
 	}
 }

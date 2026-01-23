@@ -983,8 +983,10 @@ focus_tree = {
 				owns_state = 1055
 			}
 		}
-		prerequisite = { focus = SPR_compromiso }
-		prerequisite = { focus = SPR_galician_integration }
+		prerequisite = {
+			focus = SPR_compromiso
+			focus = SPR_galician_integration
+		}
 
 		search_filters = { FOCUS_FILTER_SPR_CULTURE }
 
@@ -5325,7 +5327,7 @@ focus_tree = {
 			every_country = {
 				limit = {
 					has_idea = EU_member
-					check_variable = { THIS.var_EUpopRatio > 0.05 }
+					check_variable = { THIS.EU_pop_ratio > 0.05 }
 					NOT = { TAG = ROOT }
 				}
 				set_temp_variable = { modify_eurosceptic = 0.10 }
@@ -5335,7 +5337,7 @@ focus_tree = {
 			every_country = {
 				limit = {
 					has_idea = EU_member
-					check_variable = { THIS.var_EUpopRatio < 0.05 }
+					check_variable = { THIS.EU_pop_ratio < 0.05 }
 					NOT = { TAG = ROOT }
 				}
 				set_temp_variable = { modify_eurosceptic = -0.05 }

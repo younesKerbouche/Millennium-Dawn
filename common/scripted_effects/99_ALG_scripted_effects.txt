@@ -475,3 +475,298 @@ alg_decrease_reform = {
 	custom_effect_tooltip = alg_decrease_reform_tt
 	add_to_variable = { algeria_constitution_reform = -1 }
 }
+
+ALG_modify_ALG_productivity_growth_modifier_pvda_effect = {
+	custom_effect_tooltip = ALG_productivity_growth_modifier_pvda_tt
+	add_to_variable = {
+		ALG_productivity_growth_modifier_pvda = ALG_productivity_growth_modifier_pvda_change
+	}
+}
+ALG_modify_ALG_recruitable_population_factor_pvda_effect = {
+	custom_effect_tooltip = ALG_recruitable_population_factor_pvda_tt
+	add_to_variable = {
+		ALG_recruitable_population_factor_pvda = ALG_recruitable_population_factor_pvda_change
+	}
+}
+update_ALG_bureaucracy_cost_multiplier_modifier = {
+	custom_effect_tooltip = ALG_bureaucracy_cost_multiplier_modifier_tt
+	add_to_variable = { ALG_bureaucracy_cost_multiplier_modifier = ALG_bureaucracy_cost_multiplier_modifier_change }
+}
+ALG_increase_desertification = {
+	if = {
+		limit = { has_idea = ALG_sahara_expansion_1 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_2
+			remove_idea = ALG_sahara_expansion_1
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_2 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_3
+			remove_idea = ALG_sahara_expansion_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_3 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_4
+			remove_idea = ALG_sahara_expansion_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_4 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_5
+			remove_idea = ALG_sahara_expansion_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_5 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_6
+			remove_idea = ALG_sahara_expansion_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_6 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_7
+			remove_idea = ALG_sahara_expansion_6
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_7 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_8
+			remove_idea = ALG_sahara_expansion_7
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_8 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_9
+			remove_idea = ALG_sahara_expansion_8
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_9 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_10
+			remove_idea = ALG_sahara_expansion_9
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_10 }
+		add_political_power = -200
+	}
+}
+
+ALG_decrease_desertification = {
+	if = {
+		limit = { has_idea = ALG_sahara_expansion_1 }
+		add_political_power = 200
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_2 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_1
+			remove_idea = ALG_sahara_expansion_2
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_3 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_2
+			remove_idea = ALG_sahara_expansion_3
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_4 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_3
+			remove_idea = ALG_sahara_expansion_4
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_5 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_4
+			remove_idea = ALG_sahara_expansion_5
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_6 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_5
+			remove_idea = ALG_sahara_expansion_6
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_7 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_6
+			remove_idea = ALG_sahara_expansion_7
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_8 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_7
+			remove_idea = ALG_sahara_expansion_8
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_9 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_8
+			remove_idea = ALG_sahara_expansion_9
+		}
+	}
+	else_if = {
+		limit = { has_idea = ALG_sahara_expansion_10 }
+		swap_ideas = {
+			add_idea = ALG_sahara_expansion_9
+			remove_idea = ALG_sahara_expansion_10
+		}
+	}
+}
+
+ALG_increase_desertification_rate = {
+	if = {
+		limit = {
+			check_variable = { sahara_retreats > 4 }
+		}
+		custom_effect_tooltip = ALG_increase_yearly_bad_desertification_5
+		add_to_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_reduce_yearly_good_desertification_5
+		subtract_from_variable = { sahara_retreats = 5 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { sahara_steady > 4 }
+		}
+		custom_effect_tooltip = ALG_increase_yearly_bad_desertification_5
+		add_to_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_reduce_yearly_neutral_desertification_5
+		subtract_from_variable = { sahara_steady = 5 }
+	}
+	else = {
+		add_political_power = -200
+	}
+}
+
+ALG_decrease_desertification_rate = {
+	if = {
+		limit = {
+			check_variable = { sahara_steady < 30 }
+		}
+		custom_effect_tooltip = ALG_decrease_yearly_bad_desertification_5
+		subtract_from_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_increase_yearly_neutral_desertification_5
+		add_to_variable = { sahara_steady = 5 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { sahara_retreats < 70 }
+		}
+		custom_effect_tooltip = ALG_decrease_yearly_bad_desertification_5
+		subtract_from_variable = { sahara_expands = 5 }
+		custom_effect_tooltip = ALG_increase_yearly_good_desertification_5
+		add_to_variable = { sahara_retreats = 5 }
+	}
+	else = {
+		add_political_power = 200
+	}
+}
+ALG_update_anti_poaching = {
+	# From internal security level
+	if = {
+		limit = { has_idea = police_01 }
+		set_variable = { chance_to_kill_poachers = 15 }
+	}
+	else_if = {
+		limit = { has_idea = police_02 }
+		set_variable = { chance_to_kill_poachers = 30 }
+	}
+	else_if = {
+		limit = { has_idea = police_03 }
+		set_variable = { chance_to_kill_poachers = 45 }
+	}
+	else_if = {
+		limit = { has_idea = police_04 }
+		set_variable = { chance_to_kill_poachers = 60 }
+	}
+	else_if = {
+		limit = { has_idea = police_05 }
+		set_variable = { chance_to_kill_poachers = 75 }
+	}
+
+	# From hiring extra security
+	if = {
+		limit = { has_decision = ALG_anti_poaching_extra_security }
+		add_to_variable = { chance_to_kill_poachers = 10 }
+	}
+
+	clamp_variable = { var = chance_to_kill_poachers max = 100 }
+	set_variable = { chance_to_not_kill_poachers = 100 }
+	subtract_from_variable = { chance_to_not_kill_poachers = chance_to_kill_poachers }
+
+	set_variable = { no_of_poachers_to_kill = 10 }
+	if = {
+		limit = { has_decision = ALG_anti_poaching_heavy_weapons }
+		add_to_variable = { no_of_poachers_to_kill = 5 }
+	}
+	if = {
+		limit = { has_idea = ALG_army_against_poaching }
+		add_to_variable = { no_of_poachers_to_kill = 5 }
+	}
+}
+update_ALG_special_forces_cap_flat = {
+	custom_effect_tooltip = ALG_special_forces_cap_flat_tt
+	add_to_variable = { ALG_special_forces_cap_flat = ALG_special_forces_cap_flat_change }
+}
+update_ALG_terrain_penalty_reduction = {
+	custom_effect_tooltip = ALG_terrain_penalty_reduction_tt
+	add_to_variable = { ALG_terrain_penalty_reduction = ALG_terrain_penalty_reduction_change }
+}
+update_ALG_planning_speed = {
+	custom_effect_tooltip = ALG_planning_speed_tt
+	add_to_variable = { ALG_planning_speed = ALG_planning_speed_change }
+}
+update_ALG_research_speed_factor = {
+	custom_effect_tooltip = ALG_research_speed_factor_tt
+	add_to_variable = { ALG_research_speed_factor = ALG_research_speed_factor_change }
+}
+update_ALG_education_cost_multiplier_modifier = {
+	custom_effect_tooltip = ALG_education_cost_multiplier_modifier_tt
+	add_to_variable = { ALG_education_cost_multiplier_modifier = ALG_education_cost_multiplier_modifier_change }
+}
+update_ALG_offices_contruction_speed = {
+	custom_effect_tooltip = ALG_offices_contruction_speed_tt
+	add_to_variable = { ALG_offices_contruction_speed = ALG_offices_contruction_speed_change }
+}
+update_ALG_arms_factory_contruction_speed = {
+	custom_effect_tooltip = ALG_arms_factory_contruction_speed_tt
+	add_to_variable = { ALG_arms_factory_contruction_speed = ALG_arms_factory_contruction_speed_change }
+}
+update_ALG_civ_construction_speed = {
+	custom_effect_tooltip = ALG_civ_construction_speed_tt
+	add_to_variable = { ALG_civ_construction_speed = ALG_civ_construction_speed_change }
+}
+update_ALG_population_energy_consumption = {
+	custom_effect_tooltip = ALG_population_energy_consumption_tt
+	add_to_variable = { ALG_population_energy_consumption = ALG_population_energy_consumption_change }
+}
+update_ALG_mil_factory_workforce = {
+	custom_effect_tooltip = ALG_mil_factory_workforce_tt
+	add_to_variable = { ALG_mil_factory_workforce = ALG_mil_factory_workforce_change }
+}
+update_ALG_office_workforce = {
+	custom_effect_tooltip = ALG_office_workforce_tt
+	add_to_variable = { ALG_office_workforce = ALG_office_workforce_change }
+}
+update_ALG_military_cost = {
+	custom_effect_tooltip = ALG_military_cost_tt
+	add_to_variable = { ALG_military_cost = ALG_military_cost_change }
+}

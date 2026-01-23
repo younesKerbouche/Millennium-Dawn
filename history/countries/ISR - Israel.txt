@@ -1,14 +1,14 @@
 capital = 207
 2000.1.1 = {
+	set_cosmetic_tag = ISR
 	set_country_flag = ISR_good_size_knesset
 	set_country_flag = ISR_parliament_block
-	set_country_flag = i_am_israel
-	set_cosmetic_tag = ISR
 	set_country_flag = dynamic_flag
 	set_country_flag = dynamic_rebel_flag
 	set_variable = { gdp_per_capita = 30.476 }
 
 	complete_special_project = sp:sp_aircraft_project
+	complete_special_project = sp:sp_composite_production
 
 	if = {
 		limit = { has_dlc = "No Step Back" }
@@ -69,7 +69,7 @@ capital = 207
 		the_military
 		the_priesthood
 		small_medium_business_owners
-		intervention_limited_interventionism
+		intervention_regional_interventionism
 		USA_usaid
 		western_country
 		large_far_right_movement
@@ -93,20 +93,38 @@ capital = 207
 	204 = { add_dynamic_modifier = { modifier = state_of_tel_aviv } }
 	207 = { add_dynamic_modifier = { modifier = jordanian_waqf_authprity } }
 
+	set_variable = { ISR_palestine_situation_additional = 0 }
+	set_variable = { hap_west_bank = 40 }
+	set_variable = { hap_gaza = 20 }
+	set_variable = { hap_isr = 60 }
+	set_variable = { ter_west_bank = 30 }
+	set_variable = { ter_gaza = 50 }
+	set_variable = { ter_isr = 20 }
+	set_variable = { defence_israel = 1 }
+	set_variable = { is_attacking_gaza = 1 }
+
 	diplomatic_relation = { country = PAL relation = military_access active = yes }
+
+	# Opinion Modifiers
+	add_opinion_modifier = { target = HEZ modifier = HEZ_Are_Terrorists }
 
 	country_event = {
 		id = israel.23
 		days = 193 #Camp David
 	}
 
-	if = {
-		limit = {
-			has_dlc = "La Resistance"
-		}
+	if = { limit = { has_dlc = "La Resistance" }
 		create_intelligence_agency = {
 			name = "Mossad"
 			icon = GFX_intelligence_agency_logo_isr
+		}
+
+		else = {
+			add_to_array = { cyber_targets = USA }
+			add_to_array = { cyber_targets = PER }
+			add_to_array = { cyber_targets = SOV }
+			add_to_array = { cyber_targets = SAU }
+			add_to_array = { cyber_targets = TUR }
 		}
 	}
 
@@ -179,9 +197,6 @@ capital = 207
 		util_vehicle_2 = 1
 		util_vehicle_3 = 1
 
-		#Elbit Hermes 900
-
-		#Elbit Hermes 450
 		land_Drone_equipment = 1
 		land_Drone_equipment1 = 1
 
@@ -199,8 +214,8 @@ capital = 207
 		decryption2 = 1
 		encryption2 = 1
 		radar = 1
-		internet1 = 1 	#1G
-		internet2 = 1 	#2G
+		internet1 = 1
+		internet2 = 1
 		gprs = 1
 		fuel_silos = 1
 
@@ -234,6 +249,8 @@ capital = 207
 		transport_helicopter2 = 1
 	}
 
+	set_variable = { country_excavation_production_var = 0.075 }
+
 	if = { limit = { has_dlc = "Gotterdammerung" }
 		set_technology = {
 			ballistic_missile = 1
@@ -249,11 +266,6 @@ capital = 207
 			ICBM2 = 1
 			ICBM3 = 1
 			ICBM4 = 1
-
-			# ICBM2_MIRV = 1
-			# ICBM3_MIRV = 1
-
-			# ICBM3_MARV = 1
 
 			cruise_missile = 1
 
@@ -326,8 +338,6 @@ capital = 207
 			turbine_engine_tech = 1
 			turbine_engine_tech_2 = 1
 
-
-
 			small_autocannon_tech = 1
 			small_autocannon_tech_2 = 1
 			big_autocannon_tech = 1
@@ -337,18 +347,12 @@ capital = 207
 			nsb_Arty_upgrade_2 = 1
 			nsb_Arty_upgrade_3 = 1
 
-
-
-
 			nsb_Anti_Air_0 = 1
 			nsb_Anti_Air_1 = 1
 			nsb_AA_upgrade_1 = 1
 
 
-
 			#RAM-V-2
-
-
 			helo_ops_tech = 1
 			nsb_attack_helicopter_tech_1 = 1
 			nsb_engine_tech_1 = 1
@@ -359,11 +363,7 @@ capital = 207
 			nsb_gun_pods_tech_1 = 1
 			nsb_light_nose_gun_tech_1 = 1
 
-
 			nsb_defense_tech_1 = 1
-
-
-
 
 			nsb_attack_helicopter_tech_2 = 1
 			nsb_engine_tech_2 = 1
@@ -1310,7 +1310,7 @@ capital = 207
 			tech_torpedoes = 1
 			tech_torpedoes_1 = 1
 
-			tech_mtg_landing_craft = 1
+			tech_landing_craft = 1
 		}
 
 		create_equipment_variant = {
@@ -1702,13 +1702,6 @@ capital = 207
 		}
 	}
 
-	#Cyber
-	add_to_array = { cyber_targets = USA }
-	add_to_array = { cyber_targets = PER }
-	add_to_array = { cyber_targets = SOV }
-	add_to_array = { cyber_targets = SAU }
-	add_to_array = { cyber_targets = TUR }
-
 	### ISR ###
 	#Influence system
 	init_influence = yes
@@ -1734,7 +1727,7 @@ capital = 207
 	set_variable = { var = treasury value = 34 }
 	set_variable = { var = corporate_tax_rate value = 23 }
 	set_variable = { var = population_tax_rate value = 38 }
-	#set_variable = { var = int_investments value = 11 }
+	set_variable = { var = int_investments value = 34 }
 
 	set_popularities = {
 		democratic = 53.4
@@ -1829,4 +1822,5 @@ capital = 207
 		set_variable = { productivity_state_var = 935 }
 	}
 	set_variable = { overall_productivity = 935 }
+
 }

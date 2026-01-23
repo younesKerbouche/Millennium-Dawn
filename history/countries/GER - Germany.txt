@@ -19,10 +19,10 @@
 	set_country_flag = GER_panavia
 	set_country_flag = GER_eng_bases
 	set_country_flag = GER_usa_bases
-	#set_country_flag = GER_SFOR
-	#set_country_flag = GER_KFOR
-	#set_country_flag = balkan_activity
 
+	complete_special_project = sp:sp_composite_production
+	#This needs to be one less than the starting number to work properly
+	set_variable = { startup_composite_fac_needed = 6 }
 	complete_special_project = sp:sp_aircraft_project
 
 	if = {
@@ -130,7 +130,6 @@
 		GER_idea_bfv_islamist_low
 		GER_idea_bfv_rightwing_med
 		GER_idea_bfv_leftwing_med
-		GER_idea_Cold_War_Army
 		GER_idea_Peace_dividende
 		GER_neuer_markt_idea
 		GER_idea_BND
@@ -161,11 +160,20 @@
 	#Bundeswehr Modifier
 	add_dynamic_modifier = { modifier = GER_Bundeswehr_modifier }
 
-	set_variable = { GER_military_cost2 = 0.1 }
+	set_variable = { GER_personnel_cost_multiplier_modifier_heer = 0.1 }
 	set_variable = { GER_initiative_factor = -0.1 }
 	set_variable = { GER_planning_speed = -0.1 }
 	set_variable = { GER_supply_factor = -0.1 }
 	set_variable = { GER_training_time_factor = 0.1 }
+	set_variable = { GER_army_personnel_cost_multiplier_modifier_heer = 0.6 }
+	set_variable = { GER_experience_gain_army = -0.05 }
+	set_variable = { GER_army_org_factor = -0.05 }
+	set_variable = { GER_army_morale_factor = -0.1 }
+	set_variable = { GER_army_core_defence_factor = 0.2 }
+	set_variable = { GER_army_core_attack_factor = 0.2 }
+	set_variable = { GER_max_planning_modifier = 0.01 }
+	set_variable = { GER_supply_combat_penalties_on_core_factor_heer = -0.10 }
+	set_variable = { GER_send_volunteer_size = 1 }
 
 	set_variable = { GER_river_crossing_factor = -0.1 }
 	set_variable = { GER_experience_loss_factor = 0.1 }
@@ -173,7 +181,7 @@
 
 	add_dynamic_modifier = { modifier = GER_Deutsche_Marine_modifier }
 
-	set_variable = { GER_navy_personnel_cost_multiplier_modifier = 0.1 }
+	set_variable = { GER_navy_personnel_cost_multiplier_modifier_marine = 0.4 }
 	set_variable = { GER_navy_max_range_factor = -0.1 }
 
 	set_variable = { GER_screening_without_screens = 0.1 }
@@ -182,7 +190,7 @@
 
 	add_dynamic_modifier = { modifier = GER_Luftwaffe_modifier }
 
-	set_variable = { GER_airforce_personnel_cost_multiplier_modifier = 0.1 }
+	set_variable = { GER_airforce_personnel_cost_multiplier_modifier_luftwaffe = 0.4 }
 	set_variable = { GER_air_range_factor = -0.1 }
 	set_variable = { GER_air_mission_efficiency = -0.1 }
 	set_variable = { GER_air_agility = -0.1 }
@@ -381,6 +389,11 @@
 	add_opinion_modifier = { target = SWI modifier = large_commercial_relations }
 	reverse_add_opinion_modifier = { target = SWI modifier = large_commercial_relations }
 
+	add_opinion_modifier = { target = FRA modifier = franco_german_friendship }
+	reverse_add_opinion_modifier = { target = FRA modifier = franco_german_friendship }
+	add_opinion_modifier = { target = HOL modifier = german_dutch_military_cooperation }
+	reverse_add_opinion_modifier = { target = HOL modifier = german_dutch_military_cooperation }
+
 	if = {
 		limit = {
 			has_dlc = "La Resistance"
@@ -397,7 +410,12 @@
 		GER_create_operative_Erich_schmidt_eenboom = yes
 	}
 
+	complete_special_project = sp:sp_microchip_production
+
 	set_technology = {
+		microchip_production_two = 1
+		microchip_production_three = 1
+
 		nuclear_technology = 1
 		reactor1 = 1
 		reactor2 = 1
@@ -461,8 +479,8 @@
 		decryption2 = 1
 		encryption2 = 1
 		radar = 1
-		internet1 = 1 	#1G
-		internet2 = 1 	#2G
+		internet1 = 1
+		internet2 = 1
 		gprs = 1
 		fuel_silos = 1
 
@@ -512,6 +530,7 @@
 	}
 
 	complete_special_project = sp:sp_helicopter_project
+	set_variable = { country_excavation_production_var = 0.075 }
 
 	#############################################
 	# Missiles - GTD Variants
@@ -780,8 +799,8 @@
 		name = "HF/UHF/VHF-Funk"
 		type = command_control_equipment1
 		upgrades = {
-		Cnc_eq_better_ergonomics = 1
-		cnc_eq_cutting_corners = 1
+			Cnc_eq_better_ergonomics = 1
+			cnc_eq_cutting_corners = 1
 		}
 		mark_older_equipment_obsolete = yes
 		design_team = mio:GER_siemens_defence_electronics
@@ -790,8 +809,8 @@
 		name = "ADLER"
 		type = command_control_equipment2
 		upgrades = {
-		Cnc_eq_better_ergonomics = 1
-		Cnc_eq_better_radios = 1
+			Cnc_eq_better_ergonomics = 1
+			Cnc_eq_better_radios = 1
 		}
 		mark_older_equipment_obsolete = yes
 		design_team = mio:GER_siemens_defence_electronics
@@ -800,7 +819,7 @@
 		name = "ADLER II"
 		type = command_control_equipment3
 		upgrades = {
-		Cnc_eq_better_radios = 1
+			Cnc_eq_better_radios = 1
 		}
 		mark_older_equipment_obsolete = yes
 		design_team = mio:GER_siemens_defence_electronics
@@ -2005,6 +2024,18 @@
 		recruit_character = GER_Hans_Henning
 		recruit_character = GER_Ralf_Ketzel
 		recruit_character = GER_Armin_papperger
+
+		#intelligence agency advisors
+		recruit_character = GER_bruno_kahl
+		recruit_character = GER_thomas_haldenwang
+		recruit_character = GER_sinan_selen
+		recruit_character = GER_arne_schonbohm
+
+		#auto-activate intelligence advisors for faction intelligence
+		activate_advisor = GER_bruno_kahl_intel
+		activate_advisor = GER_thomas_haldenwang_intel
+		activate_advisor = GER_sinan_selen_intel
+		activate_advisor = GER_arne_schonbohm_intel
 	}
 
 	#############################################
@@ -2073,7 +2104,7 @@
 			tech_torpedoes = 1
 			tech_torpedoes_1 = 1
 
-			tech_mtg_landing_craft = 1
+			tech_landing_craft = 1
 		}
 
 		#Lütjen
