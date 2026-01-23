@@ -381,7 +381,7 @@ country_event = {
 
 		if = { limit = { check_variable = { arab_spring > 200 } }
 			set_temp_variable = { arab_spring_protest_size = arab_spring }
-			divide_temp_variable = { arab_spring_protest_size = 10000 } # Normalizes to the nearest thousandth
+			multiply_temp_variable = { arab_spring_protest_size = 0.0001 }
 			add_to_temp_variable = { arab_spring_mutiny_size = arab_spring_protest_size }
 		}
 
@@ -463,8 +463,7 @@ country_event = {
 				190 = { add_core_of = NUS }
 				release = NUS
 				190 = { add_core_of = ROOT }
-				every_state = {
-					limit = { is_core_of = ROOT }
+				every_core_state = {
 					add_core_of = NUS
 				}
 				NUS = {
