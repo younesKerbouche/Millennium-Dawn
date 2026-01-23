@@ -669,9 +669,9 @@ focus_tree = {
 
 	focus = {
 		id = CHA_islamic_state_sahel
-		icon = islam
-		x = -24
-		y = 5
+		icon = islamic_militarism
+		x = -25
+		y = 6
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
@@ -683,25 +683,18 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_islamic_state_sahel"
-			set_cosmetic_tag = CHA_islamic_state
 			set_politics = {
 				ruling_party = islamism
 			}
 			add_ideas = CHA_caliphate_declared
 			add_stability = -0.15
 			add_war_support = 0.20
-			# Antagonize all Western and secular nations
-			every_country = {
-				limit = {
-					OR = {
-						tag = FRA
-						tag = USA
-						is_in_faction_with = FRA
-					}
-				}
+			add_popularity = { ideology = islamism popularity = 0.15 }
+			# Relations with neighbors deteriorate
+			FRA = {
 				add_opinion_modifier = {
 					target = CHA
-					modifier = declared_caliphate
+					modifier = hostile_neighbour
 				}
 			}
 		}
