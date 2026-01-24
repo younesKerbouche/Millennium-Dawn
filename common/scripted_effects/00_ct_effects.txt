@@ -1,9 +1,97 @@
 counter_terror_nation_startup = {
 	#tracks all starting values for internal threats and international threat detection
 	set_variable = { internal_terror_threat = 0 }
+	#This mod is add to count for both adding / subtracting terror levels
+	set_variable = { internal_terror_threat_mod = 0 }
 	set_variable = { internal_radicalization = 0 }
+	#This is multiply to represent slow increases, so percent based
+	set_variable = { internal_rad_mod = 0 }
 	set_variable = { internal_threat_detection = 0 }
+	set_variable = { internal_threat_detection_mod = 0 }
 	set_variable = { global_terror_threat_detection = 0 }
+}
+
+counter_terror_global_setup = {
+	setup_orgs = yes
+	set_starting_org_locations = yes
+	set_starting_org_values = yes
+}
+
+setup_all_orgs = {
+	#These orgs will be live on game start
+	#If this array is ever empty, then you "win" the global war on terror
+	add_to_array = { global.active_terror_orgs = 0 } #Al-Queda
+	add_to_array = { global.active_terror_orgs = 1 } #Boko Haram
+	add_to_array = { global.active_terror_orgs = 2 } #Hizb ut-Tahrir
+
+	#This array tracks inactive global orgs
+	#These can come into existance via global events, national collapse, or failure to manage domestic organizations
+	#Names will be assigned at random, or to specific orgs
+	#Tracked by their value or array position
+	add_to_array = { global.inactive_terror_orgs = 3 }
+	add_to_array = { global.inactive_terror_orgs = 4 }
+	add_to_array = { global.inactive_terror_orgs = 5 }
+	add_to_array = { global.inactive_terror_orgs = 6 }
+	add_to_array = { global.inactive_terror_orgs = 7 }
+	add_to_array = { global.inactive_terror_orgs = 8 }
+	add_to_array = { global.inactive_terror_orgs = 9 }
+	add_to_array = { global.inactive_terror_orgs = 10 }
+}
+
+set_starting_org_locations = {
+	#NOTE: DO NOT ADJUST THIS START ORDER
+	#If you add starting terror orgs, you need to ENSURE all the arrays line up right
+	#Otherwise, all the system will break
+	#Damnit pdx, just give me arrays in arrays to make this easy *please*
+	add_to_temp_array = { alq_start = 415 }
+	add_to_temp_array = { alq_start = 1208 }
+	add_to_temp_array = { alq_start = 1207 }
+	add_to_temp_array = { alq_start = 411 }
+	add_to_temp_array = { alq_start = 1153 }
+	add_to_temp_array = { alq_start = 1154 }
+	add_to_temp_array = { alq_start = 418 }
+
+	set_temp_variable_to_random = {
+		var = start_spot
+		min = 0
+		max = 6
+		integer = yes
+	}
+
+	var:alq_start^start_spot = {
+		set_state_flag = alq_regional_base
+	}
+
+	add_to_array = { global.active_terror_hq = alq_start^start_spot }
+
+	add_to_temp_array = { boko_start = 339 }
+	add_to_temp_array = { boko_start = 340 }
+
+	set_temp_variable_to_random = {
+		var = start_spot
+		min = 0
+		max = 1
+		integer = yes
+	}
+
+	var:boko_start^start_spot = {
+		set_state_flag = boko_regional_base
+	}
+
+	add_to_temp_array = { hut_start = 202 }
+	add_to_temp_array = { hut_start = 168 }
+	add_to_temp_array = { hut_start = 553 }
+
+	set_temp_variable_to_random = {
+		var = start_spot
+		min = 0
+		max = 2
+		integer = yes
+	}
+
+	var:hut_start^start_spot = {
+		set_state_flag = hut_regional_base
+	}
 }
 
 counter_terror_core = {
@@ -28,7 +116,9 @@ counter_terror_core = {
 
 global_war_on_terror = {
 	#Increase radicalization and threat level for nations that have a regional organization operating in their borders
-	#
+	set_temp_variable = { global_rad_add = internal_radicalization }
+	multiply_temp_variable = { global_rad_add = 0.05 }
+	add_to_variable = { global.radicalization = global_rad_add }
 }
 
 internal_threat_level = {
@@ -43,8 +133,12 @@ internal_threat_level = {
 		}
 	}
 
+	add_to_temp_variable = { level_add_rad = internal_terror_threat_mod }
+
 	add_to_temp_variable = { level_add_rad = terror_level_base }
 	set_variable = { internal_terror_threat = level_add_rad }
+
+	clamp_threat = yes
 }
 
 modify_radicalization_effect = {
@@ -244,6 +338,7 @@ calculate_radicalization = {
 		}
 	}
 
+	multiply_temp_variable = { rad_add = internal_rad_mod }
 	add_to_variable = { internal_radicalization = full_rad_add }
 
 	clamp_radicalization = yes
