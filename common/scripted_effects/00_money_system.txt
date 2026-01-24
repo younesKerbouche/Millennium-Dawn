@@ -3823,6 +3823,7 @@ calculate_resource_sale_rate = {
 	add_to_temp_variable = { resource_exports = tungsten_exports }
 	add_to_temp_variable = { resource_exports = chromium_exports }
 	add_to_temp_variable = { resource_exports = rubber_exports }
+	add_to_temp_variable = { resource_exports = microchip_exports }
 	add_to_temp_variable = { resource_exports = composite_exports }
 
 	# Check if we have subjects
@@ -5594,8 +5595,8 @@ set_initial_cost_resources = {
 	set_variable = { global.starting_tungsten_price = 0.28 }	#Based on copper price
 	set_variable = { global.starting_chromium_price = 0.18 }	#Based on gold price
 	set_variable = { global.starting_rubber_price = 0.09 }	#Based on rubber price
-	set_variable = { global.starting_microchip_price = 8 }
-	set_variable = { global.starting_composite_price = 7.4 }
+	set_variable = { global.starting_microchips_price = 8 }
+	set_variable = { global.starting_composites_price = 7.4 }
 
 	set_variable = { global.oil_export = 3381 }
 	set_variable = { global.steel_export = 2537 }
@@ -5672,6 +5673,9 @@ recalculate_resources_price = {
 		add_to_temp_variable = { sum_import_composites = resource_imported@composites }
 	}
 
+	log = "[?sum_microchips]"
+	log = "[?sum_import_microchips]"
+
 	#Set the % of supply used by doing demand / supply
 	#If using > 50% of supply, price should go up
 	#If using < 50% of supply, price should go down
@@ -5685,6 +5689,8 @@ recalculate_resources_price = {
 	divide_temp_variable = { sum_import_microchips = sum_microchips }
 	divide_temp_variable = { sum_import_composites = sum_chromium }
 
+	log = "[?sum_import_microchips] after divide check"
+
 	multiply_temp_variable = { sum_import_steel = 2 }
 	multiply_temp_variable = { sum_import_rubber = 2 }
 	multiply_temp_variable = { sum_import_oil = 2 }
@@ -5693,6 +5699,8 @@ recalculate_resources_price = {
 	multiply_temp_variable = { sum_import_chromium = 2 }
 	multiply_temp_variable = { sum_import_microchips = 2 }
 	multiply_temp_variable = { sum_import_composites = 2 }
+
+	log = "[?sum_import_microchips] after multiply check"
 
 	set_temp_variable = { oil_price_adjuster = global.starting_oil_price }
 	set_temp_variable = { steel_price_adjuster = global.starting_steel_price }
@@ -5703,6 +5711,8 @@ recalculate_resources_price = {
 	set_temp_variable = { microchips_price_adjuster = global.starting_microchips_price }
 	set_temp_variable = { composites_price_adjuster = global.starting_composites_price }
 
+	log = "[?microchips_price_adjuster] starting price point "
+
 	multiply_temp_variable = { oil_price_adjuster = sum_import_oil }
 	multiply_temp_variable = { steel_price_adjuster = sum_import_steel }
 	multiply_temp_variable = { rubber_price_adjuster = sum_import_rubber }
@@ -5711,6 +5721,8 @@ recalculate_resources_price = {
 	multiply_temp_variable = { chromium_price_adjuster = sum_import_chromium }
 	multiply_temp_variable = { microchips_price_adjuster = sum_import_microchips }
 	multiply_temp_variable = { composites_price_adjuster = sum_import_composites }
+
+	log = "[?microchips_price_adjuster] after price change"
 
 	#Clamp the prices at their min / max after adjusting them for supply & demand
 	clamp_variable = {
@@ -5754,6 +5766,8 @@ recalculate_resources_price = {
 		max = 35.4
 	}
 
+	log = "[?microchips_price_adjuster] after clamp"
+
 	set_variable = { global.oil_price = oil_price_adjuster } #Divided 50/50 based on oil/natural gas price #Limited to 5, was 28
 	set_variable = { global.steel_price = steel_price_adjuster } #Based on steel price
 	set_variable = { global.aluminium_price = alum_price_adjuster }	#Based on aluminium price
@@ -5762,4 +5776,6 @@ recalculate_resources_price = {
 	set_variable = { global.rubber_price = rubber_price_adjuster }	#Based on rubber price
 	set_variable = { global.microchip_price = microchips_price_adjuster }
 	set_variable = { global.composite_price = composites_price_adjuster }
+
+	log = "[?global.microchip_price] final price"
 }

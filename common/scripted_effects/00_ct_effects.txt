@@ -20,7 +20,7 @@ counter_terror_nation_startup = {
 }
 
 counter_terror_global_setup = {
-	setup_orgs = yes
+	setup_all_orgs = yes
 	set_starting_org_locations = yes
 	set_starting_org_values = yes
 }
@@ -374,10 +374,10 @@ calculate_national_global_threat_detection = {
 		set_temp_variable = { state_tracker = active_terror_hq^i }
 		set_temp_variable = { op_country = state_tracker.controller }
 		var:cur_nat = {
-			set_temp_variable = { cur_intel = civilian_intel@op_country }
+			set_temp_variable = { cur_intel = civilian_intel@var:op_country }
 			multiply_variable = { cur_intel = 0.5 }
 			add_to_temp_variable = { cur_intel = base_detection }
-			set_temp_variable = { net_cover = network_national_coverage@op_country }
+			set_temp_variable = { net_cover = network_national_coverage@var:op_country }
 			add_to_temp_variable = { cur_intel = net_cover }
 			multiply_temp_variable = { cur_intel = base_mod }
 			set_variable = { international_terror_org_intel^i = cur_intel }
@@ -648,15 +648,9 @@ global_war_on_terror = {
 			add_to_array = { global.active_terror_hq = THIS }
 		}
 
-		set_temp_variable_to_random = {
-			var = random_roll
-			min = 180
-			max = 400
-			integer = yes
-		}
 		set_global_flag = {
 			flag = terror_org_move_stop
-			days = random_roll
+			days = 365
 			value = 1
 		}
 	}
