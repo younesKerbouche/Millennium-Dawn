@@ -99,6 +99,35 @@ ideas = {
 			}
 		}
 
+		EH_satellite_critical_failure_idea = {
+			allowed_civil_war = { always = yes }
+			picture = frozen_conflict_dangerous
+
+			on_remove = {
+				if = {
+					limit = {
+						NOT = {
+							is_special_project_completed = sp:sp_monitor_portal_energy_emissions_project
+						}
+					}
+					add_ideas = EH_disrupted_satellite_network_idea
+				}
+			}
+
+			modifier = {
+				decryption_factor = -1
+				decryption_power_factor = -1
+				intel_network_gain_factor = -1
+				navy_intel_factor = -1
+				airforce_intel_factor = -1
+				army_intel_factor = -1
+				intel_from_combat_factor = -1
+				coordination_bonus = -0.7
+				naval_coordination = -0.9
+				research_speed_factor = -0.9
+			}
+		}
+
 		EH_randallite_extraction_idea = {
 			allowed_civil_war = { always = yes }
 			picture = worker_reforms

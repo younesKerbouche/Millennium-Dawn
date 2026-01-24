@@ -78,8 +78,29 @@ on_actions = {
             if = {
                 limit = {
                     check_variable = { EH_static_countdown_var = 1 }
+                    NOT = {
+                        is_special_project_completed = sp:sp_monitor_portal_energy_emissions_project
+                    }
                 }
                 set_country_flag = { flag = EH_random_static_gui_flag days = 3 value = 1 }
+                remove_ideas = EH_disrupted_satellite_network_idea
+                add_timed_idea = { idea = EH_satellite_critical_failure_idea days = 3 }
+                random_controlled_state = {
+                    damage_building = {
+                        type = infrastructure
+                        damage = 2
+                    }
+                    damage_building = {
+                        type = industrial_complex
+                        damage = 2
+                    }
+                }
+                random_controlled_state = {
+                    damage_building = {
+                        type = arms_factory
+                        damage = 2
+                    }
+                }
                 set_variable = { EH_static_countdown_var = 0 }
             }
         }
