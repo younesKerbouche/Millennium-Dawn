@@ -5204,6 +5204,46 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = Japan.100004009
+	title = Japan.100004009.t
+	desc = Japan.100004009.d
+	picture = GFX_JAP_anchor_generic
+
+	is_triggered_only = yes
+
+	option = {
+		name = Japan.100004009.oA
+		log = "[GetDateText]: [This.GetName]: Japan.100004009.oA executed"
+		every_other_country = {
+			limit = {
+				OR = {
+						has_idea = superpower
+						has_idea = great_power
+						has_idea = large_power
+						has_idea = regional_power
+						AND = { #minor power or above for SEA or oceania
+							OR = {
+								has_idea = superpower
+								has_idea = great_power
+								has_idea = large_power
+								has_idea = regional_power
+								has_idea = minor_power
+							}
+							OR = {
+								is_asian_nation = yes
+								is_oceania_nation = yes
+							}
+						}
+					}
+					NOT = { has_war_with = JAP }
+			}
+			country_event = Japan.100004010 #NHK World Established
+		}
+	}
+
+}
+
 # NHK World chain
 country_event = {
 	id = Japan.100004010
@@ -5241,7 +5281,10 @@ country_event = {
 				}
 			}
 			FROM = {
-				country_event = Japan.100004011
+				country_event = {
+					id = Japan.100004011
+					days = 1
+				}
 			}
 		}
 		ai_chance = {
@@ -5288,15 +5331,31 @@ country_event = {
 		name = Japan.100004011.oA
 		log = "[GetDateText]: [This.GetName]: Japan.100004011.oA executed"
 		add_political_power = 10
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		set_temp_variable = { int_investment_change = 5 }
+		modify_international_investment_effect = yes
+		effect_tooltip = {
+			set_temp_variable = { percent_change = 0.5 }
+			set_temp_variable = { tag_index = JAP }
+			set_temp_variable = { influence_target = FROM }
+			change_influence_percentage = yes
+		}
 	}
 
 	# Invest in Infrastructure
 	option = {
 		name = Japan.100004011.oB
 		log = "[GetDateText]: [This.GetName]: Japan.100004011.oB executed"
-		set_temp_variable = { treasury_change = -5 }
+		effect_tooltip = {
+			set_temp_variable = { percent_change = 0.5 }
+			set_temp_variable = { tag_index = JAP }
+			set_temp_variable = { influence_target = FROM }
+			change_influence_percentage = yes
+		}
+		set_temp_variable = { treasury_change = -10 }
 		modify_treasury_effect = yes
-		set_temp_variable = { int_investment_change = 5 }
+		set_temp_variable = { int_investment_change = 10 }
 		modify_international_investment_effect = yes
 		FROM = {
 			country_event = Japan.100004012
@@ -5318,9 +5377,9 @@ country_event = {
 		name = Japan.100004012.oA
 		log = "[GetDateText]: [This.GetName]: Japan.100004012.oA executed"
 		add_timed_idea = {
-				idea = JAP_telecom_investments
-				days = 730
-			}
+			idea = JAP_telecom_investments
+			days = 730
+		}
 		add_opinion_modifier = {
 			target = FROM
 			modifier = economic_mission
