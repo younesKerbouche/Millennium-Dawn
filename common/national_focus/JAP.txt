@@ -207,6 +207,7 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_save_ice_age executed"
 			set_temp_variable = { corp_change = 2 }
 			modify_corporate_tax_rate_effect = yes
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -313,6 +314,7 @@ focus_tree = {
 			MAY = { country_event = Japan.100002000 }
 			VIE = { country_event = Japan.100002000 }
 			TAI = { country_event = Japan.100002000 }
+			newline = yes
 			custom_effect_tooltip = JAP_national_investments_TT
 		}
 
@@ -386,10 +388,12 @@ focus_tree = {
 						has_country_flag = JAP_DEMOGRAPHICS_CHAIN_REFUSED_PROGRESSIVES
 					}
 				}
-				JAP = { country_event = Japan.100001001 }
-				custom_effect_tooltip = JAP_liberal_syndicalism_TT
 				set_temp_variable = { temp_opinion = 10 }
 				change_labour_unions_opinion = yes
+				JAP = { country_event = Japan.100001001 }
+				newline = yes
+				custom_effect_tooltip = JAP_liberal_syndicalism_TT
+				
 			}
 		}
 
@@ -557,6 +561,7 @@ focus_tree = {
 			change_labour_unions_opinion = yes
 			set_temp_variable = { temp_opinion = 5 }
 			change_small_medium_business_owners_opinion = yes
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -581,7 +586,9 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_rebuild_lost_generation executed"
 			remove_ideas = JAP_keidanren_influence
+			newline = yes
 			add_ideas = JAP_work_style_reform
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -640,6 +647,7 @@ focus_tree = {
 				idea = JAP_worker_relief
 				days = 730
 			}
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -745,6 +753,7 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_union_liaison executed"
 			add_stability = 0.02
 			add_ideas = JAP_abenomics
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -771,9 +780,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_national_minimum_wage executed"
+			remove_ideas = JAP_bubble_burst
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
-			remove_ideas = JAP_bubble_burst
 		}
 
 		ai_will_do = {
@@ -801,6 +811,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_relaxed_immigration executed"
 			add_ideas = JAP_immigration1
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -929,6 +940,7 @@ focus_tree = {
 				idea = JAP_subsidy_baby_boom
 				days = 730
 			}
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -984,6 +996,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_shine_all_women executed"
 			add_ideas = JAP_japanese_equality
+			newline = yes
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
@@ -1854,6 +1867,7 @@ focus_tree = {
 				category = Cat_FUEL_OIL
 			}
 			JAP = { country_event = Japan.100003500 }
+			newline = yes
 			custom_effect_tooltip = JAP_redundant_TT
 		}
 
@@ -2108,6 +2122,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_domestic_journalism executed"
 			country_event = Japan.100004030 #Media Shakeup
+			newline = yes
 			custom_effect_tooltip = JAP_domestic_journalism_TT
 		}
 
@@ -2183,6 +2198,7 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_global_journalism executed"
 			add_political_power = 25
 			country_event = Japan.100004009
+			newline = yes
 			custom_effect_tooltip = JAP_global_journalism_TT
 		}
 
@@ -2283,7 +2299,33 @@ focus_tree = {
 			change_small_medium_business_owners_opinion = yes
 			set_temp_variable = { temp_opinion = -3 }
 			change_industrial_conglomerates_opinion = yes
+			newline = yes
 			country_event = Japan.100004020 #Chinese Copyright Deal
+			newline = yes
+			custom_effect_tooltip = TT_IF_THEY_ACCEPT
+			effect_tooltip = {
+				add_political_power = 50
+				if = {
+					limit = {
+						is_in_tech_sharing_group = China_Japan_Tech_Share
+					}
+					JAP = { add_to_tech_sharing_group = China_Japan_Tech_Share }
+				}
+				else = {
+					add_tech_bonus = {
+						name = China_Japan_Share_name
+						bonus = 0.25
+						uses = 5
+						category = CAT_industry
+					}
+				}
+				add_timed_idea = {
+					idea = JAP_industrial_cooperation
+					days = 730
+				}
+			}
+			newline = yes
+			custom_effect_tooltip = JAP_opinion_high_TT
 		}
 
 		ai_will_do = {
@@ -2333,7 +2375,7 @@ focus_tree = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_e_commerce_strict executed"
 			add_timed_idea = {
 				idea = JAP_website_crackdown
-				days = 365
+				days = 730
 			}
 		}
 
@@ -2791,6 +2833,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [This.GetName]: focus JAP_k_computer executed"
 			country_event = Japan.100004140 # Great Supercomputer Race
+			newline = yes
+			custom_effect_tooltip = JAP_k_computer_TT
 		}
 
 		ai_will_do = {
@@ -3245,6 +3289,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_diplomacy"
 			add_dynamic_modifier = { modifier = JAP_diplomacy_modifier }
+			newline = yes
 			custom_effect_tooltip = JAP_diplomacy_idea_TT
 		}
 
@@ -3335,6 +3380,7 @@ focus = {
 			limit = { has_idea = ASEAN_member }
 			country_event = JAP_diplomacy.34
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_34_TT
 	}
 
@@ -3377,6 +3423,7 @@ focus = {
 			limit = { has_idea = ASEAN_member }
 			country_event = JAP_diplomacy.37
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_37_TT
 	}
 
@@ -3419,6 +3466,7 @@ focus = {
 			limit = { has_idea = ASEAN_member }
 			country_event = JAP_diplomacy.40
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_40_TT
 	}
 
@@ -3462,6 +3510,7 @@ focus = {
 			limit = { has_idea = ASEAN_member }
 			country_event = JAP_diplomacy.43
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_43_TT
 	}
 
@@ -3706,9 +3755,11 @@ focus = {
 		update_JAP_diplomacy_production_speed_offices_factor = yes
 		set_temp_variable = { JAP_diplomacy_production_speed_industrial_complex_factor_change = 0.05 }
 		update_JAP_diplomacy_production_speed_industrial_complex_factor = yes
+		newline = yes
 		USA = {
 			country_event = JAP_diplomacy.46
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_46_TT
 	}
 
@@ -3739,9 +3790,11 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_culture_technology"
 		set_temp_variable = { JAP_diplomacy_offices_productivity_change = 0.1 }
 		update_JAP_diplomacy_offices_productivity = yes
+		newline = yes
 		USA = {
 			country_event = JAP_diplomacy.47
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_46_TT
 	}
 
@@ -3772,9 +3825,11 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_dual_use"
 		set_temp_variable = { JAP_diplomacy_research_speed_factor_change = 0.05 }
 		update_JAP_diplomacy_research_speed_factor = yes
+		newline = yes
 		USA = {
 			country_event = JAP_diplomacy.48
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_48_TT
 	}
 
@@ -3884,9 +3939,11 @@ focus = {
 		update_JAP_diplomacy_repair_speed_infrastructure_factor = yes
 		set_temp_variable = { JAP_diplomacy_repair_speed_industrial_complex_factor_change = 0.3 }
 		update_JAP_diplomacy_repair_speed_industrial_complex_factor = yes
+		newline = yes
 		TAI = {
 			country_event = JAP_diplomacy.49
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_49_TT
 	}
 
@@ -3917,10 +3974,13 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_tai_high_technology"
 		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.2 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
+		newline = yes
 		TAI = {
 			country_event = JAP_diplomacy.50
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_49_TT
+		newline = yes
 		add_opinion_modifier = {
 				target = TAI
 				modifier = economic_cooperation
@@ -3987,10 +4047,13 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_tai_international_student"
 		set_temp_variable = { JAP_diplomacy_research_speed_factor_change = 0.03 }
 		update_JAP_diplomacy_research_speed_factor = yes
+		newline = yes
 		TAI = {
 			country_event = JAP_diplomacy.51
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_49_TT
+		newline = yes
 		add_opinion_modifier = {
 				target = TAI
 				modifier = human_interaction
@@ -4059,6 +4122,8 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_statement"
 		add_political_power = -50
 		add_stability = -0.01
+		news_event = { id = JAP_news.01 days = 1 }
+		newline = yes
 		CHI = {
 			remove_opinion_modifier = {
 			target = JAP
@@ -4066,6 +4131,7 @@ focus = {
 		   }
 		   news_event = { id = JAP_news.01 days = 1 }
 		}
+		newline = yes
 		KOR = {
 			remove_opinion_modifier = {
 			target = JAP
@@ -4073,7 +4139,6 @@ focus = {
 		   }
 		   news_event = { id = JAP_news.01 days = 1 }
 		}
-		news_event = { id = JAP_news.01 days = 1 }
 	}
 
 	ai_will_do = {
@@ -4105,6 +4170,7 @@ focus = {
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_intellectual_platform"
 		country_event = JAP_diplomacy.05
+		newline = yes
 		custom_effect_tooltip = JAP_intellectual_platform_TT
 	}
 
@@ -4178,6 +4244,7 @@ focus = {
 		CHI = {
 			country_event = JAP_diplomacy.52
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_52_TT
 	}
 
@@ -4206,12 +4273,15 @@ focus = {
 
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_chi_advancement_companies"
-		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.02 }
+		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.2 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
+		newline = yes
 		CHI = {
 			country_event = JAP_diplomacy.55
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_55_TT
+		newline = yes
 		add_opinion_modifier = {
 				target = CHI
 				modifier = economic_cooperation
@@ -4249,9 +4319,11 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_chi_kanji"
 		set_temp_variable = { JAP_diplomacy_foreign_influence_defense_modifier_change = 0.1 }
 		update_JAP_diplomacy_foreign_influence_defense_modifier = yes
+		newline = yes
 		CHI = {
 			country_event = JAP_diplomacy.56
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_55_TT
 	}
 
@@ -4282,10 +4354,13 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_chi_temple"
 		set_temp_variable = { JAP_diplomacy_tax_gain_multiplier_modifier_change = 0.015 }
 		update_JAP_diplomacy_tax_gain_multiplier_modifier = yes
+		newline = yes
 		CHI = {
 			country_event = JAP_diplomacy.57
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_55_TT
+		newline = yes
 		add_opinion_modifier = {
 				target = CHI
 				modifier = opinion_cultural_exchange
@@ -4361,9 +4436,11 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_kor_accelerator"
 		set_temp_variable = { JAP_diplomacy_production_speed_offices_factor_change = 0.1 }
 		update_JAP_diplomacy_production_speed_offices_factor = yes
+		newline = yes
 		KOR = {
 			country_event = JAP_diplomacy.58
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_58_TT
 	}
 
@@ -4394,10 +4471,13 @@ focus = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_kor_local_companies"
 		set_temp_variable = { JAP_diplomacy_production_speed_industrial_complex_factor_change = 0.1 }
 		update_JAP_diplomacy_production_speed_industrial_complex_factor = yes
+		newline = yes
 		KOR = {
 			country_event = JAP_diplomacy.59
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_58_TT
+		newline = yes
 		add_opinion_modifier = {
 				target = KOR
 				modifier = economic_cooperation
@@ -4436,6 +4516,7 @@ focus = {
 		KOR = {
 			country_event = JAP_diplomacy.60
 		}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_60_TT
 	}
 
@@ -4478,13 +4559,11 @@ focus = {
 			custom_effect_tooltip = JAP_depopulation_reform_TT
 			JAP_demographics_depopulation_reform_increase_1 = yes
 		}
-
+		newline = yes
 		KOR = {
 			country_event = JAP_diplomacy.63
-			custom_effect_tooltip = event_effect_tt
-			effect_tooltip = {
-				KOR = { add_ideas = JAP_kor_aging_idea }
-			}
+			newline = yes
+			custom_effect_tooltip = JAP_diplomacy_63_TT
 		}
 	}
 
@@ -4574,6 +4653,7 @@ focus = {
 				instant_build = yes
 			}
 		}
+		newline = yes
 		SOV = {
 			country_event = JAP_diplomacy.64
 		}
@@ -4617,6 +4697,11 @@ focus = {
 					amount = 8
 				}
 		}
+		newline = yes
+		SOV = {
+			country_event = JAP_diplomacy.65
+		}
+		newline = yes
 		add_opinion_modifier = {
 				target = SOV
 				modifier = development_aid
@@ -4624,9 +4709,6 @@ focus = {
 		reverse_add_opinion_modifier = {
 				target = SOV
 				modifier = development_aid
-		}
-		SOV = {
-			country_event = JAP_diplomacy.65
 		}
 	}
 
@@ -4656,12 +4738,15 @@ focus = {
 
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_sov_logistics_corridor"
-		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.04 }
+		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.4 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
+		newline = yes
 		SOV = {
 			country_event = JAP_diplomacy.66
 	  	}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_66_TT
+		newline = yes
 		set_temp_variable = { treasury_change = gdp_total }
 		multiply_temp_variable = { treasury_change = -0.005 }
 		modify_treasury_effect = yes
@@ -4693,12 +4778,15 @@ focus = {
 
 	completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus JAP_sov_logistics_corridor"
-		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.02 }
+		set_temp_variable = { JAP_diplomacy_productivity_growth_modifier_change = 0.2 }
 		update_JAP_diplomacy_productivity_growth_modifier = yes
+		newline = yes
 		SOV = {
 			country_event = JAP_diplomacy.67
 	  	}
+		newline = yes
 		custom_effect_tooltip = JAP_diplomacy_67_TT
+		newline = yes
 		add_opinion_modifier = {
 				target = SOV
 				modifier = economic_cooperation
@@ -4707,6 +4795,7 @@ focus = {
 				target = SOV
 				modifier = economic_cooperation
 		}
+		newline = yes
 		set_temp_variable = { treasury_change = gdp_total }
 		multiply_temp_variable = { treasury_change = -0.003 }
 		modify_treasury_effect = yes
