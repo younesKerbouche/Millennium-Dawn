@@ -57,6 +57,27 @@ on_actions = {
                     EH_randallite_effects = yes
                 }
             }
+            if = {
+                limit = {
+                    check_variable = { EH_static_countdown_var = 0 }
+                }
+                set_variable_to_random = {
+                    var = EH_static_countdown_var
+                    min = 14
+                    max = 45
+                    integer = yes
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable = { EH_static_countdown_var > 1 }
+                }
+                add_to_variable = { EH_static_countdown_var = -1 }
+            }
+            else = {
+                set_country_flag = { flag = EH_random_static_gui_flag days = 3 value = 1 }
+                set_variable = { EH_static_countdown_var = 0 }
+            }
         }
     }
 
