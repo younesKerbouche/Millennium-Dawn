@@ -4489,3 +4489,105 @@ instantiate_collaboration_government = {
 		}
 	}
 }
+
+EH_chimera_portal_1_created_effect = {
+	if = {
+		limit = {
+			NOT = {
+				has_global_flag = chimera_portal_1_created
+			}
+		}
+		create_entity = {
+			entity = portal_chimera_entity
+			var = EH_portal_1_entity_var
+			x = 1
+			y = 1
+			z = 1
+			province = 14126
+			rotation = 1.0
+			scale = 1.0
+			min_zoom = 150.0
+			visible = EH_scenario_enabled
+		}
+		set_global_flag = chimera_portal_1_created
+	}
+}
+
+EH_chimera_portal_234_created_effect = {
+	if = {
+		limit = {
+			NOT = {
+				has_global_flag = chimera_portal_234_created
+			}
+		}
+		create_entity = {
+			entity = portal_chimera_entity
+			var = EH_portal_2_entity_var
+			x = 1
+			y = 1
+			z = 1
+			province = 11009
+			rotation = 1.0
+			scale = 1.0
+			min_zoom = 150.0
+			visible = EH_scenario_enabled
+		}
+		create_entity = {
+			entity = portal_chimera_entity
+			var = EH_portal_3_entity_var
+			x = 1
+			y = 1
+			z = 1
+			province = 13831
+			rotation = 1.0
+			scale = 1.0
+			min_zoom = 150.0
+			visible = EH_scenario_enabled
+		}
+		create_entity = {
+			entity = portal_chimera_entity
+			var = EH_portal_4_entity_var
+			x = 1
+			y = 1
+			z = 1
+			province = 15079
+			rotation = 1.0
+			scale = 1.0
+			min_zoom = 150.0
+			visible = EH_scenario_enabled
+		}
+		591 = {
+			add_state_modifier = {
+				static_modifiers = { EH_portal_presence_modifier }
+				province = {
+					id = 14126
+				}
+			}
+		}
+		234 = {
+			add_state_modifier = {
+				static_modifiers = { EH_portal_presence_modifier }
+				province = {
+					id = 13831
+				}
+			}
+		}
+		814 = {
+			add_province_modifier = {
+				static_modifiers = { EH_portal_presence_modifier }
+				province = {
+					id = 15079
+				}
+			}
+		}
+		457 = {
+			add_province_modifier = {
+				static_modifiers = { EH_portal_presence_modifier }
+				province = {
+					id = 11009
+				}
+			}
+		}
+		set_global_flag = chimera_portal_234_created
+	}
+}
