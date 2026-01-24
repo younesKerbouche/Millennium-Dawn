@@ -1171,5 +1171,528 @@ ideas = {
 				recon_factor = 0.20
 			}
 		}
+
+		#####################################
+		# TRIBAL RESOURCE ECONOMY MODIFIERS
+		#####################################
+
+		# Zaghawa Resource Modifiers (Eastern oil region)
+		CHA_zaghawa_resource_bonus = {
+			name = CHA_zaghawa_resource_bonus
+			picture = generic_oil_production
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_zaghawa_resource_bonus" }
+
+			modifier = {
+				fuel_gain_factor = 0.20
+				local_resources_factor = 0.15
+				production_speed_buildings_factor = 0.05
+			}
+		}
+
+		CHA_zaghawa_resource_penalty_low = {
+			name = CHA_zaghawa_resource_penalty_low
+			picture = generic_resource_shortage
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_zaghawa_resource_penalty_low" }
+
+			modifier = {
+				fuel_gain_factor = -0.25
+				local_resources_factor = -0.15
+			}
+		}
+
+		CHA_zaghawa_resource_penalty_critical = {
+			name = CHA_zaghawa_resource_penalty_critical
+			picture = generic_resource_crisis
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_zaghawa_resource_penalty_critical" }
+
+			modifier = {
+				fuel_gain_factor = -0.50
+				local_resources_factor = -0.30
+				production_speed_buildings_factor = -0.10
+			}
+		}
+
+		# Arab Resource Modifiers (Central livestock/trade region)
+		CHA_arab_resource_bonus = {
+			name = CHA_arab_resource_bonus
+			picture = generic_trade_bonus
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_arab_resource_bonus" }
+
+			modifier = {
+				consumer_goods_factor = -0.05
+				stability_factor = 0.05
+				trade_opinion_factor = 0.15
+			}
+		}
+
+		CHA_arab_resource_penalty_low = {
+			name = CHA_arab_resource_penalty_low
+			picture = generic_trade_disruption
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_arab_resource_penalty_low" }
+
+			modifier = {
+				consumer_goods_factor = 0.03
+				stability_factor = -0.05
+			}
+		}
+
+		CHA_arab_resource_penalty_critical = {
+			name = CHA_arab_resource_penalty_critical
+			picture = generic_economic_crisis
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_arab_resource_penalty_critical" }
+
+			modifier = {
+				consumer_goods_factor = 0.08
+				stability_factor = -0.10
+				trade_opinion_factor = -0.20
+			}
+		}
+
+		# Sara Resource Modifiers (Southern agricultural region)
+		CHA_sara_resource_bonus = {
+			name = CHA_sara_resource_bonus
+			picture = generic_agrarian_society
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_sara_resource_bonus" }
+
+			modifier = {
+				consumer_goods_factor = -0.08
+				stability_factor = 0.05
+				monthly_population = 0.10
+			}
+		}
+
+		CHA_sara_resource_penalty_low = {
+			name = CHA_sara_resource_penalty_low
+			picture = generic_food_shortage
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_sara_resource_penalty_low" }
+
+			modifier = {
+				consumer_goods_factor = 0.05
+				stability_factor = -0.05
+			}
+		}
+
+		CHA_sara_resource_penalty_critical = {
+			name = CHA_sara_resource_penalty_critical
+			picture = generic_famine
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_sara_resource_penalty_critical" }
+
+			modifier = {
+				consumer_goods_factor = 0.12
+				stability_factor = -0.15
+				monthly_population = -0.20
+			}
+		}
+
+		# Toubou Resource Modifiers (Northern Tibesti - minerals, border security)
+		CHA_toubou_resource_bonus = {
+			name = CHA_toubou_resource_bonus
+			picture = generic_desert_control
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_toubou_resource_bonus" }
+
+			modifier = {
+				attrition = -0.10
+				army_speed_factor = 0.05
+				local_resources_factor = 0.10
+			}
+		}
+
+		CHA_toubou_resource_penalty_low = {
+			name = CHA_toubou_resource_penalty_low
+			picture = generic_border_insecurity
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_toubou_resource_penalty_low" }
+
+			modifier = {
+				attrition = 0.10
+				local_resources_factor = -0.15
+			}
+		}
+
+		CHA_toubou_resource_penalty_critical = {
+			name = CHA_toubou_resource_penalty_critical
+			picture = generic_border_crisis
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_toubou_resource_penalty_critical" }
+
+			modifier = {
+				attrition = 0.20
+				local_resources_factor = -0.30
+				army_speed_factor = -0.10
+			}
+		}
+
+		#####################################
+		# TRIBAL REBELLION IDEAS
+		#####################################
+
+		CHA_tribal_rebel_momentum = {
+			name = CHA_tribal_rebel_momentum
+			picture = generic_rebel_offensive
+
+			allowed = {
+				OR = {
+					original_tag = ZGW
+					original_tag = ARC
+					original_tag = SRR
+					original_tag = TBU
+				}
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_rebel_momentum" }
+
+			modifier = {
+				army_attack_factor = 0.10
+				army_morale_factor = 0.15
+				army_speed_factor = 0.10
+				political_power_gain = 0.05
+			}
+		}
+
+		CHA_desert_fighters = {
+			name = CHA_desert_fighters
+			picture = generic_desert_warfare
+
+			allowed = {
+				original_tag = TBU
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_desert_fighters" }
+
+			modifier = {
+				attrition = -0.30
+				army_org_factor = 0.15
+				recon_factor = 0.25
+			}
+		}
+
+		# Protest level modifier (applied when tribe at protest level)
+		CHA_tribal_protests = {
+			name = CHA_tribal_protests
+			picture = generic_civil_unrest
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_protests" }
+
+			modifier = {
+				stability_factor = -0.05
+				political_power_gain = -0.10
+			}
+		}
+
+		# Partisan level modifier
+		CHA_tribal_partisans = {
+			name = CHA_tribal_partisans
+			picture = generic_guerrilla_warfare
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_partisans" }
+
+			modifier = {
+				stability_factor = -0.10
+				political_power_gain = -0.15
+				resistance_damage_to_garrison = 0.20
+			}
+		}
+
+		# Separatism level modifier
+		CHA_tribal_separatism = {
+			name = CHA_tribal_separatism
+			picture = generic_separatism
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_separatism" }
+
+			modifier = {
+				stability_factor = -0.15
+				political_power_gain = -0.25
+				war_support_factor = -0.10
+			}
+		}
+
+		#####################################
+		# TRIBAL CONFEDERATION PATH IDEAS
+		#####################################
+
+		CHA_tribal_council_idea = {
+			name = CHA_tribal_council_idea
+			picture = tribal_council
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_council_idea" }
+
+			modifier = {
+				political_power_gain = 0.10
+				stability_factor = 0.05
+			}
+		}
+
+		CHA_power_rotation_idea = {
+			name = CHA_power_rotation_idea
+			picture = generic_democracy
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_power_rotation_idea" }
+
+			modifier = {
+				political_power_gain = 0.05
+				stability_factor = 0.05
+			}
+		}
+
+		CHA_tribal_federalism_idea = {
+			name = CHA_tribal_federalism_idea
+			picture = generic_federalism
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_federalism_idea" }
+
+			modifier = {
+				political_power_gain = 0.05
+				local_resources_factor = 0.10
+			}
+		}
+
+		CHA_tribal_military_idea = {
+			name = CHA_tribal_military_idea
+			picture = tribal_warriors
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_tribal_military_idea" }
+
+			modifier = {
+				army_attack_factor = 0.10
+				army_defence_factor = 0.05
+				army_morale_factor = 0.10
+				attrition = -0.15
+			}
+		}
+
+		#####################################
+		# PAN-AFRICANISM PATH IDEAS
+		#####################################
+
+		CHA_au_standby_force_idea = {
+			name = CHA_au_standby_force_idea
+			picture = african_union_force
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_au_standby_force_idea" }
+
+			modifier = {
+				army_org_factor = 0.05
+				experience_gain_army = 0.05
+				command_power_gain_mult = 0.10
+			}
+		}
+
+		CHA_imperial_legacy_idea = {
+			name = CHA_imperial_legacy_idea
+			picture = generic_empire
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_imperial_legacy_idea" }
+
+			modifier = {
+				political_power_gain = 0.15
+				stability_factor = 0.05
+				war_support_factor = 0.10
+				army_morale_factor = 0.10
+			}
+		}
+
+		#####################################
+		# NEOCOLONIALISM PATH IDEAS
+		#####################################
+
+		CHA_french_protectorate_idea = {
+			name = CHA_french_protectorate_idea
+			picture = french_influence
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_french_protectorate_idea" }
+
+			modifier = {
+				political_power_gain = -0.05
+				stability_factor = 0.10
+				army_org_factor = 0.10
+				production_speed_buildings_factor = 0.10
+			}
+		}
+
+		CHA_chinese_oil_investment_idea = {
+			name = CHA_chinese_oil_investment_idea
+			picture = chinese_investment
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_chinese_oil_investment_idea" }
+
+			modifier = {
+				production_speed_buildings_factor = 0.10
+				local_resources_factor = 0.10
+				consumer_goods_factor = -0.02
+			}
+		}
+
+		CHA_chinese_sphere_idea = {
+			name = CHA_chinese_sphere_idea
+			picture = chinese_influence
+
+			allowed = {
+				original_tag = CHA
+			}
+
+			allowed_civil_war = { always = yes }
+
+			on_add = { log = "[GetDateText]: [THIS.GetName]: add idea CHA_chinese_sphere_idea" }
+
+			modifier = {
+				political_power_gain = -0.05
+				production_speed_buildings_factor = 0.15
+				local_resources_factor = 0.15
+				consumer_goods_factor = -0.03
+			}
+		}
 	}
 }
