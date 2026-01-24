@@ -318,3 +318,478 @@ CHA_deby_succession = {
 	add_stability = -0.15
 	add_political_power = -100
 }
+
+#####################################
+# TRIBAL RESOURCE ECONOMY SYSTEM
+#####################################
+
+# Initialize tribal influence variable (call on game start)
+CHA_init_tribal_system = {
+	log = "[GetDateText]: [Root.GetName]: Initializing tribal system"
+
+	# Set default tribal influence (high = tribes have major impact)
+	set_variable = { CHA_tribal_influence = 80 }
+
+	# Initialize resource modifier variables
+	set_variable = { CHA_zaghawa_resource_modifier = 0 }
+	set_variable = { CHA_arab_resource_modifier = 0 }
+	set_variable = { CHA_sara_resource_modifier = 0 }
+	set_variable = { CHA_toubou_resource_modifier = 0 }
+
+	# Initialize rebellion level variables (0 = no rebellion, 1 = protests, 2 = partisans, 3 = separatism, 4 = civil war)
+	set_variable = { CHA_zaghawa_rebellion_level = 0 }
+	set_variable = { CHA_arab_rebellion_level = 0 }
+	set_variable = { CHA_sara_rebellion_level = 0 }
+	set_variable = { CHA_toubou_rebellion_level = 0 }
+}
+
+# Update resource modifiers based on tribal loyalty
+CHA_update_tribal_resource_modifiers = {
+	log = "[GetDateText]: [Root.GetName]: Updating tribal resource modifiers"
+
+	# Remove all existing tribal resource ideas first
+	remove_ideas = CHA_zaghawa_resource_bonus
+	remove_ideas = CHA_zaghawa_resource_penalty_low
+	remove_ideas = CHA_zaghawa_resource_penalty_critical
+	remove_ideas = CHA_arab_resource_bonus
+	remove_ideas = CHA_arab_resource_penalty_low
+	remove_ideas = CHA_arab_resource_penalty_critical
+	remove_ideas = CHA_sara_resource_bonus
+	remove_ideas = CHA_sara_resource_penalty_low
+	remove_ideas = CHA_sara_resource_penalty_critical
+	remove_ideas = CHA_toubou_resource_bonus
+	remove_ideas = CHA_toubou_resource_penalty_low
+	remove_ideas = CHA_toubou_resource_penalty_critical
+
+	# Zaghawa resource modifiers (controls eastern oil region)
+	if = {
+		limit = { CHA_zaghawa_high_loyalty = yes }
+		add_ideas = CHA_zaghawa_resource_bonus
+	}
+	else_if = {
+		limit = { CHA_zaghawa_low_loyalty = yes }
+		add_ideas = CHA_zaghawa_resource_penalty_low
+	}
+	else_if = {
+		limit = { CHA_zaghawa_critical_loyalty = yes }
+		add_ideas = CHA_zaghawa_resource_penalty_critical
+	}
+
+	# Arab resource modifiers (controls central livestock region)
+	if = {
+		limit = { CHA_arab_high_loyalty = yes }
+		add_ideas = CHA_arab_resource_bonus
+	}
+	else_if = {
+		limit = { CHA_arab_low_loyalty = yes }
+		add_ideas = CHA_arab_resource_penalty_low
+	}
+	else_if = {
+		limit = { CHA_arab_critical_loyalty = yes }
+		add_ideas = CHA_arab_resource_penalty_critical
+	}
+
+	# Sara resource modifiers (controls southern agricultural region)
+	if = {
+		limit = { CHA_sara_high_loyalty = yes }
+		add_ideas = CHA_sara_resource_bonus
+	}
+	else_if = {
+		limit = { CHA_sara_low_loyalty = yes }
+		add_ideas = CHA_sara_resource_penalty_low
+	}
+	else_if = {
+		limit = { CHA_sara_critical_loyalty = yes }
+		add_ideas = CHA_sara_resource_penalty_critical
+	}
+
+	# Toubou resource modifiers (controls northern Tibesti region)
+	if = {
+		limit = { CHA_toubou_high_loyalty = yes }
+		add_ideas = CHA_toubou_resource_bonus
+	}
+	else_if = {
+		limit = { CHA_toubou_low_loyalty = yes }
+		add_ideas = CHA_toubou_resource_penalty_low
+	}
+	else_if = {
+		limit = { CHA_toubou_critical_loyalty = yes }
+		add_ideas = CHA_toubou_resource_penalty_critical
+	}
+}
+
+# Reduce tribal influence (call from modernization focuses)
+CHA_reduce_tribal_influence = {
+	log = "[GetDateText]: [Root.GetName]: Reducing tribal influence"
+
+	subtract_from_variable = { CHA_tribal_influence = 10 }
+	clamp_variable = {
+		var = CHA_tribal_influence
+		min = 0
+		max = 100
+	}
+
+	# Update resource modifiers with reduced impact
+	CHA_update_tribal_resource_modifiers = yes
+}
+
+#####################################
+# TRIBAL REBELLION ESCALATION SYSTEM
+#####################################
+
+# Update rebellion levels based on loyalty
+CHA_update_rebellion_levels = {
+	log = "[GetDateText]: [Root.GetName]: Updating tribal rebellion levels"
+
+	# Zaghawa rebellion level
+	if = {
+		limit = { CHA_zaghawa_civil_war_level = yes }
+		set_variable = { CHA_zaghawa_rebellion_level = 4 }
+	}
+	else_if = {
+		limit = { CHA_zaghawa_separatism_level = yes }
+		set_variable = { CHA_zaghawa_rebellion_level = 3 }
+	}
+	else_if = {
+		limit = { CHA_zaghawa_partisan_level = yes }
+		set_variable = { CHA_zaghawa_rebellion_level = 2 }
+	}
+	else_if = {
+		limit = { CHA_zaghawa_protest_level = yes }
+		set_variable = { CHA_zaghawa_rebellion_level = 1 }
+	}
+	else = {
+		set_variable = { CHA_zaghawa_rebellion_level = 0 }
+	}
+
+	# Arab rebellion level
+	if = {
+		limit = { CHA_arab_civil_war_level = yes }
+		set_variable = { CHA_arab_rebellion_level = 4 }
+	}
+	else_if = {
+		limit = { CHA_arab_separatism_level = yes }
+		set_variable = { CHA_arab_rebellion_level = 3 }
+	}
+	else_if = {
+		limit = { CHA_arab_partisan_level = yes }
+		set_variable = { CHA_arab_rebellion_level = 2 }
+	}
+	else_if = {
+		limit = { CHA_arab_protest_level = yes }
+		set_variable = { CHA_arab_rebellion_level = 1 }
+	}
+	else = {
+		set_variable = { CHA_arab_rebellion_level = 0 }
+	}
+
+	# Sara rebellion level
+	if = {
+		limit = { CHA_sara_civil_war_level = yes }
+		set_variable = { CHA_sara_rebellion_level = 4 }
+	}
+	else_if = {
+		limit = { CHA_sara_separatism_level = yes }
+		set_variable = { CHA_sara_rebellion_level = 3 }
+	}
+	else_if = {
+		limit = { CHA_sara_partisan_level = yes }
+		set_variable = { CHA_sara_rebellion_level = 2 }
+	}
+	else_if = {
+		limit = { CHA_sara_protest_level = yes }
+		set_variable = { CHA_sara_rebellion_level = 1 }
+	}
+	else = {
+		set_variable = { CHA_sara_rebellion_level = 0 }
+	}
+
+	# Toubou rebellion level
+	if = {
+		limit = { CHA_toubou_civil_war_level = yes }
+		set_variable = { CHA_toubou_rebellion_level = 4 }
+	}
+	else_if = {
+		limit = { CHA_toubou_separatism_level = yes }
+		set_variable = { CHA_toubou_rebellion_level = 3 }
+	}
+	else_if = {
+		limit = { CHA_toubou_partisan_level = yes }
+		set_variable = { CHA_toubou_rebellion_level = 2 }
+	}
+	else_if = {
+		limit = { CHA_toubou_protest_level = yes }
+		set_variable = { CHA_toubou_rebellion_level = 1 }
+	}
+	else = {
+		set_variable = { CHA_toubou_rebellion_level = 0 }
+	}
+}
+
+#####################################
+# TRIBAL REBEL COUNTRY SPAWNING
+#####################################
+
+# Spawn Zaghawa rebel state (ZGW)
+CHA_spawn_zaghawa_rebels = {
+	log = "[GetDateText]: [Root.GetName]: Spawning Zaghawa rebel state"
+
+	set_country_flag = CHA_zaghawa_rebellion_active
+
+	# Create Zaghawa State
+	ZGW = {
+		set_variable = { gdp_per_capita = 0.5 }
+		set_cosmetic_tag = ZGW
+		set_country_flag = dynamic_flag
+		set_country_flag = dynamic_rebel_flag
+		set_country_flag = tribal_rebellion
+
+		# Transfer eastern states (Zaghawa homeland)
+		transfer_state = 327  # Eastern Chad
+
+		# Add cores on Chad
+		add_state_core = 327
+		add_state_core = 328  # N'Djamena
+
+		# Declare war
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+
+		# Create rebel divisions
+		division_template = {
+			name = "Zaghawa Quwwat"
+			regiments = {
+				Militia_Bat = { x = 0 y = 0 }
+				Militia_Bat = { x = 0 y = 1 }
+				Militia_Bat = { x = 1 y = 0 }
+			}
+		}
+
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1st Zaghawa Brigade\" division_template = \"Zaghawa Quwwat\" start_experience_factor = 0.4"
+				owner = ZGW
+				count = 2
+			}
+		}
+
+		add_ideas = CHA_tribal_rebel_momentum
+	}
+
+	# Chad effects
+	add_stability = -0.15
+	add_war_support = 0.10
+	news_event = { id = chad.1050 }
+}
+
+# Spawn Arab rebel state (ARC)
+CHA_spawn_arab_rebels = {
+	log = "[GetDateText]: [Root.GetName]: Spawning Arab rebel state"
+
+	set_country_flag = CHA_arab_rebellion_active
+
+	# Create Arab Council of Chad
+	ARC = {
+		set_variable = { gdp_per_capita = 0.4 }
+		set_cosmetic_tag = ARC
+		set_country_flag = dynamic_flag
+		set_country_flag = dynamic_rebel_flag
+		set_country_flag = tribal_rebellion
+
+		# Transfer central states (Arab homeland)
+		transfer_state = 580  # Central Chad
+
+		# Add cores
+		add_state_core = 580
+		add_state_core = 328
+
+		# Declare war
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+
+		# Create rebel divisions
+		division_template = {
+			name = "Arab Fursan"
+			regiments = {
+				Militia_Bat = { x = 0 y = 0 }
+				Militia_Bat = { x = 0 y = 1 }
+			}
+		}
+
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1st Arab Cavalry\" division_template = \"Arab Fursan\" start_experience_factor = 0.3"
+				owner = ARC
+				count = 2
+			}
+		}
+
+		add_ideas = CHA_tribal_rebel_momentum
+	}
+
+	add_stability = -0.15
+	add_war_support = 0.10
+	news_event = { id = chad.1051 }
+}
+
+# Spawn Sara rebel state (SRR)
+CHA_spawn_sara_rebels = {
+	log = "[GetDateText]: [Root.GetName]: Spawning Sara rebel state"
+
+	set_country_flag = CHA_sara_rebellion_active
+
+	# Create Sara Republic
+	SRR = {
+		set_variable = { gdp_per_capita = 0.6 }
+		set_cosmetic_tag = SRR
+		set_country_flag = dynamic_flag
+		set_country_flag = dynamic_rebel_flag
+		set_country_flag = tribal_rebellion
+
+		# Transfer southern states (Sara homeland)
+		transfer_state = 326  # Southern Chad
+
+		# Add cores
+		add_state_core = 326
+		add_state_core = 328
+
+		# Declare war
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+
+		# Create rebel divisions
+		division_template = {
+			name = "Sara Mbayi"
+			regiments = {
+				Militia_Bat = { x = 0 y = 0 }
+				Militia_Bat = { x = 0 y = 1 }
+				Militia_Bat = { x = 1 y = 0 }
+				Militia_Bat = { x = 1 y = 1 }
+			}
+		}
+
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1st Sara Brigade\" division_template = \"Sara Mbayi\" start_experience_factor = 0.2"
+				owner = SRR
+				count = 3
+			}
+		}
+
+		add_ideas = CHA_tribal_rebel_momentum
+	}
+
+	add_stability = -0.15
+	add_war_support = 0.10
+	news_event = { id = chad.1052 }
+}
+
+# Spawn Toubou rebel state (TBU)
+CHA_spawn_toubou_rebels = {
+	log = "[GetDateText]: [Root.GetName]: Spawning Toubou rebel state"
+
+	set_country_flag = CHA_toubou_rebellion_active
+
+	# Create Toubou Tibesti
+	TBU = {
+		set_variable = { gdp_per_capita = 0.3 }
+		set_cosmetic_tag = TBU
+		set_country_flag = dynamic_flag
+		set_country_flag = dynamic_rebel_flag
+		set_country_flag = tribal_rebellion
+
+		# Transfer northern states (Tibesti)
+		transfer_state = 946  # Tibesti/Northern Chad
+
+		# Add cores
+		add_state_core = 946
+
+		# Declare war
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+
+		# Create rebel divisions (fewer but tougher)
+		division_template = {
+			name = "Toubou Muqatil"
+			regiments = {
+				Militia_Bat = { x = 0 y = 0 }
+				Militia_Bat = { x = 0 y = 1 }
+			}
+		}
+
+		capital_scope = {
+			create_unit = {
+				division = "name = \"1st Toubou Raiders\" division_template = \"Toubou Muqatil\" start_experience_factor = 0.5"
+				owner = TBU
+				count = 2
+			}
+		}
+
+		add_ideas = CHA_tribal_rebel_momentum
+		add_ideas = CHA_desert_fighters
+	}
+
+	add_stability = -0.10
+	add_war_support = 0.05
+	news_event = { id = chad.1053 }
+}
+
+# End a tribal rebellion (call when rebels defeated)
+CHA_end_tribal_rebellion = {
+	log = "[GetDateText]: [Root.GetName]: Ending tribal rebellion"
+
+	# Check which rebellion ended
+	if = {
+		limit = { has_country_flag = CHA_zaghawa_rebellion_active }
+		if = {
+			limit = { NOT = { country_exists = ZGW } }
+			clr_country_flag = CHA_zaghawa_rebellion_active
+			set_variable = { CHA_zaghawa_rebellion_level = 0 }
+			add_to_variable = { CHA_zaghawa_loyalty = 20 }  # Reconciliation bonus
+		}
+	}
+	if = {
+		limit = { has_country_flag = CHA_arab_rebellion_active }
+		if = {
+			limit = { NOT = { country_exists = ARC } }
+			clr_country_flag = CHA_arab_rebellion_active
+			set_variable = { CHA_arab_rebellion_level = 0 }
+			add_to_variable = { CHA_arab_loyalty = 20 }
+		}
+	}
+	if = {
+		limit = { has_country_flag = CHA_sara_rebellion_active }
+		if = {
+			limit = { NOT = { country_exists = SRR } }
+			clr_country_flag = CHA_sara_rebellion_active
+			set_variable = { CHA_sara_rebellion_level = 0 }
+			add_to_variable = { CHA_sara_loyalty = 20 }
+		}
+	}
+	if = {
+		limit = { has_country_flag = CHA_toubou_rebellion_active }
+		if = {
+			limit = { NOT = { country_exists = TBU } }
+			clr_country_flag = CHA_toubou_rebellion_active
+			set_variable = { CHA_toubou_rebellion_level = 0 }
+			add_to_variable = { CHA_toubou_loyalty = 20 }
+		}
+	}
+
+	# Clamp loyalty values
+	clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+	clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+	clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+	clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+
+	# Update resource modifiers
+	CHA_update_tribal_resource_modifiers = yes
+}
