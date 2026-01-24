@@ -4499,7 +4499,7 @@ EH_chimera_portal_1_created_effect = {
 		}
 		create_entity = {
 			entity = portal_chimera_entity
-			var = EH_portal_1_entity_var
+			id = 9991
 			x = 1
 			y = 1
 			z = 1
@@ -4522,7 +4522,7 @@ EH_chimera_portal_234_created_effect = {
 		}
 		create_entity = {
 			entity = portal_chimera_entity
-			var = EH_portal_2_entity_var
+			id = 9992
 			x = 1
 			y = 1
 			z = 1
@@ -4534,7 +4534,7 @@ EH_chimera_portal_234_created_effect = {
 		}
 		create_entity = {
 			entity = portal_chimera_entity
-			var = EH_portal_3_entity_var
+			id = 9993
 			x = 1
 			y = 1
 			z = 1
@@ -4546,7 +4546,7 @@ EH_chimera_portal_234_created_effect = {
 		}
 		create_entity = {
 			entity = portal_chimera_entity
-			var = EH_portal_4_entity_var
+			id = 9994
 			x = 1
 			y = 1
 			z = 1
@@ -4589,5 +4589,44 @@ EH_chimera_portal_234_created_effect = {
 			}
 		}
 		set_global_flag = chimera_portal_234_created
+	}
+}
+
+EH_chimera_portal_destroyed_effect = {
+	if = {
+		limit = {
+			check_variable = { var:target_state = 591 }
+		}
+		delete_unit = {
+			state = var:target_state
+			id = 9991
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { var:target_state = 457 }
+		}
+		delete_unit = {
+			state = var:target_state
+			id = 9992
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { var:target_state = 234 }
+		}
+		delete_unit = {
+			state = var:target_state
+			id = 9993
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { var:target_state = 814 }
+		}
+		delete_unit = {
+			state = var:target_state
+			id = 9994
+		}
 	}
 }
