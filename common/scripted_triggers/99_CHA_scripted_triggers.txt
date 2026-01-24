@@ -190,3 +190,229 @@ CHA_tibesti_autonomous = {
 	original_tag = CHA
 	has_country_flag = CHA_granted_tibesti_autonomy
 }
+
+#####################################
+# TRIBAL REBELLION SYSTEM TRIGGERS
+#####################################
+
+# Check if a tribe is at protest level (loyalty 20-25)
+CHA_zaghawa_protest_level = {
+	original_tag = CHA
+	check_variable = { CHA_zaghawa_loyalty < 26 }
+	check_variable = { CHA_zaghawa_loyalty > 19 }
+	NOT = { has_country_flag = CHA_zaghawa_rebellion_active }
+}
+
+CHA_arab_protest_level = {
+	original_tag = CHA
+	check_variable = { CHA_arab_loyalty < 26 }
+	check_variable = { CHA_arab_loyalty > 19 }
+	NOT = { has_country_flag = CHA_arab_rebellion_active }
+}
+
+CHA_sara_protest_level = {
+	original_tag = CHA
+	check_variable = { CHA_sara_loyalty < 26 }
+	check_variable = { CHA_sara_loyalty > 19 }
+	NOT = { has_country_flag = CHA_sara_rebellion_active }
+}
+
+CHA_toubou_protest_level = {
+	original_tag = CHA
+	check_variable = { CHA_toubou_loyalty < 26 }
+	check_variable = { CHA_toubou_loyalty > 19 }
+	NOT = { has_country_flag = CHA_toubou_rebellion_active }
+}
+
+# Check if a tribe is at partisan level (loyalty 10-19)
+CHA_zaghawa_partisan_level = {
+	original_tag = CHA
+	check_variable = { CHA_zaghawa_loyalty < 20 }
+	check_variable = { CHA_zaghawa_loyalty > 9 }
+	NOT = { has_country_flag = CHA_zaghawa_rebellion_active }
+}
+
+CHA_arab_partisan_level = {
+	original_tag = CHA
+	check_variable = { CHA_arab_loyalty < 20 }
+	check_variable = { CHA_arab_loyalty > 9 }
+	NOT = { has_country_flag = CHA_arab_rebellion_active }
+}
+
+CHA_sara_partisan_level = {
+	original_tag = CHA
+	check_variable = { CHA_sara_loyalty < 20 }
+	check_variable = { CHA_sara_loyalty > 9 }
+	NOT = { has_country_flag = CHA_sara_rebellion_active }
+}
+
+CHA_toubou_partisan_level = {
+	original_tag = CHA
+	check_variable = { CHA_toubou_loyalty < 20 }
+	check_variable = { CHA_toubou_loyalty > 9 }
+	NOT = { has_country_flag = CHA_toubou_rebellion_active }
+}
+
+# Check if a tribe is at separatism level (loyalty 5-9)
+CHA_zaghawa_separatism_level = {
+	original_tag = CHA
+	check_variable = { CHA_zaghawa_loyalty < 10 }
+	check_variable = { CHA_zaghawa_loyalty > 4 }
+	NOT = { has_country_flag = CHA_zaghawa_rebellion_active }
+}
+
+CHA_arab_separatism_level = {
+	original_tag = CHA
+	check_variable = { CHA_arab_loyalty < 10 }
+	check_variable = { CHA_arab_loyalty > 4 }
+	NOT = { has_country_flag = CHA_arab_rebellion_active }
+}
+
+CHA_sara_separatism_level = {
+	original_tag = CHA
+	check_variable = { CHA_sara_loyalty < 10 }
+	check_variable = { CHA_sara_loyalty > 4 }
+	NOT = { has_country_flag = CHA_sara_rebellion_active }
+}
+
+CHA_toubou_separatism_level = {
+	original_tag = CHA
+	check_variable = { CHA_toubou_loyalty < 10 }
+	check_variable = { CHA_toubou_loyalty > 4 }
+	NOT = { has_country_flag = CHA_toubou_rebellion_active }
+}
+
+# Check if a tribe is at civil war level (loyalty < 5)
+CHA_zaghawa_civil_war_level = {
+	original_tag = CHA
+	check_variable = { CHA_zaghawa_loyalty < 5 }
+	NOT = { has_country_flag = CHA_zaghawa_rebellion_active }
+}
+
+CHA_arab_civil_war_level = {
+	original_tag = CHA
+	check_variable = { CHA_arab_loyalty < 5 }
+	NOT = { has_country_flag = CHA_arab_rebellion_active }
+}
+
+CHA_sara_civil_war_level = {
+	original_tag = CHA
+	check_variable = { CHA_sara_loyalty < 5 }
+	NOT = { has_country_flag = CHA_sara_rebellion_active }
+}
+
+CHA_toubou_civil_war_level = {
+	original_tag = CHA
+	check_variable = { CHA_toubou_loyalty < 5 }
+	NOT = { has_country_flag = CHA_toubou_rebellion_active }
+}
+
+# Check if any tribal rebellion is active
+CHA_tribal_rebellion_active = {
+	original_tag = CHA
+	OR = {
+		has_country_flag = CHA_zaghawa_rebellion_active
+		has_country_flag = CHA_arab_rebellion_active
+		has_country_flag = CHA_sara_rebellion_active
+		has_country_flag = CHA_toubou_rebellion_active
+	}
+}
+
+# Check tribal resource levels for modifiers
+CHA_zaghawa_high_loyalty = {
+	check_variable = { CHA_zaghawa_loyalty > 74 }
+}
+
+CHA_zaghawa_medium_loyalty = {
+	check_variable = { CHA_zaghawa_loyalty > 49 }
+	check_variable = { CHA_zaghawa_loyalty < 75 }
+}
+
+CHA_zaghawa_low_loyalty = {
+	check_variable = { CHA_zaghawa_loyalty > 24 }
+	check_variable = { CHA_zaghawa_loyalty < 50 }
+}
+
+CHA_zaghawa_critical_loyalty = {
+	check_variable = { CHA_zaghawa_loyalty < 25 }
+}
+
+CHA_arab_high_loyalty = {
+	check_variable = { CHA_arab_loyalty > 74 }
+}
+
+CHA_arab_medium_loyalty = {
+	check_variable = { CHA_arab_loyalty > 49 }
+	check_variable = { CHA_arab_loyalty < 75 }
+}
+
+CHA_arab_low_loyalty = {
+	check_variable = { CHA_arab_loyalty > 24 }
+	check_variable = { CHA_arab_loyalty < 50 }
+}
+
+CHA_arab_critical_loyalty = {
+	check_variable = { CHA_arab_loyalty < 25 }
+}
+
+CHA_sara_high_loyalty = {
+	check_variable = { CHA_sara_loyalty > 74 }
+}
+
+CHA_sara_medium_loyalty = {
+	check_variable = { CHA_sara_loyalty > 49 }
+	check_variable = { CHA_sara_loyalty < 75 }
+}
+
+CHA_sara_low_loyalty = {
+	check_variable = { CHA_sara_loyalty > 24 }
+	check_variable = { CHA_sara_loyalty < 50 }
+}
+
+CHA_sara_critical_loyalty = {
+	check_variable = { CHA_sara_loyalty < 25 }
+}
+
+CHA_toubou_high_loyalty = {
+	check_variable = { CHA_toubou_loyalty > 74 }
+}
+
+CHA_toubou_medium_loyalty = {
+	check_variable = { CHA_toubou_loyalty > 49 }
+	check_variable = { CHA_toubou_loyalty < 75 }
+}
+
+CHA_toubou_low_loyalty = {
+	check_variable = { CHA_toubou_loyalty > 24 }
+	check_variable = { CHA_toubou_loyalty < 50 }
+}
+
+CHA_toubou_critical_loyalty = {
+	check_variable = { CHA_toubou_loyalty < 25 }
+}
+
+# Check if tribal influence can be reduced
+CHA_can_reduce_tribal_influence = {
+	original_tag = CHA
+	check_variable = { CHA_tribal_influence > 0 }
+	OR = {
+		has_completed_focus = CHA_national_identity_program
+		has_completed_focus = CHA_urbanization_policy
+		has_completed_focus = CHA_secular_education
+		has_completed_focus = CHA_mixed_army_units
+	}
+}
+
+# Check tribal influence level
+CHA_high_tribal_influence = {
+	check_variable = { CHA_tribal_influence > 74 }
+}
+
+CHA_medium_tribal_influence = {
+	check_variable = { CHA_tribal_influence > 49 }
+	check_variable = { CHA_tribal_influence < 75 }
+}
+
+CHA_low_tribal_influence = {
+	check_variable = { CHA_tribal_influence < 50 }
+}
