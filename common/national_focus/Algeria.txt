@@ -80,7 +80,7 @@ focus_tree = {
 		}
 		relative_position_id = ALG_at_a_crossroads
         completion_reward = {
-            add_stability = 0.6
+            add_stability = 0.5
             add_political_power = 50
 			country_event = {id = algeria_news.3 }
             add_popularity = { ideology = communism popularity = 0.05 }
@@ -788,7 +788,7 @@ focus_tree = {
 		prerequisite = { focus = ALG_strengthen_le_pouvoir }
 
 		available = {
-			western_social_democrats_are_in_power = yes
+			emerging_autocracy_are_in_power = yes
 		}
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -1289,7 +1289,7 @@ focus_tree = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_grand_mosque"
 			set_temp_variable = { treasury_change = -5.5 }
         	modify_treasury_effect = yes
-			set_temp_variable = { ALG_civ_construction_speed_change = 0.10 }
+			set_temp_variable = { ALG_civ_construction_speed_change = 0.12 }
 			update_ALG_civ_construction_speed = yes
 			newline = yes
 			set_temp_variable = {ALG_research_speed_factor_change = 0.10}
@@ -3053,7 +3053,7 @@ focus = {
 			focus = ALG_grid_expansion
 			focus = ALG_algeria_steelworks
 			focus = ALG_Adrar_wind_park
-			 }
+		}
 		x = 18
 		y = 7
 		cost = 4.5
@@ -3073,24 +3073,24 @@ focus = {
 		}
 	}
 	focus = {
-	  id = ALG_recover_from_the_war
-	  icon = develop_algeria
-	  x = 18
-	  y = 8
-	  cost = 10
-	  available = {
-		has_completed_focus = ALG_at_a_crossroads
-	  }
-	  completion_reward = {
-		log = "[GetDateText]: [Root.GetName]: Focus ALG_recover_from_the_war"
-		add_ideas = ALG_post_war_recovery
-		set_temp_variable = { debt_change = -0.3 }
-		modify_debt_effect = yes
-		add_stability = 0.05
-		set_temp_variable = { rad_change = -5 }
-		modify_radicalization_effect = yes
-	  }
-	  ai_will_do = {
+		id = ALG_recover_from_the_war
+		icon = develop_algeria
+		x = 18
+		y = 8
+		cost = 10
+		available = {
+			has_completed_focus = ALG_at_a_crossroads
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus ALG_recover_from_the_war"
+			add_ideas = ALG_post_war_recovery
+			set_temp_variable = { debt_change = -0.3 }
+			modify_debt_effect = yes
+			add_stability = 0.05
+			set_temp_variable = { rad_change = -5 }
+			modify_radicalization_effect = yes
+		}
+		ai_will_do = {
 			base = 40
 		}
 	}
@@ -8772,11 +8772,17 @@ focus = {
     icon = araba_focus
     x = 61
     y = 0
-    cost = 3.5
+    cost = 0.5
 	search_filters = { FOCUS_FILTER_INTERNAL_POLITICS }
     available = {
         date > 2001.04.12
     }
+	bypass = {
+		OR = {
+			date > 2001.04.12
+		}
+	}
+
     completion_reward = {
         add_political_power = 50
         add_ideas = ALG_black_spring_spirit
@@ -9105,7 +9111,7 @@ focus = {
 		ai_will_do = {
 			factor = 10
 		}
-}
+	}
 	focus = {
 		id = ALG_intervene_in_sahrawi
 		icon = align_to_sahrawi
@@ -9157,7 +9163,7 @@ focus = {
 		ai_will_do = {
 			factor = 10
 		}
-}
+	}
 	focus = {
 		id = ALG_supp_polisario
 		icon = attack_morocco
@@ -9225,7 +9231,7 @@ focus = {
 		ai_will_do = {
 			factor = 10
 		}
-}
+	}
 	focus = {
 		id = ALG_a_new_stance
 		icon = align_to_morocco
@@ -9289,8 +9295,8 @@ focus = {
 		ai_will_do = {
 			factor = 10
 		}
-}
-	focus = {
+	}
+	focus = { #gaining inlfuence on Libya or getting rid of Tuareg issue
 		id = ALG_intervene_in_libya
 		icon = Fatherly_leader
 		cost = 5
@@ -9334,17 +9340,19 @@ focus = {
 			set_temp_variable = { tag_index = ALG }
 			set_temp_variable = { influence_target = LBA }
 			change_influence_percentage = yes
-			set_temp_variable = { percent_change = 2 }
-			set_temp_variable = { tag_index = ALG }
-			set_temp_variable = { influence_target = TUA }
-			change_influence_percentage = yes
+			if = {
+				limit = {country_exist = TUA}
+				set_temp_variable = { percent_change = 2 }
+				set_temp_variable = { tag_index = ALG }
+				set_temp_variable = { influence_target = TUA }
+				change_influence_percentage = yes
+			}
 		}
-	
 
 		ai_will_do = {
 			factor = 10
 		}
-}
+	}
 	focus = {
 		id = ALG_assassinate_gaddafi
 		icon = assassinate_gaddafi
@@ -9414,7 +9422,7 @@ focus = {
 		ai_will_do = {
 			factor = 10
 		}
-}
+	}
 	focus = {
 		id = ALG_peacekeepers
 		icon = LIB_UAR
@@ -9464,7 +9472,7 @@ focus = {
 		ai_will_do = {
 			factor = 10
 		}
-}
+	}
 	##new iso stuff##
 	focus = {
 		id = ALG_stabilize_mali
@@ -19534,9 +19542,14 @@ focus = {
 		cost = 10
 		relative_position_id = ALG_africa_and_arab_nations
 		available = {
-			has_opinion = { target = TUN value > 50 }
-			has_opinion = { target = MOR value > 50 }
+			TUN = {
+				has_opinion = { target = ROOT value > 50 }
+			}
+			MOR = {
+				has_opinion = { target = ROOT value > 50 }
+			}
 		}
+
 		mutually_exclusive = {
 			focus = ALG_western_sahara_position
 		}

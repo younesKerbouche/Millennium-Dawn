@@ -1544,6 +1544,7 @@ country_event = {
     trigger = {
         original_tag = ALG
         has_completed_focus = FLN_new_constutition_reforms
+		has_completed_focus = ALG_OPP_new_constitution
     }
 
     fire_only_once = yes
@@ -4490,6 +4491,7 @@ country_event = {
     title = algeria_proj.1.t
     desc  = algeria_proj.1.d
     picture = GFX_report_event_Infrastructure_1
+	fire_only_once = yes
 
     trigger = {
         tag = ALG
@@ -4544,6 +4546,7 @@ country_event = {
     title = algeria_proj.2.t
     desc  = algeria_proj.2.d
     picture = GFX_report_event_Infrastructure_1
+	fire_only_once = yes
 
     trigger = {
         tag = ALG
@@ -4603,6 +4606,7 @@ country_event = {
     title = algeria_proj.3.t
     desc  = algeria_proj.3.d
     picture = GFX_alg_aadl
+	fire_only_once = yes 
 
     trigger = {
         tag = ALG
@@ -6480,13 +6484,16 @@ country_event = {
     is_triggered_only = yes
 
     immediate = {
-        set_variable = { var = kabyle_pop_percent value = 0.28 }
-        set_variable = { var = arab_pop_percent value = 0.65 }
-        set_variable = { var = tuareg_pop_percent value = 0.05 }
-        set_variable = { var = christian_pop_percent value = 0.02 }
+		set_variable = { var = arab_pop_percent value = ALG_ethnic_arab }
+		divide_variable = { var = arab_pop_percent value = 100 }
+		set_variable = { var = kabyle_pop_percent value = ALG_ethnic_kabyle }
+		divide_variable = { var = kabyle_pop_percent value = 100 }
+		set_variable = { var = tuareg_pop_percent value = ALG_ethnic_tuareg }
+		divide_variable = { var = tuareg_pop_percent value = 100 }
+		set_variable = { var = christian_pop_percent value = 0.02 }
+		set_country_flag = ALG_ethnic_data_initialized
+	}
 
-        set_country_flag = ALG_ethnic_data_initialized
-    }
 	option = {
 	name = ALG_ethnic_data.1.a
 	log = "[GetDateText]: [This.GetName]: ALG_ethnic_data.1.a executed"
@@ -6497,34 +6504,31 @@ country_event = {
     title = alg_ethnicity.100.t
     desc = alg_ethnicity.100.d
     picture = GFX_alg_berber
-	fire_only_once = yes
+    fire_only_once = yes
 
     trigger = {
         original_tag = ALG
-		if = {
-			limit = {
-				check_variable = { kabyle_satisfaction < 15 }
-			}
-		}
         NOT = { has_country_flag = kabyle_unrest_triggered }
+        check_variable = { var = kabyle_satisfaction value < 15 }
     }
 
     option = {
-        name = alg_ethnicity.100.a
+        name = alg_ethnicity.100.a    # Hardline response
         add_stability = -0.05
         subtract_from_variable = { var = kabyle_satisfaction value = -5 }
         add_to_variable = { var = arab_satisfaction value = 5 }
-		clamp_variable = { var = arab_satisfaction min = 0 max = 100 }
+        clamp_variable = { var = arab_satisfaction min = 0 max = 100 }
         set_country_flag = kabyle_unrest_triggered
     }
+
     option = {
-        name = alg_ethnicity.100.b
+        name = alg_ethnicity.100.b    # Conciliatory approach
         set_temp_variable = { treasury_change = -20 }
         modify_treasury_effect = yes
         add_stability = 0.02
         add_to_variable = { var = kabyle_satisfaction value = 10 }
-		clamp_variable = { var = kabyle_satisfaction min = 0 max = 100 }
-        set_country_flag = kabyle_unrest_triggered
+        clamp_variable = { var = kabyle_satisfaction min = 0 max = 100 }
+        # NOTE: no unrest flag here
     }
 }
 country_event = {
@@ -6532,32 +6536,29 @@ country_event = {
     title = alg_ethnicity.200.t
     desc = alg_ethnicity.200.d
     picture = GFX_alg_berber
-	fire_only_once = yes
+    fire_only_once = yes
 
     trigger = {
-	    date > 2001.12.1
         original_tag = ALG
-		if = {
-        limit = {
-			check_variable = { kabyle_satisfaction < 10 }
-		}
-		}
-		has_country_flag = kabyle_unrest_triggered
+        date > 2001.12.1
+        has_country_flag = kabyle_unrest_triggered
+        check_variable = { var = kabyle_satisfaction value < 10 }
     }
 
     option = {
-        name = alg_ethnicity.200.a
+        name = alg_ethnicity.200.a    # Grant independence
         add_stability = -0.30
-		release = KBY
+        release = KBY
     }
-	option = {
-	    name = alg_ethnicity.200.b
-		start_civil_war = {
+
+    option = {
+        name = alg_ethnicity.200.b    # Crack down – civil war
+        start_civil_war = {
             ideology = neutrality
             size = 0.25
-            capital = 385 # Tizi Ouzou province ID
+            capital = 385   # Tizi Ouzou
         }
-	}
+    }
 }
 country_event = {
     id = alg_politics.50
