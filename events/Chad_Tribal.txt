@@ -1,0 +1,751 @@
+###########################
+# Chad Tribal Rebellion Events
+# Escalation System: Protests -> Partisans -> Separatism -> Civil War
+###########################
+
+add_namespace = chad_tribal
+
+#####################################
+# ZAGHAWA REBELLION EVENTS
+#####################################
+
+# Zaghawa Protests (Level 1)
+country_event = {
+	id = chad_tribal.1
+	title = chad_tribal.1.t
+	desc = chad_tribal.1.desc
+	picture = GFX_african_demonstration
+
+	trigger = {
+		original_tag = CHA
+		CHA_zaghawa_protest_level = yes
+		NOT = { has_country_flag = CHA_zaghawa_protest_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_zaghawa_protest_warning
+	}
+
+	# Try to appease
+	option = {
+		name = chad_tribal.1.a
+		add_political_power = -50
+		add_to_variable = { CHA_zaghawa_loyalty = 10 }
+		clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 70 }
+	}
+
+	# Ignore protests
+	option = {
+		name = chad_tribal.1.b
+		add_stability = -0.03
+		add_to_variable = { CHA_zaghawa_loyalty = -5 }
+		clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Zaghawa Partisans (Level 2)
+country_event = {
+	id = chad_tribal.2
+	title = chad_tribal.2.t
+	desc = chad_tribal.2.desc
+	picture = GFX_african_rebels
+
+	trigger = {
+		original_tag = CHA
+		CHA_zaghawa_partisan_level = yes
+		NOT = { has_country_flag = CHA_zaghawa_partisan_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 45
+	}
+
+	immediate = {
+		set_country_flag = CHA_zaghawa_partisan_warning
+		add_ideas = CHA_tribal_partisans
+	}
+
+	# Military crackdown
+	option = {
+		name = chad_tribal.2.a
+		add_political_power = -75
+		add_war_support = 0.05
+		add_to_variable = { CHA_zaghawa_loyalty = -10 }
+		clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 40 }
+	}
+
+	# Negotiate
+	option = {
+		name = chad_tribal.2.b
+		add_political_power = -100
+		add_to_variable = { CHA_zaghawa_loyalty = 15 }
+		clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+		remove_ideas = CHA_tribal_partisans
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 60 }
+	}
+}
+
+# Zaghawa Separatism (Level 3)
+country_event = {
+	id = chad_tribal.3
+	title = chad_tribal.3.t
+	desc = chad_tribal.3.desc
+	picture = GFX_politics_failed_negotiations
+
+	trigger = {
+		original_tag = CHA
+		CHA_zaghawa_separatism_level = yes
+		NOT = { has_country_flag = CHA_zaghawa_separatism_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_zaghawa_separatism_warning
+		remove_ideas = CHA_tribal_partisans
+		add_ideas = CHA_tribal_separatism
+	}
+
+	# Grant autonomy
+	option = {
+		name = chad_tribal.3.a
+		add_political_power = -150
+		add_stability = -0.05
+		add_to_variable = { CHA_zaghawa_loyalty = 30 }
+		clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+		set_country_flag = CHA_zaghawa_autonomous
+		remove_ideas = CHA_tribal_separatism
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 50 }
+	}
+
+	# Refuse - risk civil war
+	option = {
+		name = chad_tribal.3.b
+		add_stability = -0.10
+		add_war_support = 0.10
+		add_to_variable = { CHA_zaghawa_loyalty = -5 }
+		clamp_variable = { var = CHA_zaghawa_loyalty min = 0 max = 100 }
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Zaghawa Civil War (Level 4)
+country_event = {
+	id = chad_tribal.4
+	title = chad_tribal.4.t
+	desc = chad_tribal.4.desc
+	picture = GFX_african_combat
+
+	trigger = {
+		original_tag = CHA
+		CHA_zaghawa_civil_war_level = yes
+		NOT = { has_country_flag = CHA_zaghawa_rebellion_active }
+	}
+
+	mean_time_to_happen = {
+		days = 14
+	}
+
+	immediate = {
+		remove_ideas = CHA_tribal_separatism
+	}
+
+	# The Zaghawa rise up
+	option = {
+		name = chad_tribal.4.a
+		CHA_spawn_zaghawa_rebels = yes
+	}
+}
+
+#####################################
+# ARAB REBELLION EVENTS
+#####################################
+
+# Arab Protests (Level 1)
+country_event = {
+	id = chad_tribal.11
+	title = chad_tribal.11.t
+	desc = chad_tribal.11.desc
+	picture = GFX_african_demonstration
+
+	trigger = {
+		original_tag = CHA
+		CHA_arab_protest_level = yes
+		NOT = { has_country_flag = CHA_arab_protest_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_arab_protest_warning
+	}
+
+	option = {
+		name = chad_tribal.11.a
+		add_political_power = -50
+		add_to_variable = { CHA_arab_loyalty = 10 }
+		clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 70 }
+	}
+
+	option = {
+		name = chad_tribal.11.b
+		add_stability = -0.03
+		add_to_variable = { CHA_arab_loyalty = -5 }
+		clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Arab Partisans (Level 2)
+country_event = {
+	id = chad_tribal.12
+	title = chad_tribal.12.t
+	desc = chad_tribal.12.desc
+	picture = GFX_african_rebels
+
+	trigger = {
+		original_tag = CHA
+		CHA_arab_partisan_level = yes
+		NOT = { has_country_flag = CHA_arab_partisan_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 45
+	}
+
+	immediate = {
+		set_country_flag = CHA_arab_partisan_warning
+		add_ideas = CHA_tribal_partisans
+	}
+
+	option = {
+		name = chad_tribal.12.a
+		add_political_power = -75
+		add_war_support = 0.05
+		add_to_variable = { CHA_arab_loyalty = -10 }
+		clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad_tribal.12.b
+		add_political_power = -100
+		add_to_variable = { CHA_arab_loyalty = 15 }
+		clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+		remove_ideas = CHA_tribal_partisans
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 60 }
+	}
+}
+
+# Arab Separatism (Level 3)
+country_event = {
+	id = chad_tribal.13
+	title = chad_tribal.13.t
+	desc = chad_tribal.13.desc
+	picture = GFX_politics_failed_negotiations
+
+	trigger = {
+		original_tag = CHA
+		CHA_arab_separatism_level = yes
+		NOT = { has_country_flag = CHA_arab_separatism_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_arab_separatism_warning
+		remove_ideas = CHA_tribal_partisans
+		add_ideas = CHA_tribal_separatism
+	}
+
+	option = {
+		name = chad_tribal.13.a
+		add_political_power = -150
+		add_stability = -0.05
+		add_to_variable = { CHA_arab_loyalty = 30 }
+		clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+		set_country_flag = CHA_arab_autonomous
+		remove_ideas = CHA_tribal_separatism
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad_tribal.13.b
+		add_stability = -0.10
+		add_war_support = 0.10
+		add_to_variable = { CHA_arab_loyalty = -5 }
+		clamp_variable = { var = CHA_arab_loyalty min = 0 max = 100 }
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Arab Civil War (Level 4)
+country_event = {
+	id = chad_tribal.14
+	title = chad_tribal.14.t
+	desc = chad_tribal.14.desc
+	picture = GFX_african_combat
+
+	trigger = {
+		original_tag = CHA
+		CHA_arab_civil_war_level = yes
+		NOT = { has_country_flag = CHA_arab_rebellion_active }
+	}
+
+	mean_time_to_happen = {
+		days = 14
+	}
+
+	immediate = {
+		remove_ideas = CHA_tribal_separatism
+	}
+
+	option = {
+		name = chad_tribal.14.a
+		CHA_spawn_arab_rebels = yes
+	}
+}
+
+#####################################
+# SARA REBELLION EVENTS
+#####################################
+
+# Sara Protests (Level 1)
+country_event = {
+	id = chad_tribal.21
+	title = chad_tribal.21.t
+	desc = chad_tribal.21.desc
+	picture = GFX_african_demonstration
+
+	trigger = {
+		original_tag = CHA
+		CHA_sara_protest_level = yes
+		NOT = { has_country_flag = CHA_sara_protest_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_sara_protest_warning
+	}
+
+	option = {
+		name = chad_tribal.21.a
+		add_political_power = -50
+		add_to_variable = { CHA_sara_loyalty = 10 }
+		clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 70 }
+	}
+
+	option = {
+		name = chad_tribal.21.b
+		add_stability = -0.03
+		add_to_variable = { CHA_sara_loyalty = -5 }
+		clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Sara Partisans (Level 2)
+country_event = {
+	id = chad_tribal.22
+	title = chad_tribal.22.t
+	desc = chad_tribal.22.desc
+	picture = GFX_african_rebels
+
+	trigger = {
+		original_tag = CHA
+		CHA_sara_partisan_level = yes
+		NOT = { has_country_flag = CHA_sara_partisan_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 45
+	}
+
+	immediate = {
+		set_country_flag = CHA_sara_partisan_warning
+		add_ideas = CHA_tribal_partisans
+	}
+
+	option = {
+		name = chad_tribal.22.a
+		add_political_power = -75
+		add_war_support = 0.05
+		add_to_variable = { CHA_sara_loyalty = -10 }
+		clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad_tribal.22.b
+		add_political_power = -100
+		add_to_variable = { CHA_sara_loyalty = 15 }
+		clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+		remove_ideas = CHA_tribal_partisans
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 60 }
+	}
+}
+
+# Sara Separatism (Level 3)
+country_event = {
+	id = chad_tribal.23
+	title = chad_tribal.23.t
+	desc = chad_tribal.23.desc
+	picture = GFX_politics_failed_negotiations
+
+	trigger = {
+		original_tag = CHA
+		CHA_sara_separatism_level = yes
+		NOT = { has_country_flag = CHA_sara_separatism_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_sara_separatism_warning
+		remove_ideas = CHA_tribal_partisans
+		add_ideas = CHA_tribal_separatism
+	}
+
+	option = {
+		name = chad_tribal.23.a
+		add_political_power = -150
+		add_stability = -0.05
+		add_to_variable = { CHA_sara_loyalty = 30 }
+		clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+		set_country_flag = CHA_sara_autonomous
+		remove_ideas = CHA_tribal_separatism
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad_tribal.23.b
+		add_stability = -0.10
+		add_war_support = 0.10
+		add_to_variable = { CHA_sara_loyalty = -5 }
+		clamp_variable = { var = CHA_sara_loyalty min = 0 max = 100 }
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Sara Civil War (Level 4)
+country_event = {
+	id = chad_tribal.24
+	title = chad_tribal.24.t
+	desc = chad_tribal.24.desc
+	picture = GFX_african_combat
+
+	trigger = {
+		original_tag = CHA
+		CHA_sara_civil_war_level = yes
+		NOT = { has_country_flag = CHA_sara_rebellion_active }
+	}
+
+	mean_time_to_happen = {
+		days = 14
+	}
+
+	immediate = {
+		remove_ideas = CHA_tribal_separatism
+	}
+
+	option = {
+		name = chad_tribal.24.a
+		CHA_spawn_sara_rebels = yes
+	}
+}
+
+#####################################
+# TOUBOU REBELLION EVENTS
+#####################################
+
+# Toubou Protests (Level 1)
+country_event = {
+	id = chad_tribal.31
+	title = chad_tribal.31.t
+	desc = chad_tribal.31.desc
+	picture = GFX_african_demonstration
+
+	trigger = {
+		original_tag = CHA
+		CHA_toubou_protest_level = yes
+		NOT = { has_country_flag = CHA_toubou_protest_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_toubou_protest_warning
+	}
+
+	option = {
+		name = chad_tribal.31.a
+		add_political_power = -50
+		add_to_variable = { CHA_toubou_loyalty = 10 }
+		clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 70 }
+	}
+
+	option = {
+		name = chad_tribal.31.b
+		add_stability = -0.03
+		add_to_variable = { CHA_toubou_loyalty = -5 }
+		clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Toubou Partisans (Level 2)
+country_event = {
+	id = chad_tribal.32
+	title = chad_tribal.32.t
+	desc = chad_tribal.32.desc
+	picture = GFX_african_rebels
+
+	trigger = {
+		original_tag = CHA
+		CHA_toubou_partisan_level = yes
+		NOT = { has_country_flag = CHA_toubou_partisan_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 45
+	}
+
+	immediate = {
+		set_country_flag = CHA_toubou_partisan_warning
+		add_ideas = CHA_tribal_partisans
+	}
+
+	option = {
+		name = chad_tribal.32.a
+		add_political_power = -75
+		add_war_support = 0.05
+		add_to_variable = { CHA_toubou_loyalty = -10 }
+		clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad_tribal.32.b
+		add_political_power = -100
+		add_to_variable = { CHA_toubou_loyalty = 15 }
+		clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+		remove_ideas = CHA_tribal_partisans
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 60 }
+	}
+}
+
+# Toubou Separatism (Level 3)
+country_event = {
+	id = chad_tribal.33
+	title = chad_tribal.33.t
+	desc = chad_tribal.33.desc
+	picture = GFX_politics_failed_negotiations
+
+	trigger = {
+		original_tag = CHA
+		CHA_toubou_separatism_level = yes
+		NOT = { has_country_flag = CHA_toubou_separatism_warning }
+	}
+
+	mean_time_to_happen = {
+		days = 30
+	}
+
+	immediate = {
+		set_country_flag = CHA_toubou_separatism_warning
+		remove_ideas = CHA_tribal_partisans
+		add_ideas = CHA_tribal_separatism
+	}
+
+	option = {
+		name = chad_tribal.33.a
+		add_political_power = -150
+		add_stability = -0.05
+		add_to_variable = { CHA_toubou_loyalty = 30 }
+		clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+		set_country_flag = CHA_toubou_autonomous
+		remove_ideas = CHA_tribal_separatism
+		CHA_update_tribal_resource_modifiers = yes
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad_tribal.33.b
+		add_stability = -0.10
+		add_war_support = 0.10
+		add_to_variable = { CHA_toubou_loyalty = -5 }
+		clamp_variable = { var = CHA_toubou_loyalty min = 0 max = 100 }
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Toubou Civil War (Level 4)
+country_event = {
+	id = chad_tribal.34
+	title = chad_tribal.34.t
+	desc = chad_tribal.34.desc
+	picture = GFX_african_combat
+
+	trigger = {
+		original_tag = CHA
+		CHA_toubou_civil_war_level = yes
+		NOT = { has_country_flag = CHA_toubou_rebellion_active }
+	}
+
+	mean_time_to_happen = {
+		days = 14
+	}
+
+	immediate = {
+		remove_ideas = CHA_tribal_separatism
+	}
+
+	option = {
+		name = chad_tribal.34.a
+		CHA_spawn_toubou_rebels = yes
+	}
+}
+
+#####################################
+# NEWS EVENTS FOR TRIBAL REBELLIONS
+#####################################
+
+# Zaghawa Rebellion News
+news_event = {
+	id = chad.1050
+	title = chad.1050.t
+	desc = chad.1050.desc
+	picture = GFX_news_african_conflict
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1050.a
+	}
+}
+
+# Arab Rebellion News
+news_event = {
+	id = chad.1051
+	title = chad.1051.t
+	desc = chad.1051.desc
+	picture = GFX_news_african_conflict
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1051.a
+	}
+}
+
+# Sara Rebellion News
+news_event = {
+	id = chad.1052
+	title = chad.1052.t
+	desc = chad.1052.desc
+	picture = GFX_news_african_conflict
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1052.a
+	}
+}
+
+# Toubou Rebellion News
+news_event = {
+	id = chad.1053
+	title = chad.1053.t
+	desc = chad.1053.desc
+	picture = GFX_news_african_conflict
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.1053.a
+	}
+}
+
+#####################################
+# REBELLION END EVENTS
+#####################################
+
+# Tribal rebellion defeated
+country_event = {
+	id = chad_tribal.100
+	title = chad_tribal.100.t
+	desc = chad_tribal.100.desc
+	picture = GFX_african_victory
+
+	trigger = {
+		original_tag = CHA
+		CHA_tribal_rebellion_active = yes
+		NOT = {
+			country_exists = ZGW
+			country_exists = ARC
+			country_exists = SRR
+			country_exists = TBU
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 7
+	}
+
+	option = {
+		name = chad_tribal.100.a
+		CHA_end_tribal_rebellion = yes
+		add_stability = 0.05
+		add_war_support = 0.05
+	}
+}
