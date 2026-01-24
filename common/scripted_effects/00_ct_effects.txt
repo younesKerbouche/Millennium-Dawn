@@ -221,7 +221,6 @@ calculate_radicalization = {
 	#Adjust nations radicalization growth
 	#Major sweeping checks here, for government popularity / war support, ect
 	#Events can just modify the variable directly
-
 	if = {
 		limit = {
 			OR = {
@@ -353,8 +352,15 @@ calculate_internal_threat = {
 	if = {
 		limit = {
 			check_variable = { internal_terror_threat > 10 }
+			NOT = { is_in_array = { global.current_nation_possible_attack = THIS } }
 		}
 		add_to_array = { global.current_nation_possible_attack = THIS }
+	}else_if = {
+		limit = {
+			check_variable = { internal_terror_threat < 11 }
+			is_in_array = { global.current_nation_possible_attack = THIS }
+		}
+		remove_from_array = { global.current_nation_possible_attack = THIS }
 	}
 }
 
