@@ -4509,6 +4509,15 @@ EH_chimera_portal_1_created_effect = {
 			min_zoom = 150.0
 			visible = EH_scenario_enabled
 		}
+		591 = {
+			add_province_modifier = {
+				static_modifiers = { EH_portal_presence_modifier }
+				province = {
+					id = 14126
+				}
+			}
+			set_state_flag = EH_state_with_portal
+		}
 		set_global_flag = chimera_portal_1_created
 	}
 }
@@ -4556,21 +4565,14 @@ EH_chimera_portal_234_created_effect = {
 			min_zoom = 150.0
 			visible = EH_scenario_enabled
 		}
-		591 = {
-			add_state_modifier = {
-				static_modifiers = { EH_portal_presence_modifier }
-				province = {
-					id = 14126
-				}
-			}
-		}
 		234 = {
-			add_state_modifier = {
+			add_province_modifier = {
 				static_modifiers = { EH_portal_presence_modifier }
 				province = {
 					id = 13831
 				}
 			}
+			set_state_flag = EH_state_with_portal
 		}
 		814 = {
 			add_province_modifier = {
@@ -4579,6 +4581,7 @@ EH_chimera_portal_234_created_effect = {
 					id = 15079
 				}
 			}
+			set_state_flag = EH_state_with_portal
 		}
 		457 = {
 			add_province_modifier = {
@@ -4587,46 +4590,174 @@ EH_chimera_portal_234_created_effect = {
 					id = 11009
 				}
 			}
+			set_state_flag = EH_state_with_portal
 		}
 		set_global_flag = chimera_portal_234_created
 	}
 }
 
 EH_chimera_portal_destroyed_effect = {
+	var:target_state = {
+		set_state_flag = EH_state_with_destroyed_portal
+	}
 	if = {
 		limit = {
-			check_variable = { var:target_state = 591 }
+			591 = {
+				has_state_flag = EH_state_with_destroyed_portal
+			}
 		}
-		delete_unit = {
-			state = var:target_state
-			id = 9991
+		destroy_entity = 9991
+		damage_units = {
+			region = 188
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 144
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 146
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 161
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 153
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		591 = {
+			clr_state_flag = EH_state_with_destroyed_portal
+			clr_state_flag = EH_state_with_portal
 		}
 	}
 	if = {
 		limit = {
-			check_variable = { var:target_state = 457 }
+			457 = {
+				has_state_flag = EH_state_with_destroyed_portal
+			}
 		}
-		delete_unit = {
-			state = var:target_state
-			id = 9992
+		destroy_entity = 9992
+		damage_units = {
+			region = 191
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		457 = {
+			clr_state_flag = EH_state_with_destroyed_portal
+			clr_state_flag = EH_state_with_portal
 		}
 	}
 	if = {
 		limit = {
-			check_variable = { var:target_state = 234 }
+			234 = {
+				has_state_flag = EH_state_with_destroyed_portal
+			}
 		}
-		delete_unit = {
-			state = var:target_state
-			id = 9993
+		destroy_entity = 9993
+		damage_units = {
+			region = 133
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 183
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 132
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 186
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 185
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		234 = {
+			clr_state_flag = EH_state_with_destroyed_portal
+			clr_state_flag = EH_state_with_portal
 		}
 	}
 	if = {
 		limit = {
-			check_variable = { var:target_state = 814 }
+			814 = {
+				has_state_flag = EH_state_with_destroyed_portal
+			}
 		}
-		delete_unit = {
-			state = var:target_state
-			id = 9994
+		destroy_entity = 9994
+		damage_units = {
+			region = 33
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 182
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		damage_units = {
+			region = 122
+			limit = { original_tag = ALN }
+			damage = 1
+			org_damage = 1
+			str_damage = 1
+			army = yes
+		}
+		814 = {
+			clr_state_flag = EH_state_with_destroyed_portal
+			clr_state_flag = EH_state_with_portal
 		}
 	}
 }
