@@ -4257,3 +4257,260 @@ country_event = {
 		ai_chance = { base = 20 }
 	}
 }
+
+#####################################
+# NEW POLITICAL PATHS - NEWS EVENTS
+#####################################
+
+# Tribal Confederation Established - Global News
+news_event = {
+	id = chad.600
+	title = chad.600.t
+	desc = chad.600.desc
+	picture = GFX_african_meeting
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_tribal_confederation_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_tribal_confederation_news
+	}
+
+	option = {
+		name = chad.600.a
+		log = "[GetDateText]: [This.GetName]: chad.600.a executed"
+	}
+}
+
+# Tribal Constitution Ratified - Global News
+news_event = {
+	id = chad.604
+	title = chad.604.t
+	desc = chad.604.desc
+	picture = GFX_african_democracy
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_tribal_constitution_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_tribal_constitution_news
+	}
+
+	option = {
+		name = chad.604.a
+		log = "[GetDateText]: [This.GetName]: chad.604.a executed"
+	}
+}
+
+# Pan-African Sahel Leadership - Global News
+news_event = {
+	id = chad.610
+	title = chad.610.t
+	desc = chad.610.desc
+	picture = GFX_african_union
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_sahel_leadership_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_sahel_leadership_news
+	}
+
+	option = {
+		name = chad.610.a
+		log = "[GetDateText]: [This.GetName]: chad.610.a executed"
+	}
+}
+
+# Kanem-Bornu Empire Restoration - Global News
+news_event = {
+	id = chad.615
+	title = chad.615.t
+	desc = chad.615.desc
+	picture = GFX_african_empire
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_kanem_bornu_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_kanem_bornu_news
+	}
+
+	option = {
+		name = chad.615.a
+		log = "[GetDateText]: [This.GetName]: chad.615.a executed"
+	}
+}
+
+# French Integration Complete - Global News
+news_event = {
+	id = chad.620
+	title = chad.620.t
+	desc = chad.620.desc
+	picture = GFX_france_africa
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_french_integration_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_french_integration_news
+	}
+
+	option = {
+		name = chad.620.a
+		log = "[GetDateText]: [This.GetName]: chad.620.a executed"
+		# Western response
+		trigger = {
+			OR = {
+				tag = FRA
+				tag = USA
+				tag = ENG
+				is_in_faction_with = FRA
+			}
+		}
+	}
+
+	option = {
+		name = chad.620.b
+		log = "[GetDateText]: [This.GetName]: chad.620.b executed"
+		# Chinese/Russian response
+		trigger = {
+			OR = {
+				tag = CHI
+				tag = RUS
+			}
+		}
+	}
+
+	option = {
+		name = chad.620.c
+		log = "[GetDateText]: [This.GetName]: chad.620.c executed"
+		# Neutral response
+		trigger = {
+			NOT = {
+				tag = FRA
+				tag = USA
+				tag = ENG
+				tag = CHI
+				tag = RUS
+				is_in_faction_with = FRA
+			}
+		}
+	}
+}
+
+# Chinese Integration Complete - Global News
+news_event = {
+	id = chad.625
+	title = chad.625.t
+	desc = chad.625.desc
+	picture = GFX_china_africa
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_chinese_integration_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_chinese_integration_news
+	}
+
+	option = {
+		name = chad.625.a
+		log = "[GetDateText]: [This.GetName]: chad.625.a executed"
+		# Chinese response
+		trigger = {
+			OR = {
+				tag = CHI
+				is_in_faction_with = CHI
+			}
+		}
+	}
+
+	option = {
+		name = chad.625.b
+		log = "[GetDateText]: [This.GetName]: chad.625.b executed"
+		# Western response
+		trigger = {
+			OR = {
+				tag = FRA
+				tag = USA
+				tag = ENG
+			}
+		}
+	}
+
+	option = {
+		name = chad.625.c
+		log = "[GetDateText]: [This.GetName]: chad.625.c executed"
+		# Neutral response
+		trigger = {
+			NOT = {
+				tag = FRA
+				tag = USA
+				tag = ENG
+				tag = CHI
+				is_in_faction_with = CHI
+			}
+		}
+	}
+}
+
+# African Standby Force Leadership - Global News
+news_event = {
+	id = chad.630
+	title = chad.630.t
+	desc = chad.630.desc
+	picture = GFX_african_peacekeepers
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = {
+		NOT = { has_global_flag = chad_asf_leadership_news }
+	}
+
+	immediate = {
+		set_global_flag = chad_asf_leadership_news
+	}
+
+	option = {
+		name = chad.630.a
+		log = "[GetDateText]: [This.GetName]: chad.630.a executed"
+		# African nations
+		trigger = {
+			capital_scope = { is_on_continent = africa }
+		}
+	}
+
+	option = {
+		name = chad.630.b
+		log = "[GetDateText]: [This.GetName]: chad.630.b executed"
+		# Non-African nations
+		trigger = {
+			NOT = { capital_scope = { is_on_continent = africa } }
+		}
+	}
+}
