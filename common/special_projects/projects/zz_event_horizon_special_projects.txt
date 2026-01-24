@@ -14,7 +14,7 @@ sp_monitor_portal_energy_emissions_project = {
 		specialization_land = 2
 	}
 
-	prototype_time = sp_time.prototype.long
+	prototype_time = sp_time.prototype.short
 
 	complexity = sp_complexity.medium
 
@@ -120,7 +120,7 @@ sp_spies_in_hive_project = {
 		specialization_land = 2
 	}
 
-	prototype_time = sp_time.prototype.medium
+	prototype_time = sp_time.prototype.short
 
 	complexity = sp_complexity.medium
 
@@ -191,21 +191,27 @@ sp_spies_in_hive_project = {
 							producer = ROOT
 						}
 						add_manpower = -5000
-						random_unit_leader = {
-							add_timed_unit_leader_trait = {
-								trait = wounded
-								days = 90
+						ROOT = {
+							random_unit_leader = {
+								add_timed_unit_leader_trait = {
+									trait = wounded
+									days = 90
+								}
 							}
 						}
 						random = {
-							chance = 35
-							random_unit_leader = {
-								remove_unit_leader = yes
+							chance = 65
+							ROOT = {
+								random_unit_leader = {
+									remove_unit_leader = yes
+								}
 							}
+							add_command_power = -100
+							add_political_power = -250
 						}
 						FROM = { add_project_progress_ratio = 0.07 }
-						add_stability = -0.08
-						add_war_support = -0.08
+						add_stability = -0.03
+						add_war_support = -0.03
 					}
 				}
 			}
