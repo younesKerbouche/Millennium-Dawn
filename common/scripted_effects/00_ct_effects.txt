@@ -1,3 +1,4 @@
+#Setup Functions
 counter_terror_nation_startup = {
 	#tracks all starting values for internal threats and international threat detection
 	set_variable = { internal_terror_threat = 0 }
@@ -8,7 +9,14 @@ counter_terror_nation_startup = {
 	set_variable = { internal_rad_mod = 0 }
 	set_variable = { internal_threat_detection = 0 }
 	set_variable = { internal_threat_detection_mod = 0 }
-	set_variable = { global_terror_threat_detection = 0 }
+	set_variable = { global_terror_org_detection_base = 0 }
+	set_variable = { global_terror_threat_detection_mod = 0 }
+	#setup the basic array for the global terror orgs
+	#this is important b/c it allows us to track global intel
+	#this means the player then can properly "hunt" terror orgs, if they want
+	add_to_array = { international_terror_org_intel = 0 }
+	add_to_array = { international_terror_org_intel = 0 }
+	add_to_array = { international_terror_org_intel = 0 }
 }
 
 counter_terror_global_setup = {
@@ -38,6 +46,44 @@ setup_all_orgs = {
 	add_to_array = { global.inactive_terror_orgs = 10 }
 }
 
+set_starting_org_values = {
+	for_each_loop = {
+		array = global.active_terror_orgs
+		value = v
+		index = i
+
+		set_temp_variable_to_random = {
+			var = starting_threat
+			min = 5
+			max = 10
+			integer = yes
+		}
+
+		set_temp_variable_to_random = {
+			var = starting_rad
+			min = 5
+			max = 10
+			integer = yes
+		}
+
+		set_temp_variable_to_random = {
+			var = starting_vis
+			min = 5
+			max = 10
+		}
+
+		if = {
+			limit = { check_variable = { i = 0 } }
+			add_to_temp_variable = { starting_threat = 10 }
+			add_to_temp_variable = { starting_rad = 15 }
+		}
+
+		add_to_array = { global.active_terror_org_threat_lvl = starting_threat }
+		add_to_array = { global.active_terror_org_rad_lvl = starting_rad }
+		add_to_array = { global.active_terror_org_vis_lvl = starting_vis }
+	}
+}
+
 set_starting_org_locations = {
 	#NOTE: DO NOT ADJUST THIS START ORDER
 	#If you add starting terror orgs, you need to ENSURE all the arrays line up right
@@ -59,7 +105,7 @@ set_starting_org_locations = {
 	}
 
 	var:alq_start^start_spot = {
-		set_state_flag = alq_regional_base
+		set_state_flag = is_regional_terror_base
 	}
 
 	add_to_array = { global.active_terror_hq = alq_start^start_spot }
@@ -75,7 +121,7 @@ set_starting_org_locations = {
 	}
 
 	var:boko_start^start_spot = {
-		set_state_flag = boko_regional_base
+		set_state_flag = is_regional_terror_base
 	}
 
 	add_to_temp_array = { hut_start = 202 }
@@ -90,11 +136,24 @@ set_starting_org_locations = {
 	}
 
 	var:hut_start^start_spot = {
-		set_state_flag = hut_regional_base
+		set_state_flag = is_regional_terror_base
+	}
+
+	set_global_flag = {
+		flag = terror_org_move_stop
+		days = 365
+		value = 1
 	}
 }
 
-counter_terror_core = {
+#System Pulses
+counter_terror_global = {
+	check_for_internal_terror_attacks = yes
+	global_war_on_terror = yes
+	check_for_global_attacks = yes
+}
+
+counter_terror_individual = {
 	#Start by adjusting social conservatism
 	if = {
 		limit = {
@@ -110,49 +169,223 @@ counter_terror_core = {
 	#Next, for each nation, calculate their potential radicalization
 	#This builds off social conservatism;
 	calculate_radicalization = yes
-	internal_threat_level = yes
-	global_war_on_terror = yes
+	calculate_internal_threat = yes
+	calculate_national_global_threat_detection = yes
 }
 
-global_war_on_terror = {
-	#Increase radicalization and threat level for nations that have a regional organization operating in their borders
-	set_temp_variable = { global_rad_add = internal_radicalization }
-	multiply_temp_variable = { global_rad_add = 0.05 }
-	add_to_variable = { global.radicalization = global_rad_add }
+#Calculate individual level adjustments per nation
+social_conservatism_adjust = {
+	#First, calculate how radical our people will potentially be this cycle
+	#For optimal math, we do this *before* we adjust the numbers
+	set_temp_variable = { social_conservatism_government_track = social_conservatism_government }
+	subtract_from_temp_variable = { social_conservatism_government_track = social_conservatism_society }
+	if = {
+		limit = {
+			check_variable = { social_conservatism_government_track < 0 }
+		}
+		multiply_temp_variable = { social_conservatism_government_track = -1 }
+	}
+	#Add the base value of 50, then clamp it between the min / max range before it goes into the random
+	add_to_temp_variable = { social_conservatism_government_track = 50 }
+	clamp_temp_variable = {
+		var = social_conservatism_government_track
+		min = 0
+		max = 100
+	}
+
+	if = {
+		limit = {
+			check_variable = { social_conservatism_government < social_conservatism_society }
+		}
+		subtract_from_variable = { social_conservatism_society = 1 }
+		clamp_variable = { var = social_conservatism_society min = social_conservatism_government max = 100 }
+
+		random = {
+			chance = social_conservatism_government_track
+			country_event = { id = radicalization.1 random_hours = 24 }
+		}
+	}else = {
+		add_to_variable = { social_conservatism_society = 1 }
+		clamp_variable = { var = social_conservatism_society min = 0 max = social_conservatism_government }
+
+		random = {
+			chance = social_conservatism_government_track
+			country_event = { id = radicalization.2 random_hours = 24 }
+		}
+	}
+
+	update_social_conservatism_idea = yes
 }
 
-internal_threat_level = {
+calculate_radicalization = {
+	#Adjust nations radicalization growth
+	#Major sweeping checks here, for government popularity / war support, ect
+	#Events can just modify the variable directly
+
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					has_elections = no
+					check_variable = { government_coalition_strength < 0.15 }
+					has_stability < 0.45
+				}
+				AND = {
+					check_variable = { government_coalition_strength < 0.45 }
+					has_stability < 0.35
+				}
+			}
+		}
+		set_temp_variable_to_random = {
+			var = rad_add
+			min = 0.5
+			max = 2
+		}
+		add_to_temp_variable = { full_rad_add = rad_add }
+	}else_if = {
+		limit = {
+			check_variable = { government_coalition_strength > 0.5 }
+			has_stability > 0.45
+		}
+		set_temp_variable_to_random = {
+			var = rad_add
+			min = -0.5
+			max = -2
+		}
+		add_to_temp_variable = { full_rad_add = rad_add }
+	}
+
+	if = {
+		limit = {
+			has_war = no
+		}
+		set_temp_variable_to_random = {
+			var = rad_add
+			min = -0.5
+			max = -1
+		}
+		add_to_temp_variable = { full_rad_add = rad_add }
+	}else = {
+		if = {
+			limit = {
+				has_war_support < 0.3
+			}
+			set_temp_variable_to_random = {
+				var = rad_add
+				min = 0.5
+				max = 1
+			}
+			add_to_temp_variable = { full_rad_add = rad_add }
+		}
+	}
+
+	if = {
+		limit = {
+			has_country_flag = has_stopped_int_terror_attack
+		}
+		subtract_from_temp_variable = { full_rad_add = -5 }
+	}
+
+	if = {
+		limit = {
+			has_country_flag = has_been_terror_attacked
+		}
+		add_to_temp_variable = { full_rad_add = 5 }
+	}
+
+	set_temp_variable = { mod_adjuster = 1 }
+	add_to_temp_variable = { mod_adjuster = internal_rad_mod }
+	multiply_temp_variable = { full_rad_add = mod_adjuster }
+	add_to_variable = { internal_radicalization = full_rad_add }
+
+	clamp_radicalization = yes
+}
+
+calculate_internal_threat = {
+	#Get a base threat level. This comes from your security in the nation
 	set_temp_variable = { terror_level_base = modifier@internal_threat_increase_modifier }
 
 	set_temp_variable = { level_add_rad = 0 }
+	#Adjust the threat level based on radicalization
+	#If radicalization is less than 15, reduce the threat level
 	if = {
 		limit = {
 			check_variable = { internal_radicalization > 15 }
 			add_to_temp_variable = { level_add_rad = internal_radicalization }
 			multiply_temp_variable = { level_add_rad = 0.06667 }
 		}
+	}else = {
+		set_temp_variable = { level_add_rad = 15 }
+		subtract_from_temp_variable = { level_add_rad = internal_radicalization }
+		multiply_temp_variable = { level_add_rad = -1 }
 	}
 
 	add_to_temp_variable = { level_add_rad = internal_terror_threat_mod }
-
 	add_to_temp_variable = { level_add_rad = terror_level_base }
+
+	#Random movement based on actions, opportunities, and lone wolf attacks
+	set_temp_variable_to_random = {
+		var = internal_threat_random
+		min = -2
+		max = 2
+		integer = yes
+	}
+
+	if = {
+		limit = {
+			has_country_flag = has_stopped_int_terror_attack
+		}
+		subtract_from_temp_variable = { level_add_rad = -5 }
+	}
+
+	if = {
+		limit = {
+			has_country_flag = has_been_terror_attacked
+		}
+		add_to_temp_variable = { level_add_rad = 5 }
+	}
+
+	add_to_temp_variable = { level_add_rad = internal_threat_random }
 	set_variable = { internal_terror_threat = level_add_rad }
 
 	clamp_threat = yes
+
+	if = {
+		limit = {
+			check_variable = { internal_terror_threat > 10 }
+		}
+		add_to_array = { global.current_nation_possible_attack = THIS }
+	}
 }
 
-modify_radicalization_effect = {
-	add_to_variable = { internal_radicalization = rad_change }
-	custom_effect_tooltip = modify_radicalization_effect_tt
-	clamp_radicalization = yes
+calculate_national_global_threat_detection = {
+	#here, update our global detection score and update the UI appropriately
+	set_temp_variable = { base_detection = global_terror_org_detection_base }
+	set_temp_variable = { base_mod = 1 }
+	add_to_temp_variable = { base_mod = global_terror_threat_detection_mod }
+
+	set_temp_variable = { cur_nat = THIS }
+
+	for_each_loop = {
+		array = international_terror_org_intel
+		value = v
+		index = i
+
+		set_temp_variable = { state_tracker = active_terror_hq^i }
+		set_temp_variable = { op_country = state_tracker.controller }
+		var:cur_nat = {
+			set_temp_variable = { cur_intel = civilian_intel@op_country }
+			multiply_variable = { cur_intel = 0.5 }
+			add_to_temp_variable = { cur_intel = base_detection }
+			set_temp_variable = { net_cover = network_national_coverage@op_country }
+			add_to_temp_variable = { cur_intel = net_cover }
+			multiply_temp_variable = { cur_intel = base_mod }
+			set_variable = { international_terror_org_intel^i = cur_intel }
+		}
+	}
 }
 
-modify_terror_threat_effect = {
-	add_to_variable = { internal_terror_threat = threat_change }
-	custom_effect_tooltip = modify_terror_threat_effect_tt
-	clamp_threat = yes
-}
-
+#Calculation Clamps
 clamp_threat = {
 	# Calculate Min/Max Terror Threat
 	set_temp_variable = { min_threat = 0 }
@@ -181,6 +414,8 @@ clamp_threat = {
 
 	clamp_temp_variable = { var = min_threat min = 0 max = 100 }
 	clamp_temp_variable = { var = max_threat min = 0 max = 100 }
+
+
 
 	clamp_variable = { var = internal_terror_threat min = min_threat max = max_threat }
 
@@ -276,113 +511,168 @@ clamp_radicalization = {
 	missile_ui_update = yes
 }
 
-calculate_radicalization = {
-	#Adjust nations radicalization growth
-	#Major sweeping checks here, for government popularity / war support, ect
-	#Events can just modify the variable directly
-
-	if = {
-		limit = {
-			OR = {
-				AND = {
-					has_elections = no
-					check_variable = { government_coalition_strength < 0.15 }
-					has_stability < 0.45
-				}
-				AND = {
-					check_variable = { government_coalition_strength < 0.45 }
-					has_stability < 0.35
-				}
-			}
-		}
-		set_temp_variable_to_random = {
-			var = rad_add
-			min = 0.5
-			max = 2
-		}
-		add_to_temp_variable = { full_rad_add = rad_add }
-	}else_if = {
-		limit = {
-			check_variable = { government_coalition_strength > 0.5 }
-			has_stability > 0.45
-		}
-		set_temp_variable_to_random = {
-			var = rad_add
-			min = -0.5
-			max = -2
-		}
-		add_to_temp_variable = { full_rad_add = rad_add }
-	}
-
-	if = {
-		limit = {
-			has_war = no
-		}
-		set_temp_variable_to_random = {
-			var = rad_add
-			min = -0.5
-			max = -1
-		}
-		add_to_temp_variable = { full_rad_add = rad_add }
-	}else = {
-		if = {
-			limit = {
-				has_war_support < 0.3
-			}
-			set_temp_variable_to_random = {
-				var = rad_add
-				min = 0.5
-				max = 1
-			}
-			add_to_temp_variable = { full_rad_add = rad_add }
-		}
-	}
-
-	multiply_temp_variable = { rad_add = internal_rad_mod }
-	add_to_variable = { internal_radicalization = full_rad_add }
-
+#Modify Checks
+#these should fire based on events / button pushes in system
+modify_radicalization_effect = {
+	add_to_variable = { internal_radicalization = rad_change }
+	custom_effect_tooltip = modify_radicalization_effect_tt
 	clamp_radicalization = yes
 }
 
-social_conservatism_adjust = {
-	#First, calculate how radical our people will potentially be this cycle
-	#For optimal math, we do this *before* we adjust the numbers
-	set_temp_variable = { social_conservatism_government_track = social_conservatism_government }
-	subtract_from_temp_variable = { social_conservatism_government_track = social_conservatism_society }
-	if = {
-		limit = {
-			check_variable = { social_conservatism_government_track < 0 }
+modify_terror_threat_effect = {
+	add_to_variable = { internal_terror_threat = threat_change }
+	custom_effect_tooltip = modify_terror_threat_effect_tt
+	clamp_threat = yes
+}
+
+#Global checks
+#Run on nations subject to attacks, and for global orgs
+check_for_internal_terror_attacks = {
+	#here, if a nation's threat level leaves it subject to terror attacks, do the thing
+	for_each_scope_loop = {
+		array = global.current_nation_possible_attack
+
+		set_temp_variable = { attack_chance = internal_terror_threat }
+		multiply_temp_variable = { attack_chance = 0.75 }
+
+		random = {
+			chance = attack_chance
+			internal_attack_roll = yes
 		}
-		multiply_temp_variable = { social_conservatism_government_track = -1 }
 	}
-	#Add the base value of 50, then clamp it between the min / max range before it goes into the random
-	add_to_temp_variable = { social_conservatism_government_track = 50 }
+}
+
+internal_attack_roll = {
+	#if an attack is about to happen, roll to see if we detect and prevent it
+	set_temp_variable = { remainder_chance = 100 }
+	subtract_from_temp_variable = { remainder_chance = internal_threat_detection }
+
+	#always make sure there *is* a chance an attack can sneak through
 	clamp_temp_variable = {
-		var = social_conservatism_government_track
-		min = 0
+		var = remainder_chance
+		min = 5
 		max = 100
 	}
 
+	random_list = {
+		internal_threat_detection = {
+			#if here, we stopped the attack!
+			set_country_flag = {
+				flag = has_stopped_int_terror_attack
+				days = 180
+				value = 1
+			}
+		}
+		remainder_chance = {
+			#if here, the attack happens
+			set_country_flag = {
+				flag = has_been_terror_attacked
+				days = 180
+				value = 1
+			}
+		}
+	}
+}
+
+global_war_on_terror = {
+	#Run the updates for global organizations
 	if = {
 		limit = {
-			check_variable = { social_conservatism_government < social_conservatism_society }
+			NOT = { has_global_flag = global_terror_update_ran }
 		}
-		subtract_from_variable = { social_conservatism_society = 1 }
-		clamp_variable = { var = social_conservatism_society min = social_conservatism_government max = 100 }
-
-		random = {
-			chance = social_conservatism_government_track
-			country_event = { id = radicalization.1 random_hours = 24 }
+		set_global_flag = {
+			flag = global_terror_update_ran
+			days = 45
+			value = 1
 		}
-	}else = {
-		add_to_variable = { social_conservatism_society = 1 }
-		clamp_variable = { var = social_conservatism_society min = 0 max = social_conservatism_government }
+		#For each country that has an org inside it, increase the threat and radicalization
+		#Increase this by 5% of the overall organization's level
+		for_each_loop = {
+			array = global.active_terror_hq
+			value = v
+			index = i
 
-		random = {
-			chance = social_conservatism_government_track
-			country_event = { id = radicalization.2 random_hours = 24 }
+			#nation's threat increases due to the terror org being present
+			set_temp_variable = { rad_up = global.active_terror_org_rad_lvl^i }
+			set_temp_variable = { threat_up = global.active_terror_org_threat_lvl^i }
+
+			multiply_temp_variable = { rad_up = 0.05 }
+			multiply_temp_variable = { threat_up = 0.05 }
+
+			var:v = {
+				controller = {
+					set_temp_variable = { checker = THIS }
+				}
+				every_neighbor_state = {
+					limit = { NOT = { is_controlled_by = checker } }
+					controller = {
+						add_to_variable = { internal_terror_threat = threat_up }
+						add_to_variable = { internal_radicalization = rad_up }
+					}
+				}
+			}
 		}
 	}
 
-	update_social_conservatism_idea = yes
+	if = {
+		limit = {
+			NOT = { has_global_flag = terror_org_move_stop }
+		}
+		for_each_scope_loop = {
+			array = global.active_terror_hq
+
+			clr_state_flag = is_regional_terror_base
+
+			add_to_temp_array = { move_state_list = THIS }
+			remove_from_array = { global.active_terror_hq = THIS }
+
+			every_neighbor_state = {
+				add_to_temp_array = { move_state_list = THIS }
+			}
+
+			set_temp_variable = { max_stop = move_state_list^num }
+			subtract_from_temp_variable = { max_stop = 1 }
+
+			set_temp_variable_to_random = {
+				var = new_state
+				min = max_stop
+				max = move_state_list^num
+			}
+			add_to_temp_array = { move_store = move_state_list^new_state }
+			resize_temp_array = { move_state_list = 0 }
+		}
+		for_each_scope_loop = {
+			array = move_store
+
+			set_state_flag = is_regional_terror_base
+			add_to_array = { global.active_terror_hq = THIS }
+		}
+
+		set_temp_variable_to_random = {
+			var = random_roll
+			min = 180
+			max = 400
+			integer = yes
+		}
+		set_global_flag = {
+			flag = terror_org_move_stop
+			days = random_roll
+			value = 1
+		}
+	}
 }
+
+check_for_global_attacks = {
+	#See if any org has planned and executed an attack
+}
+
+global_attack_roll = {
+	#see if the org pulled off the attack vs the nations defence
+}
+
+
+
+
+
+
+
