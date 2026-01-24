@@ -6,7 +6,7 @@ sp_monitor_portal_energy_emissions_project = {
 
 	visible = {
 		FROM = {
-			has_completed_focus = EH_study_new_enemy
+			has_completed_focus = EH_portals_must_be_the_key
 		}
 	}
 
@@ -16,7 +16,7 @@ sp_monitor_portal_energy_emissions_project = {
 
 	prototype_time = sp_time.prototype.long
 
-	complexity = sp_complexity.complex
+	complexity = sp_complexity.medium
 
 	resource_cost = {
 		resources = {
@@ -60,12 +60,12 @@ sp_monitor_portal_energy_emissions_project = {
 			fire_only_once = yes
 
 			threshold = {
-				min = 20
+				min = 0
 				max = 50
 			}
 
 			weight = {
-				base = 1
+				base = 1000
 			}
 
 			option = {
@@ -107,7 +107,7 @@ sp_monitor_portal_energy_emissions_project = {
 
 sp_spies_in_hive_project = {
 	specialization = specialization_land
-	icon = GFX_sp_wireless_power_grid_expansion
+	icon = GFX_sp_naval_swarm_drones
 	project_tags = sp_tag_eh_portal_research
 
 	visible = {
@@ -141,16 +141,6 @@ sp_spies_in_hive_project = {
 				navy_intel = 25
 				airforce_intel = 25
 			}
-			remove_ideas = EH_disrupted_satellite_network_idea
-			if = {
-				limit = {
-					has_country_flag = EH_portal_energy_emissions_prototype_b_flag
-				}
-				random = {
-					chance = 80
-					country_event = EH_focus_event.8
-				}
-			}
 		}
 	}
 
@@ -167,12 +157,12 @@ sp_spies_in_hive_project = {
 			fire_only_once = yes
 
 			threshold = {
-				min = 10
-				max = 25
+				min = 0
+				max = 50
 			}
 
 			weight = {
-				base = 1
+				base = 1000
 			}
 
 			option = {
