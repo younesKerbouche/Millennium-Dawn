@@ -1183,3 +1183,14 @@
 	NDefines.NFactions.FACTION_SCIENTIST_CONTRIBUTION_VALUE = 1.25 -- vanilla is 3
 	NDefines.NFactions.FACTION_TAKE_OVER_RELUCTANCE_VERSUS_HUMAN_INFLUENCE = 2.0
 	NDefines.NFactions.FACTION_ASSIGN_SCIENTIST_COST = 50
+
+--- Testing 
+	NDefines.NAI.DAYS_BETWEEN_CHECK_BEST_DOCTRINE = 14          -- Default 7, reduces doctrine evaluation frequency
+	NDefines.NAI.DAYS_BETWEEN_CHECK_BEST_TEMPLATE = 14          -- Default 7, reduces template evaluation
+	NDefines.NAI.PLAN_EXECUTION_COOLDOWN_DAYS = 3               -- Default 1, reduces plan recalculation spam
+	NDefines.NAI.THREAT_RECALCULATION_DAYS = 21                 -- Default 14, less frequent threat updates
+	NDefines.NAI.PRODUCTION_EQUIPMENT_SURPLUS_FACTOR = 0.2      -- Default 0.3, reduces production recalculation
+	NDefines.NAI.DIPLOMACY_EVALUATE_DAYS = 3                    -- Default 1, diplomacy checks less frequent
+	NDefines.NAI.GARRISON_EVALUATION_DAYS = 7                   -- Default 1, garrison optimization less frequent
+	NDefines.NCountry.EVENT_PROCESS_OFFSET = 25                   -- Default event process is 20 so we should just move this to 25 to see if tihs works better for it overall
+	
