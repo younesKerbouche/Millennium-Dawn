@@ -8192,7 +8192,7 @@ country_event = {#attack UK
 		}
 	}
 }
-country_event = {#victory over foe
+country_event = {#victory napoleon
 	id = france_md.477
 	title = france_md.477.t
 	desc = france_md.477.d
@@ -8322,7 +8322,7 @@ country_event = {#france demand we fold italy
 		name = france_md.482.a
 		log = "[GetDateText]: [This.GetName]: france_md.482.a executed"
 		effect_tooltip = {
-			1060 = {  transfer_state_to = FRA }
+			1060 = { transfer_state_to = FRA }
 			1059 = { transfer_state_to = FRA }
 			77 = { transfer_state_to = FRA }
 			80 = { transfer_state_to = FRA }
@@ -8408,6 +8408,158 @@ country_event = {#target said no fold
 		}
 	}
 }
+country_event = {#france demand puppet
+	id = france_md.484
+	title = france_md.484.t
+	desc = france_md.484.d
+	is_triggered_only = yes
+	option = {#yes
+		name = france_md.484.a
+		log = "[GetDateText]: [This.GetName]: france_md.484.a executed"
+		FRA= {
+			if = {
+				limit = { NOT = { FROM = { is_subject_of = FRA } } }
+				puppet = FROM
+			}
+		}
+		hidden_effect = {
+			clear_array = ruling_party
+			clear_array = gov_coalition_array
+			add_to_array = { ruling_party = 23 }
+			update_government_coalition_strength = yes
+			set_coalition_drift = yes
+			set_ruling_leader = yes
+			set_leader = yes
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+				}
+			}
+		ai_chance = {
+			base = 1
+		}
+
+	}
+	option = {#no
+		name = france_md.484.b
+		log = "[GetDateText]: [This.GetName]: france_md.484.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
+		set_temp_variable = { temp_outlook_increase = -0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.15
+		add_war_support = 0.1
+		FRA= {
+			country_event = france_md.483
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#victory charlemagne empire of occident
+	id = france_md.485
+	title = france_md.485.t
+	desc = france_md.485.d
+	is_triggered_only = yes
+	option = {
+		name = france_md.485.a
+		log = "[GetDateText]: [This.GetName]: france_md.485.a executed"
+		add_stability = 0.3
+		add_war_support = 0.2
+		add_ideas = FRA_EMPIRE_occident
+		remove_ideas = FRA_expansion_europe
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#france demand road to jerusalem
+	id = france_md.486
+	title = france_md.486.t
+	desc = france_md.486.d
+	is_triggered_only = yes
+	option = {#yes
+		name = france_md.486.a
+		log = "[GetDateText]: [This.GetName]: france_md.486.a executed"
+		effect_tooltip = {
+			81 = { transfer_state_to = FRA }
+			84 = { transfer_state_to = FRA }
+			83 = { transfer_state_to = FRA }
+		}
+		FRA= {
+			if = {
+				limit = { NOT = { ITA = { is_subject_of = FRA } } }
+				puppet = ITA
+			}
+
+		}
+		hidden_effect = {
+			clear_array = ruling_party
+			clear_array = gov_coalition_array
+			add_to_array = { ruling_party = 23 }
+			update_government_coalition_strength = yes
+			set_coalition_drift = yes
+			set_ruling_leader = yes
+			set_leader = yes
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+				}
+			}
+		ai_chance = {
+			base = 1
+		}
+
+	}
+	option = {#no
+		name = france_md.486.b
+		log = "[GetDateText]: [This.GetName]: france_md.486.b executed"
+		set_temp_variable = { party_index = 23 }
+		set_temp_variable = { party_popularity_increase = -0.1 }
+		set_temp_variable = { temp_outlook_increase = -0.1 }
+		add_relative_party_popularity = yes
+		add_stability = -0.15
+		add_war_support = 0.1
+		FRA= {
+			country_event = france_md.483
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {#victory saint louis kingdom of jerusalem
+	id = france_md.487
+	title = france_md.487.t
+	desc = france_md.487.d
+	is_triggered_only = yes
+	option = {#call for crusade over protestantism and orthodox
+		name = france_md.487.a
+		log = "[GetDateText]: [This.GetName]: france_md.487.a executed"
+		add_stability = 0.15
+		add_war_support = 0.15
+		add_ideas = FRA_crusade_done_jerusalem
+		remove_ideas = FRA_expansion_crusades
+		add_ideas = FRA_expansion_crusades_plus
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {#im fine for now
+		name = france_md.487.b
+		log = "[GetDateText]: [This.GetName]: france_md.487.b executed"
+		add_stability = 0.3
+		add_war_support = 0.2
+		add_ideas = FRA_crusade_done_jerusalem
+		remove_ideas = FRA_expansion_crusades
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 
 # Liberal Arms Export Contracts
 # france_md.323 - france_md.330

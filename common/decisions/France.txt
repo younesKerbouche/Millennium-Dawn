@@ -2511,6 +2511,427 @@ FRA_royalist_expansion_decision_category = {#TODO add claim for all
 			79 = {add_claim_by = FRA}
 		}
 	}
+	FRA_glacis = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_europe
+				OR = {
+					country_exists = CZE
+					country_exists = SLO
+					country_exists = POL
+					country_exists = HUN
+					country_exists = BUL
+					country_exists = LAT
+					country_exists = LIT
+					country_exists = EST
+					country_exists = ROM
+					country_exists = MLV
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_glacis"
+			if = {
+				limit = {country_exists = CZE}
+				CZE = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = SLO}
+				SLO = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = POL}
+				POL = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = HUN}
+				HUN = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = BUL}
+				BUL = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = LAT}
+				LAT = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = LIT}
+				LIT = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = EST}
+				EST = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = ROM}
+				ROM = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = MLV}
+				MLV = {
+					country_event = france_md.484
+				}
+			}
+		}
+	}
+	FRA_one_over_europe = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_europe
+				OR = {
+					country_exists = SOV
+					country_exists = UKR
+					country_exists = BLR
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_one_over_europe"
+			if = {
+				limit = {country_exists = SOV}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = SOV
+				}
+			}
+			if = {
+				limit = {country_exists = UKR}
+				UKR = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = BLR}
+				BLR = {
+					country_event = france_md.484
+				}
+			}
+		}
+	}
+	FRA_the_original_ennemy = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_europe
+				country_exists = ENG
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_the_original_ennemy"
+			if = {
+				limit = {country_exists = ENG}
+				create_wargoal = {
+					type = puppet_wargoal_focus
+					target = ENG
+				}
+			}
+		}
+	}
+	FRA_king_europe_victory = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_europe
+				OR = {
+					SOV = { is_subject_of = FRA }
+					owns_state = 652
+				}
+				OR = {
+					GER = { is_subject_of = FRA }
+					owns_state = 45
+				}
+				OR = {
+					ENG = { is_subject_of = FRA }
+					owns_state = 13
+				}
+				OR = {
+					ITA = { is_subject_of = FRA }
+					owns_state = 81
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_king_europe_victory"
+			country_event = france_md.485
+		}
+	}
+	FRA_start_crusade = {#claim rome sardignia and sicily
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_crusades
+				NOT = {
+					AND =  {
+						OR = {
+							ITA = { is_subject_of = FRA }
+							owns_state = 81
+						}
+						OR = {
+							HLS = { is_subject_of = FRA }
+							owns_state = 929
+						}
+					}
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_start_crusade"
+			if = {
+				limit = {country_exists = HLS}
+				HLS = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = ITA}
+				ITA = {
+					country_event = france_md.486
+				}
+			}
+			81 = {add_claim_by = FRA}
+			84 = {add_claim_by = FRA}
+			83 = {add_claim_by = FRA}
+
+		}
+	}
+	FRA_crusade_siege = {#attack syria cyprus
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_crusades
+				OR = {
+					country_exists = CYP
+					country_exists = SYR
+					country_exists = LEB
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_crusade_siege"
+			if = {
+				limit = {country_exists = CYP}
+				CYP = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = SYR}
+				SYR = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				AND {
+					limit = {country_exists = LEB}
+					NOT = {
+						LEB = { is_subject_of = FRA }
+					}
+				}
+				LEB = {
+					country_event = france_md.479
+				}
+			}
+			145 = {add_claim_by = FRA}
+			202 = {add_claim_by = FRA}
+			203 = {add_claim_by = FRA}
+			189 = {add_claim_by = FRA}
+			571 = {add_claim_by = FRA}
+			188 = {add_claim_by = FRA}
+			186 = {add_claim_by = FRA}
+			184 = {add_claim_by = FRA}
+			185 = {add_claim_by = FRA}
+		}
+	}
+	FRA_claim_jerusalem = {#attack syria cyprus
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_crusades
+				OR = {
+					country_exists = HEZ
+					country_exists = ISR
+					country_exists = PAL
+					country_exists = HAM
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_claim_jerusalem"
+			if = {
+				limit = {country_exists = HEZ}
+				HEZ = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = ISR}
+				ISR = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = PAL}
+				PAL = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = HAM}
+				HAM = {
+					country_event = france_md.479
+				}
+			}
+			204 = {add_claim_by = FRA}
+			207 = {add_claim_by = FRA}
+			206 = {add_claim_by = FRA}
+			209 = {add_claim_by = FRA}
+			208 = {add_claim_by = FRA}
+			205 = {add_claim_by = FRA}
+			201 = {add_claim_by = FRA}
+			587 = {add_claim_by = FRA}
+		}
+	}
+	FRA_revenge_over_saladin = {#attack saudi egypt turk jordanie irak iran
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_crusades
+				OR = {
+					country_exists = NCY
+					country_exists = TUR
+					country_exists = IRQ
+					country_exists = SAU
+					country_exists = PER
+					country_exists = JOR
+					country_exists = EGY
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_revenge_over_saladin"
+			if = {
+				limit = {country_exists = NCY}
+				NCY = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = JOR}
+				JOR = {
+					country_event = france_md.479
+				}
+			}
+			if = {
+				limit = {country_exists = PER}
+				PER = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = TUR}
+				TUR = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = SAU}
+				SAU = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = IRQ}
+				IRQ = {
+					country_event = france_md.484
+				}
+			}
+			if = {
+				limit = {country_exists = EGY}
+				EGY = {
+					country_event = france_md.484
+				}
+			}
+			213 = {add_claim_by = FRA}
+			214 = {add_claim_by = FRA}
+			215 = {add_claim_by = FRA}
+			216 = {add_claim_by = FRA}
+			1102 = {add_claim_by = FRA}
+			210 = {add_claim_by = FRA}
+			211 = {add_claim_by = FRA}
+			212 = {add_claim_by = FRA}
+			158 = {add_claim_by = FRA}
+			992 = {add_claim_by = FRA}
+			1205 = {add_claim_by = FRA}
+			161 = {add_claim_by = FRA}
+			934 = {add_claim_by = FRA}
+		}
+	}
+	FRA_king_crusade1_victory = {
+		fire_only_once = yes
+		days_remove = 35
+		cost = 50
+		visible = {
+			AND = {
+				FRA_expansion_crusades
+				owns_state = 207
+				owns_state = 208
+				owns_state = 934
+				OR = {
+					SAU = { is_subject_of = FRA }
+					owns_state = 177
+				}
+				OR = {
+					PER = { is_subject_of = FRA }
+					owns_state = 405
+				}
+				OR = {
+					TUR = { is_subject_of = FRA }
+					owns_state = 159
+				}
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FRA_king_crusade1_victory"
+			country_event = france_md.487
+		}
+	}
 }
 
 # Joint Weapon Projects Category
