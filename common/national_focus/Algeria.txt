@@ -932,6 +932,8 @@ focus_tree = {
 			add_relative_party_popularity = yes
 			set_temp_variable = { percent_change = -2 }
 			change_domestic_influence_percentage = yes
+			remove_power_balance_modifier = algeria_power_balance
+			set_country_flag = ALG_ffs_in_power
 		}
 	}
 
@@ -7265,8 +7267,7 @@ focus = {
 			}
 		}
         relative_position_id = ALG_western_curriculum
-        prerequisite = { focus = ALG_western_curriculum }
-        prerequisite = { focus = ALG_national_curriculum}
+        prerequisite = { focus = ALG_western_curriculum focus = ALG_national_curriculum }
         cost = 5
         completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_university_reform"
@@ -7612,8 +7613,7 @@ focus = {
         x = 1
         y = 1
         relative_position_id = ALG_fuel_subsidies
-        prerequisite = { focus = ALG_fuel_subsidies }
-        prerequisite = { focus = ALG_food_subsidies }
+        prerequisite = { focus = ALG_fuel_subsidies focus = ALG_food_subsidies }
         cost = 4
         completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_welfare_consolidation"
@@ -8045,12 +8045,9 @@ focus = {
             focus = ALG_university_reform
         }
         prerequisite = {
-            focus = ALG_universal_healthcare
+            focus = ALG_universal_healthcare focus = ALG_national_insurance
         }
         prerequisite = {
-            focus = ALG_national_insurance
-        }
-         prerequisite = {
             focus = ALG_welfare_consolidation
         }
         prerequisite = {
@@ -13718,7 +13715,6 @@ focus = {
 			focus = ALG_future_national_policy1
 		}
 		available = {
-		    emerging_communist_state_are_in_power = yes
 			is_in_array = { ruling_party = 19 }
 		}
 
@@ -17060,7 +17056,7 @@ focus = {
 			factor = 50
 		}
 }
-	 focus = {
+	focus = {
 		id = ALG_future_national_policy1
 		icon = algeria_indp
 		x = 18
@@ -17068,10 +17064,11 @@ focus = {
 		cost = 5
 		available = {
 			OR = {
-			has_completed_focus = ALG_election_day
-			has_completed_focus = ALG_popular_salvation
-			has_completed_focus = ALG_military_coup
-		}
+				has_completed_focus = ALG_election_day
+				has_completed_focus = ALG_popular_salvation
+				has_completed_focus = ALG_military_coup
+				has_completed_focus = ALG_opposition_path
+			}
 		}
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_future_national_policy1"
@@ -18587,7 +18584,7 @@ focus = {
 		available = {
 			has_government = neutrality
 		}
-		prerequisite = {focus = ALG_open_to_west focus = ALG_open_to_east}
+		#prerequisite = {focus = ALG_open_to_west focus = ALG_open_to_east}
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_non_aligned_revival"
 			set_country_flag = ALG_non_aligned_path
