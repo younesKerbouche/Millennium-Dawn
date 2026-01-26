@@ -148,9 +148,10 @@ news_event = { #Russian tactical nuke dropped in Aksai Chin
 			EH_chimera_portal_234_created_effect = yes
 			ALN = {
 				country_event = EH_event.311
+				army_experience = 100
 			}
 		}
-		goto_province = 14126
+		goto_state = 591
 	}
 }
 
@@ -217,11 +218,17 @@ news_event = {
 
 	option = {
 		name = EH_event.311.a
+		every_controlled_state = {
+			three_state_arms_factory = yes
+			three_state_arms_factory = yes
+			three_state_arms_factory = yes
+		}
 		division_template = {
-			name = "Test"
+			name = "Alaskan Cluster"
+			is_locked = yes
 			division_names_group = ALN_ARM_01
-			priority = 1000
-			template_counter = 2
+			priority = 100
+			template_counter = 0
 			regiments = {
 				ALN_bellatoris = { x = 0 y = 0 }
 				ALN_bellatoris = { x = 0 y = 1 }
@@ -229,9 +236,7 @@ news_event = {
 				ALN_bellatoris = { x = 0 y = 3 }
 			}
 		}
-		every_controlled_state = {
-			three_state_arms_factory = yes
-		}
+		set_research_slots = 0
 	}
 }
 #Num 400 events are post invasion events such as unifications, alliances, and megastates

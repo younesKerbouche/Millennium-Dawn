@@ -156,6 +156,30 @@ on_actions = {
         }
     }
 
+    on_weekly_ALN = {
+        effect = {
+            if = {
+                limit = {
+                    814 = {
+                        has_state_flag = EH_state_with_portal
+                    }
+                    has_army_size = {
+                        size < 300
+                    }
+                }
+                814 = {
+                    create_unit = {
+                        division = "name = \"Alaskan Cluster\" division_template = \"Alaskan Cluster\" start_experience_factor = 0.5 start_equipment_factor = 0.5"
+                        owner = ROOT
+                        prioritize_location = 15079
+                        allow_spawning_on_enemy_provs = yes
+                        count = 3
+                    }
+                }
+            }
+        }
+    }
+
     on_monthly = {
         effect = {
             if = {
