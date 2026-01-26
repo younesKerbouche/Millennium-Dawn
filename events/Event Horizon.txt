@@ -144,7 +144,12 @@ news_event = { #Russian tactical nuke dropped in Aksai Chin
 		ALN = {
 			set_capital = { state = 234 }
 		}
-		hidden_effect = { EH_chimera_portal_234_created_effect = yes }
+		hidden_effect = {
+			EH_chimera_portal_234_created_effect = yes
+			ALN = {
+				country_event = EH_event.311
+			}
+		}
 		goto_province = 14126
 	}
 }
@@ -198,6 +203,35 @@ news_event = { #UN Joint Commander created, also first mention of states thinkin
 
 	option = {
 		name = EH_event.310.a
+	}
+}
+
+news_event = {
+	id = EH_event.311
+	major = yes
+	title = EH_event.311.t
+	desc = EH_event.311.d
+	picture = GFX_UN_joint_command_event
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = EH_event.311.a
+		division_template = {
+			name = "Test"
+			division_names_group = ALN_ARM_01
+			priority = 1000
+			template_counter = 2
+			regiments = {
+				ALN_bellatoris = { x = 0 y = 0 }
+				ALN_bellatoris = { x = 0 y = 1 }
+				ALN_bellatoris = { x = 0 y = 2 }
+				ALN_bellatoris = { x = 0 y = 3 }
+			}
+		}
+		every_controlled_state = {
+			three_state_arms_factory = yes
+		}
 	}
 }
 #Num 400 events are post invasion events such as unifications, alliances, and megastates
