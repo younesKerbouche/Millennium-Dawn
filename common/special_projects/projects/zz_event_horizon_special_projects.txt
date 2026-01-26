@@ -225,3 +225,88 @@ sp_spies_in_hive_project = {
 		base = 1000
 	}
 }
+
+sp_the_tesla_weapon_project = {
+	specialization = specialization_land
+	icon = GFX_sp_emp_warheads
+	project_tags = sp_tag_eh_portal_research
+
+	visible = {
+		FROM = {
+			has_completed_focus = EH_project_tesla
+		}
+	}
+
+	breakthrough_cost = {
+		specialization_land = 2
+	}
+
+	prototype_time = sp_time.prototype.medium
+
+	complexity = sp_complexity.insane
+
+	resource_cost = {
+		resources = {
+			tungsten = 15
+			chromium = 10
+			steel = 18
+		}
+	}
+
+	project_output = {
+		country_effects = {
+			custom_effect_tooltip = EH_tesla_weapon_project_tooltip
+		}
+	}
+
+	generic_prototype_rewards = {
+		sp_civilian_generic_reward_scientist_xp_2
+		sp_civilian_generic_reward_major_progress_2
+		sp_civilian_generic_reward_test_failure_3
+		sp_civilian_generic_reward_resource_scarcity
+		sp_civilian_generic_reward_critical_failure
+	}
+
+	unique_prototype_rewards = {
+		sp_the_tesla_weapon_project_prototype = {
+			fire_only_once = yes
+
+			threshold = {
+				min = 20
+				max = 40
+			}
+
+			weight = {
+				base = 1000
+			}
+
+			option = {
+				token = sp_the_tesla_weapon_project_prototype_a
+
+				iteration_output = {
+					country_effects = {
+						set_research_slots = 0
+						FROM = { add_project_progress_ratio = 0.2 }
+					}
+				}
+			}
+			option = {
+				token = sp_the_tesla_weapon_project_prototype_b
+
+				iteration_output = {
+					country_effects = {
+						set_research_slots = 3
+						FROM = { add_project_progress_ratio = 0.07 }
+					}
+				}
+			}
+			option = {
+				token = sp_the_tesla_weapon_project_prototype_c
+			}
+		}
+	}
+
+	ai_will_do = {
+		base = 1000
+	}
+}
