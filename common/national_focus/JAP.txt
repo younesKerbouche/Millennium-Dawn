@@ -8205,7 +8205,9 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_reinstate_former_imperial_houses"
-			add_ideas = JAP_monarchist_idea_1
+			add_dynamic_modifier = {
+				modifier = JAP_monarchist_modifier
+			}
 		}
 
 		ai_will_do = {
@@ -8276,10 +8278,9 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_rites_restored"
-			swap_ideas = {
-				remove_idea = JAP_monarchist_idea_1
-				add_idea = JAP_monarchist_idea_2
-			}
+			custom_effect_tooltip = JAP_change_monarchist
+			add_to_variable = { JAP_drift_defence_factor_monarchist = 0.10 tooltip = drift_defence_factor_tt }
+			add_to_variable = { JAP_political_power_factor_monarchist = 0.05 tooltip = political_power_factor_tt }
 		}
 
 		ai_will_do = {
@@ -8384,10 +8385,11 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_audience"
-			swap_ideas = {
-				remove_idea = JAP_monarchist_idea_2
-				add_idea = JAP_monarchist_idea_3shogun
-			}
+			custom_effect_tooltip = JAP_change_monarchist
+			add_to_variable = { JAP_bureaucracy_cost_multiplier_modifier_monarchist = -0.25 tooltip = bureaucracy_cost_multiplier_modifier_tt }
+			add_to_variable = { JAP_consumer_goods_expected_value_monarchist = -0.10 tooltip = consumer_goods_expected_value_tt }
+			add_to_variable = { JAP_political_power_factor_monarchist = 0.025 tooltip = political_power_factor_tt }
+
 		}
 
 		ai_will_do = {
@@ -8414,13 +8416,11 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_audience"
-			swap_ideas = {
-				remove_idea = JAP_monarchist_idea_2
-				add_idea = JAP_monarchist_idea_3emperor
-			}
 			custom_effect_tooltip = JAP_change_monarchist
 			add_to_variable = { JAP_war_support_factor_monarchist = 0.05 tooltip = war_support_factor_tt }
 			add_to_variable = { JAP_stability_factor_monarchist = -0.05 tooltip = stability_factor_tt }
+			add_to_variable = { JAP_surrender_limit_monarchist = 0.10 tooltip = surrender_limit_tt }
+			add_to_variable = { JAP_war_stability_factor_monarchist = 0.05 tooltip = war_stability_factor_tt }
 
 		}
 
@@ -8430,7 +8430,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_unified_intelligence_secretariat
-		icon = focus_JAP_empower_the_emperor
+		icon = goal_JAP_japan_police
 
 		x = 0
 		y = 6
@@ -8451,7 +8451,21 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_unified_intelligence_secretariat"
-			#New idea for more intelligence, resistance surpression, sattelite construction speed
+			if = {
+				limit = { has_dlc = "La Resistance" }
+				custom_effect_tooltip = JAP_change_monarchist
+				add_to_variable = { JAP_intel_from_operatives_factor_monarchist = 0.15 tooltip = intel_from_operatives_factor_tt }
+				add_to_variable = { JAP_army_intel_factor_monarchist = 0.05 tooltip = army_intel_tt }
+				add_to_variable = { JAP_navy_intel_factor_monarchist = 0.05 tooltip = navy_intel_factor_tt }
+				add_to_variable = { JAP_airforce_intel_factor_monarchist = 0.05 tooltip = airforce_intel_tt }
+				add_to_variable = { JAP_resistance_growth_monarchist = -0.05 tooltip = resistance_growth_tt }
+			}
+			else = {
+				custom_effect_tooltip = JAP_change_monarchist
+				add_to_variable = { JAP_recon_factor_monarchist = 0.10 tooltip = recon_factor_tt }
+				add_to_variable = { JAP_foreign_influence_defense_modifier_monarchist = 0.10 tooltip = foreign_influence_defense_modifier_tt }
+				add_to_variable = { JAP_drift_defence_factor_monarchist = 0.10 tooltip = drift_defence_factor_tt }
+			}
 		}
 
 		ai_will_do = {
@@ -8460,7 +8474,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_blue_water_navy
-		icon = focus_SMB_blue_water_fleet
+		icon = focus_JAP_assure_superior_naval_quality
 
 		x = -2
 		y = 6
@@ -8525,7 +8539,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_imperial_defense_council
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_the_spirit_of_the_imperial_nation
 
 		x = 2
 		y = 6
@@ -8546,7 +8560,11 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_imperial_defense_council"
-			#More war leaning monarchist idea
+			custom_effect_tooltip = JAP_change_monarchist
+			add_to_variable = { JAP_foreign_subversive_activites_monarchist = -0.15 tooltip = foreign_subversive_activites_tt }
+			add_to_variable = { JAP_army_org_factor_monarchist = 0.10 tooltip = army_org_factor_tt }
+			add_to_variable = { JAP_skill_bonus_factor_monarchist = 0.10 tooltip = skill_bonus_factor_tt }
+			add_to_variable = { JAP_max_planning_monarchist = 0.05 tooltip = max_planning_factor_tt }
 		}
 
 		ai_will_do = {
@@ -8627,7 +8645,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_imperial_war_cabinet
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_supreme_council_for_direction_of_war
 
 		x = 0
 		y = 8
@@ -8643,6 +8661,7 @@ focus = {
 
 		available = {
 			nationalist_monarchists_are_in_power = yes
+			has_completed_focus = JAP_formalize_national_defense
 		}
 
 		completion_reward = {
@@ -8682,7 +8701,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_reclaim_pacific_rim
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_greater_east_asian_co_properity_sphere
 
 		x = 0
 		y = 9
@@ -8708,7 +8727,7 @@ focus = {
 	}
 	focus = {
 		id = JAP_office_for_colonialism
-		icon = focus_JAP_empower_the_emperor
+		icon = focus_JAP_ministry_of_colonial_affairs
 
 		x = 2
 		y = 9
@@ -8725,7 +8744,8 @@ focus = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_office_for_colonialism"
-			#Unlocks new occupation law for claimed states to improve compliance and resource gain but penalty on industry and manpower
+			custom_effect_tooltip = JAP_office_for_colonialism_tt
+			show_ideas_tooltip = senbu_occupation_law_fake_idea
 		}
 
 		ai_will_do = {
