@@ -396,10 +396,10 @@ CHA_can_reduce_tribal_influence = {
 	original_tag = CHA
 	check_variable = { CHA_tribal_influence > 0 }
 	OR = {
-		has_completed_focus = CHA_national_identity_program
-		has_completed_focus = CHA_urbanization_policy
-		has_completed_focus = CHA_secular_education
-		has_completed_focus = CHA_mixed_army_units
+		has_completed_focus = CHA_address_ethnic_grievances
+		has_completed_focus = CHA_ndjamena_modernization
+		has_completed_focus = CHA_education_reform
+		has_completed_focus = CHA_sara_in_army
 	}
 }
 
@@ -415,4 +415,74 @@ CHA_medium_tribal_influence = {
 
 CHA_low_tribal_influence = {
 	check_variable = { CHA_tribal_influence < 50 }
+}
+
+#####################################
+# PATH DETECTION TRIGGERS
+#####################################
+
+CHA_is_democratic_path = {
+	original_tag = CHA
+	has_country_flag = CHA_democratic_path
+}
+
+CHA_is_islamist_path = {
+	original_tag = CHA
+	has_country_flag = CHA_islamist_path
+}
+
+CHA_is_socialist_path = {
+	original_tag = CHA
+	has_country_flag = CHA_socialist_path
+}
+
+CHA_is_junta_path = {
+	original_tag = CHA
+	has_country_flag = CHA_junta_path
+}
+
+CHA_is_tribal_path = {
+	original_tag = CHA
+	has_country_flag = CHA_tribal_path
+}
+
+CHA_is_panafrican_path = {
+	original_tag = CHA
+	has_country_flag = CHA_panafrican_path
+}
+
+CHA_is_neocolonial_path = {
+	original_tag = CHA
+	has_country_flag = CHA_neocolonial_path
+}
+
+CHA_is_authoritarian_path = {
+	original_tag = CHA
+	has_country_flag = CHA_authoritarian_path
+}
+
+CHA_post_deby_era = {
+	original_tag = CHA
+	OR = {
+		has_country_flag = CHA_deby_dead
+		NOT = { has_country_leader = { name = "Idriss Déby" ruling_only = yes } }
+		date > 2021.4.20
+	}
+}
+
+CHA_boko_haram_era = {
+	date > 2010.1.1
+	OR = {
+		has_country_flag = CHA_boko_haram_active
+		has_completed_focus = CHA_boko_haram_war
+		has_completed_focus = CHA_anti_boko_haram_operations
+	}
+}
+
+CHA_libyan_crisis_era = {
+	date > 2011.2.1
+	OR = {
+		has_country_flag = CHA_libyan_crisis
+		NOT = { LBA = { has_country_leader = { name = "Muammar al-Gaddafi" ruling_only = yes } } }
+	}
 }
