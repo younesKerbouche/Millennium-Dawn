@@ -13139,11 +13139,14 @@ focus_tree = {
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 			unlock_decision_tooltip = ENG_andrew_naval_haritage_decision
-
+			newline = yes
+			custom_effect_tooltip = ENG_naval_prince_tt
+			newline = yes
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_focus_tt
 				CHARACTER = ENG_prince_andrew
 			}
+
 
 			if = { #Just to make it easy to debug stuff for development
 				limit = {
@@ -13464,39 +13467,20 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
 			if = {
 				limit = {
-					has_idea = GER_philipp_holzmann
+					has_idea = ENG_andrew_4_idea
 				}
 				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_philipp_holzmann_improved
+					remove_idea = ENG_andrew_4_idea
+					add_idea = ENG_andrew_5_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = GER_philipp_holzmann
-						add_idea = GER_philipp_holzmann_improved
+						remove_idea = ENG_andrew_4_idea
+						add_idea = ENG_andrew_5_idea
 					}
 				}
 			}
@@ -13646,7 +13630,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_carers_recognition_campaign
-		icon = god_save_the_king
+		icon = focus_generic_armed_neutrality
 
 		prerequisite = { focus = ENG_workhorse_of_the_crown }
 
@@ -13660,7 +13644,7 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+					has_country_flag = ENG_carers_recognition_campaign_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_1 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
@@ -13668,7 +13652,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = ENG_princess_anne
-						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+						FLAG_DAYS = [?ENG_carers_recognition_campaign_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -13678,7 +13662,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = ENG_princess_anne
-						FOCUS = GER_ascension_of_speer
+						FOCUS = ENG_workhorse_of_the_crown
 					}
 					always = no
 				}
@@ -13688,47 +13672,15 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
-				limit = {
-					has_idea = GER_philipp_holzmann
-				}
-				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_philipp_holzmann_improved
-				}
-			}
-			else = {
-				effect_tooltip = {
-					swap_ideas = {
-						remove_idea = GER_philipp_holzmann
-						add_idea = GER_philipp_holzmann_improved
-					}
-				}
+			add_timed_idea = {
+				idea = ENG_anne_carers_campaign_idea
+				years = 1
 			}
 		}
 	}
 	focus = {
 		id = ENG_discipline_service
-		icon = god_save_the_king
+		icon = goal_generic_support_monarchy
 
 		prerequisite = { focus = ENG_carers_recognition_campaign }
 
@@ -13742,7 +13694,7 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+					has_country_flag = ENG_discipline_service_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_2 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
@@ -13750,7 +13702,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = ENG_princess_anne
-						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+						FLAG_DAYS = [?ENG_discipline_service_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -13760,7 +13712,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = ENG_princess_anne
-						FOCUS = GER_ascension_of_speer
+						FOCUS = ENG_carers_recognition_campaign
 					}
 					always = no
 				}
@@ -13770,39 +13722,20 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
 			if = {
 				limit = {
-					has_idea = GER_philipp_holzmann
+					has_idea = ENG_anne_1_idea
 				}
 				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_philipp_holzmann_improved
+					remove_idea = ENG_anne_1_idea
+					add_idea = ENG_anne_2_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = GER_philipp_holzmann
-						add_idea = GER_philipp_holzmann_improved
+						remove_idea = ENG_anne_1_idea
+						add_idea = ENG_anne_2_idea
 					}
 				}
 			}
@@ -13820,7 +13753,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_princess_admiral_royal_navy
-		icon = god_save_the_king
+		icon = focus_generic_sway_navy
 
 		prerequisite = { focus = ENG_discipline_service }
 		mutually_exclusive = { focus = ENG_colonel_of_horse_logistics }
@@ -13835,7 +13768,7 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_expand_gestapo_in_progress_flag
+					has_country_flag = ENG_princess_admiral_royal_navy_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_3 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
@@ -13843,7 +13776,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = ENG_princess_anne
-						FLAG_DAYS = [?GER_expand_gestapo_in_progress_flag:days]
+						FLAG_DAYS = [?ENG_princess_admiral_royal_navy_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -13853,7 +13786,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = ENG_princess_anne
-						FOCUS = GER_ascension_of_himmler
+						FOCUS = ENG_discipline_service
 					}
 					always = no
 				}
@@ -13863,35 +13796,17 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			GER_add_or_modify_military_intelligence_service = yes
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				add_to_variable = {
-					GER_military_intelligence_service_intelligence_agency_defense = 0.15
-					tooltip = intelligence_agency_defense_tt
-				}
-				add_to_variable = {
-					GER_military_intelligence_service_agency_upgrade_time = -0.2
-					tooltip = agency_upgrade_time_tt
-				}
-				add_to_variable = {
-					GER_military_intelligence_root_out_resistance_effectiveness_factor = 0.2
-					tooltip = root_out_resistance_effectiveness_factor_tt
-				}
-			}
-			else = {
-				add_to_variable = {
-					GER_military_intelligence_service_encryption_factor = 0.1
-					tooltip = encryption_factor_tt
-				}
+			custom_effect_tooltip = ENG_princess_admiral_royal_navy_tt
+			newline = yes
+			swap_ideas = {
+				remove_idea = ENG_anne_2_idea
+				add_idea = ENG_anne_3a_idea
 			}
 		}
 	}
 	focus = {
 		id = ENG_colonel_of_horse_logistics
-		icon = god_save_the_king
+		icon = Generic_Revanchism02
 
 		prerequisite = { focus = ENG_discipline_service }
 		mutually_exclusive = { focus = ENG_princess_admiral_royal_navy }
@@ -13906,7 +13821,7 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_expand_ss_security_duties_in_progress_flag
+					has_country_flag = ENG_colonel_of_horse_logistics_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_3 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
@@ -13914,7 +13829,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = ENG_princess_anne
-						FLAG_DAYS = [?GER_expand_ss_security_duties_in_progress_flag:days]
+						FLAG_DAYS = [?ENG_colonel_of_horse_logistics_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -13924,7 +13839,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = ENG_princess_anne
-						FOCUS = GER_ascension_of_himmler
+						FOCUS = ENG_discipline_service
 					}
 					always = no
 				}
@@ -13934,29 +13849,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			custom_effect_tooltip = {
-				localization_key = GER_ascended_character_trait_swap_tt
-				CHARACTER = ENG_princess_anne
-			}
+			custom_effect_tooltip = ENG_princess_admiral_royal_navy_tt
 			swap_ideas = {
-				remove_idea = GER_himmler_chief_of_german_police
-				add_idea = GER_himmler_director_reich_security
-			}
-
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				GER_create_operative_eleysa_bazna = yes
-			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-
-			add_tech_bonus = {
-				name = GER_expand_ss_security_duties
-				bonus = 0.5
-				uses = 1
-				category = military_police_tech
+				remove_idea = ENG_anne_2_idea
+				add_idea = ENG_anne_3b_idea
 			}
 		}
 	}
@@ -13979,7 +13875,7 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+					has_country_flag = ENG_quiet_professionalism_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_4 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
@@ -13987,7 +13883,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
 						CHARACTER = ENG_princess_anne
-						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
+						FLAG_DAYS = [?ENG_quiet_professionalism_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -13997,7 +13893,7 @@ focus_tree = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
 						CHARACTER = ENG_princess_anne
-						FOCUS = GER_ascension_of_speer
+						FOCUS = ENG_discipline_service
 					}
 					always = no
 				}
@@ -14007,39 +13903,37 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
+			if = {
+				limit = { has_idea = ENG_anne_3a_idea }
+				swap_ideas = {
+					remove_idea = ENG_anne_3a_idea
+					add_idea = ENG_anne_4a_idea
 				}
 			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			if = {
+			else_if = {
 				limit = {
-					has_idea = GER_philipp_holzmann
+					NOT = { has_idea = ENG_anne_3a_idea }
+					NOT = { has_idea = ENG_anne_3b_idea }
 				}
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_anne_3a_idea
+						add_idea = ENG_anne_4a_idea
+					}
+				}
+			}
+			else_if = {
+				limit = { NOT = { has_idea = ENG_anne_3b_idea } }
 				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_philipp_holzmann_improved
+					remove_idea = ENG_anne_3b_idea
+					add_idea = ENG_anne_4b_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = GER_philipp_holzmann
-						add_idea = GER_philipp_holzmann_improved
+						remove_idea = ENG_anne_3b_idea
+						add_idea = ENG_anne_4b_idea
 					}
 				}
 			}
