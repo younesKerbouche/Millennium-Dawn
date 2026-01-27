@@ -8402,3 +8402,1178 @@ country_event = {
 		ai_chance = { base = 30 }
 	}
 }
+
+#####################################
+# FOREIGN PATRON BRANCH (chad.700-706)
+#####################################
+
+# French Military Demands
+country_event = {
+	id = chad.700
+	title = chad.700.t
+	desc = chad.700.desc
+	picture = GFX_african_military
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.700.a
+		log = "[GetDateText]: [This.GetName]: chad.700.a - Accept expanded basing rights"
+		add_ideas = CHA_barkhane_base
+		subtract_from_variable = { CHA_sovereignty = 15 }
+		CHA_update_sovereignty = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.700.b
+		log = "[GetDateText]: [This.GetName]: chad.700.b - Negotiate limited access"
+		add_ideas = CHA_french_military_presence
+		subtract_from_variable = { CHA_sovereignty = 7 }
+		CHA_update_sovereignty = yes
+		add_political_power = -50
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.700.c
+		log = "[GetDateText]: [This.GetName]: chad.700.c - Refuse French demands"
+		FRA = {
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		add_to_variable = { CHA_sovereignty = 5 }
+		CHA_update_sovereignty = yes
+		ai_chance = { factor = 20 }
+	}
+}
+
+# CFA Franc Crisis
+country_event = {
+	id = chad.701
+	title = chad.701.t
+	desc = chad.701.desc
+	picture = GFX_african_economy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.701.a
+		log = "[GetDateText]: [This.GetName]: chad.701.a - Accept devaluation"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_stability = -0.05
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.701.b
+		log = "[GetDateText]: [This.GetName]: chad.701.b - Lobby against devaluation"
+		add_political_power = -100
+		subtract_from_variable = { CHA_sovereignty = 10 }
+		CHA_update_sovereignty = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.701.c
+		log = "[GetDateText]: [This.GetName]: chad.701.c - Explore alternative currency"
+		add_to_variable = { CHA_sovereignty = 10 }
+		CHA_update_sovereignty = yes
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		add_stability = -0.03
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Chinese Belt & Road Proposal
+country_event = {
+	id = chad.702
+	title = chad.702.t
+	desc = chad.702.desc
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.702.a
+		log = "[GetDateText]: [This.GetName]: chad.702.a - Full Chinese partnership"
+		CHA_build_infrastructure = yes
+		add_ideas = CHA_chinese_sphere_idea
+		subtract_from_variable = { CHA_sovereignty = 20 }
+		CHA_update_sovereignty = yes
+		set_temp_variable = { treasury_change = 10 }
+		modify_treasury_effect = yes
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.702.b
+		log = "[GetDateText]: [This.GetName]: chad.702.b - Limited infrastructure deal"
+		CHA_build_infrastructure = yes
+		add_ideas = CHA_chinese_oil_investment_idea
+		subtract_from_variable = { CHA_sovereignty = 8 }
+		CHA_update_sovereignty = yes
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.702.c
+		log = "[GetDateText]: [This.GetName]: chad.702.c - Decline Chinese offer"
+		add_to_variable = { CHA_sovereignty = 5 }
+		CHA_update_sovereignty = yes
+		CHI = {
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		ai_chance = { factor = 20 }
+	}
+}
+
+# Anti-Foreign Protests
+country_event = {
+	id = chad.703
+	title = chad.703.t
+	desc = chad.703.desc
+	picture = GFX_african_demonstration
+
+	trigger = {
+		original_tag = CHA
+		check_variable = { CHA_sovereignty < 40 }
+		has_country_flag = CHA_neocolonial_path
+		NOT = { has_country_flag = CHA_anti_foreign_protests_recent }
+	}
+
+	mean_time_to_happen = { days = 180 }
+
+	immediate = {
+		set_country_flag = { flag = CHA_anti_foreign_protests_recent days = 365 value = 1 }
+	}
+
+	option = {
+		name = chad.703.a
+		log = "[GetDateText]: [This.GetName]: chad.703.a - Suppress protests"
+		add_stability = -0.05
+		add_political_power = -25
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.703.b
+		log = "[GetDateText]: [This.GetName]: chad.703.b - Address concerns"
+		add_to_variable = { CHA_sovereignty = 5 }
+		CHA_update_sovereignty = yes
+		FRA = {
+			add_opinion_modifier = { target = CHA modifier = small_decrease }
+		}
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Patron Alignment Vote at UN
+country_event = {
+	id = chad.704
+	title = chad.704.t
+	desc = chad.704.desc
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.704.a
+		log = "[GetDateText]: [This.GetName]: chad.704.a - Side with patron"
+		subtract_from_variable = { CHA_sovereignty = 5 }
+		CHA_update_sovereignty = yes
+		add_political_power = 50
+		FRA = {
+			add_opinion_modifier = { target = CHA modifier = small_increase }
+		}
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.704.b
+		log = "[GetDateText]: [This.GetName]: chad.704.b - Vote independently"
+		add_to_variable = { CHA_sovereignty = 10 }
+		CHA_update_sovereignty = yes
+		FRA = {
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		add_stability = 0.03
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Economic Strings Attached
+country_event = {
+	id = chad.705
+	title = chad.705.t
+	desc = chad.705.desc
+	picture = GFX_african_economy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.705.a
+		log = "[GetDateText]: [This.GetName]: chad.705.a - Accept patron demands"
+		subtract_from_variable = { CHA_sovereignty = 10 }
+		CHA_update_sovereignty = yes
+		set_temp_variable = { treasury_change = 5 }
+		modify_treasury_effect = yes
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.705.b
+		log = "[GetDateText]: [This.GetName]: chad.705.b - Resist demands"
+		add_to_variable = { CHA_sovereignty = 8 }
+		CHA_update_sovereignty = yes
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		add_stability = -0.05
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Break Free Declaration
+country_event = {
+	id = chad.706
+	title = chad.706.t
+	desc = chad.706.desc
+	picture = GFX_african_leaders
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.706.a
+		log = "[GetDateText]: [This.GetName]: chad.706.a - Declare independence from patron"
+		swap_ideas = {
+			remove_idea = CHA_foreign_dependency_3
+			add_idea = CHA_sovereign_chad_idea
+		}
+		set_country_flag = CHA_broke_free
+		add_stability = 0.10
+		add_political_power = 100
+		FRA = {
+			add_opinion_modifier = { target = CHA modifier = large_decrease }
+		}
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.706.b
+		log = "[GetDateText]: [This.GetName]: chad.706.b - Maintain relationship cautiously"
+		add_political_power = 50
+		ai_chance = { factor = 40 }
+	}
+}
+
+#####################################
+# PAN-AFRICAN PATH (chad.710-716)
+#####################################
+
+# Pan-African Congress
+country_event = {
+	id = chad.710
+	title = chad.710.t
+	desc = chad.710.desc
+	picture = GFX_african_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.710.a
+		log = "[GetDateText]: [This.GetName]: chad.710.a - Host congress (military focus)"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_pan_african_prestige = 15 }
+		CHA_update_pan_african_prestige = yes
+		army_experience = 10
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.710.b
+		log = "[GetDateText]: [This.GetName]: chad.710.b - Host congress (economic focus)"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_pan_african_prestige = 15 }
+		CHA_update_pan_african_prestige = yes
+		add_ideas = CHA_development_planning
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.710.c
+		log = "[GetDateText]: [This.GetName]: chad.710.c - Attend only"
+		add_to_variable = { CHA_pan_african_prestige = 5 }
+		CHA_update_pan_african_prestige = yes
+		add_political_power = 25
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Sahel Crisis Response
+country_event = {
+	id = chad.711
+	title = chad.711.t
+	desc = chad.711.desc
+	picture = GFX_african_combat
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.711.a
+		log = "[GetDateText]: [This.GetName]: chad.711.a - Send troops"
+		add_manpower = -5000
+		random_list = {
+			70 = {
+				add_to_variable = { CHA_pan_african_prestige = 20 }
+				army_experience = 15
+			}
+			30 = {
+				add_to_variable = { CHA_pan_african_prestige = -10 }
+				add_manpower = -2000
+			}
+		}
+		CHA_update_pan_african_prestige = yes
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.711.b
+		log = "[GetDateText]: [This.GetName]: chad.711.b - Send money"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_pan_african_prestige = 10 }
+		CHA_update_pan_african_prestige = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.711.c
+		log = "[GetDateText]: [This.GetName]: chad.711.c - Offer words"
+		add_to_variable = { CHA_pan_african_prestige = 3 }
+		CHA_update_pan_african_prestige = yes
+		ai_chance = { factor = 30 }
+	}
+}
+
+# AU Chairmanship Bid
+country_event = {
+	id = chad.712
+	title = chad.712.t
+	desc = chad.712.desc
+	picture = GFX_african_leaders
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.712.a
+		log = "[GetDateText]: [This.GetName]: chad.712.a - Launch AU chairmanship bid"
+		set_temp_variable = { treasury_change = -8 }
+		modify_treasury_effect = yes
+		subtract_from_variable = { CHA_pan_african_prestige = 15 }
+		random_list = {
+			60 = {
+				add_ideas = CHA_pan_african_leader
+				add_to_variable = { CHA_pan_african_prestige = 25 }
+			}
+			40 = {
+				add_to_variable = { CHA_pan_african_prestige = -5 }
+				add_stability = -0.03
+			}
+		}
+		CHA_update_pan_african_prestige = yes
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.712.b
+		log = "[GetDateText]: [This.GetName]: chad.712.b - Wait for better timing"
+		add_political_power = 25
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Border Dispute Mediation
+country_event = {
+	id = chad.713
+	title = chad.713.t
+	desc = chad.713.desc
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.713.a
+		log = "[GetDateText]: [This.GetName]: chad.713.a - Favor side A"
+		add_to_variable = { CHA_pan_african_prestige = 5 }
+		CHA_update_pan_african_prestige = yes
+		NIG = {
+			add_opinion_modifier = { target = CHA modifier = medium_increase }
+		}
+		CAR = {
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.713.b
+		log = "[GetDateText]: [This.GetName]: chad.713.b - Favor side B"
+		add_to_variable = { CHA_pan_african_prestige = 5 }
+		CHA_update_pan_african_prestige = yes
+		NIG = {
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		CAR = {
+			add_opinion_modifier = { target = CHA modifier = medium_increase }
+		}
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.713.c
+		log = "[GetDateText]: [This.GetName]: chad.713.c - Balanced approach"
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_pan_african_prestige = 8 }
+		CHA_update_pan_african_prestige = yes
+		NIG = {
+			add_opinion_modifier = { target = CHA modifier = small_increase }
+		}
+		CAR = {
+			add_opinion_modifier = { target = CHA modifier = small_increase }
+		}
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Lake Chad Environmental Summit
+country_event = {
+	id = chad.714
+	title = chad.714.t
+	desc = chad.714.desc
+	picture = GFX_african_agriculture
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.714.a
+		log = "[GetDateText]: [This.GetName]: chad.714.a - Agree to water sharing"
+		add_stability = -0.03
+		add_to_variable = { CHA_pan_african_prestige = 10 }
+		CHA_update_pan_african_prestige = yes
+		NIG = {
+			add_opinion_modifier = { target = CHA modifier = medium_increase }
+		}
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.714.b
+		log = "[GetDateText]: [This.GetName]: chad.714.b - Assert control"
+		NIG = {
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		add_to_variable = { CHA_pan_african_prestige = -5 }
+		CHA_update_pan_african_prestige = yes
+		add_stability = 0.02
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Kanem-Bornu Heritage Claim
+country_event = {
+	id = chad.715
+	title = chad.715.t
+	desc = chad.715.desc
+	picture = GFX_african_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.715.a
+		log = "[GetDateText]: [This.GetName]: chad.715.a - Soft cultural approach"
+		add_to_variable = { CHA_pan_african_prestige = 8 }
+		CHA_update_pan_african_prestige = yes
+		add_political_power = 50
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.715.b
+		log = "[GetDateText]: [This.GetName]: chad.715.b - Hard territorial approach"
+		add_to_variable = { CHA_pan_african_prestige = -5 }
+		CHA_update_pan_african_prestige = yes
+		add_war_support = 0.10
+		every_neighbor_country = {
+			limit = {
+				NOT = { tag = CHA }
+			}
+			add_opinion_modifier = { target = CHA modifier = medium_decrease }
+		}
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Peacekeeping Deployment Request
+country_event = {
+	id = chad.716
+	title = chad.716.t
+	desc = chad.716.desc
+	picture = GFX_african_military
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.716.a
+		log = "[GetDateText]: [This.GetName]: chad.716.a - Deploy peacekeepers"
+		add_manpower = -3000
+		add_to_variable = { CHA_pan_african_prestige = 12 }
+		CHA_update_pan_african_prestige = yes
+		army_experience = 10
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.716.b
+		log = "[GetDateText]: [This.GetName]: chad.716.b - Decline request"
+		add_to_variable = { CHA_pan_african_prestige = -3 }
+		CHA_update_pan_african_prestige = yes
+		ai_chance = { factor = 40 }
+	}
+}
+
+#####################################
+# TRIBAL CONFEDERATION PATH (chad.720-726)
+#####################################
+
+# Tribal Dispute Over Resources
+country_event = {
+	id = chad.720
+	title = chad.720.t
+	desc = chad.720.desc
+	picture = GFX_african_demonstration
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.720.a
+		log = "[GetDateText]: [This.GetName]: chad.720.a - Favor Zaghawa"
+		add_to_variable = { CHA_zaghawa_loyalty = 20 }
+		add_to_variable = { CHA_arab_loyalty = -15 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.720.b
+		log = "[GetDateText]: [This.GetName]: chad.720.b - Favor Arab"
+		add_to_variable = { CHA_arab_loyalty = 20 }
+		add_to_variable = { CHA_zaghawa_loyalty = -15 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.720.c
+		log = "[GetDateText]: [This.GetName]: chad.720.c - Mediate"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_zaghawa_loyalty = 5 }
+		add_to_variable = { CHA_arab_loyalty = 5 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Elder's Council Ultimatum
+country_event = {
+	id = chad.721
+	title = chad.721.t
+	desc = chad.721.desc
+	picture = GFX_african_leaders
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.721.a
+		log = "[GetDateText]: [This.GetName]: chad.721.a - Comply with demands"
+		set_temp_variable = { treasury_change = -8 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_zaghawa_loyalty = 10 }
+		add_to_variable = { CHA_arab_loyalty = 10 }
+		add_to_variable = { CHA_sara_loyalty = 10 }
+		add_to_variable = { CHA_toubou_loyalty = 10 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.721.b
+		log = "[GetDateText]: [This.GetName]: chad.721.b - Refuse demands"
+		add_to_variable = { CHA_zaghawa_loyalty = -10 }
+		add_to_variable = { CHA_arab_loyalty = -10 }
+		add_to_variable = { CHA_sara_loyalty = -10 }
+		add_to_variable = { CHA_toubou_loyalty = -10 }
+		CHA_update_tribal_loyalty = yes
+		add_stability = -0.10
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Political Marriage Alliance
+country_event = {
+	id = chad.722
+	title = chad.722.t
+	desc = chad.722.desc
+	picture = GFX_african_leaders
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.722.a
+		log = "[GetDateText]: [This.GetName]: chad.722.a - Arrange Zaghawa-Sara alliance"
+		random_list = {
+			65 = {
+				add_to_variable = { CHA_zaghawa_loyalty = 10 }
+				add_to_variable = { CHA_sara_loyalty = 10 }
+			}
+			35 = {
+				add_to_variable = { CHA_zaghawa_loyalty = -5 }
+				add_to_variable = { CHA_sara_loyalty = -5 }
+				add_stability = -0.03
+			}
+		}
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.722.b
+		log = "[GetDateText]: [This.GetName]: chad.722.b - Arrange Arab-Toubou alliance"
+		random_list = {
+			65 = {
+				add_to_variable = { CHA_arab_loyalty = 10 }
+				add_to_variable = { CHA_toubou_loyalty = 10 }
+			}
+			35 = {
+				add_to_variable = { CHA_arab_loyalty = -5 }
+				add_to_variable = { CHA_toubou_loyalty = -5 }
+				add_stability = -0.03
+			}
+		}
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Tribal Militia Call-Up
+country_event = {
+	id = chad.723
+	title = chad.723.t
+	desc = chad.723.desc
+	picture = GFX_african_military
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.723.a
+		log = "[GetDateText]: [This.GetName]: chad.723.a - Zaghawa militia"
+		subtract_from_variable = { CHA_zaghawa_loyalty = 15 }
+		CHA_update_tribal_loyalty = yes
+		add_manpower = 5000
+		add_equipment_to_stockpile = {
+			type = infantry_weapons1
+			amount = 500
+			producer = CHA
+		}
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.723.b
+		log = "[GetDateText]: [This.GetName]: chad.723.b - Sara militia"
+		subtract_from_variable = { CHA_sara_loyalty = 15 }
+		CHA_update_tribal_loyalty = yes
+		add_manpower = 7000
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.723.c
+		log = "[GetDateText]: [This.GetName]: chad.723.c - Decline call-up"
+		add_political_power = 25
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Drought Crisis
+country_event = {
+	id = chad.724
+	title = chad.724.t
+	desc = chad.724.desc
+	picture = GFX_african_agriculture
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.724.a
+		log = "[GetDateText]: [This.GetName]: chad.724.a - Favor northern regions"
+		add_to_variable = { CHA_toubou_loyalty = 10 }
+		add_to_variable = { CHA_zaghawa_loyalty = 5 }
+		add_to_variable = { CHA_sara_loyalty = -10 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.724.b
+		log = "[GetDateText]: [This.GetName]: chad.724.b - Favor southern regions"
+		add_to_variable = { CHA_sara_loyalty = 10 }
+		add_to_variable = { CHA_toubou_loyalty = -10 }
+		add_to_variable = { CHA_zaghawa_loyalty = -5 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 25 }
+	}
+
+	option = {
+		name = chad.724.c
+		log = "[GetDateText]: [This.GetName]: chad.724.c - Equal distribution"
+		set_temp_variable = { treasury_change = -8 }
+		modify_treasury_effect = yes
+		add_to_variable = { CHA_zaghawa_loyalty = 3 }
+		add_to_variable = { CHA_arab_loyalty = 3 }
+		add_to_variable = { CHA_sara_loyalty = 3 }
+		add_to_variable = { CHA_toubou_loyalty = 3 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Succession Crisis
+country_event = {
+	id = chad.725
+	title = chad.725.t
+	desc = chad.725.desc
+	picture = GFX_african_leaders
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.725.a
+		log = "[GetDateText]: [This.GetName]: chad.725.a - Back traditional candidate"
+		add_to_variable = { CHA_zaghawa_loyalty = 15 }
+		add_to_variable = { CHA_arab_loyalty = -5 }
+		add_to_variable = { CHA_sara_loyalty = -5 }
+		CHA_update_tribal_loyalty = yes
+		add_political_power = 50
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.725.b
+		log = "[GetDateText]: [This.GetName]: chad.725.b - Back reform candidate"
+		add_to_variable = { CHA_sara_loyalty = 15 }
+		add_to_variable = { CHA_zaghawa_loyalty = -5 }
+		add_to_variable = { CHA_arab_loyalty = -5 }
+		CHA_update_tribal_loyalty = yes
+		add_stability = 0.03
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.725.c
+		log = "[GetDateText]: [This.GetName]: chad.725.c - Let tribe decide"
+		random_list = {
+			50 = {
+				add_to_variable = { CHA_zaghawa_loyalty = 10 }
+			}
+			50 = {
+				add_to_variable = { CHA_zaghawa_loyalty = -5 }
+				add_stability = -0.03
+			}
+		}
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Tribal Trade Caravan
+country_event = {
+	id = chad.726
+	title = chad.726.t
+	desc = chad.726.desc
+	picture = GFX_african_trade
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.726.a
+		log = "[GetDateText]: [This.GetName]: chad.726.a - Invest in trade"
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		set_temp_variable = { treasury_change = 8 }
+		modify_treasury_effect = yes
+		add_stability = 0.03
+		ai_chance = { factor = 70 }
+	}
+
+	option = {
+		name = chad.726.b
+		log = "[GetDateText]: [This.GetName]: chad.726.b - Celebrate loyalty"
+		add_stability = 0.05
+		add_political_power = 50
+		ai_chance = { factor = 30 }
+	}
+}
+
+#####################################
+# ISLAMIST PATH (chad.730-736)
+#####################################
+
+# Sharia Implementation Scope
+country_event = {
+	id = chad.730
+	title = chad.730.t
+	desc = chad.730.desc
+	picture = GFX_islamic_law
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.730.a
+		log = "[GetDateText]: [This.GetName]: chad.730.a - North only sharia"
+		add_to_variable = { CHA_religious_tension = 10 }
+		CHA_update_religious_tension = yes
+		swap_ideas = {
+			remove_idea = CHA_islamic_governance_1
+			add_idea = CHA_islamic_governance_2
+		}
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.730.b
+		log = "[GetDateText]: [This.GetName]: chad.730.b - Nationwide sharia"
+		add_to_variable = { CHA_religious_tension = 30 }
+		CHA_update_religious_tension = yes
+		swap_ideas = {
+			remove_idea = CHA_islamic_governance_1
+			add_idea = CHA_islamic_governance_3
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}
+		recalculate_party = yes
+		ai_chance = { factor = 40 }
+	}
+}
+
+# Southern Christian Backlash
+country_event = {
+	id = chad.731
+	title = chad.731.t
+	desc = chad.731.desc
+	picture = GFX_african_demonstration
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.731.a
+		log = "[GetDateText]: [This.GetName]: chad.731.a - Suppress protests"
+		add_to_variable = { CHA_religious_tension = 10 }
+		CHA_update_religious_tension = yes
+		add_stability = -0.05
+		add_war_support = 0.05
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.731.b
+		log = "[GetDateText]: [This.GetName]: chad.731.b - Accommodate concerns"
+		subtract_from_variable = { CHA_religious_tension = 10 }
+		CHA_update_religious_tension = yes
+		add_stability = 0.03
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.02
+		}
+		recalculate_party = yes
+		ai_chance = { factor = 60 }
+	}
+}
+
+# Islamic Banking Transition
+country_event = {
+	id = chad.732
+	title = chad.732.t
+	desc = chad.732.desc
+	picture = GFX_african_economy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.732.a
+		log = "[GetDateText]: [This.GetName]: chad.732.a - Full banking transition"
+		set_temp_variable = { treasury_change = -8 }
+		modify_treasury_effect = yes
+		random_list = {
+			60 = {
+				add_ideas = CHA_sharia_finance
+				add_stability = 0.05
+			}
+			40 = {
+				add_stability = -0.05
+				set_temp_variable = { treasury_change = -3 }
+				modify_treasury_effect = yes
+			}
+		}
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.732.b
+		log = "[GetDateText]: [This.GetName]: chad.732.b - Gradual transition"
+		set_temp_variable = { treasury_change = -3 }
+		modify_treasury_effect = yes
+		add_ideas = CHA_sharia_finance
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Madrasa Network Expansion
+country_event = {
+	id = chad.733
+	title = chad.733.t
+	desc = chad.733.desc
+	picture = GFX_islamic_law
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.733.a
+		log = "[GetDateText]: [This.GetName]: chad.733.a - Religious education"
+		add_to_variable = { CHA_religious_tension = 8 }
+		CHA_update_religious_tension = yes
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.03
+		}
+		recalculate_party = yes
+		add_stability = -0.03
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.733.b
+		log = "[GetDateText]: [This.GetName]: chad.733.b - Secular education"
+		add_to_variable = { CHA_religious_tension = -5 }
+		CHA_update_religious_tension = yes
+		add_stability = 0.03
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Hajj Diplomacy
+country_event = {
+	id = chad.734
+	title = chad.734.t
+	desc = chad.734.desc
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.734.a
+		log = "[GetDateText]: [This.GetName]: chad.734.a - Military cooperation deal"
+		army_experience = 15
+		add_equipment_to_stockpile = {
+			type = infantry_weapons1
+			amount = 1000
+			producer = CHA
+		}
+		ai_chance = { factor = 30 }
+	}
+
+	option = {
+		name = chad.734.b
+		log = "[GetDateText]: [This.GetName]: chad.734.b - Economic partnership"
+		set_temp_variable = { treasury_change = 8 }
+		modify_treasury_effect = yes
+		ai_chance = { factor = 40 }
+	}
+
+	option = {
+		name = chad.734.c
+		log = "[GetDateText]: [This.GetName]: chad.734.c - Cultural exchange only"
+		add_stability = 0.03
+		add_political_power = 25
+		ai_chance = { factor = 30 }
+	}
+}
+
+# Interfaith Dialogue Initiative
+country_event = {
+	id = chad.735
+	title = chad.735.t
+	desc = chad.735.desc
+	picture = GFX_politics_diplomacy
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.735.a
+		log = "[GetDateText]: [This.GetName]: chad.735.a - Launch initiative"
+		add_political_power = -75
+		subtract_from_variable = { CHA_religious_tension = 15 }
+		CHA_update_religious_tension = yes
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.02
+		}
+		recalculate_party = yes
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.735.b
+		log = "[GetDateText]: [This.GetName]: chad.735.b - Reject dialogue"
+		add_to_variable = { CHA_religious_tension = 5 }
+		CHA_update_religious_tension = yes
+		add_political_power = 25
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Foreign Jihadist Infiltration
+country_event = {
+	id = chad.736
+	title = chad.736.t
+	desc = chad.736.desc
+	picture = GFX_african_combat
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.736.a
+		log = "[GetDateText]: [This.GetName]: chad.736.a - Crackdown"
+		add_political_power = -100
+		add_stability = 0.05
+		subtract_from_variable = { CHA_religious_tension = 10 }
+		CHA_update_religious_tension = yes
+		army_experience = 10
+		ai_chance = { factor = 60 }
+	}
+
+	option = {
+		name = chad.736.b
+		log = "[GetDateText]: [This.GetName]: chad.736.b - Exploit situation"
+		add_stability = -0.15
+		army_experience = 20
+		add_war_support = 0.15
+		add_to_variable = { CHA_religious_tension = 10 }
+		CHA_update_religious_tension = yes
+		ai_chance = { factor = 40 }
+	}
+}
+
+#####################################
+# ECONOMIC EVENTS (chad.740-742)
+#####################################
+
+# Oil Price Shock
+country_event = {
+	id = chad.740
+	title = chad.740.t
+	desc = chad.740.desc
+	picture = GFX_generic_oil
+
+	trigger = {
+		original_tag = CHA
+		has_completed_focus = CHA_oil_economy
+		NOT = { has_country_flag = CHA_oil_shock_recent }
+	}
+
+	mean_time_to_happen = { days = 730 }
+
+	immediate = {
+		set_country_flag = { flag = CHA_oil_shock_recent days = 365 value = 1 }
+	}
+
+	option = {
+		name = chad.740.a
+		log = "[GetDateText]: [This.GetName]: chad.740.a - Oil price shock"
+		random_list = {
+			50 = {
+				set_temp_variable = { treasury_change = 10 }
+				modify_treasury_effect = yes
+				add_stability = 0.03
+			}
+			50 = {
+				set_temp_variable = { treasury_change = -8 }
+				modify_treasury_effect = yes
+				add_stability = -0.05
+			}
+		}
+		ai_chance = { factor = 100 }
+	}
+}
+
+# Dutch Disease
+country_event = {
+	id = chad.741
+	title = chad.741.t
+	desc = chad.741.desc
+	picture = GFX_african_agriculture
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.741.a
+		log = "[GetDateText]: [This.GetName]: chad.741.a - Subsidize farmers"
+		set_temp_variable = { treasury_change = -5 }
+		modify_treasury_effect = yes
+		add_stability = 0.03
+		add_ideas = CHA_food_security_program
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.741.b
+		log = "[GetDateText]: [This.GetName]: chad.741.b - Let market decide"
+		add_stability = -0.05
+		add_to_variable = { CHA_sara_loyalty = -5 }
+		CHA_update_tribal_loyalty = yes
+		ai_chance = { factor = 50 }
+	}
+}
+
+# Infrastructure Corruption
+country_event = {
+	id = chad.742
+	title = chad.742.t
+	desc = chad.742.desc
+	picture = GFX_politics_failed_negotiations
+
+	is_triggered_only = yes
+
+	option = {
+		name = chad.742.a
+		log = "[GetDateText]: [This.GetName]: chad.742.a - Investigate corruption"
+		add_political_power = -75
+		add_stability = 0.05
+		ai_chance = { factor = 50 }
+	}
+
+	option = {
+		name = chad.742.b
+		log = "[GetDateText]: [This.GetName]: chad.742.b - Ignore corruption"
+		add_stability = -0.05
+		set_temp_variable = { treasury_change = -2 }
+		modify_treasury_effect = yes
+		ai_chance = { factor = 50 }
+	}
+}
