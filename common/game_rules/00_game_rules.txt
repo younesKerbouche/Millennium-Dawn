@@ -656,12 +656,13 @@ rule_monthly_domestic_independence_gain_amount = {
 	name = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT"
 	group = "MD_INFLUENCE_RULES"
 	icon = "GFX_production_licenses"
-	option = {
+	default = {
 		name = amount_05_gain
 		text = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT_05"
 		desc = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT_05_DESC"
+		allow_achievements = yes
 	}
-	default = {
+	option = {
 		name = amount_10_gain
 		text = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT_10"
 		desc = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT_10_DESC"
@@ -671,6 +672,7 @@ rule_monthly_domestic_independence_gain_amount = {
 		name = amount_15_gain
 		text = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT_15"
 		desc = "RULE_MONTHLY_DOMESTIC_INFLUENCE_GAIN_AMOUNT_15_DESC"
+		allow_achievements = yes
 	}
 }
 rule_disable_ai_influence_puppeting = {
@@ -876,6 +878,55 @@ rule_AI_energy_difficulty = {
 		name = very_hard
 		text = "RULE_OPTION_VERY_HARD"
 		desc = "RULE_ENERGY_DIFFICULTY_VERY_HARD_DESC_AI"
+	}
+}
+
+rule_enable_energy_load_sharing = {
+	name = "RULE_ENABLE_ENERGY_LOAD_SHARING"
+	group = "MD_RULES"
+	icon = "GFX_production_licenses"
+
+	default = {
+		name = yes
+		text = "RULE_OPTION_YES"
+		desc = "RULE_ENABLE_ENERGY_LOAD_SHARING_DESC"
+	}
+	option = {
+		name = no
+		text = "RULE_OPTION_NO"
+		desc = "RULE_DISABLE_ENERGY_LOAD_SHARING_DESC"
+		allow_achievements = no
+	}
+}
+
+rule_income_per_gw_from_energy_load_sharing = {
+	name = "RULE_INCOME_FROM_ENERGY_LOAD_SHARING"
+	group = "MD_RULES"
+	icon = "GFX_production_licenses"
+
+	default = {
+		name = point_10
+		text = "RULE_OPTION_ELS_POINT_10"
+		desc = "RULE_OPTION_ELS_POINT_10_DESC"
+		allow_achievements = yes
+	}
+	option = {
+		name = point_25
+		text = "RULE_OPTION_ELS_POINT_25"
+		desc = "RULE_OPTION_ELS_POINT_25_DESC"
+		allow_achievements = yes
+	}
+	option = {
+		name = point_50
+		text = "RULE_OPTION_ELS_POINT_50"
+		desc = "RULE_OPTION_ELS_POINT_50_DESC"
+		allow_achievements = yes
+	}
+	option = {
+		name = point_75
+		text = "RULE_OPTION_ELS_POINT_75"
+		desc = "RULE_OPTION_ELS_POINT_75_DESC"
+		allow_achievements = yes
 	}
 }
 
@@ -2593,6 +2644,36 @@ RUS_ai_behavior = {
 	}
 }
 
+SAO_ai_behavior = {
+	name = "SAO_AI_BEHAVIOR"
+	group = "RULE_GROUP_AI_BEHAVIOR"
+	default = {
+		name = SAO_DYNAMIC
+		text = "RULE_OPTION_SAO_DYNAMIC"
+		desc = "RULE_OPTION_SAO_DYNAMIC_AI_DESC"
+	}
+	option = {
+		name = SAO_MENEZES_WINS_FOILED_COUP
+		text = "RULE_OPTION_MENEZES_WINS_FOILED_COUP"
+		desc = "RULE_OPTION_MENEZES_WINS_FOILED_COUP_AI_DESC"
+	}
+	option = {
+		name = SAO_MENEZES_WINS_COUP
+		text = "RULE_OPTION_MENEZES_WINS_COUP"
+		desc = "RULE_OPTION_MENEZES_WINS_COUP_AI_DESC"
+	}
+	option = {
+		name = SAO_MENEZES_WINS_NO_ATTEMPTED_COUP
+		text = "RULE_OPTION_SAO_MENEZES_WINS_NO_ATTEMPTED_COUP"
+		desc = "RULE_OPTION_SAO_MENEZES_WINS_NO_ATTEMPTED_COUP_AI_DESC"
+	}
+	option = {
+		name = SAO_COSTA_WINS
+		text = "RULE_OPTION_SAO_COSTA_WINS"
+		desc = "RULE_OPTION_SAO_COSTA_WINS_AI_DESC"
+	}
+}
+
 SAU_ai_behavior = {
 	name = "SAU_AI_BEHAVIOR"
 	group = "RULE_GROUP_AI_BEHAVIOR"
@@ -3122,6 +3203,29 @@ zombie_difficulty = {
 		name = "INSANE"
 		text = "RULE_ZOMBIE_DIFFICULTY_INSANE"
 		desc = "RULE_ZOMBIE_DIFFICULTY_INSANE_DESC"
+		allow_achievements = no
+	}
+}
+
+zombie_faction_joining_rules = {
+	name = "RULE_ZOMBIE_JOINING_FACTION_GAME_MODE"
+	group = "RULE_ZOMBIE"
+	icon = "GFX_wargoals"
+	default = {
+		name = normal
+		text = "RULE_ZOMBIE_JOINING_FACTION_NORMAL"
+		desc = "RULE_ZOMBIE_JOINING_FACTION_NORMAL_DESC"
+	}
+	option = {
+		name = no_majors
+		text = "RULE_ZOMBIE_JOINING_FACTION_NO_MAJORS"
+		desc = "RULE_ZOMBIE_JOINING_FACTION_NO_MAJORS_DESC"
+		allow_achievements = no
+	}
+	option = {
+		name = all_majors
+		text = "RULE_ZOMBIE_JOINING_FACTION_ALL_MAJORS"
+		desc = "RULE_ZOMBIE_JOINING_FACTION_ALL_MAJORS_DESC"
 		allow_achievements = no
 	}
 }

@@ -5362,11 +5362,9 @@ PER_Iranian_prime_ministers = {
 		fixed_random_seed = no
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision PER_nationalize_industries"
-			random_list = {
-				20 = {
-					one_random_industrial_complex = yes
-				}
-				80 = { }
+			random = {
+				chance = 20
+				one_random_industrial_complex = yes
 			}
 		}
 		modifier = {
@@ -5537,7 +5535,7 @@ PER_Iranian_prime_ministers = {
 					one_random_network_infrastructure = yes
 				}
 				15 = {
-					one_random_synthetic_refinery = yes
+					one_random_renewable_energy_infra = yes
 				}
 				10 = {
 					one_random_infrastructure = yes
@@ -5854,11 +5852,9 @@ PER_Iranian_prime_ministers = {
 		days_re_enable = 180
 		remove_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision PER_arms_industry_expansion"
-			random_list = {
-				20 = {
-					one_random_arms_factory = yes
-				}
-				80 = { }
+			random = {
+				chance = 20
+				one_random_arms_factory = yes
 			}
 		}
 		modifier = {
@@ -6588,7 +6584,7 @@ PER_new_majlis = {
 		is_good = no
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision timeout PER_turning_the_clock_forward"
-			set_temp_variable = { PER_centralization_cost_change = -0.10 }
+			set_temp_variable = { PER_centralization_cost_change = -0.025 }
 			update_PER_centralization_cost = yes
 			add_stability = 0.1
 			decrease_corruption = yes
@@ -7586,7 +7582,7 @@ PER_new_majlis = {
 					}
 				}
 				977 = {
-					synthetic_refinery > 0
+					renewable_energy_infra > 0
 				}
 			}
 			if = {
@@ -7596,7 +7592,7 @@ PER_new_majlis = {
 					}
 				}
 				1147 = {
-					synthetic_refinery > 0
+					renewable_energy_infra > 0
 				}
 			}
 			custom_trigger_tooltip = {
@@ -7610,8 +7606,8 @@ PER_new_majlis = {
 		is_good = no
 		complete_effect = {
 			log = "[GetDateText]: [Root.GetName]: Decision timeout PER_the_lights_shine_bright"
-			three_random_synthetic_refinery = yes
-			two_random_synthetic_refinery = yes
+			three_random_renewable_energy_infra = yes
+			two_random_renewable_energy_infra = yes
 			clr_country_flag = PER_doing_proposal
 			set_country_flag = PER_did_soc_7
 		}
@@ -7906,8 +7902,7 @@ PER_new_majlis = {
 				1139 = {
 					any_province_building_level = {
 						province = {
-							id = 12773
-							limit_to_border = yes
+							id = 16155
 						}
 						building = supply_node
 						level > 0
@@ -8641,7 +8636,7 @@ PER_new_majlis = {
 					}
 				}
 				405 = {
-					synthetic_refinery > 0
+					renewable_energy_infra > 0
 				}
 			}
 			if = {
@@ -8651,7 +8646,7 @@ PER_new_majlis = {
 					}
 				}
 				400 = {
-					synthetic_refinery > 0
+					renewable_energy_infra > 0
 				}
 			}
 		}
@@ -10160,7 +10155,7 @@ PER_new_majlis = {
 					}
 				}
 				405 = {
-					synthetic_refinery > 1
+					renewable_energy_infra > 1
 				}
 			}
 			if = {
@@ -10170,7 +10165,7 @@ PER_new_majlis = {
 					}
 				}
 				400 = {
-					synthetic_refinery > 1
+					renewable_energy_infra > 1
 				}
 			}
 		}
@@ -10541,7 +10536,7 @@ PER_new_majlis = {
 		}
 		available = {
 			has_equipment = {
-				Kamikaze_drone_equipment > 4999
+				medium_plane_suicide_airframe > 4999
 			}
 		}
 		days_mission_timeout = 500
@@ -11026,7 +11021,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 0 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 0 }
@@ -11041,7 +11036,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 5 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 5 }
@@ -11056,7 +11051,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 12 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 12 }
@@ -11071,7 +11066,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 14 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 14 }
@@ -11086,7 +11081,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 16 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 16 }
@@ -11101,7 +11096,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 19 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 19 }
@@ -11116,7 +11111,7 @@ PER_debug_category = {
 		}
 		complete_effect = {
 			set_temp_variable = { rul_party_temp = 20 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 
 			set_temp_variable = { party_index = 20 }
@@ -11440,25 +11435,25 @@ PER_lor_resistance = {
 				}
 				406 = {
 					create_unit = {
-						division = "name = \"Niru-ye Moghavemat-e Bakhtiari\" division_template = \"Tip-e Piade Nezam\"start_experience_factor = 0.45 start_equipment_factor = 0.15"
+						division = "name = \"Niru-ye Moghavemat-e Bakhtiari\" division_template = \"Tip-e Piade Nezam\" start_experience_factor = 0.45 start_equipment_factor = 0.15"
 						count = 1
 						prioritize_location = 3908
 						owner = PER
 					}
 					create_unit = {
-						division = "name = \"Niru-ye Moghavemat-e Shahr-e Kord\" division_template = \"Tip-e Piade Nezam\"start_experience_factor = 0.45 start_equipment_factor = 0.15"
+						division = "name = \"Niru-ye Moghavemat-e Shahr-e Kord\" division_template = \"Tip-e Piade Nezam\" start_experience_factor = 0.45 start_equipment_factor = 0.15"
 						count = 1
 						prioritize_location = 1922
 						owner = PER
 					}
 					create_unit = {
-						division = "name = \"Niru-ye Moghavemat-e Khorramabad\" division_template = \"Tip-e Piade Nezam\"start_experience_factor = 0.45 start_equipment_factor = 0.15"
+						division = "name = \"Niru-ye Moghavemat-e Khorramabad\" division_template = \"Tip-e Piade Nezam\" start_experience_factor = 0.45 start_equipment_factor = 0.15"
 						count = 1
 						prioritize_location = 15483
 						owner = PER
 					}
 					create_unit = {
-						division = "name = \"Niru-ye Moghavemat-e Borujerd\" division_template = \"Tip-e Piade Nezam\"start_experience_factor = 0.45 start_equipment_factor = 0.15"
+						division = "name = \"Niru-ye Moghavemat-e Borujerd\" division_template = \"Tip-e Piade Nezam\" start_experience_factor = 0.45 start_equipment_factor = 0.15"
 						count = 1
 						prioritize_location = 9074
 						owner = PER
@@ -15563,11 +15558,10 @@ PER_us_war = {
 						days = 1
 					}
 				}
-				every_country = {
-					limit = {
-						is_ally_with = PER
+				PER = {
+					every_allied_country = {
+						white_peace = USA
 					}
-					white_peace = USA
 				}
 				news_event = department_of_state.67
 				PER = {
@@ -15692,13 +15686,10 @@ PER_us_war = {
 					white_peace = PER
 					news_event = department_of_state.66
 				}
-				every_country = {
-					limit = {
-						is_ally_with = PER
-					}
-					white_peace = USA
-				}
 				PER = {
+					every_allied_country = {
+						white_peace = USA
+					}
 					country_event = {
 						id = department_of_state.69
 						days = 1
