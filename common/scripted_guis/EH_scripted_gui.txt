@@ -526,15 +526,6 @@ scripted_gui = {
 				ROOT = { has_country_flag = EH_mech_production_5_in_progress_flag }
 			}
 
-			EH_select_mech_1_visible = {
-				NOT = { has_country_flag = EH_mech_swapped_to_tesla_flag }
-			}
-			EH_select_mech_2_visible = {
-				NOT = { has_country_flag = EH_mech_swapped_to_tesla_flag }
-			}
-			EH_select_mech_3_visible = {
-				NOT = { has_country_flag = EH_mech_swapped_to_tesla_flag }
-			}
 			EH_select_mech_1_click_enabled = {
 				OR = {
 					is_special_project_completed = sp:sp_bf_38_atlas_project
@@ -559,18 +550,28 @@ scripted_gui = {
 		}
 	}
 
-	EH_random_static_scripted_gui = {
-		window_name = "EH_random_static_scripted_gui_window"
-		context_type = player_context
+	EH_tesla_missile_scripted_gui = {
+		window_name = "EH_tesla_missile_scripted_gui_window"
+		parent_window_token = production_tab
 
 		visible = {
-			has_country_flag = EH_random_static_gui_flag
+			has_country_flag = EH_mech_swapped_to_tesla_flag
+			has_country_flag = EH_randallite_tab_open_flag
 		}
 
 		effects = {
 		}
 
 		triggers = {
+		}
+	}
+
+	EH_random_static_scripted_gui = {
+		window_name = "EH_random_static_scripted_gui_window"
+		context_type = player_context
+
+		visible = {
+			has_country_flag = EH_random_static_gui_flag
 		}
 	}
 }
