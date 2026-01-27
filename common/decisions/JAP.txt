@@ -918,7 +918,8 @@ JAP_domestic_policy_decision = {
 			set_temp_variable = { temp_opinion = 5 }
 			change_fossil_fuel_industry_opinion = yes
 			if = {
-				limit = { is_special_project_completed = sp:sp_deep_sea_mining }
+				limit = { #is_special_project_completed = sp:sp_deep_sea_mining
+				}
 				random_owned_state = {
 					add_resource = {
 						type = tungsten
@@ -935,9 +936,9 @@ JAP_domestic_policy_decision = {
 				}
 			}
 			else = {
-				sp:sp_deep_sea_mining = {
-					add_project_progress_ratio = constant:sp_progress.gain.medium
-				}
+				#sp:sp_deep_sea_mining = {
+				#	add_project_progress_ratio = constant:sp_progress.gain.medium
+				#}
 				random_owned_state = {
 					add_resource = {
 						type = tungsten
@@ -1180,6 +1181,33 @@ JAP_domestic_policy_decision = {
 		}
 	}
 	JAP_toray_expansion_program_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = oil
+
+		cost = 125
+
+		days_remove = 150
+
+		remove_effect = {
+			random_owned_state = {
+				add_building_construction = {
+					type = composite_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 10
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	JAP_teijin_aerospace_prepreg_decision = {
 		allowed = { original_tag = JAP }
 		available = { has_completed_focus = JAP_rare_earth_resilience }
 		icon = oil
