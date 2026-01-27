@@ -5568,6 +5568,52 @@ focus_tree = {
 	}
 
 	focus = {
+		id = POL_mass_scale_construction
+
+		x = -1
+		y = 1
+		relative_position_id = POL_cop_revival
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_innovation_in_construction
+		}
+
+		prerequisite = {
+			focus = POL_construction_industry
+		}
+
+		completion_reward = {
+			# +25% construction
+			# -0.15 productivity
+		}
+
+	}
+
+	focus = {
+		id = POL_innovation_in_construction
+
+		x = 1
+		y = 1
+		relative_position_id = POL_cop_revival
+		cost = 5
+
+		mutually_exclusive = {
+			focus = POL_mass_scale_construction
+		}
+
+		prerequisite = {
+			focus = POL_construction_industry
+		}
+
+		completion_reward = {
+			# -15% construction
+			# +0.25 productivity
+		}
+
+	}
+
+	focus = {
 		id = POL_korean_housing_expertise
 		
 		x = 1
@@ -5622,6 +5668,120 @@ focus_tree = {
 		}
 	}
 
+
+	focus = {
+		id = POL_mieszkanie_plus_program
+
+		x = 1
+		y = 1
+		relative_position_id = POL_mass_scale_construction
+		cost = 10
+
+		mutually_exclusive = {
+			focus = POL_safe_mortgage_program
+			focus = POL_jeonse_rental_scheme
+		}
+
+		
+		prerequisite = {
+			focus = POL_mass_scale_construction
+			focus = POL_innovation_in_construction
+		}
+
+		prerequisite = {
+			focus = POL_dutch_housing_expertise
+		}
+
+		completion_reward = {
+
+			if = {
+				limit = { has_completed_focus = POL_mass_scale_construction }
+				# +7% stability
+				# cost: 3 B
+			}
+			else_if = {
+				limit = { has_completed_focus = POL_innovation_in_construction }
+				# +10% stability
+				# cost: 5 B
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = POL_safe_mortgage_program
+
+		x = 1
+		y = 1
+		relative_position_id = POL_innovation_in_construction
+		cost = 10
+
+		mutually_exclusive = {
+			focus = POL_mieszkanie_plus_program
+			focus = POL_jeonse_rental_scheme
+		}
+
+		
+		prerequisite = {
+			focus = POL_mass_scale_construction
+			focus = POL_innovation_in_construction
+		}
+
+		prerequisite = {
+			focus = POL_dutch_housing_expertise
+			focus = POL_korean_housing_expertise
+		}
+
+		completion_reward = {
+
+			if = {
+				limit = { has_completed_focus = POL_mass_scale_construction }
+				# +3% stability
+				# +0.25% ROI
+				# cost: 6 B
+			}
+			else_if = {
+				limit = { has_completed_focus = POL_innovation_in_construction }
+				# +5% stability
+				# +0.5% ROI
+				# cost: 10 B
+			}
+
+		}
+
+	}
+
+	focus = {
+		id = POL_jeonse_rental_scheme
+
+		x = 1
+		y = 1
+		relative_position_id = POL_dutch_housing_expertise
+		cost = 10
+
+		mutually_exclusive = {
+			focus = POL_mieszkanie_plus_program
+			focus = POL_safe_mortgage_program
+		}
+
+		
+		prerequisite = {
+			focus = POL_innovation_in_construction
+		}
+
+		prerequisite = {
+			focus = POL_korean_housing_expertise
+		}
+
+		completion_reward = {
+			# -5% stability
+			# +1.5% ROI
+		}
+
+	}
+	
+	
 	
 	focus = {
 		id = POL_high_tech_industry
@@ -5639,13 +5799,79 @@ focus_tree = {
 			one_random_renewable_energy_infra = yes
 		}
 	}
+
+	focus = {
+		id = POL_focus_on_data_centers
+
+		x = -2
+		y = 1
+		relative_position_id = POL_high_tech_industry
+		cost = 2
+
+		mutually_exclusive = {
+			focus = POL_go_all_in
+			focus = POL_focus_on_semiconductors
+		}
+
+		prerequisite = {
+			focus = POL_high_tech_industry
+		}
+
+		completion_reward = {
+			# +0.10 productivity
+		}		
+	}
+
+	focus = {
+		id = POL_go_all_in
+
+		x = 0
+		y = 1
+		relative_position_id = POL_high_tech_industry
+		cost = 4
+
+		mutually_exclusive = {
+			focus = POL_focus_on_data_centers
+			focus = POL_focus_on_semiconductors
+		}
+
+		prerequisite = {
+			focus = POL_high_tech_industry
+		}
+
+		completion_reward = {
+			# +0.20 productivity
+		}		
+	}
+
+	focus = {
+		id = POL_focus_on_semiconductors
+
+		x = 2
+		y = 1
+		relative_position_id = POL_high_tech_industry
+		cost = 2
+
+		mutually_exclusive = {
+			focus = POL_focus_on_data_centers
+			focus = POL_go_all_in
+		}
+
+		prerequisite = {
+			focus = POL_high_tech_industry
+		}
+
+		completion_reward = {
+			# +0.10 productivity
+		}		
+	}
 	
 	focus = {
 		id = POL_invite_siemens
 		icon = align_to_germany
-		x = -2
+		x = -1
 		y = 1
-		relative_position_id = POL_high_tech_industry
+		relative_position_id = POL_focus_on_semiconductors
 		cost = 5
 
 		mutually_exclusive = {
@@ -5654,7 +5880,8 @@ focus_tree = {
 		}
 		
 		prerequisite = {
-			focus = POL_high_tech_industry
+			focus = POL_focus_on_semiconductors
+			focus = POL_go_all_in
 		}
 		
 		completion_reward = {
@@ -5670,9 +5897,9 @@ focus_tree = {
 	focus = {
 		id = POL_invite_intel
 		icon = align_to_america
-		x = 0
+		x = 1
 		y = 1
-		relative_position_id = POL_high_tech_industry
+		relative_position_id = POL_focus_on_semiconductors
 		cost = 5
 
 		mutually_exclusive = {
@@ -5681,7 +5908,8 @@ focus_tree = {
 		}
 		
 		prerequisite = {
-			focus = POL_high_tech_industry
+			focus = POL_focus_on_semiconductors
+			focus = POL_go_all_in
 		}
 		
 		completion_reward = {
@@ -5697,9 +5925,9 @@ focus_tree = {
 	focus = {
 		id = POL_invite_samsung
 		icon = align_to_south_korea
-		x = 2
+		x = 3
 		y = 1
-		relative_position_id = POL_high_tech_industry
+		relative_position_id = POL_focus_on_semiconductors
 		cost = 5
 
 		mutually_exclusive = {
@@ -5708,7 +5936,8 @@ focus_tree = {
 		}
 		
 		prerequisite = {
-			focus = POL_high_tech_industry
+			focus = POL_focus_on_semiconductors
+			focus = POL_go_all_in
 		}
 		
 		completion_reward = {
