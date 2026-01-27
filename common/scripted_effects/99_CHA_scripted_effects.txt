@@ -793,3 +793,45 @@ CHA_end_tribal_rebellion = {
 	# Update resource modifiers
 	CHA_update_tribal_resource_modifiers = yes
 }
+
+#####################################
+# PATH TRANSITION EFFECTS
+#####################################
+
+# Déby death effect (2021)
+CHA_deby_death_effect = {
+	log = "[GetDateText]: [Root.GetName]: Déby death effect triggered"
+	set_country_flag = CHA_deby_dead
+	retire_country_leader = yes
+	add_stability = -0.15
+	add_war_support = -0.10
+	add_political_power = -100
+	country_event = { id = chad.2005 days = 1 }
+}
+
+# Transition to military junta path
+CHA_transition_to_junta = {
+	log = "[GetDateText]: [Root.GetName]: Transitioning to junta path"
+	set_country_flag = CHA_junta_path
+	add_ideas = CHA_transitional_military_council
+	set_politics = { ruling_party = neutrality }
+	add_political_power = 100
+}
+
+# Declare the Caliphate of the Sahel
+CHA_declare_caliphate = {
+	log = "[GetDateText]: [Root.GetName]: Declaring caliphate"
+	set_country_flag = CHA_caliphate_declared
+	set_politics = { ruling_party = fascism }
+	add_ideas = CHA_caliphate_declared
+	add_stability = -0.15
+	add_war_support = 0.20
+}
+
+# Establish federal republic
+CHA_establish_federation = {
+	log = "[GetDateText]: [Root.GetName]: Establishing federation"
+	set_country_flag = CHA_federation_established
+	add_stability = 0.10
+	add_political_power = 100
+}
