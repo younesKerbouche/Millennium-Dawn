@@ -856,8 +856,8 @@ Afghanistan_pashtunistan_decisions = {
 				threat = 5
 				name = AFG_invasion
 			}
-			every_country = {
-				limit = { original_tag = PAK }
+			every_country_with_original_tag = {
+				original_tag_to_check = PAK
 				ROOT = {
 					declare_war_on = {
 						target = PREV
@@ -1748,22 +1748,14 @@ Taliban_insurgency_category = {
 					}
 					modifier = {
 						factor = 2.0
-						OR = {
-							any_country = {
+						any_country = {
+							OR = {
 								has_idea = large_power
-								no_jihadist_government = yes
-								has_military_access_to = AFG
-							}
-							any_country = {
 								has_idea = great_power
-								no_jihadist_government = yes
-								has_military_access_to = AFG
-							}
-							any_country = {
 								has_idea = superpower
-								no_jihadist_government = yes
-								has_military_access_to = AFG
 							}
+							no_jihadist_government = yes
+							has_military_access_to = AFG
 						}
 					}
 				}
