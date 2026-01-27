@@ -14,6 +14,7 @@ ALG_crackdown_category = {
 		icon = GFX_decision_generic_arrest
         complete_effect = {
             log = "[GetDateText]: [Root.GetName]: Decision ALG_arrest_political_opponents"
+			custom_effect_tooltip = ALG_arrest_opponents_tt
             add_popularity = {
                 ideology = nationalist
                 popularity = 0.05
@@ -23,11 +24,26 @@ ALG_crackdown_category = {
             add_ideas = ALG_repression_modifier
 			set_temp_variable = { corp_change = 1 }
             modify_corporate_tax_rate_effect = yes
+			
+			random_list = {
+				70 = { }
+				30 = {
+					country_event = { id = alg_crackdown.1 days = 15 random_days = 10 }  # protest event
+				}
+			}
         }
 
         ai_will_do = {
-            base = 1
-        }
+			factor = 1
+			modifier = {
+				factor = 2
+				has_stability < 0.45
+			}
+			modifier = {
+				factor = 0.5
+				has_war_support < 0.3
+			}
+		}
     }
     ALG_expand_surveillance_services = {
         cost = 75
@@ -45,6 +61,7 @@ ALG_crackdown_category = {
 
         complete_effect = {
             log = "[GetDateText]: [Root.GetName]: Decision ALG_expand_surveillance_services"
+			custom_effect_tooltip = ALG_surveillance_tt
             add_stability = -0.02
             add_political_power = -25
             add_ideas = ALG_surveillance_state_modifier
@@ -53,8 +70,12 @@ ALG_crackdown_category = {
         }
 
         ai_will_do = {
-            factor = 1
-        }
+			factor = 1
+			modifier = {
+				factor = 1.5
+				has_idea = ALG_repression_modifier  # synergy with arrests
+			}
+		}
     }
     ALG_ban_opposition_parties = {
         cost = 100
@@ -73,21 +94,56 @@ ALG_crackdown_category = {
 
         complete_effect = {
             log = "[GetDateText]: [Root.GetName]: Decision ALG_ban_opposition_parties"
+			custom_effect_tooltip = ALG_ban_parties_tt
             add_stability = -0.03
             add_political_power = -50
+			add_war_support = 0.02
             set_country_flag = ALG_crackdown_backfired
             add_popularity = {
                 ideology = nationalist
                 popularity = 0.08
             }
+			if = {
+				limit = { has_government = democratic }
+				add_popularity = {
+					ideology = democratic
+					popularity = -0.05
+				}
+			}
 			increase_centralization = yes
 			decrease_economic_growth = yes
-        }
+			
+        
+			# International backlash
+			add_opinion_modifier = {
+				target = USA
+				modifier = crackdown_on_protests
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = crackdown_on_protests
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = crackdown_on_protests
+			}
+			
+			# Trigger delayed unrest event
+			country_event = { id = alg_crackdown.2 days = 45 random_days = 15 }
+		}
 
-        ai_will_do = {
-            base = 1
-        }
-    }
+		ai_will_do = {
+			factor = 0.5
+			modifier = {
+				factor = 3
+				has_stability < 0.40
+			}
+			modifier = {
+				factor = 0.1
+				has_country_flag = ALG_us_alignment  # US-aligned less likely to ban parties
+			}
+		}
+	}
 }
 ALG_economic_recovery_category = {
     ALG_accept_imf_loan = {
@@ -108,12 +164,21 @@ ALG_economic_recovery_category = {
         days_remove = 60
         complete_effect = {
 			custom_effect_tooltip = cheap_loans_from_imf_tt
+			add_offsite_building = { type = industrial_complex level = 2 }
+			add_political_power = 100
 			ingame_update_setup = yes
 			activate_mission = cheap_loan_from_the_imf_mission
             set_country_flag = ALG_imf_loan_taken
+			country_event = { id = alg_economy.1 days = 30 }
         }
 
-        ai_will_do = { factor = 1 }
+        ai_will_do = {
+			factor = 1 
+			modifier = {
+				factor = 3
+				has_political_power < 100
+			}
+		}
     }
     ALG_start_oil_licensing = {
         cost = 50
@@ -126,17 +191,75 @@ ALG_economic_recovery_category = {
         fire_only_once = yes
 
         complete_effect = {
+			custom_effect_tooltip = ALG_oil_licensing_tt
             add_political_power = 50
             add_stability = -0.01
             add_ideas = ALG_foreign_oil_licensing_bonus
-			random_owned_state = {
+			random_owned_controlled_state = {
+				limit = {
+					OR = {
+						state = 382
+						state = 381
+						state = 383
+						is_core_of = ALG
+						
+					}
+				}
 				add_resource = {
 					type = oil
-					amount = 3
+					amount = 5
 				}
 			}
-        }
-        ai_will_do = { factor = 1 }
+			# Improve relations with oil majors' countries
+			add_opinion_modifier = {
+				target = USA
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = PER
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = CAN
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = SAU
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = IRQ
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = VEN
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = UAE
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = KUW
+				modifier = oil_deals
+			}
+			add_opinion_modifier = {
+				target = MEX
+				modifier = oil_deals
+			}
+		}
+
+		ai_will_do = {
+			factor = 1 
+			modifier = {
+				factor = 2
+				has_idea = ALG_imf_conditionality
+			}
+		}
     }
     ALG_repay_imf_loan = {
         cost = 200
@@ -148,15 +271,24 @@ ALG_economic_recovery_category = {
         days_remove = 30
         fire_only_once = yes
         complete_effect = {
+			custom_effect_tooltip = ALG_repay_imf_tt
             set_temp_variable = { debt_change = 5.0 }
             modify_debt_effect = yes
-            add_stability = 0.02
+            add_stability = 0.03
             add_political_power = -200
             clr_country_flag = ALG_imf_loan_taken
         }
         ai_will_do = {
-            factor = 0.5
-        }
+			factor = 0.5
+			modifier = {
+				factor = 2
+				has_stability < 0.50
+			}
+			modifier = {
+				factor = 3
+				has_political_power > 300
+			}
+		}
     }
 }
 ALG_alignments = {
@@ -170,15 +302,24 @@ ALG_alignments = {
         cost = 100
 		icon = GFX_cub_usa_button
         complete_effect = {
+			custom_effect_tooltip = ALG_west_alignment_tt
             add_opinion_modifier = {
                 target = USA
                 modifier = mutual_investment_treaty_trade_opinion
             }
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = mutual_investment_treaty_trade_opinion
+			}
             add_political_power = 50
         }
         ai_will_do = {
-            factor = 1
-        }
+			factor = 1
+			modifier = {
+				factor = 2
+				has_opinion = { target = USA value > 25 }
+			}
+		}
     }
 
     ALG_diplomatic_outreach_china = {
@@ -191,15 +332,24 @@ ALG_alignments = {
         cost = 100
 		icon = GFX_decision_generic_china
         complete_effect = {
+			custom_effect_tooltip = ALG_china_alignment_tt
             add_opinion_modifier = {
                 target = CHI
                 modifier = mutual_investment_treaty_trade_opinion
             }
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = mutual_investment_treaty_trade_opinion
+			}
             add_stability = 0.02
         }
         ai_will_do = {
-            factor = 1
-        }
+			factor = 1
+			modifier = {
+				factor = 2
+				has_opinion = { target = CHI value > 25 }
+			}
+		}
     }
 }
 ALG_casablanca_accords = {
@@ -597,9 +747,15 @@ ALG_kabyle_issue = {
 		on_map_mode = map_only
         
 		complete_effect = {
-        custom_effect_tooltip =  kabyle_resistance_effects
-		custom_effect_tooltip = kabyle_resistance_tooltip
+			custom_effect_tooltip =  kabyle_resistance_effects
+			custom_effect_tooltip = kabyle_resistance_tooltip
 		}
+		#hidden_effect = {
+        #    385 = {
+        #        save_event_target_as = kabyle_state
+        #    }
+        #    set_variable = { kabyle_resistance = event_target:kabyle_state.resistance }
+        #}
         ai_will_do = { factor = 0 }
     }
 }
@@ -910,16 +1066,26 @@ ALG_reconciliation_path_category = {
 		days_remove = 30
         fire_only_once = yes
         complete_effect = {
+			custom_effect_tooltip = ALG_pardon_islamist_tt
             add_popularity = {
                 ideology = fascism
                 popularity = 0.03
             }
             add_stability = -0.02
             add_political_power = -25
+			if = {
+                limit = { has_country_flag = threat_level_critical }
+                set_temp_variable = { rad_change = -2 }
+				modify_radicalization_effect = yes
+            }
         }
 
         ai_will_do = {
             factor = 10
+            modifier = {
+                factor = 0.3
+                has_country_flag = ALG_crackdown_path
+            }
         }
     }
 	ALG_initiate_national_dialogues = {
@@ -935,14 +1101,44 @@ ALG_reconciliation_path_category = {
 		fire_only_once = yes
 
 		complete_effect = {
+			custom_effect_tooltip = ALG_dialogue_tt
 			add_stability = 0.05
 			add_political_power = -50
 			add_war_support = -0.03
 			add_ideas = ALG_national_dialogue_modifier
+			set_country_flag = ALG_dialogue_opened
+			 add_opinion_modifier = {
+				target = FRA
+				modifier = democratic_reforms
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = democratic_reforms
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = democratic_reforms
+			}
+			add_opinion_modifier = {
+				target = SWI
+				modifier = democratic_reforms
+			}
+			add_opinion_modifier = {
+				target = NOR
+				modifier = democratic_reforms
+			}
+			add_opinion_modifier = {
+				target = HOL
+				modifier = democratic_reforms
+			}
 		}
 
-		ai_will_do = {
+		 ai_will_do = {
 			factor = 0.9
+			modifier = {
+				factor = 2
+				has_stability < 0.50
+			}
 		}
     }
     ALG_reintegrate_former_fighter = {
@@ -960,18 +1156,28 @@ ALG_reconciliation_path_category = {
         cost = 125
 
         complete_effect = {
+			custom_effect_tooltip = ALG_reintegrate_fighters_tt
             add_stability = 0.03
-            add_manpower = -3000
+            add_manpower = 3000
             add_political_power = -50
             add_popularity = {
                 ideology = communism
                 popularity = 0.05
             }
+			if = {
+				limit = { has_country_flag = threat_level_critical }
+                set_temp_variable = { rad_change = -2 }
+				modify_radicalization_effect = yes
+			}
         }
 
         ai_will_do = {
-            factor = 1
-        }
+			factor = 1
+			modifier = {
+				factor = 2
+				has_manpower > 10000
+			}
+		}
     }
 }
 ALG_ethnic_data_category = {
@@ -999,6 +1205,14 @@ ALG_ethnic_data_category = {
             custom_effect_tooltip = ALG_ethnic_chaoui_display
             custom_effect_tooltip = ALG_ethnic_tuareg_display
             custom_effect_tooltip = ALG_ethnic_other_display
+			
+			hidden_effect = {
+                set_variable = { ALG_ethnic_arab_display = ALG_ethnic_arab }
+                set_variable = { ALG_ethnic_kabyle_display = ALG_ethnic_kabyle }
+                set_variable = { ALG_ethnic_chaoui_display = ALG_ethnic_chaoui }
+                set_variable = { ALG_ethnic_tuareg_display = ALG_ethnic_tuareg }
+                set_variable = { ALG_ethnic_other_display = ALG_ethnic_other }
+            }
         }
 
         ai_will_do = {
@@ -1024,6 +1238,50 @@ ALG_ethnic_data_category = {
             factor = 0
         }
     }
+	ALG_conduct_national_census = {
+        icon = GFX_decision_generic_independence
+        
+        allowed = { original_tag = ALG }
+        
+        available = {
+            has_country_flag = ALG_ethnic_data_initialized
+            has_political_power > 100
+        }
+        
+        visible = {
+            has_country_flag = ALG_ethnic_data_initialized
+            NOT = { has_country_flag = ALG_census_conducted }
+        }
+        
+        cost = 100
+        days_remove = 60
+        fire_only_once = yes
+        
+        complete_effect = {
+            custom_effect_tooltip = ALG_census_tt
+            
+            add_political_power = -50
+            set_country_flag = ALG_census_conducted
+            
+            # Slight variable adjustments to simulate demographic shift discovery
+            random_list = {
+                40 = {
+                    add_to_variable = { var = ALG_ethnic_kabyle value = 1 }
+                    subtract_from_variable = { var = ALG_ethnic_arab value = 1 }
+                }
+                40 = {
+                    add_to_variable = { var = ALG_ethnic_arab value = 1 }
+                    subtract_from_variable = { var = ALG_ethnic_other value = 1 }
+                }
+                20 = { }
+            }
+            
+            # Unlock ethnic-focused policies
+            country_event = { id = ALG_ethnic_data.2 days = 5 }
+        }
+        
+        ai_will_do = { factor = 0.3 }
+    }
 }
 ALG_political_struggle = {
     ALG_boost_reformists = {
@@ -1033,18 +1291,35 @@ ALG_political_struggle = {
 			has_power_balance = {
 				id = algeria_power_balance
 			}
-				has_political_power > 100
+			has_political_power > 100
 		}
         cost = 100
         complete_effect = {
+			custom_effect_tooltip = ALG_boost_reformists_tt
             add_power_balance_value = {
                 id = algeria_power_balance
                 value = 0.20
             }
+			add_popularity = {
+                ideology = democratic
+                popularity = 0.02
+            }
             add_stability = -0.02
         }
-        ai_will_do = {
-            factor = 0
+         ai_will_do = {
+            factor = 0.5
+            modifier = {
+                factor = 2
+                has_stability > 0.50
+            }
+            modifier = {
+                factor = 3
+                has_country_flag = ALG_reconciliation_path
+            }
+            modifier = {
+                factor = 0.1
+                has_country_flag = ALG_crackdown_path
+            }
         }
     }
 	ALG_boost_old_guard = {
@@ -1058,14 +1333,32 @@ ALG_political_struggle = {
 		}
 		cost = 100
 		complete_effect = {
+			custom_effect_tooltip = ALG_boost_old_guard_tt
 			add_power_balance_value = {
 				id = algeria_power_balance
 				value = -0.20
 			}
-				add_stability = -0.02
-			}
+			add_stability = -0.02
+			add_war_support = 0.03
+            add_popularity = {
+                ideology = nationalist
+                popularity = 0.02
+            }
+		}
         ai_will_do = {
-            factor = 0
+            factor = 0.5
+            modifier = {
+                factor = 3
+                has_country_flag = ALG_crackdown_path
+            }
+            modifier = {
+                factor = 2
+                has_war_support < 0.40
+            }
+            modifier = {
+                factor = 0.1
+                has_country_flag = ALG_reconciliation_path
+            }
         }
     }
 	ALG_rally_students = {
@@ -1077,14 +1370,25 @@ ALG_political_struggle = {
 		}
 		cost = 75
 		complete_effect = {
+			custom_effect_tooltip = ALG_rally_students_tt
 			add_power_balance_value = {
 				id = algeria_power_balance
 				value = 0.10
 			}
 			add_stability = -0.03
 			add_political_power = -25
+			add_popularity = {
+                ideology = democratic
+                popularity = 0.01
+            }
 		}
-		ai_will_do = { factor = 0 }
+		ai_will_do = {
+            factor = 0.3
+            modifier = {
+                factor = 2
+                has_country_flag = ALG_reconciliation_path
+            }
+        }
 	}
 
 	ALG_mobilize_veterans = {
@@ -1096,14 +1400,25 @@ ALG_political_struggle = {
 		}
 		cost = 75
 		complete_effect = {
+			custom_effect_tooltip = ALG_mobilize_veterans_tt
 			add_power_balance_value = {
 				id = algeria_power_balance
 				value = -0.10
 			}
 			add_stability = -0.02
 			add_war_support = 0.05
+			add_popularity = {
+                ideology = nationalist
+                popularity = 0.01
+            }
 		}
-		ai_will_do = { factor = 0 }
+		ai_will_do = { 
+            factor = 0.3
+            modifier = {
+                factor = 2
+                has_country_flag = ALG_crackdown_path
+            }
+        }
 	}
 
 	ALG_bribe_elites = {
@@ -1115,6 +1430,7 @@ ALG_political_struggle = {
 		}
 		cost = 150
 		complete_effect = {
+			custom_effect_tooltip = ALG_bribe_elites_tt
 			add_power_balance_value = {
 				id = algeria_power_balance
 				value = -0.05
@@ -1122,8 +1438,21 @@ ALG_political_struggle = {
 			add_stability = 0.02
 			set_temp_variable = { treasury_change = -30 }
 			modify_treasury_effect = yes
+			if = {
+                limit = { NOT = { has_idea = rampant_corruption } }
+                add_timed_idea = {
+                    idea = ALG_elite_patronage
+                    days = 180
+                }
+            }
 		}
-		ai_will_do = { factor = 0 }
+		ai_will_do = { 
+            factor = 0.2
+            modifier = {
+                factor = 3
+                has_stability < 0.35
+            }
+        }
 	}
 	ALG_seek_compromise = {
 		icon = GFX_decision_gulf_agree_button
@@ -1136,57 +1465,142 @@ ALG_political_struggle = {
 		}
 		cost = 75
 		complete_effect = {
+			custom_effect_tooltip = ALG_compromise_tt
 			add_stability = 0.05
 			add_political_power = 25
-		}
-		ai_will_do = {
-			factor = 0
-		}
+			random_list = {
+                50 = {
+                    country_event = { id = alg_politics.10 days = 7 }
+                }
+                50 = { }
+            }
+        }
+        
+        ai_will_do = {
+            factor = 0.6
+            modifier = {
+                factor = 2
+                has_stability < 0.40
+            }
+        }
 	}
+	ALG_check_power_balance_crisis = {
+        icon = GFX_decision_generic_prepare_civil_war
+        
+        allowed = { original_tag = ALG }
+        
+        available = {
+            has_country_flag = has_power_balance_algeria
+            OR = {
+                has_power_balance = {
+                    id = algeria_power_balance
+                    value > 0.80  # reformists dominate
+                }
+                has_power_balance = {
+                    id = algeria_power_balance
+                    value < -0.80  # old guard dominate
+                }
+            }
+        }
+        
+        visible = {
+            has_country_flag = has_power_balance_algeria
+        }
+        
+        cost = 0
+        days_remove = 0
+        
+        complete_effect = {
+            if = {
+                limit = {
+                    has_power_balance = {
+                        id = algeria_power_balance
+                        value > 0.80
+                    }
+                }
+                country_event = { id = alg_politics.20 }  # reformist takeover
+            }
+            else_if = {
+                limit = {
+                    has_power_balance = {
+                        id = algeria_power_balance
+                        value < -0.80
+                    }
+                }
+                country_event = { id = alg_politics.21 }  # military coup
+            }
+        }
+        
+        ai_will_do = { factor = 1 }
+    }
 }
 ALG_resistance_challenges = {
 	ALG_healthcare_reform = {
 		icon = GFX_ISR_healthcare_button
-		#cost = 75
+		
 		visible = { has_country_flag = ALG_resistance_path }
+		
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = ALG_healthcare_reform_tt
 				check_variable = { ALG_people_grievance < 40}
 			}
-			has_idea = health_04
+			OR = {
+                has_idea = health_04
+                has_idea = health_05  # in case player upgraded 
+            }
 		}
 		days_mission_timeout = 180
 		cancel_if_not_visible = yes
 		complete_effect = {
+			custom_effect_tooltip = ALG_healthcare_success_tt
 			subtract_from_variable = { var = ALG_people_grievance value = 5 }
 			subtract_from_variable = { var = ALG_army_influence value = 2 }
+			clamp_variable = { var = ALG_people_grievance min = 0 max = 100 }
+            clamp_variable = { var = ALG_army_influence min = 0 max = 100 }
 			add_stability = 0.05
 			add_political_power = -50
 			country_event = { id = alg.310 days = 1 }
 		}
 
 		timeout_effect = {
+			custom_effect_tooltip = ALG_healthcare_failure_tt
 			add_to_variable = { var = ALG_people_grievance value = 10 }
 			add_to_variable = { var = ALG_army_influence value = 3 }
+			clamp_variable = { var = ALG_people_grievance min = 0 max = 100 }
+            clamp_variable = { var = ALG_army_influence min = 0 max = 100 }
+			add_stability = -0.05
 			country_event = { id = alg.311 days = 1 }
 		}
+		
+		ai_will_do = {
+            factor = 1
+            modifier = {
+                factor = 3
+                check_variable = { ALG_people_grievance > 30 }
+            }
+        }
 	}
 	ALG_education_reform = {
 		icon = GFX_ISR_education_button
-		#cost = 75
+		
 		visible = { has_country_flag = ALG_resistance_path }
+		
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = ALG_education_reform_tt
 				check_variable = { ALG_people_grievance < 40 }
 			}
-			has_idea = edu_04
+			OR = {
+                has_idea = edu_04
+                has_idea = edu_05
+            }
 		}
 
 		days_mission_timeout = 180
 		cancel_if_not_visible = yes
 		complete_effect = {
+			custom_effect_tooltip = ALG_education_success_tt
 			subtract_from_variable = { var = ALG_people_grievance value = 5 }
 			subtract_from_variable = { var = ALG_army_influence value = 2 }
 			clamp_variable = { var = ALG_people_grievance min = 0 max = 100 }
@@ -1197,6 +1611,7 @@ ALG_resistance_challenges = {
 		}
 
 		timeout_effect = {
+			custom_effect_tooltip = ALG_education_failure_tt
 			add_to_variable = { var = ALG_people_grievance value = 10 }
 			add_to_variable = { var = ALG_army_influence value = 3 }
 			clamp_variable = { var = ALG_people_grievance min = 0 max = 100 }
@@ -1204,11 +1619,20 @@ ALG_resistance_challenges = {
 			add_stability = -0.05
 			country_event = { id = alg.321 days = 1 }
 		}
+		
+		ai_will_do = {
+            factor = 1
+            modifier = {
+                factor = 2
+                num_of_research_slots < 4
+            }
+        }
 	}
 	ALG_unemployment_reform = {
 		icon = GFX_ISR_welfare_button
-		#cost = 100
+		
 		visible = { has_country_flag = ALG_resistance_path }
+		
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = ALG_unemployment_reform_tt
@@ -1218,11 +1642,15 @@ ALG_resistance_challenges = {
 				tooltip = ALG_employment_TT
 				check_variable = { total_unemployed_percentage_display < 0.2 }
 			}
-			has_idea = social_04
+			OR = {
+                has_idea = social_04
+                has_idea = social_05
+            }
 		}
 		days_mission_timeout = 180
 		cancel_if_not_visible = yes
 		complete_effect = {
+			custom_effect_tooltip = ALG_unemployment_success_tt
 			subtract_from_variable = { var = ALG_people_grievance value = 10 }
 			subtract_from_variable = { var = ALG_army_influence value = 3 }
 			clamp_variable = { var = ALG_people_grievance min = 0 max = 100 }
@@ -1230,61 +1658,295 @@ ALG_resistance_challenges = {
 			add_stability = 0.05
 			add_political_power = -75
 			add_offsite_building = { type = arms_factory level = 1 }
+            add_offsite_building = { type = industrial_complex level = 1 }
 			country_event = { id = alg.330 days = 1 }
 		}
 		timeout_effect = {
+			custom_effect_tooltip = ALG_unemployment_failure_tt
 			add_to_variable = { var = ALG_people_grievance value = 15 }
 			add_to_variable = { var = ALG_army_influence value = 5 }
 			clamp_variable = { var = ALG_people_grievance min = 0 max = 100 }
 			clamp_variable = { var = ALG_army_influence min = 0 max = 100 }
 			add_stability = -0.1
+			random_owned_controlled_state = {
+                limit = { is_core_of = ALG }
+                add_resistance = 10
+            }
 			country_event = { id = alg.331 days = 1 }
 		}
+		
+		ai_will_do = {
+            factor = 1
+            modifier = {
+                factor = 5
+                check_variable = { total_unemployed_percentage_display > 0.15 }
+            }
+        }
 	}
 }
 # Appease Kabyles
 alg_ethnic_policy = {
     alg_appease_kabyles = {
-    icon = Kabylie_Flag
-    allowed = { }
-    visible = { }
-    cost = 200
-    available = { has_global_flag = ALG_ethnicity }
-    complete_effect = {
-        set_temp_variable = { treasury_change = -20 }
-        modify_treasury_effect = yes
-        add_to_variable = { var = kabyle_satisfaction value = 10 }
-        subtract_from_variable = { var = arab_satisfaction value = -5 }
-    }
-    days_remove = 0
+		icon = Kabylie_Flag
+		
+		allowed = {
+			original_tag = ALG
+		}
+		
+		visible = {
+			check_variable = { kabyle_satisfaction < 80 }
+			has_global_flag = ALG_ethnicity
+		}
+		
+		cost = 200
+		days_remove = 45
+		
+		available = {
+			has_global_flag = ALG_ethnicity
+			has_political_power > 200
+			NOT = { has_country_flag = ALG_arabization_hardline }  # Can't do both
+		}
+		
+		fire_only_once = no
+		
+		complete_effect = {
+			custom_effect_tooltip = alg_appease_kabyles_tt
+			set_temp_variable = { treasury_change = -20 }
+			modify_treasury_effect = yes
+			add_to_variable = { var = kabyle_satisfaction value = 10 }
+			subtract_from_variable = { var = arab_satisfaction value = -5 }
+			clamp_variable = { var = kabyle_satisfaction min = 0 max = 100 }
+			clamp_variable = { var = arab_satisfaction min = 0 max = 100 }
+			
+			385 = {
+				add_resistance = -5
+				add_compliance = 5
+			}
+			if = {
+				limit = { has_country_flag = ALG_reconciliation_path }
+				add_stability = 0.02
+			}
+			else = {
+				add_stability = 0.01
+			}
+				
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.01
+			}
+			set_country_flag = ALG_kabyle_appeased_recently
+			clr_country_flag = { flag = ALG_kabyle_appeased_recently days = 90 }
+		}
+        
+        ai_will_do = {
+            factor = 0.5
+            modifier = {
+                factor = 3
+                385 = { resistance > 20 }
+            }
+            modifier = {
+                factor = 2
+                has_country_flag = ALG_reconciliation_path
+            }
+            modifier = {
+                factor = 0.1
+                has_country_flag = ALG_crackdown_path
+            }
+            modifier = {
+                factor = 0
+                has_country_flag = ALG_kabyle_appeased_recently
+            }
+        }
 	}
 
 	# Promote Arabization
 	alg_promote_arabization = {
 		icon = arabic
-		allowed = { }
-		visible = { }
-		cost = 150
+		allowed = {
+            original_tag = ALG
+        }
+        
+        visible = {
+            has_global_flag = ALG_ethnicity
+            check_variable = { arab_satisfaction < 80 }
+        }
+        
+        available = {
+            has_global_flag = ALG_ethnicity
+            has_political_power > 150
+            NOT = { has_idea = ALG_kabyle_autonomy }  # Contradictory
+        }
+        
+        cost = 150
+        days_remove = 45
+        fire_only_once = no
+		
+		
 		complete_effect = {
+			custom_effect_tooltip = alg_arabization_tt
 			set_temp_variable = { treasury_change = -20 }
 			modify_treasury_effect = yes
 			add_to_variable = { var = arab_satisfaction value = 10 }
-			subtract_from_variable = { var = kabyle_satisfaction value = -10 }
-			subtract_from_variable = { var = mozabite_satisfaction value = -5 }
-		}
-		days_remove = 0
+            subtract_from_variable = { var = kabyle_satisfaction value = 10 }
+            subtract_from_variable = { var = mozabite_satisfaction value = 5 }
+            subtract_from_variable = { var = chaoui_satisfaction value = 5 }
+            subtract_from_variable = { var = tuareg_satisfaction value = 3 }
+            
+            clamp_variable = { var = arab_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = kabyle_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = mozabite_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = chaoui_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = tuareg_satisfaction min = 0 max = 100 }
+			
+			385 = { add_resistance = 5 }
+			random_owned_controlled_state = {
+                limit = {
+                    OR = {
+                        state = 380  # Aurès (Chaoui)
+                        state = 381  # Southern desert (Tuareg)
+                    }
+                }
+                add_resistance = 2
+            }
+            
+            
+            add_popularity = {
+                ideology = nationalist
+                popularity = 0.02
+            }
+            
+            
+            if = {
+                limit = { has_country_flag = ALG_crackdown_path }
+                add_stability = 0.01
+            }
+            else = {
+                add_stability = -0.01
+            }
+            
+            
+            if = {
+                limit = { has_country_flag = ALG_arabization_pushed_once }
+                set_country_flag = ALG_arabization_hardline
+            }
+            else = {
+                set_country_flag = ALG_arabization_pushed_once
+            }
+            
+           
+            set_country_flag = ALG_arabization_recent
+            clr_country_flag = { flag = ALG_arabization_recent days = 90 }
+        }
+        
+        ai_will_do = {
+            factor = 0.4
+            modifier = {
+                factor = 3
+                has_country_flag = ALG_crackdown_path
+            }
+            modifier = {
+                factor = 2
+                check_variable = { arab_satisfaction < 40 }
+            }
+            modifier = {
+                factor = 0.1
+                has_country_flag = ALG_reconciliation_path
+            }
+            modifier = {
+                factor = 0
+                has_country_flag = ALG_arabization_recent
+            }
+        }
+		
 	}
 	# Recognize Tamazight Language
 	alg_recognize_tamazight = {
 		icon = amazigh
-		cost = 150
+		
+		allowed = {
+            original_tag = ALG
+        }
+        
+        visible = {
+            has_global_flag = ALG_ethnicity
+            NOT = { has_country_flag = ALG_tamazight_recognized }
+        }
+        
+        available = {
+            has_global_flag = ALG_ethnicity
+            has_political_power > 150
+            has_stability > 0.40
+            NOT = { has_country_flag = ALG_arabization_hardline }
+        }
+        
+        cost = 150
+        days_remove = 60
+        fire_only_once = yes
+		
 		complete_effect = {
+			custom_effect_tooltip = alg_tamazight_recognition_tt
 			add_stability = -0.02
 			add_political_power = 100
 			add_to_variable = { var = kabyle_satisfaction value = 20 }
-			subtract_from_variable = { var = arab_satisfaction value = -10 }
-		}
-		days_remove = 0
+            add_to_variable = { var = chaoui_satisfaction value = 15 }
+            add_to_variable = { var = mozabite_satisfaction value = 10 }
+            add_to_variable = { var = tuareg_satisfaction value = 12 }
+            
+            # Arab dissatisfaction
+            subtract_from_variable = { var = arab_satisfaction value = 10 }
+            
+            clamp_variable = { var = kabyle_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = chaoui_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = mozabite_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = tuareg_satisfaction min = 0 max = 100 }
+            clamp_variable = { var = arab_satisfaction min = 0 max = 100 }
+            
+            
+            385 = { add_resistance = -15 }  # Kabylia
+            
+            every_owned_state = {
+                limit = {
+                    OR = {
+                        state = 380  # Aurès
+                        state = 381  # Tamanrasset
+                        state = 382  #
+                    }
+                }
+                add_resistance = -8
+                add_compliance = 5
+            }
+            
+            
+            if = {
+                limit = { has_idea = ALG_kabylia_unrest }
+                remove_ideas = ALG_kabylia_unrest
+                add_ideas = ALG_berber_reconciliation
+            }
+            
+            
+            add_popularity = {
+                ideology = nationalist
+                popularity = -0.03
+            }
+            set_country_flag = ALG_tamazight_recognized
+            country_event = { id = alg_ethnic.10 days = 90 }
+        }
+        
+        ai_will_do = {
+            factor = 0.7
+            modifier = {
+                factor = 5
+                has_country_flag = ALG_reconciliation_path
+            }
+            modifier = {
+                factor = 3
+                385 = { resistance > 25 }
+            }
+            modifier = {
+                factor = 0.1
+                has_country_flag = ALG_crackdown_path
+            }
+        }
 	}
 }
 ALG_resistance_movement = {

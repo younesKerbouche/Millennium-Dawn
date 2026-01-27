@@ -59,6 +59,171 @@ add_namespace = AlgeriaElections
 add_namespace = ALG_FIS
 add_namespace = FIS_faction
 add_namespace = alg_politics_news
+add_namespace = alg_crackdown
+add_namespace = alg_ethnic
+
+# Long-term stability recovery after Tamazight recognition
+country_event = {
+    id = alg_ethnic.10
+    title = alg_ethnic.10.t
+    desc = alg_ethnic.10.d
+    picture = GFX_alg_hirak
+    
+    is_triggered_only = yes
+    
+    option = {
+        name = alg_ethnic.10.a
+        add_stability = 0.03
+        add_political_power = 50
+    }
+}
+# Reformist takeover
+country_event = {
+    id = alg_politics.20
+    title = alg_politics.20.t
+    desc = alg_politics.20.d
+    picture = GFX_hol_speech_timmermans_mh17_event_picture
+    
+    is_triggered_only = yes
+    
+    option = {  # Accept transition
+        name = alg_politics.20.a
+        set_politics = {
+            ruling_party = democratic
+            elections_allowed = yes
+        }
+        add_stability = -0.10  # transition shock
+        add_political_power = 100
+        clr_country_flag = has_power_balance_algeria
+    }
+    
+    option = {  # Old guard resists
+        name = alg_politics.20.b
+        start_civil_war = {
+            ideology = nationalist
+            size = 0.3
+        }
+    }
+}
+
+# Military coup
+country_event = {
+    id = alg_politics.21
+    title = alg_politics.21.t
+    desc = alg_politics.21.d
+    picture = GFX_war_osset
+    
+    is_triggered_only = yes
+    
+    option = {  # Accept military rule
+        name = alg_politics.21.a
+        set_politics = {
+            ruling_party = nationalist
+            elections_allowed = no
+        }
+        add_stability = -0.10
+        add_war_support = 0.10
+        clr_country_flag = has_power_balance_algeria
+    }
+    
+    option = {  # Resist
+        name = alg_politics.21.b
+        start_civil_war = {
+            ideology = democratic
+            size = 0.25
+        }
+    }
+}
+
+
+country_event = {
+    id = ALG_ethnic_data.2
+    title = ALG_ethnic_data.2.t
+    desc = ALG_ethnic_data.2.d
+    picture = GFX_alg_hirak
+    
+    is_triggered_only = yes
+    
+    option = {  # Emphasize Arab-Islamic identity
+        name = ALG_ethnic_data.2.a
+        add_popularity = {
+            ideology = nationalist
+            popularity = 0.03
+        }
+        385 = { add_resistance = 5 }  # Kabylia unhappy
+        add_stability = 0.02
+    }
+    
+    option = {  # Promote multicultural identity
+        name = ALG_ethnic_data.2.b
+        add_stability = 0.03
+        add_popularity = {
+            ideology = nationalist
+            popularity = -0.02
+        }
+        385 = { add_resistance = -5 }
+    }
+    
+    option = {  # Remain neutral
+        name = ALG_ethnic_data.2.c
+        add_political_power = 25
+    }
+}
+
+# Protest event after arresting opponents
+country_event = {
+    id = alg_crackdown.1
+    title = alg_crackdown.1.t
+    desc = alg_crackdown.1.d
+    picture = GFX_CAN_g20_riots_toronto
+    
+    is_triggered_only = yes
+    
+    option = {  # Suppress harshly
+        name = alg_crackdown.1.a
+        add_stability = -0.02
+        add_political_power = -25
+        add_manpower = -500  # casualties
+    }
+    
+    option = {  # Make minor concessions
+        name = alg_crackdown.1.b
+        add_stability = 0.01
+        add_popularity = {
+            ideology = nationalist
+            popularity = -0.05
+        }
+    }
+}
+
+# Major unrest after banning parties
+country_event = {
+    id = alg_crackdown.2
+    title = alg_crackdown.2.t
+    desc = alg_crackdown.2.d
+    picture = GFX_great_recession_protests
+    
+    is_triggered_only = yes
+    
+    option = {  # Deploy military
+        name = alg_crackdown.2.a
+        add_stability = -0.05
+        add_war_support = 0.03
+        add_manpower = -2000
+        set_country_flag = ALG_military_crackdown
+    }
+    
+    option = {  # Negotiate
+        name = alg_crackdown.2.b
+        remove_ideas = ALG_repression_modifier
+        add_stability = 0.02
+        add_popularity = {
+            ideology = nationalist
+            popularity = -0.05
+        }
+        clr_country_flag = ALG_crackdown_path
+    }
+}
 
 
 news_event = {
