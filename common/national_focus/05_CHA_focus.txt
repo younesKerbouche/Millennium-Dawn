@@ -1,4 +1,4 @@
-# Chad Focus Tree - Second Chadian Civil War
+﻿# Chad Focus Tree - Second Chadian Civil War
 
 focus_tree = {
 	id = chad_focus
@@ -78,7 +78,7 @@ focus_tree = {
 	focus = {
 		id = CHA_political_consolidation
 		icon = africa2
-		x = -18
+		x = -54
 		y = 1
 		relative_position_id = CHA_new_millennium
 
@@ -104,7 +104,7 @@ focus_tree = {
 	focus = {
 		id = CHA_deby_dynasty
 		icon = focus_generic_military_dictatorship
-		x = -22
+		x = -39
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -127,10 +127,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_deby_dynasty"
-			add_political_power = 50
+			add_political_power = 100
 			set_country_flag = CHA_authoritarian_path
 			add_popularity = { ideology = neutrality popularity = 0.05 }
 			recalculate_party = yes
+			add_timed_idea = {
+				idea = CHA_deby_consolidation
+				days = 365
+			}
 		}
 
 		ai_will_do = {
@@ -161,7 +165,7 @@ focus_tree = {
 	focus = {
 		id = CHA_remove_term_limits
 		icon = authoritarian_democracy
-		x = -22
+		x = -39
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -196,7 +200,7 @@ focus_tree = {
 	focus = {
 		id = CHA_zaghawa_patronage
 		icon = focus_generic_national_security
-		x = -22
+		x = -40
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -209,8 +213,10 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_zaghawa_patronage"
 			add_ideas = CHA_zaghawa_dominance
-			add_political_power = 50
+			add_political_power = 75
 			add_stability = -0.03
+			army_experience = 15
+			country_event = { id = chad.2000 days = 5 }
 		}
 
 		ai_will_do = {
@@ -221,7 +227,7 @@ focus_tree = {
 	focus = {
 		id = CHA_security_apparatus
 		icon = focus_generic_secret_service_agency
-		x = -20
+		x = -38
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -252,7 +258,7 @@ focus_tree = {
 	focus = {
 		id = CHA_mahamat_succession
 		icon = focus_generic_national_security
-		x = -22
+		x = -39
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -274,7 +280,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_mahamat_succession"
 			set_country_flag = CHA_succession_prepared
-			add_political_power = 75
+			add_political_power = 100
 			# Recruit Mahamat Déby as a general
 			create_corps_commander = {
 				name = "Mahamat Idriss Déby"
@@ -297,7 +303,7 @@ focus_tree = {
 	focus = {
 		id = CHA_political_reform
 		icon = democracy2
-		x = -16
+		x = -30
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -317,9 +323,11 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_political_reform"
 			set_country_flag = CHA_democratic_path
+			add_political_power = 100
 			add_popularity = { ideology = democratic popularity = 0.05 }
 			recalculate_party = yes
 			add_stability = 0.03
+			add_ideas = CHA_reform_momentum
 		}
 
 		ai_will_do = {
@@ -346,7 +354,7 @@ focus_tree = {
 	focus = {
 		id = CHA_multiparty_competition
 		icon = elections_01
-		x = -16
+		x = -30
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -359,6 +367,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_multiparty_competition"
 			add_ideas = CHA_competitive_politics
+			add_political_power = 50
 			add_popularity = { ideology = democratic popularity = 0.10 }
 			recalculate_party = yes
 		}
@@ -371,7 +380,7 @@ focus_tree = {
 	focus = {
 		id = CHA_free_press
 		icon = generic_controlled_press
-		x = -15
+		x = -29
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -384,7 +393,8 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_free_press"
 			add_stability = 0.05
-			add_political_power = -25
+			add_political_power = 50
+			add_ideas = CHA_free_press_idea
 			# Reduces civil war tension
 			subtract_from_variable = { CHA_civil_war_tension = 10 }
 		}
@@ -397,7 +407,7 @@ focus_tree = {
 	focus = {
 		id = CHA_anti_corruption_commission
 		icon = focus_generic_court
-		x = -17
+		x = -31
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -424,7 +434,7 @@ focus_tree = {
 	focus = {
 		id = CHA_peaceful_transition
 		icon = democracy
-		x = -16
+		x = -30
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -455,7 +465,7 @@ focus_tree = {
 	focus = {
 		id = CHA_sharia_in_north
 		icon = islam
-		x = -28
+		x = -57
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -509,7 +519,7 @@ focus_tree = {
 	focus = {
 		id = CHA_wadai_traditions
 		icon = islam
-		x = -30
+		x = -60
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -535,7 +545,7 @@ focus_tree = {
 	focus = {
 		id = CHA_islamic_education
 		icon = islam
-		x = -30
+		x = -60
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -560,7 +570,7 @@ focus_tree = {
 	focus = {
 		id = CHA_kanembu_revival
 		icon = islam
-		x = -28
+		x = -57
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -585,7 +595,7 @@ focus_tree = {
 	focus = {
 		id = CHA_sufi_brotherhood
 		icon = islam
-		x = -28
+		x = -57
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -610,7 +620,7 @@ focus_tree = {
 	focus = {
 		id = CHA_salafist_influence
 		icon = islam
-		x = -26
+		x = -53
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -636,7 +646,7 @@ focus_tree = {
 	focus = {
 		id = CHA_saudi_funding
 		icon = money
-		x = -26
+		x = -53
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -675,7 +685,7 @@ focus_tree = {
 	focus = {
 		id = CHA_wahabi_institutions
 		icon = islam
-		x = -26
+		x = -52
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -688,7 +698,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_wahabi_institutions"
 			add_ideas = CHA_wahabi_mosques
-			add_popularity = { ideology = fascism popularity = 0.10 }
+			add_popularity = { ideology = fascism popularity = 0.05 }
 			recalculate_party = yes
 			add_to_variable = { CHA_religious_tension = 20 }
 		}
@@ -701,7 +711,7 @@ focus_tree = {
 	focus = {
 		id = CHA_boko_haram_contact
 		icon = generic_insurgency
-		x = -24
+		x = -51
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -721,7 +731,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_boko_haram_contact"
 			add_war_support = 0.05
-			army_experience = 20
+			army_experience = 10
 			add_stability = -0.10
 			add_to_variable = { CHA_religious_tension = 25 }
 			# Controversial contact with extremist groups
@@ -741,7 +751,7 @@ focus_tree = {
 	focus = {
 		id = CHA_islamic_state_sahel
 		icon = islamic_military_03
-		x = -25
+		x = -52
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -759,7 +769,7 @@ focus_tree = {
 			}
 			add_ideas = CHA_caliphate_declared
 			add_stability = -0.15
-			add_war_support = 0.20
+			add_war_support = 0.10
 			add_popularity = { ideology = fascism popularity = 0.15 }
 		}
 
@@ -774,7 +784,7 @@ focus_tree = {
 	focus = {
 		id = CHA_african_socialism
 		icon = communism3
-		x = -11
+		x = -20
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -823,7 +833,7 @@ focus_tree = {
 	focus = {
 		id = CHA_nationalize_oil
 		icon = oil_production
-		x = -9
+		x = -18
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -861,7 +871,7 @@ focus_tree = {
 	focus = {
 		id = CHA_state_economy
 		icon = generic_central_planning
-		x = -9
+		x = -14
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -886,7 +896,7 @@ focus_tree = {
 	focus = {
 		id = CHA_land_reform
 		icon = agriculture
-		x = -13
+		x = -24
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -911,7 +921,7 @@ focus_tree = {
 	focus = {
 		id = CHA_collective_farms
 		icon = agriculture
-		x = -13
+		x = -24
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -936,7 +946,7 @@ focus_tree = {
 	focus = {
 		id = CHA_anti_colonial_rhetoric
 		icon = Anti_Colonial
-		x = -11
+		x = -20
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -969,8 +979,8 @@ focus_tree = {
 	focus = {
 		id = CHA_expel_french
 		icon = align_to_france_no
-		x = -12
-		y = 5
+		x = -22
+		y = 6
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
@@ -1008,8 +1018,8 @@ focus_tree = {
 	focus = {
 		id = CHA_african_alliance
 		icon = align_to_africa
-		x = -10
-		y = 5
+		x = -18
+		y = 6
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
@@ -1042,8 +1052,8 @@ focus_tree = {
 	focus = {
 		id = CHA_gaddafi_partnership
 		icon = align_to_libya
-		x = -11
-		y = 6
+		x = -16
+		y = 5
 		relative_position_id = CHA_new_millennium
 
 		cost = 7
@@ -1096,7 +1106,7 @@ focus_tree = {
 	focus = {
 		id = CHA_military_council
 		icon = focus_generic_military_dictatorship
-		x = -20
+		x = -39
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -1142,7 +1152,7 @@ focus_tree = {
 	focus = {
 		id = CHA_purge_civilians
 		icon = focus_generic_secret_police
-		x = -20
+		x = -40
 		y = 7
 		relative_position_id = CHA_new_millennium
 
@@ -1169,7 +1179,7 @@ focus_tree = {
 	focus = {
 		id = CHA_permanent_emergency
 		icon = generic_state_emergency
-		x = -18
+		x = -38
 		y = 7
 		relative_position_id = CHA_new_millennium
 
@@ -1194,7 +1204,7 @@ focus_tree = {
 	focus = {
 		id = CHA_officer_privileges
 		icon = generic_military_budget
-		x = -20
+		x = -39
 		y = 8
 		relative_position_id = CHA_new_millennium
 
@@ -1220,7 +1230,7 @@ focus_tree = {
 	focus = {
 		id = CHA_praetorian_state
 		icon = focus_generic_military_dictatorship
-		x = -20
+		x = -39
 		y = 9
 		relative_position_id = CHA_new_millennium
 
@@ -1266,6 +1276,7 @@ focus_tree = {
 			add_political_power = 50
 			set_temp_variable = { treasury_change = 5 }
 			modify_treasury_effect = yes
+			add_ideas = CHA_development_planning
 		}
 
 		ai_will_do = {
@@ -1516,7 +1527,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_gum_arabic_exports"
-			set_temp_variable = { treasury_change = 10 }
+			set_temp_variable = { treasury_change = 12 }
 			modify_treasury_effect = yes
 			add_stability = 0.02
 		}
@@ -2615,6 +2626,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_address_ethnic_grievances"
 			set_country_flag = CHA_addressed_grievances
+			add_political_power = 75
 			add_stability = 0.05
 			subtract_from_variable = { CHA_civil_war_tension = 15 }
 		}
@@ -2900,7 +2912,8 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_tibesti_question"
-			add_political_power = 25
+			add_political_power = 50
+			country_event = { id = chad.2001 days = 10 }
 		}
 
 		ai_will_do = {
@@ -3845,7 +3858,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_livestock_industry"
-			set_temp_variable = { treasury_change = 3 }
+			set_temp_variable = { treasury_change = 8 }
 			modify_treasury_effect = yes
 			add_stability = 0.02
 			add_ideas = CHA_agricultural_investment
@@ -3888,7 +3901,7 @@ focus_tree = {
 	focus = {
 		id = CHA_national_dialogue
 		icon = focus_generic_court
-		x = -16
+		x = -31
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -3914,7 +3927,7 @@ focus_tree = {
 	focus = {
 		id = CHA_constitutional_reform
 		icon = democracy
-		x = -16
+		x = -31
 		y = 7
 		relative_position_id = CHA_new_millennium
 
@@ -3939,7 +3952,7 @@ focus_tree = {
 	focus = {
 		id = CHA_strengthen_judiciary
 		icon = judical_reform_focus
-		x = -16
+		x = -31
 		y = 8
 		relative_position_id = CHA_new_millennium
 
@@ -3965,7 +3978,7 @@ focus_tree = {
 	focus = {
 		id = CHA_consolidate_power
 		icon = support_the_left_right
-		x = -22
+		x = -44
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -3992,7 +4005,7 @@ focus_tree = {
 	focus = {
 		id = CHA_permanent_rule
 		icon = authoritarian
-		x = -22
+		x = -44
 		y = 7
 		relative_position_id = CHA_new_millennium
 
@@ -5331,7 +5344,7 @@ focus_tree = {
 	focus = {
 		id = CHA_tribal_confederation
 		icon = tribal
-		x = -34
+		x = -69
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -5392,7 +5405,7 @@ focus_tree = {
 	focus = {
 		id = CHA_council_of_elders
 		icon = focus_generic_tribal_council
-		x = -36
+		x = -71
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -5417,7 +5430,7 @@ focus_tree = {
 	focus = {
 		id = CHA_tribal_consultation
 		icon = generic_civil_support
-		x = -36
+		x = -71
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -5444,7 +5457,7 @@ focus_tree = {
 	focus = {
 		id = CHA_power_rotation
 		icon = democracy2
-		x = -34
+		x = -69
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -5473,7 +5486,7 @@ focus_tree = {
 	focus = {
 		id = CHA_tribal_representation
 		icon = generic_election
-		x = -34
+		x = -69
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -5501,7 +5514,7 @@ focus_tree = {
 	focus = {
 		id = CHA_tribal_federalism
 		icon = generic_regional_autonomy
-		x = -32
+		x = -67
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -5526,7 +5539,7 @@ focus_tree = {
 	focus = {
 		id = CHA_regional_autonomy
 		icon = generic_decentralization
-		x = -32
+		x = -67
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -5551,7 +5564,7 @@ focus_tree = {
 	focus = {
 		id = CHA_tribal_constitution
 		icon = generic_constitution
-		x = -34
+		x = -69
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -5581,7 +5594,7 @@ focus_tree = {
 	focus = {
 		id = CHA_tribal_army
 		icon = generic_tribal_army
-		x = -34
+		x = -69
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -5614,7 +5627,7 @@ focus_tree = {
 	focus = {
 		id = CHA_pan_african_vision
 		icon = africa
-		x = -40
+		x = -79
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -5662,7 +5675,7 @@ focus_tree = {
 	focus = {
 		id = CHA_sahel_leadership
 		icon = generic_africa_diplomacy
-		x = -42
+		x = -83
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -5713,7 +5726,7 @@ focus_tree = {
 	focus = {
 		id = CHA_g5_sahel_leadership
 		icon = generic_military_alliance
-		x = -42
+		x = -83
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -5742,7 +5755,7 @@ focus_tree = {
 	focus = {
 		id = CHA_sahel_federation
 		icon = generic_africa_union
-		x = -42
+		x = -83
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -5773,7 +5786,7 @@ focus_tree = {
 	focus = {
 		id = CHA_au_integration
 		icon = generic_african_union
-		x = -40
+		x = -79
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -5798,7 +5811,7 @@ focus_tree = {
 	focus = {
 		id = CHA_african_standby_force
 		icon = generic_multinational_force
-		x = -40
+		x = -79
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -5824,8 +5837,8 @@ focus_tree = {
 	focus = {
 		id = CHA_au_leadership
 		icon = africa_guy_shield
-		x = -40
-		y = 6
+		x = -81
+		y = 7
 		relative_position_id = CHA_new_millennium
 
 		cost = 10
@@ -5850,7 +5863,7 @@ focus_tree = {
 	focus = {
 		id = CHA_kanem_bornu_legacy
 		icon = generic_empire
-		x = -38
+		x = -75
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -5878,7 +5891,7 @@ focus_tree = {
 	focus = {
 		id = CHA_lake_chad_dominion
 		icon = generic_lake
-		x = -38
+		x = -75
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -5903,7 +5916,7 @@ focus_tree = {
 	focus = {
 		id = CHA_african_empire
 		icon = generic_crown
-		x = -38
+		x = -75
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -5936,7 +5949,7 @@ focus_tree = {
 	focus = {
 		id = CHA_seek_foreign_patron
 		icon = generic_great_power
-		x = -47
+		x = -89
 		y = 2
 		relative_position_id = CHA_new_millennium
 
@@ -5984,7 +5997,7 @@ focus_tree = {
 	focus = {
 		id = CHA_french_alignment
 		icon = align_to_france
-		x = -49
+		x = -91
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -6032,7 +6045,7 @@ focus_tree = {
 	focus = {
 		id = CHA_operation_epervier_expansion
 		icon = generic_air_support
-		x = -49
+		x = -91
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -6060,7 +6073,7 @@ focus_tree = {
 	focus = {
 		id = CHA_french_military_advisors
 		icon = generic_military_training
-		x = -50
+		x = -92
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -6084,7 +6097,7 @@ focus_tree = {
 	focus = {
 		id = CHA_cfa_stability
 		icon = generic_currency
-		x = -48
+		x = -90
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -6097,7 +6110,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_cfa_stability"
 			add_stability = 0.05
-			set_temp_variable = { treasury_change = 30 }
+			set_temp_variable = { treasury_change = 15 }
 			modify_treasury_effect = yes
 			swap_ideas = {
 				remove_idea = crippling_corruption
@@ -6113,7 +6126,7 @@ focus_tree = {
 	focus = {
 		id = CHA_french_integration
 		icon = align_to_france
-		x = -49
+		x = -91
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -6146,7 +6159,7 @@ focus_tree = {
 	focus = {
 		id = CHA_chinese_alignment
 		icon = align_to_china
-		x = -45
+		x = -87
 		y = 3
 		relative_position_id = CHA_new_millennium
 
@@ -6194,7 +6207,7 @@ focus_tree = {
 	focus = {
 		id = CHA_bri_infrastructure
 		icon = generic_infrastructure
-		x = -45
+		x = -87
 		y = 4
 		relative_position_id = CHA_new_millennium
 
@@ -6206,8 +6219,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_bri_infrastructure"
-			set_temp_variable = { treasury_change = 40 }
+			set_temp_variable = { treasury_change = 20 }
 			modify_treasury_effect = yes
+			add_stability = -0.05
 			random_owned_controlled_state = {
 				add_building_construction = {
 					type = infrastructure
@@ -6232,7 +6246,7 @@ focus_tree = {
 	focus = {
 		id = CHA_chinese_oil_deal
 		icon = generic_oil
-		x = -46
+		x = -88
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -6245,7 +6259,7 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_chinese_oil_deal"
 			add_ideas = CHA_chinese_oil_investment_idea
-			set_temp_variable = { treasury_change = 25 }
+			set_temp_variable = { treasury_change = 15 }
 			modify_treasury_effect = yes
 		}
 
@@ -6257,7 +6271,7 @@ focus_tree = {
 	focus = {
 		id = CHA_chinese_military_aid
 		icon = generic_military_aid
-		x = -44
+		x = -86
 		y = 5
 		relative_position_id = CHA_new_millennium
 
@@ -6289,7 +6303,7 @@ focus_tree = {
 	focus = {
 		id = CHA_chinese_integration
 		icon = align_to_china
-		x = -45
+		x = -87
 		y = 6
 		relative_position_id = CHA_new_millennium
 
@@ -6302,9 +6316,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus CHA_chinese_integration"
-			add_political_power = 100
+			add_political_power = 50
 			add_stability = 0.05
-			set_temp_variable = { treasury_change = 50 }
+			set_temp_variable = { treasury_change = 25 }
 			modify_treasury_effect = yes
 			add_ideas = CHA_chinese_sphere_idea
 			set_temp_variable = { percent_change = 25 }
@@ -6317,6 +6331,4167 @@ focus_tree = {
 
 		ai_will_do = {
 			factor = 8
+		}
+	}
+
+	#####################################
+	# AUTHORITARIAN EXPANSION: Consolidation Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_co_opt_opposition
+		icon = focus_generic_political_pressure
+		x = -43
+		y = 5
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_zaghawa_patronage }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_co_opt_opposition"
+			add_political_power = 75
+			add_stability = 0.03
+			add_popularity = { ideology = neutrality popularity = 0.03 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_AUTHORITARIAN }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_oil_patronage_network
+		icon = money
+		x = -42
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_co_opt_opposition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_oil_patronage_network"
+			add_ideas = CHA_patronage_network
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_presidential_guard_expansion
+		icon = focus_generic_military_dictatorship
+		x = -42
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_oil_patronage_network }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_presidential_guard_expansion"
+			army_experience = 20
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = CHA
+			}
+			add_war_support = 0.05
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_media_control
+		icon = generic_controlled_press
+		x = -42
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_presidential_guard_expansion }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_media_control"
+			add_ideas = CHA_state_media
+			add_stability = 0.03
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	#####################################
+	# AUTHORITARIAN EXPANSION: 2005-2010 Crisis Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_sudan_proxy_response
+		icon = Generic_Military_Equipment
+		x = -46
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_mahamat_succession }
+
+		available = {
+			OR = {
+				date > 2005.1.1
+				has_country_flag = CHA_sudan_tensions
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sudan_proxy_response"
+			add_ideas = CHA_sudan_proxy_war
+			army_experience = 15
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_rally_zaghawa_fighters
+		icon = generic_infantry
+		x = -46
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_sudan_proxy_response }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_rally_zaghawa_fighters"
+			army_experience = 20
+			add_manpower = 5000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_2008_constitutional_referendum
+		icon = elections_01
+		x = -46
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_rally_zaghawa_fighters }
+
+		available = {
+			OR = {
+				date > 2008.1.1
+				has_completed_focus = CHA_rally_zaghawa_fighters
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_2008_constitutional_referendum"
+			add_political_power = 100
+			add_stability = -0.05
+			country_event = { id = chad.2002 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_2011_constitutional_reform
+		icon = democracy_genericus
+		x = -46
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_2008_constitutional_referendum }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_2011_constitutional_reform"
+			add_political_power = 75
+			add_stability = 0.05
+			add_ideas = CHA_entrenched_rule
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	#####################################
+	# AUTHORITARIAN EXPANSION: Post-2011 Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_libyan_refugee_crisis
+		icon = generic_refugees
+		x = -48
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sudan_proxy_response }
+
+		available = {
+			OR = {
+				date > 2011.1.1
+				has_completed_focus = CHA_sudan_proxy_response
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_libyan_refugee_crisis"
+			add_stability = -0.05
+			add_political_power = 50
+			country_event = { id = chad.2003 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_boko_haram_war
+		icon = generic_counter_terrorism
+		x = -48
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_libyan_refugee_crisis }
+
+		available = {
+			OR = {
+				date > 2014.1.1
+				has_completed_focus = CHA_libyan_refugee_crisis
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_boko_haram_war"
+			add_ideas = CHA_boko_haram_war_idea
+			army_experience = 25
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_deby_fourth_mandate
+		icon = focus_generic_military_dictatorship
+		x = -48
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_boko_haram_war }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_deby_fourth_mandate"
+			add_political_power = 100
+			add_stability = -0.05
+			add_popularity = { ideology = neutrality popularity = 0.05 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_austerity_measures
+		icon = generic_bank
+		x = -48
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_deby_fourth_mandate }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_austerity_measures"
+			add_ideas = CHA_austerity_measures_idea
+			add_stability = -0.05
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# AUTHORITARIAN EXPANSION: 2021 Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_2021_election
+		icon = elections_01
+		x = -44
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_libyan_refugee_crisis }
+
+		available = {
+			OR = {
+				date > 2020.1.1
+				has_completed_focus = CHA_boko_haram_war
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_2021_election"
+			add_political_power = 75
+			country_event = { id = chad.2004 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_deby_assassination
+		icon = generic_assassination
+		x = -44
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_2021_election }
+
+		available = {
+			OR = {
+				date > 2021.4.1
+				has_completed_focus = CHA_2021_election
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_deby_assassination"
+			set_country_flag = CHA_deby_dead
+			country_event = { id = chad.2005 days = 1 }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	#####################################
+	# AUTHORITARIAN EXPANSION: Mahamat TMC Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_tmc_formation
+		icon = focus_generic_military_dictatorship
+		x = -44
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_deby_assassination }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tmc_formation"
+			add_ideas = CHA_tmc_authority
+			add_political_power = 100
+			army_experience = 15
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	focus = {
+		id = CHA_suppress_october_protests
+		icon = generic_state_emergency
+		x = -45
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tmc_formation }
+
+		mutually_exclusive = { focus = CHA_inclusive_national_dialogue_2022 }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_suppress_october_protests"
+			add_ideas = CHA_authoritarian_crackdown
+			add_stability = -0.10
+			add_political_power = 75
+			country_event = { id = chad.2006 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_inclusive_national_dialogue_2022
+		icon = focus_generic_court
+		x = -43
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tmc_formation }
+
+		mutually_exclusive = { focus = CHA_suppress_october_protests }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_inclusive_national_dialogue_2022"
+			add_stability = 0.10
+			add_political_power = 50
+			country_event = { id = chad.2007 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_fifth_republic
+		icon = democracy_genericus
+		x = -44
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = CHA_suppress_october_protests
+			focus = CHA_inclusive_national_dialogue_2022
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_fifth_republic"
+			add_ideas = CHA_fifth_republic_idea
+			add_political_power = 100
+			add_stability = 0.05
+			country_event = { id = chad.2008 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_mahamat_presidency
+		icon = focus_generic_military_dictatorship
+		x = -45
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_fifth_republic }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_mahamat_presidency"
+			add_political_power = 100
+			add_popularity = { ideology = neutrality popularity = 0.10 }
+			recalculate_party = yes
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_permanent_military_state
+		icon = generic_military_budget
+		x = -43
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_fifth_republic }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_permanent_military_state"
+			add_ideas = CHA_entrenched_rule
+			army_experience = 30
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_sahel_strongman
+		icon = focus_generic_national_security
+		x = -44
+		y = 14
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_mahamat_presidency }
+		prerequisite = { focus = CHA_permanent_military_state }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sahel_strongman"
+			add_ideas = CHA_sahel_strongman_idea
+			add_political_power = 150
+			add_stability = 0.10
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	#####################################
+	# DEMOCRATIC EXPANSION: Electoral Reform Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_independent_election_commission
+		icon = elections_01
+		x = -29
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_peaceful_transition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_independent_election_commission"
+			add_ideas = CHA_independent_elections
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 8
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_DEMOCRATIC }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_voter_registration
+		icon = democracy_genericus
+		x = -29
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_independent_election_commission }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_voter_registration"
+			add_stability = 0.05
+			add_political_power = 50
+			add_popularity = { ideology = democratic popularity = 0.05 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_first_free_election
+		icon = elections_01
+		x = -29
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_voter_registration }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_first_free_election"
+			add_political_power = 100
+			add_stability = 0.10
+			add_popularity = { ideology = democratic popularity = 0.10 }
+			recalculate_party = yes
+			country_event = { id = chad.2030 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_second_term_election
+		icon = elections_01
+		x = -29
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_first_free_election }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_second_term_election"
+			add_political_power = 75
+			add_stability = 0.05
+			country_event = { id = chad.2031 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	#####################################
+	# DEMOCRATIC EXPANSION: Civil Society Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_ngo_partnership
+		icon = focus_generic_league_of_nations
+		x = -27
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_peaceful_transition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_ngo_partnership"
+			add_ideas = CHA_civil_society
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_womens_rights
+		icon = generic_democracy
+		x = -27
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_ngo_partnership }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_womens_rights"
+			add_ideas = CHA_gender_equality
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_education_reform
+		icon = generic_research
+		x = -27
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_womens_rights }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_education_reform"
+			add_political_power = 75
+			add_stability = 0.05
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_human_rights_charter
+		icon = democracy
+		x = -27
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_education_reform }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_human_rights_charter"
+			add_ideas = CHA_human_rights_charter_idea
+			add_stability = 0.05
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# DEMOCRATIC EXPANSION: Federal Democracy Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_decentralization
+		icon = democracy_genericus
+		x = -28
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_first_free_election }
+		prerequisite = { focus = CHA_human_rights_charter }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_decentralization"
+			add_ideas = CHA_decentralized_governance
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_regional_elections
+		icon = elections_01
+		x = -28
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_decentralization }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_regional_elections"
+			add_stability = 0.05
+			add_political_power = 75
+			add_popularity = { ideology = democratic popularity = 0.05 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_local_governance
+		icon = democracy_genericus
+		x = -28
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_regional_elections }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_local_governance"
+			add_stability = 0.10
+			add_political_power = 50
+			set_temp_variable = { treasury_change = 5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# DEMOCRATIC EXPANSION: Democratic Foreign Policy Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_western_democracy_support
+		icon = align_to_west
+		x = -30
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_second_term_election }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_western_democracy_support"
+			add_political_power = 75
+			USA = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = democratic_ally
+				}
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = democratic_ally
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_imf_structural_adjustment
+		icon = generic_bank
+		x = -30
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_western_democracy_support }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_imf_structural_adjustment"
+			set_temp_variable = { treasury_change = 20 }
+			modify_treasury_effect = yes
+			add_stability = -0.03
+			swap_ideas = {
+				remove_idea = crippling_corruption
+				add_idea = medium_corruption
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_world_bank_projects
+		icon = generic_bank
+		x = -30
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_imf_structural_adjustment }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_world_bank_projects"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_millennium_development_goals
+		icon = focus_generic_league_of_nations
+		x = -30
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_world_bank_projects }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_millennium_development_goals"
+			add_stability = 0.10
+			add_political_power = 75
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# DEMOCRATIC EXPANSION: Endgame Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_vibrant_democracy
+		icon = democracy
+		x = -29
+		y = 14
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_local_governance }
+		prerequisite = { focus = CHA_millennium_development_goals }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_vibrant_democracy"
+			add_ideas = CHA_democratic_beacon
+			add_political_power = 100
+			set_politics = {
+				ruling_party = democratic
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_democratic_army_reform
+		icon = generic_military_training
+		x = -30
+		y = 15
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_vibrant_democracy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_democratic_army_reform"
+			army_experience = 25
+			add_war_support = 0.05
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_civilian_oversight
+		icon = democracy_genericus
+		x = -28
+		y = 15
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_vibrant_democracy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_civilian_oversight"
+			add_political_power = 75
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_truth_reconciliation
+		icon = focus_generic_court
+		x = -29
+		y = 16
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_democratic_army_reform }
+		prerequisite = { focus = CHA_civilian_oversight }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_truth_reconciliation"
+			add_stability = 0.15
+			add_political_power = 100
+			country_event = { id = chad.2040 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_african_democratic_model
+		icon = align_to_africa
+		x = -29
+		y = 17
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_truth_reconciliation }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_african_democratic_model"
+			add_political_power = 150
+			add_stability = 0.10
+			every_country = {
+				limit = {
+					is_in_africa = yes
+					NOT = { tag = CHA }
+				}
+				add_opinion_modifier = {
+					target = CHA
+					modifier = democratic_ally
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	#####################################
+	# JUNTA EXPANSION: Consolidation
+	#####################################
+
+	focus = {
+		id = CHA_dissolve_parliament
+		icon = generic_state_emergency
+		x = -40
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_praetorian_state }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_dissolve_parliament"
+			add_ideas = CHA_martial_law
+			add_political_power = 100
+			country_event = { id = chad.2100 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 8
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_MILITARY_JUNTA }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_military_governors
+		icon = focus_generic_military_dictatorship
+		x = -40
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_dissolve_parliament }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_military_governors"
+			add_ideas = CHA_military_administration
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_junta_constitution
+		icon = democracy_genericus
+		x = -40
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_military_governors }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_junta_constitution"
+			add_ideas = CHA_junta_constitution_idea
+			add_political_power = 75
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	#####################################
+	# JUNTA EXPANSION: Military Economy
+	#####################################
+
+	focus = {
+		id = CHA_military_industrial_complex
+		icon = generic_military_budget
+		x = -38
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_praetorian_state }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_military_industrial_complex"
+			add_ideas = CHA_military_industrial_complex_idea
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	focus = {
+		id = CHA_conscription_expansion
+		icon = generic_infantry
+		x = -38
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_military_industrial_complex }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_conscription_expansion"
+			add_manpower = 10000
+			army_experience = 15
+			add_war_support = 0.05
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_war_economy
+		icon = generic_military_budget
+		x = -38
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_conscription_expansion }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_war_economy"
+			add_ideas = CHA_total_war_economy
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	#####################################
+	# JUNTA EXPANSION: Sahel Military Power
+	#####################################
+
+	focus = {
+		id = CHA_regional_hegemony
+		icon = focus_generic_national_security
+		x = -35
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_praetorian_state }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_regional_hegemony"
+			add_war_support = 0.10
+			army_experience = 20
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_military_pacts
+		icon = Generic_Military_Equipment
+		x = -35
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_regional_hegemony }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_military_pacts"
+			army_experience = 15
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_fortress_chad
+		icon = Generic_Soldiers_Defense
+		x = -35
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_military_pacts }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_fortress_chad"
+			add_ideas = CHA_fortress_chad_idea
+			capital_scope = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 2081
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_sahel_military_command
+		icon = focus_generic_military_dictatorship
+		x = -35
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_fortress_chad }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sahel_military_command"
+			army_experience = 30
+			add_war_support = 0.10
+			add_political_power = 75
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# JUNTA EXPANSION: International
+	#####################################
+
+	focus = {
+		id = CHA_russian_arms_deal
+		icon = align_to_russia
+		x = -39
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_junta_constitution }
+		prerequisite = { focus = CHA_war_economy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_russian_arms_deal"
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = RUS
+			}
+			add_opinion_modifier = {
+				target = RUS
+				modifier = arms_deal
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_wagner_cooperation
+		icon = generic_military_training
+		x = -39
+		y = 14
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_russian_arms_deal }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_wagner_cooperation"
+			add_ideas = CHA_wagner_cooperation_idea
+			army_experience = 20
+			country_event = { id = chad.2105 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_pivot_from_france
+		icon = align_to_france_no
+		x = -40
+		y = 15
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_wagner_cooperation }
+
+		mutually_exclusive = { focus = CHA_maintain_french_alliance }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_pivot_from_france"
+			if = {
+				limit = { has_idea = CHA_french_military_presence }
+				remove_ideas = CHA_french_military_presence
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = expelled_our_military
+				}
+			}
+			add_political_power = 75
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_maintain_french_alliance
+		icon = align_to_france
+		x = -38
+		y = 15
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_wagner_cooperation }
+
+		mutually_exclusive = { focus = CHA_pivot_from_france }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_maintain_french_alliance"
+			add_stability = 0.05
+			FRA = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = strategic_partnership
+				}
+			}
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_western_legitimacy
+		icon = align_to_west
+		x = -39
+		y = 16
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = CHA_pivot_from_france
+			focus = CHA_maintain_french_alliance
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_western_legitimacy"
+			add_political_power = 75
+			add_stability = 0.05
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# JUNTA EXPANSION: Repression vs Reform Endgame
+	#####################################
+
+	focus = {
+		id = CHA_total_repression
+		icon = generic_state_emergency
+		x = -37
+		y = 14
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sahel_military_command }
+
+		mutually_exclusive = { focus = CHA_controlled_transition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_total_repression"
+			add_ideas = CHA_police_state
+			add_stability = -0.10
+			add_political_power = 100
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_controlled_transition
+		icon = democracy_genericus
+		x = -35
+		y = 14
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sahel_military_command }
+
+		mutually_exclusive = { focus = CHA_total_repression }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_controlled_transition"
+			add_stability = 0.10
+			add_political_power = 50
+			add_popularity = { ideology = democratic popularity = 0.05 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_sham_elections
+		icon = elections_01
+		x = -35
+		y = 15
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_controlled_transition }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sham_elections"
+			add_political_power = 75
+			add_stability = 0.03
+			country_event = { id = chad.2110 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_military_to_civilian
+		icon = democracy_genericus
+		x = -35
+		y = 16
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sham_elections }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_military_to_civilian"
+			add_stability = 0.15
+			add_political_power = 100
+			add_popularity = { ideology = democratic popularity = 0.10 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_eternal_junta
+		icon = focus_generic_military_dictatorship
+		x = -37
+		y = 17
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = {
+			focus = CHA_total_repression
+			focus = CHA_sham_elections
+		}
+		prerequisite = { focus = CHA_western_legitimacy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_eternal_junta"
+			add_ideas = CHA_eternal_junta_idea
+			add_political_power = 150
+			add_stability = 0.05
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	#####################################
+	# ISLAMIST EXPANSION: Moderate Islam Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_islamic_banking
+		icon = generic_bank
+		x = -60
+		y = 5
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_islamic_education }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_islamic_banking"
+			add_ideas = CHA_sharia_finance
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_ISLAMIST }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_islamic_courts
+		icon = focus_generic_court
+		x = -60
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_islamic_banking }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_islamic_courts"
+			add_ideas = CHA_sharia_courts
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_moderate_islamic_republic
+		icon = islam
+		x = -60
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_islamic_courts }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_moderate_islamic_republic"
+			add_ideas = CHA_islamic_republic
+			add_political_power = 100
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_islamic_education_expansion
+		icon = generic_research
+		x = -61
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_moderate_islamic_republic }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_islamic_education_expansion"
+			add_political_power = 75
+			add_stability = 0.05
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_wadai_sultanate_revival
+		icon = islam
+		x = -59
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_moderate_islamic_republic }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_wadai_sultanate_revival"
+			add_ideas = CHA_wadai_sultanate_idea
+			add_political_power = 75
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# ISLAMIST EXPANSION: Radical Islam Sub-Branch
+	#####################################
+
+	focus = {
+		id = CHA_jihadist_recruitment
+		icon = generic_insurgency
+		x = -50
+		y = 5
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_boko_haram_contact }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_jihadist_recruitment"
+			add_manpower = 5000
+			army_experience = 10
+			add_stability = -0.05
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	focus = {
+		id = CHA_foreign_fighters
+		icon = generic_infantry
+		x = -50
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_jihadist_recruitment }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_foreign_fighters"
+			add_manpower = 3000
+			army_experience = 15
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	focus = {
+		id = CHA_purge_christians
+		icon = generic_state_emergency
+		x = -50
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_foreign_fighters }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_purge_christians"
+			add_stability = -0.15
+			add_war_support = 0.10
+			add_political_power = -50
+			add_popularity = { ideology = fascism popularity = 0.10 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = CHA_sahel_jihad
+		icon = islamic_military_03
+		x = -52
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_foreign_fighters }
+		prerequisite = { focus = CHA_islamic_state_sahel }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sahel_jihad"
+			add_ideas = CHA_jihad_declared
+			add_war_support = 0.15
+			army_experience = 25
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
+	focus = {
+		id = CHA_caliphate_expansion
+		icon = islamic_military_03
+		x = -52
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sahel_jihad }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_caliphate_expansion"
+			add_political_power = 100
+			add_war_support = 0.10
+			add_stability = -0.05
+			country_event = { id = chad.2060 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
+	#####################################
+	# ISLAMIST EXPANSION: Islamic Diplomacy
+	#####################################
+
+	focus = {
+		id = CHA_oic_membership
+		icon = focus_generic_league_of_nations
+		x = -57
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_islamic_state_sahel }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_oic_membership"
+			add_political_power = 50
+			SAU = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = religious_cooperation
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_qatar_funding
+		icon = money
+		x = -57
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_oic_membership }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_qatar_funding"
+			set_temp_variable = { treasury_change = 20 }
+			modify_treasury_effect = yes
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_islamic_solidarity
+		icon = islam
+		x = -57
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_qatar_funding }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_islamic_solidarity"
+			add_political_power = 75
+			add_stability = 0.05
+			every_country = {
+				limit = {
+					is_in_africa = yes
+					has_government = fascism
+				}
+				add_opinion_modifier = {
+					target = CHA
+					modifier = religious_cooperation
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# ISLAMIST EXPANSION: Religious Control
+	#####################################
+
+	focus = {
+		id = CHA_religious_police
+		icon = generic_secret_police
+		x = -55
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_islamic_state_sahel }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_religious_police"
+			add_ideas = CHA_morality_police
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	focus = {
+		id = CHA_ban_secularism
+		icon = generic_state_emergency
+		x = -55
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_religious_police }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_ban_secularism"
+			add_political_power = 75
+			add_stability = -0.05
+			add_popularity = { ideology = fascism popularity = 0.05 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
+	focus = {
+		id = CHA_sharia_nationwide
+		icon = islam
+		x = -55
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_ban_secularism }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sharia_nationwide"
+			add_political_power = 100
+			add_stability = -0.10
+			add_popularity = { ideology = fascism popularity = 0.10 }
+			recalculate_party = yes
+			country_event = { id = chad.2065 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
+	focus = {
+		id = CHA_islamic_golden_age
+		icon = islam
+		x = -55
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sharia_nationwide }
+		prerequisite = { focus = CHA_islamic_solidarity }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_islamic_golden_age"
+			add_ideas = CHA_islamic_golden_age_idea
+			add_political_power = 150
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_anti_french_jihad
+		icon = align_to_france_no
+		x = -52
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_caliphate_expansion }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_anti_french_jihad"
+			if = {
+				limit = { has_idea = CHA_french_military_presence }
+				remove_ideas = CHA_french_military_presence
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = expelled_our_military
+				}
+			}
+			add_war_support = 0.10
+			add_political_power = 75
+		}
+
+		ai_will_do = {
+			factor = 2
+		}
+	}
+
+	#####################################
+	# SOCIALIST EXPANSION: Workers' State
+	#####################################
+
+	focus = {
+		id = CHA_workers_councils
+		icon = communism3
+		x = -24
+		y = 5
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_collective_farms }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_workers_councils"
+			add_ideas = CHA_workers_councils_idea
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_SOCIALIST }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_revolutionary_vanguard
+		icon = communism3
+		x = -24
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_workers_councils }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_revolutionary_vanguard"
+			add_ideas = CHA_vanguard_party
+			add_popularity = { ideology = communism popularity = 0.10 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_peoples_republic
+		icon = communism3
+		x = -24
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_revolutionary_vanguard }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_peoples_republic"
+			set_politics = {
+				ruling_party = communism
+			}
+			add_political_power = 100
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_five_year_plan
+		icon = generic_central_planning
+		x = -24
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_peoples_republic }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_five_year_plan"
+			set_temp_variable = { treasury_change = -15 }
+			modify_treasury_effect = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# SOCIALIST EXPANSION: Agrarian Revolution
+	#####################################
+
+	focus = {
+		id = CHA_cooperative_markets
+		icon = agriculture
+		x = -14
+		y = 5
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_state_economy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_cooperative_markets"
+			add_ideas = CHA_food_sovereignty
+			set_temp_variable = { treasury_change = 5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_green_revolution
+		icon = agriculture
+		x = -14
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_cooperative_markets }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_green_revolution"
+			one_random_agriculture_district = yes
+			one_random_agriculture_district = yes
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_water_for_all
+		icon = focus_generic_land_reclamation
+		x = -14
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_green_revolution }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_water_for_all"
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+			add_stability = 0.10
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# SOCIALIST EXPANSION: Anti-Imperialism
+	#####################################
+
+	focus = {
+		id = CHA_nationalize_mines
+		icon = oil_production
+		x = -20
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_expel_french }
+		prerequisite = { focus = CHA_african_alliance }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_nationalize_mines"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_non_aligned_movement
+		icon = focus_generic_league_of_nations
+		x = -20
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_nationalize_mines }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_non_aligned_movement"
+			add_political_power = 75
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_bolivarian_solidarity
+		icon = communism3
+		x = -20
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_non_aligned_movement }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_bolivarian_solidarity"
+			add_political_power = 50
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	focus = {
+		id = CHA_revolutionary_guard
+		icon = generic_infantry
+		x = -20
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_bolivarian_solidarity }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_revolutionary_guard"
+			add_ideas = CHA_revolutionary_military
+			army_experience = 25
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# SOCIALIST EXPANSION: Post-Gaddafi
+	#####################################
+
+	focus = {
+		id = CHA_libyan_collapse_response
+		icon = generic_refugees
+		x = -16
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_gaddafi_partnership }
+
+		available = {
+			OR = {
+				date > 2011.10.1
+				NOT = { LBA = { has_country_leader = { name = "Muammar al-Gaddafi" ruling_only = yes } } }
+			}
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_libyan_collapse_response"
+			add_stability = -0.05
+			add_political_power = 50
+			country_event = { id = chad.2090 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_refugees_as_comrades
+		icon = generic_refugees
+		x = -16
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_libyan_collapse_response }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_refugees_as_comrades"
+			add_manpower = 5000
+			add_stability = 0.03
+			add_political_power = 25
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_sahel_socialist_bloc
+		icon = communism3
+		x = -16
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_refugees_as_comrades }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sahel_socialist_bloc"
+			add_political_power = 75
+			every_country = {
+				limit = {
+					is_in_africa = yes
+					has_government = communism
+				}
+				add_opinion_modifier = {
+					target = CHA
+					modifier = socialist_solidarity
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# SOCIALIST EXPANSION: Endgame
+	#####################################
+
+	focus = {
+		id = CHA_permanent_revolution
+		icon = communism3
+		x = -20
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_revolutionary_guard }
+		prerequisite = { focus = CHA_sahel_socialist_bloc }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_permanent_revolution"
+			add_political_power = 100
+			add_war_support = 0.10
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_peoples_paradise
+		icon = communism3
+		x = -20
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_permanent_revolution }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_peoples_paradise"
+			add_political_power = 150
+			add_stability = 0.15
+			add_popularity = { ideology = communism popularity = 0.10 }
+			recalculate_party = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_african_ussr
+		icon = communism3
+		x = -22
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_peoples_paradise }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_african_ussr"
+			add_political_power = 200
+			add_stability = -0.10
+			add_war_support = 0.15
+			set_cosmetic_tag = CHA_african_soviet
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	focus = {
+		id = CHA_cuban_advisors
+		icon = communism3
+		x = -18
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_peoples_paradise }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_cuban_advisors"
+			army_experience = 30
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+				producer = CHA
+			}
+			add_ideas = CHA_revolutionary_military
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# TRIBAL EXPANSION: Traditional Governance
+	#####################################
+
+	focus = {
+		id = CHA_traditional_justice
+		icon = focus_generic_court
+		x = -71
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_army }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_traditional_justice"
+			add_ideas = CHA_customary_law
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_TRIBAL }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_tribal_land_rights
+		icon = agriculture
+		x = -71
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_traditional_justice }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_land_rights"
+			add_stability = 0.05
+			add_political_power = 50
+			one_random_agriculture_district = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_nomadic_integration
+		icon = generic_refugees
+		x = -71
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_land_rights }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_nomadic_integration"
+			add_ideas = CHA_nomadic_rights
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# TRIBAL EXPANSION: Tribal Economy
+	#####################################
+
+	focus = {
+		id = CHA_tribal_trade_networks
+		icon = money
+		x = -69
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_tribal_army }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_trade_networks"
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_pastoral_development
+		icon = livestock
+		x = -69
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_tribal_trade_networks }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_pastoral_development"
+			set_temp_variable = { treasury_change = 8 }
+			modify_treasury_effect = yes
+			one_random_agriculture_district = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_tribal_resource_sharing
+		icon = money
+		x = -69
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_pastoral_development }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_resource_sharing"
+			add_ideas = CHA_resource_sharing
+			set_temp_variable = { treasury_change = 5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# TRIBAL EXPANSION: Tribal Military
+	#####################################
+
+	focus = {
+		id = CHA_militia_coordination
+		icon = generic_infantry
+		x = -67
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_tribal_army }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_militia_coordination"
+			army_experience = 20
+			add_manpower = 5000
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_desert_cavalry
+		icon = generic_infantry
+		x = -67
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_militia_coordination }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_desert_cavalry"
+			army_experience = 15
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_tribal_defense_pact
+		icon = Generic_Soldiers_Defense
+		x = -67
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_desert_cavalry }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_defense_pact"
+			army_experience = 20
+			add_war_support = 0.10
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# TRIBAL EXPANSION: Regional
+	#####################################
+
+	focus = {
+		id = CHA_tribal_diplomacy
+		icon = focus_generic_league_of_nations
+		x = -70
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_nomadic_integration }
+		prerequisite = { focus = CHA_tribal_resource_sharing }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_diplomacy"
+			add_political_power = 75
+			every_neighbor_country = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = trade_agreement
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_cross_border_tribes
+		icon = generic_refugees
+		x = -70
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_diplomacy }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_cross_border_tribes"
+			add_political_power = 50
+			add_stability = 0.05
+			add_manpower = 3000
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_sahel_tribal_alliance
+		icon = align_to_africa
+		x = -70
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_cross_border_tribes }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sahel_tribal_alliance"
+			add_political_power = 100
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# TRIBAL EXPANSION: Endgame
+	#####################################
+
+	focus = {
+		id = CHA_tribal_golden_age
+		icon = africa_guy_shield
+		x = -68
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_defense_pact }
+		prerequisite = { focus = CHA_tribal_resource_sharing }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_golden_age"
+			add_ideas = CHA_tribal_harmony
+			add_political_power = 100
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_confederation_of_peoples
+		icon = democracy_genericus
+		x = -68
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_golden_age }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_confederation_of_peoples"
+			add_political_power = 75
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_toubou_reconciliation
+		icon = focus_generic_court
+		x = -67
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_defense_pact }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_toubou_reconciliation"
+			add_stability = 0.10
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_tribal_education
+		icon = generic_research
+		x = -71
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_nomadic_integration }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_education"
+			add_political_power = 50
+			set_temp_variable = { treasury_change = -5 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_traditional_medicine
+		icon = generic_research
+		x = -71
+
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_tribal_education }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_traditional_medicine"
+			add_stability = 0.05
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_tribal_parliament
+		icon = democracy_genericus
+		x = -69
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sahel_tribal_alliance }
+		prerequisite = { focus = CHA_confederation_of_peoples }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_tribal_parliament"
+			add_political_power = 150
+			add_stability = 0.15
+			country_event = { id = chad.2080 days = 10 }
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# PAN-AFRICAN EXPANSION: CEMAC Leadership
+	#####################################
+
+	focus = {
+		id = CHA_cemac_reform
+		icon = focus_generic_league_of_nations
+		x = -83
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_sahel_federation }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_cemac_reform"
+			add_political_power = 75
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_PANAFRICAN }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_common_market
+		icon = money
+		x = -83
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_cemac_reform }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_common_market"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_free_movement
+		icon = generic_refugees
+		x = -83
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_common_market }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_free_movement"
+			add_stability = 0.05
+			add_political_power = 50
+			add_manpower = 5000
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# PAN-AFRICAN EXPANSION: Military Pan-Africanism
+	#####################################
+
+	focus = {
+		id = CHA_pan_african_army
+		icon = generic_infantry
+		x = -79
+		y = 6
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_african_standby_force }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_pan_african_army"
+			army_experience = 25
+			add_war_support = 0.10
+			add_manpower = 5000
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_anti_colonial_liberation
+		icon = Anti_Colonial
+		x = -79
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_pan_african_army }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_anti_colonial_liberation"
+			add_political_power = 75
+			add_war_support = 0.05
+			FRA = {
+				add_opinion_modifier = {
+					target = CHA
+					modifier = anti_colonial_stance
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_peacekeeping_force
+		icon = focus_generic_league_of_nations
+		x = -79
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_anti_colonial_liberation }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_peacekeeping_force"
+			army_experience = 20
+			add_stability = 0.05
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# PAN-AFRICAN EXPANSION: Kanem-Bornu Deep
+	#####################################
+
+	focus = {
+		id = CHA_restore_kanem_borders
+		icon = africa_guy_shield
+		x = -75
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_african_empire }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_restore_kanem_borders"
+			add_political_power = 100
+			add_war_support = 0.15
+			country_event = { id = chad.2080 days = 5 }
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_lake_chad_basin_authority
+		icon = focus_generic_land_reclamation
+		x = -75
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_restore_kanem_borders }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_lake_chad_basin_authority"
+			add_political_power = 75
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_imperial_administration
+		icon = focus_generic_military_dictatorship
+		x = -75
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_lake_chad_basin_authority }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_imperial_administration"
+			add_political_power = 100
+			add_stability = 0.05
+			add_war_support = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	#####################################
+	# PAN-AFRICAN EXPANSION: Cultural
+	#####################################
+
+	focus = {
+		id = CHA_negritude_movement
+		icon = generic_research
+		x = -77
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_african_empire }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_negritude_movement"
+			add_ideas = CHA_cultural_renaissance
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_pan_african_university
+		icon = generic_research
+		x = -77
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_negritude_movement }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_pan_african_university"
+			add_ideas = CHA_intellectual_liberation
+			set_temp_variable = { treasury_change = -10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_african_languages_revival
+		icon = generic_research
+		x = -77
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_pan_african_university }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_african_languages_revival"
+			add_stability = 0.05
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	focus = {
+		id = CHA_decolonize_minds
+		icon = Anti_Colonial
+		x = -77
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_african_languages_revival }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_decolonize_minds"
+			add_political_power = 75
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+	}
+
+	#####################################
+	# PAN-AFRICAN EXPANSION: Endgame
+	#####################################
+
+	focus = {
+		id = CHA_united_states_of_africa
+		icon = align_to_africa
+		x = -81
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_peacekeeping_force }
+		prerequisite = { focus = CHA_free_movement }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_united_states_of_africa"
+			add_political_power = 100
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_continental_parliament
+		icon = democracy_genericus
+		x = -80
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_united_states_of_africa }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_continental_parliament"
+			add_ideas = CHA_continental_parliament_idea
+			add_political_power = 75
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_african_currency
+		icon = generic_currency
+		x = -82
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_united_states_of_africa }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_african_currency"
+			set_temp_variable = { treasury_change = 20 }
+			modify_treasury_effect = yes
+			add_stability = 0.05
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_pan_african_defense
+		icon = Generic_Military_Equipment
+		x = -81
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_continental_parliament }
+		prerequisite = { focus = CHA_african_currency }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_pan_african_defense"
+			army_experience = 30
+			add_war_support = 0.10
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_african_renaissance
+		icon = align_to_africa
+		x = -79
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_pan_african_defense }
+		prerequisite = { focus = CHA_decolonize_minds }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_african_renaissance"
+			add_ideas = CHA_african_renaissance_idea
+			add_political_power = 150
+			add_stability = 0.15
+		}
+
+		ai_will_do = {
+			factor = 8
+		}
+	}
+
+	#####################################
+	# NEOCOLONIAL EXPANSION: French Deep
+	#####################################
+
+	focus = {
+		id = CHA_operation_barkhane
+		icon = generic_air_support
+		x = -92
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_french_integration }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_operation_barkhane"
+			add_ideas = CHA_barkhane_base
+			army_experience = 15
+		}
+
+		ai_will_do = {
+			factor = 7
+			modifier = {
+				factor = 100
+				has_game_rule = { rule = CHA_ai_behavior option = CHA_NEOCOLONIAL }
+			}
+		}
+	}
+
+	focus = {
+		id = CHA_french_base_rights
+		icon = align_to_france
+		x = -92
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_operation_barkhane }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_french_base_rights"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_francafrique_elite
+		icon = money
+		x = -92
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_french_base_rights }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_francafrique_elite"
+			add_political_power = 100
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+			add_stability = -0.05
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	#####################################
+	# NEOCOLONIAL EXPANSION: Chinese Deep
+	#####################################
+
+	focus = {
+		id = CHA_special_economic_zone
+		icon = generic_bank
+		x = -86
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_chinese_integration }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_special_economic_zone"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 7
+		}
+	}
+
+	focus = {
+		id = CHA_chinese_tech_transfer
+		icon = generic_research
+		x = -86
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_special_economic_zone }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_chinese_tech_transfer"
+			add_political_power = 50
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_belt_road_hub
+		icon = generic_infrastructure
+		x = -86
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_chinese_tech_transfer }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_belt_road_hub"
+			add_ideas = CHA_trade_hub
+			set_temp_variable = { treasury_change = 20 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	#####################################
+	# NEOCOLONIAL EXPANSION: Playing Both Sides
+	#####################################
+
+	focus = {
+		id = CHA_balanced_dependency
+		icon = generic_great_power
+		x = -89
+		y = 7
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = CHA_french_integration
+			focus = CHA_chinese_integration
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_balanced_dependency"
+			add_political_power = 75
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_competitive_bidding
+		icon = money
+		x = -89
+		y = 8
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_balanced_dependency }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_competitive_bidding"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			add_stability = 0.03
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_sovereign_debt
+		icon = generic_bank
+		x = -89
+		y = 9
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_competitive_bidding }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sovereign_debt"
+			add_ideas = CHA_debt_trap
+			set_temp_variable = { treasury_change = 25 }
+			modify_treasury_effect = yes
+			add_stability = -0.05
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_debt_renegotiation
+		icon = focus_generic_court
+		x = -89
+		y = 10
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_sovereign_debt }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_debt_renegotiation"
+			add_political_power = 75
+			add_stability = 0.05
+			set_temp_variable = { treasury_change = 10 }
+			modify_treasury_effect = yes
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	#####################################
+	# NEOCOLONIAL EXPANSION: Endgame
+	#####################################
+
+	focus = {
+		id = CHA_vassal_state
+		icon = generic_great_power
+		x = -90
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = CHA_francafrique_elite
+			focus = CHA_belt_road_hub
+		}
+
+		mutually_exclusive = { focus = CHA_break_free }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_vassal_state"
+			set_temp_variable = { treasury_change = 30 }
+			modify_treasury_effect = yes
+			add_stability = 0.05
+			add_political_power = -50
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_break_free
+		icon = Anti_Colonial
+		x = -88
+		y = 11
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = CHA_francafrique_elite
+			focus = CHA_belt_road_hub
+		}
+
+		mutually_exclusive = { focus = CHA_vassal_state }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_break_free"
+			add_political_power = 100
+			add_stability = -0.05
+		}
+
+		ai_will_do = {
+			factor = 4
+		}
+	}
+
+	focus = {
+		id = CHA_sovereign_chad
+		icon = africa_guy_shield
+		x = -88
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = { focus = CHA_break_free }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_sovereign_chad"
+			add_ideas = CHA_sovereign_chad_idea
+			add_political_power = 100
+			add_stability = 0.10
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_loyal_client
+		icon = generic_great_power
+		x = -90
+		y = 12
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = { focus = CHA_vassal_state }
+		prerequisite = { focus = CHA_debt_renegotiation }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_loyal_client"
+			set_temp_variable = { treasury_change = 25 }
+			modify_treasury_effect = yes
+			add_stability = 0.10
+			add_political_power = 50
+		}
+
+		ai_will_do = {
+			factor = 5
+		}
+	}
+
+	focus = {
+		id = CHA_economic_diversification_neo
+		icon = african_investment
+		x = -89
+		y = 13
+		relative_position_id = CHA_new_millennium
+
+		cost = 7
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		prerequisite = {
+			focus = CHA_sovereign_chad
+			focus = CHA_loyal_client
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_economic_diversification_neo"
+			set_temp_variable = { treasury_change = 15 }
+			modify_treasury_effect = yes
+			add_stability = 0.05
+			add_political_power = 75
+		}
+
+		ai_will_do = {
+			factor = 6
+		}
+	}
+
+	focus = {
+		id = CHA_foreign_trained_army_neo
+		icon = generic_military_training
+		x = -89
+		y = 14
+		relative_position_id = CHA_new_millennium
+
+		cost = 10
+
+		search_filters = { FOCUS_FILTER_MILITARY }
+
+		prerequisite = { focus = CHA_economic_diversification_neo }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus CHA_foreign_trained_army_neo"
+			army_experience = 30
+			add_war_support = 0.10
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+				producer = CHA
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
 		}
 	}
 }
