@@ -792,6 +792,420 @@ JAP_domestic_policy_decision = {
 			remove_ideas = JAP_focus_thermal_power_idea
     	}
 	}
+	JAP_expand_national_oil_stockpiles = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = oil
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			set_temp_variable = { temp_opinion = 5 }
+			change_fossil_fuel_industry_opinion = yes
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 3
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_saudi_aramco_crude_storage = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		visible = {
+			has_completed_focus = JAP_rare_earth_resilience
+			SAU = {
+				exists = yes
+				war_with_us = no
+			}
+		}
+		icon = oil
+
+		targets = { SAU }
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 2
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 2
+				}
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = SAU }
+			set_temp_variable = { influence_target = JAP }
+			change_influence_percentage = yes
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_overseas_upstream_equity = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = nko_resource_extraction_button
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			# add 1 trade resource factory thing
+		}
+
+		modifier = {
+			bureaucracy_cost_multiplier_modifier = 0.10
+			corporate_tax_income_multiplier_modifier = -0.05
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_minamitori_deep_sea_trial = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = tungsten
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			set_temp_variable = { temp_opinion = 5 }
+			change_fossil_fuel_industry_opinion = yes
+			if = {
+				limit = { is_special_project_completed = sp:sp_deep_sea_mining }
+				random_owned_state = {
+					add_resource = {
+						type = tungsten
+						amount = 6
+					}
+					add_resource = {
+						type = aluminium
+						amount = 6
+					}
+					add_resource = {
+						type = chromium
+						amount = 6
+					}
+				}
+			}
+			else = {
+				sp:sp_deep_sea_mining = {
+					add_project_progress_ratio = constant:sp_progress.gain.medium
+				}
+				random_owned_state = {
+					add_resource = {
+						type = tungsten
+						amount = 4
+					}
+				}
+				custom_effect_tooltip = JAP_minamitori_deep_sea_trial_tt
+			}
+		}
+
+		modifier = {
+			production_speed_buildings_factor = -0.075
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_mitsubishi_escrap = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = aluminium
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			# 5% increased precious materials
+		}
+
+		modifier = {
+			military_industrial_organization_task_capacity = -1
+			military_factories_productivity = -0.05
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_kosaka_tsl_furnace = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = aluminium
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			616 = {
+				add_resource = {
+					type = aluminium
+					amount = 6
+				}
+				add_resource = {
+					type = chromium
+					amount = 6
+				}
+			}
+		}
+
+		modifier = {
+			return_on_investment_modifier = -1
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_green_ship_recycling = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = steel
+
+		cost = 150
+
+		days_remove = 200
+
+		remove_effect = {
+			610 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_resource = {
+					type = steel
+					amount = 6
+				}
+			}
+			add_ideas = JAP_green_ship_recycling_idea
+		}
+
+		modifier = {
+			industrial_capacity_dockyard = -0.15
+			production_speed_dockyard_factor = -0.15
+			civilian_factory_use = 5
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_horizontal_recycling_expansion_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = aluminium
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			# 5% increased light materials
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+
+	}
+	JAP_rubber_butadience_brench_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = rubber
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			611 = {
+				add_resource = {
+					type = rubber
+					amount = 6
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	JAP_bibi_world_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = microchip
+
+		cost = 75
+
+		days_remove = 100
+
+		remove_effect = {
+			617 = {
+				add_building_construction = {
+					type = microchip_plant
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = renewable_energy_infra
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 15
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	JAP_yufutsu_oil_expansion_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = oil
+
+		cost = 125
+
+		days_remove = 150
+
+		remove_effect = {
+			617 = {
+				add_resource = {
+					type = oil
+					amount = 8
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 10
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	JAP_nankai_through_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = oil
+
+		cost = 125
+
+		days_remove = 150
+
+		remove_effect = {
+			613 = {
+				add_resource = {
+					type = oil
+					amount = 8
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 10
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+	JAP_toray_expansion_program_decision = {
+		allowed = { original_tag = JAP }
+		available = { has_completed_focus = JAP_rare_earth_resilience }
+		icon = oil
+
+		cost = 125
+
+		days_remove = 150
+
+		remove_effect = {
+			random_owned_state = {
+				add_building_construction = {
+					type = composite_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+
+		modifier = {
+			civilian_factory_use = 10
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
 }
 JAP_article_nine_balance_of_power_category = {
 	JAP_restore_guarantee = {
