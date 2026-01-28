@@ -157,7 +157,7 @@ set_starting_org_locations = {
 
 #System Pulses
 counter_terror_global = {
-	check_for_internal_terror_attacks = yes
+	#check_for_internal_terror_attacks = yes
 	check_for_global_attacks = yes
 	global_war_on_terror = yes
 }
@@ -177,8 +177,8 @@ counter_terror_individual = {
 	}
 	#Next, for each nation, calculate their potential radicalization
 	#This builds off social conservatism;
-	calculate_radicalization = yes
-	calculate_internal_threat = yes
+	#calculate_radicalization = yes
+	#calculate_internal_threat = yes
 	calculate_national_global_threat_detection = yes
 	missile_ui_update = yes
 }
@@ -395,12 +395,8 @@ calculate_national_global_threat_detection = {
 		set_temp_variable = { op_country = state_tracker.controller }
 		var:cur_nat = {
 			set_temp_variable = { cur_intel = civilian_intel@var:op_country }
-			multiply_temp_variable = { cur_intel = 100 }
 			add_to_temp_variable = { cur_intel = base_detection }
 			multiply_temp_variable = { cur_intel = 0.75 }
-			set_temp_variable = { net_cover = network_national_coverage@var:op_country }
-			multiply_temp_variable = { net_cover = 0.25 }
-			add_to_temp_variable = { cur_intel = net_cover }
 			multiply_temp_variable = { cur_intel = base_mod }
 			set_variable = { international_terror_org_intel^i = cur_intel }
 		}
@@ -409,12 +405,8 @@ calculate_national_global_threat_detection = {
 			every_neighbor_country = {
 				var:cur_nat = {
 					set_temp_variable = { cur_intel = civilian_intel@THIS }
-					multiply_variable = { cur_intel = 100 }
 					add_to_temp_variable = { cur_intel = base_detection }
 					multiply_temp_variable = { cur_intel = 0.15 }
-					set_temp_variable = { net_cover = network_national_coverage@THIS }
-					multiply_temp_variable = { net_cover = 0.05 }
-					add_to_temp_variable = { cur_intel = net_cover }
 					multiply_temp_variable = { cur_intel = base_mod }
 					add_to_variable = { international_terror_org_intel^i = cur_intel }
 				}
