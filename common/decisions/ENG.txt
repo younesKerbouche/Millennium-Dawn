@@ -2032,7 +2032,7 @@ ENG_monarchy_decision_category = {
 		visible = {
 			OR = {
 				is_debug = yes
-				has_completed_focus = ENG_princess_admiral_royal_navy
+				has_completed_focus = ENG_quiet_professionalism
 			}
 		}
 
@@ -2047,16 +2047,228 @@ ENG_monarchy_decision_category = {
 		}
 
 		complete_effect = {
-			set_country_flag = ENG_anne_military_readiness_decision_activated
+			set_country_flag = ENG_anne_tourism_decision_activated
 		}
 
 		remove_effect = {
-			clr_country_flag = ENG_anne_military_readiness_decision_activated
+			clr_country_flag = ENG_anne_tourism_decision_activated
 		}
 
 		modifier = {
 			corporate_tax_income_multiplier_modifier = 0.025
 			political_power_cost = 0.15
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_edward_beach_youth_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_anne
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_chairman_international_award
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_edward
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_edward_beach_youth_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_edward_beach_youth_decision_activated
+			random_owned_state = {
+				add_dynamic_modifier = {
+					modifier = ENG_edward_beach_youth_modifier
+					days = 360
+				}
+			}
+		}
+
+		modifier = {
+			political_power_cost = 0.05
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_edward_global_youth_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_anne
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_commonwealth_youth_outreach
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_edward
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_edward_global_youth_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_edward_global_youth_decision_activated
+		}
+
+		modifier = {
+			foreign_influence_defense_modifier = -0.075
+			consumer_goods_factor = 0.025
+			monthly_population = 0.025
+			research_speed_factor = 0.035
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_edward_arts_culture_patronage_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_anne
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_commonwealth_youth_outreach
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_edward
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_edward_arts_culture_patronage_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_edward_arts_culture_patronage_decision_activated
+		}
+
+		modifier = {
+			office_park_income_tax_modifier = 0.05
+			civilian_industry_tax_modifier = 0.05
+			dockyard_income_tax_modifier = -0.05
+			military_industry_tax_modifier = -0.05
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_edward_production_guild_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_anne
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_commonwealth_youth_outreach
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_edward
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_edward_production_guild_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_edward_production_guild_decision_activated
+		}
+
+		modifier = {
+			civilian_factories_productivity = 0.05
+			microchip_plants_productivity_modifier = 0.05
+			corporate_tax_income_multiplier_modifier = -0.075
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_edward_veteran_support_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_anne
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_commonwealth_youth_outreach
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_edward
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_edward_veteran_support_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_edward_veteran_support_decision_activated
+		}
+
+		modifier = {
+			personnel_cost_multiplier_modifier = 0.05
+			consumer_goods_expected_value = 0.05
+			social_cost_multiplier_modifier = -0.05
+			training_time_army_factor = -0.05
 		}
 
 		ai_will_do = {
