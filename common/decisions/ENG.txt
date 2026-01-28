@@ -2065,7 +2065,7 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_edward_beach_youth_decision = {
 		allowed = { always = yes }
-		icon = GFX_ENG_decision_anne
+		icon = GFX_ENG_decision_edward
 
 		days_remove = 180
 
@@ -2110,7 +2110,7 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_edward_global_youth_decision = {
 		allowed = { always = yes }
-		icon = GFX_ENG_decision_anne
+		icon = GFX_ENG_decision_edward
 
 		days_remove = 180
 
@@ -2152,7 +2152,7 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_edward_arts_culture_patronage_decision = {
 		allowed = { always = yes }
-		icon = GFX_ENG_decision_anne
+		icon = GFX_ENG_decision_edward
 
 		days_remove = 180
 
@@ -2194,14 +2194,14 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_edward_production_guild_decision = {
 		allowed = { always = yes }
-		icon = GFX_ENG_decision_anne
+		icon = GFX_ENG_decision_edward
 
 		days_remove = 180
 
 		visible = {
 			OR = {
 				is_debug = yes
-				has_completed_focus = ENG_commonwealth_youth_outreach
+				has_completed_focus = ENG_production_guild_patronage
 			}
 		}
 
@@ -2235,14 +2235,14 @@ ENG_monarchy_decision_category = {
 	}
 	ENG_edward_veteran_support_decision = {
 		allowed = { always = yes }
-		icon = GFX_ENG_decision_anne
+		icon = GFX_ENG_decision_edward
 
 		days_remove = 180
 
 		visible = {
 			OR = {
 				is_debug = yes
-				has_completed_focus = ENG_commonwealth_youth_outreach
+				has_completed_focus = ENG_steady_hand
 			}
 		}
 
@@ -2269,6 +2269,256 @@ ENG_monarchy_decision_category = {
 			consumer_goods_expected_value = 0.05
 			social_cost_multiplier_modifier = -0.05
 			training_time_army_factor = -0.05
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_philip_award_medal_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_phillip
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_prince_phillip_medal
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_phillip
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_philip_award_medal_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_philip_award_medal_decision_activated
+			random_list = {
+				50 = {
+					add_tech_bonus = {
+						name = ENG_philip_award_medal_decision
+						uses = 1
+						bonus = 0.20
+						category = CAT_industry
+					}
+				}
+				50 = {
+					random_list = {
+						25 = {
+							random_scientist = {
+								add_scientist_xp = {
+									experience = 500
+									specialization = specialization_land
+								}
+							}
+						}
+						25 = {
+							random_scientist = {
+								add_scientist_xp = {
+									experience = 500
+									specialization = specialization_air
+								}
+							}
+						}
+						25 = {
+							random_scientist = {
+								add_scientist_xp = {
+									experience = 500
+									specialization = specialization_naval
+								}
+							}
+						}
+						25 = {
+							random_scientist = {
+								add_scientist_xp = {
+									experience = 500
+									specialization = specialization_nuclear
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		modifier = {
+			bureaucracy_cost_multiplier_modifier = 0.05
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_philip_award_expansion_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_phillip
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_prince_phillip_medal
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_phillip
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_philip_award_expansion_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_philip_award_expansion_decision_activated
+		}
+
+		modifier = {
+			social_cost_multiplier_modifier = 0.05
+			research_speed_factor = 0.075
+			scientist_xp_gain_factor = 0.075
+			production_speed_buildings_factor = 0.05
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_philip_trust_funds_grants_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_phillip
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_duke_charities
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_phillip
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_philip_trust_funds_grants_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_philip_trust_funds_grants_decision_activated
+		}
+
+		modifier = {
+			bureaucracy_cost_multiplier_modifier = 0.10
+			consumer_goods_factor = -0.075
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_philip_faith_conservation_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_phillip
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_wwf_president_emeritus
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_phillip
+				}
+				always = no
+			}
+			has_idea = the_clergy
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_philip_faith_conservation_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_philip_faith_conservation_decision_activated
+			set_temp_variable = { the_clergy_opinion_min = 2 }
+			change_the_clergy_opinion = yes
+		}
+
+		modifier = {
+			drift_defence_factor = -0.10
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+	ENG_philip_innovation_recognition_decision = {
+		allowed = { always = yes }
+		icon = GFX_ENG_decision_phillip
+
+		days_remove = 180
+
+		visible = {
+			OR = {
+				is_debug = yes
+				has_completed_focus = ENG_strength_and_stay
+			}
+		}
+
+		available = {
+			custom_override_tooltip = {
+				tooltip = {
+					localization_key = ENG_decision_can_only_be_completed_by_advisor_tt
+					CHARACTER = ENG_prince_phillip
+				}
+				always = no
+			}
+		}
+
+		complete_effect = {
+			set_country_flag = ENG_philip_innovation_recognition_decision_activated
+		}
+
+		remove_effect = {
+			clr_country_flag = ENG_philip_innovation_recognition_decision_activated
+		}
+
+		modifier = {
+			productivity_growth_modifier = 0.02
+			production_factory_efficiency_gain_factor = 0.05
+			military_industrial_organization_research_bonus = 0.05
 		}
 
 		ai_will_do = {

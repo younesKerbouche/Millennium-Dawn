@@ -3051,7 +3051,7 @@ country_event = {
 				NOT = { has_completed_focus = ENG_steady_hand }
 			}
 			activate_shine_on_focus = ENG_steady_hand
-			set_country_flag = { flag = ENG_steady_handin_progress_flag days = @inner_circle_time_tier_4_flag value = 1 }
+			set_country_flag = { flag = ENG_steady_hand_in_progress_flag days = @inner_circle_time_tier_4_flag value = 1 }
 			country_event = { id = ENG_inner_circle_edward.02 days = @inner_circle_time_tier_4 }
 		}
 		else = { #Debug logs
@@ -3194,6 +3194,220 @@ country_event = {
 						NOT = { has_completed_focus = ENG_production_guild_patronage }
 					}
 					activate_decision = ENG_edward_production_guild_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_edward_veteran_support_decision_activated
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_steady_hand }
+					}
+					activate_decision = ENG_edward_veteran_support_decision
+				}
+			}
+		}
+		country_event = {
+			id = ENG_inner_circle_edward.03
+			days = 150
+			random_days = 50
+		}
+	}
+}
+country_event = {
+	id = ENG_inner_circle_philip.01
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_duke_charities
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 4 }
+			check_variable = { ENG_ascended_advisor_2 = 4 }
+			check_variable = { ENG_ascended_advisor_3 = 4 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_international_award_conference }
+			}
+			activate_shine_on_focus = ENG_international_award_conference
+			set_country_flag = { flag = ENG_international_award_conference_in_progress_flag days = @inner_circle_time_tier_1_flag value = 1 }
+			country_event = { id = ENG_inner_circle_philip.02 days = @inner_circle_time_tier_1 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_wwf_president_emeritus }
+			}
+			activate_shine_on_focus = ENG_wwf_president_emeritus
+			set_country_flag = { flag = ENG_wwf_president_emeritus_in_progress_flag days = @inner_circle_time_tier_2_flag value = 1 }
+			country_event = { id = ENG_inner_circle_philip.02 days = @inner_circle_time_tier_2 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_prince_phillip_medal }
+			}
+			activate_shine_on_focus = ENG_prince_phillip_medal
+			set_country_flag = { flag = ENG_prince_phillip_medal_in_progress_flag days = @inner_circle_time_tier_3_flag value = 1 }
+			country_event = { id = ENG_inner_circle_philip.02 days = @inner_circle_time_tier_3 }
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = ENG_strength_and_stay }
+			}
+			activate_shine_on_focus = ENG_strength_and_stay
+			set_country_flag = { flag = ENG_strength_and_stay_in_progress_flag days = @inner_circle_time_tier_4_flag value = 1 }
+			country_event = { id = ENG_inner_circle_philip.02 days = @inner_circle_time_tier_4 }
+		}
+		else = { #Debug logs
+			log = "SOMETHING WENT WRONG WITH EDWARD's FOCUS BRANCH - Cannot start new focus"
+		}
+	}
+}
+country_event = {
+	id = ENG_inner_circle_philip.02
+
+	hidden = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_chairman_international_award
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 4 }
+			check_variable = { ENG_ascended_advisor_2 = 4 }
+			check_variable = { ENG_ascended_advisor_3 = 4 }
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_international_award_conference
+			}
+			complete_national_focus = {
+				focus = ENG_international_award_conference
+				use_side_message = yes
+				originator_name = ENG_prince_phillip
+			}
+			clr_country_flag = ENG_international_award_conference_in_progress_flag
+			country_event = { id = ENG_inner_circle_philip.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_wwf_president_emeritus
+			}
+			complete_national_focus = {
+				focus = ENG_wwf_president_emeritus
+				use_side_message = yes
+				originator_name = ENG_prince_phillip
+			}
+			clr_country_flag = ENG_wwf_president_emeritus_in_progress_flag
+			country_event = { id = ENG_inner_circle_philip.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_prince_phillip_medal
+			}
+			complete_national_focus = {
+				focus = ENG_prince_phillip_medal
+				use_side_message = yes
+				originator_name = ENG_prince_phillip
+			}
+			clr_country_flag = ENG_prince_phillip_medal_in_progress_flag
+			country_event = { id = ENG_inner_circle_philip.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+
+		}
+		else_if = {
+			limit = {
+				has_shine_effect_on_focus = ENG_strength_and_stay
+			}
+			complete_national_focus = {
+				focus = ENG_strength_and_stay
+				use_side_message = yes
+				originator_name = ENG_prince_phillip
+			}
+			clr_country_flag = ENG_strength_and_stay_in_progress_flag
+			country_event = { id = ENG_inner_circle_philip.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+		}
+		else = {
+			log = "SOMETHING WENT WRONG WITH EDWARD's FOCUS BRANCH - Cannot complete focus"
+		}
+	}
+}
+country_event = {
+    id = ENG_inner_circle_philip.03
+    hidden = yes
+
+    is_triggered_only = yes
+
+	trigger = {
+		has_completed_focus = ENG_duke_charities
+		OR = {
+			check_variable = { ENG_ascended_advisor_1 = 5 }
+			check_variable = { ENG_ascended_advisor_2 = 5 }
+			check_variable = { ENG_ascended_advisor_3 = 5 }
+		}
+	}
+
+    immediate = {
+		if = {
+			limit = {
+				has_completed_focus = ENG_duke_charities
+			}
+			random_list = {
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_philip_award_medal_decision_activated
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_prince_phillip_medal }
+					}
+					activate_decision = ENG_philip_award_medal_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_philip_award_expansion_decision_activated
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_prince_phillip_medal }
+					}
+					activate_decision = ENG_philip_award_expansion_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_philip_trust_funds_grants_decision_activated
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_duke_charities }
+					}
+					activate_decision = ENG_philip_trust_funds_grants_decision
+				}
+				25 = {
+					modifier = {
+						factor = 0
+						has_country_flag = ENG_philip_faith_conservation_decision_activated
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_completed_focus = ENG_wwf_president_emeritus }
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_idea = the_clergy }
+					}
+					activate_decision = ENG_philip_faith_conservation_decision
 				}
 				25 = {
 					modifier = {
