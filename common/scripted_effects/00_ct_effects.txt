@@ -3,17 +3,6 @@
 #DO NOT MESS WITH THIS CODE UNLESS YOU UNDERSTAND HOW ARRAYS, LOOPS, AND SORTING THOSE WORK
 #Setup Functions
 counter_terror_nation_startup = {
-	#tracks all starting values for internal threats and international threat detection
-	set_variable = { internal_terror_threat = 0 }
-	#This mod is add to count for both adding / subtracting terror levels
-	set_variable = { internal_terror_threat_mod = 0 }
-	set_variable = { internal_radicalization = 0 }
-	#This is multiply to represent slow increases, so percent based
-	set_variable = { internal_rad_mod = 0 }
-	set_variable = { internal_threat_detection = 0 }
-	set_variable = { internal_threat_detection_mod = 0 }
-	set_variable = { international_ct_support = 0 }
-	#Sets the base modifier for gains off intel
 	set_variable = { global_terror_org_detection_base = 0 }
 	set_variable = { global_terror_threat_detection_mod = 0 }
 	#setup the basic array for the global terror orgs
@@ -49,6 +38,75 @@ setup_all_orgs = {
 	add_to_array = { global.inactive_terror_orgs = 8 }
 	add_to_array = { global.inactive_terror_orgs = 9 }
 	add_to_array = { global.inactive_terror_orgs = 10 }
+}
+
+add_new_org = {
+	set_temp_variable = { maxer = global.inactive_terror_orgs^num }
+	subtract_from_temp_variable = { maxer = 1 }
+
+	set_temp_variable_to_random = {
+		var = random_pull
+		min = 0
+		max = maxer
+	}
+
+	add_to_array = { global.active_terror_orgs = global.inactive_terror_orgs^random_pull }
+	remove_from_array = { global.inactive_terror_orgs = global.inactive_terror_orgs^random_pull }
+
+	set_temp_variable_to_random = {
+		var = starting_threat
+		min = 5
+		max = 10
+		integer = yes
+	}
+
+	set_temp_variable_to_random = {
+		var = starting_rad
+		min = 5
+		max = 10
+		integer = yes
+	}
+
+	set_temp_variable_to_random = {
+		var = starting_vis
+		min = 5
+		max = 10
+	}
+
+	add_to_array = { global.active_terror_org_threat_lvl = starting_threat }
+	add_to_array = { global.active_terror_org_rad_lvl = starting_rad }
+	add_to_array = { global.active_terror_org_vis_lvl = starting_vis }
+	every_country = {
+		add_to_array = { international_terror_org_intel = 0 }
+	}
+
+	missile_ui_update = yes
+}
+
+#Call this in the same effect where you set the remove_org temp_variable, so it passes
+#that then pulls the correct terror org, AND the correct info, out of the active array
+remove_org = {
+	for_each_loop = {
+		array = global.active_terror_orgs
+		value = v
+		index = i
+		break = b
+
+		if = {
+			limit = {
+				check_variable = { v = remove_org }
+			}
+			set_temp_variable = { remove_index = i }
+			set_temp_variable = { b = 1 }
+		}
+	}
+
+	remove_from_array = { global.active_terror_orgs = global.active_terror_orgs^remove_index }
+	remove_from_array = { global.active_terror_org_threat_lvl = global.active_terror_org_threat_lvl^remove_index }
+	remove_from_array = { global.active_terror_org_rad_lvl = global.active_terror_org_rad_lvl^remove_index }
+	remove_from_array = { global.active_terror_org_vis_lvl = global.active_terror_org_vis_lvl^remove_index }
+
+	missile_ui_update = yes
 }
 
 set_starting_org_values = {
