@@ -425,6 +425,50 @@ country_event = {
 		ai_chance = { base = 30 }
 	}
 }
+
+country_event = {
+	id = LKT_nation_name_event.3 #### Monarchist
+	title = LKT_nation_name_event.3.t
+	desc = LKT_nation_name_event.3.d
+	picture = GFX_politics_negotiations
+	is_triggered_only = yes
+	trigger = {
+		original_tag = LKT
+	}
+
+	option = {
+		name = LKT_nation_name_event.3.o1
+		log = "[GetDateText]: [This.GetName]: LKT_nation_name_event.3.o1 executed"
+		
+		custom_effect_tooltip = LKT_Grand_Duchy_Of_Yellowstone_desc
+		hidden_effect = {
+			set_cosmetic_tag = LKT_Grand_Duchy_Of_Yellowstone
+		}
+
+		custom_effect_tooltip = LKT_blank_space_tooltip
+		custom_effect_tooltip = LKT_domestic_policies_tooltip
+		set_temp_variable = { temp_change = -0.10 }
+		LKT_change_domestic_communist_drift_change = yes
+		set_temp_variable = { temp_change = 0.05 }
+		LKT_change_domestic_monthly_pop_change = yes
+
+		ai_chance = { base = 30 }
+	}
+
+	option = {
+		name = LKT_nation_name_event.3.o2
+		log = "[GetDateText]: [This.GetName]: LKT_nation_name_event.3.o2 executed"
+		
+		custom_effect_tooltip = LKT_blank_space_tooltip
+		custom_effect_tooltip = LKT_domestic_policies_tooltip
+		set_temp_variable = { temp_change = -0.03 }
+		LKT_change_domestic_nationalist_drift_change = yes
+		set_temp_variable = { temp_change = 0.05 }
+		LKT_change_domestic_monthly_pop_change = yes
+
+		ai_chance = { base = 30 }
+	}
+}
 ####################################
 
 country_event = {
