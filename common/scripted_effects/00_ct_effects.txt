@@ -1,3 +1,6 @@
+#Written by Doolittle
+#WARNING: This system *very* heavily relies on multiple arrays, and those arrays have indexes that MUST line up for the system to work
+#DO NOT MESS WITH THIS CODE UNLESS YOU UNDERSTAND HOW ARRAYS, LOOPS, AND SORTING THOSE WORK
 #Setup Functions
 counter_terror_nation_startup = {
 	#tracks all starting values for internal threats and international threat detection
@@ -9,6 +12,8 @@ counter_terror_nation_startup = {
 	set_variable = { internal_rad_mod = 0 }
 	set_variable = { internal_threat_detection = 0 }
 	set_variable = { internal_threat_detection_mod = 0 }
+	set_variable = { international_ct_support = 0 }
+	#Sets the base modifier for gains off intel
 	set_variable = { global_terror_org_detection_base = 0 }
 	set_variable = { global_terror_threat_detection_mod = 0 }
 	#setup the basic array for the global terror orgs
@@ -124,6 +129,8 @@ set_starting_org_locations = {
 		set_state_flag = is_regional_terror_base
 	}
 
+	add_to_array = { global.active_terror_hq = boko_start^start_spot }
+
 	add_to_temp_array = { hut_start = 202 }
 	add_to_temp_array = { hut_start = 168 }
 	add_to_temp_array = { hut_start = 553 }
@@ -139,6 +146,8 @@ set_starting_org_locations = {
 		set_state_flag = is_regional_terror_base
 	}
 
+	add_to_array = { global.active_terror_hq = hut_start^start_spot }
+
 	set_global_flag = {
 		flag = terror_org_move_stop
 		days = 365
@@ -149,8 +158,8 @@ set_starting_org_locations = {
 #System Pulses
 counter_terror_global = {
 	check_for_internal_terror_attacks = yes
-	global_war_on_terror = yes
 	check_for_global_attacks = yes
+	global_war_on_terror = yes
 }
 
 counter_terror_individual = {
@@ -171,6 +180,7 @@ counter_terror_individual = {
 	calculate_radicalization = yes
 	calculate_internal_threat = yes
 	calculate_national_global_threat_detection = yes
+	missile_ui_update = yes
 }
 
 #Calculate individual level adjustments per nation
@@ -235,10 +245,11 @@ calculate_radicalization = {
 				}
 			}
 		}
-		set_temp_variable_to_random = {
+		randomize_temp_variable = {
 			var = rad_add
 			min = 0.5
 			max = 2
+			distribution = uniform
 		}
 		add_to_temp_variable = { full_rad_add = rad_add }
 	}else_if = {
@@ -246,10 +257,11 @@ calculate_radicalization = {
 			check_variable = { government_coalition_strength > 0.5 }
 			has_stability > 0.45
 		}
-		set_temp_variable_to_random = {
+		randomize_temp_variable = {
 			var = rad_add
-			min = -0.5
-			max = -2
+			min = -2
+			max = -0.5
+			distribution = uniform
 		}
 		add_to_temp_variable = { full_rad_add = rad_add }
 	}
@@ -258,10 +270,11 @@ calculate_radicalization = {
 		limit = {
 			has_war = no
 		}
-		set_temp_variable_to_random = {
+		randomize_temp_variable = {
 			var = rad_add
-			min = -0.5
-			max = -1
+			min = -1
+			max = -0.5
+			distribution = uniform
 		}
 		add_to_temp_variable = { full_rad_add = rad_add }
 	}else = {
@@ -269,10 +282,11 @@ calculate_radicalization = {
 			limit = {
 				has_war_support < 0.3
 			}
-			set_temp_variable_to_random = {
+			randomize_temp_variable = {
 				var = rad_add
 				min = 0.5
 				max = 1
+				distribution = uniform
 			}
 			add_to_temp_variable = { full_rad_add = rad_add }
 		}
@@ -323,11 +337,11 @@ calculate_internal_threat = {
 	add_to_temp_variable = { level_add_rad = terror_level_base }
 
 	#Random movement based on actions, opportunities, and lone wolf attacks
-	set_temp_variable_to_random = {
+	randomize_temp_variable = {
 		var = internal_threat_random
 		min = -2
 		max = 2
-		integer = yes
+		distribution = binomial
 	}
 
 	if = {
@@ -381,12 +395,30 @@ calculate_national_global_threat_detection = {
 		set_temp_variable = { op_country = state_tracker.controller }
 		var:cur_nat = {
 			set_temp_variable = { cur_intel = civilian_intel@var:op_country }
-			multiply_variable = { cur_intel = 0.5 }
+			multiply_temp_variable = { cur_intel = 100 }
 			add_to_temp_variable = { cur_intel = base_detection }
+			multiply_temp_variable = { cur_intel = 0.75 }
 			set_temp_variable = { net_cover = network_national_coverage@var:op_country }
+			multiply_temp_variable = { net_cover = 0.25 }
 			add_to_temp_variable = { cur_intel = net_cover }
 			multiply_temp_variable = { cur_intel = base_mod }
 			set_variable = { international_terror_org_intel^i = cur_intel }
+		}
+
+		var:op_country = {
+			every_neighbor_country = {
+				var:cur_nat = {
+					set_temp_variable = { cur_intel = civilian_intel@THIS }
+					multiply_variable = { cur_intel = 100 }
+					add_to_temp_variable = { cur_intel = base_detection }
+					multiply_temp_variable = { cur_intel = 0.15 }
+					set_temp_variable = { net_cover = network_national_coverage@THIS }
+					multiply_temp_variable = { net_cover = 0.05 }
+					add_to_temp_variable = { cur_intel = net_cover }
+					multiply_temp_variable = { cur_intel = base_mod }
+					add_to_variable = { international_terror_org_intel^i = cur_intel }
+				}
+			}
 		}
 	}
 }
@@ -472,7 +504,6 @@ clamp_threat = {
 	}
 
 	clamp_variable = { var = internal_terror_threat min = 0 max = 100 }
-	missile_ui_update = yes
 }
 
 clamp_radicalization = {
@@ -514,7 +545,6 @@ clamp_radicalization = {
 	}
 
 	clamp_variable = { var = internal_radicalization min = 0 max = 100 }
-	missile_ui_update = yes
 }
 
 #Modify Checks
@@ -523,12 +553,14 @@ modify_radicalization_effect = {
 	add_to_variable = { internal_radicalization = rad_change }
 	custom_effect_tooltip = modify_radicalization_effect_tt
 	clamp_radicalization = yes
+	missile_ui_update = yes
 }
 
 modify_terror_threat_effect = {
 	add_to_variable = { internal_terror_threat = threat_change }
 	custom_effect_tooltip = modify_terror_threat_effect_tt
 	clamp_threat = yes
+	missile_ui_update = yes
 }
 
 #Global checks
@@ -560,23 +592,24 @@ internal_attack_roll = {
 		max = 100
 	}
 
-	random_list = {
-		internal_threat_detection = {
-			#if here, we stopped the attack!
-			set_country_flag = {
-				flag = has_stopped_int_terror_attack
-				days = 180
-				value = 1
-			}
+	random = {
+		chance = remainder_chance
+		set_country_flag = { flag = has_been_terror_attacked days = 180 value = 1 }
+		#run the event for an attack to happen
+		log = "[GetDateText]: [THIS.GetName] has been attacked by an internal terror attack!"
+	}
+
+	if = {
+		limit = {
+			NOT = { has_country_flag = has_been_terror_attacked }
 		}
-		remainder_chance = {
-			#if here, the attack happens
-			set_country_flag = {
-				flag = has_been_terror_attacked
-				days = 180
-				value = 1
-			}
+		set_country_flag = {
+			flag = has_stopped_in_terror_attack
+			days = 180
+			value = 1
 		}
+		#run the event to prevent a terror attack
+		log = "[GetDateText]: [THIS.GetName] has prevented an internal terror attack!"
 	}
 }
 
@@ -593,6 +626,7 @@ global_war_on_terror = {
 		}
 		#For each country that has an org inside it, increase the threat and radicalization
 		#Increase this by 5% of the overall organization's level
+		#Only run this every other month, so the effects don't stack too quickly
 		for_each_loop = {
 			array = global.active_terror_hq
 			value = v
@@ -641,8 +675,9 @@ global_war_on_terror = {
 
 			set_temp_variable_to_random = {
 				var = new_state
-				min = max_stop
-				max = move_state_list^num
+				min = 0
+				max = max_stop
+				integer = yes
 			}
 			add_to_temp_array = { move_store = move_state_list^new_state }
 			resize_temp_array = { move_state_list = 0 }
@@ -660,19 +695,112 @@ global_war_on_terror = {
 			value = 1
 		}
 	}
+
+	for_each_loop = {
+		array = global.active_terror_org_threat_lvl
+		value = v
+		index = i
+
+		set_temp_variable = { tension_add = global.threat }
+		multiply_temp_variable = { tension_add = 100 }
+		randomize_temp_variable = {
+			var = random_add
+			min = -25
+			max = 25
+			distribution = uniform
+		}
+		add_to_temp_variable = { tension_add = random_add }
+		multiply_temp_variable = { tension_add = 0.025 }
+		round_temp_variable = tension_add
+
+		add_to_variable = { global.active_terror_org_threat_lvl^i = tension_add }
+		multiply_temp_variable = { tension_add = 0.5 }
+		add_to_variable = { global.active_terror_org_vis_lvl^i = tension_add }
+	}
 }
 
 check_for_global_attacks = {
 	#See if any org has planned and executed an attack
+	clear_array = global.current_terror_attackers
+	for_each_loop = {
+		array = global.active_terror_org_threat_lvl
+		value = v
+		index = i
+
+		if = {
+			limit = {
+				check_variable = { v > 50 }
+			}
+			multiply_temp_variable = { v = 0.5 }
+			random = {
+				chance = v
+				add_to_variable = { global.active_terror_org_threat_lvl^i = -50 }
+				add_to_variable = { global.active_terror_org_vis_lvl^i = v }
+				add_to_array = { global.current_terror_attackers = global.active_terror_orgs^i }
+				#reduce the threat level here because they're conducting an attack; their preparation no longer matters
+				#increase the vis for conducting an attack, last ditch chance for intel to prevent it as it goes live
+			}
+		}
+	}
+	if = {
+		limit = {
+			check_variable = { global.current_terror_attackers^num > 0 }
+		}
+		global_attack_roll = yes
+	}
 }
 
 global_attack_roll = {
 	#see if the org pulled off the attack vs the nations defence
+	for_each_loop = {
+		array = global.current_terror_attackers
+		value = v
+		index = i
+
+		set_temp_variable = { cur_attack_val = v }
+		set_temp_variable = { cur_attack_index = 0 }
+
+		for_each_loop = {
+			array = global.active_terror_orgs
+			value = v
+			index = i
+			break = b
+
+			if = {
+				limit = {
+					check_variable = { v = cur_attack_val }
+				}
+				set_temp_variable = { cur_attack_index = i }
+				set_temp_variable = { b = 1 }
+			}
+		}
+
+		#Pick a random target
+		#TODO: Make this targeted, so it goes after nations we consider "valid"
+		random_country = {
+
+			set_temp_variable = { attack_chance_succeed = global.active_terror_org_vis_lvl^cur_attack_index }
+			subtract_from_temp_variable = { attack_chance_succeed = international_terror_org_intel^cur_attack_index }
+
+			clamp_temp_variable = {
+				var = attack_chance_succeed
+				min = 1
+				max = 100
+			}
+
+			random = {
+				chance = attack_chance_succeed
+				set_country_flag = { flag = global_attack_succeeded days = 2 value = 1 }
+				log = "[GetDateText]: [THIS.GetName] Was hit by an international terror attack"
+			}
+
+			if = {
+				limit = {
+					NOT = { has_country_flag = global_attack_succeeded }
+				}
+				#fire the stopped the event here
+				log = "[GetDateText]: [THIS.GetName] prevented an international terror attack"
+			}
+		}
+	}
 }
-
-
-
-
-
-
-
