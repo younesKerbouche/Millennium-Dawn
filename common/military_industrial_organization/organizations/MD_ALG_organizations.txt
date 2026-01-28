@@ -3,6 +3,10 @@ ALG_khenchela_arms_manufacturer = {
 	icon = GFX_idea_ALG_khenchela_arms
 	name = ALG_khenchela_arms_manufacturer
 	include = generic_infantry_equipment_organization
+	
+	equipment_type = {
+        Inf_equipment
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_infantry_manufacturer
@@ -10,9 +14,14 @@ ALG_khenchela_arms_manufacturer = {
 		organization_modifier = {
 			military_industrial_organization_task_capacity = -1
 		}
+		
+		equipment_bonus = {
+            reliability = 0.04
+            build_cost_ic = -0.03
+        }
 
 		production_bonus = {
-			production_capacity_factor = 0.08
+			production_capacity_factor = 0.05
 		}
 	}
 }
@@ -22,6 +31,11 @@ ALG_seriana_small_arms = {
 	icon = GFX_idea_ALG_seriana
 	name = ALG_seriana_small_arms
 	include = GER_generic_small_arms_manufacturer
+	
+	
+	equipment_type = {
+        Inf_equipment
+    }
 
 	initial_trait = {
 		name = GER_generic_small_arms_manufacturer
@@ -29,30 +43,48 @@ ALG_seriana_small_arms = {
 		organization_modifier = {
 			military_industrial_organization_task_capacity = -2
 		}
+		
+		equipment_bonus = {
+            reliability = 0.03
+        }
 
 		production_bonus = {
-			production_efficiency_cap_factor = 0.08
-			production_efficiency_gain_factor = 0.10
+			production_efficiency_cap_factor = 0.05
+			production_efficiency_gain_factor = 0.08
 		}
 	}
 }
 
-ALG_inrf_missile_systems = {
+ALG_dgi_missile_systems = {
 	allowed = { original_tag = ALG }
-	icon = GFX_idea_ALG_inrf
-	name = ALG_inrf_missile_systems
+	icon = GFX_idea_ALG_dgi
+	name = ALG_dgi_missile_systems
 	include = generic_aa_at_equipment_organization
+	
+	
+	equipment_type = {
+        cnc_equipment
+        L_AT_Equipment
+        H_AT_Equipment
+        AA_Equipment
+        artillery_equipment
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_at_aa_manufacturer
 
 		organization_modifier = {
 			military_industrial_organization_task_capacity = -1
+			military_industrial_organization_research_bonus = 0.03
 		}
+		
+		equipment_bonus = {
+            reliability = 0.03
+        }
 
 		production_bonus = {
-			production_efficiency_cap_factor = 0.08
-			production_efficiency_gain_factor = 0.10
+			production_efficiency_cap_factor = 0.06
+			production_efficiency_gain_factor = 0.08
 		}
 	}
 }
@@ -61,16 +93,31 @@ ALG_bcl_armored_development = {
 	icon = GFX_idea_Rheinmetall
 	name = ALG_bcl_armored_development
 	include = generic_specialized_tank_organization
+	
+	
+	equipment_type = {
+        util_vehicle_equipment
+        medium_tank_amphibious_chassis
+        medium_tank_flame_chassis
+        medium_tank_destroyer_chassis
+        medium_tank_artillery_chassis
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_md_specialized_tank_manufacturer
 
 		organization_modifier = {
 			military_industrial_organization_task_capacity = -1
+			military_industrial_organization_research_bonus = 0.02
 		}
+		
+		equipment_bonus = {
+            reliability = 0.05
+            build_cost_ic = -0.02
+        }
 
 		production_bonus = {
-			production_capacity_factor = 0.08
+			production_capacity_factor = 0.05
 		}
 	}
 }
@@ -80,16 +127,25 @@ ALG_enmib_helicopter_unit = {
 	icon = GFX_idea_AgustaWestland_ITA
 	name = ALG_enmib_helicopter_unit
 	include = generic_specialized_helicopter_organization
+	
+	equipment_type = {
+        helicopter_equipment
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_md_specialized_helicopter_manufacturer
 
 		organization_modifier = {
 			military_industrial_organization_task_capacity = -2
+			military_industrial_organization_research_bonus = 0.01
 		}
+		
+		equipment_bonus = {
+            reliability = 0.04
+        }
 
 		production_bonus = {
-			production_capacity_factor = 0.08
+			production_capacity_factor = 0.04
 		}
 	}
 }
@@ -98,6 +154,13 @@ ALG_mers_el_kebir_shipyards = {
 	icon = GFX_idea_ALG_mers_el_kebir
 	name = ALG_mers_el_kebir_shipyards
 	include = RAJ_Garden_reach_naval_manufacturer
+	
+	
+	equipment_type = {
+        convoy
+        mio_cat_only_small_ships
+        mio_cat_frigates
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_md_light_naval_manufacturer
@@ -106,6 +169,10 @@ ALG_mers_el_kebir_shipyards = {
 			military_industrial_organization_research_bonus = 0.05
 			military_industrial_organization_task_capacity = -1
 		}
+		
+		equipment_bonus = {
+            reliability = 0.04
+        }
 
 		production_bonus = {
 			production_capacity_factor = 0.07
@@ -118,6 +185,13 @@ ALG_el_djazair_naval_industry = {
 	icon = GFX_idea_ALG_el_djazair_shipyard
 	name = ALG_el_djazair_naval_industry
 	include = generic_mixed_naval_equipment_organization
+	
+	equipment_type = {
+        mio_cat_only_small_ships
+        mio_cat_frigates
+        mio_cat_destroyers
+        submarine
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_md_naval_manufacturer
@@ -126,6 +200,10 @@ ALG_el_djazair_naval_industry = {
 			military_industrial_organization_research_bonus = 0.05
 			military_industrial_organization_task_capacity = -2
 		}
+		
+		equipment_bonus = {
+            reliability = 0.03
+        }
 
 		production_bonus = {
 			production_capacity_factor = 0.08
@@ -137,6 +215,13 @@ ALG_ersa_aircraft_manufacturer = {
 	icon = GFX_idea_ALG_ersa
 	name = ALG_ersa_aircraft_manufacturer
 	include = generic_air_equipment_organization
+	
+	
+	equipment_type = {
+        mio_cat_eq_only_light_aircraft
+        mio_cat_eq_only_transport
+        helicopter_equipment
+    }
 
 	initial_trait = {
 		name = generic_mio_initial_trait_md_air_manufacturer
@@ -145,9 +230,41 @@ ALG_ersa_aircraft_manufacturer = {
 			military_industrial_organization_research_bonus = 0.08
 			military_industrial_organization_task_capacity = -1
 		}
+		
+		equipment_bonus = {
+            reliability = 0.04
+        }
 
 		production_bonus = {
 			production_capacity_factor = 0.08
 		}
 	}
+}
+ALG_snvi_vehicle_manufacturer = {
+    allowed = { original_tag = ALG }
+    icon = GFX_idea_ALG_snvi
+    name = ALG_snvi_vehicle_manufacturer
+    include = GER_generic_utility_vehicle_manufacturer
+
+    equipment_type = {
+        util_vehicle_equipment
+        motorized_equipment
+    }
+
+    initial_trait = {
+        name = generic_mio_initial_trait_utility_vehicle_manufacturer
+
+        organization_modifier = {
+            military_industrial_organization_task_capacity = -1
+        }
+
+        equipment_bonus = {
+            reliability = 0.05
+            maximum_speed = 0.02
+        }
+
+        production_bonus = {
+            production_efficiency_cap_factor = 0.06
+        }
+    }
 }
