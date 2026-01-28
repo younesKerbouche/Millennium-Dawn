@@ -2889,28 +2889,14 @@ ALG_de_arabisation_category = {
 				add_core_of = KBY
 			}
 			every_state = {
-				limit = { is_core_of = EGY }
-				remove_core_of = EGY
-				add_core_of = KBY
-			}
-			every_state = {
-				limit = { is_core_of = MOR }
-				remove_core_of = MOR
-				add_core_of = KBY
-			}
-			every_state = {
-				limit = { is_core_of = TUN }
-				remove_core_of = TUN
-				add_core_of = KBY
-			}
-			every_state = {
-				limit = { is_core_of = MAU }
-				remove_core_of = MAU
-				add_core_of = KBY
-			}
-			every_state = {
-				limit = { is_core_of = LBA }
-				remove_core_of = LBA
+				limit = {
+					OR = {
+						is_core_of = MOR
+						is_core_of = TUN
+						is_core_of = LBA
+					}
+					# region = only regions that apply for the tamazgha
+				}
 				add_core_of = KBY
 			}
 
@@ -2946,13 +2932,14 @@ ALG_de_arabisation_category = {
 			}
 			custom_trigger_tooltip = {
 				tooltip = ALG_kabyle_satisfaction_tt
-				check_variable = { var = kabyle_satisfaction value = 65 }
+				check_variable = { var = kabyle_satisfaction value > 64 }
 			}
 		}
 
 		complete_effect = {
 			add_to_variable = { var = kabyle_satisfaction value = 10 }
 			add_to_variable = { var = ALG_ethnic_kabyle value = 2 }
+			add_to_variable = { var = arab_satisfaction value = -5 }
 			add_political_power = -50
 			add_stability = 0.03
 			custom_effect_tooltip = ALG_amazigh_businesses_complete_TT
@@ -3021,6 +3008,10 @@ ALG_de_arabisation_category = {
 			add_stability = 0.05
 			add_to_variable = { var = arab_satisfaction value = -15 }
 			add_to_variable = { var = kabyle_satisfaction value = 10 }
+			
+			set_temp_variable = { int_investment_change = -0.20 }
+			modify_international_investment_effect = yes
+		
 			custom_effect_tooltip = ALG_leave_arab_league_complete_TT
 			set_country_flag = ALG_leave_arab_league_done
 		}
@@ -3053,6 +3044,12 @@ ALG_de_arabisation_category = {
 			add_to_variable = { var = ALG_ethnic_arab value = -5 }
 			add_to_variable = { var = kabyle_satisfaction value = 15 }
 			add_stability = 0.05
+			
+			random_owned_controlled_state = {
+				limit = { is_core_of = KBY }
+				add_manpower = 5000
+			}
+		
 			custom_effect_tooltip = ALG_kabyle_pop_complete_TT
 			set_country_flag = ALG_boost_kabyle_population_done
 		}
@@ -3195,6 +3192,26 @@ ALG_tamazgha_cultural_revival_category = {
 			add_war_support = 0.03
 			set_temp_variable = { int_investment_change = 0.5 }
 			modify_international_investment_effect = yes
+			
+			create_faction = "Tamazgha_Confederation"
+			
+			every_other_country = {
+				limit = {
+					OR = {
+						tag = MAU
+						tag = TUN
+						tag = MOR
+						tag = LBA
+					}
+					is_in_faction = no
+				}
+				set_country_flag = ALG_tamazgha_invitation_pending
+			}
+			every_other_country = {
+				limit = { has_country_flag = ALG_tamazgha_invitation_pending }
+				country_event = ALG_tamazgha.1
+			}
+		
 			custom_effect_tooltip = ALG_tamazgha_regional_cooperation_complete_TT
 			set_country_flag = ALG_tamazgha_regional_cooperation_done
 		}

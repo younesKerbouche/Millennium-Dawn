@@ -61,6 +61,55 @@ add_namespace = FIS_faction
 add_namespace = alg_politics_news
 add_namespace = alg_crackdown
 add_namespace = alg_ethnic
+add_namespace = ALG_tamazgha
+
+country_event = {
+    id = ALG_tamazgha.1
+    title = ALG_tamazgha.1.t
+    desc = ALG_tamazgha.1.d
+    picture = GFX_internal_faction_labour_dispute
+
+    is_triggered_only = yes
+
+    immediate = {
+        clr_country_flag = ALG_tamazgha_invitation_pending
+    }
+
+    option = { # Accept
+        name = ALG_tamazgha.1.a
+        FROM = {
+			add_to_faction = ROOT
+		}
+        
+        ai_chance = {
+            base = 40
+            modifier = {
+                factor = 2
+                OR = {
+                    has_government = neutrality
+                    has_government = democratic
+                }
+            }
+            modifier = {
+                factor = 0
+                has_war = yes
+            }
+        }
+    }
+
+    option = { # Decline
+        name = ALG_tamazgha.1.b
+        
+        ai_chance = { 
+            base = 60 
+            modifier = {
+                factor = 2
+                is_in_faction = yes
+            }
+        }
+    }
+}
+
 
 # Long-term stability recovery after Tamazight recognition
 country_event = {
