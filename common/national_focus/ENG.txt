@@ -14916,15 +14916,15 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_tt
-				CHARACTER = ENG_prince_charles
+				CHARACTER = ENG_prince_william
 			}
-			show_ideas_tooltip = GER_todt_reich_engineer
+			show_ideas_tooltip = ENG_william_1_idea
 
 			custom_effect_tooltip = generic_skip_one_line_tt
 
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_focus_tt
-				CHARACTER = ENG_prince_charles
+				CHARACTER = ENG_prince_william
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -14952,12 +14952,12 @@ focus_tree = {
 				custom_effect_tooltip = {
 					localization_key = ENG_event_to_replace_ascended_advisor_tt
 					EVENT = ENG_inner_circle.01.t
-					CHARACTER = ENG_prince_charles
+					CHARACTER = ENG_prince_william
 				}
 			}
 			else = {
 				hidden_effect = {
-					add_ideas = GER_todt_reich_engineer
+					add_ideas = ENG_william_1_idea
 				}
 				if = {
 					limit = {
@@ -15025,7 +15025,7 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_albert_speer
+						CHARACTER = ENG_prince_william
 						FLAG_DAYS = [?GER_employ_philipp_holzmann_in_progress_flag:days]
 					}
 					always = no
@@ -15035,7 +15035,7 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_albert_speer
+						CHARACTER = ENG_prince_william
 						FOCUS = GER_ascension_of_speer
 					}
 					always = no
@@ -15107,7 +15107,7 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_joseph_goebbels
+						CHARACTER = ENG_prince_william
 						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
 					}
 					always = no
@@ -15117,7 +15117,7 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_joseph_goebbels
+						CHARACTER = ENG_prince_william
 						FOCUS = GER_ascension_of_goebbels
 					}
 					always = no
@@ -15128,21 +15128,23 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
+			if = {
+				limit = {
+					has_idea = ENG_phillip_4_idea
+				}
+				swap_ideas = {
+					remove_idea = ENG_phillip_4_idea
+					add_idea = ENG_phillip_5_idea
+				}
 			}
-
-			add_war_support = 0.05
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			swap_ideas = {
-				remove_idea = GER_goebbels_reich_minister_of_propaganda_ministry
-				add_idea = GER_goebbels_reich_minister_of_propaganda_film
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_phillip_4_idea
+						add_idea = ENG_phillip_5_idea
+					}
+				}
 			}
-
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = GER_leni_riefenstahl
 		}
 	}
 	focus = {
@@ -15168,7 +15170,7 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_joseph_goebbels
+						CHARACTER = ENG_prince_william
 						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
 					}
 					always = no
@@ -15178,7 +15180,7 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_joseph_goebbels
+						CHARACTER = ENG_prince_william
 						FOCUS = GER_ascension_of_goebbels
 					}
 					always = no
@@ -15189,21 +15191,23 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
+			if = {
+				limit = {
+					has_idea = ENG_phillip_4_idea
+				}
+				swap_ideas = {
+					remove_idea = ENG_phillip_4_idea
+					add_idea = ENG_phillip_5_idea
+				}
 			}
-
-			add_war_support = 0.05
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			swap_ideas = {
-				remove_idea = GER_goebbels_reich_minister_of_propaganda_ministry
-				add_idea = GER_goebbels_reich_minister_of_propaganda_film
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_phillip_4_idea
+						add_idea = ENG_phillip_5_idea
+					}
+				}
 			}
-
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = GER_leni_riefenstahl
 		}
 	}
 	focus = {
@@ -15222,15 +15226,15 @@ focus_tree = {
 		available = {
 			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
 				limit = {
-					has_country_flag = GER_fund_the_film_department_in_progress_flag
+					has_country_flag = ENG_bridge_to_the_future_in_progress_flag
 				}
 				set_temp_variable = { temp_focus_days = @inner_circle_time_tier_4 } #For tooltip purposes
 				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_inner_circle_focus_in_progress_tt
-						CHARACTER = GER_joseph_goebbels
-						FLAG_DAYS = [?GER_fund_the_film_department_in_progress_flag:days]
+						CHARACTER = ENG_prince_william
+						FLAG_DAYS = [?ENG_bridge_to_the_future_in_progress_flag:days]
 					}
 					always = no
 				}
@@ -15239,8 +15243,8 @@ focus_tree = {
 				custom_override_tooltip = {
 					tooltip = {
 						localization_key = ENG_focus_can_only_be_completed_by_advisor_tt
-						CHARACTER = GER_joseph_goebbels
-						FOCUS = GER_ascension_of_goebbels
+						CHARACTER = ENG_prince_william
+						FOCUS = ENG_veteran_armed_forces_support
 					}
 					always = no
 				}
@@ -15250,21 +15254,23 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
+			if = {
+				limit = {
+					has_idea = ENG_phillip_4_idea
+				}
+				swap_ideas = {
+					remove_idea = ENG_phillip_4_idea
+					add_idea = ENG_phillip_5_idea
+				}
 			}
-
-			add_war_support = 0.05
-
-			custom_effect_tooltip = generic_skip_one_line_tt
-			swap_ideas = {
-				remove_idea = GER_goebbels_reich_minister_of_propaganda_ministry
-				add_idea = GER_goebbels_reich_minister_of_propaganda_film
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_phillip_4_idea
+						add_idea = ENG_phillip_5_idea
+					}
+				}
 			}
-
-			custom_effect_tooltip = available_political_advisor
-			show_ideas_tooltip = GER_leni_riefenstahl
 		}
 	}
 
