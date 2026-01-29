@@ -2601,7 +2601,60 @@ scripted_gui = {
 		}
 
 		effects = {
+			expand_ct_funding_button_click = {
+				add_to_variable = { ct_global_base_detect_var = 0.5 }
+				add_to_variable = { ct_police_cost_var = 0.01 }
+			}
+			select_asia_button_click = {
+				clear_array = selected_ct_nations_list
+				for_each_loop = {
+					array = global.asian_nations
+					value = v
 
+					ROOT = { add_to_array = { selected_ct_nations_list = v } }
+					missile_ui_update = yes
+				}
+			}
+			select_me_button_click = {
+				clear_array = selected_ct_nations_list
+				for_each_loop = {
+					array = global.middle_eastern_nations
+					value = v
+
+					ROOT = { add_to_array = { selected_ct_nations_list = v } }
+					missile_ui_update = yes
+				}
+			}
+			select_afr_button_click = {
+				clear_array = selected_ct_nations_list
+				for_each_loop = {
+					array = global.sub_saharan_nations
+					value = v
+
+					ROOT = { add_to_array = { selected_ct_nations_list = v } }
+					missile_ui_update = yes
+				}
+			}
+			select_europe_button_click = {
+				clear_array = selected_ct_nations_list
+				for_each_loop = {
+					array = global.european_nations
+					value = v
+
+					ROOT = { add_to_array = { selected_ct_nations_list = v } }
+					missile_ui_update = yes
+				}
+			}
+			select_american_button_click = {
+				clear_array = selected_ct_nations_list
+				for_each_loop = {
+					array = global.american_nations
+					value = v
+
+					ROOT = { add_to_array = { selected_ct_nations_list = v } }
+					missile_ui_update = yes
+				}
+			}
 		}
 
 		properties = {
@@ -5733,6 +5786,33 @@ scripted_gui = {
 		effects = {
 			name_of_org_button_click = {
 				set_variable = { selected_org = i }
+				missile_ui_update = yes
+			}
+		}
+	}
+
+	international_ct_nations_dynamic_lists = {
+		context_type = player_context
+		parent_scripted_gui = MD_CT_system_gui
+		window_name = "IS_CT_nations_container"
+
+		dirty = global.missile_ui_updated
+
+		visible = {
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		dynamic_lists = {
+			CT_nations_list = {
+				array = selected_ct_nations_list
+				entry_container = IS_CT_nation_list
+				change_scope = yes
+			}
+		}
+
+		effects = {
+			name_of_nation_button_click = {
+				ROOT = { set_variable = { selected_ct_nation = PREV } }
 				missile_ui_update = yes
 			}
 		}

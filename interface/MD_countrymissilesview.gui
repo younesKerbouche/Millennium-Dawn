@@ -4634,6 +4634,155 @@ guiTypes = {
 				format = center
 			}
 		}
+
+		containerWindowType = {
+			name = "counter_terror_action"
+			position = { x = 300 y = 380 }
+			size = { width = 600 height = 600 }
+
+			instantTextboxType = {
+				name = "ct_nat_terror_act"
+				position = { x = -275 y = 0 }
+				font = "hoi_16mbs"
+				borderSize = {x = 0 y = 0}
+				text = "CT_NAT_ACT" #CT_CUR_THREAT
+				pdx_tooltip = ""
+				maxWidth = 500
+				maxHeight = 300
+				format = center
+			}
+
+			buttonType = {
+				name = "expand_ct_funding_button"
+				position = { x = 40 y = 20 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_148x34"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_NAT_SPEND_UP" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = "CT_NAT_SPEND_UP_TT"
+			}
+
+			buttonType = {
+				name = "reduce_ct_funding_button"
+				position = { x = 40 y = 60 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_148x34"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_NAT_SPEND_DOWN" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = "CT_NAT_SPEND_DOWN_TT"
+			}
+		}
+
+		containerWindowType = {
+			name = "counter_terror_actions"
+			position = { x = 15 y = 570 }
+			size = { width = 600 height = 600 }
+
+			instantTextboxType = {
+				name = "ct_int_terror_act"
+				position = { x = 0 y = -20 }
+				font = "hoi_16mbs"
+				borderSize = {x = 0 y = 0}
+				text = "CT_INT_ACT" #CT_CUR_THREAT
+				pdx_tooltip = ""
+				maxWidth = 500
+				maxHeight = 300
+				format = center
+			}
+
+			instantTextboxType = {
+				name = "ct_int_selected_nation_disp"
+				position = { x = 15 y = 35 }
+				font = "hoi_16mbs"
+				borderSize = {x = 0 y = 0}
+				text = "name_selection_full" #CT_CUR_THREAT
+				pdx_tooltip = ""
+				maxWidth = 500
+				maxHeight = 300
+				format = center
+			}
+
+			instantTextboxType = {
+				name = "ct_int_selected_nation"
+				position = { x = 335 y = 35 }
+				font = "hoi_16mbs"
+				borderSize = {x = 0 y = 0}
+				text = "[?selected_ct_nation.GetName]" #CT_CUR_THREAT
+				pdx_tooltip = ""
+				maxWidth = 500
+				maxHeight = 300
+				format = left
+			}
+
+			buttonType = {
+				name = "select_asia_button"
+				position = { x = 10 y = 0 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_94x31"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_REG_SEL_ASIA" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = ""
+				pdx_tooltip_delayed = ""
+			}
+
+			buttonType = {
+				name = "select_me_button"
+				position = { x = 110 y = 0 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_94x31"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_REG_SEL_ME" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = ""
+				pdx_tooltip_delayed = ""
+			}
+
+			buttonType = {
+				name = "select_afr_button"
+				position = { x = 210 y = 0 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_94x31"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_REG_SEL_AFR" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = ""
+				pdx_tooltip_delayed = ""
+			}
+
+			buttonType = {
+				name = "select_europe_button"
+				position = { x = 310 y = 0 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_94x31"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_REG_SEL_EUR" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = ""
+				pdx_tooltip_delayed = ""
+			}
+
+			buttonType = {
+				name = "select_american_button"
+				position = { x = 410 y = 0 }
+				clicksound = click_close
+				quadTextureSprite ="GFX_button_94x31"
+				buttonFont = "hoi_16mbs"
+				Orientation = "UPPER_LEFT"
+				buttonText = "CT_REG_SEL_AMR" #name_of_org
+				clicksound = click_close
+				pdx_tooltip = ""
+				pdx_tooltip_delayed = ""
+			}
+		}
 	}
 
 	#PMC System
@@ -5142,6 +5291,46 @@ guiTypes = {
 			buttonText = "[name_of_org]" #name_of_org
 			clicksound = click_close
 			pdx_tooltip = "Click to select this organization"
+			pdx_tooltip_delayed = ""
+		}
+	}
+
+	containerWindowType = {
+		name = "IS_CT_nations_container"
+		position = { x=20 y = 612 }
+		size = { width = 170 height=140 }
+		margin = { top = 8 bottom = 8 }
+		verticalScrollbar = "right_vertical_slider"
+
+		background = {
+			name = "Background"
+			quadTextureSprite ="GFX_tiled_window_transparent"
+		}
+
+		gridboxType = {
+			name = "CT_nations_list"
+			position = { x = 0 y = 0 }
+			padding = { top = 50 bottom = 0 }
+			size = { width = 100%% height = 100%% }
+			slotsize = { width = 250 height = 35 }
+			format = "UPPER_LEFT"
+			max_slots_horizontal = 1
+		}
+	}
+
+	containerWindowType = {
+		name = "IS_CT_nation_list"
+
+		buttonType = {
+			name = "name_of_nation_button"
+			position = { x = 0 y = 0 }
+			clicksound = click_close
+			quadTextureSprite ="GFX_button_148x34"
+			buttonFont = "hoi_16mbs"
+			Orientation = "UPPER_LEFT"
+			buttonText = "[THIS.GetName]" #name_of_org
+			clicksound = click_close
+			pdx_tooltip = "Click to select this nation"
 			pdx_tooltip_delayed = ""
 		}
 	}

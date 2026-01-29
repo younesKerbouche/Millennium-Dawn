@@ -3,8 +3,12 @@
 #DO NOT MESS WITH THIS CODE UNLESS YOU UNDERSTAND HOW ARRAYS, LOOPS, AND SORTING THOSE WORK
 #Setup Functions
 counter_terror_nation_startup = {
-	set_variable = { global_terror_org_detection_base = 0 }
-	set_variable = { global_terror_threat_detection_mod = 0 }
+	#TODO: Move this to the modifier, and have it base off base funding
+	set_variable = { ct_global_base_detect_var = 0 }
+	set_variable = { ct_threat_detect_var = 0 }
+	set_variable = { ct_police_cost_var = 0 }
+
+	set_variable = { foreign_counter_terror_support = 0 }
 	#setup the basic array for the global terror orgs
 	#this is important b/c it allows us to track global intel
 	#this means the player then can properly "hunt" terror orgs, if they want
@@ -19,6 +23,8 @@ counter_terror_nation_startup = {
 	add_to_array = { international_terror_org_temp_specific_intel = 0 }
 	add_to_array = { international_terror_org_temp_specific_intel = 0 }
 	add_to_array = { international_terror_org_temp_specific_intel = 0 }
+
+	add_dynamic_modifier = { modifier = counter_terrorism_operations }
 }
 
 counter_terror_global_setup = {
@@ -302,9 +308,9 @@ social_conservatism_adjust = {
 
 calculate_national_global_threat_detection = {
 	#here, update our global detection score and update the UI appropriately
-	set_temp_variable = { base_detection = global_terror_org_detection_base }
+	set_temp_variable = { base_detection = modifier@terror_threat_base_detect_modifier }
 	set_temp_variable = { base_mod = 1 }
-	add_to_temp_variable = { base_mod = global_terror_threat_detection_mod }
+	add_to_temp_variable = { base_mod = modifier@terror_threat_detection_modifier }
 
 	set_temp_variable = { cur_nat = THIS }
 
