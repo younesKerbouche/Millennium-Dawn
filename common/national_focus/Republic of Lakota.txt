@@ -10134,6 +10134,154 @@ focus_tree = {
 	}
 
 
+	######################
+	### Revanchist Tree ##
+	######################
+	focus = {
+		id = LKT_focus_A_New_Destiny
+		icon = American_map
+		x = -3
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_beyond_the_plains
+		prerequisite = { focus = LKT_focus_beyond_the_plains }
+		mutually_exclusive = {
+			focus = LKT_focus_Containment_Plan_West
+			focus = LKT_focus_The_Great_Barrier_Plan
+		}
+		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_A_New_Destiny"
+			add_war_support = 0.10
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_domestic_offensive_foreign_influence_change = yes
+			set_temp_variable = { temp_change = -0.01 }
+			LKT_change_domestic_unemployment_tolerance_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_industrial_consumer_goods_change = yes
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_factory_output_change = yes
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_industrial_dockyard_output_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_army_service_branch_tooltip
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_army_army_attack_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+
+
+	######################
+	### Cambria Tree #####
+	######################
+	focus = {
+		id = LKT_focus_Containment_Plan_West
+		icon = westwards
+		x = 0
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_beyond_the_plains
+		prerequisite = { focus = LKT_focus_beyond_the_plains }
+		mutually_exclusive = {
+			focus = LKT_focus_A_New_Destiny
+			focus = LKT_focus_The_Great_Barrier_Plan
+		}
+		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_Containment_Plan_West"
+			add_war_support = 0.05
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_foreign_influence_defense_change = yes
+			set_temp_variable = { temp_change = -0.02 }
+			LKT_change_domestic_nationalist_drift_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_industrial_construction_speed_change = yes
+			set_temp_variable = { temp_change = 0.04 }
+			LKT_change_industrial_factory_output_change = yes
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_industrial_dockyard_output_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_army_service_branch_tooltip
+			set_temp_variable = { temp_change = 0.02 }
+			LKT_change_army_army_attack_change = yes
+			LKT_change_army_army_defence_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
+
+
+	##########################
+	### The Barrier Tree #####
+	##########################
+	focus = {
+		id = LKT_focus_The_Great_Barrier_Plan
+		icon = Generic_Barricade
+		x = 3
+		y = 1
+		cost = 8.6
+		relative_position_id = LKT_focus_beyond_the_plains
+		prerequisite = { focus = LKT_focus_beyond_the_plains }
+		mutually_exclusive = {
+			focus = LKT_focus_A_New_Destiny
+			focus = LKT_focus_Containment_Plan_West
+		}
+		search_filters = { FOCUS_FILTER_FOREIGN_POLICY }
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus LKT_focus_The_Great_Barrier_Plan"
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_domestic_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_domestic_political_power_change = yes
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_domestic_offensive_foreign_influence_change = yes
+			LKT_change_domestic_foreign_influence_defense_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_industrial_policies_tooltip
+			set_temp_variable = { temp_change = 0.07 }
+			LKT_change_industrial_construction_speed_change = yes
+			LKT_change_industrial_factory_output_change = yes
+			set_temp_variable = { temp_change = 0.03 }
+			LKT_change_industrial_dockyard_output_change = yes
+
+			custom_effect_tooltip = LKT_blank_space_tooltip
+			custom_effect_tooltip = LKT_army_service_branch_tooltip
+			set_temp_variable = { temp_change = 0.01 }
+			LKT_change_army_army_attack_change = yes
+			set_temp_variable = { temp_change = 0.05 }
+			LKT_change_army_army_defence_change = yes
+
+		}
+
+		ai_will_do = { base = 100 }
+	}
+
 
 
 
