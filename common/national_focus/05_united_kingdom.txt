@@ -12874,18 +12874,10 @@ focus_tree = {
 
 				ENG_inner_circle_set_ascension_cd = yes
 
-				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
-					limit = {
-						GER_is_historical_ai = yes
-					}
-					set_country_flag = ENG_charles_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
-				}
-				else = {
-					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
-						flag = ENG_charles_was_ascended_flag
-						days = 1500 # Clear after ~4 years
-						value = 1
-					}
+				set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
+					flag = ENG_charles_was_ascended_flag
+					days = 1500 # Clear after ~4 years
+					value = 1
 				}
 			}
 		}
@@ -13025,7 +13017,6 @@ focus_tree = {
 					free_building_slots = {
 						building = renewable_energy_infra
 						size > 0
-						include_locked = yes
 					}
 				}
 				random_select_amount = 3
