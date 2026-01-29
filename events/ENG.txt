@@ -1804,6 +1804,41 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = britain_md.12
+	title = britain_md.12.t
+	desc = britain_md.12.d
+	is_triggered_only = yes
+
+	option = {
+		name = britain_md.12.a
+		log = "[GetDateText]: [This.GetName]: britain_md.12.a executed"
+		diplomatic_relation = {
+			country = ENG
+			relation = military_access
+			active = yes
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 10
+				has_opinion = {
+					target = ENG
+					value > 20
+				}i
+			}
+		}
+	}
+	option = {
+		name = britain_md.12.b
+		log = "[GetDateText]: [This.GetName]: britain_md.12.b executed"
+
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
 # # # # # # # # # # # # DEVOLUTION DO NOT TOUCH # # # # # # # # # # # #
 # # # # # # # # ## # # # TOUCH ME PLEASE # # # # # # # # # # # #
 # The Constituents Want to Further Devolve Matters
