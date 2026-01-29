@@ -12638,7 +12638,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_the_queens_family
-		icon = god_save_the_king
+		icon = ENG_the_queen
 
 		x = 91
 		y = 0
@@ -13530,7 +13530,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_queen_eldest
-		icon = god_save_the_king
+		icon = ENG_charles_andrew
 
 		prerequisite = {
 			focus = ENG_heir_of_the_realm
@@ -13555,6 +13555,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			remove_trait = {
+				trait = ENG_elisabeth_queen_trait
+				character = ENG_elisabeth_queen
+			}
+			add_trait = {
+				trait = ENG_elisabeth_queen_charles_andrew
+				character = ENG_elisabeth_queen
+			}
 		}
 	}
 	focus = {
@@ -14472,7 +14480,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_queen_middle
-		icon = god_save_the_king
+		icon = ENG_anne_edward
 
 		prerequisite = {
 			focus = ENG_quiet_professionalism
@@ -14497,6 +14505,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			remove_trait = {
+				trait = ENG_elisabeth_queen_trait
+				character = ENG_elisabeth_queen
+			}
+			add_trait = {
+				trait = ENG_elisabeth_queen_anne_edward
+				character = ENG_elisabeth_queen
+			}
 		}
 	}
 	focus = {
@@ -14565,7 +14581,6 @@ focus_tree = {
 				show_effect_tooltip = yes
 				show_modifiers = yes
 			}
-
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_focus_tt
 				CHARACTER = ENG_prince_phillip
@@ -14938,7 +14953,7 @@ focus_tree = {
 					is_ai = yes
 				}
 				hidden_trigger = {
-					NOT = { has_country_flag = GER_todt_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
+					NOT = { has_country_flag = ENG_william_was_ascended_flag } #Flag to prevent AI from taking the focus again after advisor has been replaced}
 				}
 			}
 
@@ -14968,7 +14983,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		select_effect = { #Necessary to prevent AI from getting stuck if the focus is paused due to available trigger returning false
-			set_country_flag = GER_todt_ascension_flag
+			set_country_flag = ENG_william_ascension_flag
 		}
 
 		completion_reward = {
@@ -14983,6 +14998,16 @@ focus_tree = {
 			custom_effect_tooltip = {
 				localization_key = ENG_ascension_of_character_focus_tt
 				CHARACTER = ENG_prince_william
+			}
+			newline = yes
+			show_unit_leaders_tooltip = ENG_prince_william_army
+			newline = yes
+			add_war_support = 0.025
+			newline = yes
+			unlock_decision_tooltip = {
+				decision = ENG_william_air_ambulance_decision
+				show_effect_tooltip = yes
+				show_modifiers = yes
 			}
 
 			if = { #Just to make it easy to debug stuff for development
@@ -15038,21 +15063,21 @@ focus_tree = {
 			}
 
 			hidden_effect = {
-				country_event = { id = GER_inner_circle_todt.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
+				country_event = { id = ENG_inner_circle_william.01 days = ENG_inner_circle_days_to_start_focus random_days = ENG_inner_circle_random_days }
 
-				clr_country_flag = GER_todt_ascension_flag
+				clr_country_flag = ENG_william_ascension_flag
 
 				ENG_inner_circle_set_ascension_cd = yes
 
 				if = { #If historical make sure Todt is not picked ever after being replaced by Speer in the Intrigue Event
 					limit = {
-						GER_is_historical_ai = yes
+						ENG_is_historical_ai = yes
 					}
-					set_country_flag = GER_todt_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
+					set_country_flag = ENG_william_was_ascended_flag #Flag to prevent AI from taking the focus again after advisor has been replaced
 				}
 				else = {
 					set_country_flag = { #Flag to prevent AI from taking the focus again after advisor has been replaced
-						flag = GER_todt_was_ascended_flag
+						flag = ENG_william_was_ascended_flag
 						days = 1500 # Clear after ~4 years
 						value = 1
 					}
@@ -15062,7 +15087,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_royal_foundation
-		icon = god_save_the_king
+		icon = British_Industry
 
 		prerequisite = { focus = ENG_from_sandhurst_to_service }
 
@@ -15104,39 +15129,35 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
-			every_core_state = {
-				limit = {
-					is_fully_controlled_by = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = yes
-					}
-				}
-				random_select_amount = 2
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
+			add_tech_bonus = {
+				name = ENG_royal_foundation
+				category = CAT_industry
+				category = CAT_ai
+				category = CAT_renewable
+				uses = 2
+				bonus = 0.15
 			}
-
-			custom_effect_tooltip = generic_skip_one_line_tt
+			newline = yes
+			unlock_decision_tooltip = {
+				decision = ENG_william_early_years_forum_decision
+				show_effect_tooltip = yes
+				show_modifiers = yes
+			}
+			newline = yes
 			if = {
 				limit = {
-					has_idea = GER_philipp_holzmann
+					has_idea = ENG_william_1_idea
 				}
 				swap_ideas = {
-					remove_idea = GER_philipp_holzmann
-					add_idea = GER_philipp_holzmann_improved
+					remove_idea = ENG_william_1_idea
+					add_idea = ENG_william_2_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = GER_philipp_holzmann
-						add_idea = GER_philipp_holzmann_improved
+						remove_idea = ENG_william_1_idea
+						add_idea = ENG_william_2_idea
 					}
 				}
 			}
@@ -15144,7 +15165,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_heads_together
-		icon = god_save_the_king
+		icon = women_issues
 
 		prerequisite = { focus = ENG_royal_foundation }
 
@@ -15186,20 +15207,26 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			unlock_decision_tooltip = {
+				decision = ENG_william_mental_health_at_work_decision
+				show_effect_tooltip = yes
+				show_modifiers = yes
+			}
+			newline = yes
 			if = {
 				limit = {
-					has_idea = ENG_phillip_4_idea
+					has_idea = ENG_william_2_idea
 				}
 				swap_ideas = {
-					remove_idea = ENG_phillip_4_idea
-					add_idea = ENG_phillip_5_idea
+					remove_idea = ENG_william_2_idea
+					add_idea = ENG_william_3_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = ENG_phillip_4_idea
-						add_idea = ENG_phillip_5_idea
+						remove_idea = ENG_william_2_idea
+						add_idea = ENG_william_3_idea
 					}
 				}
 			}
@@ -15207,7 +15234,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_veteran_armed_forces_support
-		icon = god_save_the_king
+		icon = focus_generic_women_in_military
 
 		prerequisite = { focus = ENG_heads_together }
 
@@ -15249,20 +15276,26 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			unlock_decision_tooltip = {
+				decision = ENG_william_step_into_health_decision
+				show_effect_tooltip = yes
+				show_modifiers = yes
+			}
+			newline = yes
 			if = {
 				limit = {
-					has_idea = ENG_phillip_4_idea
+					has_idea = ENG_william_3_idea
 				}
 				swap_ideas = {
-					remove_idea = ENG_phillip_4_idea
-					add_idea = ENG_phillip_5_idea
+					remove_idea = ENG_william_3_idea
+					add_idea = ENG_william_4_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = ENG_phillip_4_idea
-						add_idea = ENG_phillip_5_idea
+						remove_idea = ENG_william_3_idea
+						add_idea = ENG_william_4_idea
 					}
 				}
 			}
@@ -15312,20 +15345,26 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			unlock_decision_tooltip = {
+				decision = ENG_william_chogm_youth_decision
+				show_effect_tooltip = yes
+				show_modifiers = yes
+			}
+			newline = yes
 			if = {
 				limit = {
-					has_idea = ENG_phillip_4_idea
+					has_idea = ENG_william_4_idea
 				}
 				swap_ideas = {
-					remove_idea = ENG_phillip_4_idea
-					add_idea = ENG_phillip_5_idea
+					remove_idea = ENG_william_4_idea
+					add_idea = ENG_william_5_idea
 				}
 			}
 			else = {
 				effect_tooltip = {
 					swap_ideas = {
-						remove_idea = ENG_phillip_4_idea
-						add_idea = ENG_phillip_5_idea
+						remove_idea = ENG_william_4_idea
+						add_idea = ENG_william_5_idea
 					}
 				}
 			}
@@ -15333,7 +15372,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_queen_youngest
-		icon = god_save_the_king
+		icon = ENG_philip_william
 
 		prerequisite = {
 			focus = ENG_strength_and_stay
@@ -15358,6 +15397,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INNER_CIRCLE FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
+			remove_trait = {
+				trait = ENG_elisabeth_queen_trait
+				character = ENG_elisabeth_queen
+			}
+			add_trait = {
+				trait = ENG_elisabeth_queen_philip_william
+				character = ENG_elisabeth_queen
+			}
 		}
 	}
 
