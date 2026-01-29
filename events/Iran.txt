@@ -2586,13 +2586,8 @@ country_event = {
 					every_core_state = { add_core_of = AQY }
 				}
 				AQY = {
-					set_variable = { var = corporate_tax_rate value = YEM.corporate_tax_rate }
-					set_variable = { var = population_tax_rate value = YEM.population_tax_rate }
-					set_variable = { var = military_factory_employment_var value = YEM.military_factory_employment_var }
-					set_variable = { var = civilian_factory_employment_var value = YEM.civilian_factory_employment_var }
-					set_variable = { var = naval_factory_employment_var value = YEM.naval_factory_employment_var }
-					set_variable = { var = office_employment_var value = YEM.office_employment_var }
-					set_variable = { var = agriculture_district_employment_var value = YEM.agriculture_district_employment_var }
+					set_temp_variable = { nation_to_copy_from = YEM.id }
+					setup_employment_variables = yes
 					ingame_update_setup = yes
 					add_equipment_to_stockpile = { type = APC_1 amount = 100 producer = SOV }
 					add_equipment_to_stockpile = { type = command_control_equipment amount = 400 producer = SOV }
@@ -4539,13 +4534,8 @@ country_event = {
 				}
 				set_temp_variable = { rul_party_temp = 12 }
 				change_ruling_party_effect = yes
-				set_variable = { var = corporate_tax_rate value = SAU.corporate_tax_rate }
-				set_variable = { var = population_tax_rate value = SAU.population_tax_rate }
-				set_variable = { var = military_factory_employment_var value = SAU.military_factory_employment_var }
-				set_variable = { var = civilian_factory_employment_var value = SAU.civilian_factory_employment_var }
-				set_variable = { var = naval_factory_employment_var value = SAU.naval_factory_employment_var }
-				set_variable = { var = office_employment_var value = SAU.office_employment_var }
-				set_variable = { var = agriculture_district_employment_var value = SAU.agriculture_district_employment_var }
+				set_temp_variable = { nation_to_copy_from = SAU.id }
+				setup_employment_variables = yes
 				ingame_update_setup = yes
 				set_politics = {
 					ruling_party = neutrality
@@ -5171,11 +5161,11 @@ country_event = {
 					has_country_flag = PER_did_mcon_6
 					399 = {
 						infrastructure > 4
-						synthetic_refinery > 4
+						renewable_energy_infra > 4
 					}
 					1146 = {
 						infrastructure > 4
-						synthetic_refinery > 4
+						renewable_energy_infra > 4
 					}
 				}
 			}
@@ -5304,10 +5294,10 @@ country_event = {
 				NOT = {
 					has_country_flag = PER_did_soc_7
 					977 = {
-						synthetic_refinery > 0
+						renewable_energy_infra > 0
 					}
 					1147 = {
-						synthetic_refinery > 0
+						renewable_energy_infra > 0
 					}
 					check_variable = {
 						energy_sum > 79.99
@@ -5741,10 +5731,10 @@ country_event = {
 				NOT = {
 					has_country_flag = PER_did_green_1
 					405 = {
-						synthetic_refinery > 0
+						renewable_energy_infra > 0
 					}
 					400 = {
-						synthetic_refinery > 0
+						renewable_energy_infra > 0
 					}
 				}
 			}
@@ -6326,10 +6316,10 @@ country_event = {
 				NOT = {
 					has_country_flag = PER_did_reformists_16
 					405 = {
-						synthetic_refinery > 1
+						renewable_energy_infra > 1
 					}
 					400 = {
-						synthetic_refinery > 1
+						renewable_energy_infra > 1
 					}
 				}
 			}
@@ -10647,21 +10637,21 @@ country_event = {
 				}
 			}
 			add_tech_bonus = {
-				name = CAT_artillery
+				name = iranian_focus.27.t
 				bonus = 0.5
 				uses = 2
 				category = CAT_artillery
 			}
 			newline = yes
 			add_tech_bonus = {
-				name = CAT_util
+				name = iranian_focus.27.t
 				bonus = 0.5
 				uses = 2
 				category = CAT_util
 			}
 			newline = yes
 			add_tech_bonus = {
-				name = CAT_inf_wep
+				name = iranian_focus.27.t
 				bonus = 0.5
 				uses = 2
 				category = CAT_inf_wep
@@ -10674,21 +10664,21 @@ country_event = {
 				}
 			}
 			add_tech_bonus = {
-				name = CAT_air_engine
+				name = iranian_focus.27.t
 				bonus = 1
 				uses = 1
 				category = CAT_air_engine
 			}
 			newline = yes
 			add_tech_bonus = {
-				name = CAT_air_ground_weapons
+				name = iranian_focus.27.t
 				bonus = 1
 				uses = 1
 				category = CAT_air_ground_weapons
 			}
 			newline = yes
 			add_tech_bonus = {
-				name = CAT_air_countermeasures
+				name = iranian_focus.27.t
 				bonus = 1
 				uses = 1
 				category = CAT_air_countermeasures
@@ -10701,21 +10691,21 @@ country_event = {
 				}
 			}
 			add_tech_bonus = {
-				name = CAT_tanks
+				name = iranian_focus.27.t
 				bonus = 2
 				uses = 1
 				category = CAT_tanks
 			}
 			newline = yes
 			add_tech_bonus = {
-				name = CAT_apc
+				name = iranian_focus.27.t
 				bonus = 2
 				uses = 1
 				category = CAT_apc
 			}
 			newline = yes
 			add_tech_bonus = {
-				name = CAT_ifv
+				name = iranian_focus.27.t
 				bonus = 2
 				uses = 1
 				category = CAT_ifv
@@ -11219,7 +11209,7 @@ country_event = {
 		log = "[GetDateText]: [This.GetName]: iranian_focus.40.a executed"
 		hidden_effect = {
 			set_temp_variable = { rul_party_temp = 6 }
-			set_temp_variable = { enable_elections = 0 }
+			set_temp_variable = { disable_elections = 0 }
 			change_ruling_party_effect = yes
 			set_temp_variable = { party_index = 6 }
 			set_temp_variable = { party_popularity_increase = 0.15 }
@@ -20129,7 +20119,7 @@ news_event = {
 	id = iranian_events.231 # The Islamic Republic Collapses
 	title = iranian_events.231.t
 	desc = iranian_events.231.d
-	picture = GFX_iranian_republic_world
+	picture = GFX_PER_revolution_monarchist
 	is_triggered_only = yes
 	major = yes
 	option = {
