@@ -5689,7 +5689,6 @@ scripted_gui = {
 					}
 				}
 			}
-
 		}
 
 		triggers = {
@@ -5708,6 +5707,32 @@ scripted_gui = {
 						days = 120
 					}
 				}
+				missile_ui_update = yes
+			}
+		}
+	}
+
+	international_ct_orgs_dynamic_lists = {
+		context_type = player_context
+		parent_scripted_gui = MD_CT_system_gui
+		window_name = "IS_CT_orgs_container"
+
+		dirty = global.missile_ui_updated
+
+		visible = {
+			has_country_flag = open_MD_countrymissilesview
+		}
+
+		dynamic_lists = {
+			CT_terror_orgs_list = {
+				array = global.active_terror_orgs
+				entry_container = IS_CT_org_list
+			}
+		}
+
+		effects = {
+			name_of_org_button_click = {
+				set_variable = { selected_org = i }
 				missile_ui_update = yes
 			}
 		}
