@@ -15,6 +15,10 @@ counter_terror_nation_startup = {
 	add_to_array = { international_terror_org_specific_intel = 0 }
 	add_to_array = { international_terror_org_specific_intel = 0 }
 	add_to_array = { international_terror_org_specific_intel = 0 }
+
+	add_to_array = { international_terror_org_temp_specific_intel = 0 }
+	add_to_array = { international_terror_org_temp_specific_intel = 0 }
+	add_to_array = { international_terror_org_temp_specific_intel = 0 }
 }
 
 counter_terror_global_setup = {
@@ -83,6 +87,7 @@ add_new_org = {
 	every_country = {
 		add_to_array = { international_terror_org_intel = 0 }
 		add_to_array = { international_terror_org_specific_intel = 0 }
+		add_to_array = { international_terror_org_temp_specific_intel = 0 }
 	}
 
 	missile_ui_update = yes
@@ -110,6 +115,12 @@ remove_org = {
 	remove_from_array = { global.active_terror_org_threat_lvl = global.active_terror_org_threat_lvl^remove_index }
 	remove_from_array = { global.active_terror_org_rad_lvl = global.active_terror_org_rad_lvl^remove_index }
 	remove_from_array = { global.active_terror_org_vis_lvl = global.active_terror_org_vis_lvl^remove_index }
+
+	every_country = {
+		remove_from_array = { international_terror_org_intel^remove_index = 0 }
+		remove_from_array = { international_terror_org_specific_intel^remove_index = 0 }
+		remove_from_array = { international_terror_org_temp_specific_intel^remove_index = 0 }
+	}
 
 	missile_ui_update = yes
 }
