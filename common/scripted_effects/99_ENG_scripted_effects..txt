@@ -1235,15 +1235,9 @@ ENG_add_replacing_advisor_effects = {
 ENG_add_charles_effects = {
 	if = {
 		limit = {
-			has_completed_focus = ENG_the_prince_trust
+			has_completed_focus = ENG_heir_of_the_realm
 		}
-		add_ideas = ENG_charles_1_idea
-	}
-	else_if = {
-		limit = {
-			has_completed_focus = ENG_climate_alarm_bell
-		}
-		add_ideas = ENG_charles_2_idea
+		add_ideas = ENG_charles_4_idea
 	}
 	else_if = {
 		limit = {
@@ -1253,24 +1247,24 @@ ENG_add_charles_effects = {
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = ENG_heir_of_the_realm
+			has_completed_focus = ENG_climate_alarm_bell
 		}
-		add_ideas = ENG_charles_4_idea
+		add_ideas = ENG_charles_2_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_the_prince_trust
+		}
+		add_ideas = ENG_charles_1_idea
 	}
 }
 
 ENG_remove_charles_effects = {
 	if = {
 		limit = {
-			has_idea = ENG_charles_1_idea
+			has_idea = ENG_charles_4_idea
 		}
-		remove_ideas = ENG_charles_1_idea
-	}
-	else_if = {
-		limit = {
-			has_idea = ENG_charles_2_idea
-		}
-		remove_ideas = ENG_charles_2_idea
+		remove_ideas = ENG_charles_4_idea
 	}
 	else_if = {
 		limit = {
@@ -1280,9 +1274,15 @@ ENG_remove_charles_effects = {
 	}
 	else_if = {
 		limit = {
-			has_idea = ENG_charles_4_idea
+			has_idea = ENG_charles_2_idea
 		}
-		remove_ideas = ENG_charles_4_idea
+		remove_ideas = ENG_charles_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_charles_1_idea
+		}
+		remove_ideas = ENG_charles_1_idea
 	}
 	else = {
 		log = "NOTHING TO REMOVE FROM CHARLES"
@@ -1348,59 +1348,100 @@ ENG_remove_charles_effects = {
 ENG_add_andrew_effects = {
 	if = {
 		limit = {
-			has_completed_focus = GER_plenipotentiary_of_armaments
+			has_completed_focus = ENG_duty_of_the_crown
 		}
-		add_ideas = GER_speer_reich_minister_of_armaments
+		add_ideas = ENG_andrew_5_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_ascension_of_speer
+			has_completed_focus = ENG_digital_enterprise_patronage
 		}
-		add_ideas = GER_speer_reich_architect
+		add_ideas = ENG_andrew_4_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_emerging_markets_circuit
+		}
+		add_ideas = ENG_andrew_3_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_appoint_trade_representative
+		}
+		add_ideas = ENG_andrew_2_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_naval_prince
+		}
+		add_ideas = ENG_andrew_1_idea
 	}
 }
 
 ENG_remove_andrew_effects = {
 	if = {
 		limit = {
-			has_idea = GER_speer_reich_minister_of_armaments
+			has_idea = ENG_andrew_5_idea
 		}
-		remove_ideas = GER_speer_reich_minister_of_armaments
+		remove_ideas = ENG_andrew_5_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_speer_reich_architect
+			has_idea = ENG_andrew_4_idea
 		}
-		remove_ideas = GER_speer_reich_architect
+		remove_ideas = ENG_andrew_4_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_andrew_3_idea
+		}
+		remove_ideas = ENG_andrew_3_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_andrew_2_idea
+		}
+		remove_ideas = ENG_andrew_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_andrew_1_idea
+		}
+		remove_ideas = ENG_andrew_1_idea
 	}
 
 	if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
 		limit = {
-			has_shine_effect_on_focus = GER_employ_philipp_holzmann
+			has_shine_effect_on_focus = ENG_appoint_trade_representative
 		}
-		deactivate_shine_on_focus = GER_employ_philipp_holzmann
-		clr_country_flag = GER_employ_philipp_holzmann_in_progress_flag
+		deactivate_shine_on_focus = ENG_appoint_trade_representative
+		clr_country_flag = ENG_appoint_trade_representative_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_plenipotentiary_of_armaments
+			has_shine_effect_on_focus = ENG_emerging_markets_circuit
 		}
-		deactivate_shine_on_focus = GER_plenipotentiary_of_armaments
-		clr_country_flag = GER_plenipotentiary_of_armaments_in_progress_flag
+		deactivate_shine_on_focus = ENG_emerging_markets_circuit
+		clr_country_flag = ENG_emerging_markets_circuit_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_wunderwaffe
-			check_variable = { GER_wonder_weapons_focus_advisor = 2 }
+			has_shine_effect_on_focus = ENG_digital_enterprise_patronage
 		}
-		deactivate_shine_on_focus = GER_wunderwaffe
-		clr_country_flag = GER_wunderwaffe_in_progress_flag
-		set_variable = { GER_wonder_weapons_focus_advisor = 0 }
+		deactivate_shine_on_focus = ENG_digital_enterprise_patronage
+		clr_country_flag = ENG_digital_enterprise_patronage_in_progress_flag
+	}
+	else_if = {
+		limit = {
+			has_shine_effect_on_focus = ENG_duty_of_the_crown
+		}
+		deactivate_shine_on_focus = ENG_duty_of_the_crown
+		clr_country_flag = ENG_duty_of_the_crown_in_progress_flag
 	}
 
 	#Uncomplete Ascension focus so that he can be picked later on
 	uncomplete_national_focus = {
-		focus = GER_ascension_of_speer
+		focus = ENG_naval_prince
 		uncomplete_children = no
 		refund_political_power = no
 	}
@@ -1429,57 +1470,121 @@ ENG_remove_andrew_effects = {
 ENG_add_anne_effects = {
 	if = {
 		limit = {
-			has_completed_focus = GER_plenipotentiary_of_the_four_year_plan
+			has_completed_focus = ENG_quiet_professionalism
+			has_country_flag = ENG_anne_navy
 		}
-		add_ideas = GER_goring_four_year_plan_plenipotentiary
+		add_ideas = ENG_anne_4b_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_ascension_of_goring
+			has_completed_focus = ENG_quiet_professionalism
+			has_country_flag = ENG_anne_army
 		}
-		add_ideas = GER_goring_overseer_four_year_plan
+		add_ideas = ENG_anne_4a_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_colonel_of_horse_logistics
+		}
+		add_ideas = ENG_anne_3b_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_princess_admiral_royal_navy
+		}
+		add_ideas = ENG_anne_3a_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_discipline_service
+		}
+		add_ideas = ENG_anne_2_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_workhorse_of_the_crown
+		}
+		add_ideas = ENG_anne_1_idea
 	}
 }
 
 ENG_remove_anne_effects = {
 	if = {
 		limit = {
-			has_idea = GER_goring_four_year_plan_plenipotentiary
+			has_idea = ENG_anne_4b_idea
 		}
-		remove_ideas = GER_goring_four_year_plan_plenipotentiary
+		remove_ideas = ENG_anne_4b_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_goring_overseer_four_year_plan
+			has_idea = ENG_anne_4a_idea
 		}
-		remove_ideas = GER_goring_overseer_four_year_plan
+		remove_ideas = ENG_anne_4a_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_anne_3a_idea
+		}
+		remove_ideas = ENG_anne_3a_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_anne_3b_idea
+		}
+		remove_ideas = ENG_anne_3b_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_anne_2_idea
+		}
+		remove_ideas = ENG_anne_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_anne_1_idea
+		}
+		remove_ideas = ENG_anne_1_idea
 	}
 
 	if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
 		limit = {
-			has_shine_effect_on_focus = GER_prioritize_the_four_year_plan
+			has_shine_effect_on_focus = ENG_carers_recognition_campaign
 		}
-		deactivate_shine_on_focus = GER_prioritize_the_four_year_plan
-		clr_country_flag = GER_prioritize_the_four_year_plan_in_progress_flag
+		deactivate_shine_on_focus = ENG_carers_recognition_campaign
+		clr_country_flag = ENG_carers_recognition_campaign_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_plenipotentiary_of_the_four_year_plan
+			has_shine_effect_on_focus = ENG_discipline_service
 		}
-		deactivate_shine_on_focus = GER_plenipotentiary_of_the_four_year_plan
-		clr_country_flag = GER_plenipotentiary_of_the_four_year_plan_in_progress_flag
+		deactivate_shine_on_focus = ENG_discipline_service
+		clr_country_flag = ENG_discipline_service_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_integration_of_puppet_economies
+			has_shine_effect_on_focus = ENG_princess_admiral_royal_navy
 		}
-		deactivate_shine_on_focus = GER_integration_of_puppet_economies
-		clr_country_flag = GER_integration_of_puppet_economies_in_progress_flag
+		deactivate_shine_on_focus = ENG_princess_admiral_royal_navy
+		clr_country_flag = ENG_princess_admiral_royal_navy_in_progress_flag
+	}
+	else_if = {
+		limit = {
+			has_shine_effect_on_focus = ENG_colonel_of_horse_logistics
+		}
+		deactivate_shine_on_focus = ENG_colonel_of_horse_logistics
+		clr_country_flag = ENG_colonel_of_horse_logistics_in_progress_flag
+	}
+	else_if = {
+		limit = {
+			has_shine_effect_on_focus = ENG_quiet_professionalism
+		}
+		deactivate_shine_on_focus = ENG_quiet_professionalism
+		clr_country_flag = ENG_quiet_professionalism_in_progress_flag
 	}
 
 	#Uncomplete Ascension focus so that he can be picked later on
 	uncomplete_national_focus = {
-		focus = GER_ascension_of_goring
+		focus = ENG_workhorse_of_the_crown
 		uncomplete_children = no
 		refund_political_power = no
 	}
@@ -1506,93 +1611,91 @@ ENG_remove_anne_effects = {
 
 # ADD/REMOVE EDWARD EFFECTS
 ENG_add_edward_effects = {
-	log ="ADDING HIMMLER"
+	log ="ADDING EDWARD"
 	if = {
 		limit = {
-			has_completed_focus = GER_strengthen_the_waffen_ss
+			has_completed_focus = ENG_steady_hand
 		}
-		add_ideas = GER_himmler_reichsfuhrer_ss
+		add_ideas = ENG_edward_4_idea
 	}
 	else_if = {
 		limit = {
-			OR = {
-				has_completed_focus = GER_expand_ss_security_duties
-				has_completed_focus = GER_absorb_the_abwehr
-			}
+			has_completed_focus = ENG_production_guild_patronage
 		}
-		add_ideas = GER_himmler_director_reich_security
+		add_ideas = ENG_edward_3_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_ascension_of_himmler
+			has_completed_focus = ENG_trustee_network
 		}
-		add_ideas = GER_himmler_chief_of_german_police
+		add_ideas = ENG_edward_2_idea
 	}
-
-	custom_effect_tooltip = generic_skip_one_line_tt
-
-	country_event = GER_inner_circle_himmler.00
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_chairman_international_award
+		}
+		add_ideas = ENG_edward_1_idea
+	}
 }
 
 ENG_remove_edward_effects = {
 	if = {
 		limit = {
-			has_idea = GER_himmler_reichsfuhrer_ss
+			has_idea = ENG_edward_4_idea
 		}
-		remove_ideas = GER_himmler_reichsfuhrer_ss
+		remove_ideas = ENG_edward_4_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_himmler_director_reich_security
+			has_idea = ENG_edward_3_idea
 		}
-		remove_ideas = GER_himmler_director_reich_security
+		remove_ideas = ENG_edward_3_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_himmler_chief_of_german_police
+			has_idea = ENG_edward_2_idea
 		}
-		remove_ideas = GER_himmler_chief_of_german_police
+		remove_ideas = ENG_edward_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_edward_1_idea
+		}
+		remove_ideas = ENG_edward_1_idea
 	}
 
 	if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
 		limit = {
-			has_shine_effect_on_focus = GER_expand_ss_security_duties
+			has_shine_effect_on_focus = ENG_trustee_network
 		}
-		deactivate_shine_on_focus = GER_expand_ss_security_duties
-		clr_country_flag = GER_expand_ss_security_duties_in_progress_flag
+		deactivate_shine_on_focus = ENG_trustee_network
+		clr_country_flag = ENG_trustee_network_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_strengthen_the_waffen_ss
+			has_shine_effect_on_focus = ENG_commonwealth_youth_outreach
 		}
-		deactivate_shine_on_focus = GER_strengthen_the_waffen_ss
-		clr_country_flag = GER_strengthen_the_waffen_ss_in_progress_flag
+		deactivate_shine_on_focus = ENG_commonwealth_youth_outreach
+		clr_country_flag = ENG_commonwealth_youth_outreach_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_expand_gestapo
+			has_shine_effect_on_focus = ENG_production_guild_patronage
 		}
-		deactivate_shine_on_focus = GER_expand_gestapo
-		clr_country_flag = GER_expand_gestapo_in_progress_flag
+		deactivate_shine_on_focus = ENG_production_guild_patronage
+		clr_country_flag = ENG_production_guild_patronage_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_absorb_the_abwehr
+			has_shine_effect_on_focus = ENG_steady_hand
 		}
-		deactivate_shine_on_focus = GER_absorb_the_abwehr
-		clr_country_flag = GER_absorb_the_abwehr_in_progress_flag
-	}
-	else_if = {
-		limit = {
-			has_shine_effect_on_focus = GER_hegemony_of_the_ss
-		}
-		deactivate_shine_on_focus = GER_hegemony_of_the_ss
-		clr_country_flag = GER_hegemony_of_the_ss_in_progress_flag
+		deactivate_shine_on_focus = ENG_steady_hand
+		clr_country_flag = ENG_steady_hand_in_progress_flag
 	}
 
 	#Uncomplete Ascension focus so that he can be picked later on
 	uncomplete_national_focus = {
-		focus = GER_ascension_of_himmler
+		focus = ENG_chairman_international_award
 		uncomplete_children = no
 		refund_political_power = no
 	}
@@ -1621,81 +1724,100 @@ ENG_remove_edward_effects = {
 ENG_add_phillip_effects = {
 	if = {
 		limit = {
-			has_completed_focus = GER_propaganda_master
+			has_completed_focus = ENG_strength_and_stay
 		}
-		add_ideas = GER_goebbels_reich_minister_of_propaganda_master
+		add_ideas = ENG_phillip_5_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_fund_the_film_department
+			has_completed_focus = ENG_prince_phillip_medal
 		}
-		add_ideas = GER_goebbels_reich_minister_of_propaganda_film
+		add_ideas = ENG_phillip_4_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_ministry_of_public_enlightenment
+			has_completed_focus = ENG_wwf_president_emeritus
 		}
-		add_ideas = GER_goebbels_reich_minister_of_propaganda_ministry
+		add_ideas = ENG_phillip_3_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_ascension_of_goebbels
+			has_completed_focus = ENG_international_award_conference
 		}
-		add_ideas = GER_goebbels_reich_minister_of_propaganda
+		add_ideas = ENG_phillip_2_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_duke_charities
+		}
+		add_ideas = ENG_phillip_1_idea
 	}
 }
 
 ENG_remove_phillip_effects = {
 	if = {
 		limit = {
-			has_idea = GER_goebbels_reich_minister_of_propaganda_master
+			has_idea = ENG_phillip_5_idea
 		}
-		remove_ideas = GER_goebbels_reich_minister_of_propaganda_master
+		remove_ideas = ENG_phillip_5_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_goebbels_reich_minister_of_propaganda_film
+			has_idea = ENG_phillip_4_idea
 		}
-		remove_ideas = GER_goebbels_reich_minister_of_propaganda_film
+		remove_ideas = ENG_phillip_4_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_goebbels_reich_minister_of_propaganda_ministry
+			has_idea = ENG_phillip_3_idea
 		}
-		remove_ideas = GER_goebbels_reich_minister_of_propaganda_ministry
+		remove_ideas = ENG_phillip_3_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_goebbels_reich_minister_of_propaganda
+			has_idea = ENG_phillip_2_idea
 		}
-		remove_ideas = GER_goebbels_reich_minister_of_propaganda
+		remove_ideas = ENG_phillip_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_phillip_1_idea
+		}
+		remove_ideas = ENG_phillip_1_idea
 	}
 
 	if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
 		limit = {
-			has_shine_effect_on_focus = GER_ministry_of_public_enlightenment
+			has_shine_effect_on_focus = ENG_international_award_conference
 		}
-		deactivate_shine_on_focus = GER_ministry_of_public_enlightenment
-		clr_country_flag = GER_ministry_of_public_enlightenment_in_progress_flag
+		deactivate_shine_on_focus = ENG_international_award_conference
+		clr_country_flag = ENG_international_award_conference_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_fund_the_film_department
+			has_shine_effect_on_focus = ENG_wwf_president_emeritus
 		}
-		deactivate_shine_on_focus = GER_fund_the_film_department
-		clr_country_flag = GER_fund_the_film_department_in_progress_flag
+		deactivate_shine_on_focus = ENG_wwf_president_emeritus
+		clr_country_flag = ENG_wwf_president_emeritus_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_propaganda_master
+			has_shine_effect_on_focus = ENG_prince_phillip_medal
 		}
-		deactivate_shine_on_focus = GER_propaganda_master
-		clr_country_flag = GER_propaganda_master_in_progress_flag
+		deactivate_shine_on_focus = ENG_prince_phillip_medal
+		clr_country_flag = ENG_prince_phillip_medal_in_progress_flag
+	}
+	else_if = {
+		limit = {
+			has_shine_effect_on_focus = ENG_strength_and_stay
+		}
+		deactivate_shine_on_focus = ENG_strength_and_stay
+		clr_country_flag = ENG_strength_and_stay_in_progress_flag
 	}
 
 	#Uncomplete Ascension focus so that he can be picked later on
 	uncomplete_national_focus = {
-		focus = GER_ascension_of_goebbels
+		focus = ENG_duke_charities
 		uncomplete_children = no
 		refund_political_power = no
 	}
@@ -1724,111 +1846,100 @@ ENG_remove_phillip_effects = {
 ENG_add_william_effects = {
 	if = {
 		limit = {
-			has_completed_focus = GER_total_control_over_domestic_affairs
+			has_completed_focus = ENG_bridge_to_the_future
 		}
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			add_ideas = GER_hess_first_among_equals
-		}
-		else = {
-			add_ideas = GER_hess_first_among_equals_no_aat
-		}
+		add_ideas = ENG_william_5_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_rally_the_industrialists
+			has_completed_focus = ENG_veteran_armed_forces_support
 		}
-		if = {
-			limit = {
-				has_dlc = "Arms Against Tyranny"
-			}
-			add_ideas = GER_hess_party_chancellor_improved
-		}
-		else = {
-			add_ideas = GER_hess_party_chancellor_improved_no_aat
-		}
+		add_ideas = ENG_william_4_idea
 	}
 	else_if = {
 		limit = {
-			has_completed_focus = GER_party_chancellor_hess
+			has_completed_focus = ENG_heads_together
 		}
-		add_ideas = GER_hess_party_chancellor
+		add_ideas = ENG_william_3_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_royal_foundation
+		}
+		add_ideas = ENG_william_2_idea
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = ENG_from_sandhurst_to_service
+		}
+		add_ideas = ENG_william_1_idea
 	}
 }
 
 ENG_remove_william_effects = {
 	if = {
 		limit = {
-			OR = {
-				has_idea = GER_hess_first_among_equals
-				has_idea = GER_hess_first_among_equals_no_aat
-			}
+			has_idea = ENG_william_5_idea
 		}
-		if = {
-			limit = {
-				has_idea = GER_hess_first_among_equals
-			}
-			remove_ideas = GER_hess_first_among_equals
-		}
-		else = {
-			remove_ideas = GER_hess_first_among_equals
-		}
+		remove_ideas = ENG_william_5_idea
 	}
 	else_if = {
 		limit = {
-			OR = {
-				has_idea = GER_hess_party_chancellor_improved
-				has_idea = GER_hess_party_chancellor_improved_no_aat
-			}
+			has_idea = ENG_william_4_idea
 		}
-		if = {
-			limit = {
-				has_idea = GER_hess_party_chancellor_improved
-			}
-			remove_ideas = GER_hess_party_chancellor_improved
-		}
-		else = {
-			remove_ideas = GER_hess_party_chancellor_improved_no_aat
-		}
+		remove_ideas = ENG_william_4_idea
 	}
 	else_if = {
 		limit = {
-			has_idea = GER_hess_party_chancellor
+			has_idea = ENG_william_3_idea
 		}
-		remove_ideas = GER_hess_party_chancellor
+		remove_ideas = ENG_william_3_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_william_2_idea
+		}
+		remove_ideas = ENG_william_2_idea
+	}
+	else_if = {
+		limit = {
+			has_idea = ENG_william_1_idea
+		}
+		remove_ideas = ENG_william_1_idea
 	}
 
 	if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
 		limit = {
-			has_shine_effect_on_focus = GER_optimize_reich_labour_service
-			check_variable = { GER_optimize_reich_service_focus_advisor = 6 }
+			has_shine_effect_on_focus = ENG_bridge_to_the_future
 		}
-		deactivate_shine_on_focus = GER_optimize_reich_labour_service
-		clr_country_flag = GER_optimize_reich_labour_service_in_progress_flag
-		set_variable = { GER_optimize_reich_service_focus_advisor = 0 }
+		deactivate_shine_on_focus = ENG_bridge_to_the_future
+		clr_country_flag = ENG_bridge_to_the_future_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_rally_the_industrialists
+			has_shine_effect_on_focus = ENG_veteran_armed_forces_support
 		}
-		deactivate_shine_on_focus = GER_rally_the_industrialists
-		clr_country_flag = GER_rally_the_industrialists_in_progress_flag
+		deactivate_shine_on_focus = ENG_veteran_armed_forces_support
+		clr_country_flag = ENG_veteran_armed_forces_support_in_progress_flag
 	}
 	else_if = {
 		limit = {
-			has_shine_effect_on_focus = GER_total_control_over_domestic_affairs
-			check_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 6 }
+			has_shine_effect_on_focus = ENG_heads_together
 		}
-		deactivate_shine_on_focus = GER_total_control_over_domestic_affairs
-		clr_country_flag = GER_total_control_over_domestic_affairs_in_progress_flag
-		set_variable = { GER_total_control_over_domestic_affairs_focus_advisor = 0 }
+		deactivate_shine_on_focus = ENG_heads_together
+		clr_country_flag = ENG_heads_together_in_progress_flag
+	}
+	else_if = {
+		limit = {
+			has_shine_effect_on_focus = ENG_royal_foundation
+		}
+		deactivate_shine_on_focus = ENG_royal_foundation
+		clr_country_flag = ENG_royal_foundation_in_progress_flag
 	}
 
 	#Uncomplete Ascension focus so that he can be picked later on
 	uncomplete_national_focus = {
-		focus = GER_party_chancellor_hess
+		focus = ENG_from_sandhurst_to_service
 		uncomplete_children = no
 		refund_political_power = no
 	}
