@@ -2600,10 +2600,123 @@ scripted_gui = {
 			has_country_flag = open_MD_countrymissilesview
 		}
 
+		triggers = {
+			expand_ct_funding_button_click_enabled = {
+				has_political_power > 50
+			}
+
+			reduce_ct_funding_button_click_enabled = {
+				has_political_power > 50
+			}
+
+			increase_analyst_focus_button_click_enabled = {
+				has_political_power > 50
+			}
+
+			decrease_analyst_focus_button_click_enabled = {
+				has_political_power > 50
+			}
+			prepare_ct_raid_button_click_enabled = {
+				set_temp_variable = { req_level > 24 }
+				custom_trigger_tooltip = {
+					tooltip = ct_required_intel_level_tt
+					check_variable = { international_terror_org_intel^selected_org > req_level }
+					has_target_in_region = yes
+				}
+				custom_trigger_tooltip = {
+					tooltip = ct_not_raid_prepared_tt
+					var:selected_ct_nation = {
+						meta_trigger = {
+							text = {
+								NOT = {
+									has_country_flag = ct_raid_prepared_by_[RAIDER]
+								}
+							}
+							RAIDER = "[?ROOT.GetTag]"
+						}
+					}
+				}
+				has_political_power > 100
+			}
+		}
+
 		effects = {
 			expand_ct_funding_button_click = {
-				add_to_variable = { ct_global_base_detect_var = 0.5 }
-				add_to_variable = { ct_police_cost_var = 0.01 }
+				set_temp_variable = { base_detect_adjust = 0.5 }
+				set_temp_variable = { base_cost_adjust = 0.01 }
+				add_to_variable = { ct_global_base_detect_var = base_detect_adjust }
+				add_to_variable = { ct_police_cost_var = base_cost_adjust }
+				custom_effect_tooltip = is_ct_adjust_funding
+				add_political_power = -50
+				missile_ui_update = yes
+			}
+			reduce_ct_funding_button_click = {
+				set_temp_variable = { base_detect_adjust = -0.5 }
+				set_temp_variable = { base_cost_adjust = -0.01 }
+				add_to_variable = { ct_global_base_detect_var = base_detect_adjust }
+				add_to_variable = { ct_police_cost_var = base_cost_adjust }
+				custom_effect_tooltip = is_ct_adjust_funding
+				add_political_power = -50
+				missile_ui_update = yes
+			}
+			increase_analyst_focus_button_click = {
+				for_each_loop = {
+					array = international_terror_org_specific_intel
+					value = v
+					index = i
+
+					if = {
+						limit = {
+							check_variable = { i = selected_org }
+						}
+						set_temp_variable = { focus_increase = 0.02 }
+						add_to_variable = { international_terror_org_specific_intel^i = focus_increase }
+					}else = {
+						set_temp_variable = { focus_decrease = -0.01 }
+						add_to_variable = { international_terror_org_specific_intel^i = focus_decrease }
+					}
+				}
+				set_temp_variable = { focus_increase = 0.02 }
+				set_temp_variable = { focus_decrease = -0.01 }
+				custom_effect_tooltip = is_analyst_focus_adjust
+				add_political_power = -50
+				missile_ui_update = yes
+			}
+			decrease_analyst_focus_button_click = {
+				for_each_loop = {
+					array = international_terror_org_specific_intel
+					value = v
+					index = i
+
+					if = {
+						limit = {
+							check_variable = { i = selected_org }
+						}
+						set_temp_variable = { focus_increase = -0.02 }
+						add_to_variable = { international_terror_org_specific_intel^i = focus_increase }
+					}else = {
+						set_temp_variable = { focus_decrease = 0.01 }
+						add_to_variable = { international_terror_org_specific_intel^i = focus_decrease }
+					}
+				}
+				set_temp_variable = { focus_increase = -0.02 }
+				set_temp_variable = { focus_decrease = 0.01 }
+				custom_effect_tooltip = is_analyst_focus_adjust
+				add_political_power = -50
+				missile_ui_update = yes
+			}
+			prepare_ct_raid_button_click = {
+				meta_effect  = {
+					text = {
+						var:selected_ct_nation = {
+							set_country_flag = ct_raid_prepared_by_[RAIDER]
+						}
+					}
+					RAIDER = "[?ROOT.GetTag]"
+				}
+				custom_effect_tooltip = ct_enable_raid_against_nation_tt
+				add_political_power = -100
+				missile_ui_update = yes
 			}
 			select_asia_button_click = {
 				clear_array = selected_ct_nations_list
@@ -2612,8 +2725,8 @@ scripted_gui = {
 					value = v
 
 					ROOT = { add_to_array = { selected_ct_nations_list = v } }
-					missile_ui_update = yes
 				}
+				missile_ui_update = yes
 			}
 			select_me_button_click = {
 				clear_array = selected_ct_nations_list
@@ -2622,8 +2735,8 @@ scripted_gui = {
 					value = v
 
 					ROOT = { add_to_array = { selected_ct_nations_list = v } }
-					missile_ui_update = yes
 				}
+				missile_ui_update = yes
 			}
 			select_afr_button_click = {
 				clear_array = selected_ct_nations_list
@@ -2632,8 +2745,8 @@ scripted_gui = {
 					value = v
 
 					ROOT = { add_to_array = { selected_ct_nations_list = v } }
-					missile_ui_update = yes
 				}
+				missile_ui_update = yes
 			}
 			select_europe_button_click = {
 				clear_array = selected_ct_nations_list
@@ -2642,8 +2755,8 @@ scripted_gui = {
 					value = v
 
 					ROOT = { add_to_array = { selected_ct_nations_list = v } }
-					missile_ui_update = yes
 				}
+				missile_ui_update = yes
 			}
 			select_american_button_click = {
 				clear_array = selected_ct_nations_list
@@ -2652,8 +2765,8 @@ scripted_gui = {
 					value = v
 
 					ROOT = { add_to_array = { selected_ct_nations_list = v } }
-					missile_ui_update = yes
 				}
+				missile_ui_update = yes
 			}
 		}
 

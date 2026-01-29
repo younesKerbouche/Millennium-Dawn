@@ -7,6 +7,7 @@ counter_terror_nation_startup = {
 	set_variable = { ct_global_base_detect_var = 0 }
 	set_variable = { ct_threat_detect_var = 0 }
 	set_variable = { ct_police_cost_var = 0 }
+	set_variable = { ct_home_defense_var = 0 }
 
 	set_variable = { foreign_counter_terror_support = 0 }
 	#setup the basic array for the global terror orgs
@@ -25,6 +26,8 @@ counter_terror_nation_startup = {
 	add_to_array = { international_terror_org_temp_specific_intel = 0 }
 
 	add_dynamic_modifier = { modifier = counter_terrorism_operations }
+
+	counter_terror_individual = yes
 }
 
 counter_terror_global_setup = {
@@ -312,6 +315,10 @@ calculate_national_global_threat_detection = {
 	set_temp_variable = { base_mod = 1 }
 	add_to_temp_variable = { base_mod = modifier@terror_threat_detection_modifier }
 
+	set_variable = { ct_defense_total = modifier@terror_threat_base_defense_modifier }
+	add_to_variable = { ct_defense_total = ct_home_defense_var }
+	multiply_variable = { ct_defense_total = base_mod }
+
 	set_temp_variable = { cur_nat = THIS }
 
 	for_each_loop = {
@@ -324,22 +331,39 @@ calculate_national_global_threat_detection = {
 		var:cur_nat = {
 			set_temp_variable = { cur_intel = civilian_intel@var:op_country }
 			add_to_temp_variable = { cur_intel = base_detection }
-			multiply_temp_variable = { cur_intel = 0.4 }
+			multiply_temp_variable = { cur_intel = 0.2 }
+			set_temp_variable = { network_gain = network_national_coverage@var:op_country }
+			multiply_temp_variable = { network_gain = 0.25 }
+			add_to_temp_variable = { cur_intel = network_gain }
+			add_to_temp_variable = { cur_intel = international_terror_org_temp_specific_intel^i }
+			subtract_from_variable = { international_terror_org_temp_specific_intel^i = 1 }
+			clamp_variable = { var = international_terror_org_temp_specific_intel^i min = 0 }
 			multiply_temp_variable = { cur_intel = base_mod }
-			add_to_temp_variable = { cur_intel = international_terror_org_specific_intel^i }
+			set_temp_variable = { spec_intel_mod = 1 }
+			add_to_temp_variable = { spec_intel_mod = international_terror_org_specific_intel^i }
+			multiply_temp_variable = { cur_intel = spec_intel_mod }
 			set_variable = { international_terror_org_intel^i = cur_intel }
 		}
 
 		var:op_country = {
 			every_neighbor_country = {
 				var:cur_nat = {
-					set_temp_variable = { cur_intel = civilian_intel@THIS }
+					set_temp_variable = { cur_intel = civilian_intel@PREV }
 					add_to_temp_variable = { cur_intel = base_detection }
 					multiply_temp_variable = { cur_intel = 0.1 }
+					set_temp_variable = { network_gain = network_national_coverage@PREV }
+					multiply_temp_variable = { network_gain = 0.15 }
+					add_to_temp_variable = { cur_intel = network_gain }
 					multiply_temp_variable = { cur_intel = base_mod }
 					add_to_variable = { international_terror_org_intel^i = cur_intel }
 				}
 			}
+		}
+		set_temp_variable = { org_vis_reducer = -50 }
+		add_to_temp_variable = { org_vis_reducer = global.active_terror_org_vis_lvl^i }
+		multiply_temp_variable = { org_vis_reducer = 0.65 }
+		var:cur_nat = {
+			add_to_variable = { international_terror_org_intel^i = org_vis_reducer }
 		}
 	}
 }

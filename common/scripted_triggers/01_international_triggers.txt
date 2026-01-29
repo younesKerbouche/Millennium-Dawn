@@ -65,3 +65,39 @@ pmc_can_recruit = {
 		}
 	}
 }
+
+has_target_in_region = {
+	var:global.active_terror_hq^selected_org = {
+		set_temp_variable = { region_check_nation = controller }
+	}
+	OR = {
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = europe } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = europe } }
+		}
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = africa } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = africa } }
+		}
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = asia } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = asia } }
+		}
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = south_america } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = south_america } }
+		}
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = north_america } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = north_america } }
+		}
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = middle_east } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = middle_east } }
+		}
+		AND = {
+			var:region_check_nation = { capital_scope = { is_on_continent = australia } }
+			var:selected_ct_nation = { capital_scope = { is_on_continent = australia } }
+		}
+	}
+}
