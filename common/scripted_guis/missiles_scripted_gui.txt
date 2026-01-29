@@ -2601,22 +2601,115 @@ scripted_gui = {
 		}
 
 		triggers = {
-			expand_ct_funding_button_click_enabled = {
+			ct_funding_button_click_enabled = {
 				has_political_power > 50
 			}
 
-			reduce_ct_funding_button_click_enabled = {
+			ct_funding_button_right_click_enabled = {
 				has_political_power > 50
 			}
 
-			increase_analyst_focus_button_click_enabled = {
+			analyst_focus_button_click_enabled = {
 				has_political_power > 50
 			}
 
-			decrease_analyst_focus_button_click_enabled = {
+			analyst_focus_button_right_click_enabled = {
 				has_political_power > 50
 			}
+
+			domestic_survellience_button_click_enabled = {
+				has_political_power > 100
+			}
+
+			domestic_survellience_button_right_click_enabled = {
+				has_political_power > 100
+			}
+
+			infil_agent_button_click_enabled = {
+				has_political_power > 50
+				set_temp_variable = { req_level > 24 }
+				custom_trigger_tooltip = {
+					tooltip = ct_required_intel_level_only_tt
+					check_variable = { international_terror_org_intel^selected_org > req_level }
+				}
+			}
+
+			arrest_sympathizers_button_click_enabled = {
+				has_political_power > 100
+				set_temp_variable = { req_level > 30 }
+				custom_trigger_tooltip = {
+					tooltip = ct_required_threat_level_only_tt
+					check_variable = { global.active_terror_org_threat_lvl^selected_org > req_level }
+				}
+				set_temp_variable = { req_level > 15 }
+				custom_trigger_tooltip = {
+					tooltip = ct_required_intel_level_only_tt
+					check_variable = { international_terror_org_intel^selected_org > req_level }
+				}
+			}
+
+			seize_assets_button_click_enabled = {
+				has_political_power > 100
+				set_temp_variable = { req_level > 40 }
+				custom_trigger_tooltip = {
+					tooltip = ct_required_intel_level_only_tt
+					check_variable = { international_terror_org_intel^selected_org > req_level }
+				}
+				custom_trigger_tooltip = {
+					tooltip = ct_not_has_done_recent_asset_seizure
+					NOT = { has_country_flag = recent_ct_asset_seizure }
+				}
+			}
+
+			mass_gathering_button_click_enabled = {
+				has_political_power > 100
+				custom_trigger_tooltip = {
+					tooltip = ct_not_has_done_recent_intel_op
+					NOT = { has_country_flag = recent_ct_intel_op }
+				}
+			}
+
+			exploit_intelligence_button_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = ct_has_intel_to_exploit
+					check_variable = { ct_mass_gather_store_var^selected_org > 0 }
+				}
+			}
+
+			send_advisors_button_click_enabled = {
+				has_political_power > 100
+				custom_trigger_tooltip = {
+					tooltip = is_ct_does_not_have_advisors
+					var:selected_ct_nation = {
+						meta_trigger = {
+							text = {
+								NOT = {
+									has_country_flag = has_ct_advisor_from_[SENDER]
+								}
+							}
+							SENDER = "[?ROOT.GetTag]"
+						}
+					}
+				}
+			}
+
+			send_advisors_button_right_click_enabled = {
+				has_political_power > 100
+				custom_trigger_tooltip = {
+					tooltip = is_ct_does_have_advisors
+					var:selected_ct_nation = {
+						meta_trigger = {
+							text = {
+								has_country_flag = has_ct_advisor_from_[SENDER]
+							}
+							SENDER = "[?ROOT.GetTag]"
+						}
+					}
+				}
+			}
+
 			prepare_ct_raid_button_click_enabled = {
+				has_political_power > 100
 				set_temp_variable = { req_level > 24 }
 				custom_trigger_tooltip = {
 					tooltip = ct_required_intel_level_tt
@@ -2636,30 +2729,40 @@ scripted_gui = {
 						}
 					}
 				}
+			}
+
+			conduct_drone_operations_button_click_enabled = {
 				has_political_power > 100
+				set_temp_variable = { req_level > 24 }
+				custom_trigger_tooltip = {
+					tooltip = ct_required_intel_level_tt
+					check_variable = { international_terror_org_intel^selected_org > req_level }
+					has_target_in_region = yes
+				}
 			}
 		}
 
 		effects = {
-			expand_ct_funding_button_click = {
+			ct_funding_button_click = {
+				add_political_power = -50
 				set_temp_variable = { base_detect_adjust = 0.5 }
 				set_temp_variable = { base_cost_adjust = 0.01 }
 				add_to_variable = { ct_global_base_detect_var = base_detect_adjust }
 				add_to_variable = { ct_police_cost_var = base_cost_adjust }
 				custom_effect_tooltip = is_ct_adjust_funding
-				add_political_power = -50
 				missile_ui_update = yes
 			}
-			reduce_ct_funding_button_click = {
+			ct_funding_button_right_click = {
+				add_political_power = -50
 				set_temp_variable = { base_detect_adjust = -0.5 }
 				set_temp_variable = { base_cost_adjust = -0.01 }
 				add_to_variable = { ct_global_base_detect_var = base_detect_adjust }
 				add_to_variable = { ct_police_cost_var = base_cost_adjust }
 				custom_effect_tooltip = is_ct_adjust_funding
-				add_political_power = -50
 				missile_ui_update = yes
 			}
-			increase_analyst_focus_button_click = {
+			analyst_focus_button_click = {
+				add_political_power = -50
 				for_each_loop = {
 					array = international_terror_org_specific_intel
 					value = v
@@ -2679,10 +2782,10 @@ scripted_gui = {
 				set_temp_variable = { focus_increase = 0.02 }
 				set_temp_variable = { focus_decrease = -0.01 }
 				custom_effect_tooltip = is_analyst_focus_adjust
-				add_political_power = -50
 				missile_ui_update = yes
 			}
-			decrease_analyst_focus_button_click = {
+			analyst_focus_button_right_click = {
+				add_political_power = -50
 				for_each_loop = {
 					array = international_terror_org_specific_intel
 					value = v
@@ -2702,10 +2805,141 @@ scripted_gui = {
 				set_temp_variable = { focus_increase = -0.02 }
 				set_temp_variable = { focus_decrease = 0.01 }
 				custom_effect_tooltip = is_analyst_focus_adjust
-				add_political_power = -50
 				missile_ui_update = yes
 			}
+			domestic_survellience_button_click = {
+				add_political_power = -100
+				set_party_index_to_ruling_party = yes
+				set_temp_variable = { party_popularity_increase = -0.02 }
+				add_relative_party_popularity = yes
+
+				set_temp_variable = { defense_var = 2 }
+				add_to_variable = { ct_home_defense_var = defense_var }
+				set_temp_variable = { intel_gain_var = 2 }
+				add_to_variable = { ct_global_base_detect_var = intel_gain_var }
+				custom_effect_tooltip = is_ct_dom_suv_tt
+				missile_ui_update = yes
+			}
+			domestic_survellience_button_right_click = {
+				add_political_power = -100
+				set_party_index_to_ruling_party = yes
+				set_temp_variable = { party_popularity_increase = 0.02 }
+				add_relative_party_popularity = yes
+
+				set_temp_variable = { defense_var = -2 }
+				add_to_variable = { ct_home_defense_var = defense_var }
+				set_temp_variable = { intel_gain_var = -2 }
+				add_to_variable = { ct_global_base_detect_var = intel_gain_var }
+				custom_effect_tooltip = is_ct_dom_suv_tt
+				missile_ui_update = yes
+			}
+			mass_gathering_button_click = {
+				add_political_power = -100
+				custom_effect_tooltip = is_ct_mass_gather_tt
+				randomize_temp_variable = {
+					var = num_add
+					min = 0
+					max = 5
+					distribution = uniform
+				}
+				add_to_variable = { ct_mass_gather_store_var = num_add }
+				set_country_flag = {
+					flat = recent_ct_intel_op
+					days = 210
+					value = 1
+				}
+				missile_ui_update = yes
+			}
+			exploit_intelligence_button_click = {
+				custom_effect_tooltip = is_ct_exploit_intel_tt
+
+				set_temp_variable = { exploit_int = ct_mass_gather_store_var^selected_org }
+				set_variable = { ct_mass_gather_store_var^selected_org = 0 }
+				multiply_temp_variable = { exploit_int = 1.25 }
+				add_to_variable = { international_terror_org_temp_specific_intel^selected_org = exploit_int }
+				missile_ui_update = yes
+			}
+			infil_agent_button_click = {
+				add_political_power = -50
+				custom_effect_tooltip = is_ct_infil_agent_tt
+				#TODO: Randomize the chance based off our intel accuracy + agent deveopment
+				missile_ui_update = yes
+			}
+			arrest_sympathizers_button_click = {
+				add_political_power = -100
+				randomize_temp_variable = {
+					var = threat_reducer
+					min = 2
+					max = 6
+					distribution = uniform
+				}
+
+				subtract_from_variable = { global.active_terror_org_threat_lvl^selected_org = threat_reducer }
+				subtract_from_variable = { global.active_terror_org_vis_lvl^selected_org = threat_reducer }
+				multiply_temp_variable = { threat_reducer = 0.5 }
+				add_to_variable = { international_terror_org_temp_specific_intel^selected_or = threat_reducer }
+				custom_effect_tooltip = is_ct_arrest_sympathizers_tt
+
+				set_temp_variable = { random_bad_luck = 100 }
+				subtract_from_temp_variable = { random_bad_luck = international_terror_org_intel^selected_org }
+				subtract_from_temp_variable = { random_bad_luck = ct_intel_agency_value }
+				random = {
+					chance = random_bad_luck
+					#TODO: Fire the negative event here
+				}
+				missile_ui_update = yes
+			}
+			seize_assets_button_click = {
+				add_political_power = -100
+				set_country_flag = {
+					flat = recent_ct_asset_seizure
+					days = 210
+					value = 1
+				}
+				set_temp_variable_to_random = {
+					var = treasury_change
+					min = 2
+					max = 8
+				}
+				modify_treasury_effect = yes
+				multiply_temp_variable = { treasury_change = -1 }
+				add_to_variable = { global.active_terror_org_threat_lvl^selected_org = treasury_change }
+				add_to_variable = { global.active_terror_org_vis_lvl^selected_org = treasury_change }
+				custom_effect_tooltip = is_ct_asset_seizure_tt
+				missile_ui_update = yes
+			}
+			send_advisors_button_click = {
+				add_political_power = -100
+				meta_effect  = {
+					text = {
+						var:selected_ct_nation = {
+							set_country_flag = has_ct_advisor_from_[SENDER]
+							add_to_variable = { foreign_counter_terror_support = 1 }
+						}
+					}
+					SENDER = "[?ROOT.GetTag]"
+				}
+				custom_effect_tooltip = is_ct_send_advisors_too
+				missile_ui_update = yes
+			}
+
+			send_advisors_button_right_click = {
+				add_political_power = -100
+				meta_effect  = {
+					text = {
+						var:selected_ct_nation = {
+							clr_country_flag = has_ct_advisor_from_[SENDER]
+							add_to_variable = { foreign_counter_terror_support = -1 }
+						}
+					}
+					SENDER = "[?ROOT.GetTag]"
+				}
+				custom_effect_tooltip = is_ct_recall_advisors_from
+				missile_ui_update = yes
+			}
+
 			prepare_ct_raid_button_click = {
+				add_political_power = -100
 				meta_effect  = {
 					text = {
 						var:selected_ct_nation = {
@@ -2715,9 +2949,16 @@ scripted_gui = {
 					RAIDER = "[?ROOT.GetTag]"
 				}
 				custom_effect_tooltip = ct_enable_raid_against_nation_tt
+				missile_ui_update = yes
+			}
+
+			conduct_drone_operations_button_click = {
+				#Fire an event that gives either the option to do a recon flight, or a strike
+				#Recon will increase intel, strike will decrease threat and visability
 				add_political_power = -100
 				missile_ui_update = yes
 			}
+
 			select_asia_button_click = {
 				clear_array = selected_ct_nations_list
 				for_each_loop = {

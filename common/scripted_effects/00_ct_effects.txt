@@ -25,6 +25,10 @@ counter_terror_nation_startup = {
 	add_to_array = { international_terror_org_temp_specific_intel = 0 }
 	add_to_array = { international_terror_org_temp_specific_intel = 0 }
 
+	add_to_array = { ct_mass_gather_store_var = 0 }
+	add_to_array = { ct_mass_gather_store_var = 0 }
+	add_to_array = { ct_mass_gather_store_var = 0 }
+
 	add_dynamic_modifier = { modifier = counter_terrorism_operations }
 
 	counter_terror_individual = yes
@@ -72,22 +76,22 @@ add_new_org = {
 
 	set_temp_variable_to_random = {
 		var = starting_threat
-		min = 5
-		max = 10
+		min = 10
+		max = 25
 		integer = yes
 	}
 
 	set_temp_variable_to_random = {
 		var = starting_rad
-		min = 5
-		max = 10
+		min = 10
+		max = 25
 		integer = yes
 	}
 
 	set_temp_variable_to_random = {
 		var = starting_vis
 		min = 5
-		max = 10
+		max = 15
 	}
 
 	add_to_array = { global.active_terror_org_threat_lvl = starting_threat }
@@ -97,6 +101,7 @@ add_new_org = {
 		add_to_array = { international_terror_org_intel = 0 }
 		add_to_array = { international_terror_org_specific_intel = 0 }
 		add_to_array = { international_terror_org_temp_specific_intel = 0 }
+		add_to_array = { ct_mass_gather_store_var = 0 }
 	}
 
 	missile_ui_update = yes
@@ -142,22 +147,22 @@ set_starting_org_values = {
 
 		set_temp_variable_to_random = {
 			var = starting_threat
-			min = 5
-			max = 10
+			min = 10
+			max = 25
 			integer = yes
 		}
 
 		set_temp_variable_to_random = {
 			var = starting_rad
-			min = 5
-			max = 10
+			min = 10
+			max = 25
 			integer = yes
 		}
 
 		set_temp_variable_to_random = {
 			var = starting_vis
 			min = 5
-			max = 10
+			max = 15
 		}
 
 		if = {
@@ -338,6 +343,9 @@ calculate_national_global_threat_detection = {
 			add_to_temp_variable = { cur_intel = international_terror_org_temp_specific_intel^i }
 			subtract_from_variable = { international_terror_org_temp_specific_intel^i = 1 }
 			clamp_variable = { var = international_terror_org_temp_specific_intel^i min = 0 }
+			set_temp_variable = { gather_add = ct_mass_gather_store_var^i }
+			multiply_temp_variable = { gather_add = 0.5 }
+			add_to_temp_variable = { cur_intel = gather_add }
 			multiply_temp_variable = { cur_intel = base_mod }
 			set_temp_variable = { spec_intel_mod = 1 }
 			add_to_temp_variable = { spec_intel_mod = international_terror_org_specific_intel^i }
