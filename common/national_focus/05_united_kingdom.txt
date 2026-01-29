@@ -7881,7 +7881,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_strengthening_communities"
-			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { percent_change = 2 }
 			change_domestic_influence_percentage = yes
 			newline = yes
 			set_party_index_to_ruling_party = yes
@@ -10135,7 +10135,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_fighting_the_power_of_brussels"
-			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { percent_change = 2 }
 			change_domestic_influence_percentage = yes
 			newline = yes
 			set_temp_variable = { modify_eurosceptic = 0.05 }
@@ -10178,7 +10178,18 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_fighting_the_power_of_brussels"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_flexible_europe"
+			custom_effect_tooltip = ENG_every_non_nato_eu_TT
+			every_country = {
+				limit = {
+					is_in_europe = yes
+					NOT = {
+						has_idea = NATO_member
+						original_tag = ENG
+					}
+				}
+				country_event = britain_md.12
+			}
 		}
 
 		ai_will_do = {
@@ -10238,7 +10249,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_no_army_outside_of_europe
-		icon = winston_churchill
+		icon = military_mission
 
 		x = 2
 		y = 4
@@ -10258,6 +10269,23 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_fighting_the_power_of_brussels"
+			set_temp_variable = { ENG_special_forces_cap_flat_change = 5.00 }
+			update_ENG_special_forces_cap_flat = yes
+			newline = yes
+			every_country = {
+				limit = {
+					is_in_europe = no
+					gives_military_access_to = ENG
+				}
+				diplomatic_relation = {
+					country = ENG
+					relation = military_access
+					active = no
+				}
+			}
+			newline = yes
+			set_temp_variable = { percent_change = 2 }
+			change_domestic_influence_percentage = yes
 		}
 
 		ai_will_do = {
@@ -10395,7 +10423,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_rural_friendly_transport_services
-		icon = winston_churchill
+		icon = Generic_Railroads
 
 		x = -2
 		y = 4
@@ -10418,6 +10446,22 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rural_friendly_transport_services"
+			add_tech_bonus = {
+				name = ENG_rural_friendly_transport_services
+				bonus = 1.0
+				uses = 1
+				category = CAT_agriculture_tech
+			}
+			newline = yes
+			sp:sp_improved_maglev_trains = {
+				add_project_progress_ratio = 0.35
+			}
+			newline = yes
+			add_equipment_to_stockpile = {
+				type = train_equipment_1
+				amount = 150
+				producer = ENG
+			}
 		}
 
 		ai_will_do = {
@@ -10427,7 +10471,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_industrial_friendly_transport_services
-		icon = winston_churchill
+		icon = mining
 
 		x = 0
 		y = 4
@@ -10450,6 +10494,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_industrial_friendly_transport_services"
+			set_temp_variable = { ENG_production_speed_infrastructure_factor_change = 0.05 }
+			update_ENG_production_speed_infrastructure_factor = yes
+			newline = yes
+			11 = {
+				add_resource = {
+					type = steel
+					amount = 8
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -10459,7 +10512,7 @@ focus_tree = {
 
 	focus = {
 		id = ENG_abolish_centrally_planned_housing
-		icon = winston_churchill
+		icon = central_planned_economy
 
 		x = -1
 		y = 5
@@ -10477,7 +10530,18 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_industrial_friendly_transport_services"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_abolish_centrally_planned_housing"
+			set_temp_variable = { ENG_global_building_slots_factor_change = -0.10 }
+			update_ENG_global_building_slots_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_production_cost_industrial_complex_factor_change = -0.10 }
+			update_ENG_production_cost_industrial_complex_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_production_speed_arms_factory_factor_change = 0.10 }
+			update_ENG_production_speed_arms_factory_factor = yes
+			newline = yes
+			set_temp_variable = { temp_opinion = 5 }
+			change_defense_industry_opinion = yes
 		}
 
 		ai_will_do = {
