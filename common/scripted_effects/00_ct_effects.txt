@@ -330,42 +330,24 @@ calculate_national_global_threat_detection = {
 			multiply_temp_variable = { gather_add = 0.5 }
 			add_to_temp_variable = { cur_intel = gather_add }
 			multiply_temp_variable = { cur_intel = base_mod }
+			set_temp_variable = { org_vis_reducer = -50 }
+			add_to_temp_variable = { org_vis_reducer = global.active_terror_org_vis_lvl^i }
+			multiply_temp_variable = { org_vis_reducer = 0.65 }
+			add_to_temp_variable = { cur_intel = org_vis_reducer }
 			set_temp_variable = { spec_intel_mod = 1 }
 			add_to_temp_variable = { spec_intel_mod = international_terror_org_specific_intel^i }
 			multiply_temp_variable = { cur_intel = spec_intel_mod }
 			set_variable = { international_terror_org_intel^i = cur_intel }
-		}
-
-		# var:op_country = {
-		# 	every_neighbor_country = {
-		# 		var:cur_nat = {
-		# 			set_temp_variable = { cur_intel = civilian_intel@PREV }
-		# 			add_to_temp_variable = { cur_intel = base_detection }
-		# 			multiply_temp_variable = { cur_intel = 0.1 }
-		# 			set_temp_variable = { network_gain = network_national_coverage@PREV }
-		# 			multiply_temp_variable = { network_gain = 0.15 }
-		# 			add_to_temp_variable = { cur_intel = network_gain }
-		# 			multiply_temp_variable = { cur_intel = base_mod }
-		# 			add_to_variable = { international_terror_org_intel^i = cur_intel }
-		# 		}
-		# 	}
-		# }
-
-		set_temp_variable = { org_vis_reducer = -50 }
-		add_to_temp_variable = { org_vis_reducer = global.active_terror_org_vis_lvl^i }
-		multiply_temp_variable = { org_vis_reducer = 0.65 }
-		var:cur_nat = {
-			add_to_variable = { international_terror_org_intel^i = org_vis_reducer }
-		}
-		clamp_variable = {
-			var = international_terror_org_intel^i
-			min = 0
-			max = 100
-		}
-		clamp_variable = {
-			var = international_terror_org_intel^i
-			min = 0
-			max = 100
+			clamp_variable = {
+				var = international_terror_org_intel^i
+				min = 0
+				max = 100
+			}
+			clamp_variable = {
+				var = international_terror_org_intel^i
+				min = 0
+				max = 100
+			}
 		}
 	}
 }
