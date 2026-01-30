@@ -2681,13 +2681,8 @@ scripted_gui = {
 				custom_trigger_tooltip = {
 					tooltip = is_ct_does_not_have_advisors
 					var:selected_ct_nation = {
-						meta_trigger = {
-							text = {
-								NOT = {
-									has_country_flag = has_ct_advisor_from_[SENDER]
-								}
-							}
-							SENDER = "[?ROOT.GetTag]"
+						NOT = {
+							has_country_flag = has_ct_advisor_from@ROOT
 						}
 					}
 				}
@@ -2698,12 +2693,7 @@ scripted_gui = {
 				custom_trigger_tooltip = {
 					tooltip = is_ct_does_have_advisors
 					var:selected_ct_nation = {
-						meta_trigger = {
-							text = {
-								has_country_flag = has_ct_advisor_from_[SENDER]
-							}
-							SENDER = "[?ROOT.GetTag]"
-						}
+						has_country_flag = has_ct_advisor_from@ROOT
 					}
 				}
 			}
@@ -2719,13 +2709,8 @@ scripted_gui = {
 				custom_trigger_tooltip = {
 					tooltip = ct_not_raid_prepared_tt
 					var:selected_ct_nation = {
-						meta_trigger = {
-							text = {
-								NOT = {
-									has_country_flag = ct_raid_prepared_by_[RAIDER]
-								}
-							}
-							RAIDER = "[?ROOT.GetTag]"
+						NOT = {
+							has_country_flag = ct_raid_prepared_by@ROOT
 						}
 					}
 				}
@@ -2842,9 +2827,10 @@ scripted_gui = {
 					max = 5
 					distribution = uniform
 				}
+				add_to_temp_variable = { num_add = 1 }
 				add_to_variable = { ct_mass_gather_store_var = num_add }
 				set_country_flag = {
-					flat = recent_ct_intel_op
+					flag = recent_ct_intel_op
 					days = 210
 					value = 1
 				}
@@ -2877,7 +2863,7 @@ scripted_gui = {
 				subtract_from_variable = { global.active_terror_org_threat_lvl^selected_org = threat_reducer }
 				subtract_from_variable = { global.active_terror_org_vis_lvl^selected_org = threat_reducer }
 				multiply_temp_variable = { threat_reducer = 0.5 }
-				add_to_variable = { international_terror_org_temp_specific_intel^selected_or = threat_reducer }
+				add_to_variable = { international_terror_org_temp_specific_intel^selected_org = threat_reducer }
 				custom_effect_tooltip = is_ct_arrest_sympathizers_tt
 
 				set_temp_variable = { random_bad_luck = 100 }
@@ -2892,7 +2878,7 @@ scripted_gui = {
 			seize_assets_button_click = {
 				add_political_power = -100
 				set_country_flag = {
-					flat = recent_ct_asset_seizure
+					flag = recent_ct_asset_seizure
 					days = 210
 					value = 1
 				}
@@ -2901,6 +2887,9 @@ scripted_gui = {
 					min = 2
 					max = 8
 				}
+				set_temp_variable = { booster = 1 }
+				add_to_temp_variable = { booster = modifier@international_market_income_modifier }
+				multiply_temp_variable = { treasury_change = booster }
 				modify_treasury_effect = yes
 				multiply_temp_variable = { treasury_change = -1 }
 				add_to_variable = { global.active_terror_org_threat_lvl^selected_org = treasury_change }
@@ -2910,14 +2899,9 @@ scripted_gui = {
 			}
 			send_advisors_button_click = {
 				add_political_power = -100
-				meta_effect  = {
-					text = {
-						var:selected_ct_nation = {
-							set_country_flag = has_ct_advisor_from_[SENDER]
-							add_to_variable = { foreign_counter_terror_support = 1 }
-						}
-					}
-					SENDER = "[?ROOT.GetTag]"
+				var:selected_ct_nation = {
+					set_country_flag = has_ct_advisor_from@ROOT
+					add_to_variable = { foreign_counter_terror_support = 1 }
 				}
 				custom_effect_tooltip = is_ct_send_advisors_too
 				missile_ui_update = yes
@@ -2925,14 +2909,9 @@ scripted_gui = {
 
 			send_advisors_button_right_click = {
 				add_political_power = -100
-				meta_effect  = {
-					text = {
-						var:selected_ct_nation = {
-							clr_country_flag = has_ct_advisor_from_[SENDER]
-							add_to_variable = { foreign_counter_terror_support = -1 }
-						}
-					}
-					SENDER = "[?ROOT.GetTag]"
+				var:selected_ct_nation = {
+					clr_country_flag = has_ct_advisor_from@ROOT
+					add_to_variable = { foreign_counter_terror_support = -1 }
 				}
 				custom_effect_tooltip = is_ct_recall_advisors_from
 				missile_ui_update = yes
@@ -2940,13 +2919,8 @@ scripted_gui = {
 
 			prepare_ct_raid_button_click = {
 				add_political_power = -100
-				meta_effect  = {
-					text = {
-						var:selected_ct_nation = {
-							set_country_flag = ct_raid_prepared_by_[RAIDER]
-						}
-					}
-					RAIDER = "[?ROOT.GetTag]"
+				var:selected_ct_nation = {
+					set_country_flag = ct_raid_prepared_by@ROOT
 				}
 				custom_effect_tooltip = ct_enable_raid_against_nation_tt
 				missile_ui_update = yes
