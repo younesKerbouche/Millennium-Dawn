@@ -51,28 +51,63 @@ create_staggered_cycle = {
 		if = {
 			limit = {
 				check_variable = { global.staggered_setup_tracker = 0 }
+				country_exists = THIS
 			}
 			add_to_variable = { global.staggered_setup_tracker = 1 }
 			add_to_array = { global.ct_first_week = THIS }
 		}else_if = {
 			limit = {
 				check_variable = { global.staggered_setup_tracker = 1 }
+				country_exists = THIS
 			}
 			add_to_variable = { global.staggered_setup_tracker = 1 }
 			add_to_array = { global.ct_second_week = THIS }
 		}else_if = {
 			limit = {
 				check_variable = { global.staggered_setup_tracker = 2 }
+				country_exists = THIS
 			}
 			add_to_variable = { global.staggered_setup_tracker = 1 }
 			add_to_array = { global.ct_third_week = THIS }
-		}else = {
+		}else_if = {
+			limit = {
+				country_exists = THIS
+			}
 			set_variable = { global.staggered_setup_tracker = 0 }
 			add_to_array = { global.ct_last_week = THIS }
 		}
 	}
+}
 
-	clear_variable = global.staggered_setup_tracker
+add_on_creation = {
+	if = {
+		limit = {
+			check_variable = { global.staggered_setup_tracker = 0 }
+			country_exists = THIS
+		}
+		add_to_variable = { global.staggered_setup_tracker = 1 }
+		add_to_array = { global.ct_first_week = THIS }
+	}else_if = {
+		limit = {
+			check_variable = { global.staggered_setup_tracker = 1 }
+			country_exists = THIS
+		}
+		add_to_variable = { global.staggered_setup_tracker = 1 }
+		add_to_array = { global.ct_second_week = THIS }
+	}else_if = {
+		limit = {
+			check_variable = { global.staggered_setup_tracker = 2 }
+			country_exists = THIS
+		}
+		add_to_variable = { global.staggered_setup_tracker = 1 }
+		add_to_array = { global.ct_third_week = THIS }
+	}else_if = {
+		limit = {
+			country_exists = THIS
+		}
+		set_variable = { global.staggered_setup_tracker = 0 }
+		add_to_array = { global.ct_last_week = THIS }
+	}
 }
 
 setup_all_orgs = {
@@ -279,6 +314,7 @@ counter_terror_global = {
 
 counter_terror_individual = {
 	#Start by adjusting social conservatism
+	log = "[GetDateText]: [THIS.GetName] starting counter terror run."
 	if = {
 		limit = {
 			has_variable = social_conservatism_government
