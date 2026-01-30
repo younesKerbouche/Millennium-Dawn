@@ -659,9 +659,10 @@ check_for_global_attacks = {
 		#dont draw attention to yourself if you are more visible than threatening
 		if = {
 			limit = {
+				check_variable = { global.active_terror_org_threat_lvl^i > 20 }
 				check_variable = { global.active_terror_org_vis_lvl^i < global.active_terror_org_threat_lvl^i }
 			}
-			multiply_temp_variable = { v = 0.25 }
+			multiply_temp_variable = { v = 0.15 }
 			round_temp_variable = v
 
 			random = {
@@ -749,6 +750,9 @@ global_attack_roll = {
 					min = 0
 					max = 100
 				}
+				country_event = {
+
+				}
 			}
 
 			if = {
@@ -770,6 +774,9 @@ global_attack_roll = {
 				}
 				#fire the stopped the event here
 				log = "[GetDateText]: [THIS.GetName] prevented an international terror attack"
+				country_event = {
+					id = MD_terror.1
+				}
 			}
 		}
 	}
