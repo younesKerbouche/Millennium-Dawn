@@ -4193,7 +4193,6 @@ focus_tree = {
 		}
 	}
 
-#defence industrial policy
 	focus = {
 		id = ENG_defence_industrial_policy
 		icon = Rule_Britannia
@@ -4756,9 +4755,7 @@ focus_tree = {
 			factor = 1
 		}
 	}
-# COMMONWEALTH BRANCH
 
-# ECONOMY FOCUS TREE
 	focus = {
 		id = ENG_codify_service_economy
 		icon = pound_sterling
@@ -7184,7 +7181,6 @@ focus_tree = {
 		}
 	}
 
-# Labour Branch
 	focus = {
 		id = ENG_ambitions_for_britain
 		icon = ENG_labour
@@ -9931,7 +9927,6 @@ focus_tree = {
 			base = 1
 		}
 	}
-# Conservative Branch
 	# Common Sense - Agenda
 	focus = {
 		id = ENG_time_for_common_sense
@@ -12431,7 +12426,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_commonwealth_summit
-		icon = god_save_the_king
+		icon = align_to_commonwealth
 
 		x = 0
 		y = 1
@@ -12451,6 +12446,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			every_other_country = {
+				limit = { has_dynamic_modifier = {	modifier = Commonwealth_member_modifier	} }
+				add_opinion_modifier = { target = ENG modifier = ENG_monarch_outreach }
+				reverse_add_opinion_modifier = { target = ENG modifier = ENG_monarch_outreach }
+			}
 		}
 
 		ai_will_do = {
@@ -12478,6 +12478,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			add_ideas = ENG_crown_procurement_program_idea
 		}
 
 		ai_will_do = {
@@ -12738,7 +12739,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_european_outreach
-		icon = god_save_the_king
+		icon = align_to_europe
 
 		x = -1
 		y = 1
@@ -12757,6 +12758,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			every_country = {
+				limit = {
+					has_idea = EU_member
+					NOT = {
+						original_tag = ENG
+					}
+				}
+				add_opinion_modifier = { target = ENG modifier = ENG_monarch_outreach }
+				reverse_add_opinion_modifier = { target = ENG modifier = ENG_monarch_outreach }
+			}
 		}
 
 		ai_will_do = {
@@ -12824,7 +12835,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_reaffirm_special_relationship
-		icon = god_save_the_king
+		icon = align_to_america
 
 		x = 0
 		y = 1
@@ -12842,6 +12853,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			USA = {
+				add_opinion_modifier = { target = ENG modifier = ENG_monarch_outreach }
+				reverse_add_opinion_modifier = { target = ENG modifier = ENG_monarch_outreach }
+			}
 		}
 
 		ai_will_do = {
@@ -15636,7 +15651,6 @@ focus_tree = {
 	}
 
 
-# End of political branches
 	##############################
 	###	Start of EU Focus Tree ###	x = 15 y = 18
 	##############################
