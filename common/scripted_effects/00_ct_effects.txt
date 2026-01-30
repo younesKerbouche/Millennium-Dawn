@@ -314,9 +314,10 @@ calculate_national_global_threat_detection = {
 		value = v
 		index = i
 
-		set_temp_variable = { state_tracker = global.active_terror_hq^i }
-		log = "Tracked State Is: [state_tracker][state_tracker.GetName]"
-		set_temp_variable = { op_country = state_tracker.controller }
+		set_temp_variable = { cur_hq_state = global.active_terror_hq^i }
+		log = "The State - [?cur_hq_state] - [?cur_hq_state.GetName]"
+		set_temp_variable = { op_country = cur_hq_state.controller }
+		log = "The Country - [?op_country] - [?oop_country.GetName]"
 		var:cur_nat = { #var:cur_nat
 			log = "[THIS.GetName]: Base detection is [?base_detection]"
 			set_temp_variable = { cur_intel = civilian_intel@var:op_country }
