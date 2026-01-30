@@ -12459,7 +12459,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_crown_procurement_program
-		icon = god_save_the_king
+		icon = Focus_generic_monarchist_workers
 
 		x = 2
 		y = 1
@@ -12506,6 +12506,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			if = {
+				limit = { has_idea = ENG_crown_procurement_program_idea }
+				swap_ideas = {
+					remove_idea = ENG_crown_procurement_program_idea
+					add_idea = ENG_crown_procurement_program_idea2navy
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_crown_procurement_program_idea
+						add_idea = ENG_crown_procurement_program_idea2navy
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
