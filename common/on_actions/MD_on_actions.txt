@@ -156,15 +156,6 @@ on_actions = {
 				clear_variable = project_type
 			}
 
-			if = { limit = { is_in_array = { global.ct_states = THIS } }
-				if = {
-					limit = {
-						has_country_flag = jihadist_uprising_imminent
-					}
-					country_event = { id = terror.14 }
-				}
-			}
-
 			# Arab Spring
 			if = { limit = { has_country_flag = arab_spring_active }
 				if = {
@@ -194,6 +185,46 @@ on_actions = {
 				}
 
 				NATO_CSTO_calculate_number_of_batallions = yes
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = cycled_ct_tick_this_week }
+				}
+				set_global_flag = { flag = cycled_ct_tick_this_week days = 4 value = 1 }
+				if = {
+					limit = {
+						check_variable = { global.week = 1 }
+					}
+					add_to_variable = { global.week = 1 }
+					for_each_scope_loop = {
+						array = global.ct_first_week
+						counter_terror_individual = yes
+					}
+				}else_if = {
+					limit = {
+						check_variable = { global.week = 2 }
+					}
+					add_to_variable = { global.week = 1 }
+					for_each_scope_loop = {
+						array = global.ct_second_week
+						counter_terror_individual = yes
+					}
+				}else_if = {
+					limit = {
+						check_variable = { global.week = 3 }
+					}
+					add_to_variable = { global.week = 1 }
+					for_each_scope_loop = {
+						array = global.ct_third_week
+						counter_terror_individual = yes
+					}
+				}else = {
+					set_variable = { global.week = 1 }
+					for_each_scope_loop = {
+						array = global.ct_last_week
+						counter_terror_individual = yes
+					}
+				}
 			}
 		}
 	}
@@ -676,7 +707,7 @@ on_actions = {
 					civilian_microchip_consumption = yes
 
 					#insert every nation's counter terror stuff here
-					counter_terror_individual = yes
+					#counter_terror_individual = yes
 
 					# AGRI SHIT
 					AGRI_plow_the_fields = yes

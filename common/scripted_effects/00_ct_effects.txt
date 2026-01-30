@@ -38,6 +38,41 @@ counter_terror_global_setup = {
 	setup_all_orgs = yes
 	set_starting_org_locations = yes
 	set_starting_org_values = yes
+	create_staggered_cycle = yes
+}
+
+create_staggered_cycle = {
+	set_variable = { global.staggered_setup_tracker = 0 }
+	set_variable = { global.week = 1 }
+
+	for_each_scope_loop = {
+		array = global.countries
+
+		if = {
+			limit = {
+				check_variable = { global.staggered_setup_tracker = 0 }
+			}
+			add_to_variable = { global.staggered_setup_tracker = 1 }
+			add_to_array = { global.ct_first_week = THIS }
+		}else_if = {
+			limit = {
+				check_variable = { global.staggered_setup_tracker = 1 }
+			}
+			add_to_variable = { global.staggered_setup_tracker = 1 }
+			add_to_array = { global.ct_second_week = THIS }
+		}else_if = {
+			limit = {
+				check_variable = { global.staggered_setup_tracker = 2 }
+			}
+			add_to_variable = { global.staggered_setup_tracker = 1 }
+			add_to_array = { global.ct_third_week = THIS }
+		}else = {
+			set_variable = { global.staggered_setup_tracker = 0 }
+			add_to_array = { global.ct_last_week = THIS }
+		}
+	}
+
+	clear_variable = global.staggered_setup_tracker
 }
 
 setup_all_orgs = {
@@ -236,18 +271,6 @@ set_starting_org_locations = {
 	}
 }
 
-fuck_you_bird_you_bastard = {
-	for_each_loop = {
-		array = global.active_terror_hq
-		value = v
-		index = i
-
-		var:v = {
-			add_to_array = { global.active_terror_hq_country = controller }
-		}
-	}
-}
-
 #System Pulses
 counter_terror_global = {
 	check_for_global_attacks = yes
@@ -336,10 +359,10 @@ calculate_national_global_threat_detection = {
 		index = i
 
 		set_temp_variable = { cur_con = global.active_terror_hq_country^i }
+
 		set_variable = { international_terror_org_intel^i = civilian_intel@var:cur_con }
-
+		log = "Intel Network Number [?international_terror_org_intel^i]"
 		add_to_variable = { international_terror_org_intel^i = network_national_coverage@var:cur_con }
-
 		add_to_variable = { international_terror_org_intel^i = base_detection }
 
 		if = {
@@ -351,7 +374,7 @@ calculate_national_global_threat_detection = {
 			add_to_variable = { international_terror_org_intel^i = gather_add }
 		}
 
-		multiply_variable = { international_terror_org_intel^i = 0.3 }
+		subtract_from_variable = { international_terror_org_intel^i = 40 }
 		multiply_variable = { international_terror_org_intel^i = base_mod }
 		log = "Starting Intel Numbers [?international_terror_org_intel^i]"
 	}
@@ -391,8 +414,7 @@ calculate_national_global_threat_detection = {
 		value = v
 		index = i
 
-		add_to_temp_variable = { v = -50 }
-		multiply_temp_variable = { v = 0.35 }
+		add_to_temp_variable = { v = -25 }
 		add_to_variable = { international_terror_org_intel^i = v }
 
 		log = "Vis Reduction Applied [?international_terror_org_intel^i]"
@@ -416,7 +438,6 @@ calculate_national_global_threat_detection = {
 				max = 100
 			}
 			set_variable = { international_terror_org_intel^i = v }
-			log = "Clamp Applied [?international_terror_org_intel^i]"
 		}
 	}
 }
