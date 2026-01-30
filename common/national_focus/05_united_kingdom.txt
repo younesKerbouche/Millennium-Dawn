@@ -12260,12 +12260,12 @@ focus_tree = {
 	# Monarchism
 	focus = {
 		id = ENG_triumph_of_the_crown
-		icon = god_save_the_king
+		icon = british_monarchy
 
 		x = 112
 		y = 0
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12275,6 +12275,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_triumph_of_the_crown"
+			add_dynamic_modifier = {
+				modifier = ENG_monarchy
+			}
 		}
 
 		ai_will_do = {
@@ -12284,18 +12287,17 @@ focus_tree = {
 
 	focus = {
 		id = ENG_the_queens_speech
-		icon = god_save_the_king
+		icon = angel
 
 
 		x = -3
 		y = 1
 		relative_position_id = ENG_triumph_of_the_crown
 
-		prerequisite = {
-			focus = ENG_triumph_of_the_crown
-		}
+		prerequisite = { focus = ENG_triumph_of_the_crown }
+		mutually_exclusive = { focus = ENG_new_constitutional_charter }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12305,6 +12307,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_the_queens_speech"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_subjects_autonomy_gain_monarchy = 0.05 tooltip = subjects_autonomy_gain_tt }
+			add_to_variable = { ENG_political_power_factor_monarchy = 0.05 tooltip = political_power_factor_tt }
 		}
 
 		ai_will_do = {
@@ -12313,7 +12318,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_restore_civil_liberties
-		icon = god_save_the_king
+		icon = Decentralization
 
 		x = -1
 		y = 1
@@ -12323,7 +12328,7 @@ focus_tree = {
 			focus = ENG_the_queens_speech
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12333,6 +12338,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_restore_civil_liberties"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_trade_opinion_factor_monarchy = 0.05 tooltip = trade_opinion_factor_tt }
+			add_to_variable = { ENG_drift_defence_factor_monarchy = -0.10 tooltip = drift_defence_factor_tt }
 		}
 
 		ai_will_do = {
@@ -12341,7 +12349,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_rule_sword_sceptre
-		icon = god_save_the_king
+		icon = monarchism2
 
 		x = 1
 		y = 1
@@ -12351,7 +12359,7 @@ focus_tree = {
 			focus = ENG_the_queens_speech
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12361,6 +12369,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_stability_factor_monarchy = 0.05 tooltip = stability_factor_tt }
+			add_to_variable = { ENG_political_power_factor_monarchy = 0.05 tooltip = political_power_factor_tt }
 		}
 
 		ai_will_do = {
@@ -12369,7 +12380,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_royal_prerogative_activation
-		icon = god_save_the_king
+		icon = Generic_Crown_Box
 
 		x = 0
 		y = 1
@@ -12379,7 +12390,7 @@ focus_tree = {
 			focus = ENG_triumph_of_the_crown
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12389,6 +12400,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_royal_prerogative_activation"
+			add_timed_idea = {
+				idea = ENG_royal_prerogative_activation_idea
+				years = 1
+			}
 		}
 
 		ai_will_do = {
@@ -12397,7 +12412,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_a_bid_soft_power
-		icon = god_save_the_king
+		icon = treaty
 
 		x = 0
 		y = 2
@@ -12408,7 +12423,7 @@ focus_tree = {
 			focus = ENG_rule_sword_sceptre
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12418,6 +12433,8 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_foreign_influence_modifier_monarchy = 0.05 tooltip = foreign_influence_modifier_tt }
 		}
 
 		ai_will_do = {
@@ -12436,7 +12453,7 @@ focus_tree = {
 			focus = ENG_a_bid_soft_power
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12468,7 +12485,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_a_bid_soft_power }
 		prerequisite = { focus = ENG_royal_charitable_initiative }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12496,7 +12513,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_crown_procurement_program }
 		mutually_exclusive = { focus = ENG_raf_army_overhaul }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12538,7 +12555,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_crown_procurement_program }
 		mutually_exclusive = { focus = ENG_modernize_royal_navy }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12582,7 +12599,7 @@ focus_tree = {
 			focus = ENG_raf_army_overhaul
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12632,7 +12649,7 @@ focus_tree = {
 			focus = ENG_raf_army_overhaul
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12654,17 +12671,16 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_new_constitutional_charter
-		icon = god_save_the_king
+		icon = focus_generic_fascist_militarism
 
 		x = 3
 		y = 1
 		relative_position_id = ENG_triumph_of_the_crown
 
-		prerequisite = {
-			focus = ENG_triumph_of_the_crown
-		}
+		prerequisite = { focus = ENG_triumph_of_the_crown }
+		mutually_exclusive = { focus = ENG_the_queens_speech }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12674,6 +12690,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_new_constitutional_charter"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_resistance_growth_monarchy = -0.10 tooltip = resistance_growth_tt }
+			add_to_variable = { ENG_drift_defence_factor_monarchy = 0.05 tooltip = drift_defence_factor_tt }
+			add_to_variable = { ENG_war_support_monarchy = 0.05 tooltip = war_support_factor_tt }
 		}
 
 		ai_will_do = {
@@ -12682,7 +12702,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_secure_succession
-		icon = god_save_the_king
+		icon = regency
 
 		x = -1
 		y = 1
@@ -12692,7 +12712,7 @@ focus_tree = {
 			focus = ENG_new_constitutional_charter
 		}
 
-		cost = 1
+		cost = 2
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12700,8 +12720,14 @@ focus_tree = {
 			nationalist_monarchists_are_in_power = yes
 		}
 
+		bypass = {
+			has_completed_focus = ENG_the_prince_trust
+		}
+
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			complete_national_focus = ENG_the_prince_trust
+			add_political_power = 100
 		}
 
 		ai_will_do = {
@@ -12710,7 +12736,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_rule_councillorship
-		icon = god_save_the_king
+		icon = monarchism_absolutism
 
 		x = 1
 		y = 1
@@ -12720,7 +12746,7 @@ focus_tree = {
 			focus = ENG_new_constitutional_charter
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12730,6 +12756,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_councillorship"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_expected_adm_modifier_monarchy = -1 tooltip = expected_adm_modifier_tt }
+			add_to_variable = { ENG_party_popularity_stability_factor_monarchy = 0.10 tooltip = party_popularity_stability_factor_tt }
 		}
 
 		ai_will_do = {
@@ -12738,7 +12767,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_convene_foreign_secretary_cabinet
-		icon = god_save_the_king
+		icon = accept_treaty
 
 		x = 0
 		y = 2
@@ -12749,7 +12778,7 @@ focus_tree = {
 			focus = ENG_rule_councillorship
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12759,6 +12788,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_opinion_gain_monthly_monarchy = 0.05 tooltip = opinion_gain_monthly_tt }
+			add_to_variable = { ENG_foreign_influence_defense_modifier_monarchy = 0.05 tooltip = foreign_influence_defense_modifier_tt }
 		}
 
 		ai_will_do = {
@@ -12767,7 +12799,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_champion_liberal_values
-		icon = god_save_the_king
+		icon = Generic_Liberty_Calling
 
 		x = 1
 		y = 1
@@ -12777,7 +12809,7 @@ focus_tree = {
 			focus = ENG_convene_foreign_secretary_cabinet
 		}
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12786,7 +12818,11 @@ focus_tree = {
 		}
 
 		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_champion_liberal_values"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_trade_opinion_factor_monarchy = 0.05 tooltip = trade_opinion_factor_tt }
+			add_to_variable = { ENG_scientist_research_bonus_factor_monarchy = 0.05 tooltip = scientist_research_bonus_factor_tt }
+			add_to_variable = { ENG_research_speed_factor_monarchy = 0.05 tooltip = research_speed_factor_tt }
 		}
 
 		ai_will_do = {
@@ -12804,7 +12840,7 @@ focus_tree = {
 		prerequisite = { focus = ENG_convene_foreign_secretary_cabinet }
 		prerequisite = { focus = ENG_royal_charitable_initiative }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12847,7 +12883,7 @@ focus_tree = {
 
 		prerequisite = { focus = ENG_european_outreach }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12923,7 +12959,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_joint_operational_command
-		icon = god_save_the_king
+		icon = grand_battleplan
 
 		x = 2
 		y = 3
@@ -12931,7 +12967,7 @@ focus_tree = {
 
 		prerequisite = { focus = ENG_close_proximity_nato }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12941,6 +12977,11 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_coordination_bonus_monarchy = 0.05 tooltip = coordination_bonus_tt }
+			add_to_variable = { ENG_max_planning_factor_monarchy = 0.05 tooltip = max_planning_factor_tt }
+			add_to_variable = { ENG_air_cas_efficiency_monarchy = 0.05 tooltip = air_cas_efficiency_tt }
+			add_to_variable = { ENG_special_forces_cap_monarchy = 0.05 tooltip = special_forces_cap_tt }
 		}
 
 		ai_will_do = {
@@ -12957,7 +12998,7 @@ focus_tree = {
 
 		prerequisite = { focus = ENG_european_outreach }
 
-		cost = 1
+		cost = 5
 
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
@@ -12979,13 +13020,13 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_royal_charitable_initiative
-		icon = god_save_the_king
+		icon = boots
 
 		x = 0
 		y = 3
 		relative_position_id = ENG_triumph_of_the_crown
 
-		cost = 1
+		cost = 5
 
 		prerequisite = {
 			focus = ENG_restore_civil_liberties
@@ -13005,6 +13046,8 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_royal_prerogative_activation"
+			custom_effect_tooltip = ENG_change_monarchy_dm
+			add_to_variable = { ENG_consumer_goods_expected_value_monarchy = -0.05 tooltip = consumer_goods_expected_value_tt }
 		}
 
 		ai_will_do = {
