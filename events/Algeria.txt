@@ -563,6 +563,123 @@ country_event = {
 		change_landowners_opinion = yes
 		
 	}
+	option = {
+		name = AlgeriaElections.1.b
+		log = "[GetDateText]: [This.GetName]: AlgeriaElections.1.b executed"
+		ai_chance = { base = 25 }
+		set_temp_variable = { rul_party_temp = 2 }
+		change_ruling_party_effect = yes
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = democratic
+					elections_allowed = yes
+					last_election = "[YEAR].[MONTH].1"
+					election_frequency = 60
+				}
+			}
+			YEAR = global.year
+			MONTH = global.month
+		}
+		hidden_effect = {
+			set_variable = { term_limit = 2 }
+			set_variable = { current_term = 1 }
+		}
+		set_temp_variable = { party_index = 2 }
+		set_temp_variable = { party_popularity_increase = 0.40 }
+		set_temp_variable = { temp_outlook_increase = 0.40 }
+		add_relative_party_popularity = yes
+		add_popularity = { ideology = democratic popularity = 0.40 }
+		swap_ideas = {
+			remove_idea = the_military
+			add_idea = international_bankers
+		}
+		set_temp_variable = { temp_opinion = 10 }
+		change_international_bankers_opinion = yes
+		
+	}
+	option = {
+		name = AlgeriaElections.1.c
+		log = "[GetDateText]: [This.GetName]: AlgeriaElections.1.c executed"
+		ai_chance = { base = 25 }
+		set_temp_variable = { rul_party_temp = 12 }
+		change_ruling_party_effect = yes
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = neutrality
+					elections_allowed = yes
+					last_election = "[YEAR].[MONTH].1"
+					election_frequency = 60
+				}
+			}
+			YEAR = global.year
+			MONTH = global.month
+		}
+		hidden_effect = {
+			set_variable = { term_limit = 2 }
+			set_variable = { current_term = 1 }
+		}
+		set_temp_variable = { party_index = 12 }
+		set_temp_variable = { party_popularity_increase = 0.40 }
+		set_temp_variable = { temp_outlook_increase = 0.40 }
+		add_relative_party_popularity = yes
+		add_popularity = { ideology = neutrality popularity = 0.40 }
+		swap_ideas = {
+			remove_idea = industrial_conglomerates
+			add_idea = the_ulema
+		}
+		set_temp_variable = { temp_opinion = 10 }
+		change_the_ulema_opinion = yes
+		
+	}
+	option = {
+		name = AlgeriaElections.1.c
+		log = "[GetDateText]: [This.GetName]: AlgeriaElections.1.c executed"
+		ai_chance = { base = 25 }
+		set_temp_variable = { rul_party_temp = 16 }
+		change_ruling_party_effect = yes
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = neutrality
+					elections_allowed = yes
+					last_election = "[YEAR].[MONTH].1"
+					election_frequency = 60
+				}
+			}
+			YEAR = global.year
+			MONTH = global.month
+		}
+		hidden_effect = {
+			set_variable = { term_limit = 2 }
+			set_variable = { current_term = 1 }
+		}
+		set_temp_variable = { party_index = 16 }
+		set_temp_variable = { party_popularity_increase = 0.40 }
+		set_temp_variable = { temp_outlook_increase = 0.40 }
+		add_relative_party_popularity = yes
+		add_popularity = { ideology = neutrality popularity = 0.40 }
+		swap_ideas = {
+			remove_idea = the_military
+			add_idea = labour_unions
+		}
+		swap_ideas = {
+			remove_idea = fossil_fuel_industry
+			add_idea = farmers
+		}
+		swap_ideas = {
+			remove_idea = industrial_conglomerates
+			add_idea = landowners
+		}
+		set_temp_variable = { temp_opinion = 10 }
+		change_labour_unions_opinion = yes
+		set_temp_variable = { temp_opinion = 10 }
+		change_farmers_opinion = yes
+		set_temp_variable = { temp_opinion = 10 }
+		change_landowners_opinion = yes
+		
+	}
 }
 country_event = {
 	id = algerian.1
@@ -6753,6 +6870,10 @@ country_event = {
     option = {
         name = alg_ethnicity.100.a    # Hardline response
         add_stability = -0.05
+		set_temp_variable = { party_index = 7 }
+		set_temp_variable = { party_popularity_increase = -0.40 }
+		set_temp_variable = { temp_outlook_increase = -0.40 }
+		add_relative_party_popularity = yes
         subtract_from_variable = { var = kabyle_satisfaction value = -5 }
         add_to_variable = { var = arab_satisfaction value = 5 }
         clamp_variable = { var = arab_satisfaction min = 0 max = 100 }
@@ -6761,9 +6882,10 @@ country_event = {
 
     option = {
         name = alg_ethnicity.100.b    # Conciliatory approach
-        set_temp_variable = { treasury_change = -20 }
+        set_temp_variable = { treasury_change = -1.5 }
         modify_treasury_effect = yes
         add_stability = 0.02
+		add_political_power = -100
         add_to_variable = { var = kabyle_satisfaction value = 10 }
         clamp_variable = { var = kabyle_satisfaction min = 0 max = 100 }
         # NOTE: no unrest flag here

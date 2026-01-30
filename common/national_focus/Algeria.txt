@@ -81,13 +81,13 @@ focus_tree = {
 		}
 		relative_position_id = ALG_at_a_crossroads
         completion_reward = {
-            add_stability = 0.5
+            add_stability = 0.1
             add_political_power = 50
 			country_event = {id = algeria_news.3 }
-			set_temp_variable = { ALG_offices_contruction_speed_change = 0.05 }
+			set_temp_variable = { ALG_offices_contruction_speed_change = 0.03 }
 			update_ALG_offices_contruction_speed = yes
 			newline = yes
-			set_temp_variable = { ALG_office_workforce_change = -0.03 }
+			set_temp_variable = { ALG_office_workforce_change = -0.02 }
 			update_ALG_office_workforce = yes
 			newline = yes
 			set_temp_variable = { ALG_arms_factory_contruction_speed_change = 0.01 }
@@ -313,7 +313,6 @@ focus_tree = {
 				amount = 5
 				state = 384
 			}
-			add_stability = 0.05
 		}
 	}
 
@@ -1032,7 +1031,10 @@ focus_tree = {
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_open_market"
 			increase_exports = yes
-			add_ideas = ALG_open_market_idea
+			add_timed_idea = {
+				idea = ALG_open_market_idea
+				days = 3285
+			}
 		}
 	}
 
@@ -1048,7 +1050,7 @@ focus_tree = {
 
 		completion_reward = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_OPP_education_first"
-			add_research_slot = 1
+			#add_research_slot = 1 #not sure of this for now
 			add_ideas = ALG_reform_education_system_idea
 		}
 	}
@@ -1099,7 +1101,10 @@ focus_tree = {
 			focus = ALG_OPP_invest_in_youth
 		}
 		available = {
-			western_social_democrats_are_in_power = yes
+			NOT = {
+				is_in_array = { ruling_party = 7 }
+				is_in_array = { ruling_party = 22 }
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -1291,7 +1296,7 @@ focus_tree = {
 		log = "[GetDateText]: [Root.GetName]: Focus ALG_grand_mosque"
 			set_temp_variable = { treasury_change = -5.5 }
         	modify_treasury_effect = yes
-			set_temp_variable = { ALG_civ_construction_speed_change = 0.12 }
+			set_temp_variable = { ALG_civ_construction_speed_change = 0.20 }
 			update_ALG_civ_construction_speed = yes
 			newline = yes
 			set_temp_variable = {ALG_research_speed_factor_change = 0.10}
@@ -1333,18 +1338,19 @@ focus_tree = {
 			modify_international_investment_effect = yes
 			set_temp_variable = { percent_change = 3 }
      		change_domestic_influence_percentage = yes
+			#if = { #not sure about this either
+			#	limit = {
+			#		NOT = {
+			#			has_tech = big_autocannon_tech
+			#		}
+			#	}
+			#	set_technology = {
+			#		big_autocannon_tech = 1
+			#	}
+			#}
 			if = {
 				limit = {
-					NOT = {
-						has_tech = big_autocannon_tech
-					}
-				}
-				set_technology = {
-					big_autocannon_tech = 1
-				}
-			}
-			if = {
-				limit = {
+					has_tech = big_autocannon_tech
 					NOT = {
 						has_tech = big_autocannon_tech_2
 					}
@@ -1459,21 +1465,15 @@ focus_tree = {
 		relative_position_id = ALG_regional_power
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus FLN_expand_hydro"
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = synthetic_refinery
-					level = 1
-					instant_build = yes
-				}
+			385 = {
+				add_dynamic_modifier = { modifier = hydroelectric_infrastructure_in_state }
 			}
-			random_owned_state = {
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = synthetic_refinery
-					level = 1
-					instant_build = yes
-				}
+			386 = {
+				add_dynamic_modifier = { modifier = hydroelectric_infrastructure_in_state }
+
+			}
+			383 = {
+				add_dynamic_modifier = { modifier = hydroelectric_infrastructure_in_state }
 			}
 			newline = yes
 			set_temp_variable = { treasury_change = -17.00 }
@@ -1522,8 +1522,6 @@ focus_tree = {
 		log = "[GetDateText]: [Root.GetName]: Focus FLN_hydroelectric_authority"
 			add_stability = 0.05
 			add_ideas = ALG_hydroelectric_power_plants_upgraded_idea
-			set_temp_variable = { temp_change = 2 }
-			build_enrichment_facilities_effect = yes
 		}
 		ai_will_do = { factor = 1 }
 	}
