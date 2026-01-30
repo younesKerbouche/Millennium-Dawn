@@ -314,25 +314,34 @@ calculate_national_global_threat_detection = {
 		value = v
 		index = i
 
-		set_temp_variable = { state_tracker = active_terror_hq^i }
+		set_temp_variable = { state_tracker = global.active_terror_hq^i }
+		log = "Tracked State Is: [state_tracker][state_tracker.GetName]"
 		set_temp_variable = { op_country = state_tracker.controller }
-		var:cur_nat = {
+		var:cur_nat = { #var:cur_nat
+			log = "[THIS.GetName]: Base detection is [?base_detection]"
 			set_temp_variable = { cur_intel = civilian_intel@var:op_country }
+			log = "Base Starting intel is [?cur_intel]"
 			add_to_temp_variable = { cur_intel = base_detection }
 			multiply_temp_variable = { cur_intel = 0.2 }
+			log = "Intel After Base Detection is [?cur_intel]"
 			set_temp_variable = { network_gain = network_national_coverage@var:op_country }
 			multiply_temp_variable = { network_gain = 0.25 }
 			add_to_temp_variable = { cur_intel = network_gain }
+			log = "Intel After Network Coverage Gain is [?cur_intel]"
 			add_to_temp_variable = { cur_intel = international_terror_org_temp_specific_intel^i }
 			subtract_from_variable = { international_terror_org_temp_specific_intel^i = 1 }
 			clamp_variable = { var = international_terror_org_temp_specific_intel^i min = 0 }
+			log = "Intel After Temp Specific Add is [?cur_intel]"
 			set_temp_variable = { gather_add = ct_mass_gather_store_var^i }
 			multiply_temp_variable = { gather_add = 0.5 }
 			add_to_temp_variable = { cur_intel = gather_add }
+			log = "Intel After Gather store add is [?cur_intel]"
 			multiply_temp_variable = { cur_intel = base_mod }
+			log = "Intel After base_mod application is [?cur_intel]"
 			set_temp_variable = { spec_intel_mod = 1 }
 			add_to_temp_variable = { spec_intel_mod = international_terror_org_specific_intel^i }
 			multiply_temp_variable = { cur_intel = spec_intel_mod }
+			log = "Intel after specific intel mod is [?cur_intel]"
 			set_variable = { international_terror_org_intel^i = cur_intel }
 
 			# set_temp_variable = { org_vis_reducer = -50 }
@@ -350,6 +359,7 @@ calculate_national_global_threat_detection = {
 			min = 0
 			max = 100
 		}
+		log = "Final intel is [?international_terror_org_intel^i]"
 	}
 }
 
