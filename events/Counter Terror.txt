@@ -1,5 +1,6 @@
 ﻿add_namespace = radicalization
 add_namespace = terror
+add_namespace = MD_terror
 
 #hidden event that increases radicalization/salafi jihadist/shia revolutionary/islamist popularity
 country_event = {
@@ -184,19 +185,72 @@ news_event = {
 
 #Country Events
 country_event = {
+
 	id = MD_terror.1
 	title = MD_terror.1.t
-	desc = terror.1.d
+	desc = MD_terror.1.d
 
 	picture = GFX_CTC.1
 
 	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { NOT = { original_tag = THIS } }
+			country_event = {
+				id = MD_terror.3
+			}
+		}
+	}
 
 	option = {
 		name = MD_terror.1.a
 	}
 	option = {
 		name = MD_terror.1.b
+	}
+}
+
+country_event = {
+	id = MD_terror.2
+	title = MD_terror.2.t
+	desc = MD_terror.2.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			limit = { NOT = { original_tag = THIS } }
+			country_event = {
+				id = MD_terror.3
+			}
+		}
+	}
+
+	option = {
+		name = MD_terror.2.a
+	}
+	option = {
+		name = MD_terror.2.b
+	}
+}
+
+country_event = {
+	id = MD_terror.3
+	title = MD_terror.3.t
+	desc = MD_terror.3.d
+
+	picture = GFX_CTC.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = MD_terror.3.a
+	}
+	option = {
+		name = MD_terror.3.b
 	}
 }
 
