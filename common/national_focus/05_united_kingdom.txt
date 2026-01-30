@@ -12487,7 +12487,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_modernize_royal_navy
-		icon = god_save_the_king
+		icon = focus_SMB_blue_water_fleet
 
 		x = -1
 		y = 1
@@ -12529,7 +12529,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_raf_army_overhaul
-		icon = god_save_the_king
+		icon = recruitment
 
 		x = 1
 		y = 1
@@ -12548,6 +12548,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_rule_sword_sceptre"
+			if = {
+				limit = { has_idea = ENG_crown_procurement_program_idea }
+				swap_ideas = {
+					remove_idea = ENG_crown_procurement_program_idea
+					add_idea = ENG_crown_procurement_program_idea2army
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_crown_procurement_program_idea
+						add_idea = ENG_crown_procurement_program_idea2army
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -12556,7 +12571,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_leverage_crown_estate
-		icon = god_save_the_king
+		icon = USoE639
 
 		x = 0
 		y = 2
@@ -12577,6 +12592,28 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_leverage_crown_estate"
+			if = {
+				limit = { has_idea = ENG_crown_procurement_program_idea2army }
+				swap_ideas = {
+					remove_idea = ENG_crown_procurement_program_idea2army
+					add_idea = ENG_crown_procurement_program_idea3army
+				}
+			}
+			else_if = {
+				limit = { has_idea = ENG_crown_procurement_program_idea2navy }
+				swap_ideas = {
+					remove_idea = ENG_crown_procurement_program_idea2navy
+					add_idea = ENG_crown_procurement_program_idea3navy
+				}
+			}
+			else = {
+				effect_tooltip = {
+					swap_ideas = {
+						remove_idea = ENG_crown_procurement_program_idea2army
+						add_idea = ENG_crown_procurement_program_idea3army
+					}
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -12585,7 +12622,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_national_service_act
-		icon = god_save_the_king
+		icon = conscription
 
 		x = 1
 		y = 3
@@ -12605,6 +12642,10 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_national_service_act"
+			add_timed_idea = {
+				idea = ENG_national_service_act
+				years = 2
+			}
 		}
 
 		ai_will_do = {
@@ -12791,7 +12832,7 @@ focus_tree = {
 	}
 	focus = {
 		id = ENG_close_proximity_nato
-		icon = god_save_the_king
+		icon = nato_nation
 
 		allow_branch = {
 			has_game_rule = {
@@ -12812,10 +12853,68 @@ focus_tree = {
 
 		available = {
 			nationalist_monarchists_are_in_power = yes
+			if = {
+				limit = { USA = { exists = yes } }
+				USA = {
+					has_opinion = {
+						target = HOL
+						value > 80
+					}
+				}
+			}
+			if = {
+				limit = { GER = { exists = yes } }
+				GER = {
+					has_opinion = {
+						target = HOL
+						value > 50
+					}
+				}
+			}
+			if = {
+				limit = { FRA = { exists = yes } }
+				FRA = {
+					has_opinion = {
+						target = HOL
+						value > 50
+					}
+				}
+			}
+			if = {
+				limit = { POL = { exists = yes } }
+				POL = {
+					has_opinion = {
+						target = HOL
+						value > 50
+					}
+				}
+			}
+			if = {
+				limit = { ITA = { exists = yes } }
+				ITA = {
+					has_opinion = {
+						target = HOL
+						value > 50
+					}
+				}
+			}
+			if = {
+				limit = { TUR = { exists = yes } }
+				TUR = {
+					has_opinion = {
+						target = HOL
+						value > 50
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_idea = NATO_member } }
+			}
 		}
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_secure_succession"
+			USA = { country_event = ENG_military.045 }
 		}
 
 		ai_will_do = {
