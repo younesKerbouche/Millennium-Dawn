@@ -661,16 +661,13 @@ check_for_global_attacks = {
 			limit = {
 				check_variable = { global.active_terror_org_vis_lvl^i < global.active_terror_org_threat_lvl^i }
 			}
-			multiply_temp_variable = { v = 0.45 }
+			multiply_temp_variable = { v = 0.25 }
 			round_temp_variable = v
 
 			random = {
 				chance = v
-				add_to_variable = { global.active_terror_org_vis_lvl^i = v }
+				add_to_variable = { global.active_terror_org_vis_lvl^i = 3 }
 				add_to_array = { global.current_terror_attackers = global.active_terror_orgs^i }
-				#increase the vis for conducting an attack, last ditch chance for intel to prevent it as it goes live
-				#This means that when the attack hits, there could be a higher chance to prevent it
-				#This then falls off by a random amount after the attack is finished
 			}
 		}
 	}
