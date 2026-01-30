@@ -336,20 +336,21 @@ calculate_national_global_threat_detection = {
 			set_variable = { international_terror_org_intel^i = cur_intel }
 		}
 
-		var:op_country = {
-			every_neighbor_country = {
-				var:cur_nat = {
-					set_temp_variable = { cur_intel = civilian_intel@PREV }
-					add_to_temp_variable = { cur_intel = base_detection }
-					multiply_temp_variable = { cur_intel = 0.1 }
-					set_temp_variable = { network_gain = network_national_coverage@PREV }
-					multiply_temp_variable = { network_gain = 0.15 }
-					add_to_temp_variable = { cur_intel = network_gain }
-					multiply_temp_variable = { cur_intel = base_mod }
-					add_to_variable = { international_terror_org_intel^i = cur_intel }
-				}
-			}
-		}
+		# var:op_country = {
+		# 	every_neighbor_country = {
+		# 		var:cur_nat = {
+		# 			set_temp_variable = { cur_intel = civilian_intel@PREV }
+		# 			add_to_temp_variable = { cur_intel = base_detection }
+		# 			multiply_temp_variable = { cur_intel = 0.1 }
+		# 			set_temp_variable = { network_gain = network_national_coverage@PREV }
+		# 			multiply_temp_variable = { network_gain = 0.15 }
+		# 			add_to_temp_variable = { cur_intel = network_gain }
+		# 			multiply_temp_variable = { cur_intel = base_mod }
+		# 			add_to_variable = { international_terror_org_intel^i = cur_intel }
+		# 		}
+		# 	}
+		# }
+
 		set_temp_variable = { org_vis_reducer = -50 }
 		add_to_temp_variable = { org_vis_reducer = global.active_terror_org_vis_lvl^i }
 		multiply_temp_variable = { org_vis_reducer = 0.65 }
@@ -751,7 +752,7 @@ global_attack_roll = {
 					max = 100
 				}
 				country_event = {
-
+					id = MD_terror.1
 				}
 			}
 
@@ -775,7 +776,7 @@ global_attack_roll = {
 				#fire the stopped the event here
 				log = "[GetDateText]: [THIS.GetName] prevented an international terror attack"
 				country_event = {
-					id = MD_terror.1
+					id = MD_terror.2
 				}
 			}
 		}
