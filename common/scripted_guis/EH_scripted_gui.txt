@@ -568,25 +568,60 @@ scripted_gui = {
 		effects = {
 			EH_randallite_ui_tesla_airframe_click = {
 				set_country_flag = EH_tesla_airframe_in_production_flag
+				set_temp_variable = { add_randallite = -17 }
+				EH_add_randallite_effect = yes
+				add_ideas = EH_tesla_airframe_production_idea
 			}
 			EH_randallite_ui_tesla_neutralizer_click = {
 				set_country_flag = EH_tesla_neutralizer_in_production_flag
+				set_temp_variable = { add_randallite = -6 }
+				EH_add_randallite_effect = yes
+				add_ideas = EH_tesla_neutralizer_production_idea
 			}
 			EH_randallite_ui_tesla_emp_click = {
 				set_country_flag = EH_tesla_emp_in_production_flag
+				set_temp_variable = { add_randallite = -11 }
+				EH_add_randallite_effect = yes
+				add_ideas = EH_tesla_emp_production_idea
 			}
 		}
 
 		triggers = {
-			EH_randallite_ui_tesla_airframe_visible = {
-				NOT = { has_country_flag = EH_tesla_airframe_in_production_flag }
-			}
-			EH_randallite_ui_tesla_neutralizer_visible = {
-				NOT = { has_country_flag = EH_tesla_neutralizer_in_production_flag }
-			}
-			EH_randallite_ui_tesla_emp_visible = {
-				NOT = { has_country_flag = EH_tesla_emp_in_production_flag }
-			}
+			# EH_randallite_ui_tesla_airframe_click_enabled = {
+			# 	set_temp_variable = { check_randallite = 16 }
+			# 	EH_check_randallite_trigger = yes
+			# 	steel > 14
+			# 	aluminium > 3
+			# 	num_of_military_factories > 5
+			# }
+			# EH_randallite_ui_tesla_airframe_visible = {
+			# 	NOT = { has_country_flag = EH_tesla_airframe_in_production_flag }
+			# }
+
+			# EH_randallite_ui_tesla_neutralizer_click_enabled = {
+			# 	set_temp_variable = { check_randallite = 5 }
+			# 	EH_check_randallite_trigger = yes
+			# 	steel > 12
+			# 	aluminium > 10
+			# 	rubber > 2
+			# 	microchips > 4
+			# 	num_of_military_factories > 2
+			# }
+			# EH_randallite_ui_tesla_neutralizer_visible = {
+			# 	NOT = { has_country_flag = EH_tesla_neutralizer_in_production_flag }
+			# }
+
+			# EH_randallite_ui_tesla_emp_click_enabled = {
+			# 	set_temp_variable = { check_randallite = 10 }
+			# 	EH_check_randallite_trigger = yes
+			# 	steel > 4
+			# 	aluminium > 5
+			# 	microchips > 6
+			# 	num_of_military_factories > 2
+			# }
+			# EH_randallite_ui_tesla_emp_visible = {
+			# 	NOT = { has_country_flag = EH_tesla_emp_in_production_flag }
+			# }
 		}
 	}
 
