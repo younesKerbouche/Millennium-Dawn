@@ -598,10 +598,36 @@ EH_calculate_mechs_production_time_effect = {
     set_temp_variable = { EH_mech_production_cost_modifier_var = 1 }
     subtract_from_temp_variable = { EH_mech_production_cost_modifier_var = modifier@mech_production_speed_multiplier_modifier }
     multiply_variable = { EH_mech_production_cost_var = EH_mech_production_cost_modifier_var }
+
+    set_variable = { EH_add_mech_production_var = 100 }
+    divide_variable = { EH_add_mech_production_var = EH_mech_production_cost_var }
+
+    EH_calculate_randallite_mech_production_cost_effect = yes
+}
+
+EH_calculate_randallite_mech_production_cost_effect = {
+    if = {
+        limit = {
+            has_country_flag = EH_mech_1_selected_flag
+        }
+        set_variable = { EH_mech_production_randallite_cost_var = 0.25 }
+    }
+    else_if = {
+        limit = {
+            has_country_flag = EH_mech_2_selected_flag
+        }
+        set_variable = { EH_mech_production_randallite_cost_var = 0.5 }
+    }
+    else = {
+        set_variable = { EH_mech_production_randallite_cost_var = 1 }
+    }
+    multiply_variable = { EH_mech_production_randallite_cost_var = EH_selected_mechs_var }
+    round_variable = EH_mech_production_randallite_cost_var
 }
 
 EH_start_mech_production_factory_1_effect = {
     set_variable = { EH_mech_1_amount = EH_selected_mechs_var }
+    set_variable = { EH_mech_production_1_cost_var = EH_add_mech_production_var }
     if = {
         limit = {
             has_country_flag = EH_mech_1_selected_flag
@@ -614,7 +640,77 @@ EH_start_mech_production_factory_1_effect = {
         }
         set_country_flag = EH_first_mech_2_selected_flag
     }
-    set_variable = { EH_mech_production_1_cost_var = 100 }
-    divide_variable = { EH_mech_production_1_cost_var = EH_mech_production_cost_var }
-    custom_effect_tooltip = EH_mech_production_1_effects_TT
+    custom_effect_tooltip = EH_mech_production_effects_TT
+}
+
+EH_start_mech_production_factory_2_effect = {
+    set_variable = { EH_mech_2_amount = EH_selected_mechs_var }
+    set_variable = { EH_mech_production_2_cost_var = EH_add_mech_production_var }
+    if = {
+        limit = {
+            has_country_flag = EH_mech_1_selected_flag
+        }
+        set_country_flag = EH_second_mech_1_selected_flag
+    }
+    else_if = {
+        limit = {
+            has_country_flag = EH_mech_2_selected_flag
+        }
+        set_country_flag = EH_second_mech_2_selected_flag
+    }
+    custom_effect_tooltip = EH_mech_production_effects_TT
+}
+
+EH_start_mech_production_factory_3_effect = {
+    set_variable = { EH_mech_3_amount = EH_selected_mechs_var }
+    set_variable = { EH_mech_production_3_cost_var = EH_add_mech_production_var }
+    if = {
+        limit = {
+            has_country_flag = EH_mech_1_selected_flag
+        }
+        set_country_flag = EH_third_mech_1_selected_flag
+    }
+    else_if = {
+        limit = {
+            has_country_flag = EH_mech_2_selected_flag
+        }
+        set_country_flag = EH_third_mech_2_selected_flag
+    }
+    custom_effect_tooltip = EH_mech_production_effects_TT
+}
+
+EH_start_mech_production_factory_4_effect = {
+    set_variable = { EH_mech_4_amount = EH_selected_mechs_var }
+    set_variable = { EH_mech_production_4_cost_var = EH_add_mech_production_var }
+    if = {
+        limit = {
+            has_country_flag = EH_mech_1_selected_flag
+        }
+        set_country_flag = EH_fourth_mech_1_selected_flag
+    }
+    else_if = {
+        limit = {
+            has_country_flag = EH_mech_2_selected_flag
+        }
+        set_country_flag = EH_fourth_mech_2_selected_flag
+    }
+    custom_effect_tooltip = EH_mech_production_effects_TT
+}
+
+EH_start_mech_production_factory_5_effect = {
+    set_variable = { EH_mech_5_amount = EH_selected_mechs_var }
+    set_variable = { EH_mech_production_5_cost_var = EH_add_mech_production_var }
+    if = {
+        limit = {
+            has_country_flag = EH_mech_1_selected_flag
+        }
+        set_country_flag = EH_fifth_mech_1_selected_flag
+    }
+    else_if = {
+        limit = {
+            has_country_flag = EH_mech_2_selected_flag
+        }
+        set_country_flag = EH_fifth_mech_2_selected_flag
+    }
+    custom_effect_tooltip = EH_mech_production_effects_TT
 }

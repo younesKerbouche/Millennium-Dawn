@@ -221,6 +221,226 @@ on_actions = {
                     clr_country_flag = EH_first_mech_2_selected_flag
                 }
             }
+            if = {
+                limit = {
+                    ROOT = {
+                        has_country_flag = EH_mech_production_2_in_progress_flag
+                        check_variable = { EH_mech_production_2_progress_var < 100 }
+                    }
+                }
+                ROOT = {
+                    add_to_variable = { EH_mech_production_2_progress_var = EH_mech_production_2_cost_var }
+                    clamp_variable = {
+                        var = EH_mech_production_2_progress_var
+                        max = 100
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    ROOT = {
+                        check_variable = { EH_mech_production_2_progress_var = 100 }
+                    }
+                }
+                ROOT = {
+                    clr_country_flag = EH_mech_production_2_in_progress_flag
+                    set_variable = { EH_mech_production_2_progress_var = 0 }
+                    if = {
+                        limit = {
+                            has_country_flag = EH_second_mech_1_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_0
+                            amount = var:EH_mech_2_amount
+                            producer = ROOT
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            has_country_flag = EH_second_mech_2_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_1
+                            amount = var:EH_mech_2_amount
+                            producer = ROOT
+                        }
+                    }
+                    else = {
+                        add_equipment_to_stockpile = {
+                            type = HACS_2
+                            amount = var:EH_mech_2_amount
+                            producer = ROOT
+                        }
+                    }
+                    clr_country_flag = EH_second_mech_1_selected_flag
+                    clr_country_flag = EH_second_mech_2_selected_flag
+                }
+            }
+            if = {
+                limit = {
+                    ROOT = {
+                        has_country_flag = EH_mech_production_3_in_progress_flag
+                        check_variable = { EH_mech_production_3_progress_var < 100 }
+                    }
+                }
+                ROOT = {
+                    add_to_variable = { EH_mech_production_3_progress_var = EH_mech_production_3_cost_var }
+                    clamp_variable = {
+                        var = EH_mech_production_3_progress_var
+                        max = 100
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    ROOT = {
+                        check_variable = { EH_mech_production_3_progress_var = 100 }
+                    }
+                }
+                ROOT = {
+                    clr_country_flag = EH_mech_production_3_in_progress_flag
+                    set_variable = { EH_mech_production_3_progress_var = 0 }
+                    if = {
+                        limit = {
+                            has_country_flag = EH_third_mech_1_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_0
+                            amount = var:EH_mech_3_amount
+                            producer = ROOT
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            has_country_flag = EH_third_mech_2_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_1
+                            amount = var:EH_mech_3_amount
+                            producer = ROOT
+                        }
+                    }
+                    else = {
+                        add_equipment_to_stockpile = {
+                            type = HACS_2
+                            amount = var:EH_mech_3_amount
+                            producer = ROOT
+                        }
+                    }
+                    clr_country_flag = EH_third_mech_1_selected_flag
+                    clr_country_flag = EH_third_mech_2_selected_flag
+                }
+            }
+            if = {
+                limit = {
+                    ROOT = {
+                        has_country_flag = EH_mech_production_4_in_progress_flag
+                        check_variable = { EH_mech_production_4_progress_var < 100 }
+                    }
+                }
+                ROOT = {
+                    add_to_variable = { EH_mech_production_4_progress_var = EH_mech_production_4_cost_var }
+                    clamp_variable = {
+                        var = EH_mech_production_4_progress_var
+                        max = 100
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    ROOT = {
+                        check_variable = { EH_mech_production_4_progress_var = 100 }
+                    }
+                }
+                ROOT = {
+                    clr_country_flag = EH_mech_production_4_in_progress_flag
+                    set_variable = { EH_mech_production_4_progress_var = 0 }
+                    if = {
+                        limit = {
+                            has_country_flag = EH_fourth_mech_1_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_0
+                            amount = var:EH_mech_4_amount
+                            producer = ROOT
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            has_country_flag = EH_fourth_mech_2_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_1
+                            amount = var:EH_mech_4_amount
+                            producer = ROOT
+                        }
+                    }
+                    else = {
+                        add_equipment_to_stockpile = {
+                            type = HACS_2
+                            amount = var:EH_mech_4_amount
+                            producer = ROOT
+                        }
+                    }
+                    clr_country_flag = EH_fourth_mech_1_selected_flag
+                    clr_country_flag = EH_fourth_mech_2_selected_flag
+                }
+            }
+            if = {
+                limit = {
+                    ROOT = {
+                        has_country_flag = EH_mech_production_5_in_progress_flag
+                        check_variable = { EH_mech_production_5_progress_var < 100 }
+                    }
+                }
+                ROOT = {
+                    add_to_variable = { EH_mech_production_5_progress_var = EH_mech_production_5_cost_var }
+                    clamp_variable = {
+                        var = EH_mech_production_5_progress_var
+                        max = 100
+                    }
+                }
+            }
+            else_if = {
+                limit = {
+                    ROOT = {
+                        check_variable = { EH_mech_production_5_progress_var = 100 }
+                    }
+                }
+                ROOT = {
+                    clr_country_flag = EH_mech_production_5_in_progress_flag
+                    set_variable = { EH_mech_production_5_progress_var = 0 }
+                    if = {
+                        limit = {
+                            has_country_flag = EH_fifth_mech_1_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_0
+                            amount = var:EH_mech_5_amount
+                            producer = ROOT
+                        }
+                    }
+                    else_if = {
+                        limit = {
+                            has_country_flag = EH_fifth_mech_2_selected_flag
+                        }
+                        add_equipment_to_stockpile = {
+                            type = HACS_1
+                            amount = var:EH_mech_5_amount
+                            producer = ROOT
+                        }
+                    }
+                    else = {
+                        add_equipment_to_stockpile = {
+                            type = HACS_2
+                            amount = var:EH_mech_5_amount
+                            producer = ROOT
+                        }
+                    }
+                    clr_country_flag = EH_fifth_mech_1_selected_flag
+                    clr_country_flag = EH_fifth_mech_2_selected_flag
+                }
+            }
         }
     }
 

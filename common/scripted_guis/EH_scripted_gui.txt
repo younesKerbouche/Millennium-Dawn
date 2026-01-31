@@ -393,18 +393,30 @@ scripted_gui = {
 					EH_start_mech_production_factory_1_effect = yes
 				}
 			}
-			# EH_mech_production_start_factory_2_click = {
-			# 	ROOT = { EH_start_mech_production_factory_2_effect = yes }
-			# }
-			# EH_mech_production_start_factory_3_click = {
-			# 	ROOT = { EH_start_mech_production_factory_3_effect = yes }
-			# }
-			# EH_mech_production_start_factory_4_click = {
-			# 	ROOT = { EH_start_mech_production_factory_4_effect = yes }
-			# }
-			# EH_mech_production_start_factory_5_click = {
-			# 	ROOT = { EH_start_mech_production_factory_5_effect = yes }
-			# }
+			EH_mech_production_start_factory_2_click = {
+				ROOT = {
+					set_country_flag = EH_mech_production_2_in_progress_flag
+					EH_start_mech_production_factory_2_effect = yes
+				}
+			}
+			EH_mech_production_start_factory_3_click = {
+				ROOT = {
+					set_country_flag = EH_mech_production_3_in_progress_flag
+					EH_start_mech_production_factory_3_effect = yes
+				}
+			}
+			EH_mech_production_start_factory_4_click = {
+				ROOT = {
+					set_country_flag = EH_mech_production_4_in_progress_flag
+					EH_start_mech_production_factory_4_effect = yes
+				}
+			}
+			EH_mech_production_start_factory_5_click = {
+				ROOT = {
+					set_country_flag = EH_mech_production_5_in_progress_flag
+					EH_start_mech_production_factory_5_effect = yes
+				}
+			}
 
 			EH_select_mech_1_click = {
 				set_country_flag = EH_mech_selected_flag
@@ -516,9 +528,9 @@ scripted_gui = {
 				ROOT = { NOT = { has_country_flag = EH_mech_production_5_in_progress_flag } }
 			}
 
-			# EH_mech_production_start_factory_1_click_enabled = {
-			# 	EH_mech_production_available_trigger = yes
-			# }
+			EH_mech_production_start_factory_1_click_enabled = {
+				EH_mech_production_available_trigger = yes
+			}
 			EH_mech_production_start_factory_2_click_enabled = {
 				EH_mech_production_available_trigger = yes
 			}
@@ -548,17 +560,39 @@ scripted_gui = {
 				ROOT = { has_country_flag = EH_mech_production_5_in_progress_flag }
 			}
 
-			# EH_select_mech_1_click_enabled = {
-			# 	OR = {
-			# 		is_special_project_completed = sp:sp_bf_38_atlas_project
-			# 		is_special_project_completed = sp:sp_gsk_41_bogatyr_project
-			# 	}
-			# 	hidden_trigger = {
-			# 		NOT = {
-			# 			has_country_flag = EH_mech_1_selected_flag
-			# 		}
-			# 	}
-			# }
+			EH_select_mech_1_click_enabled = {
+				OR = {
+					is_special_project_completed = sp:sp_bf_38_atlas_project
+					is_special_project_completed = sp:sp_gsk_41_bogatyr_project
+				}
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = EH_mech_1_selected_flag
+					}
+				}
+			}
+			EH_select_mech_2_click_enabled = {
+				OR = {
+					is_special_project_completed = sp:sp_bf_38_atlas_project
+					is_special_project_completed = sp:sp_gsk_41_bogatyr_project
+				}
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = EH_mech_2_selected_flag
+					}
+				}
+			}
+			EH_select_mech_3_click_enabled = {
+				OR = {
+					is_special_project_completed = sp:sp_bf_38_atlas_project
+					is_special_project_completed = sp:sp_gsk_41_bogatyr_project
+				}
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = EH_mech_3_selected_flag
+					}
+				}
+			}
 
 			EH_show_tesla_page_visible = {
 				NOT = { has_country_flag = EH_tesla_window_visible }
