@@ -103,6 +103,63 @@ on_actions = {
                 }
                 set_variable = { EH_static_countdown_var = 0 }
             }
+            if = {
+                limit = {
+                    has_country_flag = EH_tesla_airframe_in_production_flag
+                }
+                if = {
+                    limit = {
+                        check_variable = { EH_tesla_airframe_progress < 210 }
+                    }
+                    ROOT = {
+                        add_to_variable = { EH_tesla_airframe_progress = 1 }
+                    }
+                }
+                else = {
+                    ROOT = {
+                        clr_country_flag = EH_tesla_airframe_in_production_flag
+                        set_country_flag = EH_tesla_airframe_completed_flag
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    has_country_flag = EH_tesla_neutralizer_in_production_flag
+                }
+                if = {
+                    limit = {
+                        check_variable = { EH_tesla_neutralizer_progress < 210 }
+                    }
+                    ROOT = {
+                        add_to_variable = { EH_tesla_neutralizer_progress = 1 }
+                    }
+                }
+                else = {
+                    ROOT = {
+                        clr_country_flag = EH_tesla_neutralizer_in_production_flag
+                        set_country_flag = EH_tesla_neutralizer_completed_flag
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    has_country_flag = EH_tesla_emp_in_production_flag
+                }
+                if = {
+                    limit = {
+                        check_variable = { EH_tesla_emp_progress < 210 }
+                    }
+                    ROOT = {
+                        add_to_variable = { EH_tesla_emp_progress = 1 }
+                    }
+                }
+                else = {
+                    ROOT = {
+                        clr_country_flag = EH_tesla_emp_in_production_flag
+                        set_country_flag = EH_tesla_emp_completed_flag
+                    }
+                }
+            }
         }
     }
 
