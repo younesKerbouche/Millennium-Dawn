@@ -612,8 +612,10 @@ quarterly_inflation_calculation = {
 	multiply_temp_variable = { treasury_inflation_adjust = -1 }
 	multiply_temp_variable = { treasury_inflation_adjust = 0.01 }
 	#Reduce the GDP/C Modifier further here, this is just to help keep the math sane
-	multiply_temp_variable = { gdpc_inflation_adjuster = 0.01 }
-	multiply_temp_variable = { treasury_inflation_adjust = gdpc_inflation_adjuster }
+	#Scale treasury inflation by GDP/C and growth rate (gdpc_inflation_adjuster was set earlier)
+	set_temp_variable = { gdpc_treasury_scaling = gdpc_inflation_adjuster }
+	multiply_temp_variable = { gdpc_treasury_scaling = 0.01 }
+	multiply_temp_variable = { treasury_inflation_adjust = gdpc_treasury_scaling }
 
 	add_to_temp_variable = { inflation_rate_adjuster = treasury_inflation_adjust }
 
@@ -697,13 +699,11 @@ calculate_inflation_effects = {
 	set_variable = { inflation_construction_speed_var = inflation_rate_construction }
 
 	set_temp_variable = { inflation_rate_output = inflation_rate_start }
-	multiply_temp_variable = { inflation_rate_output = 1.25 }
-	multiply_temp_variable = { inflation_rate_output = -1 }
+	multiply_temp_variable = { inflation_rate_output = -1.25 }
 	set_variable = { inflation_rate_output_var = inflation_rate_output }
 
 	set_temp_variable = { inflation_rate_pp = inflation_rate_var }
-	multiply_temp_variable = { inflation_rate_pp = 1.3 }
-	multiply_temp_variable = { inflation_rate_pp = -1 }
+	multiply_temp_variable = { inflation_rate_pp = -1.3 }
 	set_variable = { inflation_rate_pp_var = inflation_rate_pp }
 
 	set_variable = { inflation_corruption_var = inflation_rate_start }
@@ -717,7 +717,6 @@ calculate_inflation_effects = {
 	set_variable = { inflation_roi_var = inflation_roi }
 
 	set_temp_variable = { inflation_goods = inflation_rate_start }
-	divide_temp_variable = { inflation_goods = 2 }
-	multiply_temp_variable = { inflation_goods = -1 }
+	multiply_temp_variable = { inflation_goods = -0.5 }
 	set_variable = { inflation_goods_var = inflation_goods }
 }

@@ -4,12 +4,10 @@ focus_tree = {
 		factor = 0
 		modifier = {
 			add = 10
-			AND = {
-				OR = {
-					original_tag = SYR
-					original_tag = FSA
-					original_tag = NUS
-				}
+			OR = {
+				original_tag = SYR
+				original_tag = FSA
+				original_tag = NUS
 			}
 		}
 	}
@@ -117,10 +115,10 @@ focus_tree = {
 			}
 			set_temp_variable = { stability_loss = bushra_popularity }
 			subtract_from_temp_variable = { stability_loss = max_leader }
-			divide_temp_variable = { stability_loss = 100 }
+			multiply_temp_variable = { stability_loss = 0.01 }
 			add_stability = stability_loss
 			set_temp_variable = { leader_popularity = bushra_popularity }
-			divide_temp_variable = { leader_popularity = 200 }
+			multiply_temp_variable = { stability_loss = 0.005 }
 			add_popularity = { ideology = neutrality popularity = leader_popularity }
 			add_to_variable = { var = party_pop_array^15 value = leader_popularity }
 			set_politics = {
@@ -472,10 +470,10 @@ focus_tree = {
 			}
 			set_temp_variable = { stability_loss = bashar_popularity }
 			subtract_from_temp_variable = { stability_loss = max_leader }
-			divide_temp_variable = { stability_loss = 100 }
+			multiply_temp_variable = { stability_loss = 0.01 }
 			add_stability = stability_loss
 			set_temp_variable = { leader_popularity = bashar_popularity }
-			divide_temp_variable = { leader_popularity = 200 }
+			multiply_temp_variable = { leader_popularity = 0.005 }
 			add_popularity = { ideology = communism popularity = leader_popularity }
 			add_to_variable = { var = party_pop_array^7 value = leader_popularity }
 			set_politics = {
@@ -793,10 +791,10 @@ focus_tree = {
 			}
 			set_temp_variable = { stability_loss = maher_popularity }
 			subtract_from_temp_variable = { stability_loss = max_leader }
-			divide_temp_variable = { stability_loss = 100 }
+			multiply_temp_variable = { stability_loss = 0.01 }
 			add_stability = stability_loss
 			set_temp_variable = { leader_popularity = maher_popularity }
-			divide_temp_variable = { leader_popularity = 200 }
+			multiply_temp_variable = { stableader_popularityility_loss = 0.005 }
 			add_popularity = { ideology = nationalist popularity = leader_popularity }
 			add_to_variable = { var = party_pop_array^22 value = leader_popularity }
 			set_politics = {
@@ -2804,7 +2802,7 @@ focus_tree = {
 		}
 
 	}
-focus = {
+	focus = {
 		id = SYR_islamic_socialism
 		icon = social_democracy_2
 		cost = 5
@@ -6446,9 +6444,9 @@ focus = {
 			}
 			hidden_effect = {
 				#AI Syria has a 30% chance to go SSNP coup after this
-				random_list = {
-					30 = { set_country_flag = Go_full_SSNP }
-					70 = { }
+				random = {
+					chance = 30
+					set_country_flag = Go_full_SSNP
 				}
 			}
 		}
@@ -6540,9 +6538,9 @@ focus = {
 				}
 			}
 			hidden_effect = {
-				random_list = {
-					30 = { country_event = { id = SyriaFocus.8 days = 60 random_days = 60 } }
-					70 = { }
+				random = {
+					chance = 30
+					country_event = { id = SyriaFocus.8 days = 60 random_days = 60 }
 				}
 			}
 		}
@@ -7177,14 +7175,12 @@ focus = {
 				set_leader = yes
 				add_popularity = { ideology = nationalist popularity = 0.30 }
 				recalculate_party = yes
-				random_list = {
-					60 = {
-						start_civil_war = {
-							ideology = communism
-							size = 0.5
-						}
+				random = {
+					chance = 60
+					start_civil_war = {
+						ideology = communism
+						size = 0.5
 					}
-					40 = { }
 				}
 			}
 			else_if = {
@@ -7203,14 +7199,11 @@ focus = {
 				}
 				add_popularity = { ideology = nationalist popularity = 0.30 }
 				recalculate_party = yes
-				random_list = {
-					40 = {
-						start_civil_war = {
-							ideology = communism
-							size = 0.5
-						}
-					}
-					60 = {
+				random = {
+					chance = 40
+					start_civil_war = {
+						ideology = communism
+						size = 0.5
 					}
 				}
 			}
