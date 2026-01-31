@@ -1328,7 +1328,7 @@ Example:
 
 ```python
 set_variable = { state_renewable_capacity_factor_modifier_var = 0.55 }
-#add_dynamic_modifier = { modifier = renewable_capacity_factor_dyn_mod }
+add_dynamic_modifier = { modifier = renewable_capacity_factor_dyn_mod }
 ```
 
 Productivity is also set at the state level as well. Please refer to any of the state.
