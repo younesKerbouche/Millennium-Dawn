@@ -1,6 +1,6 @@
 EH_electric_traps_category = {
 	EH_set_up_electric_trap = {
-		icon = GFX_decision_fixes_button # This probably needs own icon
+		icon = GFX_decision_fixes_button
 		days_remove = 7
 
 		state_target = yes
@@ -22,7 +22,10 @@ EH_electric_traps_category = {
         }
 
 		available = {
-			tungsten > 0
+			has_resources_in_country = {
+                resource = tungsten
+                amount > 0
+            }
 		}
 
 		visible = {
@@ -40,7 +43,7 @@ EH_electric_traps_category = {
 		}
 	}
     EH_remove_electric_trap = {
-		icon = GFX_decision_message_decline_button # This probably needs own icon
+		icon = GFX_decision_fixes_button_blocked
 		days_remove = 7
 
 		state_target = yes
@@ -93,7 +96,7 @@ EH_electric_traps_category = {
 		}
 	}
     EH_activate_electric_trap = {
-        icon = GFX_decision_fire # This probably needs own icon
+        icon = GFX_decision_influence
         days_remove = 10
 
         state_target = yes
