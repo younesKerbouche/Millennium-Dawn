@@ -465,14 +465,14 @@ scripted_gui = {
 				}
 			}
 
-			EH_swap_mechs_to_tesla_click = {
+			EH_show_tesla_page_click = {
 				ROOT = {
-					set_country_flag = EH_mech_swapped_to_tesla_flag
+					set_country_flag = EH_tesla_window_visible
 				}
 			}
-			EH_swap_tesla_to_mechs_click = {
+			EH_close_tesla_page_click = {
 				ROOT = {
-					clr_country_flag = EH_mech_swapped_to_tesla_flag
+					clr_country_flag = EH_tesla_window_visible
 				}
 			}
 		}
@@ -538,14 +538,14 @@ scripted_gui = {
 				}
 			}
 
-			EH_swap_mechs_to_tesla_visible = {
-				NOT = { has_country_flag = EH_mech_swapped_to_tesla_flag }
+			EH_show_tesla_page_visible = {
+				NOT = { has_country_flag = EH_tesla_window_visible }
 			}
-			EH_swap_mechs_to_tesla_click_enabled = {
-				#is_special_project_completed = sp:sp_the_tesla_weapon_project
+			EH_show_tesla_page_click_enabled = {
+				is_special_project_completed = sp:sp_the_tesla_weapon_project
 			}
-			EH_swap_tesla_to_mechs_visible = {
-				has_country_flag = EH_mech_swapped_to_tesla_flag
+			EH_close_tesla_page_visible = {
+				has_country_flag = EH_tesla_window_visible
 			}
 		}
 	}
@@ -555,7 +555,7 @@ scripted_gui = {
 		parent_window_token = production_tab
 
 		visible = {
-			has_country_flag = EH_mech_swapped_to_tesla_flag
+			has_country_flag = EH_tesla_window_visible
 			has_country_flag = EH_randallite_tab_open_flag
 		}
 
