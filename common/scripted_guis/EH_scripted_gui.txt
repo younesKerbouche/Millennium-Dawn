@@ -379,17 +379,20 @@ scripted_gui = {
 		}
 
 		properties = {
-			EH_mech_production_progress_bar_1 = { frame = ROOT.EH_mech_production_progress_1 }
-			EH_mech_production_progress_bar_2 = { frame = ROOT.EH_mech_production_progress_2 }
-			EH_mech_production_progress_bar_3 = { frame = ROOT.EH_mech_production_progress_3 }
-			EH_mech_production_progress_bar_4 = { frame = ROOT.EH_mech_production_progress_4 }
-			EH_mech_production_progress_bar_5 = { frame = ROOT.EH_mech_production_progress_5 }
+			EH_mech_production_progress_bar_1 = { frame = ROOT.EH_mech_production_1_progress_var }
+			EH_mech_production_progress_bar_2 = { frame = ROOT.EH_mech_production_2_progress_var }
+			EH_mech_production_progress_bar_3 = { frame = ROOT.EH_mech_production_3_progress_var }
+			EH_mech_production_progress_bar_4 = { frame = ROOT.EH_mech_production_4_progress_var }
+			EH_mech_production_progress_bar_5 = { frame = ROOT.EH_mech_production_5_progress_var }
 		}
 
 		effects = {
-			# EH_mech_production_start_factory_1_click = {
-			# 	ROOT = { EH_start_mech_production_factory_1_effect = yes }
-			# }
+			EH_mech_production_start_factory_1_click = {
+				ROOT = {
+					set_country_flag = EH_mech_production_1_in_progress_flag
+					EH_start_mech_production_factory_1_effect = yes
+				}
+			}
 			# EH_mech_production_start_factory_2_click = {
 			# 	ROOT = { EH_start_mech_production_factory_2_effect = yes }
 			# }
@@ -406,7 +409,17 @@ scripted_gui = {
 			EH_select_mech_1_click = {
 				set_country_flag = EH_mech_selected_flag
 				set_country_flag = EH_mech_1_selected_flag
-				set_variable = { EH_mech_production_cost_var = 5 }
+				set_variable = { EH_mech_production_time_multiplier_var = 1.5 }
+			}
+			EH_select_mech_2_click = {
+				set_country_flag = EH_mech_selected_flag
+				set_country_flag = EH_mech_2_selected_flag
+				set_variable = { EH_mech_production_time_multiplier_var = 2.5 }
+			}
+			EH_select_mech_2_click = {
+				set_country_flag = EH_mech_selected_flag
+				set_country_flag = EH_mech_2_selected_flag
+				set_variable = { EH_mech_production_time_multiplier_var = 4 }
 			}
 
 			EH_increase_mechs_button_click = {
@@ -414,8 +427,9 @@ scripted_gui = {
 					add_to_variable = { EH_selected_mechs_var = 1 }
 					clamp_variable = {
 						var = EH_selected_mechs_var
-						max = 999
+						max = 99
 					}
+					EH_calculate_mechs_production_time_effect = yes
 				}
 			}
 			EH_increase_mechs_button_control_click = {
@@ -423,8 +437,9 @@ scripted_gui = {
 					add_to_variable = { EH_selected_mechs_var = 10 }
 					clamp_variable = {
 						var = EH_selected_mechs_var
-						max = 999
+						max = 99
 					}
+					EH_calculate_mechs_production_time_effect = yes
 				}
 			}
 			EH_increase_mechs_button_shift_click = {
@@ -432,8 +447,9 @@ scripted_gui = {
 					add_to_variable = { EH_selected_mechs_var = 100 }
 					clamp_variable = {
 						var = EH_selected_mechs_var
-						max = 999
+						max = 99
 					}
+					EH_calculate_mechs_production_time_effect = yes
 				}
 			}
 
@@ -444,6 +460,7 @@ scripted_gui = {
 						var = EH_selected_mechs_var
 						min = 0
 					}
+					EH_calculate_mechs_production_time_effect = yes
 				}
 			}
 			EH_decrease_mechs_button_control_click = {
@@ -453,6 +470,7 @@ scripted_gui = {
 						var = EH_selected_mechs_var
 						min = 0
 					}
+					EH_calculate_mechs_production_time_effect = yes
 				}
 			}
 			EH_decrease_mechs_button_shift_click = {
@@ -462,6 +480,7 @@ scripted_gui = {
 						var = EH_selected_mechs_var
 						min = 0
 					}
+					EH_calculate_mechs_production_time_effect = yes
 				}
 			}
 
@@ -494,9 +513,9 @@ scripted_gui = {
 				ROOT = { NOT = { has_country_flag = EH_mech_production_5_in_progress_flag } }
 			}
 
-			EH_mech_production_start_factory_1_click_enabled = {
-				EH_mech_production_available_trigger = yes
-			}
+			# EH_mech_production_start_factory_1_click_enabled = {
+			# 	EH_mech_production_available_trigger = yes
+			# }
 			EH_mech_production_start_factory_2_click_enabled = {
 				EH_mech_production_available_trigger = yes
 			}
@@ -526,17 +545,17 @@ scripted_gui = {
 				ROOT = { has_country_flag = EH_mech_production_5_in_progress_flag }
 			}
 
-			EH_select_mech_1_click_enabled = {
-				OR = {
-					is_special_project_completed = sp:sp_bf_38_atlas_project
-					is_special_project_completed = sp:sp_gsk_41_bogatyr_project
-				}
-				hidden_trigger = {
-					NOT = {
-						has_country_flag = EH_mech_1_selected_flag
-					}
-				}
-			}
+			# EH_select_mech_1_click_enabled = {
+			# 	OR = {
+			# 		is_special_project_completed = sp:sp_bf_38_atlas_project
+			# 		is_special_project_completed = sp:sp_gsk_41_bogatyr_project
+			# 	}
+			# 	hidden_trigger = {
+			# 		NOT = {
+			# 			has_country_flag = EH_mech_1_selected_flag
+			# 		}
+			# 	}
+			# }
 
 			EH_show_tesla_page_visible = {
 				NOT = { has_country_flag = EH_tesla_window_visible }
