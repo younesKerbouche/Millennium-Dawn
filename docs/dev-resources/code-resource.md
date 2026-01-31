@@ -1314,7 +1314,7 @@ Example:
 ```python
 set_variable = { hydroelectric_energy_production_var = 5.636 }
 set_variable = { hydroelectric_energy_storage_var = 300 }
-#add_dynamic_modifier = { modifier = hydroelectric_infrastructure_in_state }
+add_dynamic_modifier = { modifier = hydroelectric_infrastructure_in_state }
 
 ```
 
