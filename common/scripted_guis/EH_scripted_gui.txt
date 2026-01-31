@@ -595,7 +595,12 @@ scripted_gui = {
 				num_of_military_factories > 5
 			}
 			EH_randallite_ui_tesla_airframe_visible = {
-				NOT = { has_country_flag = EH_tesla_airframe_in_production_flag }
+				NOT = {
+					OR = {
+						has_country_flag = EH_tesla_airframe_in_production_flag
+						has_country_flag = EH_tesla_airframe_completed_flag
+					}
+				}
 			}
 
 			EH_randallite_ui_tesla_neutralizer_click_enabled = {
@@ -608,7 +613,12 @@ scripted_gui = {
 				num_of_military_factories > 2
 			}
 			EH_randallite_ui_tesla_neutralizer_visible = {
-				NOT = { has_country_flag = EH_tesla_neutralizer_in_production_flag }
+				NOT = {
+					OR = {
+						has_country_flag = EH_tesla_neutralizer_in_production_flag
+						has_country_flag = EH_tesla_neutralizer_completed_flag
+					}
+				}
 			}
 
 			EH_randallite_ui_tesla_emp_click_enabled = {
@@ -620,7 +630,12 @@ scripted_gui = {
 				num_of_military_factories > 2
 			}
 			EH_randallite_ui_tesla_emp_visible = {
-				NOT = { has_country_flag = EH_tesla_emp_in_production_flag }
+				NOT = {
+					OR = {
+						has_country_flag = EH_tesla_emp_in_production_flag
+						has_country_flag = EH_tesla_emp_completed_flag
+					}
+				}
 			}
 		}
 	}
