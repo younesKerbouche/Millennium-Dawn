@@ -397,7 +397,6 @@ calculate_national_global_threat_detection = {
 		set_temp_variable = { cur_con = global.active_terror_hq_country^i }
 
 		set_variable = { international_terror_org_intel^i = civilian_intel@var:cur_con }
-		log = "Intel Network Number [?international_terror_org_intel^i]"
 		add_to_variable = { international_terror_org_intel^i = network_national_coverage@var:cur_con }
 		add_to_variable = { international_terror_org_intel^i = base_detection }
 
@@ -410,9 +409,8 @@ calculate_national_global_threat_detection = {
 			add_to_variable = { international_terror_org_intel^i = gather_add }
 		}
 
-		subtract_from_variable = { international_terror_org_intel^i = 40 }
+		multiply_variable = { international_terror_org_intel^i = 0.4 }
 		multiply_variable = { international_terror_org_intel^i = base_mod }
-		log = "Starting Intel Numbers [?international_terror_org_intel^i]"
 	}
 
 	for_each_loop = {
@@ -427,7 +425,6 @@ calculate_national_global_threat_detection = {
 			add_to_temp_variable = { v = 1 }
 			multiply_variable = { international_terror_org_intel^i = v }
 		}
-		log = "Specific Intel Modifier Applied [?international_terror_org_intel^i]"
 	}
 
 	for_each_loop = {
@@ -442,7 +439,6 @@ calculate_national_global_threat_detection = {
 			add_to_variable = { international_terror_org_intel^i = v }
 			add_to_variable = { international_terror_org_temp_specific_intel^i = -1 }
 		}
-		log = "Temp Intel Bonus Applied [?international_terror_org_intel^i]"
 	}
 
 	for_each_loop = {
@@ -452,8 +448,6 @@ calculate_national_global_threat_detection = {
 
 		add_to_temp_variable = { v = -25 }
 		add_to_variable = { international_terror_org_intel^i = v }
-
-		log = "Vis Reduction Applied [?international_terror_org_intel^i]"
 	}
 
 	for_each_loop = {
