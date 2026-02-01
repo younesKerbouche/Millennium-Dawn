@@ -447,6 +447,37 @@ focus_tree = {
 			}
 		}
 
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus COM_reform_defunct_pmc_units executed"
+			custom_effect_tooltip = COM_reform_defunct_pmc_units_tt
+		}
+
+		ai_will_do = {
+			base = 10
+		}
+	}
+
+	focus = {
+		id = COM_expand_the_police_force
+		icon = Generic_Policeman
+
+		x = 2
+		y = 3
+		relative_position_id = COM_army
+
+		cost = 4
+
+		prerequisite = { focus = COM_modernize_the_army }
+		prerequisite = { focus = COM_expanded_military_industries }
+
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MILITARY_LAWS FOCUS_FILTER_STABILITY }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus COM_expand_the_police_force executed"
+			add_ideas = COM_militarized_police_force_idea
+			increase_policing_budget = yes
+		}
+
 		ai_will_do = {
 			base = 10
 		}
@@ -2081,14 +2112,13 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_draw_closer_to_the_au executed"
 			add_political_power = 100
-			every_country = {
-				limit = {
-					has_idea = AU_member
-				}
-				add_opinion_modifier = {
-					target = COM
-					modifier = declaration_of_friendship
-				}
+			custom_effect_tooltip = TT_ALL_AU_MEMBER_NATIONS_GAIN
+			effect_tooltip = {
+				add_opinion_modifier = { target = COM modifier = declaration_of_friendship }
+			}
+			for_each_scope_loop = {
+				array = global.AU_member
+				add_opinion_modifier = { target = COM modifier = declaration_of_friendship }
 			}
 			add_timed_idea = {
 				idea = AZE_trade_idea
@@ -2257,9 +2287,12 @@ focus_tree = {
 				idea = IND_islamic_schools
 				days = 400
 			}
-			swap_ideas = {
-				remove_idea = farmers
-				add_idea = the_ulema
+			if = {
+				limit = { has_idea = farmers }
+				swap_ideas = {
+					remove_idea = farmers
+					add_idea = the_ulema
+				}
 			}
 			every_country = {
 				limit = {
@@ -2270,10 +2303,7 @@ focus_tree = {
 					modifier = declaration_of_friendship
 				}
 			}
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.10
-			}
+			add_popularity = { ideology = fascism popularity = 0.10 }
 		}
 
 		ai_will_do = {
@@ -4014,6 +4044,19 @@ focus_tree = {
 			set_temp_variable = { sender_nation = COM.id }
 			set_improved_trade_agreement = yes
 		}
+	}
+
+	focus = {
+		id = COM_trade_deals_with_tanzania
+		icon = trade
+
+		x = -1
+		y = 2
+		relative_position_id = COM_kickstart_economy
+
+		cost = 5
+
+		prerequisite = { focus = COM_trade_deals_with_madagascar }
 
 		ai_will_do = {
 			base = 10
