@@ -34,6 +34,765 @@ focus_tree = {
 		scroll_wheel_factor = 0.80
 	}
 
+	#Political Tree
+
+	#Political Reboot
+	focus = {
+		id = JAP_choice
+		#icon
+
+		x = 13
+		y = 0
+
+		cost = 5
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_choice"
+			add_political_power = 50
+		}
+		
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_left
+		#icon
+
+		x = -8
+		y = 1
+		relative_position_id = JAP_choice
+
+		cost = 10
+
+		prerequisite = { focus = JAP_choice }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			
+		}
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_left"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	#Strengthen Information Disclosure
+	focus = {
+		id = JAP_information_disclosure
+		#icon
+
+		x = -6
+		y = 1
+		relative_position_id = JAP_left
+
+		cost = 10
+
+		prerequisite = { focus = JAP_left }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_information_disclosure"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_management_documents
+		#icon 
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_information_disclosure
+
+		cost = 10
+
+		prerequisite = { focus = JAP_information_disclosure }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_management_documents"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_digital_archiving
+		icon = computer
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_management_documents
+
+		cost = 10
+
+		prerequisite = { focus = JAP_management_documents }
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_digital_archiving"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id =  JAP_independent_audits
+		icon = goal_JAP_budget_check
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_information_disclosure
+
+		cost = 10
+
+		prerequisite = { focus = JAP_information_disclosure }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_independent_audits"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_eliminating_amakudari
+		icon = goal_JAP_golden_parachute_ban
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_independent_audits
+
+		cost = 10
+
+		prerequisite = { focus = JAP_independent_audits }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_eliminating_amakudari"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_disclosure_of_political_funding
+		#icon
+
+		x = 0
+		y = 3
+		relative_position_id = JAP_information_disclosure
+
+		cost = 10
+
+		prerequisite = {
+			focus = JAP_digital_archiving
+			focus = JAP_eliminating_amakudari
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_disclosure_of_political_funding"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_protecting_human_rights
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_disclosure_of_political_funding
+
+		cost = 10
+
+		prerequisite = { focus = JAP_disclosure_of_political_funding }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_protecting_human_rights"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_same_sex_partnerships
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_protecting_human_rights
+
+		cost = 10
+
+		prerequisite = { focus = JAP_protecting_human_rights }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_same_sex_partnerships"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_employment_disabilities
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_same_sex_partnerships
+
+		cost = 10
+
+		prerequisite = { focus = JAP_same_sex_partnerships }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_employment_disabilities"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_prevent_domestic_violence
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_protecting_human_rights
+
+		cost = 10
+
+		prerequisite = { focus = JAP_protecting_human_rights }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_prevent_domestic_violence"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_immigrants_and_refugees
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_prevent_domestic_violence
+
+		cost = 10
+
+		prerequisite = { focus = JAP_prevent_domestic_violence }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_immigrants_and_refugees"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_protecting_labor_union
+		#icon
+
+		x = -2
+		y = 1
+		relative_position_id = JAP_left
+
+		cost = 10
+
+		prerequisite = { focus = JAP_left }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_protecting_labor_union"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_subcontracto
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_protecting_labor_union
+
+		cost = 10
+
+		prerequisite = { focus = JAP_protecting_labor_union }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_subcontracto"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_pressure_wage_increases
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_subcontracto
+
+		cost = 10
+
+		prerequisite = { focus = JAP_subcontracto }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_pressure_wage_increases"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_regulation_temporary_agency_work
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_protecting_labor_union
+
+		cost = 10
+
+		prerequisite = { focus = JAP_protecting_labor_union }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_regulation_temporary_agency_work"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_ban_non_regular_employment
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_regulation_temporary_agency_work
+
+		cost = 10
+
+		prerequisite = { focus = JAP_regulation_temporary_agency_work }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_ban_non_regular_employment"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_redistribution
+		#icon
+
+		x = 0
+		y = 3
+		relative_position_id = JAP_protecting_labor_union
+
+		cost = 10
+
+		prerequisite = {
+			focus = JAP_pressure_wage_increases
+			focus = JAP_ban_non_regular_employment
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_redistribution"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_reducing_medical_costs
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_redistribution
+
+		cost = 10
+
+		prerequisite = { focus = JAP_redistribution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_reducing_medical_costs"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_care_workers
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_reducing_medical_costs
+
+		cost = 10
+
+		prerequisite = { focus = JAP_reducing_medical_costs }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_care_workers"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_housing_support
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_redistribution
+
+		cost = 10
+
+		prerequisite = { focus = JAP_redistribution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_housing_support"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_student_loans
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_housing_support
+
+		cost = 10
+
+		prerequisite = { focus = JAP_housing_support }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_student_loans"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_focusing_renewable_energy
+		#icon
+
+		x = 2
+		y = 1
+		relative_position_id = JAP_left
+
+		cost = 10
+
+		prerequisite = { focus = JAP_left }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_focusing_renewable_energy"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_renewable_energy_feed_in_tariffs
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_focusing_renewable_energy
+
+		cost = 10
+
+		prerequisite = { focus = JAP_focusing_renewable_energy }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_renewable_energy_feed_in_tariffs"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_energy_efficiency
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_focusing_renewable_energy
+
+		cost = 10
+
+		prerequisite = { focus = JAP_focusing_renewable_energy }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_energy_efficiency"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_nuclear_phaseout
+		#icon
+
+		x = 0
+		y = 2
+		relative_position_id = JAP_focusing_renewable_energy
+
+		cost = 10
+
+		prerequisite = { focus = JAP_renewable_energy_feed_in_tariffs }
+		prerequisite = { focus = JAP_energy_efficiency }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_nuclear_phaseout"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_leading_disarmament
+		#icon
+
+		x = 6
+		y = 1
+		relative_position_id = JAP_left
+
+		cost = 10
+
+		prerequisite = { focus = JAP_left }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_leading_disarmament"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_restricting_arms_exports
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_leading_disarmament
+
+		cost = 10
+
+		prerequisite = { focus = JAP_leading_disarmament }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_restricting_arms_exports"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_principle_of_no_armed_forces
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_restricting_arms_exports
+
+		cost = 10
+
+		prerequisite = { focus = JAP_restricting_arms_exports }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_principle_of_no_armed_forces"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
 	#----------------------------------------------------------------
 	#New diplomacy Tree
 	#----------------------------------------------------------------
