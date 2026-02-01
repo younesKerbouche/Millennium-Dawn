@@ -1969,85 +1969,89 @@ country_event = {
 		}
 		if = {
 			limit = { has_country_flag = Rifaat_no_international_support }
-			random = {
-				chance = 10
-				if = {
-					limit = { NOT = { has_government = neutrality } }
-					start_civil_war = {
-						ideology = neutrality
-						size = 0.3
-					}
-				}
-				if = {
-					limit = { has_government = neutrality }
-					start_civil_war = {
-						ideology = democratic
-						size = 0.3
-					}
-				}
-				hidden_effect = {
-					random_country_with_original_tag = {
-						original_tag_to_check = SYR
-						limit = {
-							NOT = { tag = SYR }
+			random_list = {
+				90 = { }
+				10 = {
+					if = {
+						limit = { NOT = { has_government = neutrality } }
+						start_civil_war = {
+							ideology = neutrality
+							size = 0.3
 						}
-						set_country_flag = Syrian_rebels
 					}
-				}
-				set_global_flag = SYR_civil_war_started_early
-				if = {
-					limit = {
-						LEB = { is_subject_of = ROOT }
+					if = {
+						limit = { has_government = neutrality }
+						start_civil_war = {
+							ideology = democratic
+							size = 0.3
+						}
 					}
-					set_autonomy = {
-						target = LEB
-						autonomy_state = autonomy_free
+					hidden_effect = {
+						random_country = {
+							limit = {
+								original_tag = SYR
+								NOT = { tag = SYR }
+							}
+							set_country_flag = Syrian_rebels
+						}
+					}
+					set_global_flag = SYR_civil_war_started_early
+					if = {
+						limit = {
+							LEB = { is_subject_of = ROOT }
+						}
+						set_autonomy = {
+							target = LEB
+							autonomy_state = autonomy_free
+						}
 					}
 				}
 			}
 		}
 		if = {
 			limit = { has_country_flag = Rifaat_international_support }
-			random = {
-				chance = 20
-				if = {
-					limit = { NOT = { has_government = neutrality } }
-					start_civil_war = {
-						ideology = neutrality
-						size = 0.5
+			random_list = {
+				80 = { }
+				20 = {
+					if = {
+						limit = { NOT = { has_government = neutrality } }
+						start_civil_war = {
+							ideology = neutrality
+							size = 0.5
+						}
 					}
-				}
-				if = {
-					limit = { has_government = neutrality }
-					start_civil_war = {
-						ideology = democratic
-						size = 0.5
+					if = {
+						limit = { has_government = neutrality }
+						start_civil_war = {
+							ideology = democratic
+							size = 0.5
+						}
 					}
-				}
-				hidden_effect = {
-					random_country_with_original_tag = {
+					hidden_effect = {
+						random_country = {
+							limit = {
+								original_tag = SYR
+								NOT = { tag = SYR }
+							}
+							set_country_flag = Syrian_rebels
+						}
+					}
+					set_global_flag = SYR_civil_war_started_early
+					every_country_with_original_tag = {
 						original_tag_to_check = SYR
 						limit = {
-							NOT = { tag = SYR }
+							NOT = { has_idea = divided_syria }
 						}
-						set_country_flag = Syrian_rebels
+						add_ideas = divided_syria
 					}
-				}
-				set_global_flag = SYR_civil_war_started_early
-				every_country_with_original_tag = {
-					original_tag_to_check = SYR
-					limit = {
-						NOT = { has_idea = divided_syria }
-					}
-					add_ideas = divided_syria
-				}
-				if = {
-					limit = {
-						LEB = { is_subject_of = ROOT }
-					}
-					set_autonomy = {
-						target = LEB
-						autonomy_state = autonomy_free
+					if = {
+						limit = {
+							LEB = { is_subject_of = ROOT }
+						}
+						set_autonomy = {
+							target = LEB
+							autonomy_state = autonomy_free
+						}
 					}
 				}
 			}
@@ -2388,9 +2392,9 @@ country_event = {
 		start_civil_war = {
 			ideology = nationalist
 		}
-		random_country_with_original_tag = {
-			original_tag_to_check = JOR
+		random_country = {
 			limit = {
+				original_tag = JOR
 				has_government = nationalist
 			}
 			SYR = {

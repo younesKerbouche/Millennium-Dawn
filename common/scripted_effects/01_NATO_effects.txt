@@ -24,11 +24,12 @@ NATO_join = {
 		}
 	}
 
+	add_to_array = { global.nato_members = THIS }
 	add_ideas = NATO_member
 	add_to_tech_sharing_group = NATO_Tech_Share
-	random_scope_in_array = {
-		array = global.nato_members
+	random_country = {
 		limit = {
+			has_idea = NATO_member
 			is_faction_leader = yes
 		}
 		add_to_faction = ROOT
@@ -56,9 +57,9 @@ NATO_join_via_event = {
 		USA = { country_event = NATO.14 }
 	}
 	else = {
-		random_scope_in_array = {
-			array = global.nato_members
+		random_country = {
 			limit = {
+				has_idea = NATO_member
 				is_faction_leader = yes
 			}
 			country_event = NATO.14
@@ -70,6 +71,7 @@ NATO_leave = {
 	if = {
 		limit = { has_idea = NATO_member }
 
+		remove_from_array = { global.nato_members = THIS }
 		remove_ideas = NATO_member
 		remove_from_tech_sharing_group = NATO_Tech_Share
 
@@ -171,11 +173,12 @@ NATO_CSTO_calculate_number_of_batallions = {
 			}
 
 			set_country_flag = NATO_CSTO_agreement_breach_warning
-			random_scope_in_array = {
-				array = global.nato_members
+			random_country = {
 				limit = {
+					has_idea = NATO_member
 					is_faction_leader = yes
 				}
+
 				activate_mission = NATO_CSTO_breach_mission
 			}
 		}
@@ -217,9 +220,9 @@ NATO_CSTO_calculate_number_of_batallions = {
 			}
 
 			set_country_flag = NATO_CSTO_agreement_breach_warning
-			random_scope_in_array = {
-				array = global.CSTO_member
+			random_country = {
 				limit = {
+					has_idea = CSTO
 					is_faction_leader = yes
 				}
 

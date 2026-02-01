@@ -192,11 +192,6 @@ EU_voting_category = {
 								NOT = { has_active_mission = EU_budget_draft_ongoing }
 								NOT = { has_active_mission = EU_budget_draft_preparations }
 							}
-							custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-							effect_tooltip = {
-								clr_country_flag = EU_budget_draft
-								clr_country_flag = EU_budget_EP_block
-							}
 							for_each_scope_loop = {
 								array = global.EU_member
 								clr_country_flag = EU_budget_draft
@@ -208,11 +203,6 @@ EU_voting_category = {
 								has_country_flag = EU_mff_draft
 								NOT = { has_active_mission = EU_mff_draft_ongoing }
 								NOT = { has_active_mission = EU_mff_draft_preparations }
-							}
-							custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-							effect_tooltip = {
-								clr_country_flag = EU_mff_draft
-								clr_country_flag = EU_mff_EP_block
 							}
 							for_each_scope_loop = {
 								array = global.EU_member
@@ -284,11 +274,6 @@ EU_voting_category = {
 									NOT = { has_active_mission = EU_budget_draft_ongoing }
 									NOT = { has_active_mission = EU_budget_draft_preparations }
 								}
-								custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-								effect_tooltip = {
-									clr_country_flag = EU_budget_draft
-									clr_country_flag = EU_budget_EP_block
-								}
 								for_each_scope_loop = {
 									array = global.EU_member
 									clr_country_flag = EU_budget_draft
@@ -300,11 +285,6 @@ EU_voting_category = {
 									has_country_flag = EU_mff_draft
 									NOT = { has_active_mission = EU_mff_draft_ongoing }
 									NOT = { has_active_mission = EU_mff_draft_preparations }
-								}
-								custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-								effect_tooltip = {
-									clr_country_flag = EU_mff_draft
-									clr_country_flag = EU_mff_EP_block
 								}
 								for_each_scope_loop = {
 									array = global.EU_member
@@ -358,43 +338,25 @@ EU_voting_category = {
 							}
 							if = {
 								limit = { has_country_flag = EU_budget_draft }
-								custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-								effect_tooltip = {
-									clr_country_flag = EU_budget_draft
-									clr_country_flag = EU_budget_EP_block
-								}
 								for_each_scope_loop = {
 									array = global.EU_member
 									clr_country_flag = EU_budget_draft
 									clr_country_flag = EU_budget_EP_block
 								}
-								custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-								effect_tooltip = {
-									EU_rollback_budget_values = yes
-								}
-								for_each_scope_loop = {
-									array = global.EU_member
+								every_country = {
+									limit = { has_idea = EU_member }
 									EU_rollback_budget_values = yes
 								}
 							}
 							if = {
 								limit = { has_country_flag = EU_mff_draft }
-								custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-								effect_tooltip = {
-									clr_country_flag = EU_mff_draft
-									clr_country_flag = EU_mff_EP_block
-								}
 								for_each_scope_loop = {
 									array = global.EU_member
 									clr_country_flag = EU_mff_draft
 									clr_country_flag = EU_mff_EP_block
 								}
-								custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-								effect_tooltip = {
-									EU_rollback_mff_values = yes
-								}
-								for_each_scope_loop = {
-									array = global.EU_member
+								every_country = {
+									limit = { has_idea = EU_member }
 									EU_rollback_mff_values = yes
 								}
 							}
@@ -947,12 +909,10 @@ EU_voting_category = {
 			EU_global_click_cost = yes
 			reset_MEP_support_party_x = yes
 			set_variable = { global.EU_budget_draft_invested_PP = 0 }
-			custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				set_country_flag = EU_budget_draft
-			}
-			for_each_scope_loop = {
-				array = global.EU_member
+			every_country = {
+				limit = {
+					has_idea = EU_member
+				}
 				set_country_flag = EU_budget_draft
 			}
 			remove_mission = EU_budget_draft_preparations
@@ -1266,11 +1226,11 @@ EU_fiscal_category = {
 		fire_only_once = yes
 
 		timeout_effect = {
-			custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
+			### European debt crisis
 			effect_tooltip = {
-				country_event = EUevent.5
-				for_each_scope_loop = {
-					array = global.EU_member
+				country_event = { id = EUevent.5 }
+				every_country = {
+					limit = { has_idea = EU_member }
 					add_ideas = european_debt_crisis
 					if = {
 						limit = {
@@ -1293,7 +1253,7 @@ EU_fiscal_category = {
 						array = global.EU_member
 						limit = { is_ai = no }
 
-						country_event = EUevent.5
+						country_event = { id = EUevent.5 }
 					}
 				}
 				else = {
@@ -1310,13 +1270,9 @@ EU_fiscal_category = {
 		}
 
 		complete_effect = {
-			custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				country_event = { id = EUevent.6 }
-				remove_mission = eurozone_reforms
-			}
-			for_each_scope_loop = {
-				array = global.EU_member
+			# Eurozone Reforms
+			every_country = {
+				limit = { has_idea = EU_member }
 				country_event = { id = EUevent.6 }
 				remove_mission = eurozone_reforms
 			}
@@ -1714,12 +1670,8 @@ EU_exit_category = {
 		}
 
 		remove_effect = {
-			custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				news_event = EU_news.22 ### Article 50 is revoked
-			}
-			for_each_scope_loop = {
-				array = global.EU_member
+			every_country = {
+				limit = { has_idea = EU_member }
 				news_event = EU_news.22 ### Article 50 is revoked
 			}
 		}
@@ -1988,22 +1940,18 @@ EU_defense_category = {
 
 		complete_effect = {
 			hidden_effect = {
-				for_each_scope_loop = {
-					array = global.EU_member
+				every_country = {
+					limit = { has_idea = EU_member }
 					EUU = {
 						inherit_technology = PREV
 					}
 				}
 				inherit_technology = EUU
 			}
-			custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				country_event = {
-					id = EUevent.10
+			every_country = {
+				limit = {
+					has_idea = EU_member
 				}
-			}
-			for_each_scope_loop = {
-				array = global.EU_member
 				country_event = {
 					id = EUevent.10
 				}
@@ -2021,30 +1969,32 @@ EU_defense_category = {
 		}
 
 		complete_effect = {
-			random_country = {
+			every_country = {
 				limit = {
 					has_country_flag = control_euroarmy_force
 				}
 				clr_country_flag = control_euroarmy_force
 			}
-			for_each_scope_loop = {
-				array = global.EU_member
-				if = {
+			every_country = {
 					limit = {
-						any_of_scopes = {
-							array = global.EU_member
-							NOT = { has_template = "EuroArmy Brigade" }
-						}
+						has_idea = EU_member
 					}
-					add_manpower = -1000
-					subtract_from_variable = { treasury = 0.1 }
+					if = {
+						limit = {
+							any_of_scopes = {
+								array = global.EU_member
+								NOT = { has_template = "EuroArmy Brigade" }
+							}
+						}
+						add_manpower = -1000
+						subtract_from_variable = { treasury = 0.1 }
+					}
+					delete_unit_template_and_units = {
+						division_template = "EuroArmy Brigade"
+					}
+					give_military_access = ROOT
 				}
-				delete_unit_template_and_units = {
-					division_template = "EuroArmy Brigade"
-				}
-				give_military_access = ROOT
-			}
-			load_oob = "EU_EuroArmy_basic_2000"
+				load_oob = "EU_EuroArmy_basic_2000"
 			set_country_flag = control_euroarmy_force
 		}
 	}
@@ -2068,16 +2018,18 @@ EU_defense_category = {
 
 		complete_effect = {
 			set_global_flag = EDU
-			for_each_scope_loop = {
-				array = global.EU_member
-				if = {
-					limit = { has_idea = NATO_member }
-					remove_ideas = NATO_member
+			every_country = {
+				limit = {
+					has_idea = EU_member
+					has_idea = NATO_member
 				}
+				remove_ideas = NATO_member
 			}
 			create_faction_from_template = faction_template_edu
-			for_each_scope_loop = {
-				array = global.EU_member
+			every_country = {
+				limit = {
+					has_idea = EU_member
+				}
 				FROM = {
 					add_to_faction = PREV
 				}
@@ -2525,27 +2477,17 @@ EU_apply_for_membership_category = {
 						add_ai_strategy = { type = alliance id = PREV value = 200 }
 					}
 				}
-				custom_effect_tooltip = TT_ALL_NATO_MEMBER_NATIONS_GAIN
-				effect_tooltip = {
-					news_event = {
-						id = EU_news.49 ### NATO members leaves and joins EU and EDU
-					}
-				}
-				for_each_scope_loop = {
-					array = global.nato_members
+				every_country = {
+					limit = { has_idea = NATO_member }
 					news_event = {
 						id = EU_news.49 ### NATO members leaves and joins EU and EDU
 					}
 				}
 			}
-			custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				news_event = {
-					id = EU_news.27 ### one country joins
+			every_country = {
+				limit = {
+					has_idea = EU_member
 				}
-			}
-			for_each_scope_loop = {
-				array = global.EU_member
 				news_event = {
 					id = EU_news.27 ### one country joins
 				}

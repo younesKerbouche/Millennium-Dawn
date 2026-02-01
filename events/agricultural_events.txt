@@ -418,8 +418,9 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
 						random_list = {
@@ -483,8 +484,9 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
 						random_list = {
@@ -548,13 +550,19 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
-						random = {
-							chance = 15
-							country_event = { id = AGRI.1 days = 14 }
+						random_list = {
+							85 = { }
+							15 = {
+								country_event = {
+									id = AGRI.1
+									days = 14
+								}
+							}
 						}
 					}
 				}
@@ -629,8 +637,9 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
 						random_list = {
@@ -699,8 +708,9 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
 						random_list = {
@@ -769,8 +779,9 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
 						random_list = {
@@ -833,13 +844,19 @@ add_namespace = AGRI_famine
 					}
 				}
 				hidden_effect = {
-					random_neighbor_country = {
+					random_country = {
 						limit = {
+							is_neighbor_of = ROOT
 							is_agrarian_economy = yes
 						}
-						random = {
-							chance = 30
-							country_event = { id = AGRI.1 days = 14 }
+						random_list = {
+							70 = { }
+							30 = {
+								country_event = {
+									id = AGRI.1
+									days = 14
+								}
+							}
 						}
 					}
 				}
@@ -1716,7 +1733,8 @@ add_namespace = AGRI_famine
 						}
 						7 = { # CAUSED A MINI DROUGHT
 							set_country_flag = AGRI_mini_drought_neighbour_cat_failure_1
-							random_neighbor_country = {
+							random_country = {
+								limit = { is_neighbor_of = ROOT }
 								random_list = {
 									90 = {
 										set_country_flag = AGRI_minor_drought
@@ -1732,15 +1750,21 @@ add_namespace = AGRI_famine
 									id = AGRI.2
 									days = 35
 								}
-								random = {
-									chance = 20
-									country_event = { id = AGRI_random.2000 days = 5 }
+								random_list = {
+									80 = { }
+									20 = {
+										country_event = {
+											id = AGRI_random.2000
+											days = 5
+										}
+									}
 								}
 							}
 						}
 						2 = { # CAUSED A MAJOR DROUGHT
 							set_country_flag = AGRI_mini_drought_neighbour_cat_failure_2
-							random_neighbor_country = {
+							random_country = {
+								limit = { is_neighbor_of = ROOT }
 								random_list = {
 									40 = {
 										set_country_flag = AGRI_minor_drought
@@ -1756,15 +1780,21 @@ add_namespace = AGRI_famine
 									id = AGRI.2
 									days = 35
 								}
-								random = {
-									chance = 50
-									country_event = { id = AGRI_random.2000 days = 5 }
+								random_list = {
+									50 = { }
+									50 = {
+										country_event = {
+											id = AGRI_random.2000
+											days = 5
+										}
+									}
 								}
 							}
 						}
 						1 = { # CAUSED AN EXTREME DROUGHT
 							set_country_flag = AGRI_mini_drought_neighbour_cat_failure_3
-							random_neighbor_country = {
+							random_country = {
+								limit = { is_neighbor_of = ROOT }
 								random_list = {
 									25 = {
 										set_country_flag = AGRI_minor_drought
@@ -1780,9 +1810,14 @@ add_namespace = AGRI_famine
 									id = AGRI.2
 									days = 35
 								}
-								random = {
-									chance = 80
-									country_event = { id = AGRI_random.2000 days = 5 }
+								random_list = {
+									20 = { }
+									80 = {
+										country_event = {
+											id = AGRI_random.2000
+											days = 5
+										}
+									}
 								}
 							}
 						}
@@ -1875,9 +1910,14 @@ add_namespace = AGRI_famine
 				log = "[GetDateText]: [This.GetName]: AGRI_random.20.C executed"
 				trigger = { has_country_flag = AGRI_mini_drought_failure }
 				hidden_effect = {
-					random = {
-						chance = 20
-						country_event = { id = AGRI.2 days = 7 }
+					random_list = {
+						80 = { }
+						20 = {
+							country_event = {
+								id = AGRI.2
+								days = 7
+							}
+						}
 					}
 				}
 				clr_country_flag = AGRI_mini_drought_failure

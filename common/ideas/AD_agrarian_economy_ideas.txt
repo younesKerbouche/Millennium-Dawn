@@ -17,11 +17,15 @@ ideas = {
 				EDU_update_education_idea_DYNMOD = yes
 			}
 
-			allowed_civil_war = { always = yes }
+			allowed_civil_war = {
+				always = yes
+			}
 
 			cancel = {
-				check_variable = { gdp_per_capita > 20 }
-				num_of_civilian_factories > 1
+				AND = {
+					check_variable = { gdp_per_capita > 20 }
+					num_of_civilian_factories > 1
+				}
 			}
 
 			modifier = {

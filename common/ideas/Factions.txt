@@ -3,17 +3,13 @@ ideas = {
 
 		#North Atlanic Treaty Organization
 		NATO_member = {
-			picture = NATO_member
-			allowed_civil_war = { has_government = democratic }
-			on_add = {
-				log = "[GetDateText]: [Root.GetName]: add idea NATO_member"
-				add_to_array = { global.nato_members = THIS }
-			}
-			on_remove = {
-				log = "[GetDateText]: [Root.GetName]: remove idea NATO_member"
-				remove_from_array = { global.nato_members = THIS }
-			}
 
+
+			picture = NATO_member
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
 			cancel = {
 				OR = {
 					is_in_faction = no
@@ -54,14 +50,9 @@ ideas = {
 		#CSTO
 		CSTO_member = {
 			picture = CSTO_member
-			allowed_civil_war = { has_government = communism }
-			on_add = {
-				log = "[GetDateText]: [Root.GetName]: add idea CSTO_member"
-				add_to_array = { global.CSTO_member = THIS }
-			}
-			on_remove = {
-				log = "[GetDateText]: [Root.GetName]: remove idea CSTO_member"
-				remove_from_array = { global.CSTO_member = THIS }
+
+			allowed_civil_war = {
+				has_government = communism
 			}
 
 			cancel = {
@@ -207,7 +198,12 @@ ideas = {
 
 		#CENTO Member
 		faction_cento_alliance = {
+
 			picture = CENTO_faction
+
+			allowed = {
+				tag = PER
+			}
 			cancel = {
 				is_in_faction = no
 			}
@@ -219,7 +215,12 @@ ideas = {
 
 		#SEATO Member
 		faction_seato_alliance = {
+
 			picture = morale_bonus
+
+			allowed = {
+				tag = JAP
+			}
 			cancel = {
 				is_in_faction = no
 			}
@@ -231,7 +232,12 @@ ideas = {
 
 		#IMPERIAL BLOC MEMBER
 		faction_imperial_bloc_alliance = {
+
 			picture = triumphant_will
+
+			allowed = {
+				tag = GER
+			}
 			cancel = {
 				is_in_faction = no
 			}
@@ -243,8 +249,12 @@ ideas = {
 
 		#BRICS Member
 		faction_brics_alliance = {
+
 			picture = bricks
 
+			allowed = {
+				tag = RAJ
+			}
 			cancel = {
 				is_in_faction = no
 			}

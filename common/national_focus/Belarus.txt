@@ -252,6 +252,7 @@ focus_tree = {
 				change_influence_percentage = yes
 			}
 			newline = yes
+			#TODO - Add effect
 			hidden_effect = {
 				if = {
 					limit = {
@@ -260,9 +261,16 @@ focus_tree = {
 							has_tech = modern_gmo
 						}
 					}
-					random = {
-						chance = 75
-						country_event = { id = belarus_md.3 days = 14 }
+					random_list = {
+						75 = {
+							country_event = {
+								id = belarus_md.3
+								days = 14
+							}
+						}
+						25 = {
+
+						}
 					}
 				}
 				else_if = {
@@ -272,9 +280,16 @@ focus_tree = {
 							has_tech = gene_therapy
 						}
 					}
-					random = {
-						chance = 50
-						country_event = { id = belarus_md.3 days = 14 }
+					random_list = {
+						50 = {
+							country_event = {
+								id = belarus_md.3
+								days = 14
+							}
+						}
+						50 = {
+
+						}
 					}
 				}
 				else_if = {
@@ -284,9 +299,16 @@ focus_tree = {
 							has_tech = genetically_modified_crops
 						}
 					}
-					random = {
-						chance = 25
-						country_event = { id = belarus_md.3 days = 14 }
+					random_list = {
+						25 = {
+							country_event = {
+								id = belarus_md.3
+								days = 14
+							}
+						}
+						75 = {
+
+						}
 					}
 				}
 			}
@@ -2099,7 +2121,7 @@ focus_tree = {
 		id = BLR_church_reforms
 		icon = anti_orthodoxy
 		x = 99
-		y = 17
+		y = 15
 		ai_will_do = { factor = 155 }
 		cost = 7
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -8518,12 +8540,8 @@ focus_tree = {
 			add_stability = -0.05
 			add_ideas = Major_Non_NATO_Ally
 			set_country_flag = Major_Non_NATO_Ally
-			custom_effect_tooltip = TT_ALL_NATO_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				add_opinion_modifier = { target = BLR modifier = diplomatic_support }
-			}
-			for_each_scope_loop = {
-				array = global.nato_members
+			every_country = {
+				limit = { has_idea = NATO_member }
 				add_opinion_modifier = { target = BLR modifier = diplomatic_support }
 			}
 		}
@@ -8558,13 +8576,8 @@ focus_tree = {
 				dismantle_faction = yes
 			}
 			add_to_tech_sharing_group = Major_Non_NATO_Ally_Share
-			custom_effect_tooltip = TT_ALL_NATO_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
-				reverse_add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
-			}
-			for_each_scope_loop = {
-				array = global.nato_members
+			every_country = {
+				limit = { has_idea = NATO_member }
 				add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
 				reverse_add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
 			}
@@ -9003,18 +9016,11 @@ focus_tree = {
 			set_party_index_to_ruling_party = yes
 			set_temp_variable = { party_popularity_increase = 0.05 }
 			add_relative_party_popularity = yes
-			if = {
-				limit = { NOT = { has_global_flag = GAME_RULE_eu_disabled } }
-				custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-				effect_tooltip = {
-					add_opinion_modifier = { target = FRA modifier = supports_us }
+			every_country = {
+				limit = {
+					has_idea = EU_member
 				}
-				hidden_effect = {
-					for_each_scope_loop = {
-						array = global.EU_member
-						add_opinion_modifier = { target = ROOT modifier = supports_us }
-					}
-				}
+				add_opinion_modifier = { target = BLR modifier = supports_us }
 			}
 			SOV = {
 				add_opinion_modifier = {

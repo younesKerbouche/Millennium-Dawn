@@ -11,7 +11,6 @@ Stylization and other clean up contributions are more than welcome if they fix i
 Python is required for running pre-commit hooks and other development tools.
 
 **Windows:**
-
 1. Download Python from [python.org](https://www.python.org/downloads/)
 2. During installation, check "Add Python to PATH"
 3. Verify installation by opening Command Prompt and running:
@@ -20,7 +19,6 @@ Python is required for running pre-commit hooks and other development tools.
    ```
 
 **macOS:**
-
 1. Install using Homebrew (recommended):
    ```bash
    brew install python
@@ -32,7 +30,6 @@ Python is required for running pre-commit hooks and other development tools.
    ```
 
 **Linux (Ubuntu/Debian):**
-
 ```bash
 sudo apt update
 sudo apt install python3 python3-pip
@@ -43,7 +40,6 @@ sudo apt install python3 python3-pip
 Pre-commit helps automatically format code and catch issues before commits.
 
 **Installation:**
-
 ```bash
 # Install pre-commit
 pip install pre-commit
@@ -59,7 +55,6 @@ pre-commit install
 The repository should include a `.pre-commit-config.yaml` file. If it doesn't exist, create one with appropriate hooks for your file types.
 
 **Usage:**
-
 - Pre-commit will automatically run on each commit
 - To manually run on all files: `pre-commit run --all-files`
 - To update hooks: `pre-commit autoupdate`
@@ -67,21 +62,17 @@ The repository should include a `.pre-commit-config.yaml` file. If it doesn't ex
 ## Code Style Guidelines
 
 ### Localization files (.yml)
-
 - indent 1 space
 - Remove all 0/1 after the : in string pairs
 
 ### Code/Script Files
-
 - indent: 1 tab (4 spaces)
 - Comments go above or below the code
 
 ### Changelog
-
 - All changes should be documented in the changelog where applicable
 
 ### Resources
-
 - Resources or useful PDFs can be stored in Modding Resources for all Millennium Dawn team members
 
 ## Contributing

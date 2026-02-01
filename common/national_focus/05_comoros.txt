@@ -72,11 +72,7 @@ focus_tree = {
 		mutually_exclusive = { focus = COM_african_mercenaries }
 		mutually_exclusive = { focus = COM_our_own_path }
 
-		search_filters = { FOCUS_FILTER_INFLUENCE FOCUS_FILTER_STABILITY }
-
-		available = {
-			NOT = { has_country_leader = { name = "Robert Denard" ruling_only = yes } }
-		}
+		search_filters = { FOCUS_FILTER_INFLUENCE }
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_mission_from_unrec executed"
@@ -159,7 +155,7 @@ focus_tree = {
 			modify_treasury_effect = yes
 
 			custom_override_tooltip = {
-				tooltip = COM_african_mercenaries_2_tt
+				tooltip = COM_african_mercenaries_tt
 				division_template = {
 					name = "AFRIKA-TDL PMC"
 					is_locked = yes
@@ -179,7 +175,6 @@ focus_tree = {
 				}
 			}
 			clr_country_flag = COM_army_route_3
-			custom_effect_tooltip = COM_african_mercenaries_tt
 		}
 
 		ai_will_do = {
@@ -1713,17 +1708,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_befriend_the_west executed"
-			if = {
-				limit = { NOT = { has_global_flag = GAME_RULE_eu_disabled } }
-				custom_effect_tooltip = TT_ALL_EU_MEMBER_NATIONS_GAIN
-				effect_tooltip = {
-					add_opinion_modifier = { target = COM modifier = declaration_of_friendship }
+			every_country = {
+				limit = {
+					has_idea = EU_member
 				}
-				hidden_effect = {
-					for_each_scope_loop = {
-						array = global.EU_member
-						add_opinion_modifier = { target = COM modifier = declaration_of_friendship }
-					}
+				add_opinion_modifier = {
+					target = COM
+					modifier = declaration_of_friendship
 				}
 			}
 			add_timed_idea = {
@@ -1826,13 +1817,8 @@ focus_tree = {
 			add_ideas = Major_Non_NATO_Ally
 			set_country_flag = Major_Non_NATO_Ally
 			add_to_tech_sharing_group = Major_Non_NATO_Ally_Share
-			custom_effect_tooltip = TT_ALL_NATO_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
-				reverse_add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
-			}
-			for_each_scope_loop = {
-				array = global.nato_members
+			every_country = {
+				limit = { has_idea = NATO_member }
 				add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
 				reverse_add_opinion_modifier = { target = ROOT modifier = NATO_commitment }
 			}
@@ -2081,13 +2067,14 @@ focus_tree = {
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_draw_closer_to_the_au executed"
 			add_political_power = 100
-			custom_effect_tooltip = TT_ALL_AU_MEMBER_NATIONS_GAIN
-			effect_tooltip = {
-				add_opinion_modifier = { target = COM modifier = declaration_of_friendship }
-			}
-			for_each_scope_loop = {
-				array = global.AU_member
-				add_opinion_modifier = { target = COM modifier = declaration_of_friendship }
+			every_country = {
+				limit = {
+					has_idea = AU_member
+				}
+				add_opinion_modifier = {
+					target = COM
+					modifier = declaration_of_friendship
+				}
 			}
 			add_timed_idea = {
 				idea = AZE_trade_idea
@@ -2256,12 +2243,9 @@ focus_tree = {
 				idea = IND_islamic_schools
 				days = 400
 			}
-			if = {
-				limit = { has_idea = farmers }
-				swap_ideas = {
-					remove_idea = farmers
-					add_idea = the_ulema
-				}
+			swap_ideas = {
+				remove_idea = farmers
+				add_idea = the_ulema
 			}
 			every_country = {
 				limit = {
@@ -2272,7 +2256,10 @@ focus_tree = {
 					modifier = declaration_of_friendship
 				}
 			}
-			add_popularity = { ideology = fascism popularity = 0.10 }
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.10
+			}
 		}
 
 		ai_will_do = {
@@ -2706,7 +2693,7 @@ focus_tree = {
 
 		prerequisite = { focus = COM_comorian_politics }
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
 			has_country_flag = COM_robert_denard_seized_power
@@ -2715,14 +2702,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			add_war_support = 0.15
-			if = {
-				limit = { has_idea = COM_unstable_government_idea }
-				modify_timed_idea = {
-					idea = COM_unstable_government_idea
-					days = -100
-				}
-			}
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {
@@ -2751,14 +2731,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			add_political_power = 125
-			if = {
-				limit = { has_idea = COM_unstable_government_idea }
-				modify_timed_idea = {
-					idea = COM_unstable_government_idea
-					days = -75
-				}
-			}
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {
@@ -2778,7 +2751,7 @@ focus_tree = {
 
 		prerequisite = { focus = COM_the_warrior_king }
 
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
 			has_country_flag = COM_robert_denard_seized_power
@@ -2787,14 +2760,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			add_stability = 0.04
-			if = {
-				limit = { has_idea = COM_unstable_government_idea }
-				modify_timed_idea = {
-					idea = COM_unstable_government_idea
-					days = -75
-				}
-			}
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {
@@ -2824,7 +2790,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			add_ideas = COM_state_of_the_pmcs_idea
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {
@@ -2853,7 +2819,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			custom_effect_tooltip = COM_a_rifle_for_hire_tt
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {
@@ -2882,8 +2848,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			add_ideas = COM_expanded_regional_operations_idea
-			set_country_flag = COM_expanded_private_military_operations
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {
@@ -2913,10 +2878,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus COM_the_warrior_king executed"
-			swap_ideas = {
-				remove_idea = COM_expanded_regional_operations_idea
-				add_idea = COM_expanded_global_operations_idea
-			}
+			# TODO: Add a focus reward for this
 		}
 
 		ai_will_do = {

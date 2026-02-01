@@ -34,7 +34,7 @@ ideas = {
 			}
 			on_remove = {
 				log = "[GetDateText]: [Root.GetName]: remove idea AU_member"
-				if = { limit = { is_in_array = { global.AU_member = THIS } } remove_from_array = { global.AU_member = THIS } }
+				remove_from_array = { global.AU_member = THIS }
 				remove_dynamic_modifier = { modifier = african_union_reforms_modifier }
 				african_union_remove_summit_buffs = yes
 			}
@@ -72,8 +72,14 @@ ideas = {
 			}
 		}
 		blood_diamond_trade = {
-			allowed_civil_war = { always = yes }
 
+			allowed = {
+				OR = {
+					original_tag = SIE
+					original_tag = AFR
+				}
+			}
+			allowed_civil_war = { always = yes }
 			modifier = {
 				political_power_gain = -0.25
 				stability_factor = 0.10
@@ -83,9 +89,11 @@ ideas = {
 		}
 
 		CAR_central_bush_republic_war_idea = {
-			picture = car_bush_war_icon
+
+			allowed = { original_tag = CAR }
 			allowed_civil_war = { always = yes }
 
+			picture = car_bush_war_icon
 			modifier = {
 				political_power_gain = -0.15
 				stability_factor = -0.10
@@ -93,6 +101,7 @@ ideas = {
 		}
 
 		AFRICA_idea_tuareg_rebellion = {
+
 			picture = hutu_tutsi_tensions
 
 			modifier = {
@@ -104,6 +113,7 @@ ideas = {
 		}
 
 		african_union_common_political_agenda = {
+
 			picture = political_support
 
 			modifier = {
@@ -111,6 +121,7 @@ ideas = {
 			}
 		}
 		african_union_child_welfare = {
+
 			picture = family_supports
 
 			modifier = {
@@ -119,6 +130,7 @@ ideas = {
 			}
 		}
 		african_union_improved_digitalisation = {
+
 			picture = tower_investment
 
 			modifier = {
@@ -126,6 +138,7 @@ ideas = {
 			}
 		}
 		african_union_human_rights_good_boy = {
+
 			picture = political_freedom
 
 			modifier = {

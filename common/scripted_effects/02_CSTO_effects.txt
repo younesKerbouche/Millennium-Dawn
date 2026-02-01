@@ -1,10 +1,11 @@
 # Scripted effects for CSTO
 CSTO_join = {
+	add_to_array = { global.CSTO_member = THIS }
 	add_ideas = CSTO_member
 	ROOT = { add_to_tech_sharing_group = CSTO_Tech_Share }
-	random_scope_in_array = {
-		array = global.CSTO_member
+	random_country = {
 		limit = {
+			has_idea = CSTO_member
 			is_faction_leader = yes
 		}
 		add_to_faction = ROOT
@@ -13,6 +14,7 @@ CSTO_join = {
 }
 
 CSTO_leave = {
+	remove_from_array = { global.CSTO_member = THIS }
 	remove_ideas = CSTO_member
 	ROOT = { remove_from_tech_sharing_group = CSTO_Tech_Share }
 	leave_faction = yes
