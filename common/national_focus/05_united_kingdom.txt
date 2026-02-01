@@ -9344,590 +9344,7 @@ focus_tree = {
 		}
 	}
 
-	# Britain Can Be Better - Agenda
 
-	focus = {
-		id = ENG_britain_can_be_better
-		icon = BRA_bolsa_familia
-
-		x = 80
-		y = 0
-
-		cost = 5
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_britain_can_be_better"
-			country_event = britain_md.9
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_more_power_to_people
-		icon = national_unity_red
-
-		x = -1
-		y = 1
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_britain_can_be_better }
-
-		mutually_exclusive = {
-			focus = ENG_westminster_reinforced
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_more_power_to_people"
-			remove_ideas = ENG_two_party_system_idea
-			newline = yes
-			custom_effect_tooltip = ENG_shatter_two_party_system_TT
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_westminster_reinforced
-		icon = government_beu
-
-		x = 1
-		y = 1
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_britain_can_be_better }
-
-		mutually_exclusive = {
-			focus = ENG_more_power_to_people
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_westminster_reinforced"
-			set_temp_variable = { ENG_political_power_factor_change = 0.02 }
-			update_ENG_political_power_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_drift_defence_factor_change = 0.05 }
-			update_ENG_drift_defence_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_root_out_resistance_effectiveness_factor_change = 0.15 }
-			update_ENG_root_out_resistance_effectiveness_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_resistance_growth_change = -0.10 }
-			update_ENG_resistance_growth = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_further_digital_governance
-		icon = aristocratic_funding
-
-		x = -2
-		y = 2
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_westminster_reinforced focus = ENG_more_power_to_people }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_further_digital_governance"
-			add_tech_bonus = {
-				name = nuclear_reactors_research_bonus
-				bonus = 1
-				uses = 1
-				category = CAT_internet_tech
-				category = CAT_computing_tech
-				category = CAT_ai
-			}
-			newline = yes
-			random_list = {
-				50 = {
-					increase_economic_growth = yes
-				}
-				50 = {}
-			}
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_a_union_of_nations
-		icon = Generic_Factionalism
-
-		x = 0
-		y = 2
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_westminster_reinforced focus = ENG_more_power_to_people }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_union_of_nations"
-			9 = {
-				add_resource = {
-					type = oil
-					amount = 6
-				}
-			}
-			newline = yes
-			set_temp_variable = { temp_productivity_change = 50 }
-			17 = {
-				state_flat_productivity_change_effect = yes
-			}
-			newline = yes
-			1192 = {
-				add_building_construction = {
-					type = synthetic_refinery
-					level = 1
-				}
-			}
-			newline = yes
-			16 = {
-				add_building_construction = {
-					type = synthetic_refinery
-					level = 1
-				}
-			}
-			newline = yes
-			set_temp_variable = { treasury_change = -27 }
-			modify_treasury_effect = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_reconsider_the_lobbying_act
-		icon = cash_grap
-
-		x = 2
-		y = 2
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_westminster_reinforced focus = ENG_more_power_to_people }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_reconsider_the_lobbying_act"
-			country_event = britain_md.10
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_people_led_constitutional_convention
-		icon = election2
-
-		x = -1
-		y = 3
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_a_union_of_nations }
-		prerequisite = { focus = ENG_further_digital_governance }
-
-		mutually_exclusive = {
-			focus = ENG_corporaet_led_constitutional_convention
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_people_led_constitutional_convention"
-			set_temp_variable = { temp_opinion = 10 }
-			change_labour_unions_opinion = yes
-			newline = yes
-			set_temp_variable = { ENG_base_fuel_gain_factor_change = 0.1 }
-			update_ENG_base_fuel_gain_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_max_fuel_factor_change = 0.1 }
-			update_ENG_max_fuel_factor = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_revised_town_laws
-		icon = treaty2
-
-		x = -2
-		y = 4
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_neighbourhood_police_teams focus = ENG_people_led_constitutional_convention }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_revised_town_laws"
-			set_temp_variable = { ENG_agriculture_tax_modifier_change = 0.05 }
-			update_ENG_agriculture_tax_modifier = yes
-			newline = yes
-			set_temp_variable = { ENG_foreign_influence_defense_modifier_change = 0.05 }
-			update_ENG_foreign_influence_defense_modifier = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_corporaet_led_constitutional_convention
-		icon = central_planned_economy2
-
-		x = 1
-		y = 3
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_a_union_of_nations }
-		prerequisite = { focus = ENG_further_digital_governance }
-
-		mutually_exclusive = {
-			focus = ENG_people_led_constitutional_convention
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_corporaet_led_constitutional_convention"
-			set_temp_variable = { temp_opinion = 10 }
-			change_fossil_fuel_industry_opinion = yes
-			newline = yes
-			set_temp_variable = { ENG_receiving_investment_cost_modifier_change = -0.1 }
-			update_ENG_receiving_investment_cost_modifier = yes
-			newline = yes
-			set_temp_variable = { ENG_resource_export_multiplier_modifier_change = 0.10 }
-			update_ENG_resource_export_multiplier_modifier = yes
-			newline = yes
-			increase_corruption = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_labour_for_workers_and_ceos_alike
-		icon = rally_the_industrialists
-
-		x = 2
-		y = 4
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_corporaet_led_constitutional_convention }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_labour_for_workers_and_ceos_alike"
-			set_temp_variable = { ENG_projects_cost_modifier_change = -0.10 }
-			update_ENG_projects_cost_modifier = yes
-			newline = yes
-			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
-			update_ENG_local_resources_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_dockyard_income_tax_modifier_change = 0.05 }
-			update_ENG_dockyard_income_tax_modifier = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_ulift_peerages
-		icon = authoritarian_democracy
-
-		x = 1
-		y = 5
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_corporaet_led_constitutional_convention }
-
-		mutually_exclusive = {
-			focus = ENG_abolish_life_peerages
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_ulift_peerages"
-			increase_corruption = yes
-			newline = yes
-			set_temp_variable = { ENG_population_tax_income_multiplier_modifier_change = 0.05 }
-			update_ENG_population_tax_income_multiplier_modifier = yes
-			newline = yes
-			set_temp_variable = { ENG_corporate_tax_cost_change = 0.05 }
-			update_ENG_corporate_tax_cost = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_replacing_the_house_of_lords
-		icon = renounce_treaty
-
-		x = 0
-		y = 4
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_corporaet_led_constitutional_convention focus = ENG_people_led_constitutional_convention }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_replacing_the_house_of_lords"
-			set_temp_variable = { ENG_political_power_factor_change = 0.05 }
-			update_ENG_political_power_factor = yes
-			newline = yes
-			add_stability = -0.10
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_abolish_life_peerages
-		icon = armoured_fist
-
-		x = -1
-		y = 5
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_replacing_the_house_of_lords }
-
-		mutually_exclusive = {
-			focus = ENG_ulift_peerages
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_abolish_life_peerages"
-			custom_effect_tooltip = ENG_abolished_house_of_lords_TT
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_common_expertise
-		icon = torchbearers_of_tomorrow
-
-		x = -2
-		y = 6
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_abolish_life_peerages focus = ENG_ulift_peerages }
-
-		mutually_exclusive = {
-			focus = ENG_technocratic_expertise
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_common_expertise"
-			set_temp_variable = { ENG_fuel_gain_factor_from_states_change = 0.1 }
-			update_ENG_fuel_gain_factor_from_states = yes
-			newline = yes
-			set_temp_variable = { ENG_production_factory_max_efficiency_factor_change = 0.10 }
-			update_ENG_production_factory_max_efficiency_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_economic_cycles_cost_factor_change = -0.1 }
-			update_ENG_economic_cycles_cost_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_line_change_production_efficiency_factor_change = 0.05 }
-			update_ENG_line_change_production_efficiency_factor = yes
-			newline = yes
-			set_temp_variable = { temp_opinion = 10 }
-			change_labour_unions_opinion = yes
-			newline = yes
-			two_random_industrial_complex = yes
-
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_technocratic_expertise
-		icon = central_planned_economy3
-
-		x = 0
-		y = 6
-
-		relative_position_id = ENG_britain_can_be_better
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_abolish_life_peerages focus = ENG_ulift_peerages }
-
-		mutually_exclusive = {
-			focus = ENG_common_expertise
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_social_democrats_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_common_expertise"
-			set_temp_variable = { ENG_military_factories_productivity_change = 0.05 }
-			update_ENG_military_factories_productivity = yes
-			newline = yes
-			set_temp_variable = { ENG_production_lack_of_resource_penalty_factor_change = -0.10 }
-			update_ENG_production_lack_of_resource_penalty_factor = yes
-			newline = yes
-			set_temp_variable = { ENG_military_industry_tax_modifier_change = 0.10 }
-			update_ENG_military_industry_tax_modifier = yes
-			newline = yes
-			set_temp_variable = { temp_opinion = 15 }
-			change_defense_industry_opinion = yes
-			newline = yes
-			set_temp_variable = { ENG_scientist_xp_gain_factor_modifier_change = 0.05 }
-			update_ENG_scientist_xp_gain_factor_modifier = yes
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
 	# Common Sense - Agenda
 	focus = {
 		id = ENG_time_for_common_sense
@@ -11412,6 +10829,15 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_the_most_family_friendly_country"
+			set_temp_variable = { ENG_production_speed_internet_station_factor_change = 0.10 }
+			update_ENG_production_speed_internet_station_factor = yes
+			newline = yes
+			add_stability = 0.03
+			newline = yes
+			set_party_index_to_ruling_party = yes
+			set_temp_variable = { party_popularity_increase = 0.05 }
+			set_temp_variable = { temp_outlook_increase = 0.025 }
+			add_relative_party_popularity = yes
 		}
 
 		ai_will_do = {
@@ -11455,7 +10881,7 @@ focus_tree = {
 	}
 
 	focus = {
-		id = ENG_instructor_pensions
+		id = ENG_knowledge_for_industry
 		icon = winston_churchill
 
 		x = -2
@@ -11475,7 +10901,19 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_bigger_place_for_educators"
-			
+			set_temp_variable = { temp_opinion = 5 }
+			change_defense_industry_opinion = yes
+			newline = yes
+			two_random_arms_factory = yes
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				newline = yes
+				mio:ENG_boeing_manufacturer = {
+					add_mio_size = 4
+				}
+			}
 		}
 
 		ai_will_do = {
@@ -11550,6 +10988,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_bigger_place_for_educators"
+			set_temp_variable = { ENG_projects_cost_modifier_change = -0.10 }
+			update_ENG_projects_cost_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_local_resources_factor_change = 0.05 }
+			update_ENG_local_resources_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_dockyard_income_tax_modifier_change = 0.05 }
+			update_ENG_dockyard_income_tax_modifier = yes
 		}
 
 		ai_will_do = {
@@ -11578,6 +11024,14 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_power_of_recall"
+			set_temp_variable = { temp_opinion = 10 }
+			change_labour_unions_opinion = yes
+			newline = yes
+			set_temp_variable = { ENG_base_fuel_gain_factor_change = 0.1 }
+			update_ENG_base_fuel_gain_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_max_fuel_factor_change = 0.1 }
+			update_ENG_max_fuel_factor = yes
 		}
 
 		ai_will_do = {
@@ -11610,6 +11064,13 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_bye_bye_bureaucracy"
+			set_temp_variable = { ENG_political_power_factor_change = 0.05 }
+			update_ENG_political_power_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_centralization_cost_change = -0.1 }
+			update_ENG_centralization_cost = yes
+			newline = yes
+			add_stability = -0.10
 		}
 
 		ai_will_do = {
@@ -11643,6 +11104,21 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_case_by_case_intervention"
+			add_tech_bonus = {
+				name = nuclear_reactors_research_bonus
+				bonus = 1
+				uses = 1
+				category = CAT_internet_tech
+				category = CAT_computing_tech
+				category = CAT_ai
+			}
+			newline = yes
+			random_list = {
+				50 = {
+					increase_economic_growth = yes
+				}
+				50 = {}
+			}
 		}
 
 		ai_will_do = {
@@ -11671,6 +11147,7 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_transparent_government"
+			country_event = britain_md.10
 		}
 
 		ai_will_do = {
@@ -11699,6 +11176,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_transparent_government"
+			set_temp_variable = { temp_opinion = 10 }
+			change_fossil_fuel_industry_opinion = yes
+			newline = yes
+			set_temp_variable = { ENG_receiving_investment_cost_modifier_change = -0.1 }
+			update_ENG_receiving_investment_cost_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_resource_export_multiplier_modifier_change = 0.10 }
+			update_ENG_resource_export_multiplier_modifier = yes
+			newline = yes
+			increase_corruption = yes
 		}
 
 		ai_will_do = {
@@ -11727,6 +11214,17 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_transparent_government"
+			set_temp_variable = { ENG_political_power_factor_change = 0.02 }
+			update_ENG_political_power_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_drift_defence_factor_change = 0.05 }
+			update_ENG_drift_defence_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_root_out_resistance_effectiveness_factor_change = 0.15 }
+			update_ENG_root_out_resistance_effectiveness_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_resistance_growth_change = -0.10 }
+			update_ENG_resistance_growth = yes
 		}
 
 		ai_will_do = {
@@ -11755,6 +11253,9 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_transparent_government"
+			remove_ideas = ENG_two_party_system_idea
+			newline = yes
+			custom_effect_tooltip = ENG_shatter_two_party_system_TT
 		}
 
 		ai_will_do = {
@@ -11787,6 +11288,22 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_transparent_government"
+			set_temp_variable = { ENG_fuel_gain_factor_from_states_change = 0.1 }
+			update_ENG_fuel_gain_factor_from_states = yes
+			newline = yes
+			set_temp_variable = { ENG_production_factory_max_efficiency_factor_change = 0.10 }
+			update_ENG_production_factory_max_efficiency_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_economic_cycles_cost_factor_change = -0.1 }
+			update_ENG_economic_cycles_cost_factor = yes
+			newline = yes
+			set_temp_variable = { ENG_line_change_production_efficiency_factor_change = 0.05 }
+			update_ENG_line_change_production_efficiency_factor = yes
+			newline = yes
+			set_temp_variable = { temp_opinion = 10 }
+			change_labour_unions_opinion = yes
+			newline = yes
+			two_random_industrial_complex = yes
 		}
 
 		ai_will_do = {
@@ -11819,492 +11336,16 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_more_transparent_government"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	# A Brighter, More Secure Future - Agenda
-
-	focus = {
-		id = ENG_a_brighter_more_secure_future
-		icon = ENG_conservative_3
-
-		x = 80
-		y = 8
-
-		cost = 5
-
-		search_filters = { FOCUS_FILTER_POLITICAL }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_a_brighter_more_secure_future"
-
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_voter_identification_laws
-		icon = winston_churchill
-
-		x = -2
-		y = 1
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_a_brighter_more_secure_future }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_voter_identification_laws"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_easier_voting_from_abroad
-		icon = winston_churchill
-
-		x = -2
-		y = 3
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_voter_identification_laws }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_voter_identification_laws"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_making_government_more_efficient
-		icon = winston_churchill
-
-		x = 0
-		y = 1
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_a_brighter_more_secure_future }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_making_government_more_efficient"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_reward_hardwork_protect_the_vulnerable
-		icon = winston_churchill
-
-		x = 2
-		y = 1
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_a_brighter_more_secure_future }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_reward_hardwork_protect_the_vulnerable"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_address_unfair_parliamentary_boundaries
-		icon = winston_churchill
-
-		x = -1
-		y = 2
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_making_government_more_efficient }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_address_unfair_parliamentary_boundaries"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_fighting_overrepresentation
-		icon = winston_churchill
-
-		x = 1
-		y = 2
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_making_government_more_efficient }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_address_unfair_parliamentary_boundaries"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_britain_first
-		icon = winston_churchill
-
-		x = 2
-		y = 3
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_fighting_overrepresentation }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_britain_first"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_british_way_of_life
-		icon = winston_churchill
-
-		x = 2
-		y = 5
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_britain_first }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_britain_first"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_holding_government_accountable
-		icon = winston_churchill
-
-		x = 0
-		y = 3
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_address_unfair_parliamentary_boundaries }
-		prerequisite = { focus = ENG_fighting_overrepresentation }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_address_unfair_parliamentary_boundaries"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_reduce_mps_to_six_hundred
-		icon = winston_churchill
-
-		x = -1
-		y = 4
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_holding_government_accountable }
-
-		mutually_exclusive = {
-			focus = ENG_greater_representation_elsewhere
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_reduce_mps_to_six_hundred"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_greater_equality_in_votes
-		icon = winston_churchill
-
-		x = -2
-		y = 5
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_reduce_mps_to_six_hundred }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_greater_equality_in_votes"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_electoral_freedom_not_chaos # Fuck devolution
-		icon = winston_churchill
-
-		x = -3
-		y = 6
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_greater_equality_in_votes }
-		prerequisite = { focus = ENG_petitions_for_debate }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_greater_equality_in_votes"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_cutting_wasteful_spending
-		icon = winston_churchill
-
-		x = 0
-		y = 5
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_reduce_mps_to_six_hundred focus = ENG_greater_representation_elsewhere }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_greater_equality_in_votes"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_greater_representation_elsewhere
-		icon = winston_churchill
-
-		x = 1
-		y = 4
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_fighting_overrepresentation }
-		prerequisite = { focus = ENG_holding_government_accountable }
-
-		mutually_exclusive = {
-			focus = ENG_reduce_mps_to_six_hundred
-		}
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_reduce_mps_to_six_hundred"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_open_government_partnership
-		icon = winston_churchill
-
-		x = 1
-		y = 6
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_cutting_wasteful_spending }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_greater_equality_in_votes"
-		}
-
-		ai_will_do = {
-			base = 1
-		}
-	}
-
-	focus = {
-		id = ENG_continue_the_efficency_revolution
-		icon = winston_churchill
-
-		x = -1
-		y = 6
-
-		relative_position_id = ENG_a_brighter_more_secure_future
-
-		cost = 5.72
-
-		prerequisite = { focus = ENG_cutting_wasteful_spending }
-
-		search_filters = { FOCUS_FILTER_ECONOMY }
-
-		available = {
-			western_conservatism_are_in_power = yes
-		}
-
-		completion_reward = {
-			log = "[GetDateText]: [THIS.GetName]: Focus ENG_continue_the_efficency_revolution"
+			set_temp_variable = { temp_opinion = 10 }
+			change_fossil_fuel_industry_opinion = yes
+			newline = yes
+			set_temp_variable = { ENG_receiving_investment_cost_modifier_change = -0.1 }
+			update_ENG_receiving_investment_cost_modifier = yes
+			newline = yes
+			set_temp_variable = { ENG_resource_export_multiplier_modifier_change = 0.10 }
+			update_ENG_resource_export_multiplier_modifier = yes
+			newline = yes
+			increase_corruption = yes
 		}
 
 		ai_will_do = {
@@ -15862,6 +14903,500 @@ focus_tree = {
 		}
 	}
 
+	# Foreign Policy Branch
+
+	focus = {
+		id = ENG_the_sun_which_never_set
+		icon = customs_union
+
+		x = 52
+		y = 0
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_the_sun_which_never_set"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_barras # Sierra Leone
+		icon = customs_union
+
+		x = -4
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_barras"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_iron_savannah # Kenya
+		icon = customs_union
+
+		x = -6
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_iron_savannah"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_coastal_star # Ghana
+		icon = customs_union
+
+		x = -5
+		y = 2
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_coastal_star"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_resolute_banner # Kosovo
+		icon = customs_union
+
+		x = -2
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_resolute_banner"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_herrick # Afghanistan
+		icon = customs_union
+
+		x = 0
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_herrick"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_ellamy # Libya
+		icon = customs_union
+
+		x = 2
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_ellamy"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_shader # Syria
+		icon = customs_union
+
+		x = 4
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_desert_horizon # Iran
+		icon = customs_union
+
+		x = 6
+		y = 1
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_sun_spear # Egypt
+		icon = customs_union
+
+		x = 5
+		y = 2
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_delta_guard # Nigeria (take they oil)
+		icon = customs_union
+
+		x = -3
+		y = 2
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_telic # Iraq
+		icon = customs_union
+
+		x = -1
+		y = 2
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_red_trident # Yemen
+		icon = customs_union
+
+		x = 1
+		y = 2
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_operation_horn_watch # Yemen
+		icon = customs_union
+
+		x = 3
+		y = 2
+
+		relative_position_id = ENG_the_sun_which_never_set
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_the_sun_which_never_set }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_shader"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	# Britains Direction
+
+	focus = {
+		id = ENG_western_allies_western_ideals
+		icon = customs_union
+
+		x = 51
+		y = 3
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		mutually_exclusive = {
+			focus = ENG_out_with_the_new_in_with_the_old
+		}
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_our_direction"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = ENG_
+		icon = customs_union
+
+		x = -1
+		y = 1
+
+		relative_position_id = ENG_western_allies_western_ideals
+
+		cost = 5.72
+
+		prerequisite = { focus = ENG_western_allies_western_ideals }
+
+		search_filters = { FOCUS_FILTER_ECONOMY }
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_operation_barras"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	# Alt-History
+
+	focus = {
+		id = ENG_out_with_the_new_in_with_the_old
+		icon = customs_union
+
+		x = 53
+		y = 3
+
+		cost = 1
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		mutually_exclusive = {
+			focus = ENG_western_allies_western_ideals
+		}
+
+		available = {
+			western_social_democrats_are_in_power = yes
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [THIS.GetName]: Focus ENG_our_direction"
+
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
 
 	##############################
 	###	Start of EU Focus Tree ###	x = 15 y = 18
