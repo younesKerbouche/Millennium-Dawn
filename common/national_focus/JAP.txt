@@ -41,7 +41,7 @@ focus_tree = {
 		id = JAP_choice
 		#icon
 
-		x = 13
+		x = 14
 		y = 0
 
 		cost = 5
@@ -62,7 +62,7 @@ focus_tree = {
 		id = JAP_left
 		#icon
 
-		x = -8
+		x = -10
 		y = 1
 		relative_position_id = JAP_choice
 
@@ -772,13 +772,15 @@ focus_tree = {
 		id = JAP_principle_of_no_armed_forces
 		#icon
 
-		x = -1
-		y = 1
+		x = 0
+		y = 2
 		relative_position_id = JAP_restricting_arms_exports
 
 		cost = 10
 
 		prerequisite = { focus = JAP_restricting_arms_exports }
+		mutually_exclusive = { focus = JAP_exclusive_defense }
+		mutually_exclusive = { focus = JAP_collective_self_defense }
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		available = {
@@ -786,6 +788,572 @@ focus_tree = {
 
 		completion_reward = {
 			log = "[GetDateText]: [Root.GetName]: Focus JAP_principle_of_no_armed_forces"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_abrogating_us_japan_security_treaty
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_principle_of_no_armed_forces
+
+		cost = 10
+
+		prerequisite = { focus = JAP_principle_of_no_armed_forces }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_abrogating_us_japan_security_treaty"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_dissolving_sdf
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_abrogating_us_japan_security_treaty
+
+		cost = 10
+
+		prerequisite = { focus = JAP_abrogating_us_japan_security_treaty }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_dissolving_sdf"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_right
+		#icon
+
+		x = 10
+		y = 1
+		relative_position_id = JAP_choice
+
+		cost = 10
+
+		prerequisite = { focus = JAP_choice }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_right"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_strengthen_military_power
+		#icon
+
+		x = -6
+		y = 1
+		relative_position_id = JAP_right
+
+		cost = 10
+
+		prerequisite = { focus = JAP_right }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_strengthen_military_power"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_allow_overseas_deployment
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_strengthen_military_power
+
+		cost = 10
+
+		prerequisite = { focus = JAP_strengthen_military_power }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_allow_overseas_deployment"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_allow_overseas_deployment
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_strengthen_military_power
+
+		cost = 10
+
+		prerequisite = { focus = JAP_strengthen_military_power }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_allow_overseas_deployment"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_international_missions
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_strengthen_military_power
+
+		cost = 10
+
+		prerequisite = { focus = JAP_strengthen_military_power }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_international_missions"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_revising_use_weapons
+		#icon
+
+		x = 0
+		y = 2
+		relative_position_id = JAP_strengthen_military_power
+
+		cost = 10
+
+		prerequisite = { focus = JAP_allow_overseas_deployment }
+		prerequisite = { focus = JAP_international_missions }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_revising_use_weapons"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_exclusive_defense
+		#icon
+
+		x = -4
+		y = 1
+		relative_position_id = JAP_revising_use_weapons
+
+		cost = 10
+
+		prerequisite = {
+			focus = JAP_restricting_arms_exports
+			focus = JAP_revising_use_weapons
+		}
+		mutually_exclusive = { focus = JAP_principle_of_no_armed_forces }
+		mutually_exclusive = { focus = JAP_collective_self_defense }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_exclusive_defense"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_collective_self_defense
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_revising_use_weapons
+
+		cost = 10
+
+		prerequisite = { focus = JAP_revising_use_weapons }
+		mutually_exclusive = { focus = JAP_principle_of_no_armed_forces }
+		mutually_exclusive = { focus = JAP_exclusive_defense }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_collective_self_defense"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_public_support_constitutional_revision
+		#icon
+
+		x = -2
+		y = 1
+		relative_position_id = JAP_collective_self_defense
+
+		cost = 10
+
+		prerequisite = {
+			focus = JAP_exclusive_defense
+			focus = JAP_collective_self_defense
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_public_support_constitutional_revision"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_explicitly_stipulating_sdf
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_public_support_constitutional_revision
+
+		cost = 10
+
+		prerequisite = { focus = JAP_public_support_constitutional_revision }
+		mutually_exclusive = { focus = JAP_repealing_article_9 }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_explicitly_stipulating_sdf"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_repealing_article_9
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_public_support_constitutional_revision
+
+		cost = 10
+
+		prerequisite = { focus = JAP_public_support_constitutional_revision }
+		mutually_exclusive = { focus = JAP_explicitly_stipulating_sdf }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_repealing_article_9"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_prioritizing_order
+		#icon
+
+		x = -2
+		y = 1
+		relative_position_id = JAP_right
+
+		cost = 10
+
+		prerequisite = { focus = JAP_right }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_prioritizing_order"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_strengthen_public_security
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_prioritizing_order
+
+		cost = 10
+
+		prerequisite = { focus = JAP_prioritizing_order }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_strengthen_public_security"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_against_organized_crime
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_strengthen_public_security
+
+		cost = 10
+
+		prerequisite = { focus = JAP_strengthen_public_security }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_against_organized_crime"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_against_terrorist_financing
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_prioritizing_order
+
+		cost = 10
+
+		prerequisite = { focus = JAP_prioritizing_order }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_against_terrorist_financing"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_counter_espionage
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_against_terrorist_financing
+
+		cost = 10
+
+		prerequisite = { focus = JAP_against_terrorist_financing }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_counter_espionage"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_strengthening_cabinet
+		#icon
+
+		x = 0
+		y = 3
+		relative_position_id = JAP_prioritizing_order
+
+		cost = 10
+
+		prerequisite = {
+			focus = JAP_against_organized_crime
+			focus = JAP_counter_espionage
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_strengthening_cabinet"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_cabinet_personnel_bureau
+		#icon
+
+		x = -1
+		y = 1
+		relative_position_id = JAP_strengthening_cabinet
+
+		cost = 10
+
+		prerequisite = { focus = JAP_strengthening_cabinet }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_cabinet_personnel_bureau"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_breaking_down_bureaucratic_siloing
+		#icon
+
+		x = 0
+		y = 1
+		relative_position_id = JAP_cabinet_personnel_bureau
+
+		cost = 10
+
+		prerequisite = { focus = JAP_cabinet_personnel_bureau }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_breaking_down_bureaucratic_siloing"
+		}
+
+		ai_will_do = {
+			base = 1
+		}
+	}
+
+	focus = {
+		id = JAP_policy_evaluation_and_kpis
+		#icon
+
+		x = 1
+		y = 1
+		relative_position_id = JAP_strengthening_cabinet
+
+		cost = 10
+
+		prerequisite = { focus = JAP_strengthening_cabinet }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		available = {
+		}
+
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus JAP_policy_evaluation_and_kpis"
 		}
 
 		ai_will_do = {
